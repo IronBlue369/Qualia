@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>味の80%は鼻で感じている — Qualia Journal</title>
+<meta name="description" content="鼻をつまむとリンゴとタマネギの区別がつかない。味覚と嗅覚の驚くべき関係を、体験とともに確かめる。">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;margin-bottom:20px;}.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:6px;}.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}.cover-aside strong{color:#3d3020;font-weight:600;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}.scenario-inner::after{content:'\301C';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}.meta-item{display:flex;align-items:center;gap:10px;}.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}.difficulty-dots{display:flex;gap:4px;}.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}.dot.on{background:#8b1a1a;}.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;}.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}.article-main{padding:48px 0;}.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;margin-bottom:20px;}.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}.body-text strong{color:#1a1208;font-weight:600;}.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}.pull-q em{color:#8b1a1a;}.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:260px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}.tip-box strong{color:#e8c56a;font-weight:600;}.tip.open .tip-box{display:block;}
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}.img-ph-area{min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}.img-ph-icon{font-size:28px;opacity:.4;}.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;}.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.misconception-header{background:#3d3020;color:white;padding:11px 20px;}.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.misconception-body{background:white;}.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}.misconception-item:last-child{border-bottom:none;}.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}.mis-label.wrong{color:#c4392a;}.mis-label.right{color:#1a5a30;}.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.diagram-wrap{margin:28px 0;text-align:center;}.diagram-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;text-align:center;max-width:520px;margin-left:auto;margin-right:auto;}
+.ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.ix-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.ix-body{padding:24px 20px;background:white;}.ix-desc{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:18px;}.ix-desc strong{font-weight:600;color:#1a1208;}.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:14px;padding-top:12px;border-top:1px solid #e0d8c8;line-height:1.7;}
+/* Quiz — sound article format */
+.quiz-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.quiz-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}.quiz-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.quiz-body{padding:24px 20px;background:white;}.quiz-q{font-family:'Source Serif 4',serif;font-size:16px;font-weight:400;color:#1a1208;line-height:1.7;margin-bottom:16px;}.quiz-choices{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}.quiz-btn{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;padding:10px 18px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;transition:all .15s;text-align:left;}.quiz-btn:hover{border-color:#8b1a1a;background:#f3efe6;}.quiz-btn.correct{border-color:#1a5a30;background:#edf5ed;color:#1a5a30;font-weight:600;}.quiz-btn.wrong{border-color:#c4392a;background:#fdf0ef;color:#c4392a;opacity:.6;}.quiz-result{display:none;padding:16px;background:#f3efe6;border:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;}.quiz-result strong{font-weight:600;color:#1a1208;}
+/* Steps — EXACT sound article format */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;}
+.step-n{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#8b1a1a;padding:14px 16px;border-right:1px solid #c8bfaa;min-width:52px;text-align:center;}
+.step-title{font-family:'Source Serif 4',serif;font-size:15px;font-weight:400;color:#1a1208;padding:14px 16px;flex:1;}
+.step-arrow{padding:14px 16px;color:#b0a090;font-size:12px;transition:transform .2s;}
+.step-card.open .step-arrow{transform:rotate(180deg);}
+.step-body{display:none;padding:16px 20px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.step-card.open .step-body{display:block;}
+.step-body strong{color:#3d3020;font-weight:600;}.step-body em{color:#8b1a1a;font-style:italic;}
+/* Timeline — EXACT sound article vertical-line format */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+/* Culture block — individual blocks, header+body format */
+.culture-block{margin:28px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.culture-label{background:#f3efe6;padding:10px 20px;border-bottom:1px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;}
+.culture-body{padding:16px 20px;background:white;}
+.culture-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:8px;}
+.culture-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;}.culture-text strong{color:#3d3020;font-weight:600;}
+/* References */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}.ref-title a:hover{border-bottom-color:#8b1a1a;}.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}.sidebar-block:last-child{border-bottom:none;}.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}.sidebar-text strong{color:#3d3020;font-weight:600;}.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}.sidebar-check{list-style:none;padding:0;}.sidebar-check li{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;display:flex;align-items:flex-start;gap:8px;cursor:pointer;}.sidebar-check li::before{content:'\2610';flex-shrink:0;font-size:14px;color:#8b1a1a;line-height:1.7;}.sidebar-check li.checked::before{content:'\2611';}
+/* Terminal */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}.terminal-dots{display:flex;gap:6px;}.terminal-dot{width:12px;height:12px;border-radius:50%;}.terminal-dot.red{background:#ff5f57;}.terminal-dot.yellow{background:#febc2e;}.terminal-dot.green{background:#28c840;}.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;}.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;}.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}.t-prompt{color:#4a9e6a;margin-right:8px;user-select:none;}.t-input{color:#e8e4de;}.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}.t-output em{color:#e8c56a;font-style:normal;}.t-output strong{color:#fff;font-weight:500;}.t-exit .t-prompt{color:#555;}.t-exit .t-input{color:#555;}.t-exit .t-comment{color:#4a9e6a;}.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+/* Related */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}.fade.on{opacity:1;transform:translateY(0);}
+/* Interactive: food grid, flavor bars, slider */
+.food-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:16px 0;}.food-btn{padding:12px 8px;border:1px solid #c8bfaa;background:white;cursor:pointer;text-align:center;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;transition:all .15s;border-radius:4px;}.food-btn:hover{border-color:#8b1a1a;}.food-btn.active{border-color:#8b1a1a;background:#8b1a1a;color:white;}
+.flavor-bar{margin:16px 0;}.flavor-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-family:'Source Sans 3',sans-serif;font-size:12px;}.flavor-label{width:60px;text-align:right;color:#7a6a55;font-weight:400;}.flavor-track{flex:1;height:18px;background:#e0d8c8;border-radius:3px;overflow:hidden;}.flavor-fill{height:100%;border-radius:3px;transition:width .4s ease;}.flavor-pct{width:36px;font-weight:600;color:#3d3020;font-size:11px;}
+.sl-wrap{margin:16px 0;}.sl-label{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;margin-bottom:6px;display:flex;justify-content:space-between;}.sl-bar{width:100%;-webkit-appearance:none;appearance:none;height:8px;border-radius:4px;outline:none;background:#e0d8c8;}.sl-bar::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:white;border:3px solid #8b1a1a;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.15);}.sl-bar::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:white;border:3px solid #8b1a1a;cursor:pointer;}
+/* Nose Pinch toggle buttons */
+.pinch-toggle{display:flex;gap:12px;margin:20px 0;}
+.pinch-opt{flex:1;padding:16px 20px;text-align:center;font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:600;cursor:pointer;background:white;color:#3d3020;transition:all .2s;border:2px solid #c8bfaa;border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,.05);}
+.pinch-opt:hover{border-color:#8b1a1a;background:#fdf6f0;}
+.pinch-opt.active{background:#8b1a1a;color:white;border-color:#8b1a1a;box-shadow:0 2px 8px rgba(139,26,26,.2);}
+.pinch-display{margin:20px 0;padding:24px;background:#f3efe6;border:1px solid #e0d8c8;min-height:120px;}
+.pinch-food-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;margin-bottom:16px;}
+.pinch-bars{margin-bottom:24px;}
+.pinch-desc{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin-top:8px;padding-top:16px;border-top:1px solid #e0d8c8;}
+/* Animal table */
+.animal-table{width:100%;border-collapse:collapse;margin:16px 0;font-family:'Source Sans 3',sans-serif;font-size:13px;}.animal-table th,.animal-table td{padding:10px 12px;border:1px solid #e0d8c8;text-align:left;}.animal-table thead th{background:#f3efe6;color:#7a6a55;font-weight:600;font-size:10px;letter-spacing:.06em;text-transform:uppercase;}.animal-table tbody td{color:#3d3020;font-weight:300;}.animal-table .row-hl{background:#fdf6f0;font-weight:500;}
+/* Responsive */
+@media(max-width:720px){.cover{grid-template-columns:1fr;padding:40px 20px 32px;}.cover-right{display:none;}.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.summary-box,.scenario{padding:0 20px;}.article{grid-template-columns:1fr;padding:0 20px;}.article-side{display:none;}.misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}.terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}.related{padding:32px 20px;}.related-grid{grid-template-columns:1fr;}.tip-box{left:0;transform:none;width:200px;}.tip-box::after{left:20px;transform:none;}.person-block{grid-template-columns:1fr;}.person-block-img{padding:16px;}.food-grid{grid-template-columns:repeat(3,1fr);}.pinch-toggle{flex-direction:column;gap:8px;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- MASTHEAD -->
+<div class="masthead"><p class="masthead-name">Qualia Journal</p></div>
+
+<!-- COVER -->
+<div class="cover">
+<div class="cover-left">
+<p class="cover-kicker">D-03 — 知覚と錯覚</p>
+<h1>味の<em>80%</em>は<br>鼻で感じている</h1>
+<p class="cover-deck">リンゴとタマネギを舌に乗せても、鼻をつまめば区別がつかない。私たちが「味」と呼んでいるものの大部分は、じつは鼻の奥を通り抜けた匂いの情報だ。</p>
+<p class="cover-byline"><span>知覚心理学・化学感覚</span></p>
+</div>
+<div class="cover-right">
+<div class="est-card">
+<span class="est-label">Est.</span>
+<span class="est-year">1982</span>
+<p class="est-event">ポール・ロジンが嗅覚の「二重性」を体系的に論じ、レトロネーザル経路が「味」と混同されていることを実証した年。</p>
+<p class="est-context">同年: フォークランド紛争勃発。ソニーが世界初の民生用CDプレーヤー（CDP-101）を発売。TIME誌が初めて「パーソナル・コンピュータ」を「マシン・オブ・ザ・イヤー」に選出。</p>
+</div>
+<div class="cover-aside"><strong>80%という数字の出典:</strong> 風味知覚における嗅覚の寄与率。舌が検出する基本味は5種類にすぎず、残りの「風味」の大部分はレトロネーザル嗅覚が担っている。</div>
+</div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade"><div class="scenario-inner">
+<p>風邪をひいて鼻が詰まった朝、コーヒーを口にする。いつもの苦味はかすかにある。でも何かが違う。あの、鼻腔の奥に広がるようなコーヒーの「香り」がない。トーストにジャムを塗っても甘さは感じるのに、イチゴなのかブルーベリーなのかわからない。味が消えたのではない——味の「奥行き」だけが、きれいに消えている。</p>
+<p>この経験には心当たりがあるはずだ。そしてそれは風邪に限らない。鼻をつまんでジェリービーンズを食べれば、どの味も「甘い」だけ。リンゴとタマネギの区別すらつかなくなる。色がわかる。食感もわかる。舌の上の甘味・酸味もわかる。消えたのは、鼻が担っていた情報だけだ。</p>
+<p>私たちが「味」と呼んでいるものの大部分は、舌ではなく鼻で感じている。</p>
+</div></div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+<div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div><span class="difficulty-text">中級 — 生物学の予備知識は不要</span></div>
+<div class="meta-sep"></div>
+<div class="meta-item"><span class="meta-label">読了時間</span><span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 18 分</span></div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade"><div class="summary-inner"><span class="summary-icon">要点</span><p class="summary-text">食べ物の「風味」がどこで生まれているのかを、鼻をつまむ実験やスライダー操作で体感する。<strong>舌が「味」を拾い、鼻が「風味」を作り、脳がそれを一つにまとめている</strong>——その仕組みを知識と体験の両面で確かめる。</p></div></div>
+
+<!-- ===== ARTICLE ===== -->
+<div class="article"><div class="article-main">
+
+<!-- BACKGROUND -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">1982年、ペンシルベニア大学の心理学者がチーズの匂いについて考えた。</h2>
+
+<p class="body-text fade"><span class="tip" onclick="toggleTip(this)">ポール・ロジン<span class="tip-box"><strong>ポール・ロジン（Paul Rozin, 1936–）</strong>ペンシルベニア大学の心理学者。食心理学の創始者の一人。嫌悪感、食の好み、嗅覚の研究で知られる。</span></span>はリンバーガーチーズについて考えていた。あのチーズは、鼻を近づけると強烈な悪臭がする。靴下の匂い、と表現する人もいる。ところが口に入れると、濃厚で芳醇な「味」がする。同じ分子が鼻に届いているのに、鼻から嗅ぐと「臭い」、口の中から来ると「おいしい」。なぜか。</p>
+
+<p class="body-text fade">ロジンは1982年の論文<em>「"Taste-smell confusions" and the duality of the olfactory sense」</em>で、ある実験を行った。被験者にまず匂いを鼻から嗅がせて正確に識別させた。次に、同じ匂い物質を口の奥から鼻腔に送り込んだ。すると、正答率は劇的に下がった。同じ受容体に同じ分子が届いているはずなのに、経路が変わるだけで知覚が変わる。ロジンはこの結果をもとに、<strong>嗅覚は「二重の感覚」である</strong>と宣言した。</p>
+
+<div class="quote-block fade">
+<p class="quote-en">"Olfaction is the only dual sensory modality, in that it senses both objects in the external world and objects in the body (mouth)."</p>
+<p class="quote-ja">「嗅覚は唯一の二重感覚様式である——外の世界の対象と、体の内側（口）の対象の両方を感知する。」</p>
+<p class="quote-attr">— Paul Rozin, "Taste-smell confusions" and the duality of the olfactory sense (1982)</p>
+</div>
+
+<p class="body-text fade">外から鼻で嗅ぐ嗅覚を<span class="tip" onclick="toggleTip(this)">オルソネーザル嗅覚<span class="tip-box"><strong>オルソネーザル嗅覚（Orthonasal Olfaction）</strong>外界から鼻孔を通って嗅覚上皮に至る通常の嗅覚経路。「匂いを嗅ぐ」と言うとき、通常はこちらを指す。</span></span>、口の中から鼻の奥へ抜ける嗅覚を<span class="tip" onclick="toggleTip(this)">レトロネーザル嗅覚<span class="tip-box"><strong>レトロネーザル嗅覚（Retronasal Olfaction）</strong>食べ物を噛んだり飲み込むとき、揮発分子が咽頭から鼻腔へ逆流して嗅覚上皮に届く経路。「味」と混同されることが多い。</span></span>と呼ぶ。私たちが「味」だと思い込んでいるものの大半は、実はこのレトロネーザル嗅覚によるものだ。</p>
+
+<!-- PERSON BLOCK: Rozin -->
+<div class="person-block fade">
+<div class="person-block-img">
+<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg">
+<circle cx="45" cy="36" r="22" fill="#d4c8b0" stroke="#c8bfaa" stroke-width="1"/>
+<ellipse cx="45" cy="90" rx="30" ry="22" fill="#d4c8b0" stroke="#c8bfaa" stroke-width="1"/>
+<circle cx="38" cy="33" r="2" fill="#7a6a55"/><circle cx="52" cy="33" r="2" fill="#7a6a55"/>
+<path d="M40 42 Q45 46 50 42" fill="none" stroke="#7a6a55" stroke-width="1.2"/>
+</svg>
+</div>
+<div class="person-block-body">
+<p class="person-block-name">ポール・ロジン</p>
+<p class="person-block-role">Paul Rozin (1936–) — Psychologist</p>
+<p class="person-block-desc">ペンシルベニア大学心理学部教授。食の心理学（なぜ人は特定の食べ物を嫌うのか、辛いものをなぜ好むようになるのか）の第一人者。1982年に嗅覚の「二重性」を提唱し、レトロネーザル経路が「味」として誤認される仕組みを体系的に論じた。</p>
+</div>
+</div>
+
+<!-- TASTE vs FLAVOR explanation -->
+<p class="body-text fade">ここで用語を整理しておく。日本語の「味」は曖昧だ。英語では<strong>taste（味覚）</strong>と<strong>flavor（風味）</strong>を明確に分ける。taste は舌の味蕾が検出する5つの基本味——甘味、塩味、酸味、苦味、うま味——だけを指す。flavor は taste に嗅覚、触覚、視覚、記憶が統合された<em>総合的な知覚体験</em>だ。コーヒーの「味」と言うとき、私たちはほぼ常に flavor の意味で使っている。</p>
+
+<!-- TONGUE SVG (修正: 舌先が上で細く、根元が下で広い) -->
+<div class="diagram-wrap fade">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;">TASTE（味覚）— 舌が検出できるもの</p>
+<svg viewBox="0 0 420 500" width="420" style="max-width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
+<!-- Direction label: top = 舌先 -->
+<text x="210" y="22" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55" font-weight="600">舌先 ↓</text>
+<!-- Tongue body: tip is narrow at top, widens toward bottom (root) -->
+<path d="M210,40 Q230,38 248,50 Q275,75 295,120 Q318,175 325,240 Q330,300 325,340 Q318,380 290,400 Q260,415 210,420 Q160,415 130,400 Q102,380 95,340 Q90,300 95,240 Q102,175 125,120 Q145,75 172,50 Q190,38 210,40Z" fill="#e8a0a0" stroke="#d4888a" stroke-width="2"/>
+<!-- Tongue midline (subtle) -->
+<line x1="210" y1="55" x2="210" y2="400" stroke="#d4888a" stroke-width="0.5" opacity=".2"/>
+<!-- Surface texture dots -->
+<circle cx="190" cy="80" r="1.5" fill="#d4888a" opacity=".25"/><circle cx="230" cy="80" r="1.5" fill="#d4888a" opacity=".25"/>
+<circle cx="175" cy="130" r="1.5" fill="#d4888a" opacity=".25"/><circle cx="245" cy="130" r="1.5" fill="#d4888a" opacity=".25"/>
+<circle cx="160" cy="190" r="1.5" fill="#d4888a" opacity=".25"/><circle cx="260" cy="190" r="1.5" fill="#d4888a" opacity=".25"/>
+<circle cx="155" cy="260" r="1.5" fill="#d4888a" opacity=".25"/><circle cx="265" cy="260" r="1.5" fill="#d4888a" opacity=".25"/>
+<circle cx="160" cy="330" r="1.5" fill="#d4888a" opacity=".25"/><circle cx="260" cy="330" r="1.5" fill="#d4888a" opacity=".25"/>
+<!-- 5 taste circles distributed across tongue -->
+<!-- 甘味 (pink) — upper area -->
+<circle cx="175" cy="120" r="34" fill="#f5d0d0" stroke="#e8a0a0" stroke-width="1.5" opacity=".85"/>
+<text x="175" y="115" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="18">🍬</text>
+<text x="175" y="137" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#8b4040" font-weight="600">甘味</text>
+<!-- 塩味 (blue) — upper area -->
+<circle cx="250" cy="120" r="34" fill="#d0dff5" stroke="#a0b8e8" stroke-width="1.5" opacity=".85"/>
+<text x="250" y="115" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="18">🧂</text>
+<text x="250" y="137" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#405080" font-weight="600">塩味</text>
+<!-- 酸味 (yellow) — middle-left -->
+<circle cx="155" cy="230" r="34" fill="#f5f0d0" stroke="#e0d8a0" stroke-width="1.5" opacity=".85"/>
+<text x="155" y="225" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="18">🍋</text>
+<text x="155" y="247" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#806a20" font-weight="600">酸味</text>
+<!-- 苦味 (green) — middle-right -->
+<circle cx="265" cy="230" r="34" fill="#d0f0d8" stroke="#a0d8a8" stroke-width="1.5" opacity=".85"/>
+<text x="265" y="225" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="18">☕</text>
+<text x="265" y="247" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#306830" font-weight="600">苦味</text>
+<!-- うま味 (orange) — lower center -->
+<circle cx="210" cy="340" r="34" fill="#f5e0d0" stroke="#e8c0a0" stroke-width="1.5" opacity=".85"/>
+<text x="210" y="335" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="18">🍄</text>
+<text x="210" y="357" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#805830" font-weight="600">うま味</text>
+<!-- Root label at bottom -->
+<text x="210" y="450" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55" font-weight="600">↑ 奥（咽頭側・根元）</text>
+<!-- Throat indication -->
+<rect x="130" y="425" width="160" height="14" rx="7" fill="#ede8dc" stroke="#c8bfaa" stroke-width="0.8"/>
+<text x="210" y="435" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="8" fill="#b0a090">咽頭</text>
+</svg>
+<p class="diagram-caption">※ 5味は舌全体でほぼ均等に検出される。「舌の先が甘味、奥が苦味」という『味覚地図』は20世紀初頭の誤訳に基づく誤りで、現在は否定されている。</p>
+</div>
+
+
+<!-- FLAVOR DIAGRAM (修正指示2: 新規追加) -->
+<div class="diagram-wrap fade">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;">FLAVOR（風味）— 脳が構築するもの</p>
+<svg viewBox="0 0 520 380" width="520" style="max-width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
+<!-- Central flavor circle -->
+<circle cx="260" cy="190" r="58" fill="#1a1208" stroke="none"/>
+<text x="260" y="182" text-anchor="middle" font-family="Playfair Display,serif" font-size="16" fill="white" font-weight="700">FLAVOR</text>
+<text x="260" y="202" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#e8c56a">風味</text>
+<!-- Olfaction (top-left) -->
+<rect x="16" y="30" width="156" height="84" rx="6" fill="#8b1a1a" stroke="none"/>
+<text x="94" y="56" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="white" font-weight="600">嗅覚（レトロネーザル）</text>
+<text x="94" y="82" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="24" fill="#e8c56a" font-weight="700">~80%</text>
+<text x="94" y="102" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#f5d0d0">数百種の匂い分子</text>
+<line x1="172" y1="96" x2="219" y2="149" stroke="#c8bfaa" stroke-width="1.2"/>
+<!-- Taste (top-right) -->
+<rect x="356" y="40" width="148" height="60" rx="6" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+<text x="430" y="64" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55" font-weight="600">味覚</text>
+<text x="430" y="84" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090">たった5種類</text>
+<line x1="356" y1="82" x2="301" y2="149" stroke="#c8bfaa" stroke-width="1.2"/>
+<!-- Touch (right) -->
+<rect x="368" y="164" width="136" height="52" rx="6" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+<text x="436" y="186" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55" font-weight="600">触覚・温度</text>
+<text x="436" y="202" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090">辛味、食感、温冷</text>
+<line x1="368" y1="190" x2="318" y2="190" stroke="#c8bfaa" stroke-width="1.2"/>
+<!-- Vision (left) -->
+<rect x="16" y="164" width="128" height="52" rx="6" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+<text x="80" y="186" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55" font-weight="600">視覚</text>
+<text x="80" y="202" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090">色、形、盛り付け</text>
+<line x1="144" y1="190" x2="202" y2="190" stroke="#c8bfaa" stroke-width="1.2"/>
+<!-- Memory (bottom-left) -->
+<rect x="60" y="290" width="140" height="52" rx="6" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+<text x="130" y="312" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55" font-weight="600">記憶・感情</text>
+<text x="130" y="328" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090">過去の経験、文化</text>
+<line x1="168" y1="290" x2="219" y2="231" stroke="#c8bfaa" stroke-width="1.2"/>
+<!-- Sound (bottom-right) -->
+<rect x="320" y="290" width="140" height="52" rx="6" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+<text x="390" y="312" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55" font-weight="600">聴覚</text>
+<text x="390" y="328" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090">咀嚼音、シズル感</text>
+<line x1="352" y1="290" x2="301" y2="231" stroke="#c8bfaa" stroke-width="1.2"/>
+</svg>
+<p class="diagram-caption">風味（flavor）は単一の感覚ではない。味覚、嗅覚、触覚、視覚、聴覚、記憶を脳が統合して構築する「総合知覚」。嗅覚（レトロネーザル）の寄与が圧倒的に大きい。</p>
+</div>
+
+<!-- MISCONCEPTION -->
+<div class="misconception fade">
+<div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+<div class="misconception-body">
+<div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">舌の先が甘味、奥が苦味を担当している</p></div><div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">5味はすべて舌全体でほぼ均等に検出される。「味覚地図」はHänigの1901年の論文をBoringが1942年に誤って図式化したもの</p></div></div>
+<div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">味覚を失えばすべての食べ物の区別がつかなくなる</p></div><div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">味覚を失っても嗅覚が無事なら食品の大部分は区別可能。逆に嗅覚を失うと「何を食べても同じ」になる</p></div></div>
+<div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">「辛味」は6番目の基本味である</p></div><div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">辛味は味覚ではなく痛覚（TRPV1受容体への刺激）。触覚系の一部であり、味蕾は関与しない</p></div></div>
+</div></div>
+
+<!-- IMAGE PLACEHOLDER -->
+<div class="img-placeholder fade">
+<div class="img-ph-area">
+<span class="img-ph-icon">🎨</span>
+<p class="img-ph-title">鼻をつまんでリンゴを食べるカエル</p>
+<p class="img-ph-desc">鼻をつまんだ状態でリンゴをかじるカエルのイラスト。カエルの表情は「何の味もしない…」という困惑。隣にはタマネギも置いてある。</p>
+<div class="img-ph-prompt"><p class="img-ph-prompt-lbl">Image Prompt</p><p class="img-ph-prompt-txt">鳥獣戯画タッチ。片方の前足で鼻をつまみながらリンゴをかじるカエル。隣にタマネギ。墨線画、和紙風背景。「同じ味だ…」と困惑した表情。</p></div>
+</div>
+<p class="img-caption">Fig. 1 — 鼻をつまむとリンゴとタマネギの区別がつかなくなる</p>
+</div>
+
+<hr class="art-rule">
+
+<!-- TWO PATHWAYS -->
+<div class="sec-rule fade"><span class="sec-label">二つの経路</span><div class="sec-line"></div></div>
+<h2 class="fade">同じ分子、異なる経路、まったく違う知覚。</h2>
+
+<p class="body-text fade">匂い分子が嗅覚上皮に届く経路は二つある。<strong>オルソネーザル経路</strong>と<strong>レトロネーザル経路</strong>だ。同じ受容体に同じ分子が到達するのだが、脳はこの二つの経路からの信号をまったく別の「意味」として処理する。</p>
+
+<p class="body-text fade"><strong>オルソネーザル嗅覚</strong>は、外界から鼻孔を通って匂い分子が嗅覚上皮に到達する経路だ。花の香り、焼きたてのパンの匂い、ガス漏れの臭い——私たちが「匂いを嗅ぐ」と言うときはこの経路を使っている。脳はオルソネーザル経路からの情報を「外の世界の出来事」として処理し、意識の上では「匂い」として体験する。</p>
+
+<p class="body-text fade"><strong>レトロネーザル嗅覚</strong>は、食べ物を噛んだり飲み込んだりするとき、揮発分子が咽頭の奥から鼻腔へ逆流して嗅覚上皮に到達する経路だ。ロジンが1982年に体系的に記述した。驚くべき事実がある。<em>脳はレトロネーザル経路からの情報を「口の中の出来事」として処理する。</em>つまり、鼻で感じているのに「味」として意識される。これがレトロネーザル嗅覚の決定的な特徴であり、風邪で鼻が詰まると食べ物の「味」（正確には風味）が消える理由だ。</p>
+
+<p class="body-text fade">この錯覚には名前がある。<strong><span class="tip" onclick="toggleTip(this)">口腔参照<span class="tip-box"><strong>口腔参照（Oral Referral）</strong>レトロネーザル嗅覚で鼻が検出した情報を、脳が「口の中の出来事」として処理する錯覚。認知的に不可侵であり、自覚しても消えない。</span></span>（oral referral）</strong>という。バニラヨーグルトを食べて「バニラの味がする」と感じるとき、バニラの「味」は舌では一切検出されていない。バニラの分子が喉の奥から鼻腔に抜け、嗅覚受容体で検出され、脳がその情報を「口の中で起きたこと」として統合しているだけだ。この錯覚は、鼻をつまんでバニラヨーグルトを食べればすぐに確認できる——バニラ風味が消え、ただの甘酸っぱいヨーグルトになる。</p>
+
+<!-- Two pathways SVG (修正指示3: 余白確保、文字サイズ拡大) -->
+<div class="diagram-wrap fade">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;">二つの嗅覚経路</p>
+<svg viewBox="0 0 520 520" width="520" style="max-width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
+<!-- Left column: Orthonasal -->
+<text x="130" y="20" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" fill="#7a6a55" font-weight="600">オルソネーザル経路</text>
+<rect x="30" y="35" width="200" height="48" rx="5" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+<text x="130" y="55" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#3d3020" font-weight="500">外界の匂い分子</text>
+<text x="130" y="70" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090">花、料理、ガスの匂い</text>
+<text x="130" y="100" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#7a6a55">↓</text>
+<rect x="30" y="110" width="200" height="40" rx="5" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+<text x="130" y="135" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#3d3020">鼻孔から吸入</text>
+<text x="130" y="168" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#7a6a55">↓</text>
+<rect x="30" y="178" width="200" height="40" rx="5" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+<text x="130" y="203" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#3d3020">嗅覚上皮で受容</text>
+<text x="130" y="236" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#7a6a55">↓</text>
+<rect x="30" y="246" width="200" height="48" rx="5" fill="#e0d8c8" stroke="#c8bfaa" stroke-width="1"/>
+<text x="130" y="266" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#3d3020" font-weight="500">脳:「外界の出来事」</text>
+<text x="130" y="282" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#7a6a55">→「匂い」として意識</text>
+
+<!-- Right column: Retronasal -->
+<text x="390" y="20" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" fill="#8b1a1a" font-weight="600">レトロネーザル経路</text>
+<rect x="290" y="35" width="200" height="48" rx="5" fill="#fdf6f0" stroke="#8b1a1a" stroke-width="1.5"/>
+<text x="390" y="55" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#8b1a1a" font-weight="500">食べ物の揮発分子</text>
+<text x="390" y="70" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090">咀嚼・嚥下で放出</text>
+<text x="390" y="100" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#8b1a1a">↓</text>
+<rect x="290" y="110" width="200" height="40" rx="5" fill="#fdf6f0" stroke="#8b1a1a" stroke-width="1.5"/>
+<text x="390" y="135" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#8b1a1a">咽頭から鼻腔へ逆流</text>
+<text x="390" y="168" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#8b1a1a">↓</text>
+<rect x="290" y="178" width="200" height="40" rx="5" fill="#fdf6f0" stroke="#8b1a1a" stroke-width="1.5"/>
+<text x="390" y="203" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#8b1a1a">嗅覚上皮で受容</text>
+<text x="390" y="236" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#8b1a1a">↓</text>
+<rect x="290" y="246" width="200" height="48" rx="5" fill="#8b1a1a" stroke="none"/>
+<text x="390" y="266" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="white" font-weight="500">脳:「口の中の出来事」</text>
+<text x="390" y="282" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#e8c56a">→「味」として意識</text>
+
+<!-- Shared receptor note -->
+<rect x="130" y="320" width="260" height="48" rx="5" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="260" y="340" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#7a6a55" font-weight="500">同じ嗅覚受容体・同じ分子</text>
+<text x="260" y="356" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#7a6a55">経路が違うだけで、知覚がまったく変わる</text>
+
+<!-- Key insight -->
+<rect x="80" y="400" width="360" height="56" rx="5" fill="#1a1208" stroke="none"/>
+<text x="260" y="422" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#e8c56a" font-weight="600">鼻が詰まると → レトロネーザル経路が遮断</text>
+<text x="260" y="442" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="white">→ 風味の約80%が消失 → 「味がしない」</text>
+
+<!-- Connection lines -->
+<text x="260" y="390" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#c8bfaa">↓</text>
+<text x="130" y="315" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#c8bfaa">↘</text>
+<text x="390" y="315" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#c8bfaa">↙</text>
+</svg>
+</div>
+
+<hr class="art-rule">
+
+<!-- ANIMAL TASTE COMPARISON (修正指示8: 新セクション) -->
+<div class="sec-rule fade"><span class="sec-label">味覚の地図</span><div class="sec-line"></div></div>
+<h2 class="fade">食べるものが変われば、味覚も変わる。</h2>
+
+<p class="body-text fade">光には可視光の範囲（380〜700nm）があり、ヒトとマンティスシュリンプではその検出範囲がまるで違う。味覚にも同じことが言える。種が何を食べるかによって、味覚受容体の数も種類もまったく異なる。</p>
+
+<p class="body-text fade">まず、味蕾の数を比べてみよう。味蕾とは舌の表面にある味覚受容体の集合体で、その数は種によって桁違いに異なる。</p>
+
+<!-- Taste bud count comparison SVG -->
+<div class="diagram-wrap fade">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;">味蕾の数 — 種間比較</p>
+<svg viewBox="0 0 580 440" width="580" style="max-width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
+<!-- Bars -->
+<text x="110" y="40" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020" font-weight="500">ナマズ 🐟</text>
+<rect x="116" y="24" width="420" height="28" rx="4" fill="#8b1a1a" opacity=".85"/><text x="540" y="44" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="13" fill="white" font-weight="600">~175,000</text>
+
+<text x="110" y="82" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020" font-weight="500">ウシ 🐄</text>
+<rect x="116" y="66" width="60" height="28" rx="4" fill="#c8a878"/><text x="184" y="86" font-family="Source Sans 3,sans-serif" font-size="13" fill="#3d3020">~25,000</text>
+
+<text x="110" y="124" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020" font-weight="500">ブタ 🐷</text>
+<rect x="116" y="108" width="36" height="28" rx="4" fill="#c8a878"/><text x="160" y="128" font-family="Source Sans 3,sans-serif" font-size="13" fill="#3d3020">~15,000</text>
+
+<text x="110" y="166" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020" font-weight="700">ヒト 🧑</text>
+<rect x="116" y="150" width="24" height="28" rx="4" fill="#3d6a8b"/><text x="148" y="170" font-family="Source Sans 3,sans-serif" font-size="13" fill="#3d3020" font-weight="600">~10,000</text>
+
+<text x="110" y="208" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020" font-weight="500">イヌ 🐕</text>
+<rect x="116" y="192" width="5" height="28" rx="2" fill="#c8a878"/><text x="130" y="212" font-family="Source Sans 3,sans-serif" font-size="13" fill="#3d3020">~1,700</text>
+
+<text x="110" y="250" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020" font-weight="500">ネコ 🐈</text>
+<rect x="116" y="234" width="2" height="28" rx="1" fill="#c8a878"/><text x="128" y="254" font-family="Source Sans 3,sans-serif" font-size="13" fill="#3d3020">~470</text>
+
+<text x="110" y="292" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020" font-weight="500">ニワトリ 🐔</text>
+<rect x="116" y="276" width="1" height="28" rx="1" fill="#c8a878"/><text x="128" y="296" font-family="Source Sans 3,sans-serif" font-size="13" fill="#3d3020">~50</text>
+
+<!-- Note -->
+<text x="116" y="340" font-family="Source Sans 3,sans-serif" font-size="11" fill="#b0a090">※ ナマズは全身に味蕾が分布する。「泳ぐ舌」と呼ばれる。</text>
+<text x="116" y="360" font-family="Source Sans 3,sans-serif" font-size="11" fill="#b0a090">※ ウシは有毒植物を避けるために味蕾が多いと考えられている。</text>
+</svg>
+</div>
+
+<p class="body-text fade">味蕾の数だけではない。何を「味」として検出できるかも、種によって驚くほど違う。</p>
+
+<!-- Taste detection range table -->
+<table class="animal-table fade">
+<thead><tr><th>種</th><th>甘味</th><th>塩味</th><th>酸味</th><th>苦味</th><th>うま味</th><th>備考</th></tr></thead>
+<tbody>
+<tr class="row-hl"><td><strong>ヒト</strong></td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>5味すべて検出可能</td></tr>
+<tr><td><strong>ネコ</strong></td><td style="color:#c4392a;font-weight:600;">✗</td><td>△</td><td>✓</td><td>✓</td><td>✓</td><td>Tas1r2遺伝子が偽遺伝子化。「甘味盲」</td></tr>
+<tr><td><strong>イルカ</strong></td><td style="color:#c4392a;">✗</td><td>✓</td><td style="color:#c4392a;">✗</td><td style="color:#c4392a;">✗</td><td style="color:#c4392a;">✗</td><td>塩味のみ。丸呑みのため味覚受容体が退化</td></tr>
+<tr><td><strong>ハチドリ</strong></td><td>✓*</td><td>—</td><td>—</td><td>—</td><td style="color:#c4392a;">✗</td><td>*うま味受容体を甘味検出器に転用</td></tr>
+<tr><td><strong>パンダ</strong></td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td style="color:#c4392a;">✗</td><td><span class="tip" onclick="toggleTip(this)">Tas1r1<span class="tip-box"><strong>Tas1r1遺伝子</strong>うま味受容体タンパク質（T1R1）をコードする遺伝子。T1R1はT1R3と結合してうま味（アミノ酸）を検出するセンサーを形成する。</span></span>が<span class="tip" onclick="toggleTip(this)">偽遺伝子化<span class="tip-box"><strong>偽遺伝子化（Pseudogenization）</strong>遺伝子が突然変異により機能を失い、タンパク質を作れなくなること。遺伝子の「残骸」は染色体上に残るが、もう使われない。</span></span>。竹食に転換</td></tr>
+</tbody>
+</table>
+
+<p class="body-text fade">ネコが甘いものに見向きもしない理由は、好みの問題ではなく遺伝子の問題だ。2005年にLiとBrandが報告した研究によれば、ネコ科のすべての種——イエネコからトラまで——が<span class="tip" onclick="toggleTip(this)">Tas1r2<span class="tip-box"><strong>Tas1r2遺伝子</strong>甘味受容体タンパク質（T1R2）をコードする遺伝子。T1R2はT1R3と結合して甘味センサーを形成する。この遺伝子が壊れると甘味を検出できなくなる。</span></span>遺伝子に247塩基対の欠失を持っている。甘味受容体のタンパク質が物理的に作れない。砂糖水を舌に乗せても、脳に「甘い」という信号がそもそも届かない。</p>
+
+<p class="body-text fade">イルカとクジラの味覚喪失はさらに劇的だ。鯨類は食べ物を噛まずに丸呑みする。味わう必要がなくなった結果、甘味、うま味、苦味、酸味の受容体遺伝子がすべて<span class="tip" onclick="toggleTip(this)">偽遺伝子化<span class="tip-box"><strong>偽遺伝子化（Pseudogenization）</strong>突然変異の蓄積により遺伝子が機能を失うこと。タンパク質を作る設計図としては使えなくなるが、DNAの配列自体はゲノムに残る。</span></span>した。残っているのは塩味のみ。2014年のFengらの研究は、この喪失が鯨類の共通祖先で起きたことを示している。</p>
+
+<p class="body-text fade">ハチドリの例は逆方向の進化を示す。すべての鳥類は甘味受容体の遺伝子（Tas1r2）を失っている。しかしハチドリは花蜜が主食だ。2014年にBaldwinらが<em>Science</em>に発表した研究は、ハチドリの<span class="tip" onclick="toggleTip(this)">うま味受容体（T1R1-T1R3）<span class="tip-box"><strong>T1R1-T1R3</strong>味覚受容体タンパク質のペア。通常はアミノ酸（うま味）を検出するが、ハチドリではこのペアが突然変異により糖を検出できるように変化した。</span></span>が突然変異によって糖を検出できるように「転用」されたことを示した。失われた受容体を、別の受容体を改造して取り戻した。進化の即興的な解決策だ。</p>
+
+<hr class="art-rule">
+
+<!-- EXPERIENCE -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">嗅覚を操作して、風味の構造を確かめる。</h2>
+
+<p class="body-text fade">理屈はわかった。では実際に体感してみよう。次のインタラクティブ・ツールで、食品を選び、嗅覚の寄与度を操作する。スライダーを0%（鼻が完全に詰まった状態）にしたとき、風味がどう変化するかを観察してほしい。</p>
+
+<!-- Flavor Anatomy Explorer -->
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">Flavor Anatomy Explorer</span></div>
+<div class="ix-body">
+<p class="ix-desc">食品を選び、<strong>嗅覚スライダー</strong>を動かして風味の構造を確認する。嗅覚を0%にすると何が残るか。</p>
+<div class="food-grid" id="foodGrid">
+<button class="food-btn active" onclick="selectFood(0)">☕ コーヒー</button>
+<button class="food-btn" onclick="selectFood(1)">🍷 赤ワイン</button>
+<button class="food-btn" onclick="selectFood(2)">🍫 チョコレート</button>
+<button class="food-btn" onclick="selectFood(3)">🍓 イチゴ</button>
+<button class="food-btn" onclick="selectFood(4)">🧀 チーズ</button>
+</div>
+<div class="sl-wrap"><div class="sl-label"><span>嗅覚寄与度</span><span id="olfPct">100%</span></div><input type="range" class="sl-bar" id="olfSlider" min="0" max="100" value="100" oninput="updateFlavor()"></div>
+<div class="flavor-bar" id="flavorBars"></div>
+<p class="ix-note" style="font-size:10px;color:#b0a090;margin-bottom:8px;">※ 各食品の寄与率はShepherd (2012)、Green (2003)等の風味知覚研究に基づく概算値。個人差・調理法により変動する。</p><p class="ix-note" id="flavorNote">嗅覚が100%のとき、あなたが感じる「コーヒーの味」のほとんどはレトロネーザル嗅覚が作っている。</p>
+</div></div>
+
+<!-- Nose Pinch Simulator (enriched) -->
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">Nose Pinch Simulator</span></div>
+<div class="ix-body">
+<p class="ix-desc">鼻を「つまむ」と「離す」を切り替えて、<strong>同じ食品でも風味がどう変わるか</strong>を視覚的に確認する。上のExplorerで選んだ食品が反映される。</p>
+<div class="pinch-toggle" id="pinchToggle">
+<div class="pinch-opt active" onclick="setPinch(false)">👃 鼻を開放</div>
+<div class="pinch-opt" onclick="setPinch(true)">🤏 鼻をつまむ</div>
+</div>
+<div class="pinch-display" id="pinchDisplay">
+<p class="pinch-food-name" id="pinchFoodName">☕ コーヒー</p>
+<div class="pinch-bars" id="pinchBars"></div>
+<p class="pinch-desc" id="pinchDesc"></p>
+</div>
+<p class="ix-note">実際にジェリービーンズを用意して鼻をつまみながら食べてみると、この変化を体感できる。どの味も「甘い」だけになる。</p>
+</div></div>
+
+<!-- Quiz -->
+<div class="quiz-wrap fade">
+<div class="quiz-header"><span class="quiz-hl">✦ Quick Check</span></div>
+<div class="quiz-body">
+<p class="quiz-q">風邪で鼻が詰まったとき、コーヒーの「風味」が消えるのはなぜか？</p>
+<div class="quiz-choices" id="quizOpts">
+<button class="quiz-btn" onclick="checkQuiz(this,0)">A. 鼻腔の炎症が味蕾の機能を低下させるから</button>
+<button class="quiz-btn" onclick="checkQuiz(this,1)">B. レトロネーザル経路が遮断され、嗅覚由来の風味情報が脳に届かなくなるから</button>
+<button class="quiz-btn" onclick="checkQuiz(this,2)">C. 風邪ウイルスが味覚神経を直接攻撃するから</button>
+</div>
+<div class="quiz-result" id="quizResult"></div>
+</div></div>
+
+<hr class="art-rule">
+
+<!-- MECHANISM -->
+<div class="sec-rule fade"><span class="sec-label">なぜそうなるのか</span><div class="sec-line"></div></div>
+<h2 class="fade">脳が風味を構築する3つの原理。</h2>
+
+<p class="body-text fade">風味は単一のセンサーの出力ではない。脳が複数の感覚入力を同時に受け取り、一つの統合された「風味オブジェクト」として構築する。このプロセスには3つの原理が関わっている。</p>
+
+<div class="steps-wrap fade">
+<p class="steps-head">メカニズム</p>
+<div class="step-card open" id="sc1"><div class="step-hd" onclick="tog(1)"><span class="step-n">1</span><span class="step-title">多感覚統合（Multisensory Integration）</span><span class="step-arrow">▾</span></div><div class="step-body">眼窩前頭皮質*（OFC）は、味覚（島皮質*経由）、嗅覚（梨状皮質*経由）、触覚（体性感覚皮質*経由）、視覚（視覚皮質経由）の情報を同時に受け取る。これらの入力が<strong>超加算的*に統合</strong>される——つまり、味覚と嗅覚を別々に受け取ったときの反応を足し合わせたものよりも、同時に受け取ったときの反応の方が大きい。この「1+1>2」の効果が、風味という豊かな知覚を生む。</div></div>
+<div class="step-card" id="sc2"><div class="step-hd" onclick="tog(2)"><span class="step-n">2</span><span class="step-title">口腔参照（Oral Referral）</span><span class="step-arrow">▾</span></div><div class="step-body">レトロネーザル嗅覚で検出された匂い情報は、口の中の触覚・味覚と同じ空間フレームに「参照」される。ゴードン・シェパード*は2012年の『Neurogastronomy』で、口の体性運動領域が味覚・触覚・嗅覚を共通の空間座標系に結びつける「バインディング・メカニズム」として機能すると論じた。鼻をつまんで食べてから鼻を離すと、風味が<em>口の中に</em>戻ってくる。鼻から離れた場所に。この錯覚は認知的に不可侵——自覚しても消えない。</div></div>
+<div class="step-card" id="sc3"><div class="step-hd" onclick="tog(3)"><span class="step-n">3</span><span class="step-title">味覚と嗅覚の調和学習（Congruency Learning）</span><span class="step-arrow">▾</span></div><div class="step-body">バニラの匂いは甘味の知覚を増強し、酸味は増強しない。これは「合致効果」と呼ばれ、文化圏で共有された食経験に基づく学習の結果だ。バニラと砂糖は菓子類で繰り返し同時に経験されるため、脳がこの組み合わせを「一つの風味オブジェクト」として記憶し、互いの知覚を増幅する。2011年にLimとJohnsonは、この増幅が単なる応答バイアスではなく<strong>中枢神経レベルの統合メカニズム</strong>であることを示した。</div></div>
+</div>
+
+<div class="note-box fade" style="margin-top:20px;">
+<strong>* 用語解説</strong><br>
+<strong>眼窩前頭皮質（OFC）</strong> — 前頭葉の底面に位置する脳領域。味覚・嗅覚・触覚・視覚の情報が収束し、風味の統合的な評価が行われる。<br>
+<strong>島皮質</strong> — 大脳皮質の深部に位置する領域。味覚の一次処理を担うほか、内臓感覚や感情の統合にも関与する。<br>
+<strong>梨状皮質</strong> — 嗅覚の一次皮質。嗅球から直接入力を受け、匂いのパターン認識を行う。<br>
+<strong>体性感覚皮質</strong> — 頭頂葉に位置し、触覚・圧覚・温度覚・痛覚を処理する。食べ物の食感もここで処理される。<br>
+<strong>超加算的（superadditive）</strong> — AとBを同時に提示したときの脳の反応が、A単体＋B単体の合計を上回ること。「1+1>2」。<br>
+<strong>ゴードン・シェパード</strong> — イェール大学の神経科学者。2012年の著書『Neurogastronomy』でレトロネーザル嗅覚と風味知覚の神経基盤を包括的に論じた。
+</div>
+
+<hr class="art-rule">
+
+<!-- TIMELINE -->
+<div class="sec-rule fade"><span class="sec-label">歴史を辿る</span><div class="sec-line"></div></div>
+<h2 class="fade">「味覚地図」の誤りからCOVID-19まで</h2>
+<p class="fade" style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-bottom:16px;display:flex;align-items:center;gap:16px;"><span style="display:inline-flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:50%;background:#8b1a1a;display:inline-block;"></span> 直接的な流れ</span><span style="display:inline-flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;display:inline-block;"></span> 関連する出来事</span></p>
+
+<div class="timeline fade">
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1810</p><p class="tl-title">ブリア＝サヴァラン『美味礼讃』</p><p class="tl-desc">「食べ物の真の楽しみの大部分は嗅覚に負っている」。科学的検証はなかったが、直感的に核心を突いていた。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1901</p><p class="tl-title">ヘーニッヒの味覚感度測定</p><p class="tl-desc">舌の部位別の感度差を測定。後にBoringが誤って図式化し「味覚地図」が誕生。この誤りは1970年代まで教科書に残る。</p></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1982</p><p class="tl-title">ロジン「嗅覚の二重性」を発表</p><p class="tl-desc">オルソネーザルとレトロネーザルを明確に区別。同じ匂い分子でも経路によって知覚が変わることを実験的に実証した。</p></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">2005</p><p class="tl-title">fMRIで二経路の脳活動差を確認</p><p class="tl-desc">SmallらがfMRIを使い、オルソネーザルとレトロネーザルで脳の活性化パターンが異なることを神経レベルで裏づけた。</p></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">2012</p><p class="tl-title">シェパード『Neurogastronomy』出版</p><p class="tl-desc">レトロネーザル嗅覚と風味知覚の神経科学的基盤を包括的にまとめた。風味が脳の構築物であるという見方を確立。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2020</p><p class="tl-title">COVID-19と嗅覚喪失</p><p class="tl-desc">世界中の数百万人が嗅覚を失い「味がしなくなった」と報告。レトロネーザル嗅覚の重要性が大衆レベルで可視化された。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2025</p><p class="tl-title">パロスミア研究の進展</p><p class="tl-desc">COVID後遺症としての嗅覚障害の研究が進む。嗅覚喪失が食行動・精神健康に与える深刻な影響が明らかに。</p></div>
+</div>
+
+<hr class="art-rule">
+
+<!-- TSUMARI -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">あなたの「味覚」は、鼻が作った幻だった。</h2>
+
+<p class="body-text fade">舌が検出できるのは甘味、塩味、酸味、苦味、うま味の5種類だけだ。リンゴとタマネギの区別、コーヒーとココアの違い、ワインの品種による香りの差異——これらはすべて、レトロネーザル嗅覚が担っている。そして脳はその情報を「口の中で起きたこと」として処理するため、私たちは鼻の貢献にまったく気づかない。</p>
+
+<p class="body-text fade">COVID-19が世界中から嗅覚を奪ったとき、「味がしなくなった」という訴えが殺到した。しかし多くの患者の味覚（taste）は無傷だった。失われたのはレトロネーザル嗅覚であり、それが「風味」の80%を担っていたがゆえに、「味がしない」と感じた。あの体験は、ロジンが1982年に実験室で示したことを、パンデミックが世界規模で再現したようなものだ。</p>
+
+<div class="pull fade"><p class="pull-q">"The same olfactory stimulation may be perceived and evaluated in <em>two qualitatively different ways</em>, depending on whether it is referred to the mouth or the external world."</p><p class="quote-ja" style="margin-top:10px;padding-left:0;border-left:none;">「同一の嗅覚刺激が、それが口に帰属するか外界に帰属するかによって、質的にまったく異なる二つの仕方で知覚・評価されうる。」</p><p class="pull-attr">— Paul Rozin, "Taste-smell confusions" and the duality of the olfactory sense (1982)</p></div>
+
+<!-- CULTURE BLOCK — sound article format -->
+<div class="culture-block fade">
+<div class="culture-label">文学への登場</div>
+<div class="culture-body">
+<p class="culture-title">プルーストの「マドレーヌ」（1913）</p>
+<p class="culture-text">マルセル・プルーストの『失われた時を求めて』で、主人公が紅茶に浸したマドレーヌの味と香りから少年時代の記憶を鮮やかに想起する。嗅覚と記憶の深い結びつき（「プルースト効果」）を象徴する文学的原型であり、レトロネーザル嗅覚が風味と記憶の統合に果たす役割を考えるうえで示唆的だ。</p>
+</div></div>
+
+<div class="culture-block fade">
+<div class="culture-label">映画への登場</div>
+<div class="culture-body">
+<p class="culture-title">『レミーのおいしいレストラン（Ratatouille）』(2007)</p>
+<p class="culture-text">ネズミのレミーが<strong>嗅覚の鋭さ</strong>を武器に料理の世界で才能を発揮する。クライマックスで批評家イーゴが一口食べて少年時代の台所に引き戻される場面——レトロネーザル嗅覚とプルースト効果の映像化と言える。</p>
+</div></div>
+
+<div class="culture-block fade">
+<div class="culture-label">社会現象</div>
+<div class="culture-body">
+<p class="culture-title">COVID-19と嗅覚喪失（2020–）</p>
+<p class="culture-text">世界中の数百万人がSARS-CoV-2による嗅覚障害を経験した。「味がなくなった」と表現する人が大半だったが、失われたのはレトロネーザル嗅覚であり、味覚自体は保たれていたケースが多い。パンデミックが嗅覚の重要性を大衆レベルで可視化した。</p>
+</div></div>
+
+<hr class="art-rule">
+
+<!-- REFERENCES -->
+<div class="sec-rule fade"><span class="sec-label">参考文献</span><div class="sec-line"></div></div>
+<div class="ref-list">
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">研究論文</span><span class="ref-year">1982</span></div>
+<p class="ref-title"><a href="https://doi.org/10.3758/BF03206069" target="_blank" rel="noopener">"Taste-smell confusions" and the duality of the olfactory sense</a></p>
+<p class="ref-author">Paul Rozin — Perception & Psychophysics, 31(4), 397–401</p>
+<p class="ref-desc">嗅覚の二重性を体系的に論じた原点の論文。リンバーガーチーズの例から始まり、オルソネーザルとレトロネーザルの知覚的差異を実験的に示した。この分野に入るなら最初に読むべき一本。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">研究論文</span><span class="ref-year">2005</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1016/j.neuron.2005.07.022" target="_blank" rel="noopener">Differential Neural Responses Evoked by Orthonasal versus Retronasal Odorant Perception in Humans</a></p>
+<p class="ref-author">Dana M. Small et al. — Neuron, 47(4), 593–605</p>
+<p class="ref-desc">fMRIを使い、同じ匂い分子でもオルソネーザルとレトロネーザルでは脳の活性化パターンが異なることを示した。口腔参照の神経基盤に迫る重要な研究。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2012</span></div>
+<p class="ref-title"><a href="https://cup.columbia.edu/book/neurogastronomy/9780231159111" target="_blank" rel="noopener">Neurogastronomy: How the Brain Creates Flavor and Why It Matters</a></p>
+<p class="ref-author">Gordon M. Shepherd — Columbia University Press</p>
+<p class="ref-desc">レトロネーザル嗅覚と風味知覚の神経科学を包括的にまとめた一冊。味覚・嗅覚・触覚がどのように統合されて「風味」になるのかを、一般読者にも理解できる水準で解説している。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">研究論文</span><span class="ref-year">2005</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1371/journal.pgen.0010003" target="_blank" rel="noopener">Pseudogenization of a Sweet-Receptor Gene Accounts for Cats' Indifference toward Sugar</a></p>
+<p class="ref-author">Xia Li, Weihua Li, Hong Wang et al. — PLoS Genetics</p>
+<p class="ref-desc">ネコのTas1r2遺伝子が偽遺伝子化している（甘味受容体が作れない）ことを初めて示した研究。味覚が進化と食性に直結するという証拠の出発点。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">研究論文</span><span class="ref-year">2014</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1126/science.1255097" target="_blank" rel="noopener">Evolution of sweet taste perception in hummingbirds by transformation of the ancestral umami receptor</a></p>
+<p class="ref-author">Maude W. Baldwin et al. — Science, 345(6199), 929–933</p>
+<p class="ref-desc">ハチドリのうま味受容体（T1R1-T1R3）が糖検出器に転用されたことを示した。失われた甘味受容体を別の受容体で補った「進化の即興」の美しい事例。</p>
+</div>
+</div>
+
+<!-- TRUST NOTE -->
+<div class="note-box fade">
+<strong>📌 この記事について</strong><br>
+嗅覚の二重性についてはRozin (1982) の原著論文、fMRIによる神経基盤の裏づけについてはSmall et al. (2005)、風味知覚の統合モデルについてはShepherd (2012) を主な根拠としている。動物の味覚受容体の比較データはLi et al. (2005)、Jiang et al. (2012)、Feng et al. (2014)、Baldwin et al. (2014) に基づく。「80%」という数字は風味知覚における嗅覚の寄与を示す代表的な見積もりだが、測定方法により70〜95%の幅がある。
+</div>
+
+<!-- TAGS -->
+<div class="tags fade">
+<span class="tag">嗅覚</span><span class="tag">味覚</span><span class="tag">風味</span><span class="tag">レトロネーザル</span><span class="tag">多感覚統合</span><span class="tag">進化</span><span class="tag">化学感覚</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- ===== SIDEBAR ===== -->
+<div class="article-side">
+<div class="sidebar-block">
+<p class="sidebar-label">Key Number</p>
+<p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;">~80%</p>
+<p class="sidebar-text" style="margin-top:8px;">風味知覚における嗅覚の寄与率。舌が検出する5つの基本味だけでは、食品のほとんどは区別できない。</p>
+</div>
+<div class="sidebar-block">
+<p class="sidebar-label">歴史的背景</p>
+<p class="sidebar-text">1982年にロジンが嗅覚の「二重性」を体系化。2005年にSmallがfMRIで神経レベルの差異を確認。2012年にシェパードが風味の神経科学を書籍にまとめた。</p>
+</div>
+<div class="sidebar-block">
+<p class="sidebar-label">作品への登場</p>
+<p class="sidebar-text">プルースト『失われた時を求めて』——マドレーヌの匂いと味が記憶を呼び起こす。ピクサー映画『レミーのおいしいレストラン』——嗅覚が料理の才能の源泉として描かれる。</p>
+</div>
+<div class="sidebar-block">
+<p class="sidebar-label">関連トピック</p>
+<p class="sidebar-text"><em>D-01</em> 色は存在しない<br><em>C-06</em> 音は存在しない<br><em>D-04</em> サーマルグリル錯覚<br><em>A-02</em> 記憶の再固定化</p>
+</div>
+<div class="sidebar-block">
+<p class="sidebar-label">振り返りチェック</p>
+<ul class="sidebar-check">
+<li onclick="this.classList.toggle('checked')">taste と flavor の違いを説明できる</li>
+<li onclick="this.classList.toggle('checked')">レトロネーザル嗅覚の経路を理解した</li>
+<li onclick="this.classList.toggle('checked')">口腔参照（oral referral）が何かわかった</li>
+<li onclick="this.classList.toggle('checked')">ネコが甘味を感じない理由を知った</li>
+<li onclick="this.classList.toggle('checked')">鼻をつまむと風味が消える体験を確認した</li>
+</ul>
+</div>
+<div class="sidebar-block">
+<p class="sidebar-label">信頼度</p>
+<p class="sidebar-text">嗅覚の二重性は複数のfMRI研究で裏づけられた再現性の高い知見。動物の味覚受容体喪失はゲノム解析で確定的。80%という数字は測定法による幅がある。</p>
+</div>
+</div>
+</div><!-- /article -->
+
+<!-- TERMINAL -->
+<div class="terminal-label-wrap"><div class="terminal-label fade"><span class="terminal-label-text">▼ Internal Dialogue >> Active</span><div class="terminal-label-line"></div></div></div>
+<div class="terminal-wrap"><div class="terminal fade" id="terminalBlock"><div class="terminal-bar"><div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div><span class="terminal-title">after.sh — 読後の対話ログ（架空）</span></div><div class="terminal-body">
+<span class="t-sys" id="ts0">// 「味の80%は鼻で感じている」を読み終えた人との対話</span>
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ風邪のとき「味がしない」って言ってたのは嘘だったのか</span></div><span class="t-output" id="to1">嘘じゃない。<em>体験としては正確</em>だ。ただ「味覚」は無事で、消えたのは「風味」——レトロネーザル嗅覚がカバーしていた80%のほう。</span><hr class="t-divider">
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ネコが甘いもの食べないの、好みの問題じゃなくて遺伝子って</span></div><span class="t-output" id="to2">Tas1r2の247塩基対が壊れてる。受容体のタンパク質が<em>物理的に作れない</em>。砂糖水を舐めても脳に信号が届かない。好き嫌い以前の話。</span><hr class="t-divider">
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;バニラヨーグルトのバニラが舌で感じてないのは衝撃だった</span></div><span class="t-output" id="to3">口腔参照。鼻が検出した情報を脳が<strong>「口の中の出来事」にすり替えてる</strong>。しかも自覚しても消えない。</span><hr class="t-divider">
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;COVID で嗅覚なくした人たちの気持ちがちょっとわかった気がする</span></div><span class="t-output" id="to4">食事の喜びの8割が消えるわけだからね。一部の人はまだ戻ってない。<em>パロスミア</em>——匂いが歪んで戻ってくる症状もある。</span><hr class="t-divider">
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# なるほどね</span></div>
+</div></div></div>
+
+<!-- RELATED -->
+<div class="related fade"><p class="related-label">次に読む</p><div class="related-grid">
+<a class="related-card" href="#"><p class="related-card-tag">知覚と錯覚 × 視覚</p><p class="related-card-title">色は存在しない</p><p class="related-card-desc">波長に色はない。脳が塗った。味覚と同じ構造の、視覚版。</p><p class="related-card-arrow">読む →</p></a>
+<a class="related-card" href="#"><p class="related-card-tag">知覚と錯覚 × 聴覚</p><p class="related-card-title">音は存在しない</p><p class="related-card-desc">空気の振動が存在するだけで、「音」は脳の解釈。五感シリーズの聴覚版。</p><p class="related-card-arrow">読む →</p></a>
+</div></div>
+
+<script>
+// Progress bar
+window.addEventListener('scroll',()=>{document.getElementById('prog').style.width=(scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+'%';});
+
+// Fade in
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// Tooltips
+function toggleTip(el){event.stopPropagation();const o=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(!o)el.classList.add('open');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip'))document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));});
+
+// Steps accordion
+function tog(n){const c=document.getElementById('sc'+n);const w=c.classList.contains('open');document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));if(!w)c.classList.add('open');}
+
+// ── Flavor Anatomy Explorer ──
+const foods=[
+{name:'コーヒー',taste:{bitter:70,sweet:5,sour:15,salt:2,umami:8},retro:85,note:'コーヒーの風味の大部分はレトロネーザル嗅覚由来。苦味は舌が検出するが、「コーヒーらしさ」（ナッツ、チョコレート、フルーティ等）は嗅覚が作っている。'},
+{name:'赤ワイン',taste:{bitter:15,sweet:10,sour:25,salt:2,umami:5},retro:90,note:'ワインの「風味」はほぼ全てレトロネーザル嗅覚。タンニンの渋みは触覚。舌が担うのは酸味と微かな甘味のみ。'},
+{name:'チョコレート',taste:{bitter:30,sweet:40,sour:5,salt:3,umami:5},retro:80,note:'カカオの苦味と砂糖の甘味は舌が検出するが、「チョコレートらしい香り」は完全にレトロネーザル嗅覚。'},
+{name:'イチゴ',taste:{bitter:2,sweet:45,sour:30,salt:1,umami:2},retro:88,note:'イチゴの甘味と酸味は舌が検出する。しかし「イチゴの味」を「イチゴ」たらしめている香り成分は嗅覚が担う。'},
+{name:'チーズ',taste:{bitter:8,sweet:5,sour:10,salt:25,umami:35},retro:75,note:'チーズの塩味とうま味は舌が検出する。しかし品種ごとの風味の違い（カマンベール vs ゴルゴンゾーラ）は嗅覚が作る。'}
+];
+let curFood=0;
+function selectFood(i){curFood=i;document.querySelectorAll('.food-btn').forEach((b,j)=>{b.classList.toggle('active',j===i);});updateFlavor();updatePinch();}
+function updateFlavor(){
+const f=foods[curFood];const olf=parseInt(document.getElementById('olfSlider').value);
+document.getElementById('olfPct').textContent=olf+'%';
+const factor=olf/100;
+const colors={bitter:'#6a8b3d',sweet:'#c4668a',sour:'#c8a830',salt:'#5a8ab0',umami:'#c08040'};
+const labels={bitter:'苦味',sweet:'甘味',sour:'酸味',salt:'塩味',umami:'うま味'};
+let html='';
+for(const k of['bitter','sweet','sour','salt','umami']){
+const base=f.taste[k];
+const adjusted=Math.round(base*(1-(f.retro/100)*(1-factor)));
+const w=Math.max(adjusted,2);
+html+=`<div class="flavor-row"><span class="flavor-label">${labels[k]}</span><div class="flavor-track"><div class="flavor-fill" style="width:${w}%;background:${colors[k]};"></div></div><span class="flavor-pct">${adjusted}%</span></div>`;
+}
+// Add retronasal bar
+const retroW=Math.round(f.retro*factor);
+html+=`<div class="flavor-row"><span class="flavor-label" style="color:#8b1a1a;font-weight:600;">嗅覚</span><div class="flavor-track"><div class="flavor-fill" style="width:${retroW}%;background:#8b1a1a;"></div></div><span class="flavor-pct" style="color:#8b1a1a;font-weight:600;">${retroW}%</span></div>`;
+document.getElementById('flavorBars').innerHTML=html;
+// Note
+if(olf===0) document.getElementById('flavorNote').innerHTML='<strong>嗅覚が0%。</strong>残っているのは舌が検出する基本味だけ。「'+f.name+'の味」は消え、苦い/甘い/酸っぱいだけの世界になる。これが鼻をつまんだ状態。';
+else if(olf<30) document.getElementById('flavorNote').innerHTML='嗅覚が大幅に低下。'+f.name+'の「それらしさ」はほぼ消え、基本味がぼんやり感じられるだけ。風邪で鼻が詰まった状態に近い。';
+else if(olf<70) document.getElementById('flavorNote').innerHTML='嗅覚が部分的に機能している状態。'+f.name+'の風味は感じるが、奥行きや複雑さが減少している。';
+else document.getElementById('flavorNote').innerHTML='嗅覚が'+olf+'%のとき、'+f.name+'のレトロネーザル嗅覚がフルに近い状態で機能。豊かな風味を知覚している。';
+}
+updateFlavor();
+
+// ── Nose Pinch Simulator (enriched) ──
+let pinched=false;
+function setPinch(state){
+pinched=state;
+document.querySelectorAll('.pinch-opt').forEach((o,i)=>{o.classList.toggle('active',i===(state?1:0));});
+updatePinch();
+}
+function updatePinch(){
+const f=foods[curFood];
+const icons=['☕','🍷','🍫','🍓','🧀'];
+document.getElementById('pinchFoodName').textContent=icons[curFood]+' '+f.name;
+const colors={bitter:'#6a8b3d',sweet:'#c4668a',sour:'#c8a830',salt:'#5a8ab0',umami:'#c08040'};
+const labels={bitter:'苦味',sweet:'甘味',sour:'酸味',salt:'塩味',umami:'うま味'};
+let html='';
+for(const k of['sweet','sour','bitter','salt','umami']){
+const base=f.taste[k];
+const val=pinched?Math.round(base*(1-f.retro/100*0.6)):base;
+const w=Math.max(val,1);
+html+=`<div class="flavor-row"><span class="flavor-label">${labels[k]}</span><div class="flavor-track"><div class="flavor-fill" style="width:${w}%;background:${colors[k]};transition:width .5s;"></div></div><span class="flavor-pct">${val}%</span></div>`;
+}
+const retroVal=pinched?0:f.retro;
+html+=`<div class="flavor-row"><span class="flavor-label" style="color:#8b1a1a;font-weight:600;">嗅覚</span><div class="flavor-track"><div class="flavor-fill" style="width:${retroVal}%;background:#8b1a1a;transition:width .5s;"></div></div><span class="flavor-pct" style="color:#8b1a1a;font-weight:600;">${retroVal}%</span></div>`;
+document.getElementById('pinchBars').innerHTML=html;
+if(pinched){
+const tastes=Object.entries(f.taste).filter(([k,v])=>v>10).map(([k])=>labels[k]).join('、');
+document.getElementById('pinchDesc').innerHTML='<strong>鼻をつまんだ状態。</strong>レトロネーザル経路が遮断され、嗅覚由来の風味情報がゼロに。残っているのは舌が検出する基本味（'+tastes+'）だけ。「'+f.name+'らしさ」はほぼ消え、何を食べているのか判別しにくい。';
+}else{
+document.getElementById('pinchDesc').innerHTML='<strong>鼻を開放した状態。</strong>レトロネーザル経路が機能し、嗅覚が風味の約'+f.retro+'%を構築している。'+f.name+'の複雑な香り——苦味の奥にあるナッツやチョコレートのニュアンス、花のような余韻——すべてが嗅覚由来。';
+}
+}
+updatePinch();
+
+// ── Quiz ──
+function checkQuiz(btn,idx){
+const opts=document.querySelectorAll('#quizOpts .quiz-btn');
+opts.forEach(o=>{o.style.pointerEvents='none';});
+if(idx===1){btn.classList.add('correct');}
+else{btn.classList.add('wrong');opts[1].classList.add('correct');}
+const res=document.getElementById('quizResult');res.style.display='block';
+if(idx===1) res.innerHTML='<strong>正解。</strong>風邪で鼻が詰まると、食べ物の揮発分子が咽頭から鼻腔へ逆流する「レトロネーザル経路」が物理的に遮断される。味蕾自体は正常に機能しているが、風味の約80%を担う嗅覚情報が脳に届かなくなるため、「味がしない」と感じる。';
+else res.innerHTML='<strong>正解はB。</strong>風邪のとき味蕾は正常に機能している。消えたのは舌の情報ではなく、鼻の奥（レトロネーザル経路）を通る嗅覚情報。風味の約80%がこの経路に依存しているため、遮断されると「味がしない」と感じる。';
+}
+
+// ── Terminal animation ──
+const tseq=[{id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},{id:'tl2',delay:2400},{id:'to2',delay:3000},{id:'tl3',delay:4000},{id:'to3',delay:4600},{id:'tl4',delay:5600},{id:'to4',delay:6200},{id:'tl5',delay:7200}];
+let tS=false;tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+new IntersectionObserver(entries=>{if(entries[0].isIntersecting&&!tS){tS=true;tseq.forEach(s=>{setTimeout(()=>{const el=document.getElementById(s.id);if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}},s.delay);});}},{threshold:.2}).observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>

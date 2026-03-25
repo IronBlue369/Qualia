@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qualia Journal — 知れば、世界が手を伸ばす</title>
+<meta name="description" content="認知バイアス、知覚の錯覚、数学のパラドックス、哲学の思考実験。確かだと思っていたものが揺らぐ瞬間を、体験とともに届けるジャーナル。">
+<meta property="og:title" content="Qualia Journal — 知れば、世界が手を伸ばす">
+<meta property="og:description" content="科学・哲学・数学の交差点にある「知ると元の世界に戻れなくなる」トピックを、インタラクティブな体験とともに。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qualiajournal.com/">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://qualiajournal.com/">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Qualia Journal","url":"https://qualiajournal.com/","description":"認知バイアス、知覚の錯覚、数学のパラドックス、哲学の思考実験。確かだと思っていたものが揺らぐ瞬間を、体験とともに届けるジャーナル。","inLanguage":"ja","publisher":{"@type":"Organization","name":"Qualia Journal"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"記事一覧","itemListElement":[{"@type":"ListItem","position":1,"url":"https://qualiajournal.com/monty_hall","name":"モンティ・ホール問題"},{"@type":"ListItem","position":2,"url":"https://qualiajournal.com/confirmation_bias","name":"確証バイアス"},{"@type":"ListItem","position":3,"url":"https://qualiajournal.com/skinner_box","name":"スキナー箱"},{"@type":"ListItem","position":4,"url":"https://qualiajournal.com/loss_aversion","name":"損失回避"},{"@type":"ListItem","position":5,"url":"https://qualiajournal.com/anchoring_effect","name":"アンカリング効果"},{"@type":"ListItem","position":6,"url":"https://qualiajournal.com/barnum_effect","name":"バーナム効果"},{"@type":"ListItem","position":7,"url":"https://qualiajournal.com/mary_room","name":"マリーの部屋"},{"@type":"ListItem","position":8,"url":"https://qualiajournal.com/checker_shadow","name":"チェッカーシャドウ錯視"},{"@type":"ListItem","position":9,"url":"https://qualiajournal.com/birthday_paradox","name":"誕生日のパラドックス"},{"@type":"ListItem","position":10,"url":"https://qualiajournal.com/langton_ant","name":"ラングトンのアリ"}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#3d3020;font-family:'Source Serif 4',serif;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+.fade{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* ================================
+   SLIDE MENU
+   ================================ */
+.menu-backdrop{
+  display:none;position:fixed;inset:0;
+  background:rgba(26,18,8,.35);z-index:300;
+  transition:opacity .3s;
+}
+.menu-backdrop.open{display:block;}
+.menu-panel{
+  position:fixed;top:0;left:-480px;width:460px;max-width:90vw;
+  height:100%;background:#faf8f3;
+  border-right:1px solid #c8bfaa;
+  z-index:400;overflow-y:auto;
+  transition:left .32s cubic-bezier(.22,1,.36,1);
+  padding:0;
+}
+.menu-panel.open{left:0;}
+.menu-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 28px;border-bottom:3px double #1a1208;
+  position:sticky;top:0;background:#faf8f3;z-index:1;
+}
+.menu-head-name{
+  font-family:'Playfair Display',serif;
+  font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;
+}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{
+  background:none;border:none;cursor:pointer;
+  font-family:'Source Sans 3',sans-serif;
+  font-size:11px;font-weight:500;color:#7a6a55;
+  letter-spacing:.08em;padding:4px 8px;
+  transition:color .2s;
+}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+/* 3列グリッド */
+.menu-cols{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:28px 24px;
+}
+.menu-sec{}
+.menu-sec-lbl{
+  font-family:'Source Sans 3',sans-serif;
+  font-size:9px;font-weight:600;letter-spacing:.22em;
+  color:#b0a090;text-transform:uppercase;
+  margin-bottom:12px;padding-bottom:8px;
+  border-bottom:1px solid #e0d8c8;
+}
+.menu-sec a{
+  display:block;
+  font-family:'Source Sans 3',sans-serif;
+  font-size:12px;font-weight:400;color:#3d3020;
+  padding:5px 0;border-bottom:1px solid #f0ebe0;
+  transition:color .18s;
+}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{
+  display:block;font-size:10px;font-weight:300;
+  color:#b0a090;margin-top:1px;
+}
+/* カテゴリ一覧（2列で詰める） */
+.menu-cats{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;
+}
+.menu-cats-lbl{
+  grid-column:1/3;
+  font-family:'Source Sans 3',sans-serif;
+  font-size:9px;font-weight:600;letter-spacing:.22em;
+  color:#b0a090;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.menu-cats a{
+  font-family:'Source Sans 3',sans-serif;
+  font-size:12px;font-weight:400;color:#3d3020;
+  padding:5px 0;border-bottom:1px solid #f0ebe0;
+  transition:color .18s;display:block;
+}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ================================
+   SEARCH OVERLAY
+   ================================ */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{
+  flex:1;font-family:'Playfair Display',serif;font-size:18px;
+  color:#1a1208;background:transparent;border:none;
+  border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;
+}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ================================
+   MASTHEAD
+   ================================ */
+header.mh{
+  background:#faf8f3;border-bottom:3px double #1a1208;
+  padding:0 32px;height:56px;
+  display:flex;justify-content:space-between;align-items:center;
+  position:sticky;top:0;z-index:200;
+}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{
+  background:none;border:none;cursor:pointer;
+  display:flex;flex-direction:column;gap:5px;padding:6px;
+}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;margin-right:4%;}
+.mh-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;letter-spacing:.05em;color:#1a1208;display:block;line-height:1.1;}
+.mh-name span{color:#8b1a1a;}
+.mh-tag{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:300;color:#b0a090;letter-spacing:.1em;display:block;margin-top:2px;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+.mh-sitemap{
+  font-family:'Source Sans 3',sans-serif;font-size:10px;
+  font-weight:500;color:#7a6a55;letter-spacing:.06em;
+  transition:color .2s;white-space:nowrap;
+}
+.mh-sitemap:hover{color:#8b1a1a;}
+
+/* ================================
+   HERO
+   ================================ */
+.hero-wrap{border-bottom:1px solid #c8bfaa;}
+.hero{
+  padding:88px 32px 72px;
+  max-width:1080px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;
+}
+.hero-catch{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,4.5vw,52px);
+  font-weight:900;line-height:1.1;letter-spacing:-.02em;
+  color:#1a1208;margin-bottom:28px;
+  text-align:left;
+  width:fit-content;
+  margin-right:4%;
+}
+.hero-catch em{font-style:italic;color:#8b1a1a;}
+.hero-catch-sub{display:block;text-align:left;font-style:italic;color:#8b1a1a;}
+.hero-catch-row{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;}
+.hero-tag{
+  font-family:'Source Serif 4',serif;font-size:16px;
+  font-weight:300;font-style:italic;color:#7a6a55;
+  line-height:1.8;
+  margin:0 0 40px;
+}
+
+/* ================================
+   FEATURED
+   ================================ */
+.feat-wrap{border-bottom:1px solid #c8bfaa;}
+.feat{max-width:1080px;margin:0 auto;padding:52px 32px;}
+.feat-hd{
+  font-family:'Source Sans 3',sans-serif;font-size:9px;
+  font-weight:600;letter-spacing:.24em;color:#b0a090;
+  text-transform:uppercase;margin-bottom:24px;
+}
+.feat-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:1px;background:#e0d8c8;}
+.feat-main{
+  background:#faf8f3;padding:32px 28px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  min-height:280px;position:relative;overflow:hidden;transition:background .2s;
+}
+.feat-main:hover{background:#fff;}
+.feat-bg{
+  position:absolute;bottom:-20px;right:-8px;
+  font-family:'Playfair Display',serif;font-weight:900;
+  font-size:190px;color:rgba(26,18,8,.03);
+  line-height:1;pointer-events:none;user-select:none;
+}
+.feat-badge{
+  display:inline-block;font-family:'Source Sans 3',sans-serif;
+  font-size:8px;font-weight:600;letter-spacing:.14em;
+  color:#8b1a1a;border:1px solid #8b1a1a;
+  padding:2px 8px;margin-bottom:12px;align-self:flex-start;position:relative;z-index:1;
+}
+.feat-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:7px;position:relative;z-index:1;}
+.feat-tt{font-family:'Playfair Display',serif;font-weight:700;color:#1a1208;line-height:1.2;position:relative;z-index:1;}
+.feat-main .feat-tt{font-size:clamp(17px,2.1vw,24px);margin-bottom:9px;}
+.feat-main .feat-tt em{font-style:italic;color:#8b1a1a;}
+.feat-dk{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;position:relative;z-index:1;}
+.feat-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;position:relative;z-index:1;}
+.feat-est{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;}
+.feat-go{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:500;color:#8b1a1a;}
+.feat-subs{display:flex;flex-direction:column;gap:1px;}
+.feat-sub{background:#faf8f3;padding:22px 20px;flex:1;display:flex;flex-direction:column;justify-content:flex-end;transition:background .2s;}
+.feat-sub:hover{background:#fff;}
+.feat-sub .feat-tt{font-size:14px;margin-bottom:5px;}
+.feat-sub .feat-dk{font-size:11px;}
+.feat-sub .feat-foot{margin-top:10px;}
+
+/* ================================
+   ARTICLES
+   ================================ */
+.articles{max-width:1080px;margin:0 auto;padding:52px 32px 80px;}
+.art-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;}
+.art-title{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;letter-spacing:.04em;color:#1a1208;}
+.art-count{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;}
+.frow{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:24px;}
+.fb{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:400;color:#7a6a55;background:transparent;border:1px solid #e0d8c8;padding:4px 11px;cursor:pointer;transition:all .18s;}
+.fb:hover{border-color:#8b1a1a;color:#8b1a1a;}
+.fb.on{background:#1a1208;color:#faf8f3;border-color:#1a1208;}
+/* カードグリッド — 最初のバージョンと同じ */
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.cd{
+  border:1px solid #c8bfaa;background:#fff;
+  padding:20px 16px 16px;display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+  transition:border-color .25s,box-shadow .3s,transform .3s;
+}
+.cd:hover{border-color:#8b1a1a;box-shadow:0 8px 24px rgba(26,18,8,.08);}
+.cd:first-child{border-left:3px solid #8b1a1a;}
+.cbg{
+  position:absolute;bottom:-18px;right:-10px;
+  font-family:'Playfair Display',serif;font-weight:900;
+  font-size:130px;color:rgba(26,18,8,.033);
+  line-height:1;pointer-events:none;user-select:none;
+}
+.cd-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:5px;position:relative;z-index:1;}
+.cd-tt{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:5px;position:relative;z-index:1;}
+.cd-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;flex:1;margin-bottom:10px;position:relative;z-index:1;}
+.cd-foot{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}
+.cd-est{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;display:flex;align-items:center;gap:5px;}
+.cd-go{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:500;color:#8b1a1a;}
+.dot{width:5px;height:5px;border-radius:50%;background:#e0d8c8;display:inline-block;}
+.dot.on{background:#8b1a1a;}
+.badge-new{position:absolute;top:10px;right:10px;font-family:'Source Sans 3',sans-serif;font-size:8px;font-weight:600;letter-spacing:.1em;color:#faf8f3;background:#1a1208;padding:2px 7px;}
+.cd.fh{display:none;}
+.cd.fs{animation:ci .32s ease forwards;}
+@keyframes ci{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ================================
+   FOOTER — 読めるコントラスト
+   ================================ */
+footer{
+  background:#1a1208;
+  padding:52px 32px 44px;
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:32px;
+}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name span{color:#c8785a;}
+.f-tag{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#8a7868;margin-bottom:16px;line-height:1.6;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{
+  font-family:'Source Sans 3',sans-serif;font-size:9px;
+  font-weight:600;letter-spacing:.2em;color:#9a8878;
+  text-transform:uppercase;margin-bottom:12px;
+  padding-bottom:8px;border-bottom:1px solid #3a2a1a;
+}
+.fcol a{
+  display:block;font-family:'Source Sans 3',sans-serif;
+  font-size:12px;font-weight:300;
+  color:#c8b8a8;
+  margin-bottom:7px;transition:color .2s;
+}
+.fcol a:hover{color:#f0e8dc;}
+
+.cd.hidden{display:none;}
+.show-more-wrap{text-align:center;padding:28px 0 0;border-top:1px solid #e0d8c8;margin-top:0;}
+.show-more-btn{
+  font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;
+  color:#7a6a55;background:transparent;border:1px solid #c8bfaa;
+  padding:8px 28px;cursor:pointer;letter-spacing:.06em;
+  transition:border-color .2s,color .2s;
+}
+.show-more-btn:hover{border-color:#8b1a1a;color:#8b1a1a;}
+
+/* QUOTE SECTION */
+.qsec{max-width:1080px;margin:0 auto;padding:0 32px 52px;}
+.qr{padding:32px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;text-align:center;position:relative;min-height:110px;overflow:hidden;}
+.qi{transition:opacity .6s ease;position:absolute;width:100%;left:0;top:32px;opacity:0;pointer-events:none;}
+.qi.on{opacity:1;pointer-events:auto;position:relative;top:0;}
+.qi-en{font-family:'Playfair Display',serif;font-size:clamp(14px,1.9vw,19px);font-style:italic;font-weight:400;color:#1a1208;line-height:1.55;margin-bottom:8px;padding:0 24px;}
+.qi-en em{color:#8b1a1a;}
+.qi-ja{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;margin-bottom:6px;}
+.qi-at{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;}
+.qd{text-align:center;padding:10px 0 0;}
+.qdot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#e0d8c8;margin:0 3px;cursor:pointer;transition:background .25s;}
+.qdot.on{background:#1a1208;}
+
+/* steps canvas (from v8) */
+.steps{display:flex;justify-content:center;gap:0;position:relative;margin-top:0;margin-right:8%;}
+.step{display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 4px;flex:none;width:140px;position:relative;}
+.step-canvas-wrap{width:96px;height:96px;position:relative;z-index:2;}
+.step-canvas-wrap canvas{width:96px;height:96px;display:block;}
+#cvLines{position:absolute;top:0;left:0;width:100%;height:96px;z-index:1;pointer-events:none;}
+.step-label{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#1a1208;letter-spacing:.04em;}
+.step-desc{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#b0a090;line-height:1.4;}
+
+
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .mh-tag,.mh-sitemap{display:none;}
+  .hero{padding:60px 20px 52px;}
+  .feat,.articles{padding-left:20px;padding-right:20px;}
+  .feat-grid{grid-template-columns:1fr;}
+  .feat-subs{flex-direction:row;}
+  .feat-sub{flex:1;}
+  .cg{grid-template-columns:repeat(2,1fr);}
+  footer{grid-template-columns:1fr 1fr;gap:24px;padding:36px 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+}
+@media(max-width:520px){
+  .hero-catch{font-size:clamp(24px,7vw,36px);}
+  .hero-kw{flex-direction:column;gap:10px;}
+  .hero-k{border-right:none !important;padding:0;}
+  .cg{grid-template-columns:1fr;}
+  footer{grid-template-columns:1fr;}
+  .menu-cols{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ================================
+     SLIDE MENU
+     ================================ -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="#articles" onclick="closeMenu()">記事一覧<span class="msub">33 articles</span></a>
+        <a href="#articles" onclick="flt('all');closeMenu();">最新記事</a>
+        <a href="javascript:void(0)" onclick="closeMenu()">Editor's Pick</a>
+        <a href="javascript:void(0)" onclick="closeMenu()">Most Read</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="/about">About</a>
+        <a href="javascript:void(0)" onclick="closeMenu()">年表</a>
+        <a href="javascript:void(0)" onclick="closeMenu()">トピックマップ</a>
+        <a href="javascript:void(0)" onclick="closeMenu()">Limina Journal<span class="msub">構想中</span></a>
+        <a href="https://x.com/" target="_blank" rel="noopener">𝕏 @QualiaJournal</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="#articles" onclick="flt('認知バイアス');closeMenu();">認知バイアス</a>
+      <a href="#articles" onclick="flt('行動心理学');closeMenu();">行動心理学</a>
+      <a href="#articles" onclick="flt('社会心理学');closeMenu();">社会心理学</a>
+      <a href="#articles" onclick="flt('知覚・錯覚');closeMenu();">知覚・錯覚</a>
+      <a href="#articles" onclick="flt('脳と意識');closeMenu();">脳と意識</a>
+      <a href="#articles" onclick="flt('数学・論理');closeMenu();">数学・論理</a>
+      <a href="#articles" onclick="flt('思考実験・哲学');closeMenu();">思考実験・哲学</a>
+      <a href="#articles" onclick="flt('物理・宇宙');closeMenu();">物理・宇宙</a>
+      <a href="#articles" onclick="flt('生命・進化');closeMenu();">生命・進化</a>
+      <a href="#articles" onclick="flt('科学と文化');closeMenu();">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================================
+     SEARCH OVERLAY
+     ================================ -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- ================================
+     MASTHEAD
+     ================================ -->
+<header class="mh">
+  <div class="mh-left">
+    <button class="mh-burger" id="burgerBtn" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mh-center">
+    <a href="/" class="mh-name"><span>Qualia</span> Journal</a>
+  </div>
+  <div class="mh-right">
+    <a class="mh-sitemap" href="#articles">記事一覧</a>
+    <button class="mh-search" id="searchBtn" aria-label="検索">
+      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ================================
+     HERO
+     ================================ -->
+<div class="hero-wrap">
+<section class="hero">
+  <h1 class="hero-catch fade" style="position:relative;">
+    <span style="display:block;">世界を面白くするのは、</span>
+    <span style="display:block;padding-left:6.9em;"><em>視点だ。</em></span>
+  </h1>
+  <div class="steps fade" id="stepsAnim">
+    <canvas id="cvLines"></canvas>
+    <div class="step">
+      <div class="step-canvas-wrap"><canvas id="cv1" width="240" height="240"></canvas></div>
+      <p class="step-label">読む</p>
+      <p class="step-desc">研究と歴史を辿る</p>
+    </div>
+    <div class="step">
+      <div class="step-canvas-wrap"><canvas id="cv2" width="240" height="240"></canvas></div>
+      <p class="step-label">体験する</p>
+      <p class="step-desc">クイズや仕掛けで確かめる</p>
+    </div>
+    <div class="step">
+      <div class="step-canvas-wrap"><canvas id="cv3" width="240" height="240"></canvas></div>
+      <p class="step-label">揺らぐ</p>
+      <p class="step-desc">当たり前が崩れる</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ================================
+     FEATURED
+     ================================ -->
+<div class="feat-wrap">
+  <div class="feat">
+    <p class="feat-hd fade">✦ 注目記事</p>
+    <div class="feat-grid fade">
+      <a class="feat-main" href="monty_hall_v14.html">
+        <span class="feat-bg">⅔</span>
+        <span class="feat-badge">Editor's Pick</span>
+        <div class="feat-cat">数学・論理</div>
+        <h2 class="feat-tt">たった一つのクイズが、<em>1000人の博士</em>を間違えさせた。</h2>
+        <p class="feat-dk">選び直した方が確率2倍。直感に反するこの答えに、博士号保持者たちが大量の抗議文を送った。</p>
+        <div class="feat-foot"><span class="feat-est">Est. 1990</span><span class="feat-go">読む →</span></div>
+      </a>
+      <div class="feat-subs">
+        <a class="feat-sub" href="loss_aversion.html">
+          <div class="feat-cat">認知バイアス</div>
+          <h3 class="feat-tt">失うことの重さ</h3>
+          <p class="feat-dk">得る喜びと失う痛み。同じ金額なのに非対称。</p>
+          <div class="feat-foot"><span class="feat-est">Est. 1979</span><span class="feat-go">→</span></div>
+        </a>
+        <a class="feat-sub" href="mary_room_v6.html">
+          <div class="feat-cat">思考実験・哲学</div>
+          <h3 class="feat-tt">すべてを知っていた彼女が、何も知らなかった</h3>
+          <p class="feat-dk">白黒の部屋で色の物理をすべて学んだマリー。</p>
+          <div class="feat-foot"><span class="feat-est">Est. 1982</span><span class="feat-go">→</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================
+     ARTICLES
+     ================================ -->
+<div id="articles">
+  <div class="articles">
+    <div class="art-top fade">
+      <span class="art-title">記事一覧</span>
+      <span class="art-count">35 articles</span>
+    </div>
+    <div class="frow fade">
+      <button class="fb on" onclick="flt('all')">すべて</button>
+      <button class="fb" onclick="flt('認知バイアス')">認知バイアス</button>
+      <button class="fb" onclick="flt('行動心理学')">行動心理学</button>
+      <button class="fb" onclick="flt('社会心理学')">社会心理学</button>
+      <button class="fb" onclick="flt('知覚・錯覚')">知覚・錯覚</button>
+      <button class="fb" onclick="flt('脳と意識')">脳と意識</button>
+      <button class="fb" onclick="flt('数学・論理')">数学・論理</button>
+      <button class="fb" onclick="flt('思考実験・哲学')">思考実験・哲学</button>
+      <button class="fb" onclick="flt('物理・宇宙')">物理・宇宙</button>
+      <button class="fb" onclick="flt('生命・進化')">生命・進化</button>
+      <button class="fb" onclick="flt('科学と文化')">科学と文化</button>
+    </div>
+    <div class="cg" id="cg">
+      <a class="cd fs" data-cat="数学・論理" href="monty_hall_v14.html"><span class="cbg">⅔</span><div class="cd-cat">数学・論理</div><div class="cd-tt">モンティ・ホール問題</div><div class="cd-dk">選び直した方が確率2倍。直感に反するこの答え。</div><div class="cd-foot"><span class="cd-est">Est. 1990 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="認知バイアス" href="confirmation_bias_v6.html"><span class="cbg">✓?</span><div class="cd-cat">認知バイアス</div><div class="cd-tt">確証バイアス</div><div class="cd-dk">あなたはもう答えを決めている。2-4-6課題が暴く推論の歪み。</div><div class="cd-foot"><span class="cd-est">Est. 1960 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="行動心理学" href="skinner_box_v6.html"><span class="cbg">□</span><div class="cd-cat">行動心理学</div><div class="cd-tt">スキナー箱</div><div class="cd-dk">ランダムな報酬にもっとも強く反応する脳の構造。</div><div class="cd-foot"><span class="cd-est">Est. 1938 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="認知バイアス" href="loss_aversion.html"><span class="badge-new">New</span><span class="cbg">−2x</span><div class="cd-cat">認知バイアス</div><div class="cd-tt">損失回避</div><div class="cd-dk">得る喜びと失う痛み。同じ金額なのに非対称。</div><div class="cd-foot"><span class="cd-est">Est. 1979 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="認知バイアス" href="anchoring_effect.html"><span class="cbg">⚓</span><div class="cd-cat">認知バイアス</div><div class="cd-tt">アンカリング効果</div><div class="cd-dk">最初に見た数字が判断を書き換える。</div><div class="cd-foot"><span class="cd-est">Est. 1974 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="社会心理学" href="barnum_effect_v2.html"><span class="cbg">☆</span><div class="cd-cat">社会心理学</div><div class="cd-tt">バーナム効果</div><div class="cd-dk">全員に同じ文面。85%が「自分のことだ」と感じた。</div><div class="cd-foot"><span class="cd-est">Est. 1948 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="思考実験・哲学" href="mary_room_v6.html"><span class="cbg">λ</span><div class="cd-cat">思考実験・哲学</div><div class="cd-tt">マリーの部屋</div><div class="cd-dk">すべてを知っていた彼女が、何も知らなかった可能性。</div><div class="cd-foot"><span class="cd-est">Est. 1982 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="知覚・錯覚" href="checker_shadow.html"><span class="cbg">□</span><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">チェッカーシャドウ錯視</div><div class="cd-dk">同じ色なのに、なぜ違って見えるのか。脳の補正が見せる嘘。</div><div class="cd-foot"><span class="cd-est">Est. 1995 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="数学・論理" href="birthday_paradox.html"><span class="cbg">23</span><div class="cd-cat">数学・論理</div><div class="cd-tt">誕生日のパラドックス</div><div class="cd-dk">23人集まれば50%の確率で同じ誕生日が。</div><div class="cd-foot"><span class="cd-est">Est. 1939 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="数学・論理" href="langton_ant.html"><span class="cbg">→</span><div class="cd-cat">数学・論理</div><div class="cd-tt">ラングトンのアリ</div><div class="cd-dk">単純な規則から突然の秩序が生まれる瞬間。</div><div class="cd-foot"><span class="cd-est">Est. 1986 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="知覚・錯覚" href="c01_twelve_tones_v6.html"><span class="cbg">12</span><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">なぜピアノは12音なのか</div><div class="cd-dk">ピタゴラスの音律から平均律まで。数学的妥協の歴史。</div><div class="cd-foot"><span class="cd-est">Est. 1939 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="行動心理学" href="dopamine_starvation_v7.html"><span class="cbg">⚡</span><div class="cd-cat">行動心理学</div><div class="cd-tt">ネズミはドーパミンを選んで餓死した</div><div class="cd-dk">1954年、快楽中枢への電極。食事も睡眠も放棄した。</div><div class="cd-foot"><span class="cd-est">Est. 1954 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="認知バイアス" href="framing_effect.html"><span class="cbg">±</span><div class="cd-cat">認知バイアス</div><div class="cd-tt">フレーミング効果</div><div class="cd-dk">同じ内容でも、表現の仕方で選択が変わる。</div><div class="cd-foot"><span class="cd-est">Est. 1981 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="行動心理学" href="marshmallow_test_v2.html"><span class="cbg">🍬</span><div class="cd-cat">行動心理学</div><div class="cd-tt">マシュマロ実験の再解釈</div><div class="cd-dk">自制心ではなく、信頼と環境の問題だった。</div><div class="cd-foot"><span class="cd-est">Est. 1972 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="認知バイアス" href="sunk_cost_fallacy.html"><span class="cbg">↓</span><div class="cd-cat">認知バイアス</div><div class="cd-tt">サンクコスト錯誤</div><div class="cd-dk">もう戻らない投資が、未来の判断を歪める。</div><div class="cd-foot"><span class="cd-est">Est. 1985 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="数学・論理" href="mandelbrot_set.html"><span class="cbg">∞</span><div class="cd-cat">数学・論理</div><div class="cd-tt">マンデルブロ集合</div><div class="cd-dk">単純な式から生まれる無限の複雑さ。</div><div class="cd-foot"><span class="cd-est">Est. 1980 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="脳と意識" href="memory_reconsolidation.html"><span class="cbg">↺</span><div class="cd-cat">脳と意識</div><div class="cd-tt">記憶は毎回「再構築」される</div><div class="cd-dk">想起するたびに書き換わる。記憶はビデオではない。</div><div class="cd-foot"><span class="cd-est">Est. 2000 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="認知バイアス" href="dunning_kruger.html"><span class="cbg">∧</span><div class="cd-cat">認知バイアス</div><div class="cd-tt">ダニング＝クルーガー効果</div><div class="cd-dk">能力の低い人ほど自分を過大評価する。</div><div class="cd-foot"><span class="cd-est">Est. 1999 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="行動心理学" href="prisoners_dilemma_v3.html"><span class="cbg">⚖</span><div class="cd-cat">行動心理学</div><div class="cd-tt">囚人のジレンマ</div><div class="cd-dk">協力と裏切り。最適戦略は存在するか。</div><div class="cd-foot"><span class="cd-est">Est. 1950 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="思考実験・哲学" href="ship_of_theseus.html"><span class="cbg">⛵</span><div class="cd-cat">思考実験・哲学</div><div class="cd-tt">テセウスの船</div><div class="cd-dk">すべての部品を取り替えた後も、同じ船か。</div><div class="cd-foot"><span class="cd-est">75AD · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="脳と意識" href="libet_free_will_v3.html"><span class="cbg">⏱</span><div class="cd-cat">脳と意識</div><div class="cd-tt">自由意志への疑問（リベット実験）</div><div class="cd-dk">意識的「決断」の0.3秒前に脳が動いている。</div><div class="cd-foot"><span class="cd-est">Est. 1983 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="思考実験・哲学" href="butterfly_dream_v3.html"><span class="cbg">蝶</span><div class="cd-cat">思考実験・哲学</div><div class="cd-tt">胡蝶の夢（荘子）</div><div class="cd-dk">私は蝶の夢を見た人か、人の夢を見ている蝶か。</div><div class="cd-foot"><span class="cd-est">BC300 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="数学・論理" href="fibonacci.html"><span class="cbg">φ</span><div class="cd-cat">数学・論理</div><div class="cd-tt">フィボナッチ数列と自然のパターン</div><div class="cd-dk">ひまわりの種、貝の螺旋。自然は数列を知っていた。</div><div class="cd-foot"><span class="cd-est">Est. 1202 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="数学・論理" href="benford_law.html"><span class="cbg">1</span><div class="cd-cat">数学・論理</div><div class="cd-tt">ベンフォードの法則</div><div class="cd-dk">自然のデータで先頭の「1」は30%以上出現する。</div><div class="cd-foot"><span class="cd-est">Est. 1938 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="科学と文化" href="skeuomorphism_v5.html"><span class="cbg">📱</span><div class="cd-cat">科学と文化</div><div class="cd-tt">スキューモーフィズム</div><div class="cd-dk">カメラのシャッター音。存在しないはずの音が必要な理由。</div><div class="cd-foot"><span class="cd-est">Est. 1980s · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="社会心理学" href="asch_conformity_v3.html"><span class="cbg">|||</span><div class="cd-cat">社会心理学</div><div class="cd-tt">同調圧力（アッシュの実験）</div><div class="cd-dk">明らかに間違った答えに、人は合わせてしまう。</div><div class="cd-foot"><span class="cd-est">Est. 1951 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="行動心理学" href="reward_prediction_error.html"><span class="cbg">Δ</span><div class="cd-cat">行動心理学</div><div class="cd-tt">報酬予測誤差とドーパミン</div><div class="cd-dk">ドーパミンは快楽ではなく「予測との差」を伝える。</div><div class="cd-foot"><span class="cd-est">Est. 1997 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="知覚・錯覚" href="color_primaries_q01_v3.html"><span class="cbg">RGB</span><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">色の三原色 vs 光の三原色</div><div class="cd-dk">絵の具と光では混ぜ方が逆になる。なぜか。</div><div class="cd-foot"><span class="cd-est">Est. 1666 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="物理・宇宙" href="double_slit_v3.html"><span class="cbg">|ψ⟩</span><div class="cd-cat">物理・宇宙</div><div class="cd-tt">二重スリット実験</div><div class="cd-dk">観測するだけで、粒子の振る舞いが変わる。</div><div class="cd-foot"><span class="cd-est">Est. 1801 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="数学・論理" href="base_rate_neglect.html"><span class="cbg">%</span><div class="cd-cat">数学・論理</div><div class="cd-tt">基準率の無視（ベイズの定理）</div><div class="cd-dk">検査陽性でも、病気とは限らない。確率の罠。</div><div class="cd-foot"><span class="cd-est">Est. 1763 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="知覚・錯覚" href="color_v7.html"><span class="cbg">λ</span><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">色は存在しない</div><div class="cd-dk">波長はあるが「赤さ」は脳の産物。世界に色はない。</div><div class="cd-foot"><span class="cd-est">Est. 1666 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="科学と文化" href="correlation_causation.html"><span class="cbg">r≠</span><div class="cd-cat">科学と文化</div><div class="cd-tt">相関は因果ではない</div><div class="cd-dk">数字が一緒に動くだけでは、原因とは言えない。</div><div class="cd-foot"><span class="cd-est">Est. 1896 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="知覚・錯覚" href="sound_does_not_exist.html"><span class="cbg">♪</span><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">音は存在しない</div><div class="cd-dk">空気の振動が存在するだけ。「音」は脳の解釈。</div><div class="cd-foot"><span class="cd-est"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="知覚・錯覚" href="flavor_nose.html"><span class="cbg">鼻</span><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">味の80%は鼻で感じている</div><div class="cd-dk">リンゴとタマネギも、鼻をつまめば区別がつかない。「味」の正体。</div><div class="cd-foot"><span class="cd-est">Est. 1982 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+      <a class="cd fs" data-cat="知覚・錯覚" href="thermal_grill.html"><span class="cbg">⚡</span><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">温かいと冷たいが、痛みを生む</div><div class="cd-dk">40℃と20℃を交互に並べると、脳は「焼けるように熱い」と叫ぶ。</div><div class="cd-foot"><span class="cd-est">Est. 1896 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
+    </div>
+    <div class="show-more-wrap" id="showMoreWrap">
+      <button class="show-more-btn" id="showMoreBtn">すべての記事を見る（35本）</button>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTES -->
+<section class="qsec">
+  <div class="qr fade" id="qrWrap"></div>
+  <div class="qd" id="qd"></div>
+</section>
+
+<footer>
+  <div>
+    <p class="f-name"><span>Qualia</span> Journal</p>
+    <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+  </div>
+  <div class="fcol">
+    <h3>ナビゲーション</h3>
+    <a href="#articles">記事一覧</a>
+    <a href="/about">About</a>
+    <a href="https://x.com/" target="_blank" rel="noopener">𝕏 @QualiaJournal</a>
+  </div>
+  <div class="fcol">
+    <h3>カテゴリ</h3>
+    <a href="#" onclick="flt('認知バイアス');return false;">認知バイアス</a>
+    <a href="#" onclick="flt('知覚・錯覚');return false;">知覚・錯覚</a>
+    <a href="#" onclick="flt('数学・論理');return false;">数学・論理</a>
+    <a href="#" onclick="flt('思考実験・哲学');return false;">思考実験・哲学</a>
+    <a href="#" onclick="flt('脳と意識');return false;">脳と意識</a>
+    <a href="#" onclick="flt('行動心理学');return false;">行動心理学</a>
+    <a href="#" onclick="flt('社会心理学');return false;">社会心理学</a>
+    <a href="#" onclick="flt('物理・宇宙');return false;">物理・宇宙</a>
+    <a href="#" onclick="flt('科学と文化');return false;">科学と文化</a>
+  </div>
+  <div class="fcol">
+    <h3>Sister Journal</h3>
+    <a href="#" style="opacity:.4;pointer-events:none;">Limina Journal（構想中）</a>
+  </div>
+</footer>
+
+<script>
+const ARTICLES=[
+  {slug:'monty_hall_v14.html',cat:'数学・論理',tt:'モンティ・ホール問題',dk:'選び直した方が確率2倍。直感に反するこの答え。'},
+  {slug:'confirmation_bias_v6.html',cat:'認知バイアス',tt:'確証バイアス',dk:'あなたはもう答えを決めている。2-4-6課題が暴く推論の歪み。'},
+  {slug:'skinner_box_v6.html',cat:'行動心理学',tt:'スキナー箱',dk:'ランダムな報酬にもっとも強く反応する脳の構造。'},
+  {slug:'loss_aversion.html',cat:'認知バイアス',tt:'損失回避',dk:'得る喜びと失う痛み。同じ金額なのに非対称。'},
+  {slug:'anchoring_effect.html',cat:'認知バイアス',tt:'アンカリング効果',dk:'最初に見た数字が判断を書き換える。'},
+  {slug:'barnum_effect_v2.html',cat:'社会心理学',tt:'バーナム効果',dk:'全員に同じ文面。85%が「自分のことだ」と感じた。'},
+  {slug:'mary_room_v6.html',cat:'思考実験・哲学',tt:'マリーの部屋',dk:'すべてを知っていた彼女が、何も知らなかった可能性。'},
+  {slug:'checker_shadow.html',cat:'知覚・錯覚',tt:'チェッカーシャドウ錯視',dk:'同じ色なのに、なぜ違って見えるのか。'},
+  {slug:'birthday_paradox.html',cat:'数学・論理',tt:'誕生日のパラドックス',dk:'23人集まれば50%の確率で同じ誕生日が。'},
+  {slug:'langton_ant.html',cat:'数学・論理',tt:'ラングトンのアリ',dk:'単純な規則から突然の秩序が生まれる瞬間。'},
+  {slug:'c01_twelve_tones_v6.html',cat:'知覚・錯覚',tt:'なぜピアノは12音なのか',dk:'ピタゴラスの音律から平均律まで。数学的妥協の歴史。'},
+  {slug:'dopamine_starvation_v7.html',cat:'行動心理学',tt:'ネズミはドーパミンを選んで餓死した',dk:'1954年、快楽中枢への電極。食事も睡眠も放棄した。'},
+  {slug:'framing_effect.html',cat:'認知バイアス',tt:'フレーミング効果',dk:'同じ内容でも、表現の仕方で選択が変わる。'},
+  {slug:'marshmallow_test_v2.html',cat:'行動心理学',tt:'マシュマロ実験の再解釈',dk:'自制心ではなく、信頼と環境の問題だった。'},
+  {slug:'sunk_cost_fallacy.html',cat:'認知バイアス',tt:'サンクコスト錯誤',dk:'もう戻らない投資が、未来の判断を歪める。'},
+  {slug:'mandelbrot_set.html',cat:'数学・論理',tt:'マンデルブロ集合',dk:'単純な式から生まれる無限の複雑さ。'},
+  {slug:'memory_reconsolidation.html',cat:'脳と意識',tt:'記憶は毎回「再構築」される',dk:'想起するたびに書き換わる。記憶はビデオではない。'},
+  {slug:'dunning_kruger.html',cat:'認知バイアス',tt:'ダニング＝クルーガー効果',dk:'能力の低い人ほど自分を過大評価する。'},
+  {slug:'prisoners_dilemma_v3.html',cat:'行動心理学',tt:'囚人のジレンマ',dk:'協力と裏切り。最適戦略は存在するか。'},
+  {slug:'ship_of_theseus.html',cat:'思考実験・哲学',tt:'テセウスの船',dk:'すべての部品を取り替えた後も、同じ船か。'},
+  {slug:'libet_free_will_v3.html',cat:'脳と意識',tt:'自由意志への疑問（リベット実験）',dk:'意識的「決断」の0.3秒前に脳が動いている。'},
+  {slug:'butterfly_dream_v3.html',cat:'思考実験・哲学',tt:'胡蝶の夢（荘子）',dk:'私は蝶の夢を見た人か、人の夢を見ている蝶か。'},
+  {slug:'fibonacci.html',cat:'数学・論理',tt:'フィボナッチ数列と自然のパターン',dk:'ひまわりの種、貝の螺旋。自然は数列を知っていた。'},
+  {slug:'benford_law.html',cat:'数学・論理',tt:'ベンフォードの法則',dk:'自然のデータで先頭の「1」は30%以上出現する。'},
+  {slug:'skeuomorphism_v5.html',cat:'科学と文化',tt:'スキューモーフィズム',dk:'カメラのシャッター音。存在しないはずの音が必要な理由。'},
+  {slug:'asch_conformity_v3.html',cat:'社会心理学',tt:'同調圧力（アッシュの実験）',dk:'明らかに間違った答えに、人は合わせてしまう。'},
+  {slug:'reward_prediction_error.html',cat:'行動心理学',tt:'報酬予測誤差とドーパミン',dk:'ドーパミンは快楽ではなく「予測との差」を伝える。'},
+  {slug:'color_primaries_q01_v3.html',cat:'知覚・錯覚',tt:'色の三原色 vs 光の三原色',dk:'絵の具と光では混ぜ方が逆になる。なぜか。'},
+  {slug:'double_slit_v3.html',cat:'物理・宇宙',tt:'二重スリット実験',dk:'観測するだけで、粒子の振る舞いが変わる。'},
+  {slug:'base_rate_neglect.html',cat:'数学・論理',tt:'基準率の無視（ベイズの定理）',dk:'検査陽性でも、病気とは限らない。確率の罠。'},
+  {slug:'color_v7.html',cat:'知覚・錯覚',tt:'色は存在しない',dk:'波長はあるが「赤さ」は脳の産物。世界に色はない。'},
+  {slug:'correlation_causation.html',cat:'科学と文化',tt:'相関は因果ではない',dk:'数字が一緒に動くだけでは、原因とは言えない。'},
+  {slug:'flavor_nose.html',cat:'知覚・錯覚',tt:'味の80%は鼻で感じている',dk:'リンゴとタマネギも、鼻をつまめば区別がつかない。「味」の正体。'},
+  {slug:'thermal_grill.html',cat:'知覚・錯覚',tt:'温かいと冷たいが、痛みを生む',dk:'40℃と20℃を交互に並べると、脳は「焼けるように熱い」と叫ぶ。'},
+];
+
+/* MENU */
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+/* SEARCH */
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+
+/* FADE */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:.06});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+/* FILTER */
+function flt(cat){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.toggle('on',(cat==='all'&&b.textContent==='すべて')||b.textContent===cat));
+  const cards=Array.from(document.querySelectorAll('#cg .cd'));
+  const wrap=document.getElementById('showMoreWrap');
+  if(cat==='all'){
+    cards.forEach((c,i)=>{
+      c.classList.remove('fh');
+      if(i<12){c.classList.remove('hidden');c.classList.add('fs');}
+      else{c.classList.add('hidden');c.classList.remove('fs');}
+    });
+    if(wrap)wrap.style.display='';
+  } else {
+    cards.forEach(c=>{
+      const show=c.dataset.cat===cat;
+      c.classList.remove('hidden');
+      c.classList.toggle('fh',!show);
+      c.classList.toggle('fs',show);
+    });
+    if(wrap)wrap.style.display='none';
+    document.getElementById('articles').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+}
+
+/* QUOTE ROTATION — 10個ランダム化、+2秒遅延 */
+(function(){
+  const QUOTES=[
+    {en:'If I have seen further, it is by <em>standing on the shoulders</em> of giants.',ja:'私がより遠くを見ることができたとしたら、それは巨人の肩の上に立っていたからだ。',at:'— Isaac Newton, Letter to Robert Hooke (1675)'},
+    {en:'Nothing in life is as important as you <em>think</em> it is, while you are thinking about it.',ja:'人生において、考えているあいだほどそれが重要なことはない。',at:'— Daniel Kahneman, Thinking, Fast and Slow (2011)'},
+    {en:'The eye sees only what the <em>mind</em> is prepared to comprehend.',ja:'目は、心が理解する準備のできたものしか見ない。',at:'— Henri Bergson, Creative Evolution (1907)'},
+    {en:'What Mary didn\'t <em>know</em> was what it is like to see red.',ja:'マリーが知らなかったのは、赤を見るとはどういうことかだった。',at:'— Frank Jackson, "Epiphenomenal Qualia" (1982)'},
+    {en:'The most <em>merciful</em> thing in the world is the inability of the human mind to correlate all its contents.',ja:'この世でもっとも慈悲深いことは、人間の心がその中身すべてを関連づけられないことだ。',at:'— H.P. Lovecraft, "The Call of Cthulhu" (1928)'},
+    {en:'The sensations of our nerves of sense are mere <em>symbols</em> indicating certain external objects.',ja:'感覚神経の感覚は、外界の対象を示す単なる記号にすぎない。',at:'— Hermann von Helmholtz, Popular Lectures on Scientific Subjects (1881)'},
+    {en:'Consciousness does not appear to itself <em>chopped up in bits</em>. It is nothing jointed; it flows.',ja:'意識はそれ自身に、断片的に切り刻まれたものとして現れない。つながっておらず、ただ流れる。',at:'— William James, The Principles of Psychology (1890)'},
+    {en:'I can live with doubt and uncertainty and not knowing. I think it\'s much more <em>interesting</em> to live not knowing.',ja:'疑いと不確かさと無知のまま生きていける。知らないまま生きる方が、はるかに面白いと思う。',at:'— Richard Feynman, BBC Horizon (1981)'},
+    {en:'I think I can safely say that <em>nobody understands</em> quantum mechanics.',ja:'量子力学を理解している人は誰もいない、と安心して言える。',at:'— Richard Feynman, The Character of Physical Law (1965)'},
+    {en:'To know that we know what we know, and to know that we do not know what we do not know — that is <em>true knowledge</em>.',ja:'知っていることを知っていると知り、知らないことを知らないと知ること——これが真の知識だ。',at:'— Nicolaus Copernicus (attr.)'},
+  ];
+
+  // ランダムシャッフル
+  const shuffled=[...QUOTES].sort(()=>Math.random()-.5);
+
+  const wrap=document.getElementById('qrWrap');
+  const dc=document.getElementById('qd');
+  if(!wrap||!dc)return;
+
+  // HTML生成
+  shuffled.forEach((q,i)=>{
+    const div=document.createElement('div');
+    div.className='qi'+(i===0?' on':'');
+    div.innerHTML=
+      '<p class="qi-en">'+q.en+'</p>'+
+      '<p class="qi-ja">'+q.ja+'</p>'+
+      '<p class="qi-at">'+q.at+'</p>';
+    wrap.appendChild(div);
+    const dot=document.createElement('span');
+    dot.className='qdot'+(i===0?' on':'');
+    dot.onclick=()=>go(i);
+    dc.appendChild(dot);
+  });
+
+  const items=wrap.querySelectorAll('.qi');
+  let cur=0;
+  function go(n){
+    items[cur].classList.remove('on');
+    dc.children[cur].classList.remove('on');
+    cur=n;
+    items[cur].classList.add('on');
+    dc.children[cur].classList.add('on');
+  }
+
+  // v8の5秒 + 2秒追加遅延 = 最初のスライドは7秒後
+  setTimeout(()=>{
+    setInterval(()=>go((cur+1)%items.length),5000);
+  },7000);
+})();
+
+/* SHOW MORE — 最初12枚のみ表示 */
+(function(){
+  const LIMIT=12;
+  const cards=Array.from(document.querySelectorAll('#cg .cd'));
+  let expanded=false;
+  cards.forEach((c,i)=>{if(i>=LIMIT)c.classList.add('hidden');});
+  const btn=document.getElementById('showMoreBtn');
+  const wrap=document.getElementById('showMoreWrap');
+  if(cards.length<=LIMIT){if(wrap)wrap.style.display='none';return;}
+  if(btn){
+    btn.addEventListener('click',()=>{
+      expanded=!expanded;
+      cards.forEach((c,i)=>{
+        if(i>=LIMIT){
+          if(expanded){c.classList.remove('hidden');c.classList.add('fs');}
+          else{c.classList.add('hidden');c.classList.remove('fs');}
+        }
+      });
+      btn.textContent=expanded?'折りたたむ':'すべての記事を見る（'+cards.length+'本）';
+    });
+  }
+})();
+
+/* CARD TILT */
+document.querySelectorAll('.cd,.feat-main,.feat-sub').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    c.style.transform='perspective(700px) rotateY('+(x*3)+'deg) rotateX('+(-y*3)+'deg) translateY(-2px)';
+  });
+  c.addEventListener('mouseleave',()=>{c.style.transform='';});
+});
+
+/* ========================================
+   3-Steps Canvas Animation (from v8)
+   ======================================== */
+(function(){
+const _DPR=window.devicePixelRatio||1;
+const _DK='#1a1208',_RD='#8b1a1a',_BG='#e0d8c8';
+const _IC=240,_CC=120,_IR=53;
+function _eo(t){return 1-Math.pow(1-t,3);}
+function _eio(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
+function _gc(id){const c=document.getElementById(id);if(!c)return null;c.width=_IC*_DPR;c.height=_IC*_DPR;const x=c.getContext('2d');x.scale(_DPR,_DPR);return x;}
+let _c1,_c2,_c3;
+function _initIc(){_c1=_gc('cv1');_c2=_gc('cv2');_c3=_gc('cv3');}
+let _lc,_lx,_lw,_lh;
+function _initLn(){
+  _lc=document.getElementById('cvLines');if(!_lc)return;
+  const r=_lc.getBoundingClientRect();_lw=r.width;_lh=r.height;
+  _lc.width=Math.round(_lw*_DPR);_lc.height=Math.round(_lh*_DPR);
+  _lx=_lc.getContext('2d');_lx.scale(_DPR,_DPR);
+}
+function _edges(){
+  const sa=document.getElementById('stepsAnim');if(!sa)return[];
+  const c=sa.getBoundingClientRect();
+  return Array.from(document.querySelectorAll('.step-canvas-wrap')).map(w=>{const r=w.getBoundingClientRect();return{left:r.left-c.left,right:r.right-c.left};});
+}
+function _circ(x,cx,cy,r,a){x.beginPath();x.arc(cx,cy,r,0,Math.PI*2);x.strokeStyle=_DK;x.lineWidth=1.5;x.globalAlpha=a;x.stroke();x.globalAlpha=1;}
+function _eye(x,cx,cy,op,al){
+  x.save();x.globalAlpha=al;const w=26,h=12*op;
+  x.beginPath();x.moveTo(cx-w,cy);x.bezierCurveTo(cx-w*.4,cy-h*2.3,cx+w*.3,cy-h*1.7,cx+w*.7,cy);x.bezierCurveTo(cx+w*.3,cy+h*1.7,cx-w*.4,cy+h*2.3,cx-w,cy);
+  x.strokeStyle=_DK;x.lineWidth=1.6;x.stroke();
+  if(op>.3){const pa=Math.min(1,(op-.3)/.4),px=cx+w*.05;x.globalAlpha=al*pa;x.beginPath();x.arc(px,cy,5,0,Math.PI*2);x.fillStyle=_DK;x.fill();x.beginPath();x.arc(px,cy,3.3,0,Math.PI*2);x.fillStyle=_RD;x.globalAlpha=al*pa*.6;x.fill();x.beginPath();x.arc(px+1.8,cy-1.8,1.3,0,Math.PI*2);x.fillStyle='#fff';x.globalAlpha=al*pa*.9;x.fill();}
+  x.restore();
+}
+const _TL=[{y:-16,w:34},{y:-8,w:28},{y:0,w:38},{y:8,w:26},{y:16,w:20}];
+function _lines(x,cx,cy,pr,al,bt){
+  x.save();_TL.forEach((l,i)=>{const d=i*.13,lp=Math.max(0,Math.min(1,(pr-d)/.5)),ep=_eo(lp);if(ep<=0)return;const ly=cy+l.y,re=cx+l.w/2,cw=l.w*ep,dx=re-cw;let bA=1;if(bt!==undefined)bA=.55+.45*Math.sin(bt*.002-i*.6);x.beginPath();x.moveTo(dx,ly);x.lineTo(re,ly);x.strokeStyle=i===2?_RD:_DK;x.lineWidth=i===2?1.8:1.2;x.globalAlpha=al*(.25+.75*ep)*bA;x.stroke();});x.restore();
+}
+function _char(x,cx,cy,ch,col,al,sc,rot){x.save();x.translate(cx,cy);x.rotate(rot||0);x.scale(sc,sc);x.globalAlpha=al;x.font="bold 42px 'Playfair Display',serif";x.textAlign='center';x.textBaseline='middle';x.fillStyle=col;x.fillText(ch,0,2);x.restore();}
+function _waveLn(x1,x2,cy,pr,wP,amp){if(pr<=0||x2<=x1)return;const len=(x2-x1)*Math.min(1,pr);_lx.beginPath();for(let i=0;i<=80;i++){const t=i/80,xx=x1+t*len;if(xx>x2)break;let yO=0;if(wP>=0&&wP<=1){const dist=t-wP,ww=.35;if(Math.abs(dist)<ww){const lc2=1-Math.abs(dist)/ww;yO=Math.sin(lc2*Math.PI*2.5)*Math.sin(lc2*Math.PI)*amp;}}if(i===0)_lx.moveTo(xx,cy+yO);else _lx.lineTo(xx,cy+yO);}_lx.strokeStyle=_BG;_lx.lineWidth=1;_lx.stroke();}
+function _statLn(x1,x2,cy){if(x2<=x1)return;_lx.beginPath();_lx.moveTo(x1,cy);_lx.lineTo(x2,cy);_lx.strokeStyle=_BG;_lx.lineWidth=1;_lx.stroke();}
+function _clrLn(){if(_lx)_lx.clearRect(0,0,_lw,_lh);}
+let _run=false,_t0=0,_done=false;
+const _TR=1500,_TL1=300,_TW1=650,_TE=1900,_TL2=300,_TW2=650,_TS=1800;
+const _TT=_TR+_TL1+_TW1+_TE+_TL2+_TW2+_TS;
+let _sd=[];
+function _initSD(){_sd=[];for(let r=0;r<7;r++)for(let c=0;c<7;c++){const gx=(c-3)*10,gy=(r-3)*10,a=Math.random()*Math.PI*2,d=20+Math.random()*26;_sd.push({gx,gy,bx:gx+Math.cos(a)*d,by:gy+Math.sin(a)*d,phase:Math.random()*Math.PI*2,speed:.002+Math.random()*.003,size:1.5+Math.random()});}}
+_initSD();
+let _bp=[],_br=[],_bf=false;
+function _intro(ts){
+  if(!_run||!_c1)return;const el=ts-_t0;
+  const t1=_TR,t2=t1+_TL1,t3=t2+_TW1,t4=t3+_TE,t5=t4+_TL2,t6=t5+_TW2;
+  const rP=Math.min(1,el/t1),l1=el<t1?0:Math.min(1,(el-t1)/_TL1),w1=el<t2?-1:el>t3?2:(el-t2)/_TW1;
+  const eP=el<t3?0:Math.min(1,(el-t3)/_TE),l2=el<t4?0:Math.min(1,(el-t4)/_TL2),w2=el<t5?-1:el>t6?2:(el-t5)/_TW2;
+  const sP=el<t6?0:Math.min(1,(el-t6)/_TS);
+  _c1.clearRect(0,0,_IC,_IC);
+  {const p=rP;let eo=0,ea=0,ex=_CC;if(p<.3){eo=_eo(p/.3);ea=eo;}else if(p<.55){eo=1;ea=1;}else if(p<.85){const t=(p-.55)/.3,et=_eo(t);eo=1-et*.2;ea=1-et;ex=_CC-et*24;}_circ(_c1,_CC,_CC,_IR,p<.3?.15:Math.min(1,.15+(p-.3)/.5*.85));if(ea>.01)_eye(_c1,ex,_CC,eo,ea);if(p>.35)_lines(_c1,_CC,_CC,Math.min(1,(p-.35)/.55),Math.min(1,(p-.35)/.3));}
+  _c2.clearRect(0,0,_IC,_IC);
+  {const p=eP;_circ(_c2,_CC,_CC,_IR,p<=0?.15:Math.min(1,.15+p/.3*.85));if(p>0&&p<=1){if(p<.17){const t=p/.17;_char(_c2,_CC,_CC,'?',_DK,_eo(t),.4+.6*_eo(t),0);}else if(p<.5){const t=(p-.17)/.33;_char(_c2,_CC,_CC,'?',_DK,1,1+Math.sin(t*Math.PI)*.12,_eio(t)*Math.PI*2);}else if(p<.6){const t=(p-.5)/.1,et=_eo(t);_char(_c2,_CC,_CC,'?',_DK,1-et,1+et*.3,0);_char(_c2,_CC,_CC,'!',_RD,et,.5+.5*et,0);}else if(p<.75){const t=(p-.6)/.15;if(!_bf){_bf=true;for(let i=0;i<18;i++){const a=(i/18)*Math.PI*2+Math.random()*.3,spd=1.8+Math.random()*3;_bp.push({x:_CC,y:_CC,vx:Math.cos(a)*spd,vy:Math.sin(a)*spd,life:1,size:1.8+Math.random()*1.8,isRed:i%3===0});}_br=[{born:0,alpha:.5},{born:100,alpha:.3},{born:220,alpha:.18}];}_char(_c2,_CC,_CC,'!',_RD,1-_eo(t),1+t*1.8,0);}_bp.forEach(b=>{b.x+=b.vx;b.y+=b.vy;b.vx*=.955;b.vy*=.955;b.life-=.014;if(b.life<=0)return;_c2.beginPath();_c2.arc(b.x,b.y,b.size*b.life,0,Math.PI*2);_c2.fillStyle=b.isRed?_RD:_DK;_c2.globalAlpha=b.life*.6;_c2.fill();_c2.globalAlpha=1;});if(p>.6){const base=(p-.6)/.4*_TE;_br.forEach(rp=>{const t2=base-rp.born;if(t2<0)return;const pp=Math.min(1,t2/500),r2=_eo(pp)*_IR*1.05,a2=rp.alpha*(1-pp);if(a2<.01)return;_c2.beginPath();_c2.arc(_CC,_CC,r2,0,Math.PI*2);_c2.strokeStyle=_RD;_c2.lineWidth=1.3*(1-pp*.5);_c2.globalAlpha=a2;_c2.stroke();_c2.globalAlpha=1;});}if(p>.8)_char(_c2,_CC,_CC,'!',_RD,Math.min(1,(p-.8)/.15)*.3,.7,0);}if(p>=1)_char(_c2,_CC,_CC,'!',_RD,.3,.7,0);}
+  _c3.clearRect(0,0,_IC,_IC);
+  {const shT=el-t6;let b2=0;if(sP>0)b2=sP<.25?0:_eio(Math.min(1,(sP-.25)/.55));if(sP<=0){_circ(_c3,_CC,_CC,_IR,.15);}else{_c3.beginPath();for(let i=0;i<=64;i++){const a=(i/64)*Math.PI*2,wx=b2*Math.sin(a*3+shT*.004)*7,wy=b2*Math.sin(a*5+shT*.003)*6;const px=_CC+Math.cos(a)*(_IR+wx),py=_CC+Math.sin(a)*(_IR+wy);if(i===0)_c3.moveTo(px,py);else _c3.lineTo(px,py);}_c3.strokeStyle=_DK;_c3.lineWidth=1.5;_c3.globalAlpha=1-b2*.4;_c3.stroke();_c3.globalAlpha=1;_sd.forEach(d=>{const dr=b2>0?Math.sin(shT*d.speed+d.phase)*4*b2:0;const x=_CC+d.gx+(d.bx-d.gx)*b2+dr,y=_CC+d.gy+(d.by-d.gy)*b2+Math.cos(shT*d.speed*.7+d.phase)*3*b2;_c3.beginPath();_c3.arc(x,y,d.size,0,Math.PI*2);if(b2>.5&&Math.sin(d.phase*10)>.3){_c3.fillStyle=_RD;_c3.globalAlpha=.3+.5*b2;}else{_c3.fillStyle=_DK;const dc=Math.sqrt((x-_CC)**2+(y-_CC)**2);_c3.globalAlpha=dc<_IR+3?.55:.15+.3*b2;}_c3.fill();_c3.globalAlpha=1;});}}
+  _clrLn();const pts=_edges();if(pts.length===3){const cy=60,wa=14;if(l1>0)_waveLn(pts[0].right,pts[1].left,cy,_eo(l1),w1>=0&&w1<=1?_eio(w1):-1,wa);if(w1>1)_statLn(pts[0].right,pts[1].left,cy);if(l2>0)_waveLn(pts[1].right,pts[2].left,cy,_eo(l2),w2>=0&&w2<=1?_eio(w2):-1,wa);if(w2>1)_statLn(pts[1].right,pts[2].left,cy);}
+  if(el<_TT){requestAnimationFrame(_intro);}else{_done=true;requestAnimationFrame(_loop);}
+}
+function _loop(ts){
+  if(!_run||!_c1)return;
+  _c1.clearRect(0,0,_IC,_IC);_circ(_c1,_CC,_CC,_IR,1);_lines(_c1,_CC,_CC,1,1,ts);
+  _c2.clearRect(0,0,_IC,_IC);_circ(_c2,_CC,_CC,_IR,1);_char(_c2,_CC,_CC,'!',_RD,.25+.1*Math.sin(ts*.003),.7+.06*Math.sin(ts*.003),0);for(let n=0;n<2;n++){const off=n*720,lt=((ts+off)%1800)/1800;if(lt<.7){const pp=lt/.7,r2=_eo(pp)*_IR*.85;_c2.beginPath();_c2.arc(_CC,_CC,r2,0,Math.PI*2);_c2.strokeStyle=_RD;_c2.lineWidth=1.2*(1-pp*.5);_c2.globalAlpha=.2*(1-pp);_c2.stroke();_c2.globalAlpha=1;}}
+  _c3.clearRect(0,0,_IC,_IC);_c3.beginPath();for(let i=0;i<=64;i++){const a=(i/64)*Math.PI*2,wx=Math.sin(a*3+ts*.003)*7,wy=Math.sin(a*5+ts*.002)*6;const px=_CC+Math.cos(a)*(_IR+wx),py=_CC+Math.sin(a)*(_IR+wy);if(i===0)_c3.moveTo(px,py);else _c3.lineTo(px,py);}_c3.strokeStyle=_DK;_c3.lineWidth=1.5;_c3.globalAlpha=.6;_c3.stroke();_c3.globalAlpha=1;_sd.forEach(d=>{const x=_CC+d.bx+Math.sin(ts*d.speed+d.phase)*6,y=_CC+d.by+Math.cos(ts*d.speed*.7+d.phase)*5;_c3.beginPath();_c3.arc(x,y,d.size,0,Math.PI*2);if(Math.sin(d.phase*10)>.3){_c3.fillStyle=_RD;_c3.globalAlpha=.5+Math.sin(ts*.002+d.phase)*.2;}else{_c3.fillStyle=_DK;_c3.globalAlpha=.3+Math.sin(ts*.001+d.phase)*.15;}_c3.fill();_c3.globalAlpha=1;});
+  _clrLn();const pts=_edges();if(pts.length===3){const cy=60;_statLn(pts[0].right,pts[1].left,cy);_statLn(pts[1].right,pts[2].left,cy);}
+  requestAnimationFrame(_loop);
+}
+let _played=false;
+function _play(){_run=false;_done=false;_bp=[];_br=[];_bf=false;_initSD();_initIc();_initLn();if(!_c1)return;_circ(_c1,_CC,_CC,_IR,.15);_circ(_c2,_CC,_CC,_IR,.15);_circ(_c3,_CC,_CC,_IR,.15);_clrLn();_run=true;_t0=performance.now();requestAnimationFrame(_intro);}
+window.addEventListener('resize',()=>{if(_lx)_initLn();});
+const _sObs=new IntersectionObserver(e=>{if(e[0].isIntersecting&&!_played){_played=true;setTimeout(_play,300);}},{threshold:.35});
+const _sa=document.getElementById('stepsAnim');if(_sa)_sObs.observe(_sa);
+})();
+
+document.querySelectorAll('.cd,.feat-main,.feat-sub').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    c.style.transform='perspective(700px) rotateY('+(x*3)+'deg) rotateX('+(-y*3)+'deg) translateY(-2px)';
+  });
+  c.addEventListener('mouseleave',()=>{c.style.transform='';});
+});
+</script>
+</body>
+</html>
