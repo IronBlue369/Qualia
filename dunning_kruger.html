@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ダニング＝クルーガー効果 — Qualia Journal</title>
+<meta name="description" content="能力の低い人ほど自分を過大評価する。しかし有名なあのグラフの読み方自体が間違っていたかもしれない。">
+<link rel="canonical" href="https://qualiajournal.com/dunning_kruger">
+<meta property="og:title" content="ダニング＝クルーガー効果 — Qualia Journal">
+<meta property="og:description" content="能力の低い人ほど自分を過大評価する。しかし有名なあのグラフの読み方自体が間違っていたかもしれない。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/dunning_kruger">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ダニング＝クルーガー効果 — Qualia Journal">
+<meta name="twitter:description" content="能力の低い人ほど自分を過大評価する。しかし有名なあのグラフの読み方自体が間違っていたかもしれない。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type='text/javascript' src='https://api.netlify.com/NzRPq3mjFs5VktbdmMXPOyYn58XpDt6W7awS2qpcwF8j5A6znLPzJNzuMm7gCKOJoOXBNH_hf5g9FSCNsjQiYqpeUahzB17KElXgUuTL7dNJe3nAwVuUPIZ1piVBBBv7bem38wMWMprxnUgxfzdzYYEozZ8AM6y_F5qzdPn82dwxTxg88W5v1gNc5ZbhNWtAGIi7JoChusirbEsdxU71f_vlSrSDKvmfhTCPInE3E1DPD934GWhD4dotC0QDU9KFmWsCRh6WLgDf3-sqPrhJy-faw7slhdD05Myx-w98CJRe94TyTPVna1IT3pSG-XjhaMGHhAG3vCA6TSyfknsTz9ei0c7R-pZvtRcPwfHLAX-4zuL2FjUrYOVCq5VAcn3_Y37n_R8JJ5jtODj2Kj9pqxk5PJ-HpDKL9FqsZp3jbtdKpuzNhjKX04kGX8Ar7y8nQ_zoQPd6tHD0Y1B2vE1V7ivZerjezNrHvQ2FSmP_Jihl9XlGtpe_zB8HtJC6tSYcd87eXKUoJwz-wNjWQWxeDivH8m_yhJyu'></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"ダニング＝クルーガー効果","description":"能力の低い人ほど自分を過大評価する。しかし有名なあのグラフの読み方自体が間違っていたかもしれない。","author":{"@type":"Organization","name":"Qualia Journal"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/dunning_kruger","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"認知バイアス","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"ダニング＝クルーガー効果"}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}
+.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;margin-bottom:6px;}
+.masthead-date{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;letter-spacing:.08em;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;letter-spacing:.06em;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:260px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+.step-summary{margin-top:2px;padding:16px 20px;background:#f3efe6;border:1px solid #c8bfaa;}
+.step-summary p{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;margin:0;line-height:1.8;}
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{list-style:none;padding:0;}
+.sidebar-check li{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;padding:8px 0 8px 20px;border-bottom:1px solid #e0d8c8;position:relative;}
+.sidebar-check li:last-child{border-bottom:none;}
+.sidebar-check li::before{content:'□';position:absolute;left:0;color:#8b1a1a;}
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:20px 48px 0;display:flex;align-items:center;gap:12px;}
+.terminal-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* QUIZ */
+.quiz-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:white;}
+.quiz-header{background:#3d3020;color:white;padding:14px 20px;}
+.quiz-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.quiz-body{padding:24px 24px 28px;}
+.quiz-q{font-family:'Source Serif 4',serif;font-size:16px;font-weight:400;color:#1a1208;line-height:1.8;margin-bottom:20px;}
+.quiz-q small{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:6px;line-height:1.6;}
+.quiz-slider-wrap{margin:20px 0;}
+.quiz-slider-label{display:flex;justify-content:space-between;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-bottom:8px;}
+.quiz-slider{width:100%;-webkit-appearance:none;appearance:none;height:6px;background:linear-gradient(to right,#e0d8c8,#8b1a1a);border-radius:3px;outline:none;}
+.quiz-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#8b1a1a;cursor:pointer;border:3px solid #faf8f3;box-shadow:0 1px 4px rgba(0,0,0,.2);}
+.quiz-slider::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#8b1a1a;cursor:pointer;border:3px solid #faf8f3;box-shadow:0 1px 4px rgba(0,0,0,.2);}
+.quiz-val{text-align:center;font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:#8b1a1a;margin:16px 0 8px;}
+.quiz-val-sub{text-align:center;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;margin-bottom:20px;}
+.quiz-btn{display:block;width:100%;padding:12px;background:#1a1208;color:white;border:none;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;cursor:pointer;transition:background .2s;}
+.quiz-btn:hover{background:#3d3020;}
+.quiz-result{display:none;margin-top:20px;padding:20px;background:#f3efe6;border-left:3px solid #8b1a1a;}
+.quiz-result-title{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;}
+.quiz-result-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;}
+.quiz-result-text strong{font-weight:600;color:#1a1208;}
+.quiz-bar-wrap{margin:16px 0;background:#e0d8c8;height:24px;position:relative;border-radius:2px;overflow:hidden;}
+.quiz-bar-you{position:absolute;top:0;height:100%;background:rgba(139,26,26,.3);border-right:3px solid #8b1a1a;transition:width .6s ease;}
+.quiz-bar-actual{position:absolute;top:0;height:100%;width:3px;background:#1a1208;z-index:2;}
+.quiz-bar-labels{display:flex;justify-content:space-between;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:4px;}
+.quiz-bar-legend{display:flex;gap:16px;margin-top:8px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.quiz-bar-legend span{display:flex;align-items:center;gap:5px;}
+.quiz-bar-legend .swatch{display:inline-block;width:10px;height:10px;border-radius:2px;}
+
+/* SVG DIAGRAM */
+.svg-diagram{margin:28px 0;overflow-x:auto;}
+.svg-diagram svg{max-width:100%;height:auto;}
+.svg-diagram-cap{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:8px;text-align:center;}
+
+/* TABLE */
+.concept-table{margin:28px 0;width:100%;border-collapse:collapse;font-family:'Source Sans 3',sans-serif;font-size:13px;}
+.concept-table th{background:#3d3020;color:white;padding:10px 14px;font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-align:left;}
+.concept-table td{padding:10px 14px;border-bottom:1px solid #e0d8c8;color:#3d3020;font-weight:300;line-height:1.6;}
+.concept-table tr:nth-child(even) td{background:#f3efe6;}
+.table-note{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:6px;line-height:1.6;}
+
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+@media(max-width:720px){
+.cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+.cover-right{display:none;}
+.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+.summary-box{padding:0 20px;}
+.scenario{padding:0 20px;}
+.article{grid-template-columns:1fr;padding:0 20px;}
+.article-side{display:none;}
+.misconception-item{flex-direction:column;}
+.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+.terminal-label-wrap{padding:20px 20px 0;}
+.terminal-wrap{padding:0 20px 40px;}
+.related{padding:32px 20px;}
+.related-grid{grid-template-columns:1fr;}
+.tip-box{left:0;transform:none;width:220px;}
+.tip-box::after{left:20px;transform:none;}
+.person-block{grid-template-columns:80px 1fr;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<div class="masthead">
+<p class="masthead-name"><a href="/" style="color:inherit;text-decoration:none;">Qualia Journal</a></p>
+<p class="masthead-date"></p>
+</div>
+
+<div class="cover fade">
+<div class="cover-left">
+<p class="cover-kicker">認知バイアス</p>
+<h1>「できる」と思ったとき、<br><em>あなたは何も見えていない</em></h1>
+<p class="cover-deck">能力の低い人ほど自分を過大評価する——あの有名なグラフの読み方は、本当に正しかったのか。</p>
+<div class="cover-byline"><span>Self-assessment</span><span>Metacognition</span><span>Expertise</span></div>
+</div>
+<div class="cover-right">
+<div class="est-card">
+<span class="est-label">Est.</span>
+<span class="est-year">1999</span>
+<p class="est-event">Kruger &amp; DunningがJournal of Personality and Social Psychologyに原著論文を発表。</p>
+<p class="est-context">同年、ユーロが導入され、NATOがコソボ空爆を開始。映画『マトリックス』が公開された年。</p>
+</div>
+<p class="cover-aside"><strong>Ig Nobel Prize 2000受賞。</strong>「まず笑わせ、それから考えさせる」研究に贈られる賞。論文の引用数は7000を超える。</p>
+</div>
+</div>
+
+<div class="scenario fade">
+<div class="scenario-inner">
+<p>なにかを始めたばかりの頃、妙に自信に満ちていた経験はないだろうか。プログラミングの入門書を1冊読み終えたとき、語学アプリで100日連続を達成したとき、投資の本を3冊読んだとき。「だいたいわかった」という感覚が湧いてくる。</p>
+<p>しばらくして気づく。入門書の先にはもっと広い世界があり、100日で身についたのは挨拶程度で、投資の本に書いてあったことは相場の1割も説明していなかった。あのとき「わかった」と感じたのはなんだったのか。</p>
+<p>その感覚には名前がある。そしてその名前自体が、今、揺らいでいる。</p>
+</div>
+</div>
+
+<div class="meta-bar fade">
+<div class="meta-item">
+<span class="meta-label">難易度</span>
+<div class="difficulty-dots">
+<div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div>
+</div>
+<span class="difficulty-text">中級 — 統計の知識があるとより深く読める</span>
+</div>
+<div class="meta-sep"></div>
+<div class="meta-item">
+<span class="meta-label">読了時間</span>
+<span class="read-time">
+<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+約 14 分
+</span>
+</div>
+</div>
+
+<div class="summary-box fade">
+<div class="summary-inner">
+<span class="summary-icon">要点</span>
+<p class="summary-text">自分の能力を自分で見積もる——その行為自体に潜む歪みを、<strong>自分の手で</strong>確かめる。</p>
+</div>
+</div>
+
+<!-- ===== ZONE B ===== -->
+<div class="article">
+<div class="article-main">
+
+<!-- S1: 背景 -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">レモン汁を顔に塗った男</h2>
+
+<p class="body-text fade">1995年1月6日、ペンシルベニア州ピッツバーグで2件の銀行強盗が起きた。犯人のマッカーサー・ウィーラーは、マスクもせず、変装もせず、白昼堂々と防犯カメラに向かって微笑みながらカウンターに歩いていった。その夜のニュースで監視映像が放送されると、通報が殺到し、深夜0時過ぎには逮捕された。</p>
+
+<p class="body-text fade">警察が写真を見せると、ウィーラーは心底驚いた顔でこう言ったという。<strong>「でも俺はレモン汁を塗ったんだ」</strong>（"But I wore the juice."）。レモン汁は透明インクに使える。だからレモン汁を顔に塗ればカメラに映らないはずだ——それが彼の論理だった。実行前にポラロイドカメラで「テスト」までしていた。おそらくカメラの向きが悪かったか、フィルムの不具合で、写真に顔は映らなかった。彼はそれを成功の証拠だと解釈した。</p>
+
+<div class="img-placeholder fade">
+<div class="img-ph-area">
+<span class="img-ph-icon">🖼️</span>
+<p class="img-ph-title">イラスト①｜レモン汁を顔に塗り、カメラに向かう男</p>
+<p class="img-ph-desc">銀行の窓口カウンター。背の低いがっしりした男が、レモン汁で顔をてからせながら防犯カメラに堂々と向き合っている。カメラのレンズは男の顔をはっきりと捉えている。</p>
+<div class="img-ph-prompt">
+<p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
+<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, a stout frog character standing at a bank counter confidently smiling at a surveillance camera, lemon juice dripping from his face, the camera clearly capturing his face, Japanese scroll painting aesthetic, no text</p>
+</div>
+</div>
+<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+</div>
+
+<p class="body-text fade">この話がコーネル大学の社会心理学者<span class="tip" onclick="toggleTip(this)">デイヴィッド・ダニング<span class="tip-box"><strong>David Dunning（1961–）</strong><br>コーネル大学、現在はミシガン大学の社会心理学者。自己認識と判断の歪みを専門とする。</span></span>の目に留まった。彼は思った——ウィーラーが銀行強盗として無能なら、おそらく<em>自分が無能であることを知る能力においても無能</em>なのだ。大学院生の<span class="tip" onclick="toggleTip(this)">ジャスティン・クルーガー<span class="tip-box"><strong>Justin Kruger</strong><br>当時コーネル大学大学院生、現在はニューヨーク大学の心理学者。</span></span>とともに、その直感を科学にする研究が始まった。</p>
+
+<hr class="art-rule">
+
+<div class="sec-rule fade"><span class="sec-label">実験</span><div class="sec-line"></div></div>
+<h2 class="fade">コーネル大学の学生たちに何が起きたか</h2>
+
+<p class="body-text fade">1999年、クルーガーとダニングはコーネル大学の学部生を対象に、ユーモア、文法、論理的推論の3つの領域でテストを行った。テストのあと、学生たちに「自分は全体の中でどのくらいの順位だったと思うか」を推定してもらった。</p>
+
+<p class="body-text fade">ここで使われたのが<span class="tip" onclick="toggleTip(this)">パーセンタイル<span class="tip-box"><strong>パーセンタイル（percentile）</strong><br>100人並べたときに下から何番目かを示す数値。50パーセンタイルなら「ちょうど真ん中」、90パーセンタイルなら「100人中90番目に良い＝上位10%」という意味。</span></span>という尺度だ。100人を成績順に並べたとき、下から何番目にいるかを示す数値で、50なら「ちょうど真ん中」、90なら「上位10%」を意味する。結果は明快だった。</p>
+
+<!-- SVG: 原論文の発見をフロー図で -->
+<div class="svg-diagram fade">
+<svg viewBox="0 0 540 150" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<text x="20" y="18" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090">成績の悪い学生（下位25%）に何が起きたか</text>
+<rect x="10" y="30" width="140" height="55" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="80" y="52" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#1a1208">テストを受ける</text>
+<text x="80" y="70" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#7a6a55">実際の順位: 下から12番目</text>
+<polygon points="160,57 175,51 175,63" fill="#8b1a1a"/>
+<rect x="185" y="30" width="150" height="55" rx="4" fill="#f3efe6" stroke="#8b1a1a"/>
+<text x="260" y="52" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#8b1a1a">「自分は何番目？」</text>
+<text x="260" y="70" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#7a6a55">回答: 下から62番目くらい</text>
+<polygon points="345,57 360,51 360,63" fill="#8b1a1a"/>
+<rect x="370" y="30" width="160" height="55" rx="4" fill="#8b1a1a" stroke="#8b1a1a"/>
+<text x="450" y="50" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="white">50ポイントの乖離</text>
+<text x="450" y="68" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="rgba(255,255,255,.7)">自分は平均以上だと思った</text>
+<text x="270" y="115" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#7a6a55">一方、成績の良い学生（上位25%）は、自分の順位を少し低めに見積もった（86番目 → 72番目と推定）</text>
+<text x="270" y="135" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090">※ パーセンタイル = 100人中、下から何番目か。50 = ちょうど真ん中。</text>
+</svg>
+<p class="svg-diagram-cap">原論文の主な発見——下位の学生は自分を「平均より上」の位置だと評価した</p>
+</div>
+
+<p class="body-text fade">下位25%の学生が示した自己評価と実際の成績の差は、約50パーセンタイル。100人中12番目なのに「62番目くらいだろう」と思っていた。以下の表は、原論文の4つのグループごとの結果を整理したものだ。「乖離」の列が、自己評価と実際の順位のずれを示している。</p>
+
+<table class="concept-table fade">
+<tr><th>グループ</th><th>実際の順位</th><th>本人の予想</th><th>ずれ</th></tr>
+<tr><td>成績下位25%</td><td>12番目 / 100人中</td><td>62番目</td><td><strong style="color:#c4392a;">+50（大幅な過大評価）</strong></td></tr>
+<tr><td>成績やや下位</td><td>36番目</td><td>57番目</td><td style="color:#c4392a;">+21</td></tr>
+<tr><td>成績やや上位</td><td>62番目</td><td>64番目</td><td style="color:#1a5a30;">+2（ほぼ正確）</td></tr>
+<tr><td>成績上位25%</td><td>86番目</td><td>72番目</td><td style="color:#1a5a30;">−14（やや過小評価）</td></tr>
+</table>
+<p class="table-note">※ 数値はパーセンタイル（100人中の順位）。原論文Study 3（論理的推論テスト）のデータに基づく。</p>
+
+<p class="body-text fade">クルーガーとダニングはこの現象を<strong>「二重の負担」（dual burden）</strong>と呼んだ。<em>能力が低いこと自体が、自分の能力の低さを認識する能力をも損なう</em>。これがダニング＝クルーガー効果の核心だ。</p>
+
+<div class="quote-block fade">
+<p class="quote-en">"Not only do these people reach erroneous conclusions and make unfortunate choices, but their incompetence robs them of the metacognitive ability to realize it."</p>
+<p class="quote-ja">こうした人々は誤った結論に達し不運な選択をするだけでなく、自らの無能さがメタ認知能力を奪い、それに気づくことすらできない。</p>
+<p class="quote-attr">— Kruger &amp; Dunning, 1999, p. 1121</p>
+</div>
+
+<p class="body-text fade">論文はさらに興味深い実験を加えている。Study 4では、下位群の学生に論理的推論のトレーニングを施した。すると彼らは自分の成績を正しく評価できるようになった。<em>スキルを身につけた瞬間、自分がそのスキルを持っていなかったことに初めて気づいた</em>のだ。</p>
+
+<div class="misconception fade">
+<div class="misconception-header"><span class="misconception-hl">読む前に確認 — よくある誤解</span></div>
+<div class="misconception-body">
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">「バカほど自信満々」——知能が低い人ほど全般的に自信過剰になるという話</p></div>
+<div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">知能の話ではなく、特定のスキル領域における自己評価の歪み。同じ人でも得意な分野では正確に自己評価できる</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">能力が低い人は高い人より「自信がある」</p></div>
+<div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">低い人の自信は「過大」だが、高い人の自信レベルよりは低い。下位群が上位群を上回るわけではない</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">ネットで見る「自信が山型に上がって谷型に落ちる」グラフが原論文のものだ</p></div>
+<div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">あのU字型のグラフ（通称「<span class="tip" onclick="toggleTip(this)">Mt. Stupid<span class="tip-box"><strong>Mt. Stupid（愚かの山）</strong><br>ネット上で広まった俗称。知識がほんの少しある段階で自信がピークに達し、その後急落するとされる地点。出典不明で、クルーガーもダニングも描いていない。</span></span>」と呼ばれる）は出典不明。原論文のグラフとはまったく違う</p></div>
+</div>
+</div>
+</div>
+
+<hr class="art-rule">
+
+<!-- S2: 体験する -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">自分で試してみる</h2>
+
+<p class="body-text fade">ダニング＝クルーガー効果の厄介さは、読んで理解しても「自分には当てはまらない」と感じてしまうところにある。他人の話だと思えてしまう。だからここでは、自己評価の精度を実際に体験してもらう。</p>
+
+<p class="body-text fade">以下の5問に答えたあと、「自分は何問正解したか」を予想してほしい。正直に。誰にも見えない。原論文でも学生たちはテストのあとで自己評価を求められた。やることは同じだ。</p>
+
+<div class="quiz-wrap fade" id="dkQuiz">
+<div class="quiz-header"><span class="quiz-hl">体験 — 一般知識クイズ × 自己評価</span></div>
+<div class="quiz-body">
+<div id="quizQuestions">
+
+<p class="quiz-q"><strong>Q1.</strong> 地球上の水のうち、人間が飲める淡水の割合はどのくらいか？
+<small>海水や氷河に閉じ込められた水を除いた、利用可能な淡水の割合。</small></p>
+<div style="display:flex;gap:10px;margin-bottom:24px;">
+<button class="quiz-btn" style="flex:1;background:#f3efe6;color:#1a1208;border:1px solid #c8bfaa;" onclick="answerQ(1,'25')">約25%</button>
+<button class="quiz-btn" style="flex:1;background:#f3efe6;color:#1a1208;border:1px solid #c8bfaa;" onclick="answerQ(1,'1')">1%未満</button>
+<button class="quiz-btn" style="flex:1;background:#f3efe6;color:#1a1208;border:1px solid #c8bfaa;" onclick="answerQ(1,'10')">約10%</button>
+</div>
+
+<p class="quiz-q"><strong>Q2.</strong> 100人のうち1人がある病気にかかっている。この病気を調べる検査は、かかっている人を95%の確率で「陽性」と判定する。しかし、かかっていない人も5%の確率で誤って「陽性」と判定してしまう。あなたが検査を受けて「陽性」が出た。実際に病気である確率は？
+<small>直感で答えてみてほしい。計算しなくていい。</small></p>
+<div style="display:flex;gap:10px;margin-bottom:24px;">
+<button class="quiz-btn" style="flex:1;background:#f3efe6;color:#1a1208;border:1px solid #c8bfaa;" onclick="answerQ(2,'95')">約95%</button>
+<button class="quiz-btn" style="flex:1;background:#f3efe6;color:#1a1208;border:1px solid #c8bfaa;" onclick="answerQ(2,'16')">約16%</button>
+<button class="quiz-btn" style="flex:1;background:#f3efe6;color:#1a1208;border:1px solid #c8bfaa;" onclick="answerQ(2,'50')">約50%</button>
+</div>
+
+<p class="quiz-q"><strong>Q3.</strong> コインを5回投げて、5回とも表が出た。6回目に表が出る確率は？
+<small>公平なコインだとする。</small></p>
+<div style="display:flex;gap:10px;margin-bottom:24px;">
+<button class="quiz-btn" style="flex:1;background:#f3efe6;color:#1a1208;border:1px solid #c8bfaa;" onclick="answerQ(3,'50')">50%（変わらない）</button>
+<button class="quiz-btn" style="flex:1;background:#f3efe6;color:#1a1208;border:1px solid #c8bfaa;" onclick="answerQ(3,'low')">50%より低い</button>
+</div>
+
+<p class="quiz-q"><strong>Q4.</strong> 「すべてのバラは花である」「いくつかの花はすぐ枯れる」——この2つの前提から「いくつかのバラはすぐ枯れる」は正しいと言えるか？
+<small>日常の感覚ではなく、論理として正しいかどうかを考えてほしい。「すべてのバラは花」であっても、「すぐ枯れる花」の中にバラが含まれるとは限らない。</small></p>
+<div style="display:flex;gap:10px;margin-bottom:24px;">
+<button class="quiz-btn" style="flex:1;background:#f3efe6;color:#1a1208;border:1px solid #c8bfaa;" onclick="answerQ(4,'yes')">はい、言える</button>
+<button class="quiz-btn" style="flex:1;background:#f3efe6;color:#1a1208;border:1px solid #c8bfaa;" onclick="answerQ(4,'no')">いいえ、言えない</button>
+</div>
+
+<p class="quiz-q"><strong>Q5.</strong> ある部屋に23人いる。この中に同じ誕生日の人がいる確率は、50%より高いか低いか？
+<small>365日のうちたった23人なので少なく感じるかもしれない。</small></p>
+<div style="display:flex;gap:10px;margin-bottom:24px;">
+<button class="quiz-btn" style="flex:1;background:#f3efe6;color:#1a1208;border:1px solid #c8bfaa;" onclick="answerQ(5,'high')">50%より高い</button>
+<button class="quiz-btn" style="flex:1;background:#f3efe6;color:#1a1208;border:1px solid #c8bfaa;" onclick="answerQ(5,'low')">50%より低い</button>
+</div>
+</div>
+
+<div id="quizEstimate" style="display:none;">
+<p class="quiz-q">5問すべてに回答した。<br>ここで質問——<strong>自分は5問中いくつ正解したと思うか？</strong>
+<small>直感でいい。「多分これくらいだろう」という感覚で。</small></p>
+<div class="quiz-slider-wrap">
+<div class="quiz-slider-label"><span>0問</span><span>5問</span></div>
+<input type="range" class="quiz-slider" min="0" max="5" value="3" step="1" id="selfEstimate" oninput="document.getElementById('estVal').textContent=this.value">
+</div>
+<p class="quiz-val" id="estVal">3</p>
+<p class="quiz-val-sub">問正解だと思う</p>
+<button class="quiz-btn" onclick="showResult()">結果を見る</button>
+</div>
+
+<div class="quiz-result" id="quizResult">
+<p class="quiz-result-title">あなたの結果</p>
+<div class="quiz-result-text" id="resultText"></div>
+<div class="quiz-bar-wrap" style="margin-top:16px;">
+<div class="quiz-bar-you" id="barYou" style="width:0;"></div>
+<div class="quiz-bar-actual" id="barActual" style="left:56%;"></div>
+</div>
+<div class="quiz-bar-labels"><span>0問</span><span>5問</span></div>
+<div class="quiz-bar-legend">
+<span><span class="swatch" style="background:rgba(139,26,26,.3);border-right:2px solid #8b1a1a;"></span>あなたの自己評価</span>
+<span><span class="swatch" style="background:#1a1208;"></span>実際の正答数</span>
+</div>
+</div>
+</div>
+</div>
+
+<p class="body-text fade">このクイズは、原論文の「テスト→自己評価」という構造を借りたものだ（問題自体はオリジナル）。原論文の下位群は平均で約50パーセンタイルの自己評価のずれがあった。あなたの結果がどうであれ、<em>「自分は平均より上だろう」と感じたなら</em>、それ自体がこの効果の入り口かもしれない。</p>
+
+<div class="pull fade">
+<p class="pull-q">"The first rule of the Dunning-Kruger club is <em>you don't know you're a member</em> of the Dunning-Kruger club."</p>
+<p class="pull-q" style="font-size:clamp(14px,2vw,17px);color:#7a6a55;margin-top:8px;">「ダニング＝クルーガー・クラブの第一法則——あなたは自分がメンバーだと知らない。」</p>
+<p class="pull-attr">— David Dunning</p>
+</div>
+
+<hr class="art-rule">
+
+<!-- S3: なぜか -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">メタ認知の二重構造</h2>
+
+<p class="body-text fade">ダニング＝クルーガー効果のメカニズムとして、原論文が提唱したのが<span class="tip" onclick="toggleTip(this)">メタ認知<span class="tip-box"><strong>メタ認知（Metacognition）</strong><br>自分の認知プロセスについての認知。「自分が何を知っていて何を知らないかを知る能力」のこと。</span></span>の欠如だ。あるスキルの良し悪しを判断するには、まさにそのスキル自体が必要になる。文法のテストで自分の出来を正しく評価するには、文法の知識が必要で、その知識がない人は評価の基準そのものを持っていない。</p>
+
+<!-- SVGフロー: メタ認知の二重構造 -->
+<div class="svg-diagram fade">
+<svg viewBox="0 0 560 180" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<text x="80" y="15" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#b0a090">スキルの状態</text>
+<text x="280" y="15" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#b0a090">自己評価の基準</text>
+<text x="470" y="15" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#b0a090">結果</text>
+<rect x="20" y="30" width="120" height="50" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="80" y="50" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#1a1208">スキルが低い</text>
+<text x="80" y="66" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#7a6a55">例: 文法が苦手</text>
+<polygon points="150,55 165,49 165,61" fill="#c4392a"/>
+<rect x="175" y="30" width="150" height="50" rx="4" fill="#f3efe6" stroke="#c4392a"/>
+<text x="250" y="50" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#c4392a">基準を持てない</text>
+<text x="250" y="66" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#7a6a55">何が正しいかわからない</text>
+<polygon points="335,55 350,49 350,61" fill="#c4392a"/>
+<rect x="360" y="30" width="130" height="50" rx="4" fill="#c4392a" stroke="#c4392a"/>
+<text x="425" y="52" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="white">「できた」と思う</text>
+<text x="425" y="68" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="rgba(255,255,255,.7)">過大評価</text>
+
+<rect x="20" y="110" width="120" height="50" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="80" y="130" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#1a1208">スキルが高い</text>
+<text x="80" y="146" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#7a6a55">例: 文法が得意</text>
+<polygon points="150,135 165,129 165,141" fill="#1a5a30"/>
+<rect x="175" y="110" width="150" height="50" rx="4" fill="#f3efe6" stroke="#1a5a30"/>
+<text x="250" y="130" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#1a5a30">差が見えるが…</text>
+<text x="250" y="146" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#7a6a55">「他人もできるだろう」と思う</text>
+<polygon points="335,135 350,129 350,141" fill="#1a5a30"/>
+<rect x="360" y="110" width="130" height="50" rx="4" fill="#1a5a30" stroke="#1a5a30"/>
+<text x="425" y="132" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="white">「普通だろう」と思う</text>
+<text x="425" y="148" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="rgba(255,255,255,.7)">やや過小評価</text>
+</svg>
+<p class="svg-diagram-cap">メタ認知の有無が自己評価を左右する——上位群はスキルがあるぶん「他人もできるだろう」と考える</p>
+</div>
+
+<p class="body-text fade">しかし話はここで終わらない。2000年代に入ると、この「メタ認知の欠如」という説明に対して、統計学の側から強力な反論が出始めた。</p>
+
+<div class="steps-wrap fade">
+<p class="steps-head">あの有名なグラフ、なぜそう見えたのか</p>
+
+<div class="step-card" id="sc1">
+<div class="step-hd" onclick="tog(1)">
+<div class="step-nb">1</div>
+<div class="step-tw"><div class="step-title">平均への回帰</div><div class="step-sub">Regression toward the mean</div></div>
+<div class="step-arr">▼</div>
+</div>
+<div class="step-body"><p>成績が極端に低い人は、予想を聞かれると平均に近い値を答えやすい。逆に極端に高い人も同様だ。これは<strong>人間の心理に関係なく、統計的に必ず起こる現象</strong>で、2つの数値（実力と自己評価）の相関が完全でない限り避けられない。Krueger &amp; Mueller（2002）が最初にこの問題を指摘した。</p></div>
+</div>
+
+<div class="step-card" id="sc2">
+<div class="step-hd" onclick="tog(2)">
+<div class="step-nb">2</div>
+<div class="step-tw"><div class="step-title">平均以上効果</div><div class="step-sub">Better-than-average effect</div></div>
+<div class="step-arr">▼</div>
+</div>
+<div class="step-body"><p>人間には<em>「自分は平均以上だ」</em>と思い込む一般的な傾向がある。ドライバーの80%が「自分は平均以上の運転技術がある」と回答した有名な調査がその好例だ。この<strong>誰もが持つバイアス</strong>と平均への回帰を組み合わせるだけで、ダニング＝クルーガー効果に似たグラフが再現できる——と2020年にGignac &amp; Zajenkowskiが示した。</p></div>
+</div>
+
+<div class="step-card" id="sc3">
+<div class="step-hd" onclick="tog(3)">
+<div class="step-nb">3</div>
+<div class="step-tw"><div class="step-title">グラフの測り方自体の問題</div><div class="step-sub">Autocorrelation artifact</div></div>
+<div class="step-arr">▼</div>
+</div>
+<div class="step-body"><p>原論文のグラフでは、横軸に「実際の成績」、縦軸に「自己評価と実際の成績の差」を取っている。しかしこの2つの変数には同じ数値（「実際の成績」）が含まれており、<strong>統計的に独立ではない</strong>。Nuhferら（2016, 2017）は<em>完全にランダムなデータ</em>でも同じグラフパターンが出現することを示し、グラフの見た目の「劇的な差」の多くは、この測定手法に由来する可能性があると指摘した。</p></div>
+</div>
+
+<div class="step-summary"><p><strong>要するに：</strong>「能力が低い人が過大評価する」現象は実在する。しかし、あの有名なグラフが示していたほど劇的ではなく、その原因は「メタ認知の欠如」だけでは説明しきれない可能性がある。</p></div>
+</div>
+
+<hr class="art-rule">
+
+<!-- S4: 歴史 -->
+<div class="sec-rule fade"><span class="sec-label">研究の歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">25年間の攻防</h2>
+
+<p class="body-text fade" style="font-size:13px;font-family:'Source Sans 3',sans-serif;color:#7a6a55;border-left:none;padding-left:0;">● ダニング＝クルーガー効果の主な研究　○ 関連する批判・反論</p>
+
+<div class="timeline fade">
+<div class="tl-item highlight">
+<div class="tl-dot"></div>
+<p class="tl-year">1995</p>
+<p class="tl-title">レモン汁事件</p>
+<p class="tl-desc">マッカーサー・ウィーラーがレモン汁で「透明人間」になったつもりでピッツバーグの銀行を強盗。ダニングがこの事件から着想を得る。</p>
+</div>
+<div class="tl-item highlight">
+<div class="tl-dot"></div>
+<p class="tl-year">1999</p>
+<p class="tl-title">原論文発表</p>
+<p class="tl-desc">Kruger &amp; Dunning, "Unskilled and Unaware of It" がJournal of Personality and Social Psychologyに掲載。4つのStudyで効果を実証。</p>
+</div>
+<div class="tl-item">
+<div class="tl-dot"></div>
+<p class="tl-year">2000</p>
+<p class="tl-title">イグノーベル賞受賞</p>
+<p class="tl-desc">「まず笑わせ、それから考えさせる」研究としてイグノーベル賞心理学部門を受賞。</p>
+</div>
+<div class="tl-item highlight">
+<div class="tl-dot"></div>
+<p class="tl-year">2002</p>
+<p class="tl-title">最初の統計的反論</p>
+<p class="tl-desc">Krueger &amp; Muellerが「平均への回帰と平均以上効果で説明可能」と反論。同号でKruger &amp; Dunningが再反論を掲載。</p>
+</div>
+<div class="tl-item">
+<div class="tl-dot"></div>
+<p class="tl-year">2008</p>
+<p class="tl-title">実世界での追試</p>
+<p class="tl-desc">Ehrlingerらが教室外の実世界の課題でも効果が残ることを示す。銃愛好家の銃の安全知識についてのテストなど。</p>
+</div>
+<div class="tl-item highlight">
+<div class="tl-dot"></div>
+<p class="tl-year">2016–2017</p>
+<p class="tl-title">ランダムデータでも再現される</p>
+<p class="tl-desc">Nuhferらが、ランダムに生成したデータでも原論文と同じグラフパターンが出現することを数学誌Numeracyで発表。</p>
+</div>
+<div class="tl-item highlight">
+<div class="tl-dot"></div>
+<p class="tl-year">2020</p>
+<p class="tl-title">新しい分析手法の提案</p>
+<p class="tl-desc">Gignac &amp; Zajenkowskiが、原論文の四分位法に代わる多項式回帰分析を提案。「ノイズ＋バイアス」モデルで効果の大部分が再現できると報告。</p>
+</div>
+<div class="tl-item">
+<div class="tl-dot"></div>
+<p class="tl-year">2024–2025</p>
+<p class="tl-title">「効果は人口の0.14%」/ 公開論争</p>
+<p class="tl-desc">Gignac &amp; Zajenkowskiが影響範囲はごく限定的だとする分析を発表。2025年にはBPS誌上でMcIntosh &amp; Della SalaとDunning本人が公開論争。</p>
+</div>
+</div>
+
+<hr class="art-rule">
+
+<!-- S5: つまり -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">あのグラフは何を描いていたのか</h2>
+
+<p class="body-text fade">ここまでを整理しよう。ダニング＝クルーガー効果には、少なくとも3つの層がある。</p>
+
+<p class="body-text fade"><strong>第一の層：自己評価が歪むという現象自体は存在する。</strong>これは原論文の発見のうち、最も堅固な部分だ。人間は自分の能力を正確に見積もることが苦手で、特に能力が低い領域ではその傾向が強くなる。これを否定する研究者はほとんどいない。</p>
+
+<p class="body-text fade"><strong>第二の層：あの有名なグラフが示していた「劇的な差」は、かなりの部分が統計的な見せかけである可能性がある。</strong>平均への回帰と平均以上効果を組み合わせるだけで、実際にメタ認知の欠如がなくてもグラフは同じ形になる。Gignac &amp; Zajenkowski（2024）の分析では、ダニング＝クルーガー効果と呼べる過大評価が顕著に現れるのはIQ換算で55程度——人口の0.14%という極めて限られた集団に限られると推定されている。</p>
+
+<div class="img-placeholder fade">
+<div class="img-ph-area">
+<span class="img-ph-icon">🖼️</span>
+<p class="img-ph-title">イラスト②｜「ネットで広まったグラフ」と「原論文のグラフ」の比較</p>
+<p class="img-ph-desc">左：ネットで流布するU字型のグラフ（出典不明、「Mt. Stupid」のラベル付き）。右：原論文の実際のグラフ（4つの四分位群の棒グラフ）。2つがまったく違う形であることが一目でわかる構図。</p>
+<div class="img-ph-prompt">
+<p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
+<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, two frog scholars in traditional Japanese robes standing before two different scrolls showing contrasting graph shapes, one scroll shows a dramatic mountain curve the other shows modest bar chart, Japanese scroll painting aesthetic, no text</p>
+</div>
+</div>
+<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+</div>
+
+<p class="body-text fade"><strong>第三の層：インターネット上で広まった「Mt. Stupid（愚かの山）」のグラフは、原論文とは完全に別物だ。</strong>「Mt. Stupid」とは、知識がほんの少しある段階で自信がピークに達するとされる地点のことで、「自信」がまず急上昇し、やがて落ち込み、再び緩やかに上がるU字型のグラフが添えられる。このグラフの出典は不明で、クルーガーもダニングも描いていない。にもかかわらず、これが「ダニング＝クルーガー効果のグラフ」として数百万回シェアされている。<em>効果を説明するために使われているグラフ自体が、効果の誤解を広めている</em>。</p>
+
+<div class="quote-block fade">
+<p class="quote-en">"When I look back at my papers, including the 1999 paper that caused us to have this interview, there are things I wish I could have done differently. I welcome that feeling."</p>
+<p class="quote-ja">1999年の論文を含め、自分の論文を振り返ると、もっと違うやり方があったと思うことがある。その感覚を歓迎している。</p>
+<p class="quote-attr">— David Dunning, OpenMind Magazine, 2024</p>
+</div>
+
+<p class="body-text fade">ダニング本人はこうした批判を認めつつも、「純粋に統計的な説明は、重要な学術的知見の多くを無視している」と反論している。2025年のBritish Psychological Society誌上での公開論争では、心肺蘇生法の実技試験で不合格になった医学生36人のうち不合格を自覚していたのはわずか3人だった事例や、ワクチンに関する知識が最も乏しい層がなぜか医師や科学者と同程度の知識があると自称したデータを引きながら、効果の実在性を主張している。</p>
+
+<p class="body-text fade">結局のところ、私たちは何を持ち帰ればいいのか。おそらくこうだ——<em>自分の無知を認識する能力は、自分が思うほど高くない</em>。これはグラフの形がどうであろうと、統計手法がどう改良されようと、変わらない事実だ。あのグラフの読み方は間違っていたかもしれない。しかし、ウィーラーがレモン汁を塗って銀行に向かったとき感じていたであろう確信——その確信は、程度の差こそあれ、私たちの日常にも住みついている。</p>
+
+<div class="sec-rule fade"><span class="sec-label">文化の中に現れる</span><div class="sec-line"></div></div>
+<h2 class="fade">「わかっていない人ほど自信がある」を描く</h2>
+
+<div class="culture-block fade"><p class="culture-title">『The Office』マイケル・スコット（2005–2013）</p><p class="culture-desc">自分のマネジメント能力を疑わないまま、部下を困惑させ続ける上司。ダニング＝クルーガー効果の大衆的なアイコンとして最も頻繁に引用されるキャラクターだが、原論文の「特定スキルの過大評価」とは少しずれている——マイケルは全般的に自信過剰だ。</p></div>
+
+<div class="culture-block fade"><p class="culture-title">ジョン・クリーズの解説動画（数百万回再生）</p><p class="culture-desc">モンティ・パイソンのクリーズ（ダニングの友人）が「何かが得意になるために必要なスキルは、自分がその分野で下手だと気づくために必要なスキルとまったく同じだ」と要約。わかりやすさと引き換えに、統計的な議論はすべて省かれている。</p></div>
+
+<div class="culture-block fade"><p class="culture-title">TED-Ed "Why incompetent people think they're amazing"（2017）</p><p class="culture-desc">ダニング本人が監修したアニメーション。「この効果を他人に対して使う前に、自分にも当てはまることを忘れないでほしい」という結びが印象に残る。</p></div>
+
+<hr class="art-rule">
+
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+<div class="ref-list">
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1999</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1037//0022-3514.77.6.1121" target="_blank" rel="noopener">Unskilled and Unaware of It: How Difficulties in Recognizing One's Own Incompetence Lead to Inflated Self-Assessments</a></p>
+<p class="ref-author">Justin Kruger &amp; David Dunning — JPSP, 77(6), 1121–1134</p>
+<p class="ref-desc">すべての始まり。4つの研究でユーモア・文法・論理の自己評価を検証。読みやすく、心理学論文の古典として価値がある。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">反論論文</span><span class="ref-year">2002</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1037/0022-3514.82.2.180" target="_blank" rel="noopener">Unskilled, Unaware, or Both? The Better-Than-Average Heuristic and Statistical Regression Predict Errors in Estimates of Own Performance</a></p>
+<p class="ref-author">Joachim Krueger &amp; Ross A. Mueller — JPSP, 82(2), 180–188</p>
+<p class="ref-desc">最初の体系的反論。平均以上効果と回帰だけで効果を説明できると主張。同号にKruger &amp; Dunningの再反論も掲載。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">批判論文</span><span class="ref-year">2017</span></div>
+<p class="ref-title"><a href="https://doi.org/10.5038/1936-4660.10.1.4" target="_blank" rel="noopener">How Random Noise and a Graphical Convention Subverted Behavioral Scientists' Explanations of Self-Assessment Data</a></p>
+<p class="ref-author">Edward Nuhfer, Steven Fleisher, Christopher Cogan, Karl Wirth &amp; Eric Gaze — Numeracy, 10(1)</p>
+<p class="ref-desc">ランダムデータでダニング＝クルーガーのグラフが再現されることを詳細に示した論文。グラフの描き方自体に問題があると指摘。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">分析論文</span><span class="ref-year">2024</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1016/S0160-2896(24)00024-2" target="_blank" rel="noopener">Rethinking the Dunning-Kruger Effect: Negligible Influence on a Limited Segment of the Population</a></p>
+<p class="ref-author">Gilles E. Gignac &amp; Marcin Zajenkowski — Intelligence</p>
+<p class="ref-desc">ダニング＝クルーガー効果が顕著に現れるのはIQ 55前後のごく限られた集団であると推定。四分位法に代わる新手法を提案。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">論争記事</span><span class="ref-year">2025</span></div>
+<p class="ref-title"><a href="https://www.bps.org.uk/psychologist/dunning-kruger-effect-and-its-discontents" target="_blank" rel="noopener">The Dunning-Kruger Effect and Its Discontents</a></p>
+<p class="ref-author">David Dunning — The Psychologist (BPS)</p>
+<p class="ref-desc">McIntosh &amp; Della Salaの「効果は統計的なアーティファクトだ」とする記事への反論。25年分の研究を振り返りながら効果の実在性を擁護。</p>
+</div>
+</div>
+
+<div class="note-box fade">
+<strong>📌 この記事について</strong><br>
+Kruger &amp; Dunning（1999）の原著論文を軸に、Krueger &amp; Mueller（2002）、Nuhfer et al.（2016, 2017）、Gignac &amp; Zajenkowski（2020, 2024）の批判的研究、およびDunning本人による再反論（BPS, 2025）を参照している。自己評価の歪み自体は広く認められているが、そのメカニズムと規模については研究者間で見解が分かれている。
+</div>
+
+<div class="tags">
+<span class="tag">認知バイアス</span>
+<span class="tag">ダニング＝クルーガー効果</span>
+<span class="tag">メタ認知</span>
+<span class="tag">自己評価</span>
+<span class="tag">統計的アーティファクト</span>
+<span class="tag">平均への回帰</span>
+</div>
+
+</div><!-- /article-main -->
+
+<div class="article-side">
+<div style="position:sticky;top:40px;">
+<div class="sidebar-block fade">
+<p class="sidebar-label">Key Number</p>
+<p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">+50</p>
+<p class="sidebar-text">下位25%の学生が自分の順位を過大評価したポイント数（100人中12番目 → 62番目と推定）</p>
+</div>
+<div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">ダーウィンは「<strong>無知はしばしば知識以上に自信を生む</strong>」と書いた（1871年）。ラッセルは「<strong>愚者は確信に満ち、賢者は疑いに満ちている</strong>」と述べた。効果の知的系譜は長い。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">『The Office』マイケル・スコット<br>ジョン・クリーズの動画<br>TED-Ed アニメーション（2017）<br>イグノーベル賞受賞（2000）</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <em>確証バイアス</em><br>自分の信念を支持する情報だけ集める<br>— <em>平均以上効果</em><br>「自分は平均より上」と思う普遍的傾向<br>— <em>インポスター症候群</em><br>実力があるのに自信が持てない</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">自分を振り返る</p>
+<ul class="sidebar-check">
+<li>最近「だいたいわかった」と感じた分野はあるか？</li>
+<li>その分野で、自分が知らないことを3つ挙げられるか？</li>
+<li>「得意だ」と思う領域で、専門家の評価を受けたことはあるか？</li>
+</ul>
+</div>
+<div class="sidebar-block fade"><p class="sidebar-label">📌 信頼度</p><p class="sidebar-text">原著論文（1999）と25年分の追試・批判論文に基づく。自己評価の歪みは広く認められているが、グラフの解釈とメカニズムには論争がある。</p></div>
+</div>
+</div>
+
+</div><!-- /article -->
+
+<!-- ===== ZONE C ===== -->
+<div class="terminal-label-wrap"><span class="terminal-label">▼ Internal Dialogue >> Active</span><div class="terminal-label-line"></div></div>
+<div class="terminal-wrap"><div class="terminal fade" id="terminalBlock">
+<div class="terminal-bar"><div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div><span class="terminal-title">after.sh — 読後の対話ログ（架空）</span></div>
+<div class="terminal-body">
+<span class="t-sys" id="ts0">// ダニング＝クルーガー効果 を読み終えた人との対話</span>
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;あのグラフ、ずっと本物だと思ってた</span></div>
+<span class="t-output" id="to1">多くの人がそうだ。ネットで広まった「愚かの山」のU字型グラフは出典不明で、原論文にはない。<em>効果の誤解が、効果そのものより広く拡散している</em>。これ自体がなかなか皮肉な構造をしている。</span>
+<hr class="t-divider">
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ結局、効果はあるの？ないの？</span></div>
+<span class="t-output" id="to2">自己評価が歪むこと自体は確かだ。ただ、<strong>「能力が低い人ほど劇的に過大評価する」</strong>という部分は、統計的な錯覚が含まれている可能性がある。全否定でも全肯定でもなく、<em>元のグラフの「読み方が違った」</em>というのが今の状況に近い。</span>
+<hr class="t-divider">
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;レモン汁の話、笑えるけど怖くもある</span></div>
+<span class="t-output" id="to3">テストまでして、その結果を「成功の証拠」として解釈した。<em>検証のプロセスそのものがバイアスに汚染されていた</em>。私たちも日常で同じ構造に陥っている——ただ、レモン汁ほどわかりやすくないだけだ。</span>
+<hr class="t-divider">
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;この記事を読んで「自分は大丈夫」って思った時点でアウト？</span></div>
+<span class="t-output" id="to4">ダニングはこう言っている——<strong>「ダニング＝クルーガー・クラブの第一法則は、自分がメンバーだと知らないこと」</strong>。気づいた瞬間にもう半分は抜け出しているのかもしれない。半分だけ。</span>
+<hr class="t-divider">
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 半分か</span></div>
+</div></div></div>
+
+<div class="related fade"><p class="related-label">次に読む</p>
+<div class="related-grid">
+<a class="related-card" href="/confirmation_bias"><p class="related-card-tag">認知バイアス × 推論</p><p class="related-card-title">確証バイアス</p><p class="related-card-desc">自分の信念を支持する情報だけを集め、反する情報を無視する。知っていても止められない。</p><p class="related-card-arrow">読む →</p></a>
+<a class="related-card" href="#"><p class="related-card-tag">認知バイアス × 自己認識</p><p class="related-card-title">後知恵バイアス</p><p class="related-card-desc">結果を知ったあとで「そうなると思っていた」と感じる。記憶すら書き換わる。</p><p class="related-card-arrow">近日公開</p></a>
+</div></div>
+
+<script>
+window.addEventListener('scroll',()=>{
+const h=document.documentElement.scrollHeight-innerHeight;
+document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+function toggleTip(el){
+const isOpen=el.classList.contains('open');
+document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+if(!isOpen)el.classList.add('open');
+}
+document.addEventListener('click',e=>{
+if(!e.target.closest('.tip'))
+document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+});
+
+function tog(n){
+const c=document.getElementById('sc'+n);
+const was=c.classList.contains('open');
+document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+if(!was)c.classList.add('open');
+}
+tog(1);
+
+// Quiz
+var answers={};
+var correctAnswers={1:'1',2:'16',3:'50',4:'no',5:'high'};
+
+function answerQ(qn,ans){
+answers[qn]=ans;
+event.target.style.background='#8b1a1a';
+event.target.style.color='white';
+event.target.style.borderColor='#8b1a1a';
+var parent=event.target.parentElement;
+parent.querySelectorAll('button').forEach(function(b){
+if(b!==event.target){b.style.opacity='0.4';b.style.pointerEvents='none';}
+});
+if(Object.keys(answers).length===5){
+document.getElementById('quizEstimate').style.display='block';
+document.getElementById('quizEstimate').scrollIntoView({behavior:'smooth',block:'center'});
+}
+}
+
+function showResult(){
+var correct=0;
+for(var k in correctAnswers){
+if(answers[k]===correctAnswers[k])correct++;
+}
+var est=parseInt(document.getElementById('selfEstimate').value);
+var diff=est-correct;
+var resultDiv=document.getElementById('quizResult');
+resultDiv.style.display='block';
+
+var text='';
+text+='<strong>実際の正答数：'+correct+'問 / 5問</strong><br>';
+text+='<strong>あなたの予想：'+est+'問</strong><br><br>';
+
+if(diff>0){
+text+='あなたは自分の成績を<strong>'+diff+'問ぶん過大評価</strong>した。';
+text+='原論文では、成績下位の群ほどこの傾向が強かった。もちろん5問の簡易テストで効果を厳密に測ることはできない。だが「もうちょっとできたはず」という感覚が湧いたなら、それが自己評価の歪みの入り口かもしれない。';
+}else if(diff<0){
+text+='あなたは自分の成績を<strong>'+Math.abs(diff)+'問ぶん過小評価</strong>した。';
+text+='原論文では、成績上位の群にこのパターンが見られた。「自分にできるなら他の人にもできただろう」と考える傾向——ダニングはこれも効果の一部だとしている。';
+}else{
+text+='あなたの自己評価は<strong>正確だった</strong>。';
+text+='原論文では中位の群がこのパターンに近い。ただし5問のテストで自己評価の精度を確定的に測ることはできない。';
+}
+
+document.getElementById('resultText').innerHTML=text;
+document.getElementById('barYou').style.width=(est/5*100)+'%';
+document.getElementById('barActual').style.left=(correct/5*100)+'%';
+resultDiv.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// Terminal
+const tseq=[
+{id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+{id:'tl2',delay:2600},{id:'to2',delay:3200},
+{id:'tl3',delay:4400},{id:'to3',delay:5000},
+{id:'tl4',delay:6200},{id:'to4',delay:6800},
+{id:'tl5',delay:8000},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+if(entries[0].isIntersecting&&!tStarted){
+tStarted=true;
+tseq.forEach(s=>{
+setTimeout(()=>{
+const el=document.getElementById(s.id);
+if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+},s.delay);
+});
+}
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>

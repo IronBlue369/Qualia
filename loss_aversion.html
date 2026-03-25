@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>損失回避 — Qualia Journal</title>
+<meta name="description" content="1万円を得る喜びと1万円を失う痛みは、同じ金額なのに非対称。失う痛みは得る喜びの約2倍。カーネマンとトヴェルスキーが解き明かした意思決定の歪み。">
+<link rel="canonical" href="https://qualiajournal.com/loss_aversion">
+<meta property="og:title" content="損失回避 — Qualia Journal">
+<meta property="og:description" content="1万円を得る喜びと1万円を失う痛みは、同じ金額なのに非対称。失う痛みは得る喜びの約2倍。カーネマンとトヴェルスキーが解き明かした意思決定の歪み。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/loss_aversion">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="損失回避 — Qualia Journal">
+<meta name="twitter:description" content="1万円を得る喜びと1万円を失う痛みは、同じ金額なのに非対称。失う痛みは得る喜びの約2倍。カーネマンとトヴェルスキーが解き明かした意思決定の歪み。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type='text/javascript' src='https://api.netlify.com/R0bPzAZppDnYtedAYyBSTQOVT7tkQxboIotfWJdtdwwICPZ8XLoz-FqCZXzrdutsXo_pQ_G5lJSuXuN2gHjvFv006r7oOmh01ose-TRevaXUky8wgnqUWyipz8_OHmG1v1iPqJZBZ9GTk4HhfiCcEIPQIywuwjCHQtar2EHkYyW2vX2D-NkLB0b6VGxyo5HpCsXeac_pk1AarFiaeyHPCmLEt443z6i-R9SxzIqV0L502sPUCIFPg93IcEcVFy2B5uTLvbHpKY9gHLoiBg0He0Q3BA6y9aEk-Schh4EPsj2vV5vzAlYVy7OPmYzm6sEkV5FJhpNu_4uTTL_krX-KuF5Sq_kVDuQlj90Hagv8e8NwK7tPzSjDt5l6wzAIXMHOV2UPnB8szePrClrKM7QNrpf2tQcXERvoZQ2L0B8eznTho925syYFdB3jZQkPRgn6H2Zg62TS3eZ5RarIJDey0vd2s50CTcgGTBp3UiYMId3XZ-KEV7ngwLaUr9YSWBUOqoegyGaohusuNycKBVj5G7LGluXZAyQ'></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"損失回避","description":"1万円を得る喜びと1万円を失う痛みは、同じ金額なのに非対称。失う痛みは得る喜びの約2倍。カーネマンとトヴェルスキーが解き明かした意思決定の歪み。","author":{"@type":"Organization","name":"Qualia Journal"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/loss_aversion","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"認知バイアス","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"損失回避"}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}
+.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;margin-bottom:6px;}
+.masthead-date{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;letter-spacing:.08em;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-top:1px solid #e0d8c8;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{list-style:none;padding:0;}
+.sidebar-check li{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;padding-left:18px;position:relative;margin-bottom:6px;}
+.sidebar-check li::before{content:'□';position:absolute;left:0;color:#8b1a1a;}
+
+/* QUIZ */
+.quiz-wrap{margin:40px 0;border:1px solid #c8bfaa;overflow:hidden;background:#0d0d0d;}
+.quiz-header{background:#1a1208;padding:14px 24px;display:flex;align-items:center;gap:10px;}
+.quiz-header-star{color:#e8c56a;font-size:14px;}
+.quiz-header-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;color:#e8e4de;text-transform:uppercase;}
+.quiz-body{padding:32px 28px;color:#e8e4de;}
+.quiz-phase{display:none;}
+.quiz-phase.active{display:block;}
+.quiz-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:8px;}
+.quiz-subtitle{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#9ab4cc;line-height:1.7;margin-bottom:24px;}
+.btn-primary{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#0d0d0d;background:#e8c56a;border:none;padding:12px 32px;cursor:pointer;letter-spacing:.06em;transition:background .15s;}
+.btn-primary:hover{background:#f0d47a;}
+.btn-primary:disabled{opacity:.4;cursor:default;}
+.gamble-card{background:#1e1e1e;border:1px solid #333;padding:24px;margin:16px 0;text-align:center;}
+.gamble-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#b0a090;text-transform:uppercase;margin-bottom:16px;}
+.gamble-row{display:flex;justify-content:center;gap:24px;margin-bottom:20px;}
+.gamble-outcome{text-align:center;padding:16px 20px;border-radius:6px;flex:1;max-width:200px;}
+.gamble-outcome.heads-side{background:rgba(74,158,106,.1);border:1px solid rgba(74,158,106,.3);}
+.gamble-outcome.tails-side{background:rgba(196,57,42,.1);border:1px solid rgba(196,57,42,.3);}
+.gamble-outcome-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.gamble-outcome-label.heads{color:#4a9e6a;}
+.gamble-outcome-label.tails{color:#c4392a;}
+.gamble-outcome-amount{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;line-height:1;}
+.gamble-outcome-amount.gain{color:#4a9e6a;}
+.gamble-outcome-amount.loss{color:#c4392a;}
+.gamble-outcome-prob{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#9ab4cc;margin-top:6px;}
+.gamble-ev{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#555;margin-top:8px;}
+.gamble-btns{display:flex;gap:12px;justify-content:center;margin-top:20px;}
+.gamble-btn{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#e8e4de;background:#2a2a2a;border:1px solid #444;padding:10px 32px;cursor:pointer;transition:all .15s;}
+.gamble-btn:hover{border-color:#e8c56a;color:#e8c56a;}
+.gamble-btn.selected{background:#8b1a1a;border-color:#8b1a1a;color:white;}
+.gamble-btn.accept:hover{border-color:#4a9e6a;color:#4a9e6a;}
+.gamble-btn.reject:hover{border-color:#c4392a;color:#c4392a;}
+.coin-area{margin:16px 0;text-align:center;}
+.coin{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#e8c56a,#c4a243);margin:0 auto;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#1a1208;box-shadow:0 4px 16px rgba(0,0,0,.3);transition:transform .6s;}
+.coin.flip{animation:coinFlip .6s ease;}
+@keyframes coinFlip{0%{transform:rotateY(0)}50%{transform:rotateY(180deg)}100%{transform:rotateY(360deg)}}
+.round-indicator{display:flex;gap:8px;justify-content:center;margin-bottom:20px;}
+.round-dot{width:10px;height:10px;border-radius:50%;background:#333;border:1px solid #555;}
+.round-dot.active{background:#e8c56a;border-color:#e8c56a;}
+.round-dot.done{background:#555;border-color:#777;}
+/* Tracker */
+.tracker{margin:16px 0 0;padding:14px 18px;background:#151515;border:1px solid #2a2a2a;border-radius:4px;}
+.tracker-title{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#777;text-transform:uppercase;margin-bottom:10px;}
+.tracker-row{display:flex;gap:6px;flex-wrap:wrap;}
+.tracker-chip{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;padding:4px 10px;border-radius:3px;border:1px solid #333;}
+.tracker-chip.accepted{background:rgba(74,158,106,.12);border-color:rgba(74,158,106,.3);color:#4a9e6a;}
+.tracker-chip.rejected{background:rgba(196,57,42,.12);border-color:rgba(196,57,42,.3);color:#c4392a;}
+.tracker-chip.pending{background:#1e1e1e;border-color:#333;color:#555;}
+.frame-card{background:#1e1e1e;border:1px solid #333;padding:20px;margin:12px 0;cursor:pointer;transition:all .2s;text-align:left;}
+.frame-card:hover{border-color:#e8c56a;}
+.frame-card.selected{border-color:#8b1a1a;background:#2a1a1a;}
+.frame-card-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;color:#9ab4cc;text-transform:uppercase;margin-bottom:8px;}
+.frame-card-text{font-family:'Source Serif 4',serif;font-size:15px;font-weight:300;color:#e8e4de;line-height:1.7;}
+.result-card{margin-top:24px;padding:24px;background:#1e1e1e;border:1px solid #333;}
+.result-title{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;color:#e8c56a;text-transform:uppercase;margin-bottom:12px;}
+.result-bar-wrap{margin:16px 0;position:relative;height:36px;background:#2a2a2a;border-radius:3px;overflow:visible;}
+.result-bar{height:100%;border-radius:3px;transition:width .8s ease;}
+.result-marker{position:absolute;top:-8px;bottom:-8px;width:2px;border-radius:1px;}
+.result-desc{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#9ab4cc;line-height:1.8;margin-top:16px;}
+.result-desc em{color:#e8c56a;font-style:normal;}
+.result-big{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#e8c56a;text-align:center;margin:16px 0 4px;}
+.result-big-sub{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#9ab4cc;text-align:center;margin-bottom:8px;line-height:1.6;}
+.result-explain{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#666;text-align:center;margin-bottom:20px;line-height:1.6;padding:10px 16px;background:#151515;border-radius:4px;}
+.summary-panel{margin-top:28px;padding:24px;background:#1e1e1e;border:1px solid #e8c56a;}
+.summary-panel-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#e8c56a;margin-bottom:16px;}
+.summary-panel-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#e8e4de;line-height:1.8;}
+.summary-panel-text em{color:#e8c56a;font-style:normal;}
+
+/* THOUGHT CAROUSEL */
+.thought-carousel{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;}
+.thought-carousel-header{background:#3d3020;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;}
+.thought-carousel-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#e8e4de;text-transform:uppercase;}
+.thought-carousel-dots{display:flex;gap:6px;}
+.tc-dot{width:8px;height:8px;border-radius:50%;background:#555;border:1px solid #777;transition:all .2s;}
+.tc-dot.active{background:#e8c56a;border-color:#e8c56a;}
+.tc-dot.done{background:#7a6a55;border-color:#9a8a6a;}
+.thought-slide{display:none;padding:32px 28px;}
+.thought-slide.active{display:block;}
+.thought-slide-num{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#8b1a1a;margin-bottom:6px;}
+.thought-slide-q{font-family:'Source Serif 4',serif;font-size:17px;font-weight:400;color:#1a1208;line-height:1.8;margin-bottom:24px;}
+.thought-slide-reveal{text-align:center;margin-bottom:0;}
+.thought-slide-answer{display:none;margin-top:0;padding:24px;background:#3d3020;border-top:1px solid #c8bfaa;}
+.thought-slide-answer.shown{display:block;}
+.thought-slide-a{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#e8e4de;line-height:1.9;}
+.thought-slide-nav{display:flex;justify-content:flex-end;padding:0 28px 24px;background:#f3efe6;}
+.thought-slide-nav.in-answer{padding:0 24px 20px;background:#3d3020;}
+.tc-btn{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#8b1a1a;background:none;border:1px solid #8b1a1a;padding:8px 24px;cursor:pointer;transition:all .15s;letter-spacing:.04em;}
+.tc-btn:hover{background:#8b1a1a;color:white;}
+.tc-btn-answer{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#3d3020;background:#e0d8c8;border:1px solid #c8bfaa;padding:8px 24px;cursor:pointer;transition:all .15s;}
+.tc-btn-answer:hover{background:#c8bfaa;}
+.tc-btn-dark{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#e8c56a;background:none;border:1px solid #e8c56a;padding:8px 24px;cursor:pointer;transition:all .15s;}
+.tc-btn-dark:hover{background:#e8c56a;color:#3d3020;}
+.thought-slide-done{display:none;padding:32px 28px;text-align:center;}
+.thought-slide-done.active{display:block;}
+.thought-done-msg{font-family:'Source Serif 4',serif;font-size:16px;font-weight:400;color:#3d3020;line-height:1.8;}
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:24px 48px 0;display:flex;align-items:center;gap:12px;}
+.terminal-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:8px 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#fff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+@media(max-width:720px){
+.cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+.cover-right{display:none;}
+.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+.summary-box{padding:0 20px;}
+.scenario{padding:0 20px;}
+.article{grid-template-columns:1fr;padding:0 20px;}
+.article-side{display:none;}
+.misconception-item{flex-direction:column;}
+.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+.terminal-wrap{padding:0 20px 40px;}
+.terminal-label-wrap{padding:24px 20px 0;}
+.related{padding:32px 20px;}
+.related-grid{grid-template-columns:1fr;}
+.tip-box{left:0;transform:none;width:200px;}
+.tip-box::after{left:20px;transform:none;}
+.gamble-row{flex-direction:column;gap:12px;align-items:center;}
+.gamble-outcome{max-width:100%;width:100%;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+<p class="masthead-name"><a href="/" style="color:inherit;text-decoration:none;">Qualia Journal</a></p>
+<p class="masthead-date"></p>
+</div>
+
+<!-- COVER -->
+<div class="cover fade">
+<div class="cover-left">
+<p class="cover-kicker">認知バイアス</p>
+<h1>失うことの<em>重さ</em></h1>
+<p class="cover-deck">得る喜びと、失う痛み。同じ金額なのに、なぜ痛みのほうが大きいのか。行動経済学の核心にある非対称性を、あなた自身の判断で確かめる。</p>
+<div class="cover-byline"><span>Loss</span><span>Prospect Theory</span><span>Decision Making</span></div>
+</div>
+<div class="cover-right">
+<div class="est-card">
+<span class="est-label">Est.</span>
+<span class="est-year">1979</span>
+<p class="est-event">カーネマンとトヴェルスキーが「プロスペクト理論」を<em>Econometrica</em>誌に発表。期待効用理論への挑戦状。</p>
+<p class="est-context">マーガレット・サッチャーが英国首相に就任。ソニーがウォークマンを発売。イラン革命。ソ連がアフガニスタンに侵攻した年。</p>
+</div>
+<p class="cover-aside"><strong>E-03</strong> この記事は「あなたの判断は操作されている」クラスターの一つ。アンカリング効果（E-02）、確証バイアス（E-01）、フレーミング効果（E-04）と繋がる。</p>
+</div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+<div class="scenario-inner">
+<p>財布に入っていた5千円札を落とした日のことを、思い出してほしい。あの日、仕事帰りにふと気づいてポケットを探ったときの、胃のあたりがきゅっと縮むような感覚。あるいは電車の網棚に傘を忘れた朝。たった数百円のビニール傘なのに、妙に悔しくて、次の駅まで気分が晴れなかった。</p>
+<p>逆に、道で5千円を拾ったことはあるだろうか。あるいは、自販機のお釣り口に百円玉が残っていたことは。嬉しかったはずだ。でもその嬉しさは、同じ金額を失ったときの痛みほど長く続いただろうか。</p>
+<p>得る喜びと、失う痛みは、対称ではない。これは気分の問題ではなく、人間の意思決定に組み込まれた構造的な歪みである。</p>
+</div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+<div class="meta-item">
+<span class="meta-label">難易度</span>
+<div class="difficulty-dots">
+<div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+</div>
+<span class="difficulty-text">初級 — 数学の知識は不要</span>
+</div>
+<div class="meta-sep"></div>
+<div class="meta-item">
+<span class="meta-label">読了時間</span>
+<span class="read-time">
+<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+約 14 分
+</span>
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+<div class="summary-inner">
+<span class="summary-icon">要点</span>
+<p class="summary-text">この記事では、<strong>あなた自身の「損と得の感じ方」がどれだけ非対称か</strong>を体験する。そのあとで、なぜ人間がそうなっているのか、それにどう対処できるのかを考える。</p>
+</div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+<!-- ===== 背景セクション ===== -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><span class="sec-line"></span></div>
+<h2 class="fade">コーヒーマグと、手放せない理由</h2>
+
+<p class="body-text fade">1990年、コーネル大学の経済学の授業で、ちょっとした実験が行われた。教室に座る学生の半分に、大学のロゴ入りコーヒーマグが配られた。残りの半分には何も配られなかった。そのマグは大学の売店で6ドルで売られていたものだ。</p>
+
+<p class="body-text fade"><span class="tip" onclick="toggleTip(this)">ダニエル・カーネマン<span class="tip-box"><strong>ダニエル・カーネマン（Daniel Kahneman, 1934–2024）</strong><br>イスラエル系アメリカ人の心理学者。2002年にノーベル経済学賞を受賞。トヴェルスキーとの共同研究でプロスペクト理論を提唱し、行動経済学の基盤を築いた。著書『ファスト＆スロー』で一般に広く知られる。</span></span>、ジャック・ネッチ、<span class="tip" onclick="toggleTip(this)">リチャード・セイラー<span class="tip-box"><strong>リチャード・セイラー（Richard Thaler, 1945–）</strong><br>アメリカの経済学者。2017年にノーベル経済学賞を受賞。「ナッジ」の概念で行動経済学を政策に応用した。カーネマンらと共にエンダウメント効果の実験を行った。</span></span>の3人は、マグを持っている学生に「いくらなら売るか」を尋ね、持っていない学生に「いくらなら買うか」を尋ねた。合理的に考えれば、売値と買値は近い数字になるはずだ。同じマグ、同じ教室、ランダムに配られただけなのだから。</p>
+
+<p class="body-text fade">結果は違った。売り手の希望価格の中央値は<strong>5.25ドル</strong>。買い手が出してもいいと答えた価格の中央値は<strong>2.25〜2.75ドル</strong>。持っている人は、持っていない人のおよそ2倍の値段をつけた。ほんの数分前にたまたまもらっただけのマグに。</p>
+
+<div class="person-block fade">
+<div class="person-block-img">
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="30" r="16" fill="#c8bfaa"/><ellipse cx="40" cy="68" rx="24" ry="18" fill="#c8bfaa"/><circle cx="34" cy="28" r="2" fill="#7a6a55"/><circle cx="46" cy="28" r="2" fill="#7a6a55"/><path d="M36 34c2 2 6 2 8 0" stroke="#7a6a55" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+</div>
+<div class="person-block-body">
+<p class="person-block-name">エイモス・トヴェルスキー</p>
+<p class="person-block-role">Amos Tversky, 1937–1996</p>
+<p class="person-block-desc">イスラエルの認知心理学者。カーネマンとの共同研究でプロスペクト理論を生み出した。1996年に59歳で死去。存命なら確実にノーベル賞を共同受賞していたと言われる。</p>
+</div>
+</div>
+
+<p class="body-text fade">この「持っているものを手放す痛み」が「持っていないものを得る喜び」を上回る現象は、<span class="tip" onclick="toggleTip(this)">エンダウメント効果<span class="tip-box"><strong>エンダウメント効果（Endowment Effect）</strong><br>自分が所有しているものに対して、所有していないときよりも高い価値を感じる現象。損失回避の現れの一つとされる。リチャード・セイラーが1980年に命名した。</span></span>と呼ばれる。そしてその背後にあるのが、この記事の主題——<em>損失回避</em>だ。</p>
+
+<p class="body-text fade">失うことは、得ることより重い。直感的にはわかる気がする。だが「どのくらい重いのか」を数字で突きつけられたとき、私たちの合理性への信頼は、少し揺らぐ。</p>
+
+<div class="quote-block fade">
+<p class="quote-en">"The concept of loss aversion is certainly the most significant contribution of psychology to behavioral economics."</p>
+<p class="quote-ja">「損失回避の概念は、心理学が行動経済学に対して行った最も重要な貢献である。」</p>
+<p class="quote-attr">— Daniel Kahneman, ノーベル賞受賞講演 (2002)</p>
+</div>
+
+<div class="img-placeholder fade">
+<div class="img-ph-area">
+<span class="img-ph-icon">🎨</span>
+<p class="img-ph-title">イラスト①｜コーヒーマグを抱きしめるウサギ</p>
+<p class="img-ph-desc">マグカップをしっかり抱え込む擬人化されたウサギ。その隣で、別のウサギがコインを差し出しているが、マグのウサギは首を振っている。</p>
+<div class="img-ph-prompt">
+<p class="img-ph-prompt-lbl">画像生成プロンプト</p>
+<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, anthropomorphic rabbit clutching a coffee mug protectively, another rabbit offering coins with outstretched paw, first rabbit shaking head, Japanese scroll painting aesthetic, no text, warm parchment background</p>
+</div>
+</div>
+<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+</div>
+
+<div class="misconception fade">
+<div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+<div class="misconception-body">
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">損失回避は「臆病な人」や「リスクを嫌う人」だけの問題だ。</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">損失回避は人間のほぼ普遍的な傾向であり、リスク態度とは別の現象。リスク愛好的な人でも損失を過大評価する。</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">損失の痛みは得る喜びの「ちょうど2倍」だ。</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">2.25倍はTversky & Kahneman (1992)の推定値。メタ分析では平均約1.9〜2.0倍で、状況によって大きく変動する。</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">損失回避は科学的に「否定された」。</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">一部の研究者は文脈依存性を指摘し議論が続いているが、607件の推定値を集めたメタ分析では損失回避の存在自体は支持されている。</p></div>
+</div>
+</div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ===== 体験セクション ===== -->
+<div class="sec-rule fade"><span class="sec-label">体験</span><span class="sec-line"></span></div>
+<h2 class="fade">あなたの損失回避を測る</h2>
+
+<p class="body-text fade">ここまで読んで、「まあ、そうだろうな」と思ったかもしれない。失うほうが痛い。当たり前だ、と。だが、「どのくらい」自分がそうなっているかを知っている人は少ない。ここで実際に試してみよう。架空のコイン投げゲームに参加する。ルールは単純——<strong>表が出れば得をし、裏が出れば損をする</strong>。50%ずつ。あなたがやることは「受ける」か「断る」かを選ぶだけだ。</p>
+
+<div class="quiz-wrap fade" id="quizBlock">
+<div class="quiz-header"><span class="quiz-header-star">✦</span><span class="quiz-header-label">Loss Aversion Lab</span></div>
+<div class="quiz-body">
+
+<!-- Phase 1: コインゲーム -->
+<div class="quiz-phase active" id="phase1">
+<p class="quiz-title">コインを投げる</p>
+<p class="quiz-subtitle">これから5回の賭けを提案する。毎回、表が出る確率も裏が出る確率も50%。「得る金額」は毎回同じ¥3,000だが、「失う金額」だけが変わる。あなたはこの賭けを受けるか、断るか。</p>
+<div class="round-indicator" id="roundDots"></div>
+<div id="gambleArea"></div>
+<div id="trackerArea"></div>
+</div>
+
+<!-- Phase 2: フレーミングの罠 -->
+<div class="quiz-phase" id="phase2">
+<p class="quiz-title">もうひとつだけ</p>
+<p class="quiz-subtitle">次の2つのプログラムは、どちらが得に見えるだろうか。直感で選んでほしい。</p>
+<div class="frame-card" onclick="selectFrame(0, this)">
+<p class="frame-card-label">プログラムA</p>
+<p class="frame-card-text">全員にまず¥5,000が支給される。その後、¥2,000を返却しなければならない。</p>
+</div>
+<div class="frame-card" onclick="selectFrame(1, this)">
+<p class="frame-card-label">プログラムB</p>
+<p class="frame-card-text">全員に¥3,000が支給される。追加の手続きはない。</p>
+</div>
+<div id="frameResult" style="display:none"></div>
+</div>
+
+<!-- Phase 3: 結果 -->
+<div class="quiz-phase" id="phase3">
+<div class="result-card" id="resultCard"></div>
+<div class="summary-panel" id="summaryPanel" style="display:none"></div>
+</div>
+
+</div>
+</div>
+
+<p class="body-text fade" id="postQuizText" style="display:none">合理的に考えれば、期待値がプラスの賭けは受けるべきだ。¥3,000得られる可能性と¥1,000失う可能性が五分五分なら、期待値は+¥1,000。受けない理由がない。だが多くの人は、損失額が¥2,000を超えたあたりで断り始める。「もし裏が出たら」——その想像の重さが、計算を狂わせる。</p>
+
+<hr class="art-rule">
+
+<!-- ===== メカニズムセクション ===== -->
+<div class="sec-rule fade"><span class="sec-label">なぜ</span><span class="sec-line"></span></div>
+<h2 class="fade">なぜ失うほうが重いのか</h2>
+
+<p class="body-text fade">1979年、カーネマンとトヴェルスキーは<em>Econometrica</em>誌に論文を発表した。タイトルは「不確実性のもとでの意思決定の分析」。この論文は、経済学の学術誌に掲載された論文としては史上最も多く引用されることになる。</p>
+
+<p class="body-text fade">彼らが提唱した<span class="tip" onclick="toggleTip(this)">プロスペクト理論<span class="tip-box"><strong>プロスペクト理論（Prospect Theory）</strong><br>1979年にKahnemanとTverskyが発表。従来の期待効用理論に代わる、人間の実際の意思決定を記述する理論。利得と損失は「最終的な資産」ではなく「参照点からの変化」として評価されるとした。</span></span>の核心は、3つの洞察に集約される。</p>
+
+<div class="steps-wrap fade">
+<p class="steps-head">プロスペクト理論の3つの柱</p>
+<div class="step-card open">
+<div class="step-hd" onclick="toggleStep(this)">
+<div class="step-nb">1</div>
+<div class="step-tw"><p class="step-title">参照点依存性</p><p class="step-sub">基準は「いまの自分」</p></div>
+<span class="step-arr">▼</span>
+</div>
+<div class="step-body">
+<p>人は「最終的にいくら持っているか」ではなく、<strong>「いまの状態からどれだけ変わったか」</strong>で判断する。年収500万円の人が600万円になるのと、年収1,000万円の人が600万円になるのでは、最終額は同じでも感じ方がまるで違う。基準は常に「いまの自分」だ。</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-hd" onclick="toggleStep(this)">
+<div class="step-nb">2</div>
+<div class="step-tw"><p class="step-title">損失回避</p><p class="step-sub">失う痛みは得る喜びより大きい</p></div>
+<span class="step-arr">▼</span>
+</div>
+<div class="step-body">
+<p>¥1,000を失う痛みは、¥1,000を得る喜びの<em>およそ2倍</em>。1992年の推定では損失回避係数（ラムダ）＝2.25とされた。後のメタ分析（607件）では約1.955（95%信頼区間：1.82〜2.10）。いずれにせよ、「失う痛み」と「得る喜び」は対称ではない。</p>
+</div>
+</div>
+<div class="step-card">
+<div class="step-hd" onclick="toggleStep(this)">
+<div class="step-nb">3</div>
+<div class="step-tw"><p class="step-title">感応度逓減</p><p class="step-sub">差額が大きいほど鈍くなる</p></div>
+<span class="step-arr">▼</span>
+</div>
+<div class="step-body">
+<p>¥100から¥200になるときの喜びと、¥10,000から¥10,100になるときの喜びは違う。同じ¥100の増加なのに、後者はほとんど感じない。損失側でも同じことが起きる。損も得も、<strong>参照点から離れるほど感覚が鈍くなる</strong>。これが価値関数のS字型カーブを生む。</p>
+</div>
+</div>
+</div>
+
+<p class="body-text fade">この理論が革命的だったのは、「人は合理的に判断する」という経済学の大前提に、心理学のデータで正面から異議を唱えた点だ。従来の<span class="tip" onclick="toggleTip(this)">期待効用理論<span class="tip-box"><strong>期待効用理論（Expected Utility Theory）</strong><br>フォン・ノイマンとモルゲンシュテルンが1944年に定式化。合理的な人間は各選択肢の「効用×確率」の合計を最大化するように行動する、という規範理論。現実の人間がこの通りに振る舞わないことを、プロスペクト理論が示した。</span></span>は「人は最終的な資産を最大化する」と仮定していた。プロスペクト理論は言った——いや、人は「変化」を見ている。そして変化の感じ方は、方向によって違う。</p>
+
+<p class="body-text fade">ここで読者は「なぜ進化的にそうなったのか」と思うかもしれない。一つの仮説はこうだ——生存環境では、得を逃すことより損失を避けることのほうが致命的だった。食料を得られなかった日は飢えるが、毒のある食料を口にした日は死ぬ。非対称なリスクに対応するために、非対称な感情が進化した。ただしこれは「もっともらしい物語」であり、実証されたメカニズムではない。</p>
+
+<hr class="art-rule">
+
+<!-- ===== 歴史セクション ===== -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><span class="sec-line"></span></div>
+<h2 class="fade">損失回避研究の歩み</h2>
+
+<p class="body-text fade" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;border-left:none;padding-left:0;">● 損失回避研究の主な業績　○ 関連する出来事</p>
+
+<div class="timeline fade">
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1979</p><p class="tl-title">プロスペクト理論の発表</p><p class="tl-desc">Tversky & KahnemanがEconometrica誌に論文を掲載。期待効用理論に代わる記述的意思決定モデルを提唱。同誌で最も引用される論文となる。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1980</p><p class="tl-title">セイラーが「エンダウメント効果」を命名</p><p class="tl-desc">Richard Thalerが、所有しているものに高い価値を感じる現象を「エンダウメント効果」と名付け、損失回避との関連を論じた。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1990</p><p class="tl-title">コーヒーマグ実験</p><p class="tl-desc">Kahneman, Knetsch & Thalerがコーネル大学でマグの売買実験を実施。売り手の希望価格は買い手のおよそ2倍。エンダウメント効果の代表的な実証となった。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1992</p><p class="tl-title">累積プロスペクト理論と損失回避係数＝2.25</p><p class="tl-desc">Tversky & Kahnemanが理論を拡張。損失回避の強さを表す係数として2.25を推定。この数値は以後30年にわたり広く引用される。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2002</p><p class="tl-title">カーネマンにノーベル経済学賞</p><p class="tl-desc">心理学者として初めて同賞を受賞。受賞理由は「不確実な状況下での人間の判断に関する研究」。トヴェルスキーは1996年に他界していた。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2018</p><p class="tl-title">Gal & Ruckerの批判論文</p><p class="tl-desc">David GalとDerek Ruckerが損失回避の普遍性に疑問を呈する論文を発表。「文脈依存であり、一般法則ではない」と主張し、議論を喚起した。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">2024</p><p class="tl-title">大規模メタ分析</p><p class="tl-desc">607件の推定値を集めたメタ分析が損失回避係数の平均＝1.955を報告。2.25よりやや低いが、損失回避の存在自体は堅牢に支持された。</p></div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ===== つまりセクション ===== -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><span class="sec-line"></span></div>
+<h2 class="fade">痛みを知っても、痛みは消えない</h2>
+
+
+<p class="body-text fade">ここまで、実験の結果と数字の話をしてきた。だが損失回避は実験室の中だけの話ではない。おそらく、あなたの日常にも——いま、この瞬間にも——静かに潜んでいる。</p>
+
+
+<p class="body-text fade">3つの問いを用意した。ひとつずつ読んで、考えてみてほしい。</p>
+
+<div class="thought-carousel fade" id="thoughtCarousel">
+<div class="thought-carousel-header">
+<span class="thought-carousel-label">手放せますか？</span>
+<div class="thought-carousel-dots"><div class="tc-dot active" id="tcDot0"></div><div class="tc-dot" id="tcDot1"></div><div class="tc-dot" id="tcDot2"></div></div>
+</div>
+
+<div class="thought-slide active" id="tcSlide0">
+<p class="thought-slide-num">Question 1 / 3</p>
+<p class="thought-slide-q">あなたのスマホに、もう見返すことのない写真が何枚あるか。それを今すぐ全部削除できるか？</p>
+<div class="thought-slide-reveal"><button class="tc-btn-answer" onclick="revealTC(0)">考えてみた → 答えを見る</button></div>
+</div>
+<div class="thought-slide-answer" id="tcAnswer0">
+<p class="thought-slide-a">削除しても、スマホの容量が少し増えるだけで、生活は何も変わらない。でも「消す」のは「最初から撮らなかった」より痛い。どちらも「存在しない写真」なのに。手元にあった、という事実だけが痛みを生んでいる。</p>
+<div class="thought-slide-nav in-answer"><button class="tc-btn-dark" onclick="nextTC(1)">次の問いへ →</button></div>
+</div>
+
+<div class="thought-slide" id="tcSlide1">
+<p class="thought-slide-num">Question 2 / 3</p>
+<p class="thought-slide-q">もう1年以上着ていない服が、クローゼットにないか。なぜ捨てないのか？</p>
+<div class="thought-slide-reveal"><button class="tc-btn-answer" onclick="revealTC(1)">考えてみた → 答えを見る</button></div>
+</div>
+<div class="thought-slide-answer" id="tcAnswer1">
+<p class="thought-slide-a">「いつか着るかもしれない」——そう思ったはずだ。だがこの1年で着なかったものを、来年着る確率はほぼゼロだ。手放さない理由は「活用する見込み」ではない。手放すこと自体が痛いのだ。買ったときの値段が頭にちらつくなら、それはサンクコスト錯誤でもある。</p>
+<div class="thought-slide-nav in-answer"><button class="tc-btn-dark" onclick="nextTC(2)">次の問いへ →</button></div>
+</div>
+
+<div class="thought-slide" id="tcSlide2">
+<p class="thought-slide-num">Question 3 / 3</p>
+<p class="thought-slide-q">月額制のサービスで、もう使っていないのに解約していないものはないか？</p>
+<div class="thought-slide-reveal"><button class="tc-btn-answer" onclick="revealTC(2)">考えてみた → 答えを見る</button></div>
+</div>
+<div class="thought-slide-answer" id="tcAnswer2">
+<p class="thought-slide-a">解約すれば毎月数百円〜数千円が浮く。それは「得」のはずだ。でも解約ボタンを押す瞬間、「もしまた使いたくなったら」という損失の想像が先に来る。使っていない現状が「損」であることより、将来の「もしも」の損失のほうが重く感じられる。これが損失回避だ。</p>
+<div class="thought-slide-nav in-answer"><button class="tc-btn-dark" onclick="finishTC()">おわり</button></div>
+</div>
+
+<div class="thought-slide-done" id="tcDone">
+<p class="thought-done-msg">3つとも、合理的な答えは明らかだ。消せばいい。捨てればいい。解約すればいい。<br>でも「わかっている」のと「できる」のは違う。<br>この距離感こそが、損失回避の正体だ。</p>
+</div>
+</div>
+
+<p class="body-text fade">損失回避の厄介なところは、「知っているから防げる」とは限らない点にある。アンカリング効果と同じだ。仕組みを知っていても、脳の反応は変わらない。¥3,000を失うかもしれないと言われた瞬間、胃がきゅっとなるあの感覚は、知識では消せない。</p>
+
+<p class="body-text fade">それでも、影響を<em>小さくする</em>ための方法はいくつか知られている。</p>
+
+<p class="body-text fade"><strong>1. フレームを変える。</strong> 同じ状況でも「何を失うか」ではなく「何を得られるか」に注目を移すだけで判断が変わることがある。先ほどの体験で「プログラムA」と「プログラムB」が同じ結果だったように、表現の仕方ひとつで損失の重みは変わる。重要な判断の前に「これは本当に損失なのか、それとも得られなかった利益なのか」を自分に問うことには意味がある。</p>
+
+<p class="body-text fade"><strong>2. 長期的な視点を強制する。</strong> 損失回避は短期的な判断で最も強く働く。株価の日次変動を毎日見る投資家は、年次レポートだけを見る投資家より、はるかに頻繁に「損をしている」と感じる。結果として、頻繁にポートフォリオを確認する人ほど、リスク回避的な（そしてリターンの低い）投資をしてしまう。この現象は<span class="tip" onclick="toggleTip(this)">近視眼的損失回避<span class="tip-box"><strong>近視眼的損失回避（Myopic Loss Aversion）</strong><br>Benartzi & Thaler（1995年）が提唱。短期的な損失を頻繁に経験することで、長期的にはリターンの高い選択肢を避けてしまう現象。株式のリスクプレミアムが過大になる理由の一つとされる。</span></span>と呼ばれている。対処法は単純で——あまり頻繁に確認しないこと。</p>
+
+<p class="body-text fade"><strong>3. 事前にルールを決めておく。</strong> アンカリング効果の記事でも触れた方法だ。投資なら損切りラインを事前に設定する。フリマで物を売るなら、出品前に最低価格を決めておく。判断のタイミングで損失回避が発動する余地を、あらかじめ減らしておく。</p>
+
+<p class="body-text fade">万能ではない。どの方法も、損失回避を消すのではなく、<em>発動しにくい環境を設計する</em>にすぎない。だが、仕組みで補う以外に方法がないのであれば、それは無力さではなく、正しい謙虚さだと、私は思う。</p>
+
+<div class="pull fade">
+<p class="pull-q">"Losses loom larger than gains."</p>
+<p class="pull-q" style="font-size:clamp(14px,2vw,17px);color:#7a6a55;margin-top:8px;">「損失は利得よりも大きく迫る。」</p>
+<p class="pull-attr">— Amos Tversky & Daniel Kahneman, "Advances in Prospect Theory," <em>Journal of Risk and Uncertainty</em>, 1992</p>
+</div>
+
+<p class="body-text fade">2018年、デヴィッド・ガルとデレク・ラッカーは損失回避の普遍性に正面から疑問を呈した。エンダウメント効果の実験を再設計し、「マグを手放す痛み」ではなく「マグを保持するために支払う金額」を測ったところ、買い手と保持者の間に差はなかった。損失回避は「一般法則」ではなく「文脈に依存する現象」ではないか——そう彼らは主張した。</p>
+
+<p class="body-text fade">カーネマン自身はこの批判にどう答えたか。2021年の取材で、彼はこう述べている——損失回避がすべての文脈で見つかるとは限らない、それは自然法則ではない、と。興味深い反応だと思う。自分の理論の最も有名な成果に対して、「万能ではない」と認める姿勢。だが同時に、607件のメタ分析は損失回避係数の平均＝1.955を報告している。損失回避が「存在しない」のではなく、「いつでもどこでも同じ強さで現れるわけではない」——そういう話だ。</p>
+
+<div class="culture-block fade">
+<p class="culture-title">映画『マネーボール』（2011年）</p>
+<p class="culture-desc">ブラッド・ピット演じるGMビリー・ビーンが統計分析でチームを改革する実話ベースの映画。劇中でスカウトたちが「この選手を手放すのは損だ」と主張する場面は、エンダウメント効果と損失回避の典型的な例として引用されることがある。</p>
+</div>
+
+<div class="culture-block fade">
+<p class="culture-title">カーネマン『ファスト＆スロー』（2011年）</p>
+<p class="culture-desc">プロスペクト理論を一般読者向けに解説した代表的な著作。損失回避については第25章〜第26章で詳しく扱われている。行動経済学に興味を持った人の最初の一冊として広く読まれている。</p>
+</div>
+
+<div class="img-placeholder fade">
+<div class="img-ph-area">
+<span class="img-ph-icon">🎨</span>
+<p class="img-ph-title">イラスト②｜S字型の価値関数</p>
+<p class="img-ph-desc">擬人化されたカエルが巻物に描かれたS字カーブを眺めている。カーブの左側（損失側）は急勾配で、右側（利得側）は緩やかな傾き。カエルが「こっちのほうが急だ」と指差している。</p>
+<div class="img-ph-prompt">
+<p class="img-ph-prompt-lbl">画像生成プロンプト</p>
+<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, anthropomorphic frog examining a scroll with an S-shaped curve drawn on it, the left side of the curve is steep, the right side gentle, frog pointing at the steep side with a surprised expression, Japanese scroll painting aesthetic, no text, warm parchment background</p>
+</div>
+</div>
+<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+</div>
+
+<hr class="art-rule">
+
+<!-- ===== 参考文献 ===== -->
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><span class="sec-line"></span></div>
+
+<div class="ref-list">
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1979</span></div><p class="ref-title"><a href="https://doi.org/10.2307/1914185" target="_blank" rel="noopener">Prospect Theory: An Analysis of Decision under Risk</a></p><p class="ref-author">Amos Tversky & Daniel Kahneman — Econometrica, 47(2), 263-292</p><p class="ref-desc">すべてはここから始まった。損失回避だけでなく、確実性効果や分離効果も含む包括的な論文。実際の実験課題が記載されているので、「被験者はどんな問題を解いたのか」まで追体験できる。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">実験論文</span><span class="ref-year">1990</span></div><p class="ref-title"><a href="https://doi.org/10.1086/261737" target="_blank" rel="noopener">Experimental Tests of the Endowment Effect and the Coase Theorem</a></p><p class="ref-author">Daniel Kahneman, Jack L. Knetsch & Richard H. Thaler — Journal of Political Economy, 98(6)</p><p class="ref-desc">コーヒーマグ実験の原典。「売り手」「買い手」「選択者」の3条件を比較し、選択者が売り手ではなく買い手に近い行動を取ったことを示した。エンダウメント効果が「売る側の抵抗」から生じることの証拠。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">理論論文</span><span class="ref-year">1992</span></div><p class="ref-title"><a href="https://doi.org/10.1007/BF00122574" target="_blank" rel="noopener">Advances in Prospect Theory: Cumulative Representation of Uncertainty</a></p><p class="ref-author">Amos Tversky & Daniel Kahneman — Journal of Risk and Uncertainty, 5, 297-323</p><p class="ref-desc">プロスペクト理論の拡張版。損失回避係数＝2.25の推定はここから来ている。元の理論が2択の単純なギャンブルに限られていたのを、複数の結果を持つ不確実な見込みに拡張した。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">批判論文</span><span class="ref-year">2018</span></div><p class="ref-title"><a href="https://doi.org/10.1002/jcpy.1047" target="_blank" rel="noopener">The Loss of Loss Aversion: Will It Loom Larger Than Its Gain?</a></p><p class="ref-author">David Gal & Derek D. Rucker — Journal of Consumer Psychology, 28(3), 497-516</p><p class="ref-desc">損失回避の「万能法則」としての地位に疑問を呈した論文。エンダウメント効果の代替説明を提示し、損失回避は文脈依存的だと主張した。賛否両論あるが、読むと「通説を疑うとはどういうことか」がわかる。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">メタ分析</span><span class="ref-year">2024</span></div><p class="ref-title"><a href="https://doi.org/10.1016/j.jbef.2024.100485" target="_blank" rel="noopener">Meta-Analysis of Empirical Estimates of Loss-Aversion</a></p><p class="ref-author">Alexander L. Brown et al.</p><p class="ref-desc">150件の研究から607件の推定値を集めたメタ分析。損失回避係数の平均＝1.955と報告。2.25よりやや低いが、損失回避の存在自体は堅牢に支持されている。現時点で最も包括的なデータ。</p></div>
+</div>
+
+<!-- 信頼度ノート -->
+<div class="note-box fade">
+<p><strong>📌 この記事について</strong></p>
+<p>プロスペクト理論はKahneman & Tversky（1979年）の原著論文に基づく。損失回避係数の数値はTversky & Kahneman（1992年）およびBrown et al.（2024年）のメタ分析を参照した。コーヒーマグ実験はKahneman, Knetsch & Thaler（1990年）の原典に基づく。損失回避への批判についてはGal & Rucker（2018年）を参照した。19カ国での追試（2022年、Nature Human Behaviour掲載）でプロスペクト理論の主要な知見は90%の再現率を示している。</p>
+</div>
+
+<div class="tags">
+<span class="tag">行動経済学</span><span class="tag">認知バイアス</span><span class="tag">プロスペクト理論</span><span class="tag">損失回避</span><span class="tag">エンダウメント効果</span><span class="tag">Kahneman</span><span class="tag">Tversky</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side"><div style="position:sticky;top:40px;">
+<div class="sidebar-block fade"><p class="sidebar-label">Key Number</p><p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">2×</p><p class="sidebar-text">損失の心理的インパクトは、同額の利得のおよそ<strong>2倍</strong>。Tversky & Kahneman（1992）の推定では2.25倍。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">カーネマンとトヴェルスキーの共同研究は1969年にエルサレムで始まった。2人は毎日何時間も散歩しながら議論し、互いの文章を一文ずつ共同で書いた。カーネマンは「私たちのどちらか一人では、この研究は生まれなかった」と繰り返し述べている。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text"><em>『ファスト＆スロー』</em>（2011年）第25-26章<br><em>『マネーボール』</em>（2003年/映画2011年）<br><em>『予想どおりに不合理』</em>（2008年）<br><em>『NUDGE 実践 行動経済学』</em>（2008年）</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— アンカリング効果<br>— フレーミング効果<br>— サンクコスト錯誤<br>— 確証バイアス<br>— スキナー箱とスロットマシン</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">今日の判断を振り返る</p><ul class="sidebar-check"><li>最近「もったいない」と思って何かを続けていないか？</li><li>手放すのが怖くて、使っていないものを保管していないか？</li><li>「損を取り戻そう」として、さらに投資（時間・お金）を増やしていないか？</li></ul></div>
+<div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">原著論文と複数のメタ分析に基づく。プロスペクト理論は19カ国での大規模追試で主要な知見が再現されている。ただし損失回避の強さは文脈により変動し、一定ではない。</p></div>
+</div></div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL -->
+<div class="terminal-label-wrap"><span class="terminal-label">▼ Internal Dialogue >> Active</span><span class="terminal-label-line"></span></div>
+<div class="terminal-wrap">
+<div class="terminal fade" id="terminalBlock">
+<div class="terminal-bar"><div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div><span class="terminal-title">after.sh — 読後の対話ログ（架空）</span></div>
+<div class="terminal-body">
+<span class="t-sys" id="ts0">// 損失回避 を読み終えた人との対話</span>
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局さ、人間は合理的じゃないってことでしょ</span></div>
+<span class="t-output" id="to1">「合理的じゃない」というより、<em>合理性の基準が違う</em>のかもしれない。期待効用理論が想定する合理性は「最終的な資産を最大化する」だった。でも人間は「変化」を見ている。何を持っているかではなく、何が変わったかを。それは不合理というより、別の合理性だ。</span>
+<hr class="t-divider">
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;マグカップの実験、自分でも同じことやりそう</span></div>
+<span class="t-output" id="to2">ほぼ確実にやる。ポイントは、売り手の中央値が5.25ドルだったのに対し、<em>「選択者」——マグを持たずに選ぶだけの人——は3.12ドル</em>だったこと。手に持つだけで、評価が変わる。数分前にたまたまもらったものなのに。</span>
+<hr class="t-divider">
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;投資の話、耳が痛い</span></div>
+<span class="t-output" id="to3">株価を毎日チェックする人は、<strong>年に一度だけ確認する人より、損を「目撃する」回数が圧倒的に多い</strong>。長期的にはプラスでも、日次で見ると半分近くの日が赤字になる。見るたびに痛みが走り、安全な資産に逃げたくなる。見ないことが、最善の戦略になることもある。</span>
+<hr class="t-divider">
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;カーネマンが「万能じゃない」って認めたの、かっこいいな</span></div>
+<span class="t-output" id="to4">自分の理論の最大の成果に対して「すべての文脈で見つかるとは限らない」と言える人は少ない。科学は本来そういうものだけど、実際にやるのは別の話だ。</span>
+<hr class="t-divider">
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# そっか</span></div>
+</div>
+</div>
+</div>
+
+<!-- RELATED -->
+<div class="related">
+<p class="related-label">Related Articles</p>
+<div class="related-grid">
+<a class="related-card" href="#"><p class="related-card-tag">Cognitive Bias</p><p class="related-card-title">アンカリング効果</p><p class="related-card-desc">最初に見た数字が、あなたの推定を支配する。裁判官でさえサイコロの目に引きずられた。</p><p class="related-card-arrow">→ 読む</p></a>
+<a class="related-card" href="#"><p class="related-card-tag">Cognitive Bias</p><p class="related-card-title">フレーミング効果</p><p class="related-card-desc">同じ事実でも、表現を変えるだけで判断が反転する。言葉は中立ではない。</p><p class="related-card-arrow">→ 読む</p></a>
+</div>
+</div>
+
+<script>
+/* ===== FADE OBSERVER ===== */
+const fObs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');fObs.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.fade').forEach(el=>fObs.observe(el));
+
+/* ===== PROGRESS BAR ===== */
+window.addEventListener('scroll',()=>{const h=document.documentElement;const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;document.getElementById('prog').style.width=p+'%'});
+
+/* ===== TOOLTIP ===== */
+function toggleTip(el){document.querySelectorAll('.tip.open').forEach(t=>{if(t!==el)t.classList.remove('open')});el.classList.toggle('open')}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip'))document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'))});
+
+/* ===== STEP ACCORDION ===== */
+function toggleStep(hd){const card=hd.parentElement;card.classList.toggle('open')}
+
+/* ===== TERMINAL ANIMATION ===== */
+const termObs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){animateTerminal();termObs.unobserve(e.target)}})},{threshold:.2});
+const termBlock=document.getElementById('terminalBlock');
+if(termBlock)termObs.observe(termBlock);
+function animateTerminal(){const els=termBlock.querySelectorAll('.t-sys,.t-line,.t-output,.t-divider');els.forEach((el,i)=>{el.style.opacity='0';el.style.transition='opacity .4s ease';setTimeout(()=>{el.style.opacity='1'},300+i*350)})}
+
+/* ===== QUIZ ENGINE ===== */
+const gambles=[
+{gain:3000,loss:1000},
+{gain:3000,loss:1500},
+{gain:3000,loss:2000},
+{gain:3000,loss:2500},
+{gain:3000,loss:3000}
+];
+let currentRound=0;
+let answers=[];
+let frameChoice=-1;
+
+function initQuiz(){
+const dotsC=document.getElementById('roundDots');
+dotsC.innerHTML='';
+for(let i=0;i<gambles.length;i++){
+const d=document.createElement('div');
+d.className='round-dot'+(i===0?' active':'');
+dotsC.appendChild(d);
+}
+showGamble(0);
+updateTracker();
+}
+
+function showGamble(idx){
+const g=gambles[idx];
+const ev=((g.gain-g.loss)/2);
+const area=document.getElementById('gambleArea');
+area.innerHTML=`
+<div class="gamble-card">
+<p class="gamble-label">Round ${idx+1} / ${gambles.length}</p>
+<div class="coin-area"><div class="coin" id="coin">¥</div></div>
+<div class="gamble-row">
+<div class="gamble-outcome heads-side">
+<p class="gamble-outcome-label heads">&#x1F7E2; 表が出たら</p>
+<div class="gamble-outcome-amount gain">+¥${g.gain.toLocaleString()}</div>
+<div class="gamble-outcome-prob">確率 50%</div>
+</div>
+<div class="gamble-outcome tails-side">
+<p class="gamble-outcome-label tails">&#x1F534; 裏が出たら</p>
+<div class="gamble-outcome-amount loss">-¥${g.loss.toLocaleString()}</div>
+<div class="gamble-outcome-prob">確率 50%</div>
+</div>
+</div>
+<p class="gamble-ev">この賭けの期待値: ${ev>=0?'+':''}¥${ev.toLocaleString()}（受ければ平均でこれだけ${ev>=0?'得':'損'}する）</p>
+<div class="gamble-btns">
+<button class="gamble-btn accept" onclick="answer(true)">受ける</button>
+<button class="gamble-btn reject" onclick="answer(false)">断る</button>
+</div>
+</div>`;
+}
+
+function updateTracker(){
+const area=document.getElementById('trackerArea');
+let chips='';
+for(let i=0;i<gambles.length;i++){
+if(i<answers.length){
+const a=answers[i];
+const cls=a.accepted?'accepted':'rejected';
+const txt=a.accepted?'受けた':'断った';
+chips+=`<span class="tracker-chip ${cls}">R${i+1}: ${txt}（損失¥${gambles[i].loss.toLocaleString()}）</span>`;
+}else{
+chips+=`<span class="tracker-chip pending">R${i+1}: —</span>`;
+}
+}
+area.innerHTML=`<div class="tracker"><p class="tracker-title">あなたの回答</p><div class="tracker-row">${chips}</div></div>`;
+}
+
+function answer(accepted){
+answers.push({round:currentRound,accepted:accepted,gain:gambles[currentRound].gain,loss:gambles[currentRound].loss});
+const coin=document.getElementById('coin');
+if(coin)coin.classList.add('flip');
+const dots=document.querySelectorAll('.round-dot');
+if(dots[currentRound])dots[currentRound].className='round-dot done';
+currentRound++;
+updateTracker();
+if(currentRound<gambles.length){
+setTimeout(()=>{
+if(dots[currentRound])dots[currentRound].className='round-dot active';
+showGamble(currentRound);
+},700);
+}else{
+setTimeout(()=>{showPhase('phase2')},700);
+}
+}
+
+function showPhase(id){
+document.querySelectorAll('.quiz-phase').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+function selectFrame(idx,el){
+if(frameChoice>=0)return;
+frameChoice=idx;
+document.querySelectorAll('.frame-card').forEach(c=>c.classList.remove('selected'));
+el.classList.add('selected');
+const res=document.getElementById('frameResult');
+res.style.display='block';
+res.innerHTML=`
+<div class="result-card" style="margin-top:20px">
+<p class="result-title">結果</p>
+<p class="result-desc">どちらを選んでも、<em>手元に残るのは¥3,000で同じ</em>だ。プログラムAは「¥5,000もらってから¥2,000失う」。プログラムBは「¥3,000もらう」。最終結果は同一。だが多くの人は${idx===0?'あなたのように':'逆に'}プログラム${idx===0?'A':'B'}を${idx===0?'避けたくなる——「¥2,000を返す」という損失の表現が痛みを生むからだ':'選ぶ——「¥2,000を返す」という損失の表現を避けたくなるからだ'}。これが<em>フレーミング効果</em>だ。</p>
+</div>
+<div style="text-align:center;margin-top:20px"><button class="btn-primary" onclick="showResults()">結果を見る</button></div>`;
+}
+
+function showResults(){
+showPhase('phase3');
+let switchPoint=-1;
+for(let i=0;i<answers.length;i++){
+if(!answers[i].accepted){switchPoint=i;break;}
+}
+let lambda;
+let lambdaText;
+if(switchPoint===-1){
+lambda=1.0;
+lambdaText='あなたはすべての賭けを受けた。損失回避がほとんど見られない——かなり珍しいタイプだ。';
+}else if(switchPoint===0){
+lambda=3.5;
+lambdaText='あなたは最初の賭け（損失¥1,000、期待値+¥1,000）すら断った。損失への感度がかなり高い。';
+}else{
+const rejLoss=gambles[switchPoint].loss;
+const accLoss=gambles[switchPoint-1].loss;
+lambda=rejLoss/gambles[0].gain;
+lambdaText=`あなたは損失が¥${accLoss.toLocaleString()}までは受け入れたが、¥${rejLoss.toLocaleString()}で断った。`;
+}
+lambda=Math.round(lambda*100)/100;
+const avgLambda=2.0;
+const resCard=document.getElementById('resultCard');
+const displayVal=switchPoint===-1?'1.0':switchPoint===0?'3.0以上':lambda.toFixed(1);
+const barPct=Math.min((switchPoint===-1?1.0:switchPoint===0?3.5:lambda)/4*100,100);
+const avgPct=avgLambda/4*100;
+
+resCard.innerHTML=`
+<p class="result-title">あなたの損失回避の強さ</p>
+<div class="result-big">${displayVal} 倍</div>
+<p class="result-big-sub">あなたにとって「失う痛み」は「得る喜び」の約 <strong style="color:#e8c56a">${displayVal}倍</strong> の重さ</p>
+<div class="result-explain">
+<strong>この数値の読み方：</strong> 1.0倍なら「損も得も同じ重さに感じる（損失回避なし）」。2.0倍なら「¥1,000失う痛みを打ち消すのに¥2,000の得が必要」という意味。数値が大きいほど、損失に敏感であることを示す。
+</div>
+<div class="result-bar-wrap">
+<div class="result-bar" style="width:${barPct}%;background:linear-gradient(90deg,#4a9e6a,#e8c56a,#c4392a)"></div>
+<div class="result-marker" style="left:${avgPct}%;background:#e8c56a">
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-top:6px;">
+<span style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#555;">1.0倍<br><span style="font-size:10px;color:#444;">（損失に無感覚）</span></span>
+<span style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#e8c56a;text-align:center;">▲<br>研究の平均<br>約2.0倍</span>
+<span style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#555;text-align:right;">4.0倍<br><span style="font-size:10px;color:#444;">（損失に極めて敏感）</span></span>
+</div>
+<p class="result-desc" style="margin-top:24px">${lambdaText}</p>
+<p class="result-desc">研究全体の平均はおよそ2.0倍。つまり、<em>¥1,000を失う痛みは、¥2,000を得る喜びとようやく釣り合う</em>。これがプロスペクト理論の損失回避係数だ。</p>`;
+
+const sp=document.getElementById('summaryPanel');
+sp.style.display='block';
+sp.innerHTML=`
+<p class="summary-panel-title">何が起きていたか</p>
+<p class="summary-panel-text">5つの賭けはすべて、得られる金額は同じ¥3,000だった。変わったのは失う金額だけ。期待値がプラスの賭け（Round 1〜3）を断った場合、それは<em>「得られるはずの利益」よりも「失うかもしれない損失」のほうが心理的に重かった</em>ということを意味する。</p>
+<p class="summary-panel-text" style="margin-top:12px">フレーミングの問題も同根だ。同じ¥3,000を手にするのに、「5,000から2,000引かれる」と表現されるだけで、損失の痛みが割り込んでくる。数字は同じ。感じ方だけが違う。</p>`;
+
+const pqt=document.getElementById('postQuizText');
+if(pqt)pqt.style.display='block';
+}
+
+
+/* ===== THOUGHT CAROUSEL ===== */
+function revealTC(idx){
+document.getElementById('tcSlide'+idx).querySelector('.thought-slide-reveal').style.display='none';
+document.getElementById('tcAnswer'+idx).classList.add('shown');
+}
+function nextTC(idx){
+// Hide current
+for(let i=0;i<3;i++){
+document.getElementById('tcSlide'+i).classList.remove('active');
+document.getElementById('tcAnswer'+i).classList.remove('shown');
+}
+// Show next
+document.getElementById('tcSlide'+idx).classList.add('active');
+// Update dots
+for(let i=0;i<3;i++){
+const dot=document.getElementById('tcDot'+i);
+if(i<idx)dot.className='tc-dot done';
+else if(i===idx)dot.className='tc-dot active';
+else dot.className='tc-dot';
+}
+}
+function finishTC(){
+for(let i=0;i<3;i++){
+document.getElementById('tcSlide'+i).classList.remove('active');
+document.getElementById('tcAnswer'+i).classList.remove('shown');
+document.getElementById('tcDot'+i).className='tc-dot done';
+}
+document.getElementById('tcDone').classList.add('active');
+}
+
+initQuiz();
+</script>
+</body>
+</html>

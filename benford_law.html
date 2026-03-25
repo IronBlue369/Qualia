@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ベンフォードの法則 — Qualia Journal</title>
+<meta name="description" content="自然界のデータで、先頭の数字が「1」になる確率は30%以上。均等ではない。この法則は会計不正の検出にも使われている。">
+<link rel="canonical" href="https://qualiajournal.com/benford_law">
+<meta property="og:title" content="ベンフォードの法則 — Qualia Journal">
+<meta property="og:description" content="自然界のデータで、先頭の数字が「1」になる確率は30%以上。均等ではない。この法則は会計不正の検出にも使われている。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/benford_law">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ベンフォードの法則 — Qualia Journal">
+<meta name="twitter:description" content="自然界のデータで、先頭の数字が「1」になる確率は30%以上。均等ではない。この法則は会計不正の検出にも使われている。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type='text/javascript' src='https://api.netlify.com/_QZ7Oy0yz0wSzdVwXbfhIXVSSZlUMs0Nz8PXP-3G7vJBUX9beOlxdfKie72Zb6MmGuWTn5okLN6dCdx7TrxGd-0cGP3I5Nw9NbZFkMbKqfINJx-jHHCW_8owungVSie7fZJGGbG4MWgwGo7g9rK7-KPcpvP6JXpZ5V7Buc82_KnFWvcCQo9PP7vbim8AJCXnymEW7sdlgVN6iui1iLg__9HjDzjvNK1SjJXnZC8Ar0Kk3Gaa6JnQftHwRFNCCdoAkdmjfB5KkOMNpsZvldHcM_Y1yLSDYqR_BtDrEzlTJ-YwVvlttCMaXjlmlr1KhVNsLq5f3beOypkCouL2HVetZmTz0nsM7AOc6m6L8cC5JjLTOAO26NB7hEbN-zA6u1OgHWIcUCfLtK4jyHWwFcv0qqfOiVpwF1yJCQg0ZKsMPmwgthmcbhhhOwh2W-HRfKmA4d6hE2Jiee_VABocfzqCu0pyJWV0-G0TRFzMHiyWbIVSVruc3vv2hX4PKtcGifTE8esME8xm6bbW8Xvbu9cyad-5AixJ'></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"ベンフォードの法則","description":"自然界のデータで、先頭の数字が「1」になる確率は30%以上。均等ではない。この法則は会計不正の検出にも使われている。","author":{"@type":"Organization","name":"Qualia Journal"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/benford_law","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"数学・論理","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"ベンフォードの法則"}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}
+.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;margin-bottom:6px;}
+.masthead-date{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;letter-spacing:.08em;}
+
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+.scenario-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;letter-spacing:.06em;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:260px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.tl-legend{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-bottom:16px;display:flex;align-items:center;gap:16px;}
+.tl-legend-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:middle;}
+.tl-legend-dot.red{background:#8b1a1a;}
+.tl-legend-dot.white{background:#faf8f3;border:2px solid #c8bfaa;}
+
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+.exp-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.exp-header{background:#3d3020;padding:12px 20px;display:flex;align-items:center;}
+.exp-header span{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.14em;color:#e8c56a;text-transform:uppercase;}
+.exp-body{padding:24px 24px 28px;background:white;}
+.exp-body h3{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:12px;color:#1a1208;}
+.exp-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin-bottom:12px;}
+.exp-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;color:white;background:#8b1a1a;border:none;padding:10px 22px;cursor:pointer;transition:background .15s;}
+.exp-btn:hover{background:#a02020;}
+.exp-btn:disabled{background:#c8bfaa;cursor:default;}
+
+.bf-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.bf-digit{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;width:20px;text-align:right;}
+.bf-bar-track{flex:1;height:22px;background:#e0d8c8;position:relative;overflow:hidden;}
+.bf-bar{height:100%;transition:width .6s ease;}
+.bf-bar.expected{background:#8b1a1a;}
+.bf-bar.user{background:#3d3020;}
+.bf-pct{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;width:42px;text-align:right;}
+
+.data-tbl{width:100%;border-collapse:collapse;margin:20px 0;font-family:'Source Sans 3',sans-serif;font-size:12px;}
+.data-tbl th{background:#3d3020;color:white;padding:8px 12px;text-align:center;font-weight:600;letter-spacing:.06em;font-size:10px;text-transform:uppercase;}
+.data-tbl td{padding:8px 12px;text-align:center;border-bottom:1px solid #e0d8c8;color:#3d3020;}
+.data-tbl tr:nth-child(even) td{background:#f3efe6;}
+.data-tbl .hl{font-weight:600;color:#8b1a1a;}
+
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario-wrap{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .tip-box{left:0;transform:none;width:220px;}
+  .tip-box::after{left:20px;transform:none;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:16px;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<div class="masthead">
+  <p class="masthead-name"><a href="/" style="color:inherit;text-decoration:none;">Qualia Journal</a></p>
+  <p class="masthead-date"></p>
+</div>
+
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">数学・論理</p>
+    <h1>数字の世界の推しは、いつも<em>1</em></h1>
+    <p class="cover-deck">川の面積、人口データ、納税申告書——あらゆる数字の先頭桁は均等に散らばらない。1が30%、9がわずか5%。この偏りは偶然ではなく、対数の必然だった。</p>
+    <div class="cover-byline"><span>Statistics</span><span>Distribution</span><span>Fraud Detection</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1938</span>
+      <p class="est-event">物理学者フランク・ベンフォードが20,229件のデータから先頭数字の偏りを発表。「異常な数の法則」と名づけた。</p>
+      <p class="est-context">同年、オーソン・ウェルズ『宇宙戦争』のラジオ放送がアメリカ中をパニックに陥れ、スーパーマンが『Action Comics #1』で初登場した。</p>
+    </div>
+    <p class="cover-aside"><strong>先行発見者:</strong> 天文学者サイモン・ニューカムが1881年に同じ現象を記録していたが、2ページの短い論文だったため半世紀以上忘れ去られた。<span class="tip" onclick="toggleTip(this)">スティグラーの名称法則<span class="tip-box"><strong>Stigler's law of eponymy</strong><br>「科学上の発見は、その本当の発見者の名前では呼ばれない」という法則。統計学者スティーブン・スティグラーが1980年に提唱した。この法則自体、社会学者ロバート・マートンが先に指摘していたため、法則自身が法則の好例になっている。</span></span>の好例。</p>
+  </div>
+</div>
+
+<div class="scenario-wrap fade">
+  <div class="scenario-inner">
+    <p>家計簿を開いたとき、スーパーの値段を眺めたとき、ニュースで見た人口の数字を思い出すとき——私たちは先頭の数字に注意を払わない。1から9まで均等に散らばっているはずだと、誰もが漠然と思っている。</p>
+    <p>だが、その直感は驚くほど間違っている。レシートの金額でも、世界の国々の面積でも、企業の決算書でも、先頭が1の数字は9の6倍以上ある。偶然ではない。単位を変えても、通貨を変えても、データの種類を変えても、この比率はほとんど変わらない。</p>
+    <p>これが「ベンフォードの法則」だ。自然に生まれた数字には、対数のスケールに従った偏りが刻まれている。</p>
+  </div>
+</div>
+
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">初中級 — 対数を知らなくても読める</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 18 分
+    </span>
+  </div>
+</div>
+
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">身の回りの数字を集めて<span class="tip" onclick="toggleTip(this)">先頭桁<span class="tip-box"><strong>先頭桁（leading digit）</strong><br>ある数の最初の0でない数字のこと。たとえば 17,098,242 の先頭桁は 1、923,768 の先頭桁は 9。ベンフォードの法則はこの先頭桁の出現頻度についての法則。</span></span>を数え、「均等に散らばっているはず」という思い込みがどれほど外れるかを体験する。</p>
+  </div>
+</div>
+
+<!-- ======== ARTICLE ======== -->
+<div class="article">
+<div class="article-main">
+
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">汚れたページが語った法則</h2>
+
+<p class="body-text fade">1881年、<span class="tip" onclick="toggleTip(this)">サイモン・ニューカム<span class="tip-box"><strong>Simon Newcomb（1835–1909）</strong><br>カナダ生まれのアメリカの天文学者・数学者。海軍天文台で天体暦の改訂に尽力した。対数表の摩耗から先頭数字の偏りに気づいた最初の人物。</span></span>というカナダ出身の天文学者が、職場の図書室でささやかな異変に気づいた。共用の<span class="tip" onclick="toggleTip(this)">対数表<span class="tip-box"><strong>対数表（table of logarithms）</strong><br>電卓がない時代、掛け算や割り算を手早くこなすために使われた数値表。対数を使うと掛け算が足し算に変わるため、天文学者や技術者の必需品だった。数字は1.000…から9.999…まで順に並んでいる。</span></span>。当時の科学者が複雑な計算を処理するために日常的に使っていた分厚い数値の書物だ。その最初のほうのページだけが、妙に汚れていた。後半のページは比較的きれいなままだった。</p>
+
+<!-- SVG: 対数表の見開きイラスト（本 + 吹き出し） -->
+<div style="overflow-x:auto;margin:28px 0;" class="fade">
+<svg viewBox="0 0 420 320" style="max-width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Labels above -->
+  <text x="120" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" fill="#8b1a1a" letter-spacing=".1em">よく使われる = 汚い</text>
+  <text x="300" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090" letter-spacing=".1em">あまり使われない = きれい</text>
+  <!-- Book covers -->
+  <rect x="30" y="28" width="175" height="230" rx="3" fill="#c8bfaa" stroke="#7a6a55" stroke-width="1"/>
+  <rect x="205" y="28" width="175" height="230" rx="3" fill="#f3efe6" stroke="#7a6a55" stroke-width="1"/>
+  <line x1="205" y1="28" x2="205" y2="258" stroke="#7a6a55" stroke-width="2"/>
+  <!-- Left page (dirty) — text lines -->
+  <rect x="42" y="44" width="150" height="7" rx="1" fill="#b0a090" opacity=".55"/>
+  <rect x="42" y="58" width="150" height="7" rx="1" fill="#b0a090" opacity=".5"/>
+  <rect x="42" y="72" width="150" height="7" rx="1" fill="#b0a090" opacity=".45"/>
+  <rect x="42" y="86" width="150" height="7" rx="1" fill="#b0a090" opacity=".4"/>
+  <rect x="42" y="100" width="150" height="7" rx="1" fill="#b0a090" opacity=".38"/>
+  <rect x="42" y="114" width="150" height="7" rx="1" fill="#b0a090" opacity=".35"/>
+  <rect x="42" y="128" width="150" height="7" rx="1" fill="#b0a090" opacity=".3"/>
+  <rect x="42" y="142" width="150" height="7" rx="1" fill="#b0a090" opacity=".28"/>
+  <rect x="42" y="156" width="150" height="7" rx="1" fill="#b0a090" opacity=".25"/>
+  <rect x="42" y="170" width="150" height="7" rx="1" fill="#b0a090" opacity=".22"/>
+  <rect x="42" y="184" width="150" height="7" rx="1" fill="#b0a090" opacity=".2"/>
+  <rect x="42" y="198" width="150" height="7" rx="1" fill="#b0a090" opacity=".18"/>
+  <rect x="42" y="212" width="150" height="7" rx="1" fill="#b0a090" opacity=".15"/>
+  <rect x="42" y="226" width="150" height="7" rx="1" fill="#b0a090" opacity=".12"/>
+  <!-- Smudge marks — fingerprints, stains -->
+  <circle cx="80" cy="55" r="16" fill="#8b1a1a" opacity=".07"/>
+  <circle cx="155" cy="80" r="22" fill="#8b1a1a" opacity=".05"/>
+  <circle cx="100" cy="120" r="18" fill="#8b1a1a" opacity=".06"/>
+  <circle cx="170" cy="50" r="12" fill="#8b1a1a" opacity=".08"/>
+  <ellipse cx="120" cy="70" rx="24" ry="14" fill="#7a6a55" opacity=".07" transform="rotate(-12 120 70)"/>
+  <ellipse cx="75" cy="150" rx="16" ry="10" fill="#7a6a55" opacity=".06" transform="rotate(8 75 150)"/>
+  <circle cx="140" cy="170" r="14" fill="#8b1a1a" opacity=".04"/>
+  <!-- Left page label -->
+  <text x="117" y="248" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" font-weight="600">1.000 〜 2.999…</text>
+  <!-- Right page (clean) — text lines -->
+  <rect x="218" y="44" width="150" height="7" rx="1" fill="#e0d8c8" opacity=".35"/>
+  <rect x="218" y="58" width="150" height="7" rx="1" fill="#e0d8c8" opacity=".3"/>
+  <rect x="218" y="72" width="150" height="7" rx="1" fill="#e0d8c8" opacity=".25"/>
+  <rect x="218" y="86" width="150" height="7" rx="1" fill="#e0d8c8" opacity=".22"/>
+  <rect x="218" y="100" width="150" height="7" rx="1" fill="#e0d8c8" opacity=".2"/>
+  <rect x="218" y="114" width="150" height="7" rx="1" fill="#e0d8c8" opacity=".18"/>
+  <rect x="218" y="128" width="150" height="7" rx="1" fill="#e0d8c8" opacity=".15"/>
+  <rect x="218" y="142" width="150" height="7" rx="1" fill="#e0d8c8" opacity=".12"/>
+  <rect x="218" y="156" width="150" height="7" rx="1" fill="#e0d8c8" opacity=".1"/>
+  <rect x="218" y="170" width="150" height="7" rx="1" fill="#e0d8c8" opacity=".08"/>
+  <rect x="218" y="184" width="150" height="7" rx="1" fill="#e0d8c8" opacity=".06"/>
+  <rect x="218" y="198" width="150" height="7" rx="1" fill="#e0d8c8" opacity=".05"/>
+  <rect x="218" y="212" width="150" height="7" rx="1" fill="#e0d8c8" opacity=".04"/>
+  <rect x="218" y="226" width="150" height="7" rx="1" fill="#e0d8c8" opacity=".03"/>
+  <text x="293" y="248" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">7.000 〜 9.999…</text>
+  <!-- Speech bubble — pointing up to dirty left page -->
+  <rect x="10" y="272" width="210" height="36" rx="4" fill="#1a1208"/>
+  <polygon points="90,272 100,272 95,264" fill="#1a1208"/>
+  <text x="115" y="294" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#e8c56a">1のところだけやたら汚れてるな…</text>
+</svg>
+</div>
+
+<p class="body-text fade">対数表の前半には、先頭が1や2の数字が並んでいる。後半には8や9で始まる数字が並ぶ。つまり、科学者たちは1で始まる数字を圧倒的に多く調べていた。ニューカムはこの観察から、<strong>自然界に現れる数字の先頭桁は均等ではなく、小さい数字ほど多く出現する</strong>という仮説を導き出した。彼はこの結果を『American Journal of Mathematics』にわずか2ページで発表したが、ほとんど誰にも注目されなかった。</p>
+
+<!-- SVG図解: 先頭桁の出現率（横棒グラフ） -->
+<div style="overflow-x:auto;margin:28px 0;" class="fade">
+<svg viewBox="0 0 540 200" style="max-width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
+  <text x="270" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55" letter-spacing=".12em">ベンフォードの法則が予測する先頭数字の出現率</text>
+  <text x="270" y="32" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">均等なら各11.1%のはずが、実際はこう偏る</text>
+  <rect x="60" y="46" width="139" height="16" rx="2" fill="#8b1a1a"/><text x="64" y="58" font-family="'Source Sans 3',sans-serif" font-size="10" fill="white" font-weight="600">1: 30.1%</text><text x="44" y="58" text-anchor="end" font-family="'Playfair Display',serif" font-size="14" fill="#1a1208" font-weight="700">1</text>
+  <rect x="60" y="66" width="81" height="16" rx="2" fill="#8b1a1a" opacity=".85"/><text x="64" y="78" font-family="'Source Sans 3',sans-serif" font-size="10" fill="white">2: 17.6%</text><text x="44" y="78" text-anchor="end" font-family="'Playfair Display',serif" font-size="14" fill="#1a1208" font-weight="700">2</text>
+  <rect x="60" y="86" width="58" height="16" rx="2" fill="#8b1a1a" opacity=".7"/><text x="64" y="98" font-family="'Source Sans 3',sans-serif" font-size="10" fill="white">3: 12.5%</text><text x="44" y="98" text-anchor="end" font-family="'Playfair Display',serif" font-size="14" fill="#1a1208" font-weight="700">3</text>
+  <rect x="60" y="106" width="45" height="16" rx="2" fill="#8b1a1a" opacity=".55"/><text x="64" y="118" font-family="'Source Sans 3',sans-serif" font-size="9" fill="white">4: 9.7%</text><text x="44" y="118" text-anchor="end" font-family="'Playfair Display',serif" font-size="14" fill="#7a6a55">4</text>
+  <rect x="60" y="126" width="36" height="16" rx="2" fill="#8b1a1a" opacity=".45"/><text x="100" y="138" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">7.9%</text><text x="44" y="138" text-anchor="end" font-family="'Playfair Display',serif" font-size="14" fill="#7a6a55">5</text>
+  <rect x="60" y="146" width="31" height="16" rx="2" fill="#8b1a1a" opacity=".38"/><text x="95" y="158" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">6.7%</text><text x="44" y="158" text-anchor="end" font-family="'Playfair Display',serif" font-size="14" fill="#b0a090">6</text>
+  <rect x="60" y="166" width="27" height="16" rx="2" fill="#8b1a1a" opacity=".3"/><text x="91" y="178" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">5.8%</text><text x="44" y="178" text-anchor="end" font-family="'Playfair Display',serif" font-size="14" fill="#b0a090">7</text>
+  <rect x="60" y="186" width="24" height="16" rx="2" fill="#8b1a1a" opacity=".22"/><text x="88" y="198" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">5.1%</text><text x="44" y="198" text-anchor="end" font-family="'Playfair Display',serif" font-size="14" fill="#b0a090">8</text>
+  <!-- 9 -->
+  <rect x="60" y="206" width="21" height="16" rx="2" fill="#8b1a1a" opacity=".16"/><text x="85" y="218" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">4.6%</text><text x="44" y="218" text-anchor="end" font-family="'Playfair Display',serif" font-size="14" fill="#b0a090">9</text>
+  <!-- 11.1% reference line -->
+  <line x1="111" y1="42" x2="111" y2="224" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="111" y="238" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#c8bfaa">← 均等なら 11.1%</text>
+</svg>
+</div>
+
+<p class="body-text fade">半世紀以上あとの1938年、ゼネラル・エレクトリック社の物理学者<span class="tip" onclick="toggleTip(this)">フランク・ベンフォード<span class="tip-box"><strong>Frank Benford（1883–1948）</strong><br>アメリカの電気工学者・物理学者。GEの研究所で光学測定を専門とし、109の論文を発表。対数表の偏りに気づき、20分野・20,229件のデータで検証した。</span></span>がまったく同じ現象に気づいた。ただしベンフォードはニューカムと違い、観察にとどまらなかった。川の面積、都市の人口、物理定数、分子量、Reader's Digest誌の数字、死亡率。<strong>20の異なる分野から20,229件のデータ</strong>を集め、すべてが同じパターンに従うことを示したのだ。1938年、アメリカ哲学会紀要に「異常な数の法則（The Law of Anomalous Numbers）」として発表された。</p>
+
+<table class="data-tbl fade">
+<tr><th>先頭桁</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr>
+<tr><td style="font-weight:600;color:#7a6a55;">予測値</td><td class="hl">30.1%</td><td>17.6%</td><td>12.5%</td><td>9.7%</td><td>7.9%</td><td>6.7%</td><td>5.8%</td><td>5.1%</td><td>4.6%</td></tr>
+<tr><td style="font-weight:600;color:#7a6a55;">均等なら</td><td>11.1%</td><td>11.1%</td><td>11.1%</td><td>11.1%</td><td>11.1%</td><td>11.1%</td><td>11.1%</td><td>11.1%</td><td>11.1%</td></tr>
+</table>
+
+<div class="quote-block fade">
+  <p class="quote-en">"It is a general law that in all tables of statistics the weights of different digits are not equal."</p>
+  <p class="quote-ja">「すべての統計表において、各数字の重みが等しくないことは一般的な法則である。」</p>
+  <p class="quote-attr">— Simon Newcomb, "Note on the Frequency of Use of the Different Digits in Natural Numbers" (1881)</p>
+</div>
+
+<div class="person-block fade">
+  <div class="person-block-img">
+    <svg width="80" height="90" viewBox="0 0 80 90"><circle cx="40" cy="28" r="18" fill="#c8bfaa"/><rect x="22" y="44" width="36" height="28" rx="4" fill="#c8bfaa"/><circle cx="34" cy="25" r="2" fill="#7a6a55"/><circle cx="46" cy="25" r="2" fill="#7a6a55"/><rect x="32" y="33" width="16" height="3" rx="1.5" fill="#7a6a55"/><rect x="26" y="72" width="12" height="16" rx="2" fill="#c8bfaa"/><rect x="42" y="72" width="12" height="16" rx="2" fill="#c8bfaa"/></svg>
+  </div>
+  <div class="person-block-body">
+    <p class="person-block-name">Frank Benford</p>
+    <p class="person-block-role">物理学者 / ゼネラル・エレクトリック研究所</p>
+    <p class="person-block-desc">1883年ペンシルベニア州ジョンズタウン生まれ。6歳のときにジョンズタウン大洪水で自宅を失う。ミシガン大学卒業後、GEの照明工学研究所で18年、研究所で20年勤務。光学測定の専門家として109の論文と20の特許を残した。対数表の汚れに気づいた「ただの好奇心」が、彼の名を最も広く知らしめることになった。</p>
+  </div>
+</div>
+
+<div class="misconception fade">
+  <div class="misconception-header"><span class="misconception-hl">読む前に確認 — よくある誤解</span></div>
+  <div class="misconception-body">
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">すべてのデータがベンフォードの法則に従う</p></div>
+      <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">身長、電話番号、IQスコアなど範囲が限定されたデータは従わない。法則が成り立つのは複数桁にまたがる自然発生的なデータだ</p></div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">ベンフォードの法則に合わなければ不正の証拠になる</p></div>
+      <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">逸脱は「精査すべき」という旗にすぎない。法則からの逸脱だけでは不正の証明にはならない</p></div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">ベンフォードが最初の発見者だ</p></div>
+      <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">57年前にニューカムが同じ法則を発表していた。ベンフォードが大規模データで検証したため彼の名がついた</p></div>
+    </div>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- S2: 体験する -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">あなたの直感を試す。数字の先頭桁を数えてみよう。</h2>
+
+<p class="body-text fade">これからいくつかの「数字の集まり」を見せる。それぞれの先頭桁（最初の数字）を抜き出して、1から9がそれぞれ何回出てくるかを数えてほしい。すべて実在のデータだ。先頭桁がどう分布するか、予想してから結果を見てほしい。均等に散らばると思うか、それとも偏ると思うか。</p>
+
+<div class="exp-wrap fade" id="bfExp">
+  <div class="exp-header"><span>✦ First-Digit Counter</span></div>
+  <div class="exp-body" id="bfBody">
+    <h3 id="bfTitle">世界の国の面積（km²）から先頭桁を数えよう</h3>
+    <p>以下は実在の国の面積データです。「集計する」を押すと、先頭桁の分布がベンフォードの法則とどれほど一致するかが分かります。</p>
+    <div id="bfDataDisplay" style="display:flex;flex-wrap:wrap;gap:6px;margin:16px 0;"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0;">
+      <button class="exp-btn" id="bfCountBtn" onclick="countDigits()">集計する</button>
+      <button class="exp-btn" style="background:#7a6a55;" id="bfNewBtn" onclick="newDataSet()">別のデータで試す</button>
+    </div>
+    <div id="bfResult" style="display:none;">
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#7a6a55;letter-spacing:.1em;margin-bottom:12px;">先頭桁の分布（<span style="color:#8b1a1a;">■</span> ベンフォード予測　<span style="color:#3d3020;">■</span> 実データ）</p>
+      <div id="bfBars"></div>
+      <div id="bfVerdict" style="margin-top:16px;padding:14px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:13px;line-height:1.8;display:none;"></div>
+    </div>
+  </div>
+</div>
+
+<p class="body-text fade">データの種類を変えても、同じパターンが浮かび上がることに気づいただろうか。先頭が1の数字は約30%、9は5%前後。これがベンフォードの法則の核心だ。感覚として体験することに意味がある。「知っている」のと「目で見た」のとでは、納得の深さが違う。</p>
+
+<hr class="art-rule">
+
+<!-- S3: なぜか -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">対数のものさしで世界を見る</h2>
+
+<p class="body-text fade">なぜ先頭桁が偏るのか。その鍵は<strong>対数（ログ）</strong>にある。まず「対数とは何か」を確認しておこう。10を何回掛けたら目的の数になるか、その「回数」を表すのが対数だ。10を2回掛ければ100なので、log₁₀(100)＝2。10を3回掛ければ1000なので、log₁₀(1000)＝3。つまり対数は「桁数を測るものさし」のようなものだ。100と1000はたった1違いだが、桁がひとつ違う。</p>
+
+<!-- SVG図解: 等間隔スケール vs 対数スケール -->
+<div style="overflow-x:auto;margin:28px 0;" class="fade">
+<svg viewBox="0 0 540 170" style="max-width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
+  <text x="270" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55" letter-spacing=".12em">ふつうのものさし vs 対数のものさし</text>
+  <!-- Linear scale -->
+  <text x="30" y="48" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">ふつう</text>
+  <line x1="80" y1="48" x2="520" y2="48" stroke="#c8bfaa" stroke-width="2"/>
+  <line x1="80" y1="42" x2="80" y2="54" stroke="#3d3020" stroke-width="1.5"/><text x="80" y="68" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#3d3020">1</text>
+  <line x1="129" y1="42" x2="129" y2="54" stroke="#3d3020" stroke-width="1.5"/><text x="129" y="68" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#3d3020">2</text>
+  <line x1="178" y1="42" x2="178" y2="54" stroke="#3d3020" stroke-width="1.5"/><text x="178" y="68" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#3d3020">3</text>
+  <line x1="227" y1="42" x2="227" y2="54" stroke="#3d3020" stroke-width="1"/><text x="227" y="68" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">4</text>
+  <line x1="276" y1="42" x2="276" y2="54" stroke="#3d3020" stroke-width="1"/>
+  <line x1="325" y1="42" x2="325" y2="54" stroke="#3d3020" stroke-width="1"/>
+  <line x1="374" y1="42" x2="374" y2="54" stroke="#3d3020" stroke-width="1"/>
+  <line x1="423" y1="42" x2="423" y2="54" stroke="#3d3020" stroke-width="1"/>
+  <line x1="471" y1="42" x2="471" y2="54" stroke="#3d3020" stroke-width="1.5"/><text x="471" y="68" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#3d3020">9</text>
+  <line x1="520" y1="42" x2="520" y2="54" stroke="#3d3020" stroke-width="1.5"/><text x="520" y="68" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#3d3020">10</text>
+  <text x="300" y="82" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">1→2も8→9も、幅は同じ</text>
+  <!-- Log scale -->
+  <text x="30" y="116" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a" font-weight="600">対数</text>
+  <line x1="80" y1="116" x2="520" y2="116" stroke="#c8bfaa" stroke-width="2"/>
+  <line x1="80" y1="110" x2="80" y2="122" stroke="#8b1a1a" stroke-width="1.5"/><text x="80" y="136" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#8b1a1a" font-weight="600">1</text>
+  <line x1="212" y1="110" x2="212" y2="122" stroke="#8b1a1a" stroke-width="1.5"/><text x="212" y="136" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#8b1a1a" font-weight="600">2</text>
+  <line x1="290" y1="110" x2="290" y2="122" stroke="#8b1a1a" stroke-width="1.5"/><text x="290" y="136" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#8b1a1a">3</text>
+  <line x1="345" y1="110" x2="345" y2="122" stroke="#8b1a1a" stroke-width="1"/>
+  <line x1="387" y1="110" x2="387" y2="122" stroke="#8b1a1a" stroke-width="1"/>
+  <line x1="422" y1="110" x2="422" y2="122" stroke="#8b1a1a" stroke-width="1"/>
+  <line x1="452" y1="110" x2="452" y2="122" stroke="#8b1a1a" stroke-width="1"/>
+  <line x1="477" y1="110" x2="477" y2="122" stroke="#8b1a1a" stroke-width="1"/>
+  <line x1="499" y1="110" x2="499" y2="122" stroke="#8b1a1a" stroke-width="1.5"/><text x="499" y="136" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#8b1a1a">9</text>
+  <line x1="520" y1="110" x2="520" y2="122" stroke="#8b1a1a" stroke-width="1.5"/><text x="520" y="136" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#8b1a1a">10</text>
+  <!-- highlight 1-2 span -->
+  <rect x="80" y="106" width="132" height="4" fill="#8b1a1a" opacity=".25" rx="1"/>
+  <text x="146" y="154" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a" font-weight="600">1→2 の幅が最大（30.1%）</text>
+  <rect x="499" y="106" width="21" height="4" fill="#8b1a1a" opacity=".12" rx="1"/>
+  <text x="510" y="154" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#b0a090">9→10</text>
+</svg>
+</div>
+
+<p class="body-text fade">私たちが普段使う「ものさし」は等間隔だ。1から2も、8から9も、同じ幅。だが自然界の多くの現象は掛け算で動く。人口は「毎年1000人増える」のではなく「毎年3%増える」。株価は「毎日100円上がる」のではなく「毎日0.5%動く」。掛け算の世界では、対数が自然なものさしになる。そして<strong>対数のものさしでは、1から2までの幅が9から10までの幅よりずっと広い。</strong></p>
+
+<p class="body-text fade">これがすべての答えだ。対数のものさしの上でランダムに点を打つと、1から2の区間に落ちる確率は約30%。9から10の区間に落ちる確率は約5%。数式で書くと <span class="tip" onclick="toggleTip(this)">P(d) = log₁₀(1 + 1/d)<span class="tip-box"><strong>ベンフォードの公式</strong><br>先頭桁がdである確率を求める式。dに1を入れると log₁₀(2)≈0.301 で約30%、dに9を入れると log₁₀(10/9)≈0.046 で約5%。log₁₀ は「10を何乗したらその数になるか」を表す。</span></span> となる。先頭桁が1になる確率は、9になる確率の6倍以上ある。</p>
+
+<p class="body-text fade">もう少し日常的に考えてみよう。銀行口座に100万円があるとする。年利5%で運用すると、100万から200万になるまでに約14年かかる。だが200万から300万になるまでは約8年だ。同じ「100万円の増加」なのに、時間が違う。先頭桁が1である期間は、先頭桁が2である期間より長い。<span class="tip" onclick="toggleTip(this)">指数関数的<span class="tip-box"><strong>指数関数的成長（exponential growth）</strong><br>一定の「割合」で増え続ける成長のこと。たとえば毎年2倍になるなら、1→2→4→8→16…と加速的に増えていく。人口増加、感染症の拡大、複利の利息などが典型例。</span></span>に成長するものは、どの桁帯を通過する「滞在時間」も対数に比例する。</p>
+
+<div class="steps-wrap fade">
+  <p class="steps-head">ベンフォードの法則が成り立つ3つの条件</p>
+  <div class="step-card open" id="sc1">
+    <div class="step-hd" onclick="tog(1)">
+      <div class="step-nb">1</div>
+      <div class="step-tw"><div class="step-title">データが複数桁にまたがる</div><div class="step-sub">桁数のレンジが広いほど法則に近づく</div></div>
+      <div class="step-arr">▼</div>
+    </div>
+    <div class="step-body">
+      <p>川の面積は数km²から数百万km²まで広がる。人口は数百人から数十億人まで。このように<strong>複数の<em>桁</em>（order of magnitude）にまたがるデータ</strong>は、対数スケール上で均等に広がりやすく、ベンフォードの法則に合致する。逆に、成人男性の身長（150cm〜200cm）のように狭い範囲に集中するデータは従わない。</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc2">
+    <div class="step-hd" onclick="tog(2)">
+      <div class="step-nb">2</div>
+      <div class="step-tw"><div class="step-title">人為的な上限・下限がない</div><div class="step-sub">「決められた数字」は法則に従わない</div></div>
+      <div class="step-arr">▼</div>
+    </div>
+    <div class="step-body">
+      <p>電話番号、郵便番号、IQスコアなど、あらかじめ範囲が決まっている数値は法則に合わない。時給や金利のように「最低○○、最高○○」と設定されたデータも同様だ。自然に発生し、自由に広がった数値だけが対数的な分布を持つ。</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc3">
+    <div class="step-hd" onclick="tog(3)">
+      <div class="step-nb">3</div>
+      <div class="step-tw"><div class="step-title">単位を変えても法則が保たれる</div><div class="step-sub">スケール不変性という美しい性質</div></div>
+      <div class="step-arr">▼</div>
+    </div>
+    <div class="step-body">
+      <p>川の面積をkm²で測ってもマイル²で測っても、先頭桁の分布は変わらない。<strong>スケール不変性</strong>と呼ばれるこの性質は、ベンフォードの法則の数学的な根幹をなしている。1995年に数学者<em>テッド・ヒル</em>は、異なるデータ集団からランダムにサンプルを混ぜると、その先頭桁の分布がベンフォードの法則に収束することを証明した。つまりこの法則は、<em>「混合されたデータの自然な帰結」</em>なのだ。</p>
+    </div>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<div class="sec-rule fade"><span class="sec-label">応用</span><div class="sec-line"></div></div>
+<h2 class="fade">数字の嘘は、先頭桁に現れる</h2>
+
+<p class="body-text fade">ベンフォードの法則が現代で最も注目される理由は、不正検出への応用だ。1990年代、会計学者<span class="tip" onclick="toggleTip(this)">マーク・ニグリニ<span class="tip-box"><strong>Mark Nigrini</strong><br>南アフリカ出身の会計学者。ウェストバージニア大学准教授。1999年にベンフォードの法則を監査ツールとして会計の世界に紹介した先駆者。</span></span>が初めてこの法則を会計監査の道具として提案した。着想はシンプルだ。自然に生まれたデータは法則に従う。人間が捏造したデータは従わない。なぜなら、人間は「ランダムな数字」を作ろうとすると、先頭桁を均等に散らばらせてしまうからだ。5、6、7で始まる数字を不自然に多く使い、1を過少にする。この癖が、法則との乖離として浮かび上がる。</p>
+
+<!-- SVG: 不正検出フロー -->
+<div style="overflow-x:auto;margin:28px 0;" class="fade">
+<svg viewBox="0 0 560 100" style="max-width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
+  <text x="280" y="14" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55" letter-spacing=".12em">ベンフォードの法則による不正検出フロー</text>
+  <rect x="10" y="28" width="120" height="52" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="70" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#1a1208" font-weight="600">財務データ</text>
+  <text x="70" y="66" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">先頭桁を抽出</text>
+  <text x="152" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+  <rect x="170" y="28" width="120" height="52" rx="4" fill="#f3efe6" stroke="#8b1a1a" stroke-width="1.5"/>
+  <text x="230" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="600">法則と比較</text>
+  <text x="230" y="66" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">予測分布と照合</text>
+  <text x="312" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+  <rect x="330" y="28" width="100" height="52" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="380" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#1a1208" font-weight="600">逸脱を検出</text>
+  <text x="380" y="66" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">統計的検定</text>
+  <text x="452" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+  <rect x="470" y="28" width="80" height="52" rx="4" fill="#3d3020"/>
+  <text x="510" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#e8c56a" font-weight="600">精査対象</text>
+  <text x="510" y="66" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#e8e4de">監査へ</text>
+</svg>
+</div>
+
+<p class="body-text fade">アメリカの連邦裁判所では、ベンフォードの法則に基づく分析が証拠として認められている。<span class="tip" onclick="toggleTip(this)">エンロン<span class="tip-box"><strong>Enron</strong><br>アメリカのエネルギー企業。2001年に大規模な会計不正が発覚し破綻。史上最大級の企業スキャンダルとなった。監査法人アーサー・アンダーセンも連鎖的に解散した。</span></span>の会計スキャンダルでも、事後分析において収益報告の先頭桁の異常が指摘された。ギリシャがEUに報告したマクロ経済データが法則から大きく逸脱していたことも、研究で報告されている。</p>
+
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">対数表の汚れから、不正検出へ</h2>
+
+<p class="tl-legend fade"><span><span class="tl-legend-dot red"></span> 主要な出来事</span><span><span class="tl-legend-dot white"></span> 関連する出来事</span></p>
+<div class="timeline fade">
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1881</p><p class="tl-title">ニューカムの観察</p><p class="tl-desc">天文学者サイモン・ニューカムが対数表の汚れに気づき、先頭桁の分布法則を2ページの論文で発表。公式 P(d)=log₁₀(1+1/d) を導出したが、学会の関心は得られなかった。</p></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1938</p><p class="tl-title">ベンフォードの「異常な数の法則」</p><p class="tl-desc">GEの物理学者フランク・ベンフォードが、20分野・20,229件のデータで法則を検証。ニューカムの存在を知らなかった。川の面積、人口、分子量、Reader's Digestの数字など多様なデータを網羅。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1961</p><p class="tl-title">ピンカムの不変性定理</p><p class="tl-desc">数学者ロジャー・ピンカムが、スケール不変な分布はベンフォードの法則に従うことを証明。法則に数学的基盤を与えた。</p></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1995</p><p class="tl-title">テッド・ヒルのランダムサンプル定理</p><p class="tl-desc">異なる分布からランダムにサンプルを混合すると先頭桁がベンフォードの法則に収束することを証明。「なぜ自然データが法則に従うのか」への数学的解答。</p></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1999</p><p class="tl-title">ニグリニの監査への応用</p><p class="tl-desc">会計学者マーク・ニグリニが『Journal of Accountancy』でベンフォードの法則を監査ツールとして提案。不正検出の実務への導入の転機。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2001</p><p class="tl-title">エンロン事件</p><p class="tl-desc">史上最大級の会計スキャンダル。事後分析でエンロンの財務データにベンフォードの法則からの逸脱が指摘され、法則の有用性が広く認知された。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2011</p><p class="tl-title">ギリシャの経済データ問題</p><p class="tl-desc">ギリシャがEUに報告したマクロ経済データの先頭桁分布が法則から大きく逸脱していたことが研究で報告された。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2020</p><p class="tl-title">SNSボット検出への応用</p><p class="tl-desc">メリーランド大学のジェニファー・ゴルベックがSNSアカウントのフォロワー数にベンフォードの法則を適用し、ロシアのボットネットワークを検出。Netflixの『Connected』で取り上げられた。</p></div>
+</div>
+
+<hr class="art-rule">
+
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">数字は、生まれた瞬間から対数に従っている</h2>
+
+<p class="body-text fade">ベンフォードの法則が語っているのは、数字についての法則というよりも、<strong>世界のスケール</strong>についての法則だ。自然界の多くの量は加法的（足し算）ではなく乗法的（掛け算）に変化する。掛け算の世界では、対数が自然なものさしになる。そして対数のものさしで数字を並べると、小さい先頭桁が広い場所を占める。</p>
+
+<div class="pull fade">
+  <p class="pull-q">先頭桁が1になる確率が30%。<br>これは偶然ではなく、<em>掛け算の世界</em>が生む必然だ。</p>
+  <p class="pull-attr">— ベンフォードの法則の本質</p>
+</div>
+
+<p class="body-text fade">面白いのは、この法則が「不正の検出」に使えるという事実だ。自然に生まれた数字は法則に従う。人間が頭のなかで「もっともらしい数字」を捏造すると、無意識に先頭桁を均等に散らばらせてしまう。5や7や8を使いすぎ、1を少なくする。この「対数感覚の欠如」が、データの中に痕跡として残る。</p>
+
+<p class="body-text fade">ただし、忘れてはならないことがある。ベンフォードの法則は万能ではない。すべてのデータに当てはまるわけではないし、法則からの逸脱が即座に不正を意味するわけでもない。法則は「ここを調べてみろ」と指差す道具であり、答えそのものではない。ニューカムが対数表の汚れに気づいてから140年以上、この素朴な観察は、不正会計からSNSのボット検出まで、意外な場所で力を発揮し続けている。</p>
+
+<div class="culture-block fade">
+  <p class="culture-title">作品への登場</p>
+  <p class="culture-desc">映画『ザ・コンサルタント』（2016年、ベン・アフレック主演）では、主人公がベンフォードの法則を使ってロボティクス企業の資金横領を暴く。Netflixのドキュメンタリー『Connected: The Hidden Science of Everything』（2020年）のエピソード「Digits」では、法則が火山のサイズから選挙の不正検出、SNSのボット発見まで幅広く取り上げられた。</p>
+</div>
+
+<div class="img-placeholder fade">
+  <div class="img-ph-area">
+    <span class="img-ph-icon">📊</span>
+    <p class="img-ph-title">イラスト①｜対数表を前にした天文学者ニューカム</p>
+    <p class="img-ph-desc">19世紀の書斎で、分厚い対数表の前半ページの汚れに首をかしげるニューカムの姿。後半ページはきれいなまま。</p>
+    <div class="img-ph-prompt">
+      <p class="img-ph-prompt-lbl">鳥獣戯画タッチ画像プロンプト</p>
+      <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, an anthropomorphic frog scholar in 19th century study examining a large open book of logarithm tables, the early pages visibly worn and darkened while later pages remain clean, the frog tilts its head curiously, Japanese scroll painting aesthetic, no text</p>
+    </div>
+  </div>
+  <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+</div>
+
+<div class="img-placeholder fade">
+  <div class="img-ph-area">
+    <span class="img-ph-icon">🔍</span>
+    <p class="img-ph-title">イラスト②｜数字のパレードと対数のものさし</p>
+    <p class="img-ph-desc">1から9までの数字が行進している。先頭の1が大きく堂々と歩き、後ろに行くほど小さくなる。対数スケールの不均等な目盛りの上を歩いている構図。</p>
+    <div class="img-ph-prompt">
+      <p class="img-ph-prompt-lbl">鳥獣戯画タッチ画像プロンプト</p>
+      <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, a parade of anthropomorphic digits 1 through 9 as frogs and rabbits marching on a logarithmic ruler, digit 1 is the tallest and most confident, each subsequent digit progressively smaller, Japanese scroll painting aesthetic, no text</p>
+    </div>
+  </div>
+  <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+</div>
+
+<div class="sec-rule fade"><span class="sec-label">参考文献</span><div class="sec-line"></div></div>
+<div class="ref-list">
+  <div class="ref-item fade"><div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1881</span></div><p class="ref-title"><a href="https://www.jstor.org/stable/2369148" target="_blank" rel="noopener">Note on the Frequency of Use of the Different Digits in Natural Numbers</a></p><p class="ref-author">Simon Newcomb</p><p class="ref-desc">先頭桁の偏りを最初に記録した2ページの短い論文。American Journal of Mathematics掲載。</p></div>
+  <div class="ref-item fade"><div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1938</span></div><p class="ref-title"><a href="https://en.wikipedia.org/wiki/Benford%27s_law" target="_blank" rel="noopener">The Law of Anomalous Numbers</a></p><p class="ref-author">Frank Benford</p><p class="ref-desc">20分野・20,229件のデータで法則を検証。Proceedings of the American Philosophical Society掲載。</p></div>
+  <div class="ref-item fade"><div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1995</span></div><p class="ref-title"><a href="https://hill.math.gatech.edu/publications/PAPER%20PDFS/TheFirstDigitPhenomenonAmericanScientist1996.pdf" target="_blank" rel="noopener">A Statistical Derivation of the Significant-Digit Law</a></p><p class="ref-author">Theodore P. Hill</p><p class="ref-desc">ランダムサンプル混合がベンフォードの法則に収束することの数学的証明。</p></div>
+  <div class="ref-item fade"><div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2012</span></div><p class="ref-title"><a href="https://www.wiley.com/en-us/Benford's+Law:+Applications+for+Forensic+Accounting,+Auditing,+and+Fraud+Detection-p-9781118152850" target="_blank" rel="noopener">Benford's Law: Applications for Forensic Accounting, Auditing, and Fraud Detection</a></p><p class="ref-author">Mark J. Nigrini</p><p class="ref-desc">法則の会計監査・不正検出への応用を体系的にまとめた実務書。</p></div>
+  <div class="ref-item fade"><div class="ref-meta"><span class="ref-type">記事</span><span class="ref-year">2025</span></div><p class="ref-title"><a href="https://www.scientificamerican.com/article/what-is-benfords-law-why-this-unexpected-pattern-of-numbers-is-everywhere/" target="_blank" rel="noopener">What Is Benford's Law? Why This Unexpected Pattern of Numbers Is Everywhere</a></p><p class="ref-author">Scientific American</p><p class="ref-desc">法則の概説と近年の応用事例をまとめた一般向け解説記事。</p></div>
+</div>
+
+<div class="note-box fade">
+  <strong>📌 この記事について</strong><br>
+  ベンフォードの法則は1881年のニューカムと1938年のベンフォードの原著論文に遡る、140年以上の歴史を持つ統計的観察だ。法則の数学的基盤は1995年のヒルの定理で示されている。不正検出への応用はニグリニの研究と実務に基づく。数値（30.1%、17.6%等）は公式から導出した理論値であり、広く引用されている。
+</div>
+
+<div class="tags fade">
+  <span class="tag">数学</span><span class="tag">統計学</span><span class="tag">対数</span><span class="tag">不正検出</span><span class="tag">ベンフォードの法則</span><span class="tag">フォレンジック会計</span>
+</div>
+
+</div><!-- /article-main -->
+
+<div class="article-side">
+  <div style="position:sticky;top:40px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">30.1%</p>
+      <p class="sidebar-text">自然データの先頭桁が<strong>1</strong>になる確率。均等なら11.1%のはずが、実際はその約3倍。</p>
+    </div>
+    <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">1881年にニューカムが発見したが半世紀忘れられた。1938年にベンフォードが再発見し、大規模データで検証。<strong>スティグラーの名称法則</strong>の典型例。</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">映画『ザ・コンサルタント』（2016）、Netflix『Connected』（2020）エピソード「Digits」。</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— 正規分布はなぜどこにでもいるか<br>— 相関は因果ではない<br>— フィボナッチ数列と自然のパターン<br>— 誕生日のパラドックス</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">140年以上の歴史を持つ統計的観察。数学的証明あり（ヒル, 1995）。不正検出への応用はアメリカの裁判所で認められている。</p></div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL -->
+<div style="max-width:900px;margin:0 auto;padding:12px 48px 0;">
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;display:flex;align-items:center;gap:12px;">読後の対話<span style="flex:1;height:1px;background:#e0d8c8;"></span></p>
+</div>
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// ベンフォードの法則 を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;家計簿の先頭桁、ほんとに偏ってるのかな</span></div>
+      <span class="t-output" id="to1">試してみるといい。レシートを30枚くらい集めて、金額の先頭桁を数えるだけ。<em>1が最多になるはずだ。</em>ならなかったら、それはそれで面白い——なぜ従わないかを考える余地がある。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;不正検出に使えるって、万能なの？</span></div>
+      <span class="t-output" id="to2">万能ではない。法則は<strong>「ここを見ろ」</strong>と旗を立てるだけだ。旗が立った場所を調べるのは人間の仕事。道具としてはそういう位置づけ。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局なんで1が多いの、一言で言うと</span></div>
+      <span class="t-output" id="to3">世界は足し算じゃなくて<em>掛け算</em>で動いているから。掛け算の世界では対数が自然なものさしで、そのものさしでは1が占める幅がいちばん広い。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ニューカムがちょっとかわいそう</span></div>
+      <span class="t-output" id="to4">57年早すぎた。でもスティグラーの法則によれば、<em>発見者の名前が残らないこと自体が法則だ。</em>ニューカム自身がそれを聞いたら、きっと苦笑いするだろうね。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# へえ、数字も平等じゃないのか</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="/birthday_paradox"><p class="related-card-tag">数学・論理</p><p class="related-card-title">誕生日のパラドックス</p><p class="related-card-desc">23人で50%——直感が確率を見誤る理由を、シミュレーターで体験する。</p><p class="related-card-arrow">読む →</p></a>
+    <a class="related-card" href="#"><p class="related-card-tag">認知バイアス</p><p class="related-card-title">基準率の無視（ベイズの定理）</p><p class="related-card-desc">検査陽性＝病気？ 確率の直感が最も裏切られる瞬間。</p><p class="related-card-arrow">近日公開</p></a>
+  </div>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+function toggleTip(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.tip'))
+    document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+});
+
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+
+// ========== BENFORD EXPERIENCE ==========
+const benfordExpected=[30.1,17.6,12.5,9.7,7.9,6.7,5.8,5.1,4.6];
+
+const dataSets=[
+  {name:"世界の国の面積（km²）",data:[17098242,9984670,9596961,8515767,2780400,2724900,2381741,1964375,1285216,1141748,1030700,923768,881912,796095,756102,710850,676578,652230,622984,581730,527968,513120,462840,449964,390757,357022,338424,330803,309500,301340,267668,245857,238535,236800,214969,196722,185180,181035,176215,163820]},
+  {name:"世界の都市人口（2023年推定）",data:[37400068,28514000,25582000,21650000,21540000,20284000,16536000,16047000,15190000,14942000,14681000,13923000,13854000,12712000,12252000,11497000,11235000,10979000,10722000,9872000,9540000,9339000,8930000,8305000,7884000,7565000,7104000,6862000,6513000,5827000,5489000,5303000,4976000,4563000,4012000,3899000,3571000,3207000,2885000,2709000]},
+  {name:"日本の河川の長さ（km）",data:[367,268,256,249,229,210,196,194,186,183,173,168,164,163,153,150,146,143,142,139,136,133,129,126,124,120,116,114,113,110,107,104,102,99,96,94,91,87,84,81]},
+  {name:"企業の売上高（架空・億円）",data:[1245,892,3421,567,2134,789,1567,423,6789,345,1890,4321,156,2345,671,1023,5678,234,1456,867,3210,512,1789,945,2567,123,4567,398,1345,678,2890,156,1234,567,3456,789,1678,234,4123,891]}
+];
+
+let currentDSIndex=0;
+
+function formatNum(n){
+  // Always display as readable integer with commas
+  if(n>=1){return Math.round(n).toLocaleString();}
+  return n.toString();
+}
+
+function showDataSet(idx){
+  const ds=dataSets[idx];
+  const el=document.getElementById('bfDataDisplay');
+  document.getElementById('bfTitle').textContent=ds.name+'から先頭桁を数えよう';
+  el.innerHTML='';
+  ds.data.forEach(n=>{
+    const s=document.createElement('span');
+    s.textContent=formatNum(n);
+    s.style.cssText='font-family:"JetBrains Mono",monospace;font-size:11px;padding:3px 7px;background:#f3efe6;border:1px solid #e0d8c8;color:#3d3020;';
+    el.appendChild(s);
+  });
+  document.getElementById('bfResult').style.display='none';
+  document.getElementById('bfCountBtn').disabled=false;
+}
+
+function getFirstDigit(n){
+  const s=Math.abs(n).toExponential();
+  for(let i=0;i<s.length;i++){
+    if(s[i]>='1'&&s[i]<='9') return parseInt(s[i]);
+  }
+  return 1;
+}
+
+function countDigits(){
+  const ds=dataSets[currentDSIndex];
+  const counts=Array(9).fill(0);
+  ds.data.forEach(n=>{counts[getFirstDigit(n)-1]++;});
+  const total=ds.data.length;
+  const pcts=counts.map(c=>(c/total*100));
+  
+  const barsEl=document.getElementById('bfBars');
+  barsEl.innerHTML='';
+  for(let i=0;i<9;i++){
+    const row=document.createElement('div');
+    row.className='bf-bar-row';
+    const maxW=280;
+    const expW=benfordExpected[i]/30.1*maxW;
+    row.innerHTML='<span class="bf-digit">'+(i+1)+'</span>'+
+      '<div class="bf-bar-track"><div class="bf-bar expected" style="width:'+expW+'px;opacity:.4;position:absolute;"></div><div class="bf-bar user" style="width:0;position:relative;z-index:1;"></div></div>'+
+      '<span class="bf-pct">'+pcts[i].toFixed(1)+'%</span>';
+    barsEl.appendChild(row);
+  }
+  document.getElementById('bfResult').style.display='block';
+  document.getElementById('bfCountBtn').disabled=true;
+  
+  setTimeout(function(){
+    barsEl.querySelectorAll('.bf-bar.user').forEach(function(bar,i){
+      bar.style.width=(pcts[i]/30.1*280)+'px';
+    });
+  },50);
+  
+  const verdict=document.getElementById('bfVerdict');
+  verdict.style.display='block';
+  verdict.innerHTML='<strong style="color:#e8c56a;">結果:</strong> '+ds.data.length+'件のデータで、先頭桁1の出現率は<strong>'+pcts[0].toFixed(1)+'%</strong>（法則の予測: 30.1%）。9の出現率は<strong>'+pcts[8].toFixed(1)+'%</strong>（予測: 4.6%）。データが多いほど予測に近づく傾向がある。';
+}
+
+function newDataSet(){
+  currentDSIndex=(currentDSIndex+1)%dataSets.length;
+  showDataSet(currentDSIndex);
+}
+
+showDataSet(0);
+
+// Terminal animation
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5100},{id:'to4',delay:5700},
+  {id:'tl5',delay:6800}
+];
+let tStarted=false;
+tseq.forEach(function(s){var el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(function(entries){
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(function(s){
+      setTimeout(function(){
+        var el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>

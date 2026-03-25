@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>基準率の無視（ベイズの定理） — Qualia Journal</title>
+<meta name="description" content="99%正確な検査で陽性でも、実際に病気である確率は驚くほど低い。基準率を無視する人間の直感の罠。">
+<link rel="canonical" href="https://qualiajournal.com/base_rate_neglect">
+<meta property="og:title" content="基準率の無視（ベイズの定理） — Qualia Journal">
+<meta property="og:description" content="99%正確な検査で陽性でも、実際に病気である確率は驚くほど低い。基準率を無視する人間の直感の罠。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/base_rate_neglect">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="基準率の無視（ベイズの定理） — Qualia Journal">
+<meta name="twitter:description" content="99%正確な検査で陽性でも、実際に病気である確率は驚くほど低い。基準率を無視する人間の直感の罠。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type='text/javascript' src='https://api.netlify.com/6KDNKdmrcvPP_PKSuJxu3NB5HnLXrC9kUkgz5iauUjmO3NsLM-y_VRpPN_0FmGcFXl7qVQc3Evn7Qukg09ZjgSqkCm9jcP_8l_EbERZHSHguvRxcdWLxHXDq2lwgcT31UVz7Fqe571YUA8y7gK672tIyI98CneeDZ67J_7pcIFtKhg1MInDvM5kKFG92-Yn1l96W6Go6GglMeJbV7Af5KQO7PyJ4zmgvaarTaP4Y2kS--xHZqpqq-sky72mRlhNM0mgQ6zyb-6sMlx8cTaTS4W3aKLpr30G_qZKjiZ6r8I7Q-InPhdP1ESnHnzWhM4PrbvO_QPZlfxaO4vo8SqJditQ99RFfi8Zsx04pOXWgMCdiLkADsRDDnQBOcCXrTMccTlbpaZ8ki9B6SAOIS3bsCW7RJkEixTn1rhaEpbfyM0-lHBGrG3N25d0aVI4sFBB1bTB-lvC1tu9FXbQDYrlDOd_GqikRjL4SriovI9tie1zJW4mJFyR-XSyNlvhJEzG4OywThvaCQq7u9ru8-2PiisVrCnC0wkukcCSQ'></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"基準率の無視（ベイズの定理）","description":"99%正確な検査で陽性でも、実際に病気である確率は驚くほど低い。基準率を無視する人間の直感の罠。","author":{"@type":"Organization","name":"Qualia Journal"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/base_rate_neglect","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"数学・論理","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"基準率の無視（ベイズの定理）"}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}
+.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;margin-bottom:6px;}
+.masthead-date{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;letter-spacing:.08em;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#fff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}.t-exit .t-input{color:#555;}.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+.quiz-wrap{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.quiz-header{background:#3d3020;color:white;padding:14px 20px;}
+.quiz-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.quiz-body{padding:24px 20px;}
+.quiz-scenario{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.85;margin-bottom:20px;}
+.quiz-scenario strong{color:#1a1208;font-weight:600;}
+.quiz-scenario em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.quiz-options{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.quiz-opt{padding:12px 16px;border:1px solid #c8bfaa;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;transition:all .15s;display:flex;align-items:center;gap:10px;user-select:none;}
+.quiz-opt:hover{border-color:#8b1a1a;background:#f3efe6;}
+.quiz-opt.selected{border-color:#8b1a1a;background:rgba(139,26,26,.06);}
+.quiz-opt.correct{border-color:#1a5a30;background:rgba(26,90,48,.08);color:#1a5a30;}
+.quiz-opt.wrong{border-color:#c4392a;background:rgba(196,57,42,.06);color:#c4392a;}
+.quiz-opt-letter{width:24px;height:24px;border-radius:50%;border:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;}
+.quiz-opt.correct .quiz-opt-letter{background:#1a5a30;color:white;border-color:#1a5a30;}
+.quiz-opt.wrong .quiz-opt-letter{background:#c4392a;color:white;border-color:#c4392a;}
+.quiz-btn{padding:10px 24px;background:#8b1a1a;color:white;border:none;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:background .15s;}
+.quiz-btn:hover{background:#6b1515;}
+.quiz-btn:disabled{background:#c8bfaa;cursor:default;}
+.quiz-result{margin-top:16px;padding:16px 18px;background:#f3efe6;border-left:3px solid #8b1a1a;display:none;}
+.quiz-result.show{display:block;}
+.quiz-result p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.quiz-result p strong{color:#1a1208;font-weight:600;}
+.quiz-result p em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.freq-table{margin:20px 0;width:100%;border-collapse:collapse;font-family:'Source Sans 3',sans-serif;font-size:13px;}
+.freq-table th{background:#3d3020;color:white;padding:10px 14px;text-align:left;font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;}
+.freq-table td{padding:10px 14px;border-bottom:1px solid #e0d8c8;color:#3d3020;font-weight:300;}
+.freq-table tr:last-child td{border-bottom:none;}
+.freq-table .num{font-family:'Playfair Display',serif;font-weight:700;font-size:15px;}
+.freq-table .hl{color:#8b1a1a;}
+.freq-table .sub{color:#b0a090;font-size:11px;}
+.freq-table tbody tr:nth-child(even){background:#f3efe6;}
+.bayes-calc{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.bayes-header{background:#3d3020;color:white;padding:14px 20px;}
+.bayes-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.bayes-body{padding:24px 20px;}
+.bayes-row{display:flex;align-items:center;gap:16px;margin-bottom:18px;}
+.bayes-label{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:400;color:#3d3020;min-width:160px;}
+.bayes-slider{flex:1;-webkit-appearance:none;height:4px;background:#e0d8c8;border-radius:2px;outline:none;}
+.bayes-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#8b1a1a;cursor:pointer;}
+.bayes-val{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#8b1a1a;min-width:50px;text-align:right;}
+.bayes-output{margin-top:20px;padding:16px 18px;background:#f3efe6;border-left:3px solid #8b1a1a;}
+.bayes-answer{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:#8b1a1a;margin-bottom:6px;}
+.bayes-explain{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.dot-sim{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.dot-sim-header{background:#3d3020;color:white;padding:14px 20px;}
+.dot-sim-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.dot-sim-body{padding:24px 20px;}
+.dot-sim-controls{display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap;}
+.dot-sim-controls label{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;}
+.dot-sim-controls select{font-family:'Source Sans 3',sans-serif;font-size:13px;padding:4px 8px;border:1px solid #c8bfaa;background:#f3efe6;color:#3d3020;}
+.dot-sim-btn{padding:8px 20px;background:#8b1a1a;color:white;border:none;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;cursor:pointer;}
+.dot-sim-btn:hover{background:#6b1515;}
+.dot-canvas-wrap{position:relative;width:100%;aspect-ratio:5/2;background:#faf8f3;border:1px solid #e0d8c8;margin-bottom:16px;overflow:hidden;}
+.dot-canvas-wrap canvas{width:100%;height:100%;display:block;}
+.dot-legend{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:12px;}
+.dot-legend-item{display:flex;align-items:center;gap:6px;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;}
+.dot-legend-swatch{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.dot-sim-stats{padding:14px 18px;background:#f3efe6;border-left:3px solid #8b1a1a;}
+.dot-sim-stats p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.dot-sim-stats p strong{color:#1a1208;font-weight:600;}
+.dot-sim-stats p em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.dot-sim-big{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#8b1a1a;margin-bottom:4px;}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+@media(max-width:720px){
+.cover{grid-template-columns:1fr;padding:40px 20px 32px;}.cover-right{display:none;}.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.summary-box{padding:0 20px;}.article{grid-template-columns:1fr;padding:0 20px;}.article-side{display:none;}.misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}.terminal-wrap{padding:0 20px 40px;}.related{padding:32px 20px;}.related-grid{grid-template-columns:1fr;}.tip-box{left:0;transform:none;width:200px;}.tip-box::after{left:20px;transform:none;}.scenario{padding:0 20px;}.bayes-row{flex-direction:column;align-items:stretch;gap:8px;}.bayes-label{min-width:auto;}.dot-sim-controls{flex-direction:column;align-items:stretch;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="masthead"><p class="masthead-name"><a href="/" style="color:inherit;text-decoration:none;">Qualia Journal</a></p><p class="masthead-date"></p></div>
+<div class="cover fade"><div class="cover-left"><p class="cover-kicker">数学・論理</p><h1>検査は陽性。<br>でも病気の確率は<em>たった8%</em>。</h1><p class="cover-deck">正しい情報が揃っていても、人はそれを正しく使えない。基準率の無視は、直感と確率が最も激しく衝突する場所にある。</p><div class="cover-byline"><span>Bayes</span><span>Probability</span><span>Medical Testing</span></div></div><div class="cover-right"><div class="est-card"><span class="est-label">Est.</span><span class="est-year">1973</span><p class="est-event">カーネマンとトヴェルスキーが「予測の心理学」を発表。基準率の無視を実験的に初めて示した。</p><p class="est-context">この年、ベトナム戦争の和平協定が締結。シドニー・オペラハウスが開館。第四次中東戦争とオイルショックが世界経済を揺るがした。</p></div><p class="cover-aside"><strong>基準率の無視（base-rate neglect）</strong>とは、ある出来事が「そもそもどれくらいの頻度で起きるか」という背景情報を無視し、目の前の手がかりだけで判断してしまう認知バイアスのこと。</p></div></div>
+<div class="scenario fade"><div class="scenario-inner"><p>健康診断の結果が返ってきた。封筒を開けると「要精密検査」の文字。心臓がどくんと鳴る。頭の中はもう「自分は病気だ」でいっぱいになっている。検査の精度が高いと聞いていれば、なおさらだ。陽性と出たのだから、病気に違いない——そう考えるのは、ごく自然なことに思える。</p><p>同じことは医療以外でも起きている。「この候補者は怪しい経歴書だから不採用だろう」「あの目撃者は80%の確率で正しいのだから、きっと正しい」。根拠があるように見える判断が、実はある情報をまるごと無視している。</p><p>その情報を「基準率」と呼ぶ。この記事は、人間の直感が確率を最も派手に裏切る瞬間の話だ。</p></div></div>
+<div class="meta-bar fade"><div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div><span class="difficulty-text">中級 — 四則演算ができれば十分</span></div><div class="meta-sep"></div><div class="meta-item"><span class="meta-label">読了時間</span><span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 15 分</span></div></div>
+<div class="summary-box fade"><div class="summary-inner"><span class="summary-icon">この記事では</span><p class="summary-text">確率に関する問いに直感で答え、その直感がどこでどう裏切られるかを体験する。そして、なぜ人間の脳が「そもそもの確率」を無視してしまうのか、そのメカニズムに迫る。</p></div></div>
+
+<div class="article">
+<div class="article-main">
+
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">ある街で、タクシーがひき逃げをした。</h2>
+<p class="body-text fade">夜の街で、1台のタクシーがひき逃げ事故を起こした。この街にはグリーン・タクシーとブルー・タクシーの2社がある。<strong>街を走るタクシーの85%はグリーンで、15%がブルーだ。</strong>目撃者がひとり、「あれはブルーのタクシーだった」と証言した。裁判所が同じ条件下でこの目撃者の識別能力を検査したところ、<strong>80%の確率で正しく色を見分ける</strong>ことがわかった。</p>
+<p class="body-text fade">さて、問いはこうだ。事故を起こしたタクシーがブルーである確率は、いくつだろうか。多くの人は「80%」と答える。目撃者が80%正しいのだから、それがそのまま答えだと感じてしまう。しかし、正解は<em>約41%</em>だ。ブルーである可能性のほうが低い。</p>
+
+<!-- SVG 1: ベイズ更新フロー（修正版） -->
+<div style="overflow-x:auto;margin:28px 0;" class="fade">
+<svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <rect x="10" y="15" width="200" height="80" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="110" y="40" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55" font-weight="600" letter-spacing=".08em">基準率（PRIOR）</text>
+  <text x="110" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">グリーン 85%</text>
+  <text x="110" y="82" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">ブルー 15%</text>
+  <text x="240" y="60" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="20" fill="#8b1a1a">→</text>
+  <rect x="270" y="15" width="170" height="80" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="355" y="40" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55" font-weight="600" letter-spacing=".08em">新しい証拠</text>
+  <text x="355" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">目撃「ブルーだ」</text>
+  <text x="355" y="82" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">（識別精度 80%）</text>
+  <text x="470" y="60" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="20" fill="#8b1a1a">→</text>
+  <rect x="500" y="15" width="170" height="80" rx="4" fill="rgba(139,26,26,.06)" stroke="#8b1a1a"/>
+  <text x="585" y="40" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="600" letter-spacing=".08em">事後確率</text>
+  <text x="585" y="72" text-anchor="middle" font-family="'Playfair Display',serif" font-size="24" fill="#8b1a1a" font-weight="700">約 41%</text>
+  <line x1="40" y1="120" x2="640" y2="120" stroke="#e0d8c8" stroke-width="0.5"/>
+  <text x="340" y="144" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">多くの人は中央の「80%」だけを見て判断する</text>
+  <text x="340" y="166" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#8b1a1a" font-weight="600">左の「基準率」を組み合わせなければ、正解にたどり着けない</text>
+  <text x="340" y="192" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#b0a090">これがベイズ更新（Bayesian updating）の構造</text>
+</svg>
+</div>
+
+<p class="body-text fade">なぜ80%ではなく41%なのか。直感に反する理由は、<strong>グリーンのタクシーが圧倒的に多い</strong>という事実にある。街にタクシーが100台いるとしよう。85台がグリーン、15台がブルーだ。目撃者の精度が80%なら、ブルー15台のうち12台は正しく「ブルー」と識別される。しかし同時に、グリーン85台のうち17台が「ブルー」と<em>誤認</em>される（85 × 0.2 = 17）。つまり「ブルーだ」という証言が出る29回のうち、本当にブルーなのは12回だけ。12 ÷ 29 = 約41%。</p>
+
+<table class="freq-table fade"><thead><tr><th>実際の色</th><th>台数</th><th>「ブルー」と証言</th><th>「グリーン」と証言</th></tr></thead><tbody><tr><td>ブルー</td><td class="num">15</td><td class="num hl">12（正しい）</td><td class="num sub">3</td></tr><tr><td>グリーン</td><td class="num">85</td><td class="num hl">17（誤認）</td><td class="num sub">68</td></tr><tr><td><strong>合計</strong></td><td class="num">100</td><td class="num hl"><strong>29</strong></td><td class="num sub">71</td></tr></tbody></table>
+
+<p class="body-text fade">この表を眺めれば、構造は明快だ。「ブルー」という証言が29件あるうち、本物のブルーは12件しかない。<strong>基準率</strong>——「そもそもブルーは15%しかない」という情報——を考慮に入れなければ、目撃証言の信頼性を正しく評価できない。これが<span class="tip" onclick="toggleTip(this)">基準率の無視<span class="tip-box"><strong>基準率の無視（base-rate neglect）</strong><br>ある出来事が「そもそもどの程度の頻度で起きるか」という背景の確率を無視し、個別の手がかりや証言だけに基づいて判断してしまうバイアス。</span></span>と呼ばれる現象の核心だ。</p>
+
+<hr class="art-rule">
+<h2 class="fade">なぜ直感は、基準率を無視するのか。</h2>
+<p class="body-text fade">1973年、イスラエル出身の心理学者<span class="tip" onclick="toggleTip(this)">ダニエル・カーネマン<span class="tip-box"><strong>Daniel Kahneman（1934–2024）</strong><br>イスラエル生まれ、アメリカで活躍した心理学者。行動経済学の創始者の一人。2002年ノーベル経済学賞受賞。著書『ファスト&スロー』で知られる。</span></span>と<span class="tip" onclick="toggleTip(this)">エイモス・トヴェルスキー<span class="tip-box"><strong>Amos Tversky（1937–1996）</strong><br>イスラエルの認知心理学者。カーネマンとの共同研究で、人間の判断におけるヒューリスティクスとバイアスの体系的研究を開拓した。</span></span>が「予測の心理学（On the Psychology of Prediction）」という論文を発表した。この論文の中で二人は、被験者に架空の人物「ジャック」の人物スケッチを見せた。几帳面で、保守的で、数学パズルが趣味——。そして「この人はエンジニアか弁護士か」と尋ねた。</p>
+<p class="body-text fade">被験者にはもう一つ情報が与えられていた。ジャックが属する集団の構成比だ。あるグループでは「エンジニア70人、弁護士30人」、別のグループでは「エンジニア30人、弁護士70人」と伝えられた。理屈の上では、この比率——基準率——が回答に強く影響するはずだ。ところが被験者の回答はほとんど変わらなかった。人物スケッチが「エンジニアっぽい」ので、集団の構成比がどうであれ「エンジニアだ」と判断した。</p>
+
+<!-- SVG 2: 代表性 vs 基準率（修正版） -->
+<div style="overflow-x:auto;margin:28px 0;" class="fade">
+<svg viewBox="0 0 660 200" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <rect x="10" y="10" width="280" height="180" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="150" y="38" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#8b1a1a" font-weight="600" letter-spacing=".1em">目の前の手がかり</text>
+  <text x="150" y="70" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020">「几帳面で保守的」</text>
+  <text x="150" y="94" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020">「数学パズルが趣味」</text>
+  <text x="150" y="128" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">↓ エンジニアっぽい！</text>
+  <text x="150" y="162" text-anchor="middle" font-family="'Playfair Display',serif" font-size="26" fill="#8b1a1a" font-weight="700">強く反応</text>
+  <text x="330" y="108" text-anchor="middle" font-family="'Playfair Display',serif" font-size="16" fill="#b0a090" font-style="italic">vs</text>
+  <rect x="370" y="10" width="280" height="180" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="510" y="38" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#1a5a30" font-weight="600" letter-spacing=".1em">背景の統計情報</text>
+  <text x="510" y="70" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020">集団にエンジニアは30%</text>
+  <text x="510" y="94" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020">弁護士は70%</text>
+  <text x="510" y="128" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">↓ 弁護士の可能性が高い</text>
+  <text x="510" y="162" text-anchor="middle" font-family="'Playfair Display',serif" font-size="26" fill="#b0a090" font-weight="700">無視される</text>
+</svg>
+</div>
+
+<p class="body-text fade">カーネマンとトヴェルスキーはこれを<span class="tip" onclick="toggleTip(this)">代表性ヒューリスティック<span class="tip-box"><strong>代表性ヒューリスティック（representativeness heuristic）</strong><br>あるものが典型的なカテゴリにどれだけ似ているかで確率を判断する心理的近道。「エンジニアっぽい」→「エンジニアだろう」という推論がこれにあたる。</span></span>で説明した。人は、ある人物や出来事がどれだけ「典型例に似ているか」で確率を判断する。似ていれば確率が高い、似ていなければ低い——と。この近道は日常では便利だが、確率の問題ではしばしば裏目に出る。「似ている」ことと「確率が高い」ことは、まったく別の話だからだ。</p>
+
+<div class="misconception fade"><div class="misconception-header"><span class="misconception-hl">誤解あるある</span></div><div class="misconception-body"><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">よくある誤解</p><p class="mis-text">検査が陽性で、精度が90%なら、自分が病気である確率も90%だ。</p></div><div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">病気の人が人口の1%しかいなければ、陽性でも実際に病気である確率は約8%にすぎない。精度と事後確率はまったく異なる数字だ。</p></div></div><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">よくある誤解</p><p class="mis-text">目撃者が80%の確率で正しいなら、その証言は80%信頼できる。</p></div><div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">対象となる出来事がまれな場合、80%の精度でも誤認が正解を上回ることがある。タクシー問題では41%まで下がる。</p></div></div><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">よくある誤解</p><p class="mis-text">基準率の無視は「無知」の問題で、統計を学べば解消される。</p></div><div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">医師ですら、マンモグラフィの結果を10倍も過大評価することがある。知識があっても直感のバイアスは消えない。</p></div></div></div></div>
+
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">まず、直感で答えてみてほしい。</h2>
+<p class="body-text fade">これから2つの問いを出す。どちらも必要な情報はすべて与えられている。計算する前に、まず直感で答えてほしい。その直感がどこでどうずれるかを体験するのが、この記事の核心だ。</p>
+<p class="body-text fade"><strong>問い1: マンモグラフィ問題。</strong>ある年齢層の女性が定期検診でマンモグラフィを受ける。乳がんの有病率は1%。乳がんの人が検査を受けると、80%の確率で陽性になる。乳がんでない人が検査を受けても、9.6%の確率で陽性になる。ある女性の検査結果が陽性だった。この女性が実際に乳がんである確率は？</p>
+
+<div class="quiz-wrap fade" id="quiz1"><div class="quiz-header"><span class="quiz-hl">問い1 ─ マンモグラフィ問題</span></div><div class="quiz-body"><p class="quiz-scenario">有病率: <em>1%</em>　/　検出率（感度）: <em>80%</em>　/　偽陽性率: <em>9.6%</em><br>陽性と出た女性が、実際に乳がんである確率は？</p><div class="quiz-options" id="q1opts"><div class="quiz-opt" onclick="selectQ(1,this,0)"><span class="quiz-opt-letter">A</span>約80%</div><div class="quiz-opt" onclick="selectQ(1,this,1)"><span class="quiz-opt-letter">B</span>約50%</div><div class="quiz-opt" onclick="selectQ(1,this,2)"><span class="quiz-opt-letter">C</span>約8%</div><div class="quiz-opt" onclick="selectQ(1,this,3)"><span class="quiz-opt-letter">D</span>約1%</div></div><button class="quiz-btn" id="q1btn" disabled onclick="checkQ(1)">答え合わせ</button><div class="quiz-result" id="q1result"><p><strong>正解: C — 約7.8%</strong></p><p>1000人の女性を想像してほしい。<em>10人</em>が乳がんで、そのうち<em>8人</em>が陽性になる。残り990人のうち、<em>約95人</em>が偽陽性になる。陽性と出た103人のうち、本当に乳がんなのは8人だけ。8 ÷ 103 = 約<em>7.8%</em>。1982年、医師のデイヴィッド・エディがこの問題を医師100人に出したところ、<strong>95人が「70〜80%」と答えた</strong>。専門家でさえ、基準率を無視した。</p></div></div></div>
+
+<p class="body-text fade"><strong>問い2: タクシー問題。</strong>先ほど紹介した問題だ。あらためて、直感で答えてみてほしい。</p>
+
+<div class="quiz-wrap fade" id="quiz2"><div class="quiz-header"><span class="quiz-hl">問い2 ─ タクシー問題</span></div><div class="quiz-body"><p class="quiz-scenario">街のタクシー: グリーン <em>85%</em> / ブルー <em>15%</em><br>目撃者の識別精度: <em>80%</em><br>「ブルーだった」と証言。実際にブルーである確率は？</p><div class="quiz-options" id="q2opts"><div class="quiz-opt" onclick="selectQ(2,this,0)"><span class="quiz-opt-letter">A</span>約80%</div><div class="quiz-opt" onclick="selectQ(2,this,1)"><span class="quiz-opt-letter">B</span>約60%</div><div class="quiz-opt" onclick="selectQ(2,this,2)"><span class="quiz-opt-letter">C</span>約41%</div><div class="quiz-opt" onclick="selectQ(2,this,3)"><span class="quiz-opt-letter">D</span>約15%</div></div><button class="quiz-btn" id="q2btn" disabled onclick="checkQ(2)">答え合わせ</button><div class="quiz-result" id="q2result"><p><strong>正解: C — 約41%</strong></p><p>100台中、ブルー15台のうち12台が正しく「ブルー」と識別される。グリーン85台のうち17台が「ブルー」と誤認される。「ブルー」証言は合計29件、うち本物は12件。12 ÷ 29 = 約<em>41%</em>。目撃者が「ブルーだ」と言っても、<strong>実際にはグリーンである可能性のほうが高い</strong>。</p></div></div></div>
+
+<p class="body-text fade">2つの問いに共通する構造が見えてきただろうか。どちらも、「検査の精度」や「目撃者の正確さ」という<em>個別の手がかり</em>に引きずられ、「そもそもどのくらいの頻度で起きるか」という<em>基準率</em>が頭から消えてしまう。これがベイズの定理が教えてくれることであり、人間の直感が最も苦手とする計算だ。</p>
+
+<p class="body-text fade">ここで「数字ではなく目で見て」確かめてみよう。下のシミュレーターは、1000人を1000個のドットで表示する。「検査を実行」を押すと、陽性判定を受けた人がハイライトされる。その中で本当に病気なのは、ごくわずかだ。</p>
+
+<!-- 1000人の広場シミュレーター -->
+<div class="dot-sim fade" id="dotSim"><div class="dot-sim-header"><span class="dot-sim-hl">1000人の広場 — 基準率を目で見る</span></div><div class="dot-sim-body"><div class="dot-sim-controls"><label>シナリオ: <select id="dotScenario" onchange="resetDotSim()"><option value="mammo">マンモグラフィ（有病率1%, 感度80%, 偽陽性9.6%）</option><option value="taxi">タクシー問題（ブルー15%, 精度80%）</option><option value="rare">まれな病気（有病率0.1%, 感度99%, 偽陽性5%）</option></select></label><button class="dot-sim-btn" id="dotRunBtn" onclick="runDotSim()">検査を実行</button><button class="dot-sim-btn" style="background:#7a6a55;" onclick="resetDotSim()">リセット</button></div><div class="dot-legend"><div class="dot-legend-item"><div class="dot-legend-swatch" style="background:#e0d8c8;"></div>未検査</div><div class="dot-legend-item"><div class="dot-legend-swatch" style="background:#8b1a1a;"></div>陽性かつ本当に該当（真陽性）</div><div class="dot-legend-item"><div class="dot-legend-swatch" style="background:#e8c56a;"></div>陽性だが実は非該当（偽陽性）</div><div class="dot-legend-item"><div class="dot-legend-swatch" style="background:#c8d8c0;"></div>陰性</div></div><div class="dot-canvas-wrap"><canvas id="dotCanvas"></canvas></div><div class="dot-sim-stats" id="dotStats" style="display:none;"><div class="dot-sim-big" id="dotBig"></div><p id="dotDesc"></p></div></div></div>
+
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">メカニズム</span><div class="sec-line"></div></div>
+<h2 class="fade">ベイズの定理——更新の技法。</h2>
+<p class="body-text fade">この問題を正しく解くための道具が、<span class="tip" onclick="toggleTip(this)">ベイズの定理<span class="tip-box"><strong>ベイズの定理（Bayes' theorem）</strong><br>事前の確率（基準率）と新しい証拠を組み合わせて、事後の確率を求める公式。1763年にトーマス・ベイズが原型を発表、ラプラスが定式化した。</span></span>だ。原理はシンプルで、3つの情報を組み合わせる。①ある仮説が正しい事前の確率（基準率）、②仮説が正しいときに証拠が観察される確率（感度）、③仮説が正しくなくても証拠が観察される確率（偽陽性率）。この3つから「証拠が観察されたとき、仮説が正しい確率」を計算する。</p>
+
+<!-- SVG 3: ベイズ3ステップ（修正版） -->
+<div style="overflow-x:auto;margin:28px 0;" class="fade">
+<svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <rect x="10" y="10" width="580" height="65" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="30" y="32" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="600" letter-spacing=".1em">STEP 1</text>
+  <text x="30" y="54" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">事前確率（基準率）を確認する</text>
+  <text x="30" y="68" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">P(H)「仮説Hの確率」= 病気の有病率、タクシーの割合など</text>
+  <text x="300" y="96" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="20" fill="#8b1a1a">↓</text>
+  <rect x="10" y="105" width="580" height="65" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="30" y="127" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="600" letter-spacing=".1em">STEP 2</text>
+  <text x="30" y="149" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">証拠の強さを評価する</text>
+  <text x="30" y="163" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">感度（真陽性率）と偽陽性率を確認する</text>
+  <text x="300" y="191" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="20" fill="#8b1a1a">↓</text>
+  <rect x="10" y="200" width="580" height="65" rx="4" fill="rgba(139,26,26,.06)" stroke="#8b1a1a"/>
+  <text x="30" y="222" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="600" letter-spacing=".1em">STEP 3</text>
+  <text x="30" y="244" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#8b1a1a" font-weight="600">事後確率を求める</text>
+  <text x="30" y="259" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#8b1a1a">P(H|E)「証拠Eがあるときの仮説Hの確率」= 真陽性 ÷（真陽性 + 偽陽性）</text>
+</svg>
+</div>
+
+<p class="body-text fade">ここで「ものさし」をひとつ。検査の精度が80%とか90%とか言われても、それだけでは意味がわからない。大事なのは<strong>基準率との比率</strong>だ。基準率が50%（半々）なら、精度80%の検査は額面通り。しかし基準率が1%のように極端に低いと、精度が90%でも事後確率は一桁パーセントに落ちる。基準率が低いほど、検査が信頼性を「失う」度合いが大きい——これが直感に反するポイントだ。</p>
+
+<div class="bayes-calc fade" id="bayesCalc"><div class="bayes-header"><span class="bayes-hl">ベイズ計算機 — 数字を動かして確かめる</span></div><div class="bayes-body"><div class="bayes-row"><span class="bayes-label">基準率（有病率）</span><input type="range" class="bayes-slider" id="slBase" min="0.1" max="50" step="0.1" value="1" oninput="updateBayes()"><span class="bayes-val" id="vBase">1%</span></div><div class="bayes-row"><span class="bayes-label">感度（真陽性率）</span><input type="range" class="bayes-slider" id="slSens" min="50" max="99.9" step="0.1" value="80" oninput="updateBayes()"><span class="bayes-val" id="vSens">80%</span></div><div class="bayes-row"><span class="bayes-label">偽陽性率</span><input type="range" class="bayes-slider" id="slFP" min="0.1" max="30" step="0.1" value="9.6" oninput="updateBayes()"><span class="bayes-val" id="vFP">9.6%</span></div><div class="bayes-output"><div class="bayes-answer" id="bayesAns">7.8%</div><p class="bayes-explain" id="bayesExp">1000人中、病気の人は10人。うち8人が陽性。健康な990人のうち95人が偽陽性。陽性103人中、本当に病気なのは8人。</p></div></div></div>
+
+<p class="body-text fade">スライダーを動かしてみてほしい。基準率を10%まで上げると、同じ検査精度でも事後確率は一気に跳ね上がる。逆に基準率を0.1%まで下げると、90%の感度でもほとんど当てにならなくなる。<em>基準率こそが、事後確率の「地盤」なのだ。</em></p>
+
+<hr class="art-rule">
+<h2 class="fade">なぜ脳は基準率を捨てるのか。</h2>
+
+<div class="steps-wrap fade"><p class="steps-head">基準率が無視される3つの認知メカニズム</p><div class="step-card open" id="sc1"><div class="step-hd" onclick="tog(1)"><div class="step-nb">1</div><div class="step-tw"><div class="step-title">代表性ヒューリスティック</div><div class="step-sub">「似ているもの」に引きずられる</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>人は確率を計算する代わりに、「これは典型的なパターンにどれだけ似ているか」で判断する。人物スケッチが「エンジニアっぽい」なら、集団にエンジニアが何人いようとエンジニアだと判断する。<strong>似ていること（representativeness）と確率が高いこと（probability）は別物</strong>だが、直感はそれを区別しない。</p></div></div><div class="step-card" id="sc2"><div class="step-hd" onclick="tog(2)"><div class="step-nb">2</div><div class="step-tw"><div class="step-title">逆条件確率の混同</div><div class="step-sub">「AならばBの確率」と「BならばAの確率」を取り違える</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>「病気であるときに陽性になる確率」（感度）と「陽性であるときに病気である確率」（事後確率）は異なるのに、多くの人がこの二つを混同する。数式で書くと、<span class="tip" onclick="toggleTip(this)">P(A|B)<span class="tip-box"><strong>P(A|B)</strong><br>「Bが起きたという条件のもとで、Aが起きる確率」を意味する記号。縦線「|」は「〜という条件のもとで」と読む。</span></span>（BのときのAの確率）と<span class="tip" onclick="toggleTip(this)">P(B|A)<span class="tip-box"><strong>P(B|A)</strong><br>「Aが起きたという条件のもとで、Bが起きる確率」を意味する。P(A|B)とは別の値になることがほとんどで、これを混同するのが逆条件確率の錯誤。</span></span>（AのときのBの確率）は別物だ。これは<em>逆条件確率の錯誤（inverse fallacy）</em>と呼ばれ、マンモグラフィ問題で医師が70〜80%と答える最大の原因だ。</p></div></div><div class="step-card" id="sc3"><div class="step-hd" onclick="tog(3)"><div class="step-nb">3</div><div class="step-tw"><div class="step-title">物語の力</div><div class="step-sub">統計よりストーリーに反応する</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>人は抽象的な数字より、具体的なエピソードに強く反応する。「目撃者がブルーだと言った」という物語は鮮明で説得力がある。「街の85%はグリーンだ」という統計は抽象的で印象に残りにくい。<strong>基準率は「背景のノイズ」として無視され、個別の手がかりが「信号」として際立つ。</strong></p></div></div></div>
+
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">ベイズから250年、闘いの系譜。</h2>
+
+<div class="timeline fade"><div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1763</p><p class="tl-title">トーマス・ベイズの論文が死後に発表</p><p class="tl-desc">英国の牧師トーマス・ベイズが遺した論文「偶然の教義における問題を解くための試論」を、友人リチャード・プライスが王立協会で発表。確率を「信念の更新」として捉える考え方の原点。</p></div><div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1973</p><p class="tl-title">カーネマン＆トヴェルスキー「予測の心理学」</p><p class="tl-desc">エンジニア・弁護士問題で、人間が基準率を無視して個別情報に過度に依存することを実験的に証明。代表性ヒューリスティクスの概念を提唱した。</p></div><div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1980</p><p class="tl-title">バーヒレルが基準率無視の一般性を確認</p><p class="tl-desc">マヤ・バーヒレルがタクシー問題を含む複数の実験で基準率無視の頑健性を示し、因果的な基準率とそうでない基準率で無視の度合いが異なることを発見。</p></div><div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1982</p><p class="tl-title">エディのマンモグラフィ研究</p><p class="tl-desc">医師デイヴィッド・エディが医師100人にマンモグラフィ問題を出題。95人が事後確率を70〜80%と見積もった（正解は約8%）。専門家でさえ基準率を無視することを示した衝撃的な結果。</p></div><div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1995</p><p class="tl-title">ギゲレンツァー＆ホフラージュ「自然頻度」の発見</p><p class="tl-desc">確率を「自然頻度」で表現すると、ベイズ推論の正答率が劇的に向上することを実証。人間は確率よりも頻度の方が扱いやすいという新たな視点を提供した。</p></div><div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2002</p><p class="tl-title">カーネマン、ノーベル経済学賞受賞</p><p class="tl-desc">トヴェルスキーの死後6年、カーネマンが単独でノーベル経済学賞を受賞。基準率の無視を含む認知バイアスの研究が、経済学の根幹を揺るがした功績が評価された。</p></div></div>
+
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">数字は正しくても、問いの立て方が間違う。</h2>
+<p class="body-text fade">基準率の無視が怖いのは、必要な情報がすべて目の前に揃っていても起きることだ。タクシー問題でも、マンモグラフィ問題でも、数字はすべて提示されている。足りないのは情報ではなく、情報の<em>使い方</em>だ。</p>
+
+<div class="pull fade"><p class="pull-q">"The correct answer is 41%. However, you can probably guess what people do when faced with this problem: they <em>ignore the base rate</em> and go with the witness."</p><p style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;margin-top:8px;">「正解は41%だ。しかし、この問題に直面したとき人は何をするか、想像がつくだろう。基準率を無視し、目撃証言に飛びつくのだ。」<br>— ダニエル・カーネマン『ファスト&スロー』より</p></div>
+
+<p class="body-text fade">1995年にギゲレンツァーが示した「自然頻度」という解法は、希望を与えてくれる。「1%の有病率で感度80%」と言われるとわからない。しかし「1000人のうち10人が病気で、そのうち8人が陽性。残り990人のうち95人も陽性」と言われれば、8÷103という計算は見える。表現を変えるだけで、正答率は大幅に上がる。</p>
+
+<div class="img-placeholder fade"><div class="img-ph-area"><div class="img-ph-icon">🎨</div><p class="img-ph-title">「1000人の広場」</p><p class="img-ph-desc">広場に1000人が立っている。そのうち10人だけが赤い帽子をかぶっている（病気の人）。検査官が旗を振ると、赤い帽子の8人と、帽子をかぶっていない95人が前に出てくる。前に出た103人の中で、実際に赤い帽子をかぶっているのは8人だけ。</p><div class="img-ph-prompt"><p class="img-ph-prompt-lbl">画像生成プロンプト</p><p class="img-ph-prompt-txt">鳥獣戯画タッチ。広場に小さな人物が大勢立っている。ほとんどが白い着物だが、10人だけ赤い帽子をかぶっている。検査官役の蛙が旗を振り、前に出た一群がいる。その中に赤い帽子は数人しかいない。墨線、和紙テクスチャ、余白多め。</p></div></div><p class="img-caption">Fig. — 自然頻度で見る基準率。「1000人中」で考えると、構造が一目でわかる。</p></div>
+
+<p class="body-text fade">日常に戻って考えてみよう。採用面接で「この候補者は優秀そうだ」と感じたとき、そのポジションの応募者全体の中で優秀な人がどのくらいの割合でいるかを考慮しているだろうか。SNSで「この健康法は効く」という体験談を見たとき、そもそもその症状が自然に治る確率を考えているだろうか。私たちは常に、目の前の鮮やかな情報に引っ張られ、背景の確率を忘れている。</p>
+
+<div class="culture-block fade"><p class="culture-title">裁判での基準率の無視</p><p class="culture-desc">法廷で目撃証言の信頼性が問われるとき、陪審員は証人の正確さだけに注目し、事件が起きる基準率を無視しがちだ。DNA鑑定のような高精度の証拠でさえ、人口の規模次第では偽陽性の問題が生じる。英国では複数のえん罪事件で、基準率の無視が裁判の判断を歪めたことが指摘されている。</p></div>
+
+<p class="body-text fade">基準率の無視は、知っていれば完全に防げるものではない。しかし知っていれば、少なくとも立ち止まることができる。「そもそもの確率はどのくらいだ？」という問いを、判断の前に挟む習慣をつけること。ベイズの定理は計算の道具であると同時に、思考の姿勢でもある。</p>
+
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">参考文献</span><div class="sec-line"></div></div>
+<div class="ref-list"><div class="ref-item fade"><div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1973</span></div><p class="ref-title"><a href="https://doi.org/10.1037/h0034747" target="_blank" rel="noopener">On the Psychology of Prediction</a></p><p class="ref-author">Daniel Kahneman &amp; Amos Tversky</p><p class="ref-desc">基準率の無視を実験的に示した最初期の論文。エンジニア・弁護士問題、トムW問題を含む。代表性ヒューリスティクスの提唱。</p></div><div class="ref-item fade"><div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1980</span></div><p class="ref-title"><a href="https://doi.org/10.1016/0001-6918(80)90046-3" target="_blank" rel="noopener">The Base-Rate Fallacy in Probability Judgments</a></p><p class="ref-author">Maya Bar-Hillel</p><p class="ref-desc">基準率無視の一般性と頑健性を体系的に検証。因果的基準率と偶発的基準率の区別を導入した重要な論文。</p></div><div class="ref-item fade"><div class="ref-meta"><span class="ref-type">書籍の章</span><span class="ref-year">1982</span></div><p class="ref-title"><a href="#" target="_blank" rel="noopener">Probabilistic Reasoning in Clinical Medicine</a></p><p class="ref-author">David M. Eddy</p><p class="ref-desc">医師100人にマンモグラフィ問題を出題し、95人が事後確率を大幅に過大評価した研究。医療における基準率無視を示した古典。</p></div><div class="ref-item fade"><div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1995</span></div><p class="ref-title"><a href="https://doi.org/10.1037/0033-295X.102.4.684" target="_blank" rel="noopener">How to Improve Bayesian Reasoning Without Instruction: Frequency Formats</a></p><p class="ref-author">Gerd Gigerenzer &amp; Ulrich Hoffrage</p><p class="ref-desc">確率を自然頻度で表現するとベイズ推論の正答率が劇的に向上することを15の課題で実証。認知心理学の転換点となった。</p></div><div class="ref-item fade"><div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2011</span></div><p class="ref-title"><a href="#" target="_blank" rel="noopener">Thinking, Fast and Slow（ファスト&スロー）</a></p><p class="ref-author">Daniel Kahneman</p><p class="ref-desc">認知バイアス研究の集大成。タクシー問題をはじめ、基準率の無視が直感的思考（System 1）の限界として論じられている。</p></div></div>
+
+<div class="note-box fade"><strong>📌 この記事について</strong><br>本記事の内容は、Kahneman &amp; Tversky (1973) の原著論文、Eddy (1982) の医師研究、Gigerenzer &amp; Hoffrage (1995) の自然頻度研究を主な根拠としている。タクシー問題とマンモグラフィ問題の正答はベイズの定理から数学的に導出される確定値であり、解釈の余地はない。ただし「なぜ人が基準率を無視するのか」のメカニズムについては、代表性ヒューリスティクス説以外にも複数の説明が提案されており、完全に決着がついているわけではない。</div>
+
+<div class="tags fade"><span class="tag">認知バイアス</span><span class="tag">ベイズの定理</span><span class="tag">確率論</span><span class="tag">カーネマン</span><span class="tag">トヴェルスキー</span><span class="tag">ギゲレンツァー</span><span class="tag">意思決定</span></div>
+
+</div><!-- /article-main -->
+
+<div class="article-side"><div style="position:sticky;top:40px;">
+<div class="sidebar-block fade"><p class="sidebar-label">Key Number</p><p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">95/100</p><p class="sidebar-text">マンモグラフィ問題で、事後確率を大幅に過大評価した医師の数（Eddy, 1982）。専門家であっても基準率の無視からは逃れられないことを示す象徴的な数字。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">ベイズの定理の原型は<strong>1763年</strong>に発表されたが、心理学で「人間がベイズ的に推論できない」ことが示されるまでには200年以上かかった。1970年代のカーネマンとトヴェルスキーの研究が転換点。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">カーネマン<strong>『ファスト&スロー』</strong>のタクシー問題は、認知バイアスの入門書で最も引用される例の一つ。ナシーム・タレブ<strong>『ブラック・スワン』</strong>でも、基準率の無視が稀な事象の過小評価として議論される。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <em>確証バイアス</em><br>— フレーミング効果<br>— <span class="tip" onclick="toggleTip(this)">損失回避<span class="tip-box"><strong>損失回避（loss aversion）</strong><br>同じ金額の利得と損失を比べると、損失のほうが約2倍強く感じられるという現象。プロスペクト理論の中核概念。</span></span><br>— モンティ・ホール問題<br>— 誕生日のパラドックス</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">タクシー問題とマンモグラフィ問題の正答はベイズの定理から導かれる数学的事実。「なぜ無視するか」の認知メカニズムについては複数の理論が競合しており、研究は現在も続いている。</p></div>
+</div></div>
+
+</div><!-- /article -->
+
+<div class="terminal-wrap"><div class="terminal fade" id="terminalBlock"><div class="terminal-bar"><div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div><span class="terminal-title">after.sh — 読後の対話ログ（架空）</span></div><div class="terminal-body">
+<span class="t-sys" id="ts0">// 基準率の無視を読み終えた人との対話</span>
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;マンモグラフィ問題、正直80%だと思ってた。</span></div>
+<span class="t-output" id="to1">安心してほしい。医師100人中95人が同じ答えだった。<br>直感は精度80%を「そのまま」受け取ってしまう。</span>
+<hr class="t-divider">
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;自然頻度で説明されたら、わかった気がする。</span></div>
+<span class="t-output" id="to2">「1000人のうち10人が…」という言い方になると、<br><em>頭の中に人が並ぶ</em>んだよね。<br>抽象的な%だと、並ばない。</span>
+<hr class="t-divider">
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;日常でも同じことしてるのかな。</span></div>
+<span class="t-output" id="to3">たぶん毎日してる。<br>「あの人は怪しい」と感じたとき、<br><em>そもそも怪しい人がどのくらいいるか</em>は考えてないことが多い。</span>
+<hr class="t-divider">
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;気をつけても無理な気がする。</span></div>
+<span class="t-output" id="to4">完全には無理だと思う。<br>でも「そもそもの確率は？」と<em>一回立ち止まる</em>だけで、<br>だいぶ変わるんじゃないかな。</span>
+<hr class="t-divider">
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 覚えとく</span></div>
+</div></div></div>
+
+<div class="related fade"><p class="related-label">次に読む</p><div class="related-grid"><a class="related-card" href="/monty_hall"><p class="related-card-tag">確率・論理</p><p class="related-card-title">モンティ・ホール問題</p><p class="related-card-desc">3つの扉、1台の車。「変える」と「変えない」で確率が変わる理由を、シミュレーターで体験する。</p><p class="related-card-arrow">読む →</p></a><a class="related-card" href="/confirmation_bias"><p class="related-card-tag">認知バイアス</p><p class="related-card-title">確証バイアス</p><p class="related-card-desc">自分の信念を裏付ける情報だけを集め、矛盾を無視してしまう——最も普遍的なバイアスの構造。</p><p class="related-card-arrow">読む →</p></a></div></div>
+
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;document.getElementById('prog').style.width=(scrollY/h*100)+'%';});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+function toggleTip(el){const isOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(!isOpen)el.classList.add('open');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip'))document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));});
+function tog(n){const c=document.getElementById('sc'+n);const was=c.classList.contains('open');document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));if(!was)c.classList.add('open');}
+tog(1);
+
+let q1sel=-1,q2sel=-1;
+function selectQ(qn,el,idx){const wrap=document.getElementById('q'+qn+'opts');wrap.querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');if(qn===1)q1sel=idx;else q2sel=idx;document.getElementById('q'+qn+'btn').disabled=false;}
+function checkQ(qn){const correct=2;const sel=qn===1?q1sel:q2sel;const wrap=document.getElementById('q'+qn+'opts');wrap.querySelectorAll('.quiz-opt').forEach((o,i)=>{o.style.pointerEvents='none';if(i===correct)o.classList.add('correct');else if(i===sel&&sel!==correct)o.classList.add('wrong');});document.getElementById('q'+qn+'btn').style.display='none';document.getElementById('q'+qn+'result').classList.add('show');}
+
+function updateBayes(){const base=parseFloat(document.getElementById('slBase').value)/100;const sens=parseFloat(document.getElementById('slSens').value)/100;const fp=parseFloat(document.getElementById('slFP').value)/100;document.getElementById('vBase').textContent=(base*100).toFixed(1)+'%';document.getElementById('vSens').textContent=(sens*100).toFixed(1)+'%';document.getElementById('vFP').textContent=(fp*100).toFixed(1)+'%';const truePos=base*sens;const falsePos=(1-base)*fp;const total=truePos+falsePos;const posterior=total>0?(truePos/total):0;const n=1000;const sick=Math.round(n*base);const healthy=n-sick;const tp=Math.round(sick*sens);const fpos=Math.round(healthy*fp);const allPos=tp+fpos;document.getElementById('bayesAns').textContent=(posterior*100).toFixed(1)+'%';document.getElementById('bayesExp').textContent=n+'人中、病気の人は'+sick+'人。うち'+tp+'人が陽性。健康な'+healthy+'人のうち'+fpos+'人が偽陽性。陽性'+allPos+'人中、本当に病気なのは'+tp+'人。';}
+updateBayes();
+
+const scenarios={mammo:{base:0.01,sens:0.80,fp:0.096,label:'マンモグラフィ',posLabel:'陽性',trueLabel:'乳がん'},taxi:{base:0.15,sens:0.80,fp:0.20,label:'タクシー問題',posLabel:'「ブルー」証言',trueLabel:'本当にブルー'},rare:{base:0.001,sens:0.99,fp:0.05,label:'まれな病気',posLabel:'陽性',trueLabel:'病気'}};
+let dotData=[],dotAnimFrame=null;
+function initDotCanvas(){const canvas=document.getElementById('dotCanvas');const wrap=canvas.parentElement;const dpr=window.devicePixelRatio||1;canvas.width=wrap.clientWidth*dpr;canvas.height=wrap.clientHeight*dpr;canvas.style.width=wrap.clientWidth+'px';canvas.style.height=wrap.clientHeight+'px';const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);}
+function resetDotSim(){if(dotAnimFrame)cancelAnimationFrame(dotAnimFrame);document.getElementById('dotStats').style.display='none';document.getElementById('dotRunBtn').disabled=false;initDotCanvas();const canvas=document.getElementById('dotCanvas');const ctx=canvas.getContext('2d');const dpr=window.devicePixelRatio||1;const w=canvas.width/dpr,h=canvas.height/dpr;const cols=50,rows=20,total=1000;const dotR=Math.min((w/cols)*0.35,(h/rows)*0.35);const gapX=w/cols,gapY=h/rows;dotData=[];const sc=scenarios[document.getElementById('dotScenario').value];for(let i=0;i<total;i++){const col=i%cols,row=Math.floor(i/cols);dotData.push({x:gapX*col+gapX/2,y:gapY*row+gapY/2,r:dotR,sick:i<Math.round(total*sc.base),positive:false,state:'idle'});}for(let i=dotData.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[dotData[i].sick,dotData[j].sick]=[dotData[j].sick,dotData[i].sick];}ctx.clearRect(0,0,w,h);dotData.forEach(d=>{ctx.beginPath();ctx.arc(d.x,d.y,d.r,0,Math.PI*2);ctx.fillStyle='#ddd8cc';ctx.fill();});}
+function runDotSim(){document.getElementById('dotRunBtn').disabled=true;const sc=scenarios[document.getElementById('dotScenario').value];const canvas=document.getElementById('dotCanvas');const ctx=canvas.getContext('2d');dotData.forEach(d=>{if(d.sick)d.positive=Math.random()<sc.sens;else d.positive=Math.random()<sc.fp;if(d.positive&&d.sick)d.state='truePos';else if(d.positive&&!d.sick)d.state='falsePos';else d.state='negative';});let idx=0;const perFrame=8;function animate(){for(let f=0;f<perFrame&&idx<dotData.length;f++,idx++){const d=dotData[idx];ctx.beginPath();ctx.arc(d.x,d.y,d.r,0,Math.PI*2);if(d.state==='truePos')ctx.fillStyle='#8b1a1a';else if(d.state==='falsePos')ctx.fillStyle='#e8c56a';else ctx.fillStyle='#c8d8c0';ctx.fill();}if(idx<dotData.length)dotAnimFrame=requestAnimationFrame(animate);else showDotStats(sc);}dotAnimFrame=requestAnimationFrame(animate);}
+function showDotStats(sc){const tp=dotData.filter(d=>d.state==='truePos').length;const fpos=dotData.filter(d=>d.state==='falsePos').length;const allPos=tp+fpos;const pct=allPos>0?((tp/allPos)*100).toFixed(1):'0';document.getElementById('dotBig').textContent=pct+'%';document.getElementById('dotDesc').innerHTML=sc.posLabel+'と判定されたのは <strong>'+allPos+'人</strong>。そのうち本当に'+sc.trueLabel+'なのは <em>'+tp+'人</em> だけ。残り <strong>'+fpos+'人</strong> は偽陽性（誤判定）。';document.getElementById('dotStats').style.display='block';}
+window.addEventListener('load',()=>{setTimeout(resetDotSim,100);});
+window.addEventListener('resize',()=>{resetDotSim();});
+
+const tseq=[{id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},{id:'tl2',delay:2400},{id:'to2',delay:3000},{id:'tl3',delay:4200},{id:'to3',delay:4800},{id:'tl4',delay:6000},{id:'to4',delay:6600},{id:'tl5',delay:7800}];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{if(entries[0].isIntersecting&&!tStarted){tStarted=true;tseq.forEach(s=>{setTimeout(()=>{const el=document.getElementById(s.id);if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}},s.delay);});}},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>

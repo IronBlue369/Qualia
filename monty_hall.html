@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>モンティ・ホール問題 — Qualia Journal</title>
+<meta name="description" content="3つのドアから1つを選び、司会者がハズレを開けた後、選び直すべきか。直感に反する確率の答えに、1000人近い博士号保持者が抗議した。インタラクティブなシミュレーションで体験できる。">
+<link rel="canonical" href="https://qualiajournal.com/monty_hall">
+<meta property="og:title" content="モンティ・ホール問題 — Qualia Journal">
+<meta property="og:description" content="3つのドアから1つを選び、司会者がハズレを開けた後、選び直すべきか。直感に反する確率の答えに、1000人近い博士号保持者が抗議した。インタラクティブなシミュレーションで体験できる。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/monty_hall">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="モンティ・ホール問題 — Qualia Journal">
+<meta name="twitter:description" content="3つのドアから1つを選び、司会者がハズレを開けた後、選び直すべきか。直感に反する確率の答えに、1000人近い博士号保持者が抗議した。インタラクティブなシミュレーションで体験できる。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type='text/javascript' src='https://api.netlify.com/1qnY6yKjOpCVjwFe_cHUKLb3IzDlWz9RNagQ-Q1CYxR516o4ywO0v-MqfmafIBfFBZ7ecAb1JEoxhaGrcDc6faJN24dolyjM2Q9otduDg5qmPcpG1vYewnge0BCiGx4cUFu7wmpE7RhhylXsQ1fjaZTI6dWFQ-jsM5VOAd3loZxU1zr0N-X5UvVo_lkKab0X4ta93JRAty37OMRMpxdM5Dd3k75LzPU8N1IsWqEipbjZGEg4c94Ys4HQeCuPmgqTfdHB3uczeudrVKFRF-ZTqWzA1SkXKcDbsXf2froBQidGWqjyOqjDdYYRFOyDfly_tPshpPLfeOgpBFrkZvI6LKDkwIcTOTJYhVtHs9ISHEyPC49BtVWfKK4pn93ifMxWH_PsGoMauDBTTVnqycM5cyjgX0gvfYlzU6E0t6Aa_galmUVQX9nBTPnezXf5L4CmnC7pyFw5vQ71mdHXU74OBAgbiix28hKdbJQPKbEnxLJosoYIdjYc_rW-isBgkvityV677xXKWaq0OoAbLgZgs0F7SSs'></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"モンティ・ホール問題","description":"3つのドアから1つを選び、司会者がハズレを開けた後、選び直すべきか。直感に反する確率の答えに、1000人近い博士号保持者が抗議した。インタラクティブなシミュレーションで体験できる。","author":{"@type":"Organization","name":"Qualia Journal"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/monty_hall","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"数学・論理","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"モンティ・ホール問題"}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+
+/* MASTHEAD */
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}
+.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;margin-bottom:6px;}
+.masthead-date{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;letter-spacing:.08em;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* IMAGE PLACEHOLDER */
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* LETTER BLOCK (debate) */
+.letter-block{margin:28px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.letter-block-header{background:#f3efe6;padding:11px 20px;border-bottom:1px solid #c8bfaa;}
+.letter-block-header span{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;}
+.letter{padding:16px 20px;border-bottom:1px solid #e0d8c8;}
+.letter:last-child{border-bottom:none;}
+.letter-en{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:8px;}
+.letter-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:6px;}
+.letter-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* GAME */
+.game-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.game-header{background:#3d3020;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}
+.game-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.game-hs{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;letter-spacing:.06em;color:rgba(255,255,255,.6);}
+.game-body{padding:24px 20px;background:white;}
+.doors{display:flex;justify-content:center;gap:12px;margin-bottom:20px;}
+.door{width:120px;height:140px;border:1px solid #c8bfaa;background:#f3efe6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:all .2s;position:relative;}
+.door:hover{border-color:#8b1a1a;background:#faf8f3;}
+.door.selected{border-color:#8b1a1a;border-width:2px;background:#fff;}
+.door.opened{background:#e8e4de;opacity:.7;cursor:default;}
+.door.winner{border-color:#1a5a30;border-width:2px;background:rgba(26,90,48,.05);}
+.door.loser{border-color:#c4392a;border-width:2px;}
+.door.disabled{cursor:default;}
+.door-n{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#b0a090;text-transform:uppercase;}
+.door-icon{font-size:36px;line-height:1;}
+.door-result{position:absolute;bottom:8px;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;}
+.door-result.win{color:#1a5a30;}
+.door-result.lose{color:#c4392a;}
+.game-msg{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#7a6a55;text-align:center;min-height:40px;line-height:1.7;margin-bottom:18px;}
+.game-msg strong{color:#1a1208;font-weight:600;}
+.game-msg .win{color:#1a5a30;font-weight:600;}
+.game-msg .lose{color:#c4392a;font-weight:600;}
+.game-msg .gold{color:#8a6a20;font-weight:600;}
+.btn-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;}
+.btn{padding:9px 20px;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;transition:all .15s;}
+.btn-switch{background:#1a5a30;color:white;}
+.btn-switch:hover{filter:brightness(1.1);}
+.btn-stay{background:#3d3020;color:white;}
+.btn-stay:hover{background:#1a1208;}
+.btn-reset{background:transparent;color:#b0a090;border:1px solid #c8bfaa;font-size:11px;}
+.btn-reset:hover{border-color:#7a6a55;color:#7a6a55;}
+.btn:disabled{opacity:.3;cursor:default;pointer-events:none;}
+.game-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e0d8c8;border:1px solid #c8bfaa;margin-bottom:14px;}
+.gstat{background:#f3efe6;padding:14px 16px;}
+.gstat-n{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;line-height:1;}
+.gstat-n.g{color:#1a5a30;}
+.gstat-n.r{color:#c4392a;}
+.gstat-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#b0a090;letter-spacing:.06em;}
+.gstat-rate{font-family:'Source Sans 3',sans-serif;font-size:12px;margin-top:3px;}
+.bars{margin-bottom:10px;}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.bar-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:500;color:#b0a090;width:52px;text-align:right;flex-shrink:0;}
+.bar-track{flex:1;height:3px;background:#e0d8c8;}
+.bar-fill{height:100%;transition:width .5s ease;}
+.bar-fill.g{background:#1a5a30;}
+.bar-fill.r{background:#c4392a;}
+.bar-pct{font-family:'Source Sans 3',sans-serif;font-size:11px;width:32px;flex-shrink:0;}
+.auto{padding-top:12px;border-top:1px solid #e0d8c8;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;}
+.btn-a{padding:6px 14px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;background:transparent;color:#b0a090;border:1px solid #c8bfaa;transition:all .15s;}
+.btn-a:hover{border-color:#7a6a55;color:#7a6a55;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+.outcome{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;margin-top:6px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;}
+.outcome.lose{background:rgba(196,57,42,.08);color:#c4392a;border:1px solid rgba(196,57,42,.25);}
+.outcome.win{background:rgba(26,90,48,.08);color:#1a5a30;border:1px solid rgba(26,90,48,.25);}
+.step-summary{margin-top:2px;padding:16px 20px;background:#f3efe6;border:1px solid #c8bfaa;}
+.step-summary p{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;margin:0;line-height:1.8;}
+
+/* CALLOUT */
+.callout{margin:32px 0;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+.callout-n{font-family:'Playfair Display',serif;font-size:72px;font-weight:900;line-height:1;color:#8b1a1a;letter-spacing:-.04em;}
+.callout-d{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#7a6a55;line-height:1.7;max-width:300px;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* TERMINAL */
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* SVG WRAP */
+.svg-wrap{margin:28px 0;overflow-x:auto;}
+
+/* PROB TABLE */
+.prob-table{width:100%;border-collapse:collapse;margin:28px 0;font-family:'Source Sans 3',sans-serif;font-size:13px;}
+.prob-table th{background:#3d3020;color:white;padding:10px 14px;font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-align:left;}
+.prob-table td{padding:10px 14px;border-bottom:1px solid #e0d8c8;color:#3d3020;font-weight:300;line-height:1.6;}
+.prob-table tr:nth-child(even) td{background:#f3efe6;}
+.prob-table td:last-child{font-weight:600;}
+.prob-table .tc-g{color:#1a5a30;}
+.prob-table .tc-r{color:#c4392a;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .img-ph-area{min-height:180px;}
+  .doors{flex-direction:column;align-items:center;}
+  .door{width:100%;max-width:200px;height:110px;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ZONE A: 全幅セクション（.articleの外・上部）  -->
+<!-- ═══════════════════════════════════════ -->
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <p class="masthead-name"><a href="/" style="color:inherit;text-decoration:none;">Qualia Journal</a></p>
+  <p class="masthead-date"></p>
+</div>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">数学・論理</p>
+    <h1>あなたは扉を<em>選び直す</em>べきだった。</h1>
+    <p class="cover-deck">3つの扉、1台の車、2頭のヤギ。シンプルなクイズに、1000人近い博士号保持者が抗議の手紙を書いた。彼らの直感は間違っていた。</p>
+    <div class="cover-byline"><span>Probability</span><span>Cognitive Bias</span><span>Decision Making</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1975</span>
+      <p class="est-event">統計学者スティーブ・セルビンが学術誌で初めて定式化した年。</p>
+      <p class="est-context">同年、ベトナム戦争が終結（サイゴン陥落）。マイクロソフト社が設立された。</p>
+    </div>
+    <p class="cover-aside">1990年にParade誌で再び火がつき、<strong>アメリカ中を巻き込む大論争に発展した。</strong></p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>レストランで料理を注文したあと、隣のテーブルに別のメニューが運ばれてくる。「あっちにすればよかった」と思いながらも、変えない。変えたら負けた気がする。</p>
+    <p>就職先、賃貸物件、旅行のルート。私たちは毎日、最初の選択に引きずられながら生きている。一度決めたものを手放すことへの、あの説明しにくい抵抗感。</p>
+    <p>その抵抗感が、確率的には「損」をもたらしている場合がある。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 数学の知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 12 分
+    </span>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">人間の直感は、<strong>新しい情報が加わっても、最初の判断を手放せない</strong>ことがある。この記事では、そのことをシンプルな選択の場面で体験する。</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ZONE B: 記事本体（.article = 2カラムgrid）    -->
+<!-- ═══════════════════════════════════════ -->
+
+<div class="article">
+<div class="article-main">
+
+<!-- ==================== S1: 背景 ==================== -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">1963年、アメリカ。毎週、国民が画面の前から動けなくなる番組があった。</h2>
+
+<p class="body-text fade">その名は「Let's Make a Deal」。NBCで放送が始まったこのゲームショーは、最盛期には全米トップクラスの視聴率を記録した。番組の仕掛けはユニークで、観客はスタジオに来るときに派手な仮装をしてくる。野菜の着ぐるみ、アニマル帽子、手作りのドレス——目立てば目立つほど、司会者に選ばれてステージに上がれるからだ。</p>
+
+<div class="img-placeholder fade">
+  <div class="img-ph-area">
+    <span class="img-ph-icon">🎭</span>
+    <p class="img-ph-title">イラスト①｜番組「Let's Make a Deal」のスタジオ</p>
+    <p class="img-ph-desc">奇抜な仮装をした観客が並ぶテレビスタジオ。中央に大きな3つの扉。1960〜70年代のアメリカらしいカラフルな照明とスポットライト。</p>
+    <div class="img-ph-prompt">
+      <p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
+      <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, anthropomorphic animals in flamboyant costumes gathered in a TV studio, three large ornate doors center stage, theatrical spotlights, 1960s American game show atmosphere, Japanese scroll painting aesthetic, no text</p>
+    </div>
+  </div>
+  <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+</div>
+
+<p class="body-text fade">司会を務めたのが、カナダ出身のモンティ・ホールだ。本名モンテ・ハルペリン。温かみのある語り口と、観客を乗せる天性の才能で、30年近くにわたってこの番組に君臨した。彼の名前を冠した「モンティ・ホール問題」が、のちに数学史に残る論争を引き起こすことになる。</p>
+
+<p class="body-text fade">ゲームの構造はこうだ。ステージに3つの扉が並ぶ。<strong>1つの扉の後ろに車（当たり）、残り2つの扉の後ろにヤギ（ハズレ）</strong>が置かれている。挑戦者が1つを選ぶ。すると司会者のモンティが、残り2つのうち<em>ヤギのいる方</em>を開けて見せる。そして笑顔で言う。「選び直してもいいですよ」と。</p>
+
+<!-- SVG: ゲーム構造図（パターンA: 横並びフロー） -->
+<div class="svg-wrap fade">
+<svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <!-- Step 1 -->
+  <rect x="10" y="40" width="130" height="60" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+  <text x="75" y="30" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#7a6a55" font-weight="600" letter-spacing=".08em">STEP 1</text>
+  <text x="75" y="65" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#1a1208" font-weight="600">3つの扉から</text>
+  <text x="75" y="83" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#1a1208" font-weight="600">1つを選ぶ</text>
+  <!-- Arrow 1 -->
+  <line x1="140" y1="70" x2="170" y2="70" stroke="#c8bfaa" stroke-width="1.5"/>
+  <polygon points="170,66 178,70 170,74" fill="#c8bfaa"/>
+  <!-- Step 2 -->
+  <rect x="180" y="40" width="160" height="60" rx="4" fill="#f3efe6" stroke="#8b1a1a" stroke-width="1.5"/>
+  <text x="260" y="30" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#8b1a1a" font-weight="600" letter-spacing=".08em">STEP 2</text>
+  <text x="260" y="65" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#1a1208" font-weight="600">司会者がヤギの扉を</text>
+  <text x="260" y="83" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#8b1a1a" font-weight="600">意図的に開ける</text>
+  <!-- Arrow 2 -->
+  <line x1="340" y1="70" x2="370" y2="70" stroke="#c8bfaa" stroke-width="1.5"/>
+  <polygon points="370,66 378,70 370,74" fill="#c8bfaa"/>
+  <!-- Step 3 -->
+  <rect x="380" y="40" width="160" height="60" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+  <text x="460" y="30" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#7a6a55" font-weight="600" letter-spacing=".08em">STEP 3</text>
+  <text x="460" y="65" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#1a1208" font-weight="600">選び直すか</text>
+  <text x="460" y="83" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#1a1208" font-weight="600">そのままか？</text>
+  <!-- Bottom note -->
+  <text x="280" y="130" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#7a6a55">ポイント: 司会者は正解の位置を知っている。ランダムではない。</text>
+  <line x1="100" y1="140" x2="460" y2="140" stroke="#e0d8c8" stroke-width="0.5"/>
+  <text x="280" y="158" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090">この「意図」が、確率の構造を根本から変える</text>
+</svg>
+</div>
+
+<!-- 確率の整理テーブル -->
+<table class="prob-table fade">
+  <tr><th>タイミング</th><th>残っている扉</th><th>自分の扉が当たりの確率</th></tr>
+  <tr><td>最初の選択直後</td><td>3つ</td><td>1/3（約33.3%）</td></tr>
+  <tr><td>司会者がヤギの扉を開けた後</td><td>2つ</td><td class="tc-r">まだ 1/3 のまま</td></tr>
+  <tr><td>選び直した場合</td><td>—</td><td class="tc-g">2/3（約66.7%）</td></tr>
+</table>
+
+<p class="body-text fade">ほとんどの人は、ここで「扉が2つになったのだから、確率は50%ずつだろう」と考える。直感はそう言う。だが数学の答えは違う。<strong>選び直した方が勝率はおよそ66.7%——そのままにした場合の2倍になる。</strong></p>
+
+<!-- 誤解あるある -->
+<div class="misconception fade">
+  <div class="misconception-header"><span class="misconception-hl">読む前に確認 — よくある誤解</span></div>
+  <div class="misconception-body">
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">扉が2つに減ったのだから、当たる確率はどちらも50%のはず。</p></div>
+      <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">最初に選んだ扉の確率は1/3のまま変わらない。残りの1枚に確率2/3が集中するため、選び直した方が有利になる。</p></div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">司会者がどの扉を開けるかは確率に関係ない。</p></div>
+      <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">司会者が「正解を知った上で、意図的にハズレを開ける」ことが確率構造の核心。もしランダムに開けたなら、まったく別の問題になる。</p></div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">これは言葉の引っかけ問題で、数学者の間でも意見が分かれている。</p></div>
+      <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">前提条件が明確であれば、数学的に完全に証明されている。1990年代の論争は、結果的にマリリンの答えが正しいことで決着した。</p></div>
+    </div>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ==================== S2: 体験する ==================== -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">まず、何回かやってみてほしい。</h2>
+
+<p class="body-text fade">ルールはシンプルだ。3つの扉のうち1つを選ぶ。すると司会者が、残り2つのうちヤギのいる扉を1つ開ける。そこで「選び直すか、そのままにするか」を決める。それだけだ。</p>
+
+<p class="body-text fade">問いはこうだ。<strong>選び直した方が有利なのか、そのままの方が有利なのか、どちらでも同じなのか。</strong>理屈の前に、まず手を動かして感覚をつかんでほしい。</p>
+
+<p class="body-text fade">数回やったら、下の「100回」「1000回」ボタンで一気に試行を重ねてみるといい。ある値のあたりで数字が収束していくのが見えるはずだ。</p>
+
+<!-- GAME SIMULATOR -->
+<div class="game-wrap fade">
+  <div class="game-header">
+    <span class="game-hl">Monty Hall Simulator</span>
+    <span class="game-hs" id="gSt">扉を選んでください</span>
+  </div>
+  <div class="game-body">
+    <div class="doors">
+      <div class="door" id="d0" onclick="pick(0)"><span class="door-n">Door 01</span><span class="door-icon" id="i0">🚪</span></div>
+      <div class="door" id="d1" onclick="pick(1)"><span class="door-n">Door 02</span><span class="door-icon" id="i1">🚪</span></div>
+      <div class="door" id="d2" onclick="pick(2)"><span class="door-n">Door 03</span><span class="door-icon" id="i2">🚪</span></div>
+    </div>
+    <div class="game-msg" id="msg">3つの扉のうち1つに車が隠れている。直感で選んでみてほしい。</div>
+    <div class="btn-row" id="cRow" style="display:none">
+      <button class="btn btn-switch" id="bSw" onclick="choose('switch')" disabled>選び直す</button>
+      <button class="btn btn-stay" id="bSt" onclick="choose('stay')" disabled>このままにする</button>
+    </div>
+    <div class="btn-row"><button class="btn btn-reset" onclick="reset()">もう一度</button></div>
+    <div id="sWrap" style="display:none">
+      <div class="game-stats">
+        <div class="gstat"><span class="gstat-n g" id="swn">0</span><span class="gstat-lbl">選び直して勝利</span><span class="gstat-rate" id="swr" style="color:#1a5a30">—</span></div>
+        <div class="gstat"><span class="gstat-n r" id="stn">0</span><span class="gstat-lbl">そのままで勝利</span><span class="gstat-rate" id="str" style="color:#c4392a">—</span></div>
+      </div>
+      <div class="bars">
+        <div class="bar-row"><span class="bar-lbl">Switch</span><div class="bar-track"><div class="bar-fill g" id="swb" style="width:0"></div></div><span class="bar-pct" id="swp" style="color:#1a5a30">—</span></div>
+        <div class="bar-row"><span class="bar-lbl">Stay</span><div class="bar-track"><div class="bar-fill r" id="stb" style="width:0"></div></div><span class="bar-pct" id="stp" style="color:#c4392a">—</span></div>
+      </div>
+      <div class="auto">
+        <button class="btn-a" onclick="autoRun(10)">×10</button>
+        <button class="btn-a" onclick="autoRun(100)">×100</button>
+        <button class="btn-a" onclick="autoRun(1000)">×1000</button>
+        <button class="btn-a" onclick="resetStats()">リセット</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pull fade">
+  <p class="pull-q">選び直した方が勝率は<em>2倍</em>になる。直感に反するこの結論に、1000人近い博士号保持者が抗議した。</p>
+</div>
+
+<hr class="art-rule">
+
+<!-- ==================== S3: なぜか ==================== -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">3つのケースを、一つずつ見ていく。</h2>
+
+<p class="body-text fade">なぜ選び直すと勝率が上がるのか。全3パターンを順番に見ていけば、数学的な直感が掴める。ここでは「挑戦者が最初に扉1を選んだ」という前提で考える。車がどの扉の後ろにあるかは、3通りしかない。</p>
+
+<!-- SVG: 3パターン概要（パターンD: 2列比較） -->
+<div class="svg-wrap fade">
+<svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <!-- Stay side -->
+  <text x="140" y="20" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#c4392a" font-weight="600" letter-spacing=".06em">そのままにする</text>
+  <rect x="20" y="30" width="240" height="50" rx="3" fill="rgba(196,57,42,.05)" stroke="rgba(196,57,42,.25)" stroke-width="1"/>
+  <text x="140" y="52" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" fill="#c4392a" font-weight="600">勝てるのは1パターンだけ</text>
+  <text x="140" y="70" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#7a6a55">勝率: 1/3 ≈ 33.3%</text>
+  <!-- Divider -->
+  <line x1="280" y1="25" x2="280" y2="85" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="280" y="103" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090">vs</text>
+  <!-- Switch side -->
+  <text x="420" y="20" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#1a5a30" font-weight="600" letter-spacing=".06em">選び直す</text>
+  <rect x="300" y="30" width="240" height="50" rx="3" fill="rgba(26,90,48,.05)" stroke="rgba(26,90,48,.25)" stroke-width="1"/>
+  <text x="420" y="52" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" fill="#1a5a30" font-weight="600">勝てるのは2パターン</text>
+  <text x="420" y="70" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#7a6a55">勝率: 2/3 ≈ 66.7%</text>
+  <!-- Bottom -->
+  <line x1="60" y1="120" x2="500" y2="120" stroke="#e0d8c8" stroke-width="0.5"/>
+  <text x="280" y="145" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#3d3020" font-weight="600">選び直す方が、そのままの2倍の勝率</text>
+</svg>
+</div>
+
+<div class="steps-wrap fade">
+  <p class="steps-head">全3ケースの詳細</p>
+
+  <div class="step-card" id="sc1">
+    <div class="step-hd" onclick="tog(1)">
+      <div class="step-nb">1</div>
+      <div class="step-tw"><div class="step-title">車が扉1の後ろにある場合</div><div class="step-sub">最初の選択が当たり</div></div>
+      <div class="step-arr">▼</div>
+    </div>
+    <div class="step-body">
+      <p>挑戦者は扉1を選んでいる。車は扉1の後ろ。<strong>最初の選択が正解</strong>。</p>
+      <p>司会者は扉2か扉3（どちらもヤギ）のうち1つを開ける。</p>
+      <p><strong>選び直すと → ハズレ（ヤギ）に移動。</strong><br><strong>そのままなら → 当たり（車）。</strong></p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+        <span class="outcome lose">選び直す → 負け</span>
+        <span class="outcome win">そのまま → 勝ち</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card" id="sc2">
+    <div class="step-hd" onclick="tog(2)">
+      <div class="step-nb">2</div>
+      <div class="step-tw"><div class="step-title">車が扉2の後ろにある場合</div><div class="step-sub">最初の選択がハズレ</div></div>
+      <div class="step-arr">▼</div>
+    </div>
+    <div class="step-body">
+      <p>挑戦者は扉1を選んでいるが、車は扉2。<strong>最初の選択はハズレ。</strong></p>
+      <p>司会者は扉3（ヤギ）を開けるしかない。扉2は車なので開けられない。</p>
+      <p><strong>選び直すと → 扉2に移動。車。当たり。</strong></p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+        <span class="outcome win">選び直す → 勝ち</span>
+        <span class="outcome lose">そのまま → 負け</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card" id="sc3">
+    <div class="step-hd" onclick="tog(3)">
+      <div class="step-nb">3</div>
+      <div class="step-tw"><div class="step-title">車が扉3の後ろにある場合</div><div class="step-sub">最初の選択がハズレ</div></div>
+      <div class="step-arr">▼</div>
+    </div>
+    <div class="step-body">
+      <p>挑戦者は扉1を選んでいるが、車は扉3。<strong>最初の選択はハズレ。</strong></p>
+      <p>司会者は扉2（ヤギ）を開けるしかない。扉3は車なので開けられない。</p>
+      <p><strong>選び直すと → 扉3に移動。車。当たり。</strong></p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+        <span class="outcome win">選び直す → 勝ち</span>
+        <span class="outcome lose">そのまま → 負け</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-summary">
+    <p>3つのケースのうち、<strong style="color:#1a5a30">2つ</strong>で「選び直す」方が勝つ。<strong>だから勝率は 2/3（約66.7%）になる。</strong></p>
+  </div>
+</div>
+
+<div class="callout fade">
+  <span class="callout-n">2倍</span>
+  <p class="callout-d">選び直した方が、そのままにするより<strong>勝率が約2倍</strong>になる。</p>
+</div>
+
+<hr class="art-rule">
+
+<!-- ==================== S4: 歴史 ==================== -->
+<div class="sec-rule fade"><span class="sec-label">この問題がたどった道</span><div class="sec-line"></div></div>
+<h2 class="fade">1通の手紙が、アメリカの知性を揺さぶった。</h2>
+
+<p class="body-text fade">1990年の秋、週刊誌「Parade」に1通の読者の質問が届いた。コラム「Ask Marilyn」を担当していたのは<span class="tip" onclick="toggleTip(this)">マリリン・ボス・サバント<span class="tip-box"><strong>マリリン・ボス・サバント（1946–）</strong><br>ギネス世界記録に「最も高いIQ」として登録されたアメリカのコラムニスト。Parade誌の「Ask Marilyn」欄で読者の質問に答えていた。</span></span>——ギネス世界記録に「最も高いIQ」として登録された女性だ。彼女はこの問題に、明快に答えた。「選び直すべきです」と。</p>
+
+<div class="quote-block fade">
+  <p class="quote-en">"Suppose you're on a game show, and you're given the choice of three doors. Behind one door is a car; behind the others, goats. You pick a door, say No.1, and the host, who knows what's behind the doors, opens another door, say No.3, which has a goat. He then says to you, 'Do you want to pick door No.2?' Is it to your advantage to switch your choice?"</p>
+  <p class="quote-ja">「ゲームショーに出ているとします。3つの扉から1つを選びます。1つの扉の後ろには車が、残りの2つにはヤギがいます。あなたが扉1を選ぶと、正解を知っている司会者が扉3を開けてヤギを見せます。司会者はこう言います——『扉2に変えますか？』。選び直す方が有利でしょうか？」</p>
+  <p class="quote-attr">— Craig F. Whitaker, Parade誌への読者投書（1990年9月）</p>
+</div>
+
+<p class="body-text fade">マリリンの答えが掲載されると、即座に嵐が起きた。推定1万通以上の手紙が殺到し、その中には約1000通の博士号保持者からの抗議が含まれていた。大学の数学科や統計学科のレターヘッド付きで、「あなたは間違っている」と書かれた手紙が次々と届いた。</p>
+
+<div class="letter-block fade">
+  <div class="letter-block-header"><span>殺到した抗議の手紙より</span></div>
+  <div class="letter">
+    <p class="letter-en">"You blew it, and you blew it big!"</p>
+    <p class="letter-ja">「あなたは大きく間違えました！」</p>
+    <p class="letter-attr">— 読者からの手紙</p>
+  </div>
+  <div class="letter">
+    <p class="letter-en">"I am in shock that after being corrected by at least three mathematicians, you still do not see your mistake."</p>
+    <p class="letter-ja">「少なくとも3人の数学者に訂正されたにもかかわらず、まだ間違いに気づかないとは驚きです。」</p>
+    <p class="letter-attr">— 博士号保持者からの手紙</p>
+  </div>
+</div>
+
+<p class="body-text fade">マリリンは屈しなかった。コラムで3度にわたり反論に応答し、全国の教師に「授業でこの実験をしてみてください」と呼びかけた。数百の学校が実際に実験を行い、結果はマリリンの答えと一致した。著名な数学者<span class="tip" onclick="toggleTip(this)">ポール・エルデシュ<span class="tip-box"><strong>ポール・エルデシュ（1913–1996）</strong><br>ハンガリー出身の数学者。生涯で1500本以上の論文を発表した、20世紀で最も多産な数学者のひとり。確率論・組合せ論を得意とした。</span></span>も当初は否定していたが、コンピューターシミュレーションの結果を見て考えを改めた。</p>
+
+<!-- タイムライン -->
+<div class="timeline fade">
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1963年</p>
+    <p class="tl-title">番組「Let's Make a Deal」放送開始</p>
+    <p class="tl-desc">NBCで放送開始。司会者モンティ・ホールが観客参加型ゲームを展開。扉を使ったコーナーが名物になる。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1975年2月</p>
+    <p class="tl-title">セルビンが学術的に定式化</p>
+    <p class="tl-desc"><span class="tip" onclick="toggleTip(this)">スティーブ・セルビン<span class="tip-box"><strong>スティーブ・セルビン（1941–）</strong><br>アメリカの生物統計学者。カリフォルニア大学バークレー校教授。1975年にモンティ・ホール問題を学術誌に初めて投稿し、同年「モンティ・ホール問題」と命名した。</span></span>がThe American Statistician誌に手紙を投稿。同年の2通目で「モンティ・ホール問題」と初めて名付けた。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1990年9月</p>
+    <p class="tl-title">Parade誌に掲載、大論争に</p>
+    <p class="tl-desc">マリリン・ボス・サバントが「Ask Marilyn」欄で回答。「選び直すべき」という結論に、推定1万通以上の反論が殺到。博士号保持者からの抗議も約1000通。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1990〜91年</p>
+    <p class="tl-title">全米の教室で実験、論争が転換</p>
+    <p class="tl-desc">マリリンの呼びかけに応え、数百の学校が授業で実験を実施。結果は一貫してマリリンの答えを裏付けた。エルデシュもシミュレーション結果を見て考えを改める。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1991年以降</p>
+    <p class="tl-title">数学的に決着</p>
+    <p class="tl-desc">反論を行った研究者の多くが誤りを認めた。現在は確率論や認知バイアスの入門として、世界中の教科書で取り上げられている。</p>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ==================== S5: つまり ==================== -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">情報は更新されたのに、直感は古いままだった。</h2>
+
+<p class="body-text fade">最初に扉を選んだ瞬間、世界は3択だった。確率は等しく3分の1ずつ。ここまでは誰も迷わない。</p>
+
+<p class="body-text fade">司会者がヤギの扉を開けた瞬間、新しい情報が入った。「残り2つのうち、あちらはハズレだ」という情報だ。しかもこれは偶然ではない。<strong>司会者は正解を知っていて、意図的にヤギの扉を選んで開けている。</strong>この「意図」が、確率の地図を塗り替える。</p>
+
+<!-- SVG: ベイズ更新の概念図（パターンA: 横並びフロー） -->
+<div class="svg-wrap fade">
+<svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <!-- Before -->
+  <text x="130" y="20" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#7a6a55" font-weight="600" letter-spacing=".08em">情報が入る前</text>
+  <rect x="20" y="30" width="70" height="55" rx="3" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="55" y="52" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#7a6a55">扉1</text>
+  <text x="55" y="70" text-anchor="middle" font-family="Playfair Display,serif" font-size="16" fill="#3d3020" font-weight="700">1/3</text>
+  <rect x="95" y="30" width="70" height="55" rx="3" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="130" y="52" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#7a6a55">扉2</text>
+  <text x="130" y="70" text-anchor="middle" font-family="Playfair Display,serif" font-size="16" fill="#3d3020" font-weight="700">1/3</text>
+  <rect x="170" y="30" width="70" height="55" rx="3" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="205" y="52" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#7a6a55">扉3</text>
+  <text x="205" y="70" text-anchor="middle" font-family="Playfair Display,serif" font-size="16" fill="#3d3020" font-weight="700">1/3</text>
+  <!-- Arrow -->
+  <line x1="255" y1="57" x2="295" y2="57" stroke="#8b1a1a" stroke-width="1.5"/>
+  <polygon points="295,53 303,57 295,61" fill="#8b1a1a"/>
+  <text x="279" y="48" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#8b1a1a">司会者が</text>
+  <text x="279" y="73" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#8b1a1a">ヤギを開ける</text>
+  <!-- After -->
+  <text x="430" y="20" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#8b1a1a" font-weight="600" letter-spacing=".08em">情報が入った後</text>
+  <rect x="320" y="30" width="70" height="55" rx="3" fill="#f3efe6" stroke="#c4392a"/>
+  <text x="355" y="52" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#c4392a">扉1（自分）</text>
+  <text x="355" y="70" text-anchor="middle" font-family="Playfair Display,serif" font-size="16" fill="#c4392a" font-weight="700">1/3</text>
+  <rect x="395" y="30" width="70" height="55" rx="3" fill="rgba(26,90,48,.08)" stroke="#1a5a30"/>
+  <text x="430" y="52" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#1a5a30">扉2</text>
+  <text x="430" y="70" text-anchor="middle" font-family="Playfair Display,serif" font-size="16" fill="#1a5a30" font-weight="700">2/3</text>
+  <rect x="470" y="30" width="70" height="55" rx="3" fill="#e8e4de" stroke="#c8bfaa" stroke-dasharray="3,3"/>
+  <text x="505" y="52" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090">扉3（開封）</text>
+  <text x="505" y="70" text-anchor="middle" font-family="Playfair Display,serif" font-size="16" fill="#b0a090" font-weight="700">0</text>
+  <!-- Bottom note -->
+  <line x1="60" y1="110" x2="500" y2="110" stroke="#e0d8c8" stroke-width="0.5"/>
+  <text x="280" y="130" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#7a6a55">自分の扉の確率は変わらない。消えた1/3は、もう一方の扉に移る</text>
+  <text x="280" y="150" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#8b1a1a" font-weight="600">→ これがベイズ更新の直感的な姿</text>
+</svg>
+</div>
+
+<p class="body-text fade">しかし直感は、そこで止まっている。「2つになったのだから50%のはず」と感じてしまう。最初の判断を起点に考えてしまうからだ。本当は、<em>最初の選択が間違いだった確率は3分の2もある</em>のに。</p>
+
+<p class="body-text fade">これは確率の問題であると同時に、人間が「更新」を苦手とするという問題でもある。情報が変わったのに、古い判断枠をそのまま使い続ける。最初の選択に引きずられる。変えることにコストがかかる気がする。これは<span class="tip" onclick="toggleTip(this)">サンクコスト錯誤<span class="tip-box"><strong>サンクコスト錯誤（sunk cost fallacy）</strong><br>すでに投じた時間・お金・労力を惜しんで、合理的でない判断を続けてしまうこと。「もったいない」という感情が最善の選択を妨げる。</span></span>とも、<span class="tip" onclick="toggleTip(this)">確証バイアス<span class="tip-box"><strong>確証バイアス（confirmation bias）</strong><br>自分がすでに信じていることを裏付ける情報だけを集め、矛盾する情報を無視してしまう傾向。最初の判断を正当化しようとする心理。</span></span>とも地続きの話だ。</p>
+
+<p class="body-text fade">扉の話だからこそ、日常に延長できる。転職、人間関係、習慣、信念——最初に選んだものに引きずられて、更新できていない判断が、今もどこかにあるかもしれない。</p>
+
+<hr class="art-rule">
+
+<!-- ==================== S6: 文化の中に現れる ==================== -->
+<div class="sec-rule fade"><span class="sec-label">文化の中に現れる</span><div class="sec-line"></div></div>
+<h2 class="fade">映画、小説、ドラマ——この問題は繰り返し「呼ばれる」。</h2>
+
+<p class="body-text fade">数学的に正解があるにもかかわらず、知っていても納得しにくい。だからこそ物語の中で「知性の証明」や「直感の裏切り」を描きたいとき、この問題は繰り返し登場する。</p>
+
+<div class="culture-block fade">
+  <p class="culture-title">映画「21」（ラスベガスをぶっつぶせ、2008年）</p>
+  <p class="culture-desc">MIT数学教授（ケビン・スペイシー）が学生に問題を出すシーンで使われる。学生が即座に正解を出し、天才であることが示される。</p>
+</div>
+<div class="culture-block fade">
+  <p class="culture-title">小説『夜中に犬に起こった奇妙な事件』（マーク・ハドン、2003年）</p>
+  <p class="culture-desc">自閉症スペクトラムの少年クリストファーが語り手となり、この問題を自分で図解する章がある。「数学は安全だ、決まった答えがあるから」という彼の言葉と深く結びついている。</p>
+</div>
+<div class="culture-block fade">
+  <p class="culture-title">ドラマ「NUMBERS」「ブルックリン・ナイン-ナイン」など</p>
+  <p class="culture-desc">複数のドラマで「知っている側と知らない側の非対称」を描く小道具として定着している。</p>
+</div>
+
+<div class="img-placeholder fade">
+  <div class="img-ph-area">
+    <span class="img-ph-icon">🎬</span>
+    <p class="img-ph-title">イラスト②｜映画「21」の教室シーン</p>
+    <p class="img-ph-desc">大学の講義室。黒板に3つの扉が描かれ、教授が学生に問いかけている場面。学生たちの表情は半信半疑。</p>
+    <div class="img-ph-prompt">
+      <p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
+      <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, anthropomorphic fox professor in suit pointing at chalkboard with three doors drawn on it, small group of young animal students looking puzzled, university lecture hall setting, Japanese scroll painting aesthetic, no text</p>
+    </div>
+  </div>
+  <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+</div>
+
+<hr class="art-rule">
+
+<!-- ==================== S7: 参考文献 ==================== -->
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+
+<div class="ref-list">
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1975</span></div>
+    <p class="ref-title"><a href="https://www.jstor.org/stable/2683689" target="_blank" rel="noopener">A Problem in Probability (Letter to the Editor)</a></p>
+    <p class="ref-author">Steve Selvin — The American Statistician, Vol. 29, No. 1</p>
+    <p class="ref-desc">モンティ・ホール問題を学術的に初めて定式化した手紙。3つの箱を使った問題として提示された。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">コラム</span><span class="ref-year">1990</span></div>
+    <p class="ref-title"><a href="https://web.archive.org/web/2023/https://parade.com/970343/ask-marilyn/" target="_blank" rel="noopener">Ask Marilyn — Parade Magazine</a></p>
+    <p class="ref-author">Marilyn vos Savant</p>
+    <p class="ref-desc">読者の質問に答える形で問題が掲載され、全米規模の論争を引き起こした。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">学術論文</span><span class="ref-year">1991</span></div>
+    <p class="ref-title"><a href="https://www.jstor.org/stable/2684453" target="_blank" rel="noopener">Let's Make a Deal: The Player's Dilemma</a></p>
+    <p class="ref-author">Morgan, Chaganty, Dahiya, Doviak — The American Statistician, Vol. 45, No. 4</p>
+    <p class="ref-desc">問題の前提条件と司会者の振る舞いの違いが確率に与える影響を分析した論文。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">心理学</span><span class="ref-year">2003</span></div>
+    <p class="ref-title"><a href="https://doi.org/10.1037/0096-3445.132.1.3" target="_blank" rel="noopener">The Psychology of the Monty Hall Problem</a></p>
+    <p class="ref-author">Stefan Krauss &amp; X. T. Wang — Journal of Experimental Psychology: General</p>
+    <p class="ref-desc">なぜ人間がこの問題で間違えるのかを認知心理学の観点から分析した研究。</p>
+  </div>
+</div>
+
+<!-- 信頼度ノート -->
+<div class="note-box fade">
+  <strong>📌 この記事について</strong><br>
+  モンティ・ホール問題は1975年にThe American Statistician誌で学術的に定式化され、1990年代のParade誌をめぐる論争を経て数学的に決着した問題である。ここで紹介した確率計算は、確率論の標準的な手法に基づいている。文化への登場はそれぞれの作品を参照した。
+</div>
+
+<div class="tags fade">
+  <span class="tag">確率</span><span class="tag">認知バイアス</span>
+  <span class="tag">モンティホール</span><span class="tag">意思決定</span>
+  <span class="tag">ベイズ更新</span><span class="tag">直感の罠</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- ==================== SIDEBAR ==================== -->
+<div class="article-side">
+  <div style="position:sticky;top:40px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">66.7%</p>
+      <p class="sidebar-text">選び直した場合の<em>勝率</em>。そのままの場合は33.3%。<strong>2倍の差</strong>が生まれる。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1963年に番組が開始。1975年にセルビンが学術的に定式化。1990年、<strong>マリリン・ボス・サバント</strong>がParade誌で解答を発表し大論争になった。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text"><strong>映画「21」</strong>（2008）<br><strong>小説『夜中に犬に…』</strong>（2003）<br><strong>ドラマ「NUMBERS」</strong><br><strong>「ブルックリン・ナイン-ナイン」</strong></p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— <span class="tip" onclick="toggleTip(this)">ベイズ更新<span class="tip-box"><strong>ベイズ更新（Bayesian updating）</strong><br>新しい証拠が得られるたびに、確率の見積もりを合理的に修正していく考え方。モンティ・ホール問題はその典型例。</span></span><br>— 確証バイアス<br>— サンクコスト錯誤<br>— 損失回避<br>— フレーミング効果</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">前提条件が明確であれば、数学的に<em>証明済み</em>の問題。このシリーズで扱うトピックの中では、最も決着がついている部類に入る。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ZONE C: 全幅セクション（.articleの外・下部）  -->
+<!-- ═══════════════════════════════════════ -->
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// モンティ・ホール問題を読み終えた人との対話</span>
+
+      <div class="t-line" id="tl1">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;理屈はわかった。でも、やっぱり半々に感じてしまう。</span>
+      </div>
+      <span class="t-output" id="to1">そうだよね。数学者のエルデシュも、最初は同じだった。<br>「理解する」と「腑に落ちる」は、脳の別の場所にある。</span>
+
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl2">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;なんで直感って、ここまで外れるんだろう。</span>
+      </div>
+      <span class="t-output" id="to2">新しい情報が入っても、<em>最初の判断を上書きできない</em>んだよね。<br>変えるという行為自体に、損した感じがする。<br>扉だけの話じゃない。</span>
+
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl3">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;1000回もシミュレーションすると、さすがに目で見えるね。</span>
+      </div>
+      <span class="t-output" id="to3">数は嘘をつかない。<br>でも面白いのは、<em>それを見てもなお、50%に感じる自分がいる</em>こと。<br>そこにこの問題のほんとうの面白さがある。</span>
+
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;これ知ってたら、日常で何か変わるかな。</span>
+      </div>
+      <span class="t-output" id="to4">「自分の直感は、更新が遅れることがある」<br>——それだけ覚えておくだけでも、<br>立ち止まれる瞬間が、少し増えるかもしれない。</span>
+
+      <hr class="t-divider">
+
+      <div class="t-line t-exit" id="tl5">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# そっか</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="/loss_aversion">
+      <p class="related-card-tag">Cognitive Bias</p>
+      <p class="related-card-title">損失回避</p>
+      <p class="related-card-desc">人は同じ金額でも、得るよりも失う方が2倍つらい。その非対称が、あらゆる判断を歪めている。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="/confirmation_bias">
+      <p class="related-card-tag">Cognitive Bias</p>
+      <p class="related-card-title">確証バイアス</p>
+      <p class="related-card-desc">自分の信念を裏付ける情報だけを集めてしまう心理。モンティ・ホール問題と同根の、直感の罠。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<script>
+// ═══════════ SCROLL PROGRESS ═══════════
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// ═══════════ FADE IN ═══════════
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ═══════════ TOOLTIP ═══════════
+function toggleTip(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.tip'))
+    document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+});
+
+// ═══════════ STEP ACCORDION ═══════════
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ═══════════ MONTY HALL GAME ═══════════
+let car,picked,opened,phase,swW=0,swT=0,stW=0,stT=0;
+function init(){car=Math.floor(Math.random()*3);picked=-1;opened=-1;phase=0;}
+init();
+
+function pick(n){
+  if(phase!==0)return;
+  picked=n;phase=1;
+  for(let i=0;i<3;i++){
+    document.getElementById('d'+i).classList.remove('selected','opened','winner','loser');
+    document.getElementById('d'+i).classList.add('disabled');
+    document.getElementById('i'+i).textContent='🚪';
+    const r=document.getElementById('d'+i).querySelector('.door-result');
+    if(r)r.remove();
+  }
+  document.getElementById('d'+n).classList.add('selected');
+  document.getElementById('d'+n).classList.remove('disabled');
+
+  // Open a goat door
+  let opts=[];
+  for(let i=0;i<3;i++){if(i!==picked&&i!==car)opts.push(i);}
+  opened=opts[Math.floor(Math.random()*opts.length)];
+  document.getElementById('d'+opened).classList.add('opened');
+  document.getElementById('i'+opened).textContent='🐐';
+
+  document.getElementById('msg').innerHTML='司会者が扉'+(opened+1)+'を開けた。<strong>ヤギ</strong>がいた。<br>さて、<span class="gold">選び直すか、そのままにするか？</span>';
+  document.getElementById('cRow').style.display='flex';
+  document.getElementById('bSw').disabled=false;
+  document.getElementById('bSt').disabled=false;
+  document.getElementById('gSt').textContent='選択中…';
+}
+
+function choose(action){
+  if(phase!==1)return;
+  phase=2;
+  document.getElementById('bSw').disabled=true;
+  document.getElementById('bSt').disabled=true;
+  let final=picked;
+  if(action==='switch'){
+    for(let i=0;i<3;i++){if(i!==picked&&i!==opened){final=i;break;}}
+  }
+  // Reveal all
+  for(let i=0;i<3;i++){
+    document.getElementById('i'+i).textContent=i===car?'🚗':'🐐';
+    document.getElementById('d'+i).classList.remove('selected','opened','disabled');
+  }
+  const won=final===car;
+  document.getElementById('d'+final).classList.add(won?'winner':'loser');
+  document.getElementById('d'+car).classList.add('winner');
+
+  if(action==='switch'){swT++;if(won)swW++;}
+  else{stT++;if(won)stW++;}
+
+  const actTxt=action==='switch'?'選び直して':'そのままで';
+  document.getElementById('msg').innerHTML=won?
+    '<span class="win">🎉 当たり！</span> '+actTxt+'<strong>車</strong>を獲得。':
+    '<span class="lose">残念…</span> '+actTxt+'<strong>ヤギ</strong>だった。';
+
+  document.getElementById('sWrap').style.display='block';
+  updateStats();
+  document.getElementById('gSt').textContent='結果';
+}
+
+function updateStats(){
+  document.getElementById('swn').textContent=swW;
+  document.getElementById('stn').textContent=stW;
+  const swR=swT>0?(swW/swT*100).toFixed(1)+'%':'—';
+  const stR=stT>0?(stW/stT*100).toFixed(1)+'%':'—';
+  document.getElementById('swr').textContent=swR+' ('+swT+'回中)';
+  document.getElementById('str').textContent=stR+' ('+stT+'回中)';
+  const maxT=Math.max(swT,stT,1);
+  document.getElementById('swb').style.width=(swT>0?(swW/swT*100):0)+'%';
+  document.getElementById('stb').style.width=(stT>0?(stW/stT*100):0)+'%';
+  document.getElementById('swp').textContent=swR;
+  document.getElementById('stp').textContent=stR;
+}
+
+function reset(){
+  init();phase=0;
+  for(let i=0;i<3;i++){
+    const d=document.getElementById('d'+i);
+    d.classList.remove('selected','opened','winner','loser','disabled');
+    document.getElementById('i'+i).textContent='🚪';
+    const r=d.querySelector('.door-result');if(r)r.remove();
+  }
+  document.getElementById('msg').textContent='3つの扉のうち1つに車が隠れている。直感で選んでみてほしい。';
+  document.getElementById('cRow').style.display='none';
+  document.getElementById('gSt').textContent='扉を選んでください';
+}
+
+function resetStats(){swW=0;swT=0;stW=0;stT=0;updateStats();}
+
+function autoRun(n){
+  for(let i=0;i<n;i++){
+    const c=Math.floor(Math.random()*3);
+    const p=Math.floor(Math.random()*3);
+    // Randomly decide switch or stay
+    if(Math.random()<0.5){
+      // switch
+      swT++;
+      let f=-1;
+      for(let j=0;j<3;j++){
+        if(j!==p){
+          let goats=[];
+          for(let k=0;k<3;k++){if(k!==p&&k!==c)goats.push(k);}
+          const o=goats[Math.floor(Math.random()*goats.length)];
+          for(let k=0;k<3;k++){if(k!==p&&k!==o){f=k;break;}}
+          break;
+        }
+      }
+      if(f===-1)f=(p+1)%3;
+      // Correct switch logic
+      let goats2=[];
+      for(let k=0;k<3;k++){if(k!==p&&k!==c)goats2.push(k);}
+      const op=goats2[Math.floor(Math.random()*goats2.length)];
+      let sw=-1;
+      for(let k=0;k<3;k++){if(k!==p&&k!==op){sw=k;break;}}
+      if(sw===c)swW++;
+    } else {
+      // stay
+      stT++;
+      if(p===c)stW++;
+    }
+  }
+  document.getElementById('sWrap').style.display='block';
+  updateStats();
+}
+
+// ═══════════ TERMINAL ANIMATION ═══════════
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5200},{id:'to4',delay:5800},
+  {id:'tl5',delay:6800},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>

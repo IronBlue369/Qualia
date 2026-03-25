@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>誕生日のパラドックス — Qualia Journal</title>
+<meta name="description" content="23人集まれば、同じ誕生日のペアがいる確率は50%を超える。直感を完全に裏切る確率の世界をシミュレーションで体験。">
+<link rel="canonical" href="https://qualiajournal.com/birthday_paradox">
+<meta property="og:title" content="誕生日のパラドックス — Qualia Journal">
+<meta property="og:description" content="23人集まれば、同じ誕生日のペアがいる確率は50%を超える。直感を完全に裏切る確率の世界をシミュレーションで体験。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/birthday_paradox">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="誕生日のパラドックス — Qualia Journal">
+<meta name="twitter:description" content="23人集まれば、同じ誕生日のペアがいる確率は50%を超える。直感を完全に裏切る確率の世界をシミュレーションで体験。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type='text/javascript' src='https://api.netlify.com/UF2PpEhQsWQsImCXHTqwEHpcE7Mdp-m7fkyeEGzvKAcygyWWxnYmEHMwvMb_hzn_CqEEMY7Miu0zC5jWuneJV1ccaztLOHCdRnlTed4Nuj7p36qVObbWc3g_Axs_xm_uQnDy6MAcCDhkOfVyGWZ9jOZgElvpEkF7uA7hoUG8Kwqtz2fIbc2Y6fWBDONTgBvW4mfxLjD5DSso0lCr05Z4R7UO55FLT0m9slOTyEC8CdwHTj-1hp20jhHZSpxzXpfkFMnNngAO029tQGlrOoWkbiPAtVLLcO3L_PTG6lKkybJiPouKZa72tfEsQ4jGAiAFbGgjauhQWX-uVX40xy7ieexnk9topAeqQuGz67Ui_EoKK66Qi_c2-ZGdp1pwHI2D6IXsw97KJmvgyT-VhKCVY-NGbXmSrXyGMotgDKFcGkdsY0ke1VSP2X4qDz2HHbamLC4jPk10dhalDpX89bx94qcqyZoIGY97_O53ucnd8LRJGwmLHknN7gBUZWcKElDTssfTuLJDAc2rVXc2y4msfpRuf9tAmb1vnTI'></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"誕生日のパラドックス","description":"23人集まれば、同じ誕生日のペアがいる確率は50%を超える。直感を完全に裏切る確率の世界をシミュレーションで体験。","author":{"@type":"Organization","name":"Qualia Journal"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/birthday_paradox","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"数学・論理","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"誕生日のパラドックス"}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+
+/* MASTHEAD */
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}
+.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;margin-bottom:6px;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* SCENARIO */
+.scenario-wrap{max-width:900px;margin:0 auto;padding:32px 48px 0;position:relative;}
+.scenario-inner{position:relative;padding:28px 32px;background:linear-gradient(160deg,#f3efe6 0%,#ede8dc 100%);border-top:3px solid #8b1a1a;overflow:hidden;}
+.scenario-inner::before{content:'23';position:absolute;top:-10px;right:20px;font-family:'Playfair Display',serif;font-size:140px;font-weight:900;color:rgba(139,26,26,.04);line-height:1;pointer-events:none;}
+.scenario-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
+.scenario-text:last-child{margin-bottom:0;}
+.scenario-text.closing{font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;letter-spacing:.06em;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* IMAGE PLACEHOLDER */
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}
+.person-block-wiki{margin-bottom:8px;}
+.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}
+.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.tl-legend{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:12px;display:flex;gap:20px;}
+.tl-legend-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle;}
+.tl-legend-dot.red{background:#8b1a1a;}
+.tl-legend-dot.white{background:#faf8f3;border:2px solid #c8bfaa;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2.2;list-style:none;padding:0;}
+.sidebar-check li{padding-left:20px;position:relative;}
+.sidebar-check li::before{content:'☐';position:absolute;left:0;color:#8b1a1a;}
+
+/* INTERACTIVE: GUESS */
+.exp-wrap{margin:32px 0;border:2px solid #1a1208;overflow:hidden;background:white;}
+.exp-header{background:#1a1208;color:#e8e4de;padding:14px 20px;display:flex;align-items:center;gap:10px;}
+.exp-header span{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;}
+.exp-phase{padding:24px;display:none;}
+.exp-phase.active{display:block;}
+.exp-phase h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1a1208;margin-bottom:16px;}
+.exp-phase p{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#7a6a55;line-height:1.8;margin-bottom:14px;}
+.slider-row{display:flex;align-items:center;gap:16px;margin:20px 0;}
+.slider-row input[type=range]{flex:1;accent-color:#8b1a1a;height:6px;}
+.slider-val{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#8b1a1a;min-width:70px;text-align:right;}
+.exp-btn{display:inline-block;margin-top:8px;padding:12px 28px;background:#8b1a1a;color:white;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;border:none;cursor:pointer;transition:background .15s;}
+.exp-btn:hover{background:#6d1414;}
+.result-box{margin:16px 0;padding:20px;background:#f3efe6;border:1px solid #c8bfaa;}
+.result-box h4{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;margin-bottom:12px;}
+.result-box p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin-bottom:8px;}
+.result-bar-wrap{margin:12px 0;height:32px;position:relative;background:#e0d8c8;overflow:hidden;}
+.result-bar-fill{height:100%;transition:width .6s ease;}
+.result-bar-marker{position:absolute;top:0;height:100%;width:2px;background:#1a1208;transition:left .6s ease;}
+.result-bar-label{position:absolute;top:100%;margin-top:4px;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;color:#7a6a55;white-space:nowrap;transform:translateX(-50%);}
+
+/* INTERACTIVE: SIMULATOR */
+.sim-wrap{margin:32px 0;border:2px solid #1a1208;overflow:hidden;background:white;}
+.sim-header{background:#1a1208;color:#e8e4de;padding:14px 20px;display:flex;align-items:center;gap:10px;}
+.sim-header span{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;}
+.sim-body{padding:24px;}
+.sim-body h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1a1208;margin-bottom:16px;}
+.sim-body p{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#7a6a55;line-height:1.8;margin-bottom:14px;}
+.sim-controls{display:flex;align-items:center;gap:16px;margin:16px 0;flex-wrap:wrap;}
+.sim-controls label{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#7a6a55;}
+.sim-controls input[type=range]{width:200px;accent-color:#8b1a1a;}
+.sim-n{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#8b1a1a;min-width:50px;text-align:center;}
+.sim-btn{padding:10px 20px;background:#8b1a1a;color:white;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;border:none;cursor:pointer;transition:background .15s;}
+.sim-btn:hover{background:#6d1414;}
+.sim-result{margin:16px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.sim-stat{text-align:center;padding:16px;background:#f3efe6;border:1px solid #c8bfaa;}
+.sim-stat-n{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#8b1a1a;display:block;}
+.sim-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;}
+.sim-chart{margin:16px 0;height:200px;position:relative;background:white;border:1px solid #e0d8c8;overflow:hidden;}
+.sim-chart canvas{width:100%;height:100%;}
+
+/* PAIR VISUALIZER */
+.pair-viz{margin:16px 0;padding:20px;background:#faf8f3;border:1px solid #e0d8c8;text-align:center;}
+.pair-viz svg{max-width:100%;}
+.pair-viz-controls{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:12px;}
+.pair-viz-btn{padding:6px 16px;background:#8b1a1a;color:white;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;border:none;cursor:pointer;}
+.pair-viz-btn:hover{background:#6d1414;}
+.pair-viz-btn:disabled{background:#c8bfaa;cursor:not-allowed;}
+.pair-viz-info{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;}
+
+/* PROBABILITY CURVE SVG */
+.prob-curve{margin:28px 0;text-align:center;}
+.prob-curve svg{max-width:100%;}
+
+/* TERMINAL */
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal-label{max-width:900px;margin:0 auto;padding:0 48px;display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.14em;color:#b0a090;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+@media(max-width:720px){
+.cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+.cover-right{display:none;}
+.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+.summary-box{padding:0 20px;}
+.scenario-wrap{padding:32px 20px 0;}
+.article{grid-template-columns:1fr;padding:0 20px;}
+.article-side{display:none;}
+.misconception-item{flex-direction:column;}
+.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+.terminal-wrap{padding:0 20px 40px;}
+.terminal-label{padding:0 20px;}
+.related{padding:32px 20px;}
+.related-grid{grid-template-columns:1fr;}
+.tip-box{left:0;transform:none;width:200px;}
+.tip-box::after{left:20px;transform:none;}
+.sim-result{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <p class="masthead-name"><a href="/" style="color:inherit;text-decoration:none;">Qualia Journal</a></p>
+</div>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">数学・論理</p>
+    <h1>たった<em>23人</em>で、誕生日は重なる</h1>
+    <p class="cover-deck">365日もあるのに、なぜこんなに少ない人数で一致するのか——1939年に提起された問いが、私たちの直感の限界を暴く。</p>
+    <div class="cover-byline"><span>Probability</span><span>Combinatorics</span><span>Intuition</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1939</span>
+      <p class="est-event">オーストリアの数学者リヒャルト・フォン・ミーゼスが、誕生日の一致に関する確率問題を初めて論文として発表。</p>
+      <p class="est-context">同年の世界：第二次世界大戦が勃発。ドイツがポーランドに侵攻し、英仏が宣戦布告。ニューヨーク万博が開催され、テレビ放送が始まった年でもある。</p>
+    </div>
+    <p class="cover-aside"><strong>名前の由来：</strong>数学的には正しい結果なのに、直感に反するため「パラドックス（逆説）」と呼ばれる。正確には「パラドックス」ではなく、反直感的な真実である。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario-wrap fade">
+  <div class="scenario-inner">
+    <p class="scenario-text">新学期の教室で、担任が「この中に同じ誕生日の人がいるかもしれない」と言い出したことはないだろうか。30人もいない教室で、365日もあるのだから、まさかと思う。ところが名簿を読み上げていくと、本当に一致するペアが見つかる。偶然の一致に教室がざわめいた、あの感覚。</p>
+    <p class="scenario-text">似たような驚きは日常のあちこちにある。同僚と誕生日が同じだった、飲み会で隣の人と誕生月が一緒だった。「世の中って狭い」と笑い合うけれど、本当にそれは偶然なのか、それとも偶然ではないのか——区別がつかない。</p>
+    <p class="scenario-text closing">これは偶然ではない。23人集まれば、誕生日が一致するペアがいる確率は50%を超える。直感が「ありえない」と言うことを、数学は淡々と証明する。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">初級 — 数学の知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">人間の直感が確率をどれだけ見誤るかを、自分の予測とシミュレーション結果のギャップとして体験する。人数を増やしたとき、「ペアの数」がどう爆発するかを目で見る場面がある。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- S1: 背景 -->
+  <div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+  <h2 class="fade">パーティーで生まれた問い</h2>
+
+  <p class="body-text fade">1930年代のイスタンブール。オーストリアから亡命した数学者<span class="tip" onclick="toggleTip(this)">リヒャルト・フォン・ミーゼス<span class="tip-box"><strong>Richard von Mises（1883–1953）</strong><br>オーストリア出身の数学者・物理学者。確率論の頻度主義的解釈の提唱者。ナチス台頭後、トルコ経由でアメリカに亡命。兄は経済学者ルートヴィヒ・フォン・ミーゼス。</span></span>は、ある集まりで不思議な偶然に出くわした。60人ほどのパーティーで、同じ誕生日の人が3人もいたのだ。「これは珍しいことなのか、それとも当たり前のことなのか」——その問いを、フォン・ミーゼスは数学で解くことにした。</p>
+
+  <p class="body-text fade">1939年、彼はイスタンブール大学の紀要に論文を発表する。タイトルは「配分と占有の確率について」。その中で彼は、n人の集団における誕生日の一致の期待値を計算した。答えは衝撃的だった。<strong>たった23人で、少なくとも1組の誕生日一致がある確率は50%を超える</strong>。365日もあるのに、たったの23人。</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <svg width="80" height="90" viewBox="0 0 80 90"><rect width="80" height="90" fill="#e0d8c8" rx="3"/><circle cx="40" cy="32" r="16" fill="#c8bfaa"/><ellipse cx="40" cy="72" rx="24" ry="18" fill="#c8bfaa"/><text x="40" y="36" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" fill="#7a6a55">R.v.M.</text></svg>
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">リヒャルト・フォン・ミーゼス</p>
+      <p class="person-block-role">Richard von Mises, 1883–1953</p>
+      <p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Richard_von_Mises" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p class="person-block-desc">オーストリア生まれの応用数学者。確率論における頻度主義の立場を体系化した。ナチスの台頭によりベルリン大学を追われ、イスタンブール大学を経て1939年にハーバード大学へ移った。亡命先で書いたこの論文が、誕生日のパラドックスの出発点になった。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">ただし、フォン・ミーゼスが扱ったのは「一致ペアの期待値」であり、今日よく知られる「何人で50%を超えるか」という形の問題そのものではなかった。そちらは、イギリスの数学者<span class="tip" onclick="toggleTip(this)">ハロルド・ダヴェンポート<span class="tip-box"><strong>Harold Davenport（1907–1969）</strong><br>イギリスの数学者。数論の分野で重要な業績を残した。誕生日問題の着想者と見なされているが、本人は「自分が最初だとは信じられない」として公式には発表しなかった。</span></span>が1927年頃にすでに着想していたとされる。ダヴェンポートは公式には発表しなかった。「こんな単純なことを、誰も先に言っていないはずがない」と思ったからだ。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"Davenport did not claim to be its discoverer because he could not believe that it had not been stated earlier."</p>
+    <p class="quote-ja">「ダヴェンポートはこの問題の発見者を自称しなかった。こんなことが以前に述べられていないとは信じられなかったからだ。」</p>
+    <p class="quote-attr">— David Singmaster, <em>Chronology of Recreational Mathematics</em></p>
+  </div>
+
+  <p class="body-text fade">こうして、着想はダヴェンポートに遡り、最初の出版はフォン・ミーゼスに帰せられる。その後、確率論の大家<span class="tip" onclick="toggleTip(this)">ウィリアム・フェラー<span class="tip-box"><strong>William Feller（1906–1970）</strong><br>クロアチア出身の数学者。著書『確率論とその応用』は確率論の教科書として20世紀で最も影響力があったとされる。</span></span>が1957年の教科書『確率論とその応用』で取り上げたことで、この問題は世界中の教室に広まった。</p>
+
+  <div class="img-placeholder fade">
+    <div class="img-ph-area">
+      <span class="img-ph-icon">🎂</span>
+      <p class="img-ph-title">イラスト①｜1930年代のパーティーで首をかしげる数学者</p>
+      <p class="img-ph-desc">イスタンブールのパーティー会場で、同じ誕生日が見つかって驚く人々と、その傍らで静かに計算を始める数学者の姿。</p>
+      <div class="img-ph-prompt">
+        <p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
+        <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, a 1930s party scene with anthropomorphic animals (frogs and rabbits), one scholarly frog with glasses quietly calculating while others celebrate discovering shared birthdays, Japanese scroll painting aesthetic, no text</p>
+      </div>
+    </div>
+    <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+  </div>
+
+  <!-- 誤解あるある -->
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">読む前に確認 — よくある誤解</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">50%の確率に達するには、少なくとも183人（365の半分）必要だろう</p></div>
+        <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">必要なのはたった23人。183人は「特定の1人と同じ誕生日の人がいる確率」の話と混同している</p></div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">数学が得意な人なら直感で正しく推測できる</p></div>
+        <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">研究によれば、数学に通じた人でもこの問題で大幅に過大推測する傾向がある。知識と直感は別物だ</p></div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">誕生日が均等に分布していないから、現実では成り立たない</p></div>
+        <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">誕生日の分布が不均等であるほど、一致の確率はむしろ上がる。均等分布は確率が最も低くなる条件だ</p></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="art-rule">
+
+  <!-- S2: 体験する -->
+  <div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+  <h2 class="fade">あなたの直感は、何%と言うだろう。</h2>
+
+  <p class="body-text fade">まず試してほしい。23人の集団で、少なくとも1組の誕生日一致がある確率は何%だと思うか。スライダーを動かして答えてみてほしい。正解を知ってから「当たり前でしょ」と思うのは簡単だ。その前に、自分の直感を記録しておくことに意味がある。</p>
+
+  <!-- 体験①: 直感テスト -->
+  <div class="exp-wrap fade" id="guessExp">
+    <div class="exp-header"><span>✦ Guess the Threshold</span></div>
+    <div class="exp-phase active" id="gPhase1">
+      <h3>問い：23人の部屋</h3>
+      <p>23人が1つの部屋に集まっています。少なくとも2人が同じ誕生日である確率は何%だと思いますか？</p>
+      <div class="slider-row">
+        <input type="range" id="gSlider1" min="0" max="100" value="10" oninput="document.getElementById('gVal1').textContent=this.value+'%'">
+        <span class="slider-val" id="gVal1">10%</span>
+      </div>
+      <button class="exp-btn" onclick="submitGuess1()">この予想で確定する</button>
+    </div>
+    <div class="exp-phase" id="gPhase2">
+      <div class="result-box" id="gResult1"></div>
+      <h3>次の問い：70人なら？</h3>
+      <p>では、70人に増やしたら？ 確率は何%になると思いますか？</p>
+      <div class="slider-row">
+        <input type="range" id="gSlider2" min="0" max="100" value="30" oninput="document.getElementById('gVal2').textContent=this.value+'%'">
+        <span class="slider-val" id="gVal2">30%</span>
+      </div>
+      <button class="exp-btn" onclick="submitGuess2()">この予想で確定する</button>
+    </div>
+    <div class="exp-phase" id="gPhase3">
+      <div class="result-box" id="gResult2"></div>
+      <div style="margin-top:16px;padding:16px;background:#1a1208;color:#f0ece6;">
+        <p style="font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:400;line-height:1.9;margin:0;color:#e8e4de;">ほとんどの人が大幅に低く見積もる。これは知能や数学力の問題ではない。<strong style="color:#e8c56a;">人間の脳は、ペアの組み合わせが爆発的に増えることを想像するのが苦手なのだ。</strong>次のシミュレーターで、それを目撃してほしい。</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">予測と実際のギャップに驚いた人は多いだろう。だが、なぜそうなるのかは、まだ「感覚として」わかっていないはずだ。次のシミュレーターでは、ランダムに誕生日を生成して1000回シミュレーションを回す。理論値に結果が収束していくさまを、自分の目で確認できる。</p>
+
+  <!-- 体験②: シミュレーター -->
+  <div class="sim-wrap fade" id="simExp">
+    <div class="sim-header"><span>✦ Birthday Simulator</span></div>
+    <div class="sim-body">
+      <h3>モンテカルロ・シミュレーション</h3>
+      <p>人数を選び、「1000回シミュレーション」を押してください。ランダムに誕生日を割り当て、一致があったかどうかを1000回繰り返します。</p>
+      <div class="sim-controls">
+        <label>人数:</label>
+        <input type="range" id="simSlider" min="2" max="80" value="23" oninput="updateSimN()">
+        <span class="sim-n" id="simN">23</span>
+        <span style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;">人</span>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;">
+        <button class="sim-btn" onclick="runSim(1)">1回試行</button>
+        <button class="sim-btn" onclick="runSim(100)">100回</button>
+        <button class="sim-btn" onclick="runSim(1000)">1,000回</button>
+        <button class="sim-btn" style="background:#7a6a55;" onclick="resetSim()">リセット</button>
+      </div>
+      <div class="sim-result" id="simResult" style="display:none;">
+        <div class="sim-stat">
+          <span class="sim-stat-n" id="simMatch">0</span>
+          <span class="sim-stat-lbl">一致あり</span>
+        </div>
+        <div class="sim-stat">
+          <span class="sim-stat-n" id="simTotal">0</span>
+          <span class="sim-stat-lbl">総試行</span>
+        </div>
+      </div>
+      <div id="simBarWrap" style="display:none;margin:16px 0;">
+        <div style="display:flex;justify-content:space-between;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:4px;">
+          <span>シミュレーション結果</span>
+          <span id="simPct">0%</span>
+        </div>
+        <div style="height:28px;background:#e0d8c8;position:relative;overflow:hidden;">
+          <div id="simBar" style="height:100%;background:#8b1a1a;width:0;transition:width .3s;"></div>
+          <div id="simTheory" style="position:absolute;top:0;height:100%;width:2px;background:#1a1208;transition:left .3s;" title="理論値"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:4px;">
+          <span>0%</span>
+          <span id="simTheoryLabel">理論値: —</span>
+          <span>100%</span>
+        </div>
+      </div>
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:8px;">人数スライダーを変えて比較してみてください。10人、23人、50人、70人——確率の立ち上がりの速さに注目。</p>
+    </div>
+  </div>
+
+  <div class="pull fade">
+    <p class="pull-q">直感は「<em>ありえない</em>」と言う。<br>シミュレーションは「<em>当たり前だ</em>」と答える。</p>
+    <p class="pull-attr">— 誕生日のパラドックスの核心</p>
+  </div>
+
+  <hr class="art-rule">
+
+  <!-- S3: なぜか -->
+  <div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+  <h2 class="fade">人数は足し算で増えるが、ペアは掛け算で増える。</h2>
+
+  <p class="body-text fade">直感がなぜ外れるのか。答えは「比較の数」にある。23人の部屋で、ある特定の1人（たとえばあなた）と誕生日が同じ人がいる確率は確かに低い。22/365で、約6%だ。直感が「低い」と感じるのは、この計算をしているからだ。</p>
+
+  <p class="body-text fade">だが問題は「あなたと誰か」ではない。<strong>「誰かと誰か」</strong>だ。23人のうち、ペアになりうる組み合わせの数は23×22÷2＝<strong>253通り</strong>。あなたが関わるペアは22通りしかないが、あなた以外のペア同士の組み合わせが231通りもある。私たちはこの「自分が含まれないペア」を本能的に無視する。</p>
+
+  <!-- 体験③: ペア可視化 -->
+  <div class="pair-viz fade" id="pairViz">
+    <svg id="pairSvg" width="360" height="360" viewBox="0 0 360 360"></svg>
+    <div class="pair-viz-controls">
+      <button class="pair-viz-btn" id="pairAddBtn" onclick="addPairNode()">＋1人追加</button>
+      <button class="pair-viz-btn" style="background:#7a6a55;" onclick="resetPairViz()">リセット</button>
+      <span class="pair-viz-info" id="pairInfo">人数: 2 / ペア数: 1</span>
+    </div>
+  </div>
+
+  <p class="body-text fade">ボタンを何度か押してみてほしい。人が1人増えるたびに、その人は既存の<em>全員</em>と線で結ばれる。5人で10本、10人で45本。そして23人で253本だ。線の本数は人数の二乗に比例して増えていく。ここに直感の罠がある。</p>
+
+  <div class="steps-wrap fade">
+    <p class="steps-head">直感が外れる3つの理由</p>
+    <div class="step-card open" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">1</div>
+        <div class="step-tw"><div><div class="step-title">「自分と誰か」で考えてしまう</div><div class="step-sub">自己中心バイアス</div></div></div>
+        <span class="step-arr">▼</span>
+      </div>
+      <div class="step-body">
+        <p>「自分の誕生日と同じ人がいるか」で考えるとき、確率は低い（22/365 ≈ 6%）。だが問題が問うているのは「23人の中の<em>どのペアでも</em>一致すればよい」ということだ。自分が関わらないペアの方がはるかに多い。家電を買うとき、自分のレビューだけ見て「全体の評価」を判断するようなものだ。</p>
+      </div>
+    </div>
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">2</div>
+        <div class="step-tw"><div><div class="step-title">ペアの増加が「見えない」</div><div class="step-sub">組み合わせ爆発</div></div></div>
+        <span class="step-arr">▼</span>
+      </div>
+      <div class="step-body">
+        <p>人数が1人増えるとペア数は「今の人数ぶん」増える。5人目が入ると4本、6人目で5本、23人目で22本。これが積み重なり、合計 n(n-1)/2 になる。<strong>人数は線形に増えるが、ペア数は二次関数的に増える。</strong>SNSの友達が倍になると、タイムラインの情報量が4倍になるのと同じ構造だ。</p>
+      </div>
+    </div>
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">3</div>
+        <div class="step-tw"><div><div class="step-title">「余事象」で考えないと見誤る</div><div class="step-sub">確率の裏返し</div></div></div>
+        <span class="step-arr">▼</span>
+      </div>
+      <div class="step-body">
+        <p>「一致がある確率」を直接計算するのは難しい。1組だけ一致するケース、2組一致するケース……を全部足す必要がある。数学者が使うのは裏技で、「<strong>全員がバラバラである確率</strong>」を計算して、それを1から引く。2人目が1人目と違う確率は 364/365。3人目が1・2人目と違う確率は 363/365。これを掛け続けると、23人目で積が0.493を下回る。つまり、<em>全員バラバラの方が珍しくなる</em>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 確率曲線 SVG -->
+  <div class="prob-curve fade">
+    <svg viewBox="0 0 500 280" width="500" height="280" style="font-family:'Source Sans 3',sans-serif;">
+      <!-- axes -->
+      <line x1="50" y1="20" x2="50" y2="240" stroke="#c8bfaa" stroke-width="1"/>
+      <line x1="50" y1="240" x2="480" y2="240" stroke="#c8bfaa" stroke-width="1"/>
+      <!-- grid lines -->
+      <line x1="50" y1="130" x2="480" y2="130" stroke="#e0d8c8" stroke-width="0.5" stroke-dasharray="4,4"/>
+      <line x1="50" y1="20" x2="480" y2="20" stroke="#e0d8c8" stroke-width="0.5" stroke-dasharray="4,4"/>
+      <!-- Y labels -->
+      <text x="44" y="244" text-anchor="end" font-size="10" fill="#b0a090">0%</text>
+      <text x="44" y="134" text-anchor="end" font-size="10" fill="#b0a090">50%</text>
+      <text x="44" y="24" text-anchor="end" font-size="10" fill="#b0a090">100%</text>
+      <!-- X labels -->
+      <text x="50" y="258" text-anchor="middle" font-size="10" fill="#b0a090">0</text>
+      <text x="129" y="258" text-anchor="middle" font-size="10" fill="#b0a090">10</text>
+      <text x="190" y="258" text-anchor="middle" font-size="10" fill="#8b1a1a" font-weight="600">23</text>
+      <text x="309" y="258" text-anchor="middle" font-size="10" fill="#b0a090">40</text>
+      <text x="410" y="258" text-anchor="middle" font-size="10" fill="#b0a090">57</text>
+      <text x="480" y="258" text-anchor="middle" font-size="10" fill="#b0a090">70</text>
+      <!-- Y axis title -->
+      <text x="14" y="130" text-anchor="middle" font-size="10" fill="#7a6a55" transform="rotate(-90,14,130)">一致確率</text>
+      <!-- X axis title -->
+      <text x="265" y="275" text-anchor="middle" font-size="10" fill="#7a6a55">人数</text>
+      <!-- 50% line -->
+      <line x1="50" y1="130" x2="190" y2="130" stroke="#8b1a1a" stroke-width="0.8" stroke-dasharray="3,3"/>
+      <line x1="190" y1="130" x2="190" y2="240" stroke="#8b1a1a" stroke-width="0.8" stroke-dasharray="3,3"/>
+      <!-- 99% line -->
+      <line x1="50" y1="22.2" x2="410" y2="22.2" stroke="#7a6a55" stroke-width="0.5" stroke-dasharray="2,4"/>
+      <line x1="410" y1="22.2" x2="410" y2="240" stroke="#7a6a55" stroke-width="0.5" stroke-dasharray="2,4"/>
+      <!-- curve (approximated) -->
+      <path d="M50,240 C65,239 80,237 95,233 C110,226 125,216 140,201 C155,181 170,158 185,133 C200,108 215,84 230,64 C245,48 260,36 275,28 C290,23 310,21 340,20.5 C370,20.2 400,20.1 430,20 C460,20 480,20 480,20" fill="none" stroke="#8b1a1a" stroke-width="2.5"/>
+      <!-- dot at 23 -->
+      <circle cx="190" cy="130" r="4" fill="#8b1a1a"/>
+      <text x="196" y="124" font-size="11" fill="#8b1a1a" font-weight="600">50.7%</text>
+      <!-- dot at 57 -->
+      <circle cx="410" cy="22" r="3" fill="#7a6a55"/>
+      <text x="416" y="18" font-size="9" fill="#7a6a55">99%</text>
+    </svg>
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:8px;">人数と誕生日一致確率の関係。23人で50%、57人で99%に達する。</p>
+  </div>
+
+  <hr class="art-rule">
+
+  <!-- S4: 歴史 -->
+  <div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+  <h2 class="fade">パーティーの疑問から、暗号解読の武器へ。</h2>
+
+  <p class="tl-legend fade"><span><span class="tl-legend-dot red"></span> 誕生日問題の主要な展開</span><span><span class="tl-legend-dot white"></span> 関連する出来事</span></p>
+  <div class="timeline fade">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1927年頃</p>
+      <p class="tl-title">ダヴェンポートの着想</p>
+      <p class="tl-desc">イギリスの数学者ハロルド・ダヴェンポートが、マンチェスター大学の学部生時代に「何人で50%を超えるか」という形の問題を考案。ただし公式には発表しなかった。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1939年</p>
+      <p class="tl-title">フォン・ミーゼスの論文発表</p>
+      <p class="tl-desc">リヒャルト・フォン・ミーゼスがイスタンブール大学の紀要に論文を発表。誕生日の一致ペアの期待値を数学的に解析した、この問題に関する最初の学術的出版物。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1939年（同年）</p>
+      <p class="tl-title">Ball-Coxeter版の出版</p>
+      <p class="tl-desc">数学の娯楽書『Mathematical Recreations and Essays』第11版（コクセター編集）が、ダヴェンポート版の誕生日問題を初めて活字にした。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1957年</p>
+      <p class="tl-title">フェラーの教科書</p>
+      <p class="tl-desc">ウィリアム・フェラーの名著『確率論とその応用 第1巻』が誕生日問題を取り上げ、世界中の確率論の授業で教材として定着する。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1970年代〜</p>
+      <p class="tl-title">暗号学への応用（バースデーアタック）</p>
+      <p class="tl-desc">誕生日問題の数学がハッシュ関数の安全性評価に転用される。「バースデーアタック」と呼ばれる攻撃手法は、ハッシュ値の衝突を予想より少ない試行で見つけられることを利用する。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2004年</p>
+      <p class="tl-title">MD5の衝突が実証される</p>
+      <p class="tl-desc">王小雲らの研究チームが、広く使われていたハッシュ関数MD5の衝突を一般的なコンピューターで実演。この突破は誕生日のパラドックスの数学に基づいており、MD5の廃止を加速させた。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2014年</p>
+      <p class="tl-title">FIFAワールドカップでの検証</p>
+      <p class="tl-desc">2014年ブラジル大会では各チーム23人登録。BBCが全32チームを調べたところ、ちょうど半数の16チームに誕生日が一致するペアがあった。理論値の50%にぴたりと一致した実例として広く報じられた。</p>
+    </div>
+  </div>
+
+  <hr class="art-rule">
+
+  <!-- S5: つまり -->
+  <div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+  <h2 class="fade">「ありえない偶然」は、たいていありえる。</h2>
+
+  <p class="body-text fade">誕生日のパラドックスが教えているのは、特定の問題の解き方ではない。<strong>私たちの直感が組み合わせの爆発を過小評価する</strong>という、もっと普遍的な話だ。</p>
+
+  <p class="body-text fade">同窓会で「同じ映画を先週観ていた」人がいると驚く。会社の歓迎会で「出身地が同じ」人がいると運命を感じる。だが、20人の集まりで「共通点が何もない」方がはるかに珍しい。比較するペアの数は190通りあり、共通点の種類（誕生月、出身県、好きな映画……）は無数にある。「驚くべき偶然」は、ペアと属性の掛け算で必然に変わる。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"It is not so much that the birthday paradox is astonishing — it is that our intuition about probability is astonishingly poor."</p>
+    <p class="quote-ja">「誕生日のパラドックスが驚くべきなのではない。確率に対する私たちの直感が、驚くほど貧弱なのだ。」</p>
+    <p class="quote-attr">— Persi Diaconis &amp; Frederick Mosteller, "Methods for Studying Coincidences" (1989)</p>
+  </div>
+
+  <p class="body-text fade">暗号の世界では、この直感の甘さが致命的になる。ハッシュ関数の設計者が「128ビットの出力なら衝突は事実上起こらない」と思っていても、バースデーアタックはその半分の64ビット相当の試行数で衝突を見つけてしまう。2004年にMD5が破られたのは、この数学を過小評価した結果だ。</p>
+
+  <p class="body-text fade">では、日常で私たちにできることはあるだろうか。いくつかの手がかりはある。ひとつは、<span class="tip" onclick="toggleTip(this)">フェルミ推定<span class="tip-box"><strong>フェルミ推定（Fermi estimation）</strong><br>おおまかな見積もりを桁数レベルで素早く行う手法。正確な答えを求めるのではなく、「桁が合っているか」を確かめるのに有用。</span></span>的に「比較対象はいくつあるか」を先に数えることだ。20人の集まりならペアは190組。その数を頭に置くだけで、「偶然の一致」に対する驚きの閾値が変わる。もうひとつは、<span class="tip" onclick="toggleTip(this)">基準率<span class="tip-box"><strong>基準率（base rate）</strong><br>ある事象が「何もしなくても」起こる確率。特定の条件をつけずに計算した、ベースラインとしての確率のこと。</span></span>を意識すること。「その偶然が起きる確率」だけでなく、「その偶然が起きない確率」を裏返して考える。23人で全員バラバラである確率はたった49.3%——半分を切っている。偶然に驚く前に、裏側の数字を見る習慣だ。</p>
+
+  <p class="body-text fade">だが正直に言えば、こうした対策は万能ではない。知っていても直感は変わらない。フォン・ミーゼスも、フェラーも、この問題を解いた数学者たちでさえ、最初は驚いたのだ。知識で直感は上書きできない。できるのは、「自分の直感は確率を見誤る」と知っておくことだけだ。それだけで、驚くべき偶然に出会ったとき、一拍置いて考える余裕が生まれる。</p>
+
+  <div class="culture-block fade">
+    <p class="culture-title">FIFAワールドカップと23人の奇跡</p>
+    <p class="culture-desc">FIFAワールドカップの登録選手は各チーム23人。これが誕生日のパラドックスの検証に完璧なデータセットとなった。2014年ブラジル大会では32チーム中16チーム（ちょうど50%）に誕生日一致ペアがあり、数学者ペーター・フランクルは「私は講義で誕生日パラドックスを20回ほど試したが、外れたのは1回だけだ」と述べた。</p>
+  </div>
+
+  <div class="img-placeholder fade">
+    <div class="img-ph-area">
+      <span class="img-ph-icon">⚽</span>
+      <p class="img-ph-title">イラスト②｜ワールドカップのロッカールームで誕生日を比べる選手たち</p>
+      <p class="img-ph-desc">23人の代表選手がロッカールームに集まり、カレンダーを囲んで誕生日を確認している場面。一致を見つけて喜ぶ2人と、それを信じられない様子の仲間たち。</p>
+      <div class="img-ph-prompt">
+        <p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
+        <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, anthropomorphic frogs in soccer uniforms gathered in a locker room around a large calendar, two frogs discovering they share the same birthday mark on the calendar, teammates looking surprised, Japanese scroll painting aesthetic, no text</p>
+      </div>
+    </div>
+    <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+  </div>
+
+  <hr class="art-rule">
+
+  <!-- 参考文献 -->
+  <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1939</span></div>
+      <p class="ref-title"><a href="https://link.springer.com/chapter/10.1007/978-1-4614-7330-3_23" target="_blank" rel="noopener">Über Aufteilungs- und Besetzungswahrscheinlichkeiten</a></p>
+      <p class="ref-author">Richard von Mises</p>
+      <p class="ref-desc">すべてはここから始まった。フォン・ミーゼスがイスタンブール大学の紀要に発表した、誕生日の一致に関する確率解析の原論文。パーティーでの体験が数学になった瞬間を読める。Selected Papers版からアクセス可能。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1968</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1002/bimj.19700120413" target="_blank" rel="noopener">An Introduction to Probability Theory and Its Applications, Vol. 1</a></p>
+      <p class="ref-author">William Feller</p>
+      <p class="ref-desc">確率論の教科書の決定版。誕生日問題がここで取り上げられたことで、世界中の教室に広まった。第1巻第2章に登場する。確率を「感覚」で学びたい人にも読みやすい。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">展望論文</span><span class="ref-year">1989</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1080/01621459.1989.10478856" target="_blank" rel="noopener">Methods for Studying Coincidences</a></p>
+      <p class="ref-author">Persi Diaconis &amp; Frederick Mosteller</p>
+      <p class="ref-desc">「偶然の一致」を数学的に分析するための枠組みを提示した論文。誕生日問題を一般化した議論が含まれ、なぜ私たちが偶然に驚きすぎるのかを体系的に論じている。読んだ後、「すごい偶然」に鈍感になる。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2005</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1016/j.jspi.2004.01.015" target="_blank" rel="noopener">The matching, birthday and the strong birthday problem: a contemporary review</a></p>
+      <p class="ref-author">Anirban DasGupta</p>
+      <p class="ref-desc">誕生日問題とその拡張を包括的にレビューした論文。「全員が誰かとペアになる確率（強い誕生日問題）」など、さらに深い問いに踏み込んでいる。指紋照合や暗号学への応用も議論。</p>
+    </div>
+  </div>
+
+  <!-- 信頼度ノート -->
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    誕生日のパラドックスは数学的に証明された結果であり、論争の余地はない。本記事の数値（23人で約50.7%、57人で99%）はフォン・ミーゼス（1939年）以来の標準的な計算に基づいている。歴史的経緯についてはダヴェンポート周辺の口承に依存する部分があるが、デイヴィッド・シングマスターの考証に沿って記述した。暗号学への応用については、2004年のMD5衝突実証を含め、広く確認されている事実を記載している。
+  </div>
+
+  <div class="tags fade">
+    <span class="tag">確率論</span>
+    <span class="tag">組み合わせ</span>
+    <span class="tag">反直感</span>
+    <span class="tag">暗号学</span>
+    <span class="tag">フォン・ミーゼス</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:40px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">253</p>
+      <p class="sidebar-text">23人の集団で、ペアになりうる組み合わせの数。「誰かと誰か」が同じ誕生日である可能性を、253回チェックしている計算になる。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">着想は1927年頃のダヴェンポートに遡るが、最初の出版は1939年のフォン・ミーゼス。フェラーの教科書（1957年）で世界中に普及した。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">2014年FIFAワールドカップで、BBCが全32チーム（各23人）を検証。理論通り16チームに誕生日一致ペアがあり、大きく報じられた。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">
+        — ギャンブラーの誤謬<br>
+        — ベイズの定理（基準率の無視）<br>
+        — 相関と因果<br>
+        — バースデーアタック（暗号学）
+      </p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">今日を振り返る</p>
+      <ul class="sidebar-check">
+        <li>最近「すごい偶然」に驚いたとき、比較対象の数を考えただろうか</li>
+        <li>「自分と誰か」ではなく「誰かと誰か」の視点で見直しただろうか</li>
+        <li>直感を信じる前に、裏側（余事象）の確率を想像しただろうか</li>
+      </ul>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">数学的証明が確立しており、再現実験も無数にある。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label">
+  <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+  <div class="terminal-label-line"></div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 誕生日のパラドックスを読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;23人って少なすぎない？ 直感的にはせめて100人くらいいると思ってた</span></div>
+      <span class="t-output" id="to1">それが「パラドックス」と呼ばれるゆえんだ。100人なら確率は<em>99.99997%</em>くらいになる。ほぼ確実。23人はちょうど「半々になる折り返し地点」で、そこに驚きが集中する。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ペアの数が253って、ぜんぜんピンとこなかった</span></div>
+      <span class="t-output" id="to2">人は足し算で考えるからね。「23人だから比較は23回くらい」と感じる。でも実際はn(n-1)/2。<strong>人数が2倍になるとペアは4倍</strong>になる。この感覚を掴むと、SNSのタイムラインが爆発する理由もわかる。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;バースデーアタックって名前がかわいいのに怖い話だな</span></div>
+      <span class="t-output" id="to3">名前は誕生日パーティーだが、中身はハッシュ関数の破壊。MD5が破られたのは、設計者がこの「ペアの爆発」を過小評価したからだ。直感の限界はセキュリティの穴にもなる。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;今度飲み会で試してみるわ</span></div>
+      <span class="t-output" id="to4">30人いれば約70%。賭けるならかなり有利だ。ただ、数学者ペーター・フランクルでも20回中1回は外れたらしいから、過信は禁物。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl5">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# おもしろかった</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="#">
+      <p class="related-card-tag">確率論 × 意思決定</p>
+      <p class="related-card-title">モンティ・ホール問題</p>
+      <p class="related-card-desc">選び直した方が2倍有利——世界中の数学者が「間違いだ」と叫んだ確率の罠。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="#">
+      <p class="related-card-tag">認知バイアス × 確率</p>
+      <p class="related-card-title">基準率の無視（ベイズの定理）</p>
+      <p class="related-card-desc">検査で陽性——本当に病気である確率は、直感よりはるかに低い。</p>
+      <p class="related-card-arrow">近日公開</p>
+    </a>
+  </div>
+</div>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ
+function toggleTip(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.tip'))
+    document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+
+// === 体験①: 直感テスト ===
+function birthdayProb(n){
+  if(n<2)return 0;
+  let p=1;
+  for(let i=1;i<n;i++) p*=(365-i)/365;
+  return (1-p)*100;
+}
+
+function submitGuess1(){
+  const guess=parseInt(document.getElementById('gSlider1').value);
+  const actual=birthdayProb(23);
+  const diff=Math.abs(guess-actual);
+  let comment='';
+  if(diff<5) comment='かなり近い。珍しい。';
+  else if(diff<15) comment='そこまで離れていないが、多くの人はもっと低く見積もる。';
+  else comment='大幅にずれている。だが、これが普通だ。ほとんどの人がこう答える。';
+  document.getElementById('gResult1').innerHTML=`
+    <h4>23人の場合の正解: ${actual.toFixed(1)}%</h4>
+    <p>あなたの予想: <strong>${guess}%</strong>（差: ${diff.toFixed(1)}ポイント）</p>
+    <p>${comment}</p>
+    <div class="result-bar-wrap">
+      <div class="result-bar-fill" style="width:${actual}%;background:rgba(139,26,26,.15);"></div>
+      <div class="result-bar-marker" style="left:${guess}%;background:#8b1a1a;">
+        <span class="result-bar-label" style="left:0;color:#8b1a1a;">あなた: ${guess}%</span>
+      </div>
+      <div class="result-bar-marker" style="left:${actual}%;background:#1a5a30;">
+        <span class="result-bar-label" style="left:0;color:#1a5a30;">正解: ${actual.toFixed(1)}%</span>
+      </div>
+    </div>
+  `;
+  document.getElementById('gPhase1').classList.remove('active');
+  document.getElementById('gPhase2').classList.add('active');
+}
+
+function submitGuess2(){
+  const guess=parseInt(document.getElementById('gSlider2').value);
+  const actual=birthdayProb(70);
+  const diff=Math.abs(guess-actual);
+  let comment='';
+  if(diff<3) comment='ほぼ正確。誕生日問題を知っていたのでは？';
+  else if(diff<20) comment='健闘している方だが、実際の数字はほとんど100%に近い。';
+  else comment='70人で99.9%——ほぼ確実だ。にわかには信じがたいが、数学はそう言っている。';
+  document.getElementById('gResult2').innerHTML=`
+    <h4>70人の場合の正解: ${actual.toFixed(1)}%</h4>
+    <p>あなたの予想: <strong>${guess}%</strong>（差: ${diff.toFixed(1)}ポイント）</p>
+    <p>${comment}</p>
+    <div class="result-bar-wrap">
+      <div class="result-bar-fill" style="width:${actual}%;background:rgba(139,26,26,.15);"></div>
+      <div class="result-bar-marker" style="left:${Math.min(guess,98)}%;background:#8b1a1a;">
+        <span class="result-bar-label" style="left:0;color:#8b1a1a;">あなた: ${guess}%</span>
+      </div>
+      <div class="result-bar-marker" style="left:${Math.min(actual,98)}%;background:#1a5a30;">
+        <span class="result-bar-label" style="left:0;color:#1a5a30;">正解: ${actual.toFixed(1)}%</span>
+      </div>
+    </div>
+  `;
+  document.getElementById('gPhase2').classList.remove('active');
+  document.getElementById('gPhase3').classList.add('active');
+}
+
+// === 体験②: シミュレーター ===
+let simMatchCount=0, simTotalCount=0;
+
+function updateSimN(){
+  document.getElementById('simN').textContent=document.getElementById('simSlider').value;
+  resetSim();
+}
+
+function runSim(count){
+  const n=parseInt(document.getElementById('simSlider').value);
+  document.getElementById('simResult').style.display='grid';
+  document.getElementById('simBarWrap').style.display='block';
+  for(let t=0;t<count;t++){
+    const bdays=new Set();
+    let match=false;
+    for(let i=0;i<n;i++){
+      const d=Math.floor(Math.random()*365);
+      if(bdays.has(d)){match=true;break;}
+      bdays.add(d);
+    }
+    simTotalCount++;
+    if(match) simMatchCount++;
+  }
+  const pct=(simMatchCount/simTotalCount*100);
+  const theory=birthdayProb(n);
+  document.getElementById('simMatch').textContent=simMatchCount;
+  document.getElementById('simTotal').textContent=simTotalCount;
+  document.getElementById('simPct').textContent=pct.toFixed(1)+'%';
+  document.getElementById('simBar').style.width=pct+'%';
+  document.getElementById('simTheory').style.left=theory+'%';
+  document.getElementById('simTheoryLabel').textContent='理論値: '+theory.toFixed(1)+'%';
+}
+
+function resetSim(){
+  simMatchCount=0;simTotalCount=0;
+  document.getElementById('simMatch').textContent='0';
+  document.getElementById('simTotal').textContent='0';
+  document.getElementById('simPct').textContent='0%';
+  document.getElementById('simBar').style.width='0';
+  document.getElementById('simResult').style.display='none';
+  document.getElementById('simBarWrap').style.display='none';
+}
+
+// === 体験③: ペア可視化 ===
+let pairCount=2;
+const pairMax=23;
+
+function drawPairViz(){
+  const svg=document.getElementById('pairSvg');
+  const n=pairCount;
+  const cx=180,cy=180,r=140;
+  let html='';
+  const pts=[];
+  for(let i=0;i<n;i++){
+    const angle=(2*Math.PI*i/n)-Math.PI/2;
+    pts.push({x:cx+r*Math.cos(angle),y:cy+r*Math.sin(angle)});
+  }
+  // lines
+  for(let i=0;i<n;i++){
+    for(let j=i+1;j<n;j++){
+      html+=`<line x1="${pts[i].x}" y1="${pts[i].y}" x2="${pts[j].x}" y2="${pts[j].y}" stroke="rgba(139,26,26,.15)" stroke-width="1"/>`;
+    }
+  }
+  // nodes
+  for(let i=0;i<n;i++){
+    html+=`<circle cx="${pts[i].x}" cy="${pts[i].y}" r="12" fill="#8b1a1a" stroke="#faf8f3" stroke-width="2"/>`;
+    html+=`<text x="${pts[i].x}" y="${pts[i].y+4}" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" font-weight="600" fill="white">${i+1}</text>`;
+  }
+  svg.innerHTML=html;
+  const pairs=n*(n-1)/2;
+  document.getElementById('pairInfo').textContent=`人数: ${n} / ペア数: ${pairs}`;
+  document.getElementById('pairAddBtn').disabled=(n>=pairMax);
+}
+
+function addPairNode(){
+  if(pairCount<pairMax){pairCount++;drawPairViz();}
+}
+
+function resetPairViz(){
+  pairCount=2;drawPairViz();
+}
+
+drawPairViz();
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2400},{id:'to2',delay:3000},
+  {id:'tl3',delay:4000},{id:'to3',delay:4600},
+  {id:'tl4',delay:5600},{id:'to4',delay:6200},
+  {id:'tl5',delay:7200},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>
