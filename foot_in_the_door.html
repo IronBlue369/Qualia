@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>フット・イン・ザ・ドア——なぜ小さな「はい」が大きな「はい」を生むのか</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:6px;}.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}.cover-aside strong{color:#3d3020;font-weight:600;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}.scenario-inner::after{content:'✓';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}.meta-item{display:flex;align-items:center;gap:10px;}.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}.difficulty-dots{display:flex;gap:4px;}.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}.dot.on{background:#8b1a1a;}.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;}.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}.body-text:last-child{margin-bottom:0;}.body-text strong{color:#1a1208;font-weight:600;}.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}.pull-q em{color:#8b1a1a;}.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}.tip-box strong{color:#e8c56a;font-weight:600;}.tip.open .tip-box{display:block;}
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}.img-ph-icon{font-size:28px;opacity:.4;}.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}.person-block-wiki{margin-bottom:8px;}.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.misconception-header{background:#3d3020;color:white;padding:11px 20px;}.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.misconception-body{background:white;}.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}.misconception-item:last-child{border-bottom:none;}.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}.mis-label.wrong{color:#c4392a;}.mis-label.right{color:#1a5a30;}.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}.tl-item{position:relative;margin-bottom:28px;}.tl-item:last-child{margin-bottom:0;}.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.steps-wrap{margin:32px 0;}.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}.step-card.open .step-nb{background:#8b1a1a;color:white;}.step-tw{flex:1;padding:13px 18px;}.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}.step-card.open .step-body{display:block;}.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}.step-body p strong{color:#1a1208;font-weight:600;}.step-body p em{color:#8b1a1a;font-style:normal;}.step-summary{margin-top:2px;padding:16px 20px;background:#f3efe6;border:1px solid #c8bfaa;}.step-summary p{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;margin:0;line-height:1.8;}
+.culture-block{margin:28px 0;border:1px solid #c8bfaa;padding:20px 24px;background:#f3efe6;}.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:12px;}.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}.culture-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:4px;}.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}.ref-title a:hover{border-bottom-color:#8b1a1a;}.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}.sidebar-block:last-child{border-bottom:none;}.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}.sidebar-text strong{color:#3d3020;font-weight:600;}.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}.terminal-dots{display:flex;gap:6px;}.terminal-dot{width:12px;height:12px;border-radius:50%;}.terminal-dot.red{background:#ff5f57;}.terminal-dot.yellow{background:#febc2e;}.terminal-dot.green{background:#28c840;}.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;}.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;}.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}.t-prompt{color:#4a9e6a;margin-right:8px;user-select:none;}.t-input{color:#e8e4de;}.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}.t-output em{color:#e8c56a;font-style:normal;}.t-output strong{color:#fff;font-weight:500;}.t-exit .t-prompt{color:#555;}.t-exit .t-input{color:#555;}.t-exit .t-comment{color:#4a9e6a;}.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}.fade.on{opacity:1;transform:translateY(0);}
+.flow-diagram{margin:24px 0;overflow-x:auto;}.flow-diagram svg{min-width:480px;}
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:8px;}
+
+/* ===== CHAT SIMULATOR ===== */
+.chat-sim{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;border-radius:8px;}
+.chat-sim-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}
+.chat-sim-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.chat-sim-counter{font-family:'Source Sans 3',sans-serif;font-size:11px;opacity:.6;}
+.chat-meter-wrap{padding:12px 20px 0;background:#f7f4ed;}
+.chat-meter-bar{height:6px;background:#e0d8c8;border-radius:3px;overflow:hidden;}
+.chat-meter-fill{height:100%;background:#8b1a1a;border-radius:3px;width:0;transition:width .5s ease;}
+.chat-meter-label{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:4px;text-align:right;}
+.chat-area{background:#f7f4ed;padding:20px;min-height:200px;max-height:380px;overflow-y:auto;}
+.chat-bubble{max-width:80%;margin-bottom:12px;animation:chatIn .3s ease;}
+@keyframes chatIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.chat-bubble.left{margin-right:auto;display:flex;gap:8px;align-items:flex-start;}
+.chat-bubble.right{margin-left:auto;}
+.chat-avatar{width:32px;height:32px;border-radius:50%;background:#c8bfaa;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#7a6a55;}
+.chat-msg{padding:10px 14px;border-radius:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:400;line-height:1.6;}
+.chat-bubble.left .chat-msg{background:white;color:#1a1208;border-bottom-left-radius:4px;}
+.chat-bubble.right .chat-msg{background:#8b1a1a;color:white;border-bottom-right-radius:4px;margin-left:auto;}
+.chat-bubble.reaction .chat-msg{background:transparent;padding:4px 14px;font-size:12px;color:#b0a090;font-style:italic;}
+.chat-typing{display:flex;gap:4px;padding:10px 14px;align-items:center;}
+.chat-typing span{width:6px;height:6px;background:#b0a090;border-radius:50%;animation:typing 1.2s infinite;}
+.chat-typing span:nth-child(2){animation-delay:.2s;}
+.chat-typing span:nth-child(3){animation-delay:.4s;}
+@keyframes typing{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-4px);}}
+.chat-actions{padding:16px 20px;background:#f7f4ed;border-top:1px solid #e0d8c8;display:flex;gap:10px;}
+.chat-btn{flex:1;padding:14px;border:1px solid #c8bfaa;background:white;font-family:'Source Sans 3',sans-serif;font-size:20px;font-weight:500;cursor:pointer;transition:all .15s;border-radius:6px;text-align:center;}
+.chat-btn:hover{border-color:#8b1a1a;}
+.chat-btn.yes{color:#1a5a30;}.chat-btn.yes:hover{background:#eaf5ee;border-color:#1a5a30;}
+.chat-btn.no{color:#c4392a;}.chat-btn.no:hover{background:#fdf0ee;border-color:#c4392a;}
+.chat-btn:disabled{opacity:.4;pointer-events:none;}
+.chat-result{padding:20px;background:white;border-top:1px solid #e0d8c8;display:none;}
+.chat-result-inner{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;}
+.chat-result-inner strong{font-weight:600;color:#1a1208;}
+
+.comparison-table{width:100%;border-collapse:collapse;margin:24px 0;font-family:'Source Sans 3',sans-serif;font-size:13px;}.comparison-table th{background:#3d3020;color:white;padding:10px 14px;text-align:left;font-weight:600;font-size:11px;letter-spacing:.08em;}.comparison-table td{padding:10px 14px;border-bottom:1px solid #e0d8c8;color:#3d3020;font-weight:300;line-height:1.6;}.comparison-table tr:nth-child(even) td{background:#f3efe6;}
+@media(max-width:720px){.cover{grid-template-columns:1fr;padding:40px 20px 32px;}.cover-right{display:none;}.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.summary-box,.scenario{padding:0 20px;}.article{grid-template-columns:1fr;padding:0 20px;}.article-side{display:none;}.misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}.terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}.related{padding:32px 20px;}.related-grid{grid-template-columns:1fr;}.tip-box{left:0;transform:none;width:200px;}.tip-box::after{left:20px;transform:none;}.person-block{grid-template-columns:1fr;}.person-block-img{padding:16px;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <p class="masthead-name"><a href="https://qualiajournal.com/" style="color:#7a6a55;text-decoration:none;">Qualia Journal</a></p>
+</div>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">社会心理学</p>
+    <h1>小さな「はい」が<br><em>人生を変える</em>とき</h1>
+    <p class="cover-deck">1966年、カリフォルニアの住宅街で行われた電話実験は、私たちが「自分の意思で選んでいる」と信じている行動の多くが、実はほんの数日前の些細な承諾に支配されていることを暴いた。</p>
+    <div class="cover-byline"><span>Last updated: Mar. 2026</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1966</span>
+      <p class="est-event">フリードマンとフレイザーがスタンフォード大学で「段階的承諾」の効果を実験的に証明し、論文を発表。</p>
+      <p class="est-context">同年、米国最高裁がミランダ権を確立。イングランドがW杯で初優勝。中国で文化大革命が始まる。</p>
+    </div>
+    <p class="cover-aside"><strong>この記事について:</strong> フット・イン・ザ・ドア（FITD）は社会心理学で最も広く研究された承諾誘導技法のひとつである。原著論文の発表以来、100本を超える追試研究とメタ分析が実施されている。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>コンビニのレジで「ポイントカードはお持ちですか」と聞かれ、持っていると答えた。次に「アプリはダウンロードされていますか」と聞かれ、まだだと答えると、「今なら100ポイントもらえますよ」と言われる。気づけばスマホにアプリが入っている。</p>
+    <p>友人に「ちょっと相談に乗って」と言われて電話に出た。15分後、あなたは来週末の引っ越しを手伝う約束をしている。最初に頼まれたのは、たった5分の「相談」だったはずだ。</p>
+    <p>小さな承諾は、次の承諾の下地をつくる。そしてそのメカニズムは、あなたが「自分で決めた」と感じているまさにその瞬間に作動している。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">初級 — 予備知識不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">この記事では、あなた自身の「承諾パターン」を段階的に体験しながら、なぜ人は一度小さな頼みに応じると次の大きな頼みを断れなくなるのかを探る。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- S1: 背景 -->
+  <div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+  <h2 class="fade">カリフォルニアの主婦たちに起きたこと</h2>
+
+  <p class="body-text fade">1966年の夏、カリフォルニアの住宅街に一本の電話がかかった。声の主は「カリフォルニア消費者グループ」を名乗り、台所で使っている洗剤について8つほど質問してよいかと尋ねた。たいした質問ではない。何を使っているか、どれくらいの頻度で買うか。ほとんどの主婦が快く応じた。</p>
+
+  <p class="body-text fade">3日後、別の人物が同じ家に電話をかけた。今度の依頼は桁違いだ。5〜6人の調査員を家に上げて2時間ほどかけて台所の棚を隅々まで調べさせてほしい、という。見知らぬ人間を家に入れ、私生活を覗かれる。普通なら断る。</p>
+
+  <!-- SVG Flow Diagram: Small → Large Request -->
+  <div class="flow-diagram fade" style="overflow-x:auto;">
+    <svg viewBox="0 0 560 140" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+      <rect x="10" y="40" width="140" height="60" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+      <text x="80" y="66" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#1a1208">小さな依頼</text>
+      <text x="80" y="84" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">「洗剤について8問」</text>
+      <text x="186" y="73" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+      <text x="186" y="28" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">3日後</text>
+      <rect x="220" y="40" width="140" height="60" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+      <text x="290" y="66" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#1a1208">大きな依頼</text>
+      <text x="290" y="84" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">「調査員が家に入る」</text>
+      <text x="396" y="73" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+      <rect x="410" y="30" width="140" height="80" rx="4" fill="#8b1a1a"/>
+      <text x="480" y="65" text-anchor="middle" font-family="'Playfair Display',serif" font-size="26" font-weight="700" fill="white">52%</text>
+      <text x="480" y="88" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="rgba(255,255,255,.8)">が承諾（対照群は22%）</text>
+    </svg>
+  </div>
+  <p class="ix-note fade">Freedman & Fraser（1966）実験1の結果を概念図として再構成。承諾率の数値は原著論文に基づく。</p>
+
+  <p class="body-text fade">だが、先に洗剤の質問に答えた主婦のうち<strong>52%がこの無茶な依頼を受け入れた</strong>。いきなり大きな依頼だけを受けた主婦の承諾率は22%。2倍以上の差が出た。事前に小さな質問に答えただけで、人は「まあいいか」と思うようになった。</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <svg width="80" height="90" viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="30" r="18" fill="#c8bfaa"/>
+        <rect x="22" y="52" width="36" height="30" rx="8" fill="#c8bfaa"/>
+        <circle cx="34" cy="27" r="2" fill="#7a6a55"/>
+        <circle cx="46" cy="27" r="2" fill="#7a6a55"/>
+        <path d="M36 34 Q40 38 44 34" stroke="#7a6a55" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">ジョナサン・フリードマン</p>
+      <p class="person-block-role">Jonathan L. Freedman — スタンフォード大学</p>
+      <p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Jonathan_Freedman_(psychologist)" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p class="person-block-desc">スコット・フレイザーとともにフット・イン・ザ・ドア技法を実験的に証明した社会心理学者。人はなぜ圧力がなくても従うのかという問いを、2つの実験で検証した。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">フリードマンとフレイザーは続けて第2の実験を行った。今度は、住民に小さなステッカーを車の窓か家の窓に貼ってもらう。「安全運転を」あるいは「カリフォルニアを美しく」という内容だ。数日後、別の人物が訪ねてきて、庭に巨大で見栄えの悪い看板——「安全運転を」と書かれた大判の板——を立てさせてほしいと頼む。</p>
+
+  <div class="img-placeholder fade">
+    <div class="img-ph-area">
+      <span class="img-ph-icon">🖼️</span>
+      <p class="img-ph-title">イラスト①｜巨大な「DRIVE CAREFULLY」看板が立つ住宅の前庭</p>
+      <p class="img-ph-desc">カリフォルニア郊外の1960年代風住宅。芝生の庭に不釣り合いなほど大きな看板。住人が困惑した表情で見上げている。</p>
+      <div class="img-ph-prompt">
+        <p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
+        <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, 1960s California suburban house with an absurdly large wooden sign reading DRIVE CAREFULLY on the front lawn, a frog character looking puzzled, Japanese scroll painting aesthetic, no text</p>
+      </div>
+    </div>
+    <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+  </div>
+
+  <p class="body-text fade">驚くべき結果がもう一つある。<strong>事前の小さな依頼と大きな依頼のテーマが違っていても効果があった</strong>ということだ。「カリフォルニアを美しく」という小さな請願書に署名した人が、数日後に「安全運転」の巨大看板を庭に立てることに同意した。テーマの一貫性すら必要なかった。変わったのは依頼の内容ではなく、「依頼に応じる人間」という自己像だった。</p>
+
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">読む前に確認 — よくある誤解</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">フット・イン・ザ・ドアは「押し売り」のテクニックで、意識していれば防げる。</p></div>
+        <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">効果は自分が「自発的に選んだ」と感じているときに最も強く働く。意識するだけでは防げないことが複数の研究で示されている。</p></div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">最初の依頼と次の依頼は同じ種類でないと効かない。</p></div>
+        <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">フリードマンとフレイザーの実験2では、テーマの異なる依頼でも効果が確認された。変わるのは「行動する人間」という自己認識のほうだ。</p></div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">素朴な人だけが引っかかる。批判的思考力があれば大丈夫。</p></div>
+        <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">自己概念が明確な人ほど「一貫していたい」という動機が強く、むしろ効果が大きくなるとする研究もある（Burger & Guadagno, 2003）。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"How can a person be induced to do something he would rather not do?"</p>
+    <p class="quote-ja">人にやりたくないことをやらせるには、どうすればよいのか。</p>
+    <p class="quote-attr">— Jonathan L. Freedman & Scott C. Fraser, "Compliance Without Pressure"（1966）</p>
+  </div>
+
+  <hr class="art-rule">
+
+  <!-- S2: 体験する -->
+  <div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+  <h2 class="fade">あなたは何回目で断れるか</h2>
+
+  <p class="body-text fade">ここからは、職場の先輩「タナカさん」からのメッセージに答えてもらう。依頼は7段階でエスカレートしていく。◯か✕か——答えるのはあなただ。</p>
+
+  <p class="body-text fade">ルールはひとつ。<strong>一度断ったら、そこでゲーム終了</strong>。日常で断った後に「やっぱりやります」と言い直すのが難しいのと同じだ。何段階目まで承諾し続けるか、自分の感覚を確かめてほしい。</p>
+
+  <!-- CHAT SIMULATOR -->
+  <div class="chat-sim fade" id="chatSim">
+    <div class="chat-sim-header">
+      <span class="chat-sim-hl">✦ Can You Say No?</span>
+      <span class="chat-sim-counter" id="chatCounter">0 / 7</span>
+    </div>
+    <div class="chat-meter-wrap">
+      <div class="chat-meter-bar"><div class="chat-meter-fill" id="chatMeter"></div></div>
+      <p class="chat-meter-label" id="chatMeterLabel">承諾メーター: 0%</p>
+    </div>
+    <div class="chat-area" id="chatArea"></div>
+    <div class="chat-actions" id="chatActions">
+      <button class="chat-btn yes" id="btnYes" onclick="chatRespond('yes')">◯</button>
+      <button class="chat-btn no" id="btnNo" onclick="chatRespond('no')">✕</button>
+    </div>
+    <div class="chat-result" id="chatResult"><div class="chat-result-inner" id="chatResultInner"></div></div>
+  </div>
+  <p class="ix-note fade">この体験はフット・イン・ザ・ドア技法の段階的承諾構造を簡略化して再現したもの。実際の心理実験では依頼者と被験者の関係性や時間間隔など複数の変数が統制されている。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">"Once a person has agreed to a small request, <em>he is more likely to comply with a larger request.</em>"</p>
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">一度小さな依頼に応じた人間は、より大きな依頼にも応じやすくなる。</p>
+    <p class="pull-attr">— Freedman & Fraser, Journal of Personality and Social Psychology（1966）</p>
+  </div>
+
+  <hr class="art-rule">
+
+  <!-- S3: なぜか -->
+  <div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+  <h2 class="fade">なぜ最初の「はい」が次を決めるのか</h2>
+
+  <p class="body-text fade">フット・イン・ザ・ドアが機能する理由を、心理学者たちは複数の角度から説明してきた。最も有力なのは<span class="tip" onclick="toggleTip(this)">自己知覚理論<span class="tip-box"><strong>自己知覚理論（Self-Perception Theory）</strong><br>ダリル・ベムが1972年に提唱。人は自分の態度を、自分の行動を観察することで推測する——つまり「やったから好きなのだろう」と逆算する、という理論。</span></span>だ。しかしそれだけでは説明しきれない部分もある。ジェリー・バーガーの1999年のレビュー論文は、少なくとも6つの心理プロセスが同時に動いている可能性を指摘した。</p>
+
+  <!-- SVG: Self-Perception Loop -->
+  <div class="flow-diagram fade" style="overflow-x:auto;">
+    <svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+      <text x="80" y="18" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" letter-spacing=".1em" fill="#b0a090">行動</text>
+      <rect x="10" y="25" width="140" height="50" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+      <text x="80" y="48" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#1a1208">小さな依頼に応じる</text>
+      <text x="80" y="64" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">「洗剤の質問に答えた」</text>
+      <text x="185" y="53" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+      <text x="290" y="18" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" letter-spacing=".1em" fill="#b0a090">自己認識の変化</text>
+      <rect x="220" y="25" width="140" height="50" rx="4" fill="#8b1a1a" stroke="#8b1a1a" stroke-width="1"/>
+      <text x="290" y="48" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="white">自己像が変わる</text>
+      <text x="290" y="64" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="rgba(255,255,255,.7)">「私は協力的な人間だ」</text>
+      <text x="395" y="53" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+      <text x="480" y="18" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" letter-spacing=".1em" fill="#b0a090">次の承諾</text>
+      <rect x="410" y="25" width="140" height="50" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+      <text x="480" y="48" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#1a1208">大きな依頼に応じる</text>
+      <text x="480" y="64" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">「調査員を家に入れた」</text>
+      <text x="280" y="105" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">↓</text>
+      <rect x="180" y="115" width="200" height="36" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+      <text x="280" y="138" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">自己像がさらに強化される（ループ）</text>
+    </svg>
+  </div>
+  <p class="ix-note fade">ベムの自己知覚理論に基づく承諾の連鎖を概念図として構成。実際のプロセスはこれより複雑で、複数の心理メカニズムが並行する。</p>
+
+  <div class="steps-wrap fade">
+    <p class="steps-head">フット・イン・ザ・ドアを動かす3つのメカニズム</p>
+
+    <div class="step-card" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">1</div>
+        <div class="step-tw"><div class="step-title">自己知覚——「私はこういう人間だ」</div><div class="step-sub">Bem, 1972 / Self-Perception Theory</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>人は自分の態度を、自分の行動を<em>観察</em>することで推測する。これが<strong>ダリル・ベム</strong>の自己知覚理論だ。「質問に答えた」→「自分は協力的な人間なのだろう」→「だから次の依頼にも応じる」。態度が行動を決めるのではなく、<strong>行動が態度を決める</strong>。日常の例で言えば、SNSで一度「いいね」を押したアカウントの投稿を、なぜかその後も見続けてしまうのは、「自分が関心を持っている」という自己像が形成されるからだ。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">2</div>
+        <div class="step-tw"><div class="step-title">一貫性の圧力——矛盾したくない</div><div class="step-sub">Cialdini, 1984 / Commitment & Consistency</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p><span class="tip" onclick="toggleTip(this)">ロバート・チャルディーニ<span class="tip-box"><strong>ロバート・チャルディーニ（Robert B. Cialdini）</strong><br>アリゾナ州立大学の社会心理学者。1984年の著書『影響力の武器』で「返報性」「一貫性」「社会的証明」「好意」「権威」「希少性」の6原則を体系化した。</span></span>は、人間には自分の過去の行動と一貫した態度を取りたいという強い欲求があると指摘した。一度「はい」と言った自分を裏切ることは、<strong>「私は一貫性のない人間だ」と認めること</strong>になる。それが心理的に不快なのだ。たとえば、一度ダイエットを宣言した人が、宣言を撤回するよりも無理に続けてしまうのも、同じ力学だ。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">3</div>
+        <div class="step-tw"><div class="step-title">コミットメント——行動した事実は消せない</div><div class="step-sub">Kiesler, 1971 / Psychology of Commitment</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>チャルディーニはさらに、コミットメントが<strong>能動的・公開的・努力を伴うもの</strong>であるほど拘束力が強くなることを示した。ステッカーを窓に<em>自分の手で</em>貼ったという事実、請願書に<em>自分の名前で</em>署名したという事実——こうした行動は「態度が曖昧だった場合に、その態度を確定させる証拠」として機能する。面白い例がある。不動産契約で、購入意思を紙に書かせる営業マンがいる。書いた瞬間、買い手の心理的コストは跳ね上がる。</p>
+      </div>
+    </div>
+
+    <div class="step-summary">
+      <p>この3つのメカニズムは独立に働くのではなく、互いに強め合う。小さな行動が自己像を変え（自己知覚）、変わった自己像と矛盾したくないから次の行動を取り（一貫性）、その行動がコミットメントとして自己像をさらに固定する（コミットメント）。一度回り始めた歯車は、意識しないかぎり止まらない。</p>
+    </div>
+  </div>
+
+  <hr class="art-rule">
+
+  <!-- S4: 歴史 -->
+  <div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+  <h2 class="fade">段階的承諾の研究史——ドアから画面へ</h2>
+
+  <p class="body-text fade">赤い点はこのトピックの転換点を示す。白い点は関連する研究や出来事だ。</p>
+
+  <div class="timeline fade">
+    <div class="tl-item highlight"><div class="tl-dot"></div>
+      <p class="tl-year">1966</p>
+      <p class="tl-title">フリードマン＆フレイザーの原著論文</p>
+      <p class="tl-desc">スタンフォード大学で2つの実験を実施。小さな依頼→大きな依頼の段階的承諾を「フット・イン・ザ・ドア」と命名し、Journal of Personality and Social Psychology に発表。</p>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">1972</p>
+      <p class="tl-title">ベムの自己知覚理論</p>
+      <p class="tl-desc">ダリル・ベムが「人は自分の行動を観察して態度を推測する」という理論を体系化。フット・イン・ザ・ドアの理論的基盤となる。</p>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">1983</p>
+      <p class="tl-title">最初のメタ分析</p>
+      <p class="tl-desc">ビーマンらが15年分のFITD研究を統合分析。効果は統計的に有意だが、効果量は中程度であることが判明。</p>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">1984</p>
+      <p class="tl-title">チャルディーニ『影響力の武器』</p>
+      <p class="tl-desc">フット・イン・ザ・ドアを「一貫性の原理」の実例として一般向けに紹介。社会心理学の知見がビジネスやマーケティングに本格的に応用される転機。</p>
+    </div>
+    <div class="tl-item highlight"><div class="tl-dot"></div>
+      <p class="tl-year">1999</p>
+      <p class="tl-title">バーガーの多重プロセスレビュー</p>
+      <p class="tl-desc">ジェリー・バーガーが100本以上の研究を統合し、FITD効果には自己知覚・心理的リアクタンス・同調・一貫性・帰属・コミットメントの6つのプロセスが関与すると結論。</p>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">2003</p>
+      <p class="tl-title">自己概念の明確さとFITD</p>
+      <p class="tl-desc">バーガー＆グアダーニョが、自己概念が明確な人ほどFITD効果が強いことを発見。「自分がどういう人間か」をはっきり知っている人ほど、一貫性の圧力に弱い。</p>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">2010年代〜</p>
+      <p class="tl-title">デジタル環境への応用</p>
+      <p class="tl-desc">メールマガジン登録→購入誘導、SNSの「いいね」→シェア→購入、無料トライアル→有料プランなど、デジタルマーケティングにおけるFITDの応用が急速に拡大。</p>
+    </div>
+  </div>
+
+  <hr class="art-rule">
+
+  <!-- S5: つまり -->
+  <div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+  <h2 class="fade">あなたの「はい」は、あなたが思うほど自由ではない</h2>
+
+  <p class="body-text fade">フット・イン・ザ・ドアが示しているのは、人間の意思決定が「その瞬間の合理的な判断」ではなく、<strong>過去の行動の延長線上にある</strong>ということだ。私たちは「自分で選んだ」と感じる。だが、その感覚そのものが、先行する小さな承諾によって準備されている。</p>
+
+  <p class="body-text fade">これは「騙されやすい人」の話ではない。むしろ逆だ。自分を「一貫した人間」だと思っている人、自分の判断に自信がある人ほど、このメカニズムの影響を受けやすい。なぜなら、過去の自分の行動を否定することは、自己像を脅かすからだ。「あのとき間違えた」と認めることは、多くの人にとって不快だ。それよりも、過去の行動と矛盾しない新しい行動を取るほうが、心理的にずっと楽なのだ。</p>
+
+  <!-- Comparison Table -->
+  <table class="comparison-table fade">
+    <thead><tr><th>テクニック</th><th>構造</th><th>心理的原理</th></tr></thead>
+    <tbody>
+      <tr><td>フット・イン・ザ・ドア</td><td>小さな依頼 → 大きな依頼</td><td>一貫性・自己知覚</td></tr>
+      <tr><td>ドア・イン・ザ・フェイス</td><td>巨大な依頼（拒否される）→ 本命の依頼</td><td>返報性・譲歩</td></tr>
+      <tr><td>ローボール</td><td>好条件で同意 → 条件を引き上げる</td><td>コミットメント</td></tr>
+    </tbody>
+  </table>
+
+  <p class="body-text fade">では、知ったからといって防げるのか。率直に言えば、<strong>知るだけでは難しい</strong>。バイアスの知識は、バイアスの免疫にはならない。それでも、いくつかの対処法は提案されている。</p>
+
+  <p class="body-text fade">一つは<span class="tip" onclick="toggleTip(this)">プレモーテム<span class="tip-box"><strong>プレモーテム（Pre-mortem）</strong><br>何かを決断する前に「これが失敗したとしたら、原因は何だったか」を想像する手法。ゲイリー・クラインが提唱。事前に失敗シナリオを描くことで、楽観バイアスを減らす。</span></span>という手法だ。重要な決断の前に「もしこの選択が間違いだったとしたら、何が原因か」を想像する。これは万能ではないが、一貫性の圧力に気づくきっかけにはなる。</p>
+
+  <p class="body-text fade">もう一つは、<strong>「最初の依頼に応じた時点の自分」と「今の自分」を切り離す</strong>こと。「あのとき承諾したから」という理由だけで今の依頼に応じる必要はない。<span class="tip" onclick="toggleTip(this)">サンクコスト錯誤<span class="tip-box"><strong>サンクコスト錯誤（Sunk Cost Fallacy）</strong><br>すでに投じた回収不能なコスト（時間、お金、労力）に引きずられて、合理的でない判断を続けてしまう傾向。「ここまで来たのだから」という心理。</span></span>と同じ構造だ。「ここまで協力したのだから」は、次の協力を正当化する理由にはならない。</p>
+
+  <p class="body-text fade">最後に、環境を変えることだ。段階的承諾は「前の承諾の記憶」が前提になる。メールマガジンの登録解除、SNSのフォロー整理、試供品を受け取らない——こうした小さな遮断が、連鎖の始点を消す。「知っているだけでは変わらない」という原則が、ここでも当てはまる。環境そのものを操作するほうが、意志の力よりも確実だ。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"Individuals come to 'know' their own attitudes, emotions, and other internal states partially by inferring them from observations of their own overt behavior."</p>
+    <p class="quote-ja">人は自分の態度や感情、その他の内的状態を、自分自身の外的行動を観察することで部分的に推測する。</p>
+    <p class="quote-attr">— Daryl J. Bem, "Self-Perception Theory," Advances in Experimental Social Psychology（1972）</p>
+  </div>
+
+  <hr class="art-rule">
+
+  <!-- S6: 文化の中に現れる -->
+  <div class="sec-rule fade"><span class="sec-label">文化の中に現れる</span><div class="sec-line"></div></div>
+  <h2 class="fade">物語の中の段階的承諾</h2>
+
+  <div class="culture-block fade">
+    <p class="culture-label">作品への登場</p>
+    <div class="culture-item">
+      <p class="culture-title">ロバート・チャルディーニ『影響力の武器』（1984）</p>
+      <p class="culture-desc">フット・イン・ザ・ドアを「一貫性の原理」の中心的な実例として一般読者に紹介した書籍。セールス、募金活動、政治運動における段階的承諾の事例を豊富に収録し、社会心理学をビジネスの言語に翻訳した。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">映画『ミーン・ガールズ』（2004）</p>
+      <p class="culture-desc">主人公ケイディがスクールカーストの「プラスチックス」に取り込まれる過程は、段階的承諾の構造そのものだ。最初は「一緒にランチを食べるだけ」。やがて服装を合わせ、行動を合わせ、最終的には自分が最も嫌っていたタイプの人間になっていく。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">アナキン・スカイウォーカーの堕落（スター・ウォーズ）</p>
+      <p class="culture-desc">アナキンがダース・ベイダーになる過程は、一度の決断ではなく、小さな規則違反の積み重ねとして描かれている。秘密の結婚、評議会への不信、パルパティーンとの私的な対話——各段階で「ここまで来たのだから」という一貫性の圧力が働いている。</p>
+    </div>
+  </div>
+
+  <hr class="art-rule">
+
+  <!-- S7: 参考文献 -->
+  <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1966</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1037/h0023552" target="_blank" rel="noopener">Compliance Without Pressure: The Foot-in-the-Door Technique</a></p>
+      <p class="ref-author">Jonathan L. Freedman & Scott C. Fraser — Journal of Personality and Social Psychology, 4(2), 195–202</p>
+      <p class="ref-desc">すべてはここから始まった。洗剤の質問と庭の看板という2つの実験が、社会心理学の重要テーマを生んだ。60年近く前の論文だが、実験デザインの明快さは今読んでも学ぶところが多い。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">理論論文</span><span class="ref-year">1972</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1016/S0065-2601(08)60024-6" target="_blank" rel="noopener">Self-Perception Theory</a></p>
+      <p class="ref-author">Daryl J. Bem — Advances in Experimental Social Psychology, Vol. 6, 1–62</p>
+      <p class="ref-desc">「態度が行動を決める」のではなく「行動が態度を決める」——この逆転が、フット・イン・ザ・ドアの理論的支柱になった。認知的不協和理論との対比が読みどころ。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">1999</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1207/s15327957pspr0304_2" target="_blank" rel="noopener">The Foot-in-the-Door Compliance Procedure: A Multiple-Process Analysis and Review</a></p>
+      <p class="ref-author">Jerry M. Burger — Personality and Social Psychology Review, 3(4), 303–325</p>
+      <p class="ref-desc">100本以上のFITD研究を統合し、6つの心理プロセスを特定した決定版レビュー。なぜ効く場合と効かない場合があるのかを解明しようとした論文で、この分野の全体像をつかむのに最適。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1984</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1017/S0813483900008238" target="_blank" rel="noopener">Influence: Science and Practice</a></p>
+      <p class="ref-author">Robert B. Cialdini — Pearson（第5版: 2009）</p>
+      <p class="ref-desc">社会心理学の知見を「影響力の6原則」として体系化した古典。フット・イン・ザ・ドアは「一貫性」の章で詳しく扱われている。学術論文を読む前のウォーミングアップとして、あるいはこの分野に入る最初の一冊として。</p>
+    </div>
+  </div>
+
+  <!-- 信頼度ノート -->
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    この記事は、Freedman & Fraser（1966）の原著論文、Bem（1972）の自己知覚理論、Burger（1999）のメタ分析レビューを主な情報源としている。FITD効果の存在自体は5つのメタ分析で支持されているが、効果量はオリジナル実験ほど大きくなく、条件によっては効果が消失するケースも報告されている。「常に効く万能テクニック」というよりは、特定の条件下で働く確率的な傾向として理解するのが正確だ。
+  </div>
+
+  <div class="tags">
+    <span class="tag">社会心理学</span>
+    <span class="tag">承諾誘導</span>
+    <span class="tag">自己知覚理論</span>
+    <span class="tag">一貫性の原理</span>
+    <span class="tag">説得</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:40px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">52%</p>
+      <p class="sidebar-text">小さな依頼に先に応じた主婦のうち、調査員を家に入れることに同意した割合。直接依頼では22%だった。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1960年代のアメリカは公民権運動やベトナム反戦運動の時代。「人はなぜ従うのか」という問いは、ミルグラム実験（1963）と並んで社会心理学の中心テーマだった。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">チャルディーニ『影響力の武器』で一般に広まる。映画やドラマでは、登場人物が段階的に取り込まれる展開として頻繁に描かれる。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">
+        — ミルグラム実験（権威への服従）<br>
+        — バーナム効果（自己にフィットする情報の受容）<br>
+        — サンクコスト錯誤（回収不能コストへの執着）<br>
+        — 確証バイアス（仮説に合う情報の選択的収集）
+      </p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">今日の判断を振り返る</p>
+      <ul class="sidebar-check">
+        <li>今日「はい」と言ったとき、前の「はい」が影響していなかったか？</li>
+        <li>最初の小さな承諾を基準にして、次の判断をしていないか？</li>
+        <li>「ここまで来たから」という理由で続けていることはないか？</li>
+      </ul>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">5つのメタ分析で効果が支持されている。ただし効果量は中程度で、条件次第では消失する。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div>
+        <div class="terminal-dot yellow"></div>
+        <div class="terminal-dot green"></div>
+      </div>
+      <div class="terminal-title">after.sh — 読後の対話ログ（架空）</div>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// session started — フット・イン・ザ・ドア</span>
+
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ最初から「大きな依頼だけ」すれば防げるのでは</span></div>
+      <span class="t-output" id="to1">論理的にはそう。でも日常の依頼って、最初から「大きい」とは限らない。<em>今の依頼が連鎖の2段目なのか、独立した依頼なのか</em>、区別するのが難しい。だから厄介なんだ。</span>
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;自分が「一貫していたい」と思う気持ち自体は悪いことじゃないよね</span></div>
+      <span class="t-output" id="to2">もちろん。一貫性がなければ約束も信頼も成立しない。問題は、<strong>他人がその一貫性を利用できる</strong>という構造のほうだ。美徳と脆弱性は同じ場所にある。</span>
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;でも知ったところで実際に断れるようになるかは別問題だよな</span></div>
+      <span class="t-output" id="to3">そう。知識は免疫にはならない。ただ、<em>「なぜ断りづらいのか」</em>の正体を知っていると、少なくとも自分を責めなくなる。「断れなかった自分が弱い」のではなく、構造がそうさせている。</span>
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;フリードマンとフレイザーは、この研究をどういう気持ちで発表したんだろう</span></div>
+      <span class="t-output" id="to4">論文の冒頭の一文がすべてを語ってる。「人にやりたくないことをやらせるには、どうすればよいのか」。彼らはテクニックを教えたかったんじゃない。<em>なぜ人は圧力がなくても従ってしまうのか</em>を問いたかった。</span>
+      <hr class="t-divider">
+
+      <div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 気をつけよう</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="#">
+      <p class="related-card-tag">行動心理学 × 報酬</p>
+      <p class="related-card-title">スキナー箱とスロットマシン</p>
+      <p class="related-card-desc">なぜ「たまに当たる」が最も人を動かすのか。変動比率強化スケジュールの罠を、ガチャ体験とともに。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="#">
+      <p class="related-card-tag">認知バイアス × 判断</p>
+      <p class="related-card-title">確証バイアス</p>
+      <p class="related-card-desc">自分に都合のいい情報ばかり集めてしまう脳の癖。あなたの「検索履歴」が偏っている理由。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ
+function toggleTip(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.tip'))
+    document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ===== CHAT SIMULATOR =====
+const CHAT_DATA=[
+  {msg:"ごめん、このExcelの数字ちょっと確認してくれない？ 5分で終わるから",reject:"え〜マジで？ 😢",yesReply:"了解っす"},
+  {msg:"助かった！ ついでにさ、この資料のグラフも直しといてくれない？",reject:"……（既読）",reject2:"了解！",yesReply:"あ、はい"},
+  {msg:"あ、あと明日の会議の議事録、お願いしてもいい？ 前うまかったし",reject:"えー前やってくれたのに〜 🥺",yesReply:"まあ、いいですよ"},
+  {msg:"そうだ、金曜の飲み会の店、予約しといてくれない？ 幹事向いてるよ",reject:"😱😱😱",reject2:"冗談冗談w",yesReply:"え…まあ、やりますか"},
+  {msg:"ごめんマジで助けて。土曜のプレゼン資料、半分やってくれない？",reject:"マジか……",reject2:"わかった自分でやるわ…",yesReply:"土曜ですか…了解です"},
+  {msg:"あと俺来週休むから、その間の進捗報告よろしく。部長にはもう言っちゃった",reject:"え、もう言ったんだけど……",reject2:"まあいいや 👋",yesReply:"えっ…はい"},
+  {msg:"最後にひとつだけ。来月の新人研修の講師、俺の代わりにやってくんない？",reject:"うそ〜ん 😂",reject2:"まあ俺がやるけどさ…",yesReply:"……わかりました"}
+];
+let chatStep=0,chatYesCount=0,chatDone=false;
+const chatArea=document.getElementById('chatArea'),btnYes=document.getElementById('btnYes'),btnNo=document.getElementById('btnNo');
+function addBubble(side,text){const b=document.createElement('div');if(side==='reaction'){b.className='chat-bubble left reaction';b.innerHTML='<div style="width:32px;flex-shrink:0;"></div><div class="chat-msg">'+text+'</div>';}else{b.className='chat-bubble '+side;b.innerHTML=side==='left'?'<div class="chat-avatar">タ</div><div class="chat-msg">'+text+'</div>':'<div class="chat-msg">'+text+'</div>';}chatArea.appendChild(b);chatArea.scrollTop=chatArea.scrollHeight;}
+function showTyping(){const t=document.createElement('div');t.className='chat-bubble left';t.id='typingBubble';t.innerHTML='<div class="chat-avatar">タ</div><div class="chat-typing"><span></span><span></span><span></span></div>';chatArea.appendChild(t);chatArea.scrollTop=chatArea.scrollHeight;}
+function removeTyping(){const t=document.getElementById('typingBubble');if(t)t.remove();}
+function updateMeter(){const p=Math.round((chatYesCount/7)*100);document.getElementById('chatMeter').style.width=p+'%';document.getElementById('chatMeterLabel').textContent='承諾メーター: '+p+'%';document.getElementById('chatCounter').textContent=chatStep+' / 7';}
+function showNextRequest(){if(chatStep>=7){endChat();return;}btnYes.disabled=true;btnNo.disabled=true;showTyping();setTimeout(()=>{removeTyping();addBubble('left',CHAT_DATA[chatStep].msg);btnYes.disabled=false;btnNo.disabled=false;},800);}
+function chatRespond(answer){if(chatDone)return;const d=CHAT_DATA[chatStep];if(answer==='yes'){addBubble('right',d.yesReply);chatYesCount++;chatStep++;updateMeter();if(chatStep<7)setTimeout(showNextRequest,500);else setTimeout(endChat,500);}else{addBubble('right','すみません、ちょっと厳しいです…');chatStep++;updateMeter();btnYes.disabled=true;btnNo.disabled=true;showTyping();setTimeout(()=>{removeTyping();addBubble('left',d.reject);if(d.reject2){setTimeout(()=>{addBubble('left',d.reject2);setTimeout(endChat,600);},1000);}else{setTimeout(endChat,600);}},1200);}}
+function endChat(){chatDone=true;btnYes.disabled=true;btnNo.disabled=true;document.getElementById('chatActions').style.display='none';const r=document.getElementById('chatResult'),ri=document.getElementById('chatResultInner');let h='';if(chatYesCount===7){h='<strong>あなたは7つすべての依頼に応じた。</strong><br><br>Excelの数字確認から新人研修の講師まで——最初の「5分で終わる」がなければ、最後の依頼を受けることはなかっただろう。各段階で「まあいいか」と思ったはずだ。だが振り返ってみると、最初の承諾がなければ2つ目にも応じていなかったのではないか。<br><br>これがフット・イン・ザ・ドアの構造だ。あなたは各段階で「自分で選んだ」と感じている。しかしその選択は、前の選択に条件づけられている。';}else if(chatYesCount>=3){h='<strong>あなたは'+chatYesCount+'段階目まで承諾し、'+(chatYesCount+1)+'段階目で断った。</strong><br><br>どの段階で「これはおかしい」と感じただろうか。そして——断る前に承諾した'+chatYesCount+'回は、本当にすべて「自分の意思」だっただろうか。最初のExcel確認がなければ、2つ目のグラフ修正を引き受けていたか、考えてみてほしい。';}else if(chatYesCount>=1){h='<strong>早い段階で断った。'+chatYesCount+'回の承諾で歯止めをかけた。</strong><br><br>ただし、この体験では依頼がエスカレートすることを「知っている」状態だった。日常ではその予告はない。先輩からの依頼は、いつも「ちょっとだけ」の顔で現れる。';}else{h='<strong>最初の依頼から断った。</strong><br><br>この記事の文脈を読んで、段階的承諾の構造を予測したうえでの判断だろう。では問いを変えてみよう——もしこれが記事の中ではなく、実際の職場で、実際の先輩からの依頼だったら、同じ判断をしていただろうか？<br><br>フット・イン・ザ・ドアの効果は、「それがテクニックだ」と認識していないときに最も強く働く。';}ri.innerHTML=h+'<br><button onclick="resetChat()" style="margin-top:16px;padding:10px 24px;border:1px solid #c8bfaa;background:white;font-family:\'Source Sans 3\',sans-serif;font-size:13px;font-weight:500;color:#3d3020;cursor:pointer;border-radius:6px;transition:all .15s;" onmouseover="this.style.borderColor=\'#8b1a1a\';this.style.background=\'#f3efe6\'" onmouseout="this.style.borderColor=\'#c8bfaa\';this.style.background=\'white\'">もう一度やる</button>';r.style.display='block';}
+function resetChat(){chatStep=0;chatYesCount=0;chatDone=false;chatArea.innerHTML='';document.getElementById('chatResult').style.display='none';document.getElementById('chatActions').style.display='flex';document.getElementById('chatMeter').style.width='0';document.getElementById('chatCounter').textContent='0 / 7';document.getElementById('chatMeterLabel').textContent='承諾メーター: 0%';btnYes.disabled=false;btnNo.disabled=false;addBubble('left',CHAT_DATA[0].msg);}
+showNextRequest();
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},{id:'to4',delay:6200},
+  {id:'tl5',delay:7200},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>
