@@ -17,21 +17,18 @@
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Qualia Journal","url":"https://qualiajournal.com/","description":"認知バイアス、知覚の錯覚、数学のパラドックス、哲学の思考実験。確かだと思っていたものが揺らぐ瞬間を、体験とともに届けるジャーナル。","inLanguage":"ja","publisher":{"@type":"Organization","name":"Qualia Journal"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"記事一覧","itemListElement":[{"@type":"ListItem","position":1,"url":"https://qualiajournal.com/monty_hall","name":"モンティ・ホール問題"},{"@type":"ListItem","position":2,"url":"https://qualiajournal.com/confirmation_bias","name":"確証バイアス"},{"@type":"ListItem","position":3,"url":"https://qualiajournal.com/skinner_box","name":"スキナー箱"},{"@type":"ListItem","position":4,"url":"https://qualiajournal.com/loss_aversion","name":"損失回避"},{"@type":"ListItem","position":5,"url":"https://qualiajournal.com/anchoring_effect","name":"アンカリング効果"},{"@type":"ListItem","position":6,"url":"https://qualiajournal.com/barnum_effect","name":"バーナム効果"},{"@type":"ListItem","position":7,"url":"https://qualiajournal.com/mary_room","name":"マリーの部屋"},{"@type":"ListItem","position":8,"url":"https://qualiajournal.com/checker_shadow","name":"チェッカーシャドウ錯視"},{"@type":"ListItem","position":9,"url":"https://qualiajournal.com/birthday_paradox","name":"誕生日のパラドックス"},{"@type":"ListItem","position":10,"url":"https://qualiajournal.com/langton_ant","name":"ラングトンのアリ"}]}</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:#faf8f3;color:#3d3020;font-family:'Source Serif 4',serif;overflow-x:hidden;}
 a{color:inherit;text-decoration:none;}
-.fade{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease;}
+.fade{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
 .fade.on{opacity:1;transform:translateY(0);}
 
 /* ================================
-   SLIDE MENU
+   SLIDE MENU (from v8)
    ================================ */
 .menu-backdrop{
   display:none;position:fixed;inset:0;
@@ -67,12 +64,10 @@ a{color:inherit;text-decoration:none;}
 }
 .menu-close-btn:hover{color:#8b1a1a;}
 .menu-body{padding:28px 28px 48px;}
-/* 3列グリッド */
 .menu-cols{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:28px 24px;
 }
-.menu-sec{}
 .menu-sec-lbl{
   font-family:'Source Sans 3',sans-serif;
   font-size:9px;font-weight:600;letter-spacing:.22em;
@@ -93,7 +88,6 @@ a{color:inherit;text-decoration:none;}
   display:block;font-size:10px;font-weight:300;
   color:#b0a090;margin-top:1px;
 }
-/* カテゴリ一覧（2列で詰める） */
 .menu-cats{
   display:grid;grid-template-columns:1fr 1fr;
   gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;
@@ -114,7 +108,7 @@ a{color:inherit;text-decoration:none;}
 .menu-cats a:hover{color:#8b1a1a;}
 
 /* ================================
-   SEARCH OVERLAY
+   SEARCH OVERLAY (from v8)
    ================================ */
 .s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
 .s-overlay.open{display:block;}
@@ -129,234 +123,234 @@ a{color:inherit;text-decoration:none;}
 .s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
 .s-res{max-height:420px;overflow-y:auto;}
 .s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
-.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
 .s-item:last-child{border-bottom:none;}
 .s-item:hover .s-tt{color:#8b1a1a;}
 .s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
 .s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
 .s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
 
-/* ================================
-   MASTHEAD
-   ================================ */
+/* === MASTHEAD === */
 header.mh{
   background:#faf8f3;border-bottom:3px double #1a1208;
-  padding:0 32px;height:56px;
+  padding:0 32px;height:54px;
   display:flex;justify-content:space-between;align-items:center;
   position:sticky;top:0;z-index:200;
 }
 .mh-left{display:flex;align-items:center;gap:16px;}
-.mh-burger{
-  background:none;border:none;cursor:pointer;
-  display:flex;flex-direction:column;gap:5px;padding:6px;
-}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
 .mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
 .mh-burger:hover span{background:#8b1a1a;}
-.mh-center{text-align:center;margin-right:4%;}
-.mh-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;letter-spacing:.05em;color:#1a1208;display:block;line-height:1.1;}
-.mh-name span{color:#8b1a1a;}
-.mh-tag{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:300;color:#b0a090;letter-spacing:.1em;display:block;margin-top:2px;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:900;letter-spacing:.05em;color:#1a1208;display:block;line-height:1.1;}
+.mh-name em{color:#8b1a1a;font-style:normal;}
 .mh-right{display:flex;align-items:center;gap:14px;}
 .mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
 .mh-search:hover{color:#8b1a1a;}
-.mh-sitemap{
-  font-family:'Source Sans 3',sans-serif;font-size:10px;
-  font-weight:500;color:#7a6a55;letter-spacing:.06em;
-  transition:color .2s;white-space:nowrap;
-}
-.mh-sitemap:hover{color:#8b1a1a;}
 
-/* ================================
-   HERO
-   ================================ */
-.hero-wrap{border-bottom:1px solid #c8bfaa;}
-.hero{
-  padding:88px 32px 72px;
-  max-width:1080px;margin:0 auto;
-  display:flex;flex-direction:column;align-items:center;
+/* === HERO === */
+.heroA{
+  position:relative;
+  height:80vh;
+  min-height:520px;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  overflow:hidden;
+  border-bottom:1px solid #c8bfaa;
 }
-.hero-catch{
+.heroA-canvas{position:absolute;inset:0;z-index:0;}
+.heroA-canvas canvas{width:100%;height:100%;display:block;}
+.heroA-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(
+    180deg,
+    rgba(250,248,243,.92) 0%,
+    rgba(250,248,243,.75) 40%,
+    rgba(250,248,243,.6) 60%,
+    rgba(250,248,243,.85) 100%
+  );
+  pointer-events:none;
+}
+.heroA-content{
+  position:relative;z-index:2;
+  text-align:center;
+  padding:0 32px;
+  max-width:700px;
+}
+.heroA-catch{
   font-family:'Playfair Display',serif;
-  font-size:clamp(28px,4.5vw,52px);
-  font-weight:900;line-height:1.1;letter-spacing:-.02em;
-  color:#1a1208;margin-bottom:28px;
-  text-align:left;
-  width:fit-content;
-  margin-right:4%;
+  font-size:clamp(36px,5.5vw,64px);
+  font-weight:900;line-height:1.08;letter-spacing:-.03em;
+  color:#1a1208;margin-bottom:20px;
 }
-.hero-catch em{font-style:italic;color:#8b1a1a;}
-.hero-catch-sub{display:block;text-align:left;font-style:italic;color:#8b1a1a;}
-.hero-catch-row{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;}
-.hero-tag{
-  font-family:'Source Serif 4',serif;font-size:16px;
-  font-weight:300;font-style:italic;color:#7a6a55;
-  line-height:1.8;
-  margin:0 0 40px;
+.heroA-catch em{font-style:italic;color:#8b1a1a;}
+.heroA-sub{
+  font-family:'Source Serif 4',serif;
+  font-size:clamp(15px,1.8vw,19px);
+  font-weight:300;font-style:italic;
+  color:#5a4a35;line-height:1.7;
+  margin-bottom:28px;
+}
+.heroA-scroll{
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+  z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.heroA-scroll-text{
+  font-family:'Source Sans 3',sans-serif;
+  font-size:10px;font-weight:500;color:#7a6a55;
+  letter-spacing:.14em;
+}
+.heroA-scroll-line{
+  width:1px;height:32px;
+  background:linear-gradient(180deg,#7a6a55,transparent);
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse{
+  0%,100%{opacity:.4;transform:scaleY(1);}
+  50%{opacity:1;transform:scaleY(1.3);}
 }
 
-/* ================================
-   FEATURED
-   ================================ */
-.feat-wrap{border-bottom:1px solid #c8bfaa;}
-.feat{max-width:1080px;margin:0 auto;padding:52px 32px;}
-.feat-hd{
-  font-family:'Source Sans 3',sans-serif;font-size:9px;
-  font-weight:600;letter-spacing:.24em;color:#b0a090;
-  text-transform:uppercase;margin-bottom:24px;
+/* === EDITOR'S PICK === */
+.picks-wrap{
+  max-width:960px;margin:0 auto;
+  padding:80px 32px 64px;
 }
-.feat-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:1px;background:#e0d8c8;}
-.feat-main{
-  background:#faf8f3;padding:32px 28px;
-  display:flex;flex-direction:column;justify-content:flex-end;
-  min-height:280px;position:relative;overflow:hidden;transition:background .2s;
+.picks-label{
+  font-family:'Source Sans 3',sans-serif;
+  font-size:9px;font-weight:600;letter-spacing:.24em;
+  color:#b0a090;text-transform:uppercase;
+  margin-bottom:48px;
+  display:flex;align-items:center;gap:14px;
 }
-.feat-main:hover{background:#fff;}
-.feat-bg{
-  position:absolute;bottom:-20px;right:-8px;
-  font-family:'Playfair Display',serif;font-weight:900;
-  font-size:190px;color:rgba(26,18,8,.03);
-  line-height:1;pointer-events:none;user-select:none;
-}
-.feat-badge{
-  display:inline-block;font-family:'Source Sans 3',sans-serif;
-  font-size:8px;font-weight:600;letter-spacing:.14em;
-  color:#8b1a1a;border:1px solid #8b1a1a;
-  padding:2px 8px;margin-bottom:12px;align-self:flex-start;position:relative;z-index:1;
-}
-.feat-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:7px;position:relative;z-index:1;}
-.feat-tt{font-family:'Playfair Display',serif;font-weight:700;color:#1a1208;line-height:1.2;position:relative;z-index:1;}
-.feat-main .feat-tt{font-size:clamp(17px,2.1vw,24px);margin-bottom:9px;}
-.feat-main .feat-tt em{font-style:italic;color:#8b1a1a;}
-.feat-dk{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;position:relative;z-index:1;}
-.feat-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;position:relative;z-index:1;}
-.feat-est{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;}
-.feat-go{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:500;color:#8b1a1a;}
-.feat-subs{display:flex;flex-direction:column;gap:1px;}
-.feat-sub{background:#faf8f3;padding:22px 20px;flex:1;display:flex;flex-direction:column;justify-content:flex-end;transition:background .2s;}
-.feat-sub:hover{background:#fff;}
-.feat-sub .feat-tt{font-size:14px;margin-bottom:5px;}
-.feat-sub .feat-dk{font-size:11px;}
-.feat-sub .feat-foot{margin-top:10px;}
+.picks-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
 
-/* ================================
-   ARTICLES
-   ================================ */
-.articles{max-width:1080px;margin:0 auto;padding:52px 32px 80px;}
-.art-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;}
-.art-title{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;letter-spacing:.04em;color:#1a1208;}
+.pick-item{
+  display:grid;
+  grid-template-columns:3px 1fr 200px;
+  gap:0;
+  padding:32px 0;
+  border-bottom:1px solid #e0d8c8;
+  text-decoration:none;
+  transition:all .25s;
+}
+.pick-item:first-of-type{padding-top:0;}
+.pick-item:last-of-type{border-bottom:none;}
+.pick-item:hover .pick-title{color:#8b1a1a;}
+
+.pick-bar{border-radius:2px;}
+.pick-body{padding:0 24px;}
+.pick-cat{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;color:#7a6a55;text-transform:uppercase;margin-bottom:8px;}
+.pick-title{font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;color:#1a1208;margin-bottom:8px;transition:color .25s;}
+.pick-title em{font-style:italic;color:#8b1a1a;}
+.pick-deck{font-family:'Source Serif 4',serif;font-size:15px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;}
+.pick-foot{display:flex;align-items:center;gap:14px;}
+.pick-est{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;}
+.pick-go{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#8b1a1a;}
+.pick-badge{font-family:'Source Sans 3',sans-serif;font-size:8px;font-weight:600;letter-spacing:.1em;color:#faf8f3;background:#1a1208;padding:2px 8px;}
+
+.pick-visual{
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;border:1px solid #e0d8c8;
+  background:#0a1628;border-radius:3px;
+  position:relative;
+}
+.pick-visual canvas{width:100%;height:100%;display:block;}
+.pick-visual-light{background:#f3efe6;}
+
+.cat-math{background:#1a3a5a;}.cat-cog{background:#8b1a1a;}.cat-phil{background:#5a3a2a;}
+.cat-percep{background:#2a6a6a;}.cat-behav{background:#a0522d;}.cat-social{background:#6a5a8e;}
+.cat-brain{background:#4a4a7a;}.cat-phys{background:#3a5a3a;}
+
+/* === EXPERIENCE TEASERS === */
+.exp-wrap{background:#1a1208;padding:80px 32px;}
+.exp-inner{max-width:960px;margin:0 auto;}
+.exp-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.24em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.exp-heading{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;color:#e8ddd0;line-height:1.3;margin-bottom:48px;}
+.exp-heading em{font-style:italic;color:#c8785a;}
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.exp-card{background:#252015;border:1px solid #3a3020;overflow:hidden;transition:border-color .3s;cursor:pointer;text-decoration:none;}
+.exp-card:hover{border-color:#8b1a1a;}
+.exp-card-visual{height:140px;overflow:hidden;}
+.exp-card-visual canvas{width:100%;height:100%;display:block;}
+.exp-card-body{padding:18px 20px;}
+.exp-card-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:8px;}
+.exp-card-q{font-family:'Source Serif 4',serif;font-size:15px;font-weight:300;font-style:italic;color:#e8ddd0;line-height:1.7;margin-bottom:14px;}
+.exp-card-q strong{color:#c8785a;font-weight:400;font-style:normal;}
+.exp-card-foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid #3a3020;}
+.exp-card-title{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#9a8868;}
+.exp-card-go{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#c8785a;}
+
+/* === ARTICLES === */
+.articles-wrap{max-width:960px;margin:0 auto;padding:80px 32px 48px;}
+.art-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;}
+.art-title{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#1a1208;}
 .art-count{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;}
-.frow{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:24px;}
-.fb{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:400;color:#7a6a55;background:transparent;border:1px solid #e0d8c8;padding:4px 11px;cursor:pointer;transition:all .18s;}
+.filter-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:28px;}
+.fb{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:400;color:#7a6a55;background:transparent;border:1px solid #e0d8c8;padding:5px 13px;cursor:pointer;transition:all .18s;}
 .fb:hover{border-color:#8b1a1a;color:#8b1a1a;}
 .fb.on{background:#1a1208;color:#faf8f3;border-color:#1a1208;}
-/* カードグリッド — 最初のバージョンと同じ */
-.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-.cd{
-  border:1px solid #c8bfaa;background:#fff;
-  padding:20px 16px 16px;display:flex;flex-direction:column;
-  position:relative;overflow:hidden;
-  transition:border-color .25s,box-shadow .3s,transform .3s;
-}
-.cd:hover{border-color:#8b1a1a;box-shadow:0 8px 24px rgba(26,18,8,.08);}
-.cd:first-child{border-left:3px solid #8b1a1a;}
-.cbg{
-  position:absolute;bottom:-18px;right:-10px;
-  font-family:'Playfair Display',serif;font-weight:900;
-  font-size:130px;color:rgba(26,18,8,.033);
-  line-height:1;pointer-events:none;user-select:none;
-}
-.cd-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:5px;position:relative;z-index:1;}
-.cd-tt{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:5px;position:relative;z-index:1;}
-.cd-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;flex:1;margin-bottom:10px;position:relative;z-index:1;}
-.cd-foot{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}
+.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.cd{display:grid;grid-template-columns:3px 1fr;border:1px solid #c8bfaa;background:#fff;overflow:hidden;transition:border-color .25s,box-shadow .3s,transform .3s;text-decoration:none;}
+.cd:hover{border-color:#8b1a1a;box-shadow:0 6px 20px rgba(26,18,8,.07);}
+.cd-body{padding:18px 18px 16px;}
+.cd-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:6px;}
+.cd-tt{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:6px;}
+.cd-dk{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.65;margin-bottom:10px;}
+.cd-foot{display:flex;justify-content:space-between;align-items:center;}
 .cd-est{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;display:flex;align-items:center;gap:5px;}
-.cd-go{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:500;color:#8b1a1a;}
-.dot{width:5px;height:5px;border-radius:50%;background:#e0d8c8;display:inline-block;}
+.dot{width:6px;height:6px;border-radius:50%;background:#e0d8c8;display:inline-block;}
 .dot.on{background:#8b1a1a;}
-.badge-new{position:absolute;top:10px;right:10px;font-family:'Source Sans 3',sans-serif;font-size:8px;font-weight:600;letter-spacing:.1em;color:#faf8f3;background:#1a1208;padding:2px 7px;}
+.cd-go{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:500;color:#8b1a1a;}
+.cd.hidden{display:none;}
 .cd.fh{display:none;}
 .cd.fs{animation:ci .32s ease forwards;}
 @keyframes ci{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-
-/* ================================
-   FOOTER — 読めるコントラスト
-   ================================ */
-footer{
-  background:#1a1208;
-  padding:52px 32px 44px;
-  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;
-  gap:32px;
-}
-.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
-.f-name span{color:#c8785a;}
-.f-tag{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#8a7868;margin-bottom:16px;line-height:1.6;}
-.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
-.fcol h3{
-  font-family:'Source Sans 3',sans-serif;font-size:9px;
-  font-weight:600;letter-spacing:.2em;color:#9a8878;
-  text-transform:uppercase;margin-bottom:12px;
-  padding-bottom:8px;border-bottom:1px solid #3a2a1a;
-}
-.fcol a{
-  display:block;font-family:'Source Sans 3',sans-serif;
-  font-size:12px;font-weight:300;
-  color:#c8b8a8;
-  margin-bottom:7px;transition:color .2s;
-}
-.fcol a:hover{color:#f0e8dc;}
-
-.cd.hidden{display:none;}
-.show-more-wrap{text-align:center;padding:28px 0 0;border-top:1px solid #e0d8c8;margin-top:0;}
-.show-more-btn{
-  font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;
-  color:#7a6a55;background:transparent;border:1px solid #c8bfaa;
-  padding:8px 28px;cursor:pointer;letter-spacing:.06em;
-  transition:border-color .2s,color .2s;
-}
+.show-more-wrap{text-align:center;padding:32px 0 0;border-top:1px solid #e0d8c8;margin-top:14px;}
+.show-more-btn{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;background:transparent;border:1px solid #c8bfaa;padding:9px 32px;cursor:pointer;letter-spacing:.06em;transition:border-color .2s,color .2s;}
 .show-more-btn:hover{border-color:#8b1a1a;color:#8b1a1a;}
 
-/* QUOTE SECTION */
-.qsec{max-width:1080px;margin:0 auto;padding:0 32px 52px;}
-.qr{padding:32px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;text-align:center;position:relative;min-height:110px;overflow:hidden;}
-.qi{transition:opacity .6s ease;position:absolute;width:100%;left:0;top:32px;opacity:0;pointer-events:none;}
+/* === QUOTE (from v8 — rotation style) === */
+.quote-sec{max-width:960px;margin:0 auto;padding:64px 32px 72px;}
+.quote-area{padding:36px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;text-align:center;min-height:120px;position:relative;overflow:hidden;}
+.qi{transition:opacity .6s ease;position:absolute;width:100%;left:0;top:36px;opacity:0;pointer-events:none;}
 .qi.on{opacity:1;pointer-events:auto;position:relative;top:0;}
-.qi-en{font-family:'Playfair Display',serif;font-size:clamp(14px,1.9vw,19px);font-style:italic;font-weight:400;color:#1a1208;line-height:1.55;margin-bottom:8px;padding:0 24px;}
-.qi-en em{color:#8b1a1a;}
-.qi-ja{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;margin-bottom:6px;}
-.qi-at{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;}
+.q-en,.qi-en{font-family:'Playfair Display',serif;font-size:clamp(15px,2vw,19px);font-style:italic;font-weight:400;color:#1a1208;line-height:1.55;margin-bottom:8px;padding:0 24px;}
+.q-en em,.qi-en em{color:#8b1a1a;}
+.q-ja,.qi-ja{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;margin-bottom:6px;}
+.q-at,.qi-at{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;}
 .qd{text-align:center;padding:10px 0 0;}
 .qdot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#e0d8c8;margin:0 3px;cursor:pointer;transition:background .25s;}
 .qdot.on{background:#1a1208;}
 
-/* steps canvas (from v8) */
-.steps{display:flex;justify-content:center;gap:0;position:relative;margin-top:0;margin-right:8%;}
-.step{display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 4px;flex:none;width:140px;position:relative;}
-.step-canvas-wrap{width:96px;height:96px;position:relative;z-index:2;}
-.step-canvas-wrap canvas{width:96px;height:96px;display:block;}
-#cvLines{position:absolute;top:0;left:0;width:100%;height:96px;z-index:1;pointer-events:none;}
-.step-label{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#1a1208;letter-spacing:.04em;}
-.step-desc{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#b0a090;line-height:1.4;}
-
+/* === FOOTER === */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-tag{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#8a7868;margin-bottom:16px;line-height:1.6;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
 
 @media(max-width:860px){
   header.mh{padding:0 20px;}
-  .mh-tag,.mh-sitemap{display:none;}
-  .hero{padding:60px 20px 52px;}
-  .feat,.articles{padding-left:20px;padding-right:20px;}
-  .feat-grid{grid-template-columns:1fr;}
-  .feat-subs{flex-direction:row;}
-  .feat-sub{flex:1;}
-  .cg{grid-template-columns:repeat(2,1fr);}
-  footer{grid-template-columns:1fr 1fr;gap:24px;padding:36px 20px;}
+  .heroA{height:auto;min-height:480px;padding:60px 0;}
+  .heroA-content{padding:0 20px;}
+  .picks-wrap,.articles-wrap,.quote-sec{padding-left:20px;padding-right:20px;}
+  .exp-wrap{padding:60px 20px;}
+  .exp-grid{grid-template-columns:1fr;}
+  .pick-item{grid-template-columns:3px 1fr;}.pick-visual{display:none;}
+  .card-grid{grid-template-columns:1fr 1fr;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
   .menu-cols{grid-template-columns:1fr 1fr;}
   .s-box{margin:40px 16px 0;}
 }
 @media(max-width:520px){
-  .hero-catch{font-size:clamp(24px,7vw,36px);}
-  .hero-kw{flex-direction:column;gap:10px;}
-  .hero-k{border-right:none !important;padding:0;}
-  .cg{grid-template-columns:1fr;}
-  footer{grid-template-columns:1fr;}
+  .heroA-catch{font-size:clamp(28px,8vw,42px);}
+  .card-grid{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
   .menu-cols{grid-template-columns:1fr;}
 }
 </style>
@@ -364,7 +358,7 @@ footer{
 <body>
 
 <!-- ================================
-     SLIDE MENU
+     SLIDE MENU (from v8)
      ================================ -->
 <div class="menu-backdrop" id="menuBackdrop"></div>
 <div class="menu-panel" id="menuPanel">
@@ -376,7 +370,7 @@ footer{
     <div class="menu-cols">
       <div class="menu-sec">
         <div class="menu-sec-lbl">記事を読む</div>
-        <a href="#articles" onclick="closeMenu()">記事一覧<span class="msub">33 articles</span></a>
+        <a href="#articles" onclick="closeMenu()">記事一覧<span class="msub">36 articles</span></a>
         <a href="#articles" onclick="flt('all');closeMenu();">最新記事</a>
         <a href="javascript:void(0)" onclick="closeMenu()">Editor's Pick</a>
         <a href="javascript:void(0)" onclick="closeMenu()">Most Read</a>
@@ -407,7 +401,7 @@ footer{
 </div>
 
 <!-- ================================
-     SEARCH OVERLAY
+     SEARCH OVERLAY (from v8)
      ================================ -->
 <div class="s-overlay" id="sOverlay">
   <div class="s-box">
@@ -419,231 +413,229 @@ footer{
   </div>
 </div>
 
-<!-- ================================
-     MASTHEAD
-     ================================ -->
+<!-- MASTHEAD -->
 <header class="mh">
-  <div class="mh-left">
-    <button class="mh-burger" id="burgerBtn" aria-label="メニュー">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div class="mh-center">
-    <a href="/" class="mh-name"><span>Qualia</span> Journal</a>
-  </div>
-  <div class="mh-right">
-    <a class="mh-sitemap" href="#articles">記事一覧</a>
-    <button class="mh-search" id="searchBtn" aria-label="検索">
-      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/>
-        <line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </button>
-  </div>
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name"><em>Qualia</em> Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
 </header>
 
-<!-- ================================
-     HERO
-     ================================ -->
-<div class="hero-wrap">
-<section class="hero">
-  <h1 class="hero-catch fade" style="position:relative;">
-    <span style="display:block;">世界を面白くするのは、</span>
-    <span style="display:block;padding-left:6.9em;"><em>視点だ。</em></span>
-  </h1>
-  <div class="steps fade" id="stepsAnim">
-    <canvas id="cvLines"></canvas>
-    <div class="step">
-      <div class="step-canvas-wrap"><canvas id="cv1" width="240" height="240"></canvas></div>
-      <p class="step-label">読む</p>
-      <p class="step-desc">研究と歴史を辿る</p>
+<!-- HERO -->
+<section class="heroA" id="heroA">
+  <div class="heroA-canvas"><canvas id="antCanvas"></canvas></div>
+  <div class="heroA-overlay"></div>
+  <div class="heroA-content">
+    <h1 class="heroA-catch fade">知る前の自分には、<em>もう会えない。</em></h1>
+    <p class="heroA-sub fade">知らずとも生きていける。が、知ったほうが、少しだけいい。</p>
+  </div>
+  <div class="heroA-scroll fade">
+    <span class="heroA-scroll-text">SCROLL</span>
+    <span class="heroA-scroll-line"></span>
+  </div>
+</section>
+
+<!-- EDITOR'S PICK -->
+<section class="picks-wrap" id="picksB">
+  <div class="picks-label fade">✦ Editor's Pick</div>
+
+  <a class="pick-item fade" href="https://qualiajournal.com/double_slit">
+    <div class="pick-bar cat-phys"></div>
+    <div class="pick-body">
+      <div class="pick-cat">物理・宇宙</div>
+      <h2 class="pick-title">観測するだけで、<em>結果が変わる。</em></h2>
+      <p class="pick-deck">粒子を1つずつ発射すると、なぜか波の干渉縞ができる。しかし「見る」と消える。</p>
+      <div class="pick-foot">
+        <span class="pick-badge">体験あり</span>
+        <span class="pick-est">Est. 1801</span>
+        <span class="pick-go">読む →</span>
+      </div>
     </div>
-    <div class="step">
-      <div class="step-canvas-wrap"><canvas id="cv2" width="240" height="240"></canvas></div>
-      <p class="step-label">体験する</p>
-      <p class="step-desc">クイズや仕掛けで確かめる</p>
+    <div class="pick-visual"><canvas id="pickWave"></canvas></div>
+  </a>
+
+  <a class="pick-item fade" href="https://qualiajournal.com/mandelbrot_set">
+    <div class="pick-bar cat-math"></div>
+    <div class="pick-body">
+      <div class="pick-cat">数学・論理</div>
+      <h2 class="pick-title">単純な式から、<em>無限の複雑さ。</em></h2>
+      <p class="pick-deck">z = z² + c。たったこれだけの式が、どこまで拡大しても終わらないパターンを生む。</p>
+      <div class="pick-foot">
+        <span class="pick-est">Est. 1980</span>
+        <span class="pick-go">読む →</span>
+      </div>
     </div>
-    <div class="step">
-      <div class="step-canvas-wrap"><canvas id="cv3" width="240" height="240"></canvas></div>
-      <p class="step-label">揺らぐ</p>
-      <p class="step-desc">当たり前が崩れる</p>
+    <div class="pick-visual"><canvas id="pickMandel"></canvas></div>
+  </a>
+
+  <a class="pick-item fade" href="https://qualiajournal.com/checker_shadow">
+    <div class="pick-bar cat-percep"></div>
+    <div class="pick-body">
+      <div class="pick-cat">知覚・錯覚</div>
+      <h2 class="pick-title">同じ色が、<em>違って見える。</em></h2>
+      <p class="pick-deck">2つの正方形はまったく同じ色。背景が変わるだけで、脳は別の色を「見て」しまう。</p>
+      <div class="pick-foot">
+        <span class="pick-badge">体験あり</span>
+        <span class="pick-est">Est. 1995</span>
+        <span class="pick-go">読む →</span>
+      </div>
+    </div>
+    <div class="pick-visual pick-visual-light"><canvas id="pickChecker"></canvas></div>
+  </a>
+</section>
+
+<!-- EXPERIENCE TEASERS -->
+<section class="exp-wrap">
+  <div class="exp-inner">
+    <div class="exp-label fade">✦ Try It — 体験する</div>
+    <h2 class="exp-heading fade">読むだけではわからない。<em>自分の認知で確かめる。</em></h2>
+    <div class="exp-grid">
+      <a class="exp-card fade" href="https://qualiajournal.com/langton_ant">
+        <div class="exp-card-visual"><canvas id="expAnt"></canvas></div>
+        <div class="exp-card-body">
+          <div class="exp-card-cat">数学・論理</div>
+          <p class="exp-card-q">単純なルール2つ。<strong>10,000歩</strong>の混沌の果てに、突然の秩序が現れる。</p>
+          <div class="exp-card-foot"><span class="exp-card-title">ラングトンのアリ</span><span class="exp-card-go">試す →</span></div>
+        </div>
+      </a>
+      <a class="exp-card fade" href="https://qualiajournal.com/birthday_paradox">
+        <div class="exp-card-visual"><canvas id="expBirthday"></canvas></div>
+        <div class="exp-card-body">
+          <div class="exp-card-cat">数学・論理</div>
+          <p class="exp-card-q"><strong>23人</strong>集まれば、同じ誕生日のペアがいる確率は50%を超える。</p>
+          <div class="exp-card-foot"><span class="exp-card-title">誕生日のパラドックス</span><span class="exp-card-go">試す →</span></div>
+        </div>
+      </a>
+      <a class="exp-card fade" href="https://qualiajournal.com/color">
+        <div class="exp-card-visual"><canvas id="expSpectrum"></canvas></div>
+        <div class="exp-card-body">
+          <div class="exp-card-cat">知覚・錯覚</div>
+          <p class="exp-card-q">波長<strong>580nm</strong>の光。あなたは「黄色」と呼ぶ。でも——黄色はどこにある？</p>
+          <div class="exp-card-foot"><span class="exp-card-title">色は存在しない</span><span class="exp-card-go">試す →</span></div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
-</div>
 
-<!-- ================================
-     FEATURED
-     ================================ -->
-<div class="feat-wrap">
-  <div class="feat">
-    <p class="feat-hd fade">✦ 注目記事</p>
-    <div class="feat-grid fade">
-      <a class="feat-main" href="monty_hall_v14.html">
-        <span class="feat-bg">⅔</span>
-        <span class="feat-badge">Editor's Pick</span>
-        <div class="feat-cat">数学・論理</div>
-        <h2 class="feat-tt">たった一つのクイズが、<em>1000人の博士</em>を間違えさせた。</h2>
-        <p class="feat-dk">選び直した方が確率2倍。直感に反するこの答えに、博士号保持者たちが大量の抗議文を送った。</p>
-        <div class="feat-foot"><span class="feat-est">Est. 1990</span><span class="feat-go">読む →</span></div>
-      </a>
-      <div class="feat-subs">
-        <a class="feat-sub" href="loss_aversion.html">
-          <div class="feat-cat">認知バイアス</div>
-          <h3 class="feat-tt">失うことの重さ</h3>
-          <p class="feat-dk">得る喜びと失う痛み。同じ金額なのに非対称。</p>
-          <div class="feat-foot"><span class="feat-est">Est. 1979</span><span class="feat-go">→</span></div>
-        </a>
-        <a class="feat-sub" href="mary_room_v6.html">
-          <div class="feat-cat">思考実験・哲学</div>
-          <h3 class="feat-tt">すべてを知っていた彼女が、何も知らなかった</h3>
-          <p class="feat-dk">白黒の部屋で色の物理をすべて学んだマリー。</p>
-          <div class="feat-foot"><span class="feat-est">Est. 1982</span><span class="feat-go">→</span></div>
-        </a>
-      </div>
-    </div>
+<!-- ARTICLES -->
+<section class="articles-wrap" id="articles">
+  <div class="art-head fade"><span class="art-title">記事一覧</span><span class="art-count">36 articles</span></div>
+  <div class="filter-row fade">
+    <button class="fb on" onclick="flt('all')">すべて</button>
+    <button class="fb" onclick="flt('認知バイアス')">認知バイアス</button>
+    <button class="fb" onclick="flt('行動心理学')">行動心理学</button>
+    <button class="fb" onclick="flt('社会心理学')">社会心理学</button>
+    <button class="fb" onclick="flt('知覚・錯覚')">知覚・錯覚</button>
+    <button class="fb" onclick="flt('脳と意識')">脳と意識</button>
+    <button class="fb" onclick="flt('数学・論理')">数学・論理</button>
+    <button class="fb" onclick="flt('思考実験・哲学')">思考実験・哲学</button>
+    <button class="fb" onclick="flt('物理・宇宙')">物理・宇宙</button>
+    <button class="fb" onclick="flt('生命・進化')">生命・進化</button>
+    <button class="fb" onclick="flt('科学と文化')">科学と文化</button>
   </div>
-</div>
-
-<!-- ================================
-     ARTICLES
-     ================================ -->
-<div id="articles">
-  <div class="articles">
-    <div class="art-top fade">
-      <span class="art-title">記事一覧</span>
-      <span class="art-count">35 articles</span>
-    </div>
-    <div class="frow fade">
-      <button class="fb on" onclick="flt('all')">すべて</button>
-      <button class="fb" onclick="flt('認知バイアス')">認知バイアス</button>
-      <button class="fb" onclick="flt('行動心理学')">行動心理学</button>
-      <button class="fb" onclick="flt('社会心理学')">社会心理学</button>
-      <button class="fb" onclick="flt('知覚・錯覚')">知覚・錯覚</button>
-      <button class="fb" onclick="flt('脳と意識')">脳と意識</button>
-      <button class="fb" onclick="flt('数学・論理')">数学・論理</button>
-      <button class="fb" onclick="flt('思考実験・哲学')">思考実験・哲学</button>
-      <button class="fb" onclick="flt('物理・宇宙')">物理・宇宙</button>
-      <button class="fb" onclick="flt('生命・進化')">生命・進化</button>
-      <button class="fb" onclick="flt('科学と文化')">科学と文化</button>
-    </div>
-    <div class="cg" id="cg">
-      <a class="cd fs" data-cat="数学・論理" href="monty_hall_v14.html"><span class="cbg">⅔</span><div class="cd-cat">数学・論理</div><div class="cd-tt">モンティ・ホール問題</div><div class="cd-dk">選び直した方が確率2倍。直感に反するこの答え。</div><div class="cd-foot"><span class="cd-est">Est. 1990 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="認知バイアス" href="confirmation_bias_v6.html"><span class="cbg">✓?</span><div class="cd-cat">認知バイアス</div><div class="cd-tt">確証バイアス</div><div class="cd-dk">あなたはもう答えを決めている。2-4-6課題が暴く推論の歪み。</div><div class="cd-foot"><span class="cd-est">Est. 1960 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="行動心理学" href="skinner_box_v6.html"><span class="cbg">□</span><div class="cd-cat">行動心理学</div><div class="cd-tt">スキナー箱</div><div class="cd-dk">ランダムな報酬にもっとも強く反応する脳の構造。</div><div class="cd-foot"><span class="cd-est">Est. 1938 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="認知バイアス" href="loss_aversion.html"><span class="badge-new">New</span><span class="cbg">−2x</span><div class="cd-cat">認知バイアス</div><div class="cd-tt">損失回避</div><div class="cd-dk">得る喜びと失う痛み。同じ金額なのに非対称。</div><div class="cd-foot"><span class="cd-est">Est. 1979 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="認知バイアス" href="anchoring_effect.html"><span class="cbg">⚓</span><div class="cd-cat">認知バイアス</div><div class="cd-tt">アンカリング効果</div><div class="cd-dk">最初に見た数字が判断を書き換える。</div><div class="cd-foot"><span class="cd-est">Est. 1974 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="社会心理学" href="barnum_effect_v2.html"><span class="cbg">☆</span><div class="cd-cat">社会心理学</div><div class="cd-tt">バーナム効果</div><div class="cd-dk">全員に同じ文面。85%が「自分のことだ」と感じた。</div><div class="cd-foot"><span class="cd-est">Est. 1948 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="思考実験・哲学" href="mary_room_v6.html"><span class="cbg">λ</span><div class="cd-cat">思考実験・哲学</div><div class="cd-tt">マリーの部屋</div><div class="cd-dk">すべてを知っていた彼女が、何も知らなかった可能性。</div><div class="cd-foot"><span class="cd-est">Est. 1982 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="知覚・錯覚" href="checker_shadow.html"><span class="cbg">□</span><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">チェッカーシャドウ錯視</div><div class="cd-dk">同じ色なのに、なぜ違って見えるのか。脳の補正が見せる嘘。</div><div class="cd-foot"><span class="cd-est">Est. 1995 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="数学・論理" href="birthday_paradox.html"><span class="cbg">23</span><div class="cd-cat">数学・論理</div><div class="cd-tt">誕生日のパラドックス</div><div class="cd-dk">23人集まれば50%の確率で同じ誕生日が。</div><div class="cd-foot"><span class="cd-est">Est. 1939 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="数学・論理" href="langton_ant.html"><span class="cbg">→</span><div class="cd-cat">数学・論理</div><div class="cd-tt">ラングトンのアリ</div><div class="cd-dk">単純な規則から突然の秩序が生まれる瞬間。</div><div class="cd-foot"><span class="cd-est">Est. 1986 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="知覚・錯覚" href="c01_twelve_tones_v6.html"><span class="cbg">12</span><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">なぜピアノは12音なのか</div><div class="cd-dk">ピタゴラスの音律から平均律まで。数学的妥協の歴史。</div><div class="cd-foot"><span class="cd-est">Est. 1939 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="行動心理学" href="dopamine_starvation_v7.html"><span class="cbg">⚡</span><div class="cd-cat">行動心理学</div><div class="cd-tt">ネズミはドーパミンを選んで餓死した</div><div class="cd-dk">1954年、快楽中枢への電極。食事も睡眠も放棄した。</div><div class="cd-foot"><span class="cd-est">Est. 1954 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="認知バイアス" href="framing_effect.html"><span class="cbg">±</span><div class="cd-cat">認知バイアス</div><div class="cd-tt">フレーミング効果</div><div class="cd-dk">同じ内容でも、表現の仕方で選択が変わる。</div><div class="cd-foot"><span class="cd-est">Est. 1981 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="行動心理学" href="marshmallow_test_v2.html"><span class="cbg">🍬</span><div class="cd-cat">行動心理学</div><div class="cd-tt">マシュマロ実験の再解釈</div><div class="cd-dk">自制心ではなく、信頼と環境の問題だった。</div><div class="cd-foot"><span class="cd-est">Est. 1972 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="認知バイアス" href="sunk_cost_fallacy.html"><span class="cbg">↓</span><div class="cd-cat">認知バイアス</div><div class="cd-tt">サンクコスト錯誤</div><div class="cd-dk">もう戻らない投資が、未来の判断を歪める。</div><div class="cd-foot"><span class="cd-est">Est. 1985 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="数学・論理" href="mandelbrot_set.html"><span class="cbg">∞</span><div class="cd-cat">数学・論理</div><div class="cd-tt">マンデルブロ集合</div><div class="cd-dk">単純な式から生まれる無限の複雑さ。</div><div class="cd-foot"><span class="cd-est">Est. 1980 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="脳と意識" href="memory_reconsolidation.html"><span class="cbg">↺</span><div class="cd-cat">脳と意識</div><div class="cd-tt">記憶は毎回「再構築」される</div><div class="cd-dk">想起するたびに書き換わる。記憶はビデオではない。</div><div class="cd-foot"><span class="cd-est">Est. 2000 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="認知バイアス" href="dunning_kruger.html"><span class="cbg">∧</span><div class="cd-cat">認知バイアス</div><div class="cd-tt">ダニング＝クルーガー効果</div><div class="cd-dk">能力の低い人ほど自分を過大評価する。</div><div class="cd-foot"><span class="cd-est">Est. 1999 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="行動心理学" href="prisoners_dilemma_v3.html"><span class="cbg">⚖</span><div class="cd-cat">行動心理学</div><div class="cd-tt">囚人のジレンマ</div><div class="cd-dk">協力と裏切り。最適戦略は存在するか。</div><div class="cd-foot"><span class="cd-est">Est. 1950 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="思考実験・哲学" href="ship_of_theseus.html"><span class="cbg">⛵</span><div class="cd-cat">思考実験・哲学</div><div class="cd-tt">テセウスの船</div><div class="cd-dk">すべての部品を取り替えた後も、同じ船か。</div><div class="cd-foot"><span class="cd-est">75AD · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="脳と意識" href="libet_free_will_v3.html"><span class="cbg">⏱</span><div class="cd-cat">脳と意識</div><div class="cd-tt">自由意志への疑問（リベット実験）</div><div class="cd-dk">意識的「決断」の0.3秒前に脳が動いている。</div><div class="cd-foot"><span class="cd-est">Est. 1983 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="思考実験・哲学" href="butterfly_dream_v3.html"><span class="cbg">蝶</span><div class="cd-cat">思考実験・哲学</div><div class="cd-tt">胡蝶の夢（荘子）</div><div class="cd-dk">私は蝶の夢を見た人か、人の夢を見ている蝶か。</div><div class="cd-foot"><span class="cd-est">BC300 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="数学・論理" href="fibonacci.html"><span class="cbg">φ</span><div class="cd-cat">数学・論理</div><div class="cd-tt">フィボナッチ数列と自然のパターン</div><div class="cd-dk">ひまわりの種、貝の螺旋。自然は数列を知っていた。</div><div class="cd-foot"><span class="cd-est">Est. 1202 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="数学・論理" href="benford_law.html"><span class="cbg">1</span><div class="cd-cat">数学・論理</div><div class="cd-tt">ベンフォードの法則</div><div class="cd-dk">自然のデータで先頭の「1」は30%以上出現する。</div><div class="cd-foot"><span class="cd-est">Est. 1938 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="科学と文化" href="skeuomorphism_v5.html"><span class="cbg">📱</span><div class="cd-cat">科学と文化</div><div class="cd-tt">スキューモーフィズム</div><div class="cd-dk">カメラのシャッター音。存在しないはずの音が必要な理由。</div><div class="cd-foot"><span class="cd-est">Est. 1980s · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="社会心理学" href="asch_conformity_v3.html"><span class="cbg">|||</span><div class="cd-cat">社会心理学</div><div class="cd-tt">同調圧力（アッシュの実験）</div><div class="cd-dk">明らかに間違った答えに、人は合わせてしまう。</div><div class="cd-foot"><span class="cd-est">Est. 1951 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="行動心理学" href="reward_prediction_error.html"><span class="cbg">Δ</span><div class="cd-cat">行動心理学</div><div class="cd-tt">報酬予測誤差とドーパミン</div><div class="cd-dk">ドーパミンは快楽ではなく「予測との差」を伝える。</div><div class="cd-foot"><span class="cd-est">Est. 1997 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="知覚・錯覚" href="color_primaries_q01_v3.html"><span class="cbg">RGB</span><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">色の三原色 vs 光の三原色</div><div class="cd-dk">絵の具と光では混ぜ方が逆になる。なぜか。</div><div class="cd-foot"><span class="cd-est">Est. 1666 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="物理・宇宙" href="double_slit_v3.html"><span class="cbg">|ψ⟩</span><div class="cd-cat">物理・宇宙</div><div class="cd-tt">二重スリット実験</div><div class="cd-dk">観測するだけで、粒子の振る舞いが変わる。</div><div class="cd-foot"><span class="cd-est">Est. 1801 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="数学・論理" href="base_rate_neglect.html"><span class="cbg">%</span><div class="cd-cat">数学・論理</div><div class="cd-tt">基準率の無視（ベイズの定理）</div><div class="cd-dk">検査陽性でも、病気とは限らない。確率の罠。</div><div class="cd-foot"><span class="cd-est">Est. 1763 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="知覚・錯覚" href="color_v7.html"><span class="cbg">λ</span><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">色は存在しない</div><div class="cd-dk">波長はあるが「赤さ」は脳の産物。世界に色はない。</div><div class="cd-foot"><span class="cd-est">Est. 1666 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="科学と文化" href="correlation_causation.html"><span class="cbg">r≠</span><div class="cd-cat">科学と文化</div><div class="cd-tt">相関は因果ではない</div><div class="cd-dk">数字が一緒に動くだけでは、原因とは言えない。</div><div class="cd-foot"><span class="cd-est">Est. 1896 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="知覚・錯覚" href="sound_does_not_exist.html"><span class="cbg">♪</span><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">音は存在しない</div><div class="cd-dk">空気の振動が存在するだけ。「音」は脳の解釈。</div><div class="cd-foot"><span class="cd-est"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="知覚・錯覚" href="flavor_nose.html"><span class="cbg">鼻</span><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">味の80%は鼻で感じている</div><div class="cd-dk">リンゴとタマネギも、鼻をつまめば区別がつかない。「味」の正体。</div><div class="cd-foot"><span class="cd-est">Est. 1982 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-      <a class="cd fs" data-cat="知覚・錯覚" href="thermal_grill.html"><span class="cbg">⚡</span><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">温かいと冷たいが、痛みを生む</div><div class="cd-dk">40℃と20℃を交互に並べると、脳は「焼けるように熱い」と叫ぶ。</div><div class="cd-foot"><span class="cd-est">Est. 1896 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></a>
-    </div>
-    <div class="show-more-wrap" id="showMoreWrap">
-      <button class="show-more-btn" id="showMoreBtn">すべての記事を見る（35本）</button>
-    </div>
+  <div class="card-grid" id="cg">
+    <a class="cd fade" data-cat="数学・論理" href="https://qualiajournal.com/monty_hall"><div class="cd-bar cat-math"></div><div class="cd-body"><div class="cd-cat">数学・論理</div><div class="cd-tt">モンティ・ホール問題</div><div class="cd-dk">選び直した方が確率2倍。直感に反するこの答え。</div><div class="cd-foot"><span class="cd-est">Est. 1990 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade" data-cat="認知バイアス" href="https://qualiajournal.com/confirmation_bias"><div class="cd-bar cat-cog"></div><div class="cd-body"><div class="cd-cat">認知バイアス</div><div class="cd-tt">確証バイアス</div><div class="cd-dk">あなたはもう答えを決めている。2-4-6課題が暴く推論の歪み。</div><div class="cd-foot"><span class="cd-est">Est. 1960 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade" data-cat="行動心理学" href="https://qualiajournal.com/skinner_box"><div class="cd-bar cat-behav"></div><div class="cd-body"><div class="cd-cat">行動心理学</div><div class="cd-tt">スキナー箱</div><div class="cd-dk">ランダムな報酬にもっとも強く反応する脳の構造。</div><div class="cd-foot"><span class="cd-est">Est. 1938 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade" data-cat="認知バイアス" href="https://qualiajournal.com/loss_aversion"><div class="cd-bar cat-cog"></div><div class="cd-body"><div class="cd-cat">認知バイアス</div><div class="cd-tt">損失回避</div><div class="cd-dk">得る喜びと失う痛み。同じ金額なのに非対称。</div><div class="cd-foot"><span class="cd-est">Est. 1979 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade" data-cat="認知バイアス" href="https://qualiajournal.com/anchoring_effect"><div class="cd-bar cat-cog"></div><div class="cd-body"><div class="cd-cat">認知バイアス</div><div class="cd-tt">アンカリング効果</div><div class="cd-dk">最初に見た数字が判断を書き換える。</div><div class="cd-foot"><span class="cd-est">Est. 1974 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade" data-cat="社会心理学" href="https://qualiajournal.com/barnum_effect"><div class="cd-bar cat-social"></div><div class="cd-body"><div class="cd-cat">社会心理学</div><div class="cd-tt">バーナム効果</div><div class="cd-dk">全員に同じ文面。85%が「自分のことだ」と感じた。</div><div class="cd-foot"><span class="cd-est">Est. 1948 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade" data-cat="思考実験・哲学" href="https://qualiajournal.com/mary_room"><div class="cd-bar cat-phil"></div><div class="cd-body"><div class="cd-cat">思考実験・哲学</div><div class="cd-tt">マリーの部屋</div><div class="cd-dk">すべてを知っていた彼女が、何も知らなかった可能性。</div><div class="cd-foot"><span class="cd-est">Est. 1982 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade" data-cat="知覚・錯覚" href="https://qualiajournal.com/checker_shadow"><div class="cd-bar cat-percep"></div><div class="cd-body"><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">チェッカーシャドウ錯視</div><div class="cd-dk">同じ色なのに、なぜ違って見えるのか。脳の補正が見せる嘘。</div><div class="cd-foot"><span class="cd-est">Est. 1995 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade" data-cat="数学・論理" href="https://qualiajournal.com/birthday_paradox"><div class="cd-bar cat-math"></div><div class="cd-body"><div class="cd-cat">数学・論理</div><div class="cd-tt">誕生日のパラドックス</div><div class="cd-dk">23人集まれば50%の確率で同じ誕生日が。</div><div class="cd-foot"><span class="cd-est">Est. 1939 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade" data-cat="数学・論理" href="https://qualiajournal.com/langton_ant"><div class="cd-bar cat-math"></div><div class="cd-body"><div class="cd-cat">数学・論理</div><div class="cd-tt">ラングトンのアリ</div><div class="cd-dk">単純な規則から突然の秩序が生まれる瞬間。</div><div class="cd-foot"><span class="cd-est">Est. 1986 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade" data-cat="知覚・錯覚" href="https://qualiajournal.com/twelve_tones"><div class="cd-bar cat-percep"></div><div class="cd-body"><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">なぜピアノは12音なのか</div><div class="cd-dk">ピタゴラスの音律から平均律まで。数学的妥協の歴史。</div><div class="cd-foot"><span class="cd-est">Est. 1939 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade" data-cat="行動心理学" href="https://qualiajournal.com/dopamine_starvation"><div class="cd-bar cat-behav"></div><div class="cd-body"><div class="cd-cat">行動心理学</div><div class="cd-tt">ネズミはドーパミンを選んで餓死した</div><div class="cd-dk">1954年、快楽中枢への電極。食事も睡眠も放棄した。</div><div class="cd-foot"><span class="cd-est">Est. 1954 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="認知バイアス" href="https://qualiajournal.com/framing_effect"><div class="cd-bar cat-cog"></div><div class="cd-body"><div class="cd-cat">認知バイアス</div><div class="cd-tt">フレーミング効果</div><div class="cd-dk">同じ内容でも、表現の仕方で選択が変わる。</div><div class="cd-foot"><span class="cd-est">Est. 1981 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="行動心理学" href="https://qualiajournal.com/marshmallow_test"><div class="cd-bar cat-behav"></div><div class="cd-body"><div class="cd-cat">行動心理学</div><div class="cd-tt">マシュマロ実験の再解釈</div><div class="cd-dk">自制心ではなく、信頼と環境の問題だった。</div><div class="cd-foot"><span class="cd-est">Est. 1972 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="認知バイアス" href="https://qualiajournal.com/sunk_cost_fallacy"><div class="cd-bar cat-cog"></div><div class="cd-body"><div class="cd-cat">認知バイアス</div><div class="cd-tt">サンクコスト錯誤</div><div class="cd-dk">もう戻らない投資が、未来の判断を歪める。</div><div class="cd-foot"><span class="cd-est">Est. 1985 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="数学・論理" href="https://qualiajournal.com/mandelbrot_set"><div class="cd-bar cat-math"></div><div class="cd-body"><div class="cd-cat">数学・論理</div><div class="cd-tt">マンデルブロ集合</div><div class="cd-dk">単純な式から生まれる無限の複雑さ。</div><div class="cd-foot"><span class="cd-est">Est. 1980 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="脳と意識" href="https://qualiajournal.com/memory_reconsolidation"><div class="cd-bar cat-brain"></div><div class="cd-body"><div class="cd-cat">脳と意識</div><div class="cd-tt">記憶は毎回「再構築」される</div><div class="cd-dk">想起するたびに書き換わる。記憶はビデオではない。</div><div class="cd-foot"><span class="cd-est">Est. 2000 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="認知バイアス" href="https://qualiajournal.com/dunning_kruger"><div class="cd-bar cat-cog"></div><div class="cd-body"><div class="cd-cat">認知バイアス</div><div class="cd-tt">ダニング＝クルーガー効果</div><div class="cd-dk">能力の低い人ほど自分を過大評価する。</div><div class="cd-foot"><span class="cd-est">Est. 1999 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="行動心理学" href="https://qualiajournal.com/prisoners_dilemma"><div class="cd-bar cat-behav"></div><div class="cd-body"><div class="cd-cat">行動心理学</div><div class="cd-tt">囚人のジレンマ</div><div class="cd-dk">協力と裏切り。最適戦略は存在するか。</div><div class="cd-foot"><span class="cd-est">Est. 1950 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="思考実験・哲学" href="https://qualiajournal.com/ship_of_theseus"><div class="cd-bar cat-phil"></div><div class="cd-body"><div class="cd-cat">思考実験・哲学</div><div class="cd-tt">テセウスの船</div><div class="cd-dk">すべての部品を取り替えた後も、同じ船か。</div><div class="cd-foot"><span class="cd-est">75AD · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="脳と意識" href="https://qualiajournal.com/libet_free_will"><div class="cd-bar cat-brain"></div><div class="cd-body"><div class="cd-cat">脳と意識</div><div class="cd-tt">自由意志への疑問（リベット実験）</div><div class="cd-dk">意識的「決断」の0.3秒前に脳が動いている。</div><div class="cd-foot"><span class="cd-est">Est. 1983 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="思考実験・哲学" href="https://qualiajournal.com/butterfly_dream"><div class="cd-bar cat-phil"></div><div class="cd-body"><div class="cd-cat">思考実験・哲学</div><div class="cd-tt">胡蝶の夢（荘子）</div><div class="cd-dk">私は蝶の夢を見た人か、人の夢を見ている蝶か。</div><div class="cd-foot"><span class="cd-est">BC300 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="数学・論理" href="https://qualiajournal.com/fibonacci"><div class="cd-bar cat-math"></div><div class="cd-body"><div class="cd-cat">数学・論理</div><div class="cd-tt">フィボナッチ数列と自然のパターン</div><div class="cd-dk">ひまわりの種、貝の螺旋。自然は数列を知っていた。</div><div class="cd-foot"><span class="cd-est">Est. 1202 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="数学・論理" href="https://qualiajournal.com/benford_law"><div class="cd-bar cat-math"></div><div class="cd-body"><div class="cd-cat">数学・論理</div><div class="cd-tt">ベンフォードの法則</div><div class="cd-dk">自然のデータで先頭の「1」は30%以上出現する。</div><div class="cd-foot"><span class="cd-est">Est. 1938 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="科学と文化" href="https://qualiajournal.com/skeuomorphism"><div class="cd-bar cat-percep"></div><div class="cd-body"><div class="cd-cat">科学と文化</div><div class="cd-tt">スキューモーフィズム</div><div class="cd-dk">カメラのシャッター音。存在しないはずの音が必要な理由。</div><div class="cd-foot"><span class="cd-est">Est. 1980s · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="社会心理学" href="https://qualiajournal.com/asch_conformity"><div class="cd-bar cat-social"></div><div class="cd-body"><div class="cd-cat">社会心理学</div><div class="cd-tt">同調圧力（アッシュの実験）</div><div class="cd-dk">明らかに間違った答えに、人は合わせてしまう。</div><div class="cd-foot"><span class="cd-est">Est. 1951 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="行動心理学" href="https://qualiajournal.com/reward_prediction_error"><div class="cd-bar cat-behav"></div><div class="cd-body"><div class="cd-cat">行動心理学</div><div class="cd-tt">報酬予測誤差とドーパミン</div><div class="cd-dk">ドーパミンは快楽ではなく「予測との差」を伝える。</div><div class="cd-foot"><span class="cd-est">Est. 1997 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="知覚・錯覚" href="https://qualiajournal.com/color_primaries"><div class="cd-bar cat-percep"></div><div class="cd-body"><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">色の三原色 vs 光の三原色</div><div class="cd-dk">絵の具と光では混ぜ方が逆になる。なぜか。</div><div class="cd-foot"><span class="cd-est">Est. 1666 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="物理・宇宙" href="https://qualiajournal.com/double_slit"><div class="cd-bar cat-phys"></div><div class="cd-body"><div class="cd-cat">物理・宇宙</div><div class="cd-tt">二重スリット実験</div><div class="cd-dk">観測するだけで、粒子の振る舞いが変わる。</div><div class="cd-foot"><span class="cd-est">Est. 1801 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="数学・論理" href="https://qualiajournal.com/base_rate_neglect"><div class="cd-bar cat-math"></div><div class="cd-body"><div class="cd-cat">数学・論理</div><div class="cd-tt">基準率の無視（ベイズの定理）</div><div class="cd-dk">検査陽性でも、病気とは限らない。確率の罠。</div><div class="cd-foot"><span class="cd-est">Est. 1763 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="知覚・錯覚" href="https://qualiajournal.com/color"><div class="cd-bar cat-percep"></div><div class="cd-body"><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">色は存在しない</div><div class="cd-dk">波長はあるが「赤さ」は脳の産物。世界に色はない。</div><div class="cd-foot"><span class="cd-est">Est. 1666 · <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="科学と文化" href="https://qualiajournal.com/correlation_causation"><div class="cd-bar cat-percep"></div><div class="cd-body"><div class="cd-cat">科学と文化</div><div class="cd-tt">相関は因果ではない</div><div class="cd-dk">数字が一緒に動くだけでは、原因とは言えない。</div><div class="cd-foot"><span class="cd-est">Est. 1896 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="知覚・錯覚" href="https://qualiajournal.com/sound_does_not_exist"><div class="cd-bar cat-percep"></div><div class="cd-body"><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">音は存在しない</div><div class="cd-dk">空気の振動が存在するだけ。「音」は脳の解釈。</div><div class="cd-foot"><span class="cd-est"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="社会心理学" href="https://qualiajournal.com/foot_in_the_door"><div class="cd-bar cat-social"></div><div class="cd-body"><div class="cd-cat">社会心理学</div><div class="cd-tt">フット・イン・ザ・ドア</div><div class="cd-dk">小さな要請を受け入れると、大きな要請も断れなくなる。</div><div class="cd-foot"><span class="cd-est">Est. 1966 · <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="知覚・錯覚" href="https://qualiajournal.com/flavor_nose"><div class="cd-bar cat-percep"></div><div class="cd-body"><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">味は鼻で感じている</div><div class="cd-dk">舌で分かるのは5種類だけ。「味」の大部分は嗅覚が担う。</div><div class="cd-foot"><span class="cd-est"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
+    <a class="cd fade hidden" data-cat="知覚・錯覚" href="https://qualiajournal.com/thermal_grill"><div class="cd-bar cat-percep"></div><div class="cd-body"><div class="cd-cat">知覚・錯覚</div><div class="cd-tt">サーマルグリル錯覚</div><div class="cd-dk">温かいものと冷たいものを交互に触ると「熱い痛み」を感じる。</div><div class="cd-foot"><span class="cd-est"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span><span class="cd-go">→</span></div></div></a>
   </div>
-</div>
+  <div class="show-more-wrap" id="showMoreWrap"><button class="show-more-btn" id="showMoreBtn">すべての記事を見る（36本）</button></div>
+</section>
 
-<!-- QUOTES -->
-<section class="qsec">
-  <div class="qr fade" id="qrWrap"></div>
+<!-- QUOTE (rotation from v8) -->
+<section class="quote-sec">
+  <div class="quote-area fade" id="qrWrap"></div>
   <div class="qd" id="qd"></div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div>
-    <p class="f-name"><span>Qualia</span> Journal</p>
-    <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
-  </div>
-  <div class="fcol">
-    <h3>ナビゲーション</h3>
-    <a href="#articles">記事一覧</a>
-    <a href="/about">About</a>
-    <a href="https://x.com/" target="_blank" rel="noopener">𝕏 @QualiaJournal</a>
-  </div>
-  <div class="fcol">
-    <h3>カテゴリ</h3>
-    <a href="#" onclick="flt('認知バイアス');return false;">認知バイアス</a>
-    <a href="#" onclick="flt('知覚・錯覚');return false;">知覚・錯覚</a>
-    <a href="#" onclick="flt('数学・論理');return false;">数学・論理</a>
-    <a href="#" onclick="flt('思考実験・哲学');return false;">思考実験・哲学</a>
-    <a href="#" onclick="flt('脳と意識');return false;">脳と意識</a>
-    <a href="#" onclick="flt('行動心理学');return false;">行動心理学</a>
-    <a href="#" onclick="flt('社会心理学');return false;">社会心理学</a>
-    <a href="#" onclick="flt('物理・宇宙');return false;">物理・宇宙</a>
-    <a href="#" onclick="flt('科学と文化');return false;">科学と文化</a>
-  </div>
-  <div class="fcol">
-    <h3>Sister Journal</h3>
-    <a href="#" style="opacity:.4;pointer-events:none;">Limina Journal（構想中）</a>
+  <div class="footer-inner">
+    <div><p class="f-name"><em>Qualia</em> Journal</p><p class="f-tag">知れば、世界が手を伸ばす。</p><p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p></div>
+    <div class="fcol"><h3>ナビゲーション</h3><a href="#articles">記事一覧</a><a href="/about">About</a><a href="https://x.com/" target="_blank" rel="noopener">𝕏 @QualiaJournal</a></div>
+    <div class="fcol"><h3>カテゴリ</h3><a href="#" onclick="flt('認知バイアス');return false;">認知バイアス</a><a href="#" onclick="flt('知覚・錯覚');return false;">知覚・錯覚</a><a href="#" onclick="flt('数学・論理');return false;">数学・論理</a><a href="#" onclick="flt('思考実験・哲学');return false;">思考実験・哲学</a><a href="#" onclick="flt('脳と意識');return false;">脳と意識</a></div>
+    <div class="fcol"><h3>カテゴリ</h3><a href="#" onclick="flt('行動心理学');return false;">行動心理学</a><a href="#" onclick="flt('社会心理学');return false;">社会心理学</a><a href="#" onclick="flt('物理・宇宙');return false;">物理・宇宙</a><a href="#" onclick="flt('生命・進化');return false;">生命・進化</a><a href="#" onclick="flt('科学と文化');return false;">科学と文化</a></div>
   </div>
 </footer>
 
 <script>
+/* ================================
+   ARTICLES ARRAY (for search)
+   ================================ */
 const ARTICLES=[
-  {slug:'monty_hall_v14.html',cat:'数学・論理',tt:'モンティ・ホール問題',dk:'選び直した方が確率2倍。直感に反するこの答え。'},
-  {slug:'confirmation_bias_v6.html',cat:'認知バイアス',tt:'確証バイアス',dk:'あなたはもう答えを決めている。2-4-6課題が暴く推論の歪み。'},
-  {slug:'skinner_box_v6.html',cat:'行動心理学',tt:'スキナー箱',dk:'ランダムな報酬にもっとも強く反応する脳の構造。'},
-  {slug:'loss_aversion.html',cat:'認知バイアス',tt:'損失回避',dk:'得る喜びと失う痛み。同じ金額なのに非対称。'},
-  {slug:'anchoring_effect.html',cat:'認知バイアス',tt:'アンカリング効果',dk:'最初に見た数字が判断を書き換える。'},
-  {slug:'barnum_effect_v2.html',cat:'社会心理学',tt:'バーナム効果',dk:'全員に同じ文面。85%が「自分のことだ」と感じた。'},
-  {slug:'mary_room_v6.html',cat:'思考実験・哲学',tt:'マリーの部屋',dk:'すべてを知っていた彼女が、何も知らなかった可能性。'},
-  {slug:'checker_shadow.html',cat:'知覚・錯覚',tt:'チェッカーシャドウ錯視',dk:'同じ色なのに、なぜ違って見えるのか。'},
-  {slug:'birthday_paradox.html',cat:'数学・論理',tt:'誕生日のパラドックス',dk:'23人集まれば50%の確率で同じ誕生日が。'},
-  {slug:'langton_ant.html',cat:'数学・論理',tt:'ラングトンのアリ',dk:'単純な規則から突然の秩序が生まれる瞬間。'},
-  {slug:'c01_twelve_tones_v6.html',cat:'知覚・錯覚',tt:'なぜピアノは12音なのか',dk:'ピタゴラスの音律から平均律まで。数学的妥協の歴史。'},
-  {slug:'dopamine_starvation_v7.html',cat:'行動心理学',tt:'ネズミはドーパミンを選んで餓死した',dk:'1954年、快楽中枢への電極。食事も睡眠も放棄した。'},
-  {slug:'framing_effect.html',cat:'認知バイアス',tt:'フレーミング効果',dk:'同じ内容でも、表現の仕方で選択が変わる。'},
-  {slug:'marshmallow_test_v2.html',cat:'行動心理学',tt:'マシュマロ実験の再解釈',dk:'自制心ではなく、信頼と環境の問題だった。'},
-  {slug:'sunk_cost_fallacy.html',cat:'認知バイアス',tt:'サンクコスト錯誤',dk:'もう戻らない投資が、未来の判断を歪める。'},
-  {slug:'mandelbrot_set.html',cat:'数学・論理',tt:'マンデルブロ集合',dk:'単純な式から生まれる無限の複雑さ。'},
-  {slug:'memory_reconsolidation.html',cat:'脳と意識',tt:'記憶は毎回「再構築」される',dk:'想起するたびに書き換わる。記憶はビデオではない。'},
-  {slug:'dunning_kruger.html',cat:'認知バイアス',tt:'ダニング＝クルーガー効果',dk:'能力の低い人ほど自分を過大評価する。'},
-  {slug:'prisoners_dilemma_v3.html',cat:'行動心理学',tt:'囚人のジレンマ',dk:'協力と裏切り。最適戦略は存在するか。'},
-  {slug:'ship_of_theseus.html',cat:'思考実験・哲学',tt:'テセウスの船',dk:'すべての部品を取り替えた後も、同じ船か。'},
-  {slug:'libet_free_will_v3.html',cat:'脳と意識',tt:'自由意志への疑問（リベット実験）',dk:'意識的「決断」の0.3秒前に脳が動いている。'},
-  {slug:'butterfly_dream_v3.html',cat:'思考実験・哲学',tt:'胡蝶の夢（荘子）',dk:'私は蝶の夢を見た人か、人の夢を見ている蝶か。'},
-  {slug:'fibonacci.html',cat:'数学・論理',tt:'フィボナッチ数列と自然のパターン',dk:'ひまわりの種、貝の螺旋。自然は数列を知っていた。'},
-  {slug:'benford_law.html',cat:'数学・論理',tt:'ベンフォードの法則',dk:'自然のデータで先頭の「1」は30%以上出現する。'},
-  {slug:'skeuomorphism_v5.html',cat:'科学と文化',tt:'スキューモーフィズム',dk:'カメラのシャッター音。存在しないはずの音が必要な理由。'},
-  {slug:'asch_conformity_v3.html',cat:'社会心理学',tt:'同調圧力（アッシュの実験）',dk:'明らかに間違った答えに、人は合わせてしまう。'},
-  {slug:'reward_prediction_error.html',cat:'行動心理学',tt:'報酬予測誤差とドーパミン',dk:'ドーパミンは快楽ではなく「予測との差」を伝える。'},
-  {slug:'color_primaries_q01_v3.html',cat:'知覚・錯覚',tt:'色の三原色 vs 光の三原色',dk:'絵の具と光では混ぜ方が逆になる。なぜか。'},
-  {slug:'double_slit_v3.html',cat:'物理・宇宙',tt:'二重スリット実験',dk:'観測するだけで、粒子の振る舞いが変わる。'},
-  {slug:'base_rate_neglect.html',cat:'数学・論理',tt:'基準率の無視（ベイズの定理）',dk:'検査陽性でも、病気とは限らない。確率の罠。'},
-  {slug:'color_v7.html',cat:'知覚・錯覚',tt:'色は存在しない',dk:'波長はあるが「赤さ」は脳の産物。世界に色はない。'},
-  {slug:'correlation_causation.html',cat:'科学と文化',tt:'相関は因果ではない',dk:'数字が一緒に動くだけでは、原因とは言えない。'},
-  {slug:'flavor_nose.html',cat:'知覚・錯覚',tt:'味の80%は鼻で感じている',dk:'リンゴとタマネギも、鼻をつまめば区別がつかない。「味」の正体。'},
-  {slug:'thermal_grill.html',cat:'知覚・錯覚',tt:'温かいと冷たいが、痛みを生む',dk:'40℃と20℃を交互に並べると、脳は「焼けるように熱い」と叫ぶ。'},
+  {slug:'https://qualiajournal.com/monty_hall',cat:'数学・論理',tt:'モンティ・ホール問題',dk:'選び直した方が確率2倍。直感に反するこの答え。'},
+  {slug:'https://qualiajournal.com/confirmation_bias',cat:'認知バイアス',tt:'確証バイアス',dk:'あなたはもう答えを決めている。2-4-6課題が暴く推論の歪み。'},
+  {slug:'https://qualiajournal.com/skinner_box',cat:'行動心理学',tt:'スキナー箱',dk:'ランダムな報酬にもっとも強く反応する脳の構造。'},
+  {slug:'https://qualiajournal.com/loss_aversion',cat:'認知バイアス',tt:'損失回避',dk:'得る喜びと失う痛み。同じ金額なのに非対称。'},
+  {slug:'https://qualiajournal.com/anchoring_effect',cat:'認知バイアス',tt:'アンカリング効果',dk:'最初に見た数字が判断を書き換える。'},
+  {slug:'https://qualiajournal.com/barnum_effect',cat:'社会心理学',tt:'バーナム効果',dk:'全員に同じ文面。85%が「自分のことだ」と感じた。'},
+  {slug:'https://qualiajournal.com/mary_room',cat:'思考実験・哲学',tt:'マリーの部屋',dk:'すべてを知っていた彼女が、何も知らなかった可能性。'},
+  {slug:'https://qualiajournal.com/checker_shadow',cat:'知覚・錯覚',tt:'チェッカーシャドウ錯視',dk:'同じ色なのに、なぜ違って見えるのか。'},
+  {slug:'https://qualiajournal.com/birthday_paradox',cat:'数学・論理',tt:'誕生日のパラドックス',dk:'23人集まれば50%の確率で同じ誕生日が。'},
+  {slug:'https://qualiajournal.com/langton_ant',cat:'数学・論理',tt:'ラングトンのアリ',dk:'単純な規則から突然の秩序が生まれる瞬間。'},
+  {slug:'https://qualiajournal.com/twelve_tones',cat:'知覚・錯覚',tt:'なぜピアノは12音なのか',dk:'ピタゴラスの音律から平均律まで。数学的妥協の歴史。'},
+  {slug:'https://qualiajournal.com/dopamine_starvation',cat:'行動心理学',tt:'ネズミはドーパミンを選んで餓死した',dk:'1954年、快楽中枢への電極。食事も睡眠も放棄した。'},
+  {slug:'https://qualiajournal.com/framing_effect',cat:'認知バイアス',tt:'フレーミング効果',dk:'同じ内容でも、表現の仕方で選択が変わる。'},
+  {slug:'https://qualiajournal.com/marshmallow_test',cat:'行動心理学',tt:'マシュマロ実験の再解釈',dk:'自制心ではなく、信頼と環境の問題だった。'},
+  {slug:'https://qualiajournal.com/sunk_cost_fallacy',cat:'認知バイアス',tt:'サンクコスト錯誤',dk:'もう戻らない投資が、未来の判断を歪める。'},
+  {slug:'https://qualiajournal.com/mandelbrot_set',cat:'数学・論理',tt:'マンデルブロ集合',dk:'単純な式から生まれる無限の複雑さ。'},
+  {slug:'https://qualiajournal.com/memory_reconsolidation',cat:'脳と意識',tt:'記憶は毎回「再構築」される',dk:'想起するたびに書き換わる。記憶はビデオではない。'},
+  {slug:'https://qualiajournal.com/dunning_kruger',cat:'認知バイアス',tt:'ダニング＝クルーガー効果',dk:'能力の低い人ほど自分を過大評価する。'},
+  {slug:'https://qualiajournal.com/prisoners_dilemma',cat:'行動心理学',tt:'囚人のジレンマ',dk:'協力と裏切り。最適戦略は存在するか。'},
+  {slug:'https://qualiajournal.com/ship_of_theseus',cat:'思考実験・哲学',tt:'テセウスの船',dk:'すべての部品を取り替えた後も、同じ船か。'},
+  {slug:'https://qualiajournal.com/libet_free_will',cat:'脳と意識',tt:'自由意志への疑問（リベット実験）',dk:'意識的「決断」の0.3秒前に脳が動いている。'},
+  {slug:'https://qualiajournal.com/butterfly_dream',cat:'思考実験・哲学',tt:'胡蝶の夢（荘子）',dk:'私は蝶の夢を見た人か、人の夢を見ている蝶か。'},
+  {slug:'https://qualiajournal.com/fibonacci',cat:'数学・論理',tt:'フィボナッチ数列と自然のパターン',dk:'ひまわりの種、貝の螺旋。自然は数列を知っていた。'},
+  {slug:'https://qualiajournal.com/benford_law',cat:'数学・論理',tt:'ベンフォードの法則',dk:'自然のデータで先頭の「1」は30%以上出現する。'},
+  {slug:'https://qualiajournal.com/skeuomorphism',cat:'科学と文化',tt:'スキューモーフィズム',dk:'カメラのシャッター音。存在しないはずの音が必要な理由。'},
+  {slug:'https://qualiajournal.com/asch_conformity',cat:'社会心理学',tt:'同調圧力（アッシュの実験）',dk:'明らかに間違った答えに、人は合わせてしまう。'},
+  {slug:'https://qualiajournal.com/reward_prediction_error',cat:'行動心理学',tt:'報酬予測誤差とドーパミン',dk:'ドーパミンは快楽ではなく「予測との差」を伝える。'},
+  {slug:'https://qualiajournal.com/color_primaries',cat:'知覚・錯覚',tt:'色の三原色 vs 光の三原色',dk:'絵の具と光では混ぜ方が逆になる。なぜか。'},
+  {slug:'https://qualiajournal.com/double_slit',cat:'物理・宇宙',tt:'二重スリット実験',dk:'観測するだけで、粒子の振る舞いが変わる。'},
+  {slug:'https://qualiajournal.com/base_rate_neglect',cat:'数学・論理',tt:'基準率の無視（ベイズの定理）',dk:'検査陽性でも、病気とは限らない。確率の罠。'},
+  {slug:'https://qualiajournal.com/color',cat:'知覚・錯覚',tt:'色は存在しない',dk:'波長はあるが「赤さ」は脳の産物。世界に色はない。'},
+  {slug:'https://qualiajournal.com/correlation_causation',cat:'科学と文化',tt:'相関は因果ではない',dk:'数字が一緒に動くだけでは、原因とは言えない。'},
+  {slug:'https://qualiajournal.com/sound_does_not_exist',cat:'知覚・錯覚',tt:'音は存在しない',dk:'空気の振動が存在するだけ。「音」は脳の解釈。'},
+  {slug:'https://qualiajournal.com/foot_in_the_door',cat:'社会心理学',tt:'フット・イン・ザ・ドア',dk:'小さな要請を受け入れると、大きな要請も断れなくなる。'},
+  {slug:'https://qualiajournal.com/flavor_nose',cat:'知覚・錯覚',tt:'味は鼻で感じている',dk:'舌で分かるのは5種類だけ。「味」の大部分は嗅覚が担う。'},
+  {slug:'https://qualiajournal.com/thermal_grill',cat:'知覚・錯覚',tt:'サーマルグリル錯覚',dk:'温かいものと冷たいものを交互に触ると「熱い痛み」を感じる。'},
 ];
 
-/* MENU */
+/* ================================
+   MENU (from v8)
+   ================================ */
 function closeMenu(){
   document.getElementById('menuPanel').classList.remove('open');
   document.getElementById('menuBackdrop').classList.remove('open');
@@ -655,7 +647,9 @@ document.getElementById('burgerBtn').addEventListener('click',()=>{
 document.getElementById('menuClose').addEventListener('click',closeMenu);
 document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
 
-/* SEARCH */
+/* ================================
+   SEARCH (from v8)
+   ================================ */
 const sOverlay=document.getElementById('sOverlay');
 const sInput=document.getElementById('sInput');
 document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
@@ -673,11 +667,15 @@ sInput.addEventListener('input',function(){
 
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
 
-/* FADE */
-const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:.06});
+/* ── Fade-in ── */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:.08});
 document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+document.querySelectorAll('.card-grid .cd,.exp-grid .exp-card').forEach((c,i)=>{c.style.transitionDelay=(i*.08)+'s';});
+document.querySelectorAll('.picks-wrap .pick-item').forEach((c,i)=>{c.style.transitionDelay=(i*.1)+'s';});
 
-/* FILTER */
+/* ================================
+   FILTER (from v8)
+   ================================ */
 function flt(cat){
   document.querySelectorAll('.fb').forEach(b=>b.classList.toggle('on',(cat==='all'&&b.textContent==='すべて')||b.textContent===cat));
   const cards=Array.from(document.querySelectorAll('#cg .cd'));
@@ -701,7 +699,9 @@ function flt(cat){
   }
 }
 
-/* QUOTE ROTATION — 10個ランダム化、+2秒遅延 */
+/* ================================
+   QUOTE ROTATION — 10 quotes, random shuffle, 5s interval (from v8)
+   ================================ */
 (function(){
   const QUOTES=[
     {en:'If I have seen further, it is by <em>standing on the shoulders</em> of giants.',ja:'私がより遠くを見ることができたとしたら、それは巨人の肩の上に立っていたからだ。',at:'— Isaac Newton, Letter to Robert Hooke (1675)'},
@@ -716,14 +716,12 @@ function flt(cat){
     {en:'To know that we know what we know, and to know that we do not know what we do not know — that is <em>true knowledge</em>.',ja:'知っていることを知っていると知り、知らないことを知らないと知ること——これが真の知識だ。',at:'— Nicolaus Copernicus (attr.)'},
   ];
 
-  // ランダムシャッフル
   const shuffled=[...QUOTES].sort(()=>Math.random()-.5);
 
   const wrap=document.getElementById('qrWrap');
   const dc=document.getElementById('qd');
   if(!wrap||!dc)return;
 
-  // HTML生成
   shuffled.forEach((q,i)=>{
     const div=document.createElement('div');
     div.className='qi'+(i===0?' on':'');
@@ -748,13 +746,14 @@ function flt(cat){
     dc.children[cur].classList.add('on');
   }
 
-  // v8の5秒 + 2秒追加遅延 = 最初のスライドは7秒後
   setTimeout(()=>{
     setInterval(()=>go((cur+1)%items.length),5000);
   },7000);
 })();
 
-/* SHOW MORE — 最初12枚のみ表示 */
+/* ================================
+   SHOW MORE — first 12 only (from v8)
+   ================================ */
 (function(){
   const LIMIT=12;
   const cards=Array.from(document.querySelectorAll('#cg .cd'));
@@ -777,8 +776,10 @@ function flt(cat){
   }
 })();
 
-/* CARD TILT */
-document.querySelectorAll('.cd,.feat-main,.feat-sub').forEach(c=>{
+/* ================================
+   CARD TILT (from v8)
+   ================================ */
+document.querySelectorAll('.cd,.pick-item,.exp-card').forEach(c=>{
   c.addEventListener('mousemove',e=>{
     const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
     c.style.transform='perspective(700px) rotateY('+(x*3)+'deg) rotateX('+(-y*3)+'deg) translateY(-2px)';
@@ -786,90 +787,328 @@ document.querySelectorAll('.cd,.feat-main,.feat-sub').forEach(c=>{
   c.addEventListener('mouseleave',()=>{c.style.transform='';});
 });
 
-/* ========================================
-   3-Steps Canvas Animation (from v8)
-   ======================================== */
+/* =============================================
+   LANGTON'S ANT — Hero background
+   ============================================= */
 (function(){
-const _DPR=window.devicePixelRatio||1;
-const _DK='#1a1208',_RD='#8b1a1a',_BG='#e0d8c8';
-const _IC=240,_CC=120,_IR=53;
-function _eo(t){return 1-Math.pow(1-t,3);}
-function _eio(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
-function _gc(id){const c=document.getElementById(id);if(!c)return null;c.width=_IC*_DPR;c.height=_IC*_DPR;const x=c.getContext('2d');x.scale(_DPR,_DPR);return x;}
-let _c1,_c2,_c3;
-function _initIc(){_c1=_gc('cv1');_c2=_gc('cv2');_c3=_gc('cv3');}
-let _lc,_lx,_lw,_lh;
-function _initLn(){
-  _lc=document.getElementById('cvLines');if(!_lc)return;
-  const r=_lc.getBoundingClientRect();_lw=r.width;_lh=r.height;
-  _lc.width=Math.round(_lw*_DPR);_lc.height=Math.round(_lh*_DPR);
-  _lx=_lc.getContext('2d');_lx.scale(_DPR,_DPR);
-}
-function _edges(){
-  const sa=document.getElementById('stepsAnim');if(!sa)return[];
-  const c=sa.getBoundingClientRect();
-  return Array.from(document.querySelectorAll('.step-canvas-wrap')).map(w=>{const r=w.getBoundingClientRect();return{left:r.left-c.left,right:r.right-c.left};});
-}
-function _circ(x,cx,cy,r,a){x.beginPath();x.arc(cx,cy,r,0,Math.PI*2);x.strokeStyle=_DK;x.lineWidth=1.5;x.globalAlpha=a;x.stroke();x.globalAlpha=1;}
-function _eye(x,cx,cy,op,al){
-  x.save();x.globalAlpha=al;const w=26,h=12*op;
-  x.beginPath();x.moveTo(cx-w,cy);x.bezierCurveTo(cx-w*.4,cy-h*2.3,cx+w*.3,cy-h*1.7,cx+w*.7,cy);x.bezierCurveTo(cx+w*.3,cy+h*1.7,cx-w*.4,cy+h*2.3,cx-w,cy);
-  x.strokeStyle=_DK;x.lineWidth=1.6;x.stroke();
-  if(op>.3){const pa=Math.min(1,(op-.3)/.4),px=cx+w*.05;x.globalAlpha=al*pa;x.beginPath();x.arc(px,cy,5,0,Math.PI*2);x.fillStyle=_DK;x.fill();x.beginPath();x.arc(px,cy,3.3,0,Math.PI*2);x.fillStyle=_RD;x.globalAlpha=al*pa*.6;x.fill();x.beginPath();x.arc(px+1.8,cy-1.8,1.3,0,Math.PI*2);x.fillStyle='#fff';x.globalAlpha=al*pa*.9;x.fill();}
-  x.restore();
-}
-const _TL=[{y:-16,w:34},{y:-8,w:28},{y:0,w:38},{y:8,w:26},{y:16,w:20}];
-function _lines(x,cx,cy,pr,al,bt){
-  x.save();_TL.forEach((l,i)=>{const d=i*.13,lp=Math.max(0,Math.min(1,(pr-d)/.5)),ep=_eo(lp);if(ep<=0)return;const ly=cy+l.y,re=cx+l.w/2,cw=l.w*ep,dx=re-cw;let bA=1;if(bt!==undefined)bA=.55+.45*Math.sin(bt*.002-i*.6);x.beginPath();x.moveTo(dx,ly);x.lineTo(re,ly);x.strokeStyle=i===2?_RD:_DK;x.lineWidth=i===2?1.8:1.2;x.globalAlpha=al*(.25+.75*ep)*bA;x.stroke();});x.restore();
-}
-function _char(x,cx,cy,ch,col,al,sc,rot){x.save();x.translate(cx,cy);x.rotate(rot||0);x.scale(sc,sc);x.globalAlpha=al;x.font="bold 42px 'Playfair Display',serif";x.textAlign='center';x.textBaseline='middle';x.fillStyle=col;x.fillText(ch,0,2);x.restore();}
-function _waveLn(x1,x2,cy,pr,wP,amp){if(pr<=0||x2<=x1)return;const len=(x2-x1)*Math.min(1,pr);_lx.beginPath();for(let i=0;i<=80;i++){const t=i/80,xx=x1+t*len;if(xx>x2)break;let yO=0;if(wP>=0&&wP<=1){const dist=t-wP,ww=.35;if(Math.abs(dist)<ww){const lc2=1-Math.abs(dist)/ww;yO=Math.sin(lc2*Math.PI*2.5)*Math.sin(lc2*Math.PI)*amp;}}if(i===0)_lx.moveTo(xx,cy+yO);else _lx.lineTo(xx,cy+yO);}_lx.strokeStyle=_BG;_lx.lineWidth=1;_lx.stroke();}
-function _statLn(x1,x2,cy){if(x2<=x1)return;_lx.beginPath();_lx.moveTo(x1,cy);_lx.lineTo(x2,cy);_lx.strokeStyle=_BG;_lx.lineWidth=1;_lx.stroke();}
-function _clrLn(){if(_lx)_lx.clearRect(0,0,_lw,_lh);}
-let _run=false,_t0=0,_done=false;
-const _TR=1500,_TL1=300,_TW1=650,_TE=1900,_TL2=300,_TW2=650,_TS=1800;
-const _TT=_TR+_TL1+_TW1+_TE+_TL2+_TW2+_TS;
-let _sd=[];
-function _initSD(){_sd=[];for(let r=0;r<7;r++)for(let c=0;c<7;c++){const gx=(c-3)*10,gy=(r-3)*10,a=Math.random()*Math.PI*2,d=20+Math.random()*26;_sd.push({gx,gy,bx:gx+Math.cos(a)*d,by:gy+Math.sin(a)*d,phase:Math.random()*Math.PI*2,speed:.002+Math.random()*.003,size:1.5+Math.random()});}}
-_initSD();
-let _bp=[],_br=[],_bf=false;
-function _intro(ts){
-  if(!_run||!_c1)return;const el=ts-_t0;
-  const t1=_TR,t2=t1+_TL1,t3=t2+_TW1,t4=t3+_TE,t5=t4+_TL2,t6=t5+_TW2;
-  const rP=Math.min(1,el/t1),l1=el<t1?0:Math.min(1,(el-t1)/_TL1),w1=el<t2?-1:el>t3?2:(el-t2)/_TW1;
-  const eP=el<t3?0:Math.min(1,(el-t3)/_TE),l2=el<t4?0:Math.min(1,(el-t4)/_TL2),w2=el<t5?-1:el>t6?2:(el-t5)/_TW2;
-  const sP=el<t6?0:Math.min(1,(el-t6)/_TS);
-  _c1.clearRect(0,0,_IC,_IC);
-  {const p=rP;let eo=0,ea=0,ex=_CC;if(p<.3){eo=_eo(p/.3);ea=eo;}else if(p<.55){eo=1;ea=1;}else if(p<.85){const t=(p-.55)/.3,et=_eo(t);eo=1-et*.2;ea=1-et;ex=_CC-et*24;}_circ(_c1,_CC,_CC,_IR,p<.3?.15:Math.min(1,.15+(p-.3)/.5*.85));if(ea>.01)_eye(_c1,ex,_CC,eo,ea);if(p>.35)_lines(_c1,_CC,_CC,Math.min(1,(p-.35)/.55),Math.min(1,(p-.35)/.3));}
-  _c2.clearRect(0,0,_IC,_IC);
-  {const p=eP;_circ(_c2,_CC,_CC,_IR,p<=0?.15:Math.min(1,.15+p/.3*.85));if(p>0&&p<=1){if(p<.17){const t=p/.17;_char(_c2,_CC,_CC,'?',_DK,_eo(t),.4+.6*_eo(t),0);}else if(p<.5){const t=(p-.17)/.33;_char(_c2,_CC,_CC,'?',_DK,1,1+Math.sin(t*Math.PI)*.12,_eio(t)*Math.PI*2);}else if(p<.6){const t=(p-.5)/.1,et=_eo(t);_char(_c2,_CC,_CC,'?',_DK,1-et,1+et*.3,0);_char(_c2,_CC,_CC,'!',_RD,et,.5+.5*et,0);}else if(p<.75){const t=(p-.6)/.15;if(!_bf){_bf=true;for(let i=0;i<18;i++){const a=(i/18)*Math.PI*2+Math.random()*.3,spd=1.8+Math.random()*3;_bp.push({x:_CC,y:_CC,vx:Math.cos(a)*spd,vy:Math.sin(a)*spd,life:1,size:1.8+Math.random()*1.8,isRed:i%3===0});}_br=[{born:0,alpha:.5},{born:100,alpha:.3},{born:220,alpha:.18}];}_char(_c2,_CC,_CC,'!',_RD,1-_eo(t),1+t*1.8,0);}_bp.forEach(b=>{b.x+=b.vx;b.y+=b.vy;b.vx*=.955;b.vy*=.955;b.life-=.014;if(b.life<=0)return;_c2.beginPath();_c2.arc(b.x,b.y,b.size*b.life,0,Math.PI*2);_c2.fillStyle=b.isRed?_RD:_DK;_c2.globalAlpha=b.life*.6;_c2.fill();_c2.globalAlpha=1;});if(p>.6){const base=(p-.6)/.4*_TE;_br.forEach(rp=>{const t2=base-rp.born;if(t2<0)return;const pp=Math.min(1,t2/500),r2=_eo(pp)*_IR*1.05,a2=rp.alpha*(1-pp);if(a2<.01)return;_c2.beginPath();_c2.arc(_CC,_CC,r2,0,Math.PI*2);_c2.strokeStyle=_RD;_c2.lineWidth=1.3*(1-pp*.5);_c2.globalAlpha=a2;_c2.stroke();_c2.globalAlpha=1;});}if(p>.8)_char(_c2,_CC,_CC,'!',_RD,Math.min(1,(p-.8)/.15)*.3,.7,0);}if(p>=1)_char(_c2,_CC,_CC,'!',_RD,.3,.7,0);}
-  _c3.clearRect(0,0,_IC,_IC);
-  {const shT=el-t6;let b2=0;if(sP>0)b2=sP<.25?0:_eio(Math.min(1,(sP-.25)/.55));if(sP<=0){_circ(_c3,_CC,_CC,_IR,.15);}else{_c3.beginPath();for(let i=0;i<=64;i++){const a=(i/64)*Math.PI*2,wx=b2*Math.sin(a*3+shT*.004)*7,wy=b2*Math.sin(a*5+shT*.003)*6;const px=_CC+Math.cos(a)*(_IR+wx),py=_CC+Math.sin(a)*(_IR+wy);if(i===0)_c3.moveTo(px,py);else _c3.lineTo(px,py);}_c3.strokeStyle=_DK;_c3.lineWidth=1.5;_c3.globalAlpha=1-b2*.4;_c3.stroke();_c3.globalAlpha=1;_sd.forEach(d=>{const dr=b2>0?Math.sin(shT*d.speed+d.phase)*4*b2:0;const x=_CC+d.gx+(d.bx-d.gx)*b2+dr,y=_CC+d.gy+(d.by-d.gy)*b2+Math.cos(shT*d.speed*.7+d.phase)*3*b2;_c3.beginPath();_c3.arc(x,y,d.size,0,Math.PI*2);if(b2>.5&&Math.sin(d.phase*10)>.3){_c3.fillStyle=_RD;_c3.globalAlpha=.3+.5*b2;}else{_c3.fillStyle=_DK;const dc=Math.sqrt((x-_CC)**2+(y-_CC)**2);_c3.globalAlpha=dc<_IR+3?.55:.15+.3*b2;}_c3.fill();_c3.globalAlpha=1;});}}
-  _clrLn();const pts=_edges();if(pts.length===3){const cy=60,wa=14;if(l1>0)_waveLn(pts[0].right,pts[1].left,cy,_eo(l1),w1>=0&&w1<=1?_eio(w1):-1,wa);if(w1>1)_statLn(pts[0].right,pts[1].left,cy);if(l2>0)_waveLn(pts[1].right,pts[2].left,cy,_eo(l2),w2>=0&&w2<=1?_eio(w2):-1,wa);if(w2>1)_statLn(pts[1].right,pts[2].left,cy);}
-  if(el<_TT){requestAnimationFrame(_intro);}else{_done=true;requestAnimationFrame(_loop);}
-}
-function _loop(ts){
-  if(!_run||!_c1)return;
-  _c1.clearRect(0,0,_IC,_IC);_circ(_c1,_CC,_CC,_IR,1);_lines(_c1,_CC,_CC,1,1,ts);
-  _c2.clearRect(0,0,_IC,_IC);_circ(_c2,_CC,_CC,_IR,1);_char(_c2,_CC,_CC,'!',_RD,.25+.1*Math.sin(ts*.003),.7+.06*Math.sin(ts*.003),0);for(let n=0;n<2;n++){const off=n*720,lt=((ts+off)%1800)/1800;if(lt<.7){const pp=lt/.7,r2=_eo(pp)*_IR*.85;_c2.beginPath();_c2.arc(_CC,_CC,r2,0,Math.PI*2);_c2.strokeStyle=_RD;_c2.lineWidth=1.2*(1-pp*.5);_c2.globalAlpha=.2*(1-pp);_c2.stroke();_c2.globalAlpha=1;}}
-  _c3.clearRect(0,0,_IC,_IC);_c3.beginPath();for(let i=0;i<=64;i++){const a=(i/64)*Math.PI*2,wx=Math.sin(a*3+ts*.003)*7,wy=Math.sin(a*5+ts*.002)*6;const px=_CC+Math.cos(a)*(_IR+wx),py=_CC+Math.sin(a)*(_IR+wy);if(i===0)_c3.moveTo(px,py);else _c3.lineTo(px,py);}_c3.strokeStyle=_DK;_c3.lineWidth=1.5;_c3.globalAlpha=.6;_c3.stroke();_c3.globalAlpha=1;_sd.forEach(d=>{const x=_CC+d.bx+Math.sin(ts*d.speed+d.phase)*6,y=_CC+d.by+Math.cos(ts*d.speed*.7+d.phase)*5;_c3.beginPath();_c3.arc(x,y,d.size,0,Math.PI*2);if(Math.sin(d.phase*10)>.3){_c3.fillStyle=_RD;_c3.globalAlpha=.5+Math.sin(ts*.002+d.phase)*.2;}else{_c3.fillStyle=_DK;_c3.globalAlpha=.3+Math.sin(ts*.001+d.phase)*.15;}_c3.fill();_c3.globalAlpha=1;});
-  _clrLn();const pts=_edges();if(pts.length===3){const cy=60;_statLn(pts[0].right,pts[1].left,cy);_statLn(pts[1].right,pts[2].left,cy);}
-  requestAnimationFrame(_loop);
-}
-let _played=false;
-function _play(){_run=false;_done=false;_bp=[];_br=[];_bf=false;_initSD();_initIc();_initLn();if(!_c1)return;_circ(_c1,_CC,_CC,_IR,.15);_circ(_c2,_CC,_CC,_IR,.15);_circ(_c3,_CC,_CC,_IR,.15);_clrLn();_run=true;_t0=performance.now();requestAnimationFrame(_intro);}
-window.addEventListener('resize',()=>{if(_lx)_initLn();});
-const _sObs=new IntersectionObserver(e=>{if(e[0].isIntersecting&&!_played){_played=true;setTimeout(_play,300);}},{threshold:.35});
-const _sa=document.getElementById('stepsAnim');if(_sa)_sObs.observe(_sa);
+  const cv=document.getElementById('antCanvas'),ctx=cv.getContext('2d');
+  const DPR=window.devicePixelRatio||1;
+  const CELL=4;
+  let W,H,cols,rows,grid,ax,ay,adir;
+  const DIRS=[[0,-1],[1,0],[0,1],[-1,0]];
+  const COL_ON='rgba(139,26,26,0.35)',COL_OFF='rgba(200,191,170,0.12)';
+
+  function resize(){
+    const r=cv.parentElement.getBoundingClientRect();
+    W=r.width;H=r.height;
+    cv.width=W*DPR;cv.height=H*DPR;
+    cv.style.width=W+'px';cv.style.height=H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    cols=Math.ceil(W/CELL);rows=Math.ceil(H/CELL);
+    grid=new Uint8Array(cols*rows);
+    ax=Math.floor(cols/2);ay=Math.floor(rows/2);adir=0;
+    ctx.fillStyle='#faf8f3';ctx.fillRect(0,0,W,H);
+  }
+  resize();
+  function step(){
+    const idx=ay*cols+ax;
+    if(grid[idx]===0){adir=(adir+1)%4;grid[idx]=1;ctx.fillStyle=COL_ON;}
+    else{adir=(adir+3)%4;grid[idx]=0;ctx.fillStyle=COL_OFF;}
+    ctx.fillRect(ax*CELL,ay*CELL,CELL,CELL);
+    ax+=DIRS[adir][0];ay+=DIRS[adir][1];
+    if(ax<0)ax=cols-1;if(ax>=cols)ax=0;if(ay<0)ay=rows-1;if(ay>=rows)ay=0;
+  }
+  function frame(){for(let i=0;i<80;i++)step();ctx.fillStyle='#8b1a1a';ctx.fillRect(ax*CELL-1,ay*CELL-1,CELL+2,CELL+2);requestAnimationFrame(frame);}
+  const hObs=new IntersectionObserver(e=>{if(e[0].isIntersecting){hObs.disconnect();requestAnimationFrame(frame);}},{threshold:.1});
+  hObs.observe(document.getElementById('heroA'));
+  window.addEventListener('resize',resize);
 })();
 
-document.querySelectorAll('.cd,.feat-main,.feat-sub').forEach(c=>{
-  c.addEventListener('mousemove',e=>{
-    const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-    c.style.transform='perspective(700px) rotateY('+(x*3)+'deg) rotateX('+(-y*3)+'deg) translateY(-2px)';
-  });
-  c.addEventListener('mouseleave',()=>{c.style.transform='';});
-});
+/* =============================================
+   DOUBLE SLIT WAVE — Pick thumbnail
+   ============================================= */
+(function(){
+  const cv=document.getElementById('pickWave');if(!cv)return;
+  const ctx=cv.getContext('2d'),DPR=window.devicePixelRatio||1;
+  function resize(){const r=cv.parentElement.getBoundingClientRect();cv.width=r.width*DPR;cv.height=r.height*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);}
+  resize();
+  function draw(t){
+    const W=cv.width/DPR,H=cv.height/DPR;
+    ctx.fillStyle='#0a1628';ctx.fillRect(0,0,W,H);
+    const wl=14,k=2*Math.PI/wl,time=t*0.003,wallX=W*0.3,cy=H/2,slits=[cy-22,cy+22],s=3;
+    for(let x=0;x<W;x+=s){for(let y=0;y<H;y+=s){
+      let v=0;
+      if(x<wallX-2){v=Math.sin(k*x-time);}
+      else if(x>wallX+4){for(let si=0;si<slits.length;si++){const dx=x-(wallX+4),dy=y-slits[si],d=Math.sqrt(dx*dx+dy*dy);v+=Math.sin(k*d-time)/Math.max(1,Math.sqrt(d*0.1));}}
+      const n=(v+1)/2;
+      ctx.fillStyle='rgb('+Math.round(10+n*30)+','+Math.round(22+n*80)+','+Math.round(40+n*140)+')';
+      ctx.fillRect(x,y,s,s);
+    }}
+    ctx.fillStyle='#5a4a3a';ctx.fillRect(wallX,0,4,cy-28);ctx.fillRect(wallX,cy-16,4,32);ctx.fillRect(wallX,cy+28,4,H);
+    requestAnimationFrame(draw);
+  }
+  const obs=new IntersectionObserver(e=>{if(e[0].isIntersecting){obs.disconnect();requestAnimationFrame(draw);}},{threshold:.1});
+  obs.observe(cv.parentElement);window.addEventListener('resize',resize);
+})();
+
+/* =============================================
+   MANDELBROT ZOOM LOOP — Pick thumbnail
+   Pre-render several zoom levels, crossfade
+   ============================================= */
+(function(){
+  const cv=document.getElementById('pickMandel');if(!cv)return;
+  const ctx=cv.getContext('2d'),DPR=window.devicePixelRatio||1;
+  let W,H;
+  const LEVELS=6;
+  const frames=[];
+  let rendered=false;
+
+  // Zoom targets: each level zooms deeper into a visually interesting spot
+  const zooms=[
+    {cx:-0.5,cy:0,s:1.5},
+    {cx:-0.74,cy:0.18,s:0.4},
+    {cx:-0.748,cy:0.184,s:0.08},
+    {cx:-0.7485,cy:0.1845,s:0.015},
+    {cx:-0.74855,cy:0.18455,s:0.003},
+    {cx:-0.748555,cy:0.184555,s:0.0006},
+  ];
+
+  function resize(){
+    const r=cv.parentElement.getBoundingClientRect();
+    W=Math.floor(r.width);H=Math.floor(r.height);
+    cv.width=W*DPR;cv.height=H*DPR;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    rendered=false;frames.length=0;
+  }
+  resize();
+
+  function renderLevel(z){
+    const offCv=document.createElement('canvas');
+    offCv.width=W;offCv.height=H;
+    const oc=offCv.getContext('2d');
+    const imgData=oc.createImageData(W,H);
+    const maxIter=100;
+    const aspect=W/H;
+    const xMin=z.cx-z.s*aspect,xMax=z.cx+z.s*aspect;
+    const yMin=z.cy-z.s,yMax=z.cy+z.s;
+
+    for(let py=0;py<H;py++){
+      for(let px=0;px<W;px++){
+        const x0=xMin+(xMax-xMin)*px/W;
+        const y0=yMin+(yMax-yMin)*py/H;
+        let x=0,y=0,iter=0;
+        while(x*x+y*y<=4&&iter<maxIter){const xt=x*x-y*y+x0;y=2*x*y+y0;x=xt;iter++;}
+        const i=(py*W+px)*4;
+        if(iter===maxIter){imgData.data[i]=20;imgData.data[i+1]=16;imgData.data[i+2]=12;imgData.data[i+3]=255;}
+        else{
+          const t=Math.sqrt(iter/maxIter);
+          imgData.data[i]=Math.floor(26+t*190);
+          imgData.data[i+1]=Math.floor(18+t*90);
+          imgData.data[i+2]=Math.floor(8+t*50);
+          imgData.data[i+3]=255;
+        }
+      }
+    }
+    oc.putImageData(imgData,0,0);
+    return offCv;
+  }
+
+  function renderAll(){
+    if(rendered)return;
+    for(let i=0;i<LEVELS;i++){frames.push(renderLevel(zooms[i]));}
+    rendered=true;
+  }
+
+  let currentFrame=0;
+  const HOLD=45,FADE=20; // faster: ~0.75s hold, ~0.33s fade
+  let counter=0;
+
+  function animate(){
+    if(!rendered){renderAll();}
+    const next=(currentFrame+1)%LEVELS;
+
+    if(counter<HOLD){
+      // hold current frame
+      ctx.drawImage(frames[currentFrame],0,0,W,H);
+    }else{
+      // crossfade
+      const t=(counter-HOLD)/FADE;
+      ctx.globalAlpha=1;
+      ctx.drawImage(frames[currentFrame],0,0,W,H);
+      ctx.globalAlpha=Math.min(1,t);
+      ctx.drawImage(frames[next],0,0,W,H);
+      ctx.globalAlpha=1;
+    }
+
+    counter++;
+    if(counter>=HOLD+FADE){counter=0;currentFrame=next;}
+    requestAnimationFrame(animate);
+  }
+
+  const obs=new IntersectionObserver(e=>{if(e[0].isIntersecting){obs.disconnect();requestAnimationFrame(animate);}},{threshold:.1});
+  obs.observe(cv.parentElement);window.addEventListener('resize',resize);
+})();
+
+/* =============================================
+   CHECKER SHADOW CONTRAST — Pick thumbnail
+   Two patches, same #787878, backgrounds oscillate
+   ============================================= */
+(function(){
+  const cv=document.getElementById('pickChecker');if(!cv)return;
+  const ctx=cv.getContext('2d'),DPR=window.devicePixelRatio||1;
+  let W,H;
+
+  function resize(){
+    const r=cv.parentElement.getBoundingClientRect();
+    W=r.width;H=r.height;
+    cv.width=W*DPR;cv.height=H*DPR;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  resize();
+
+  function draw(t){
+    const time=t*0.002; // faster oscillation
+    const contrast=(Math.sin(time)+1)/2;
+    const darkBg=Math.round(45+contrast*40);    // 45–85
+    const lightBg=Math.round(190-contrast*40);   // 150–190
+
+    ctx.fillStyle='#f3efe6';ctx.fillRect(0,0,W,H);
+
+    // Layout: two equal panels side by side, centered
+    const panelSize=Math.min(W*0.38,H*0.7);
+    const patchSize=panelSize*0.45;
+    const gap=W*0.06;
+    const totalW=panelSize*2+gap;
+    const startX=(W-totalW)/2;
+    const panelY=(H-panelSize)/2;
+
+    // Left panel: dark bg
+    ctx.fillStyle='rgb('+darkBg+','+darkBg+','+darkBg+')';
+    ctx.fillRect(startX,panelY,panelSize,panelSize);
+
+    // Right panel: light bg
+    ctx.fillStyle='rgb('+lightBg+','+lightBg+','+lightBg+')';
+    ctx.fillRect(startX+panelSize+gap,panelY,panelSize,panelSize);
+
+    // Center patches — SAME color #787878
+    ctx.fillStyle='rgb(120,120,120)';
+    const pOff=(panelSize-patchSize)/2;
+    ctx.fillRect(startX+pOff,panelY+pOff,patchSize,patchSize);
+    ctx.fillRect(startX+panelSize+gap+pOff,panelY+pOff,patchSize,patchSize);
+
+    // Labels
+    ctx.font="500 10px 'Source Sans 3',sans-serif";
+    ctx.textAlign='center';
+    ctx.fillStyle='rgba(180,180,180,0.7)';
+    ctx.fillText('A',startX+panelSize/2,panelY+panelSize+14);
+    ctx.fillText('B',startX+panelSize+gap+panelSize/2,panelY+panelSize+14);
+
+    // Bottom label
+    ctx.font="300 9px 'Source Sans 3',sans-serif";
+    ctx.fillStyle='#b0a090';
+    ctx.fillText('A = B = #787878',W/2,H-6);
+    ctx.textAlign='left';
+
+    requestAnimationFrame(draw);
+  }
+
+  const obs=new IntersectionObserver(e=>{if(e[0].isIntersecting){obs.disconnect();requestAnimationFrame(draw);}},{threshold:.1});
+  obs.observe(cv.parentElement);window.addEventListener('resize',resize);
+})();
+
+/* =============================================
+   EXPERIENCE: Mini Langton's Ant
+   ============================================= */
+(function(){
+  const cv=document.getElementById('expAnt');if(!cv)return;
+  const ctx=cv.getContext('2d'),DPR=window.devicePixelRatio||1;
+  const CELL=3;let W,H,cols,rows,grid,ax,ay,adir;
+  const DIRS=[[0,-1],[1,0],[0,1],[-1,0]];
+  function resize(){
+    const r=cv.parentElement.getBoundingClientRect();W=r.width;H=r.height;
+    cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);
+    cols=Math.ceil(W/CELL);rows=Math.ceil(H/CELL);
+    grid=new Uint8Array(cols*rows);ax=Math.floor(cols/2);ay=Math.floor(rows/2);adir=0;
+    ctx.fillStyle='#1a1208';ctx.fillRect(0,0,W,H);
+  }
+  resize();
+  function step(){
+    const idx=ay*cols+ax;
+    if(grid[idx]===0){adir=(adir+1)%4;grid[idx]=1;ctx.fillStyle='rgba(200,120,90,0.5)';}
+    else{adir=(adir+3)%4;grid[idx]=0;ctx.fillStyle='rgba(37,32,21,1)';}
+    ctx.fillRect(ax*CELL,ay*CELL,CELL,CELL);
+    ax+=DIRS[adir][0];ay+=DIRS[adir][1];
+    if(ax<0)ax=cols-1;if(ax>=cols)ax=0;if(ay<0)ay=rows-1;if(ay>=rows)ay=0;
+  }
+  function frame(){for(let i=0;i<60;i++)step();requestAnimationFrame(frame);}
+  const obs=new IntersectionObserver(e=>{if(e[0].isIntersecting){obs.disconnect();requestAnimationFrame(frame);}},{threshold:.1});
+  obs.observe(cv.parentElement);window.addEventListener('resize',resize);
+})();
+
+/* =============================================
+   EXPERIENCE: Birthday paradox particles
+   ============================================= */
+(function(){
+  const cv=document.getElementById('expBirthday');if(!cv)return;
+  const ctx=cv.getContext('2d'),DPR=window.devicePixelRatio||1;
+  let W,H,addTimer=0;
+  const people=[];const TOTAL=40;
+  function resize(){const r=cv.parentElement.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);}
+  resize();
+  for(let i=0;i<TOTAL;i++){people.push({x:Math.random(),y:Math.random(),bday:Math.floor(Math.random()*365),r:3+Math.random()*2,vx:(Math.random()-.5)*.0008,vy:(Math.random()-.5)*.0008,visible:i<5,matched:false});}
+  function draw(){
+    ctx.fillStyle='#1a1208';ctx.fillRect(0,0,W,H);
+    addTimer++;if(addTimer%30===0){const h=people.find(p=>!p.visible);if(h)h.visible=true;}
+    const vis=people.filter(p=>p.visible);
+    people.forEach(p=>p.matched=false);
+    for(let i=0;i<vis.length;i++)for(let j=i+1;j<vis.length;j++)if(vis[i].bday===vis[j].bday){vis[i].matched=true;vis[j].matched=true;}
+    people.forEach(p=>{
+      if(!p.visible)return;p.x+=p.vx;p.y+=p.vy;
+      if(p.x<.02||p.x>.98)p.vx*=-1;if(p.y<.05||p.y>.95)p.vy*=-1;
+      const px=p.x*W,py=p.y*H;
+      if(p.matched){ctx.beginPath();ctx.arc(px,py,p.r+6,0,Math.PI*2);ctx.fillStyle='rgba(200,120,90,0.15)';ctx.fill();ctx.beginPath();ctx.arc(px,py,p.r,0,Math.PI*2);ctx.fillStyle='#c8785a';ctx.fill();}
+      else{ctx.beginPath();ctx.arc(px,py,p.r,0,Math.PI*2);ctx.fillStyle='rgba(200,191,170,0.4)';ctx.fill();}
+    });
+    ctx.font="500 11px 'Source Sans 3',sans-serif";ctx.fillStyle='rgba(200,191,170,0.5)';ctx.fillText(vis.length+' 人',8,16);
+    requestAnimationFrame(draw);
+  }
+  const obs=new IntersectionObserver(e=>{if(e[0].isIntersecting){obs.disconnect();requestAnimationFrame(draw);}},{threshold:.1});
+  obs.observe(cv.parentElement);window.addEventListener('resize',resize);
+})();
+
+/* =============================================
+   EXPERIENCE: Spectrum scan
+   ============================================= */
+(function(){
+  const cv=document.getElementById('expSpectrum');if(!cv)return;
+  const ctx=cv.getContext('2d'),DPR=window.devicePixelRatio||1;
+  function wlToRGB(wl){
+    let r=0,g=0,b=0;
+    if(wl>=380&&wl<440){r=-(wl-440)/(440-380);b=1;}
+    else if(wl>=440&&wl<490){g=(wl-440)/(490-440);b=1;}
+    else if(wl>=490&&wl<510){g=1;b=-(wl-510)/(510-490);}
+    else if(wl>=510&&wl<580){r=(wl-510)/(580-510);g=1;}
+    else if(wl>=580&&wl<645){r=1;g=-(wl-645)/(645-580);}
+    else if(wl>=645&&wl<=780){r=1;}
+    let f=.3;if(wl>=380&&wl<420)f=.3+.7*(wl-380)/40;else if(wl>=420&&wl<=700)f=1;else if(wl>700&&wl<=780)f=.3+.7*(780-wl)/80;
+    return[Math.round(r*f*255),Math.round(g*f*255),Math.round(b*f*255)];
+  }
+  function draw(t){
+    const r=cv.parentElement.getBoundingClientRect();const W=r.width,H=r.height;
+    if(cv.width!==Math.floor(W*DPR)){cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);}
+    ctx.fillStyle='#1a1208';ctx.fillRect(0,0,W,H);
+    const time=t*.0005,bandY=H*.35,bandH=H*.3;
+    for(let x=0;x<W;x++){const wl=380+x/W*400;const c=wlToRGB(wl);ctx.fillStyle='rgb('+c[0]+','+c[1]+','+c[2]+')';ctx.fillRect(x,bandY,1,bandH);}
+    const scanX=(Math.sin(time)+1)/2*W;
+    ctx.strokeStyle='rgba(255,255,255,0.7)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(scanX,bandY-8);ctx.lineTo(scanX,bandY+bandH+8);ctx.stroke();
+    const wlVal=Math.round(380+scanX/W*400);
+    ctx.font="500 11px 'Source Sans 3',sans-serif";ctx.fillStyle='rgba(232,220,200,0.7)';ctx.textAlign='center';ctx.fillText(wlVal+' nm',scanX,bandY-14);
+    ctx.font="300 10px 'Source Sans 3',sans-serif";ctx.fillStyle='rgba(200,191,170,0.25)';ctx.fillText('← 人間の可視域 →',W/2,bandY+bandH+20);ctx.textAlign='left';
+    requestAnimationFrame(draw);
+  }
+  const obs=new IntersectionObserver(e=>{if(e[0].isIntersecting){obs.disconnect();requestAnimationFrame(draw);}},{threshold:.1});
+  obs.observe(cv.parentElement);
+})();
 </script>
 </body>
 </html>
