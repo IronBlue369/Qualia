@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>群れに指揮者はいない — Qualia Journal</title>
+<meta name="description" content="鳥の群れには司令塔がいない。3つのルールだけで、数千羽が一糸乱れぬ飛行を見せる。1986年、クレイグ・レイノルズがコンピュータ上に再現したその仕組みは、知性の定義そのものを揺さぶった。">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}
+.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;}
+.masthead-name a{color:inherit;text-decoration:none;}
+.masthead-name a:hover{color:#8b1a1a;}
+
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;display:block;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:6px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 0;gap:6px;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}
+.person-block-wiki{margin-bottom:8px;}
+.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;border-bottom:1px solid #c8bfaa;text-decoration:none;}
+.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#8b1a1a;flex-shrink:0;padding:14px 0;}
+.step-tw{flex:1;padding:14px 0;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:0 16px;transition:transform .2s;}
+.step-body{max-height:0;overflow:hidden;transition:max-height .3s ease;border-top:none;}
+.step-card.open .step-body{max-height:600px;border-top:1px solid #e0d8c8;}
+.step-card.open .step-arr{transform:rotate(180deg);}
+.step-body p{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.9;padding:16px 20px 16px 48px;}
+.step-summary{margin-top:16px;padding:16px 20px;background:#f3efe6;border-left:3px solid #8b1a1a;}
+.step-summary p{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;}
+
+/* CULTURE — matching sound_does_not_exist.html */
+.culture-block{margin:32px 0;border:1px solid #c8bfaa;padding:20px 24px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:4px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* REF-LIST — matching sound_does_not_exist.html exactly */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE-BOX & TAGS — matching sound_does_not_exist.html exactly */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR — matching sound_does_not_exist.html */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#fff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:8px;}
+
+/* BOIDS SIMULATOR */
+.sim-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.sim-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}
+.sim-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.sim-canvas-wrap{position:relative;background:#1a1a2e;overflow:hidden;}
+.sim-canvas-wrap canvas{display:block;width:100%;height:480px;}
+.sim-guide{padding:16px 20px;background:white;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;}
+.sim-guide-title{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.sim-guide-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.7;}
+.sim-guide-text strong{font-weight:600;color:#1a1208;}
+.sim-presets{padding:14px 20px;background:#f3efe6;display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-bottom:1px solid #c8bfaa;}
+.sim-presets-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;color:#7a6a55;text-transform:uppercase;margin-right:4px;}
+.preset-btn{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:400;padding:6px 14px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;transition:all .15s;line-height:1.3;}
+.preset-btn:hover{border-color:#8b1a1a;color:#8b1a1a;}
+.preset-btn.active{background:#1a1208;color:#e8e4de;border-color:#1a1208;}
+.sim-controls{padding:14px 20px;background:white;display:flex;flex-wrap:wrap;gap:20px;align-items:center;}
+.sim-ctrl-group{display:flex;flex-direction:column;gap:4px;}
+.sim-ctrl-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;color:#b0a090;text-transform:uppercase;}
+.sim-ctrl-row{display:flex;align-items:center;gap:8px;}
+.sim-ctrl-row input[type=range]{width:90px;cursor:pointer;}
+.sim-ctrl-val{font-family:'JetBrains Mono',monospace;font-size:11px;color:#3d3020;min-width:28px;}
+.sim-btn{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;padding:6px 16px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;text-transform:uppercase;}
+.sim-btn:hover{border-color:#8b1a1a;color:#8b1a1a;}
+
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+@media(max-width:720px){
+.cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+.cover-right{display:none;}
+.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+.summary-box,.scenario{padding:0 20px;}
+.article{grid-template-columns:1fr;padding:0 20px;}
+.article-side{display:none;}
+.misconception-item{flex-direction:column;}
+.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+.terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+.related{padding:32px 20px;}
+.related-grid{grid-template-columns:1fr;}
+.person-block{grid-template-columns:1fr;}
+.person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
+.tip-box{left:0;transform:none;width:200px;}
+.tip-box::after{left:20px;transform:none;}
+.sim-presets{flex-direction:column;align-items:stretch;}
+.sim-controls{flex-direction:column;align-items:stretch;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+<p class="masthead-name"><a href="https://qualiajournal.com/">Qualia Journal</a></p>
+</div>
+
+<!-- COVER -->
+<div class="cover fade">
+<div class="cover-left">
+<p class="cover-kicker">数学・論理</p>
+<h1>群れに<em>指揮者</em>はいない</h1>
+<p class="cover-deck">鳥の群れにリーダーはいない。魚の群れにも司令塔はいない。たった3つの単純なルールから、数千の個体が一糸乱れぬ動きを見せる。1987年、一人のコンピュータ科学者がそれを証明した。</p>
+<div class="cover-byline"><span>Emergence</span><span>Artificial Life</span><span>Swarm Intelligence</span></div>
+</div>
+<div class="cover-right">
+<div class="est-card">
+<span class="est-label">Est.</span>
+<span class="est-year">1987</span>
+<p class="est-event">クレイグ・レイノルズがACM SIGGRAPH '87で「Flocks, Herds, and Schools」を発表。</p>
+<p class="est-context">同年、レーガン大統領が「この壁を壊せ」と演説。ブラックマンデーでダウ平均が22.6%暴落。SN 1987Aが肉眼で観測された。</p>
+</div>
+<p class="cover-aside">Boidsモデルは<strong>人工生命研究のなかで最も多く引用される事例のひとつ</strong>となった。映画・ロボット工学・交通シミュレーションにまで応用が広がっている。</p>
+</div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+<div class="scenario-inner">
+<p>夕暮れの空を見上げたことがあるだろうか。何百、何千もの鳥が、渦を巻くように飛んでいる。ひとつの巨大な生き物のように膨らみ、縮み、ねじれ、また広がる。その場にいた人なら、息を呑んだはずだ。</p>
+<p>あの動きを見て、ほとんどの人は「リーダーがいるのだろう」と思う。先頭の鳥が合図を出し、残りがそれに従っている——と。直感的にはそうとしか思えない。秩序があるなら、指揮者がいるはずだ。</p>
+<p>いない。指揮者は最初から存在しない。</p>
+</div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+<div class="meta-item">
+<span class="meta-label">難易度</span>
+<div class="difficulty-dots">
+<div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div>
+</div>
+<span class="difficulty-text">中級 — 数学の知識は不要</span>
+</div>
+<div class="meta-sep"></div>
+<div class="meta-item">
+<span class="meta-label">読了時間</span>
+<span class="read-time">
+<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+約 14 分
+</span>
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+<div class="summary-inner">
+<span class="summary-icon">要点</span>
+<p class="summary-text">この記事では、<strong>単純さから複雑さが生まれる瞬間</strong>を画面の中で体験する。動く群れを自分の手でつくり、秩序が勝手に生まれる感覚を掴む。</p>
+</div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+<!-- S1: 背景 -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">鳥の群れは、誰かが操縦しているのか</h2>
+
+<p class="body-text fade">1930年代、イギリスの鳥類学者エドマンド・セロウスは、群れで飛ぶ鳥たちのあまりに完璧な同調を見て、こう結論づけた。<strong>テレパシーだ</strong>。鳥たちは思念で意思を伝え合い、飛行方向を共有しているのだ、と。冗談ではない。1931年に出版された彼の著書のタイトルは、文字通り『<span class="tip" onclick="toggleTip(this)">Thought-transference (or what?) in Birds<span class="tip-box"><strong>テレパシー仮説</strong><br>エドマンド・セロウスが1931年に著した本のタイトル。群れの同調を超自然的な力で説明しようとした。当時は反応速度の計測技術がなく、この仮説を厳密に否定する手段がなかった。</span></span>』だった。</p>
+
+<div class="quote-block fade">
+<p class="quote-en">"The motion of a flock of birds is one of nature's delights. It is made up of discrete birds yet overall motion seems fluid; it is simple in concept yet is so visually complex."</p>
+<p class="quote-ja">鳥の群れの動きは、自然がもたらす歓びのひとつだ。個々の鳥から成り立っているのに、全体の動きは流れるようで——概念としては単純なのに、視覚的にはこの上なく複雑だ。</p>
+<p class="quote-attr">— Craig Reynolds『Flocks, Herds, and Schools』（1987）</p>
+</div>
+
+<p class="body-text fade">セロウスの直感は、方向が間違っていた。だが問い自体は正しかった。数千の個体がぶつかりもせず、遅れもせず、一斉に方向を変える——その同調は、どこから来ているのか。リーダーがいるなら、リーダーの判断が群れ全体に伝わるのに何秒かかるはずだ。だが実際に測定してみると、群れの方向転換は個体の反応時間の<em>3倍の速さ</em>で伝播する。先頭からの命令が順番に伝わるモデルでは、この速度は説明できない。</p>
+
+<!-- SVG: 2つのモデル比較 -->
+<div style="overflow-x:auto;margin:28px 0;" class="fade">
+<svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<rect x="10" y="30" width="240" height="120" rx="4" fill="none" stroke="#c8bfaa" stroke-width="1"/>
+<rect x="310" y="30" width="240" height="120" rx="4" fill="none" stroke="#c8bfaa" stroke-width="1"/>
+<text x="130" y="20" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="600" fill="#c4392a" letter-spacing=".1em">✗ トップダウンモデル</text>
+<text x="430" y="20" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" font-weight="600" fill="#1a5a30" letter-spacing=".1em">✓ ローカルルールモデル</text>
+<circle cx="130" cy="65" r="12" fill="#8b1a1a"/>
+<text x="130" y="69" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="white" font-weight="600">L</text>
+<line x1="130" y1="78" x2="60" y2="115" stroke="#c8bfaa" stroke-width="1"/>
+<line x1="130" y1="78" x2="100" y2="120" stroke="#c8bfaa" stroke-width="1"/>
+<line x1="130" y1="78" x2="160" y2="120" stroke="#c8bfaa" stroke-width="1"/>
+<line x1="130" y1="78" x2="200" y2="115" stroke="#c8bfaa" stroke-width="1"/>
+<circle cx="60" cy="120" r="6" fill="#e0d8c8"/><circle cx="100" cy="125" r="6" fill="#e0d8c8"/>
+<circle cx="160" cy="125" r="6" fill="#e0d8c8"/><circle cx="200" cy="120" r="6" fill="#e0d8c8"/>
+<text x="130" y="145" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#7a6a55">1羽が指示 → 全員が従う</text>
+<circle cx="360" cy="75" r="6" fill="#3d3020"/><circle cx="390" cy="60" r="6" fill="#3d3020"/>
+<circle cx="420" cy="80" r="6" fill="#3d3020"/><circle cx="450" cy="65" r="6" fill="#3d3020"/>
+<circle cx="380" cy="100" r="6" fill="#3d3020"/><circle cx="410" cy="110" r="6" fill="#3d3020"/>
+<circle cx="440" cy="100" r="6" fill="#3d3020"/><circle cx="470" cy="90" r="6" fill="#3d3020"/>
+<line x1="360" y1="75" x2="390" y2="60" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="390" y1="60" x2="420" y2="80" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="420" y1="80" x2="450" y2="65" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="380" y1="100" x2="410" y2="110" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="410" y1="110" x2="440" y2="100" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="360" y1="75" x2="380" y2="100" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="420" y1="80" x2="440" y2="100" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="430" y="140" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#7a6a55">各自が隣だけ見る → 全体が揃う</text>
+</svg>
+</div>
+
+<p class="body-text fade">答えは、まったく逆の方向にあった。群れの秩序は上から降りてくるのではなく、下から立ち上がる。各個体が<strong>自分のすぐ隣の仲間だけ</strong>を見て、ごく単純なルールに従って動く。その結果として——誰も設計していないのに——全体に美しい秩序が現れる。これを<span class="tip" onclick="toggleTip(this)">創発<span class="tip-box"><strong>創発（emergence）</strong><br>個々の要素の振る舞いからは予測できない性質が、全体のレベルで新しく出現すること。蟻の巣、脳の意識、交通渋滞なども創発の例とされる。</span></span>と呼ぶ。</p>
+
+<div class="person-block fade">
+<div class="person-block-img">
+<svg width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="22" r="14" fill="#c8bfaa"/><ellipse cx="30" cy="55" rx="22" ry="16" fill="#c8bfaa"/></svg>
+</div>
+<div class="person-block-body">
+<p class="person-block-name">クレイグ・レイノルズ</p>
+<p class="person-block-role">Craig W. Reynolds — コンピュータ科学者</p>
+<p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Craig_Reynolds_(computer_graphics)" target="_blank" rel="noopener">Wikipedia</a></p>
+<p class="person-block-desc">MIT出身。1986年、シンボリクス社のグラフィックス部門に在籍中にBoidsモデルを開発。「高校時代からプログラミングを学ぶなかで、自然の群れの動きを手続き的にとらえるようになった」と語っている。1987年のSIGGRAPHで発表した論文は、人工生命と群知能の分野に決定的な影響を与えた。</p>
+</div>
+</div>
+
+<div class="misconception fade">
+<div class="misconception-header"><span class="misconception-hl">読む前に確認 — よくある誤解</span></div>
+<div class="misconception-body">
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">群れにはリーダーがいて、他の個体はそのリーダーに従っている</p></div>
+<div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">リーダーは存在しない。各個体は近くの仲間だけを見て動き、全体の秩序は結果として生まれる</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">群れの動きを再現するには、複雑な数式やAIが必要</p></div>
+<div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">3つの単純なルール（分離・整列・結合）だけでリアルな群れの動きが生まれる</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">Boidsは純粋な理論モデルで、実用的な応用はない</p></div>
+<div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">映画のCG群衆シーン、自律ドローンの編隊飛行、交通流シミュレーションなど、幅広く応用されている</p></div>
+</div>
+</div>
+</div>
+
+<hr class="art-rule">
+
+<!-- S2: 体験する -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">3つのルールを、自分の手で動かす</h2>
+
+<p class="body-text fade">レイノルズが1986年に書いた<span class="tip" onclick="toggleTip(this)">Boids<span class="tip-box"><strong>Boids（ボイド）</strong><br>「bird-oid object」——鳥っぽいもの、の略。ニューヨーク訛りで「bird」を「boid」と発音することにもかけている。レイノルズが群れシミュレーションの各個体につけた名前。</span></span>プログラムの核心は、たった3つのルールだ。<strong>分離（Separation）</strong>——近づきすぎた仲間から離れる。<strong>整列（Alignment）</strong>——近くの仲間と同じ方向を向く。<strong>結合（Cohesion）</strong>——近くの仲間の中心に向かって寄る。それだけ。</p>
+
+<!-- SVG: 3つのルール図解（改良版） -->
+<div style="overflow-x:auto;margin:28px 0;" class="fade">
+<svg viewBox="0 0 560 180" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<defs>
+<!-- 矢印マーカー -->
+<marker id="ah" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0,0 7,2.5 0,5" fill="#8b1a1a"/></marker>
+<!-- 統一ボイド三角形: 先端が(6,0)、底辺の左が(-4,-4)、底辺の右が(-4,4)。右向きが0度。 -->
+</defs>
+
+<!-- ===== ① 分離 ===== -->
+<text x="93" y="16" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#8b1a1a">① 分離</text>
+<text x="93" y="29" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#7a6a55">Separation</text>
+<circle cx="93" cy="78" r="32" fill="none" stroke="#e0d8c8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="93" y="122" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#b0a090">近接範囲</text>
+<!-- 中央ボイド（上向き = -90度） -->
+<g transform="translate(93,76) rotate(-90)"><polygon points="6,0 -4,-4 -4,4" fill="#1a1208"/></g>
+<!-- 左下の仲間 -->
+<g transform="translate(78,90) rotate(-90)"><polygon points="6,0 -4,-4 -4,4" fill="#7a6a55"/></g>
+<!-- 右下の仲間 -->
+<g transform="translate(108,88) rotate(-90)"><polygon points="6,0 -4,-4 -4,4" fill="#7a6a55"/></g>
+<!-- 外向きの矢印（それぞれが互いに離れる方向） -->
+<line x1="93" y1="68" x2="93" y2="52" stroke="#8b1a1a" stroke-width="1.5" marker-end="url(#ah)"/>
+<line x1="74" y1="92" x2="62" y2="100" stroke="#8b1a1a" stroke-width="1.2" marker-end="url(#ah)"/>
+<line x1="112" y1="90" x2="124" y2="82" stroke="#8b1a1a" stroke-width="1.2" marker-end="url(#ah)"/>
+<text x="93" y="142" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#3d3020">近すぎる仲間から離れる</text>
+<text x="93" y="157" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#7a6a55">→ 衝突を防ぐ</text>
+
+<!-- ===== ② 整列 ===== -->
+<text x="280" y="16" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#8b1a1a">② 整列</text>
+<text x="280" y="29" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#7a6a55">Alignment</text>
+<circle cx="280" cy="78" r="32" fill="none" stroke="#e0d8c8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="280" y="122" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#b0a090">視野範囲</text>
+<!-- 全員が右向き（0度）に統一 -->
+<g transform="translate(264,70) rotate(0)"><polygon points="6,0 -4,-4 -4,4" fill="#7a6a55"/></g>
+<g transform="translate(280,78) rotate(0)"><polygon points="6,0 -4,-4 -4,4" fill="#1a1208"/></g>
+<g transform="translate(296,70) rotate(0)"><polygon points="6,0 -4,-4 -4,4" fill="#7a6a55"/></g>
+<g transform="translate(272,90) rotate(0)"><polygon points="6,0 -4,-4 -4,4" fill="#7a6a55"/></g>
+<!-- 平均方向を示す矢印（右向き） -->
+<line x1="300" y1="78" x2="318" y2="78" stroke="#8b1a1a" stroke-width="2" marker-end="url(#ah)"/>
+<text x="280" y="142" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#3d3020">仲間の平均方向に合わせる</text>
+<text x="280" y="157" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#7a6a55">→ 流れが揃う</text>
+
+<!-- ===== ③ 結合 ===== -->
+<text x="467" y="16" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="600" fill="#8b1a1a">③ 結合</text>
+<text x="467" y="29" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#7a6a55">Cohesion</text>
+<circle cx="467" cy="78" r="32" fill="none" stroke="#e0d8c8" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="467" y="122" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#b0a090">視野範囲</text>
+<!-- 中心マーカー -->
+<circle cx="467" cy="78" r="3" fill="none" stroke="#8b1a1a" stroke-width="1.5"/>
+<!-- 左上のボイド（中心に向かって＝右下向き=約135度） -->
+<g transform="translate(447,60) rotate(135)"><polygon points="6,0 -4,-4 -4,4" fill="#7a6a55"/></g>
+<line x1="451" y1="64" x2="461" y2="74" stroke="#8b1a1a" stroke-width="1.2" marker-end="url(#ah)"/>
+<!-- 右上のボイド（中心に向かって＝左下向き=約225度） -->
+<g transform="translate(487,60) rotate(-135)"><polygon points="6,0 -4,-4 -4,4" fill="#7a6a55"/></g>
+<line x1="483" y1="64" x2="473" y2="74" stroke="#8b1a1a" stroke-width="1.2" marker-end="url(#ah)"/>
+<!-- 左下のボイド（中心に向かって＝右上向き=約45度くらい） -->
+<g transform="translate(447,96) rotate(-135)"><polygon points="6,0 -4,-4 -4,4" fill="#7a6a55"/></g>
+<line x1="451" y1="92" x2="461" y2="82" stroke="#8b1a1a" stroke-width="1.2" marker-end="url(#ah)"/>
+<!-- 右下のボイド（中心に向かって＝左上向き） -->
+<g transform="translate(487,96) rotate(135)"><polygon points="6,0 -4,-4 -4,4" fill="#7a6a55"/></g>
+<line x1="483" y1="92" x2="473" y2="82" stroke="#8b1a1a" stroke-width="1.2" marker-end="url(#ah)"/>
+<text x="467" y="142" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#3d3020">仲間の中心に向かう</text>
+<text x="467" y="157" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="9" fill="#7a6a55">→ バラバラにならない</text>
+
+<text x="280" y="176" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090">各個体は視野内の仲間だけが対象。群れ全体は見えていない。</text>
+</svg>
+</div>
+
+<p class="body-text fade">このルールのどこにも「群れを作れ」とは書いていない。各個体は群れの全体像を知らない。自分の近くにいる仲間だけを見て、3つの力のバランスを取りながら動く。それだけで、画面上に群れが出現する。</p>
+
+<p class="body-text fade">言葉で読むのと、動くものを見るのとでは、理解の深さがまるで違う。下のシミュレーターで、まずプリセットボタンを切り替えてみてほしい。「群れ飛行」で秩序が見え、「分離だけ」で散り散りになり、「結合だけ」で団子になる。ルールを足したり引いたりするたびに、<em>秩序が勝手に立ち上がったり崩壊したりする瞬間</em>を確かめることに意味がある。</p>
+
+<!-- BOIDS SIMULATOR -->
+<div class="sim-wrap fade">
+<div class="sim-header">
+<span class="sim-hl">✦ Boids Simulator</span>
+</div>
+<div class="sim-canvas-wrap">
+<canvas id="boidsCanvas" width="800" height="480"></canvas>
+</div>
+<div class="sim-guide">
+<p class="sim-guide-title">このシミュレーターで確認できること</p>
+<p class="sim-guide-text">三角形ひとつひとつが「ボイド」——群れの一員だ。各ボイドは<strong>自分の近くにいる仲間だけ</strong>を見て、3つのルールに従って動いている。プリセットボタンを切り替えると、どのルールが群れのどんな性質を生み出しているかがわかる。スライダーで強さを細かく調整することもできる。</p>
+</div>
+<div class="sim-presets">
+<span class="sim-presets-label">プリセット</span>
+<button class="preset-btn active" data-sep="50" data-ali="50" data-coh="50" onclick="applyPreset(this)">群れ飛行</button>
+<button class="preset-btn" data-sep="80" data-ali="0" data-coh="0" onclick="applyPreset(this)">分離だけ</button>
+<button class="preset-btn" data-sep="0" data-ali="0" data-coh="80" onclick="applyPreset(this)">結合だけ</button>
+<button class="preset-btn" data-sep="0" data-ali="80" data-coh="0" onclick="applyPreset(this)">整列だけ</button>
+<button class="preset-btn" data-sep="0" data-ali="60" data-coh="60" onclick="applyPreset(this)">結合+整列</button>
+</div>
+<div class="sim-controls">
+<div class="sim-ctrl-group">
+<span class="sim-ctrl-label">分離</span>
+<div class="sim-ctrl-row">
+<input type="range" id="sepSlider" min="0" max="100" value="50">
+<span class="sim-ctrl-val" id="sepVal">50</span>
+</div>
+</div>
+<div class="sim-ctrl-group">
+<span class="sim-ctrl-label">整列</span>
+<div class="sim-ctrl-row">
+<input type="range" id="aliSlider" min="0" max="100" value="50">
+<span class="sim-ctrl-val" id="aliVal">50</span>
+</div>
+</div>
+<div class="sim-ctrl-group">
+<span class="sim-ctrl-label">結合</span>
+<div class="sim-ctrl-row">
+<input type="range" id="cohSlider" min="0" max="100" value="50">
+<span class="sim-ctrl-val" id="cohVal">50</span>
+</div>
+</div>
+<button class="sim-btn" id="resetBtn">リセット</button>
+</div>
+<p class="ix-note" style="padding:8px 20px 12px;">Reynolds（1987）の3ルールモデルに基づく概念的シミュレーション。パラメータは教育目的で誇張している。</p>
+</div>
+
+<div class="pull fade">
+<p class="pull-q">"Perhaps most puzzling is the strong impression of <em>intentional, centralized control</em>. Yet all evidence indicates that flock motion must be merely the aggregate result of the actions of individual animals."</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">最も不思議なのは、意図的で中央集権的な統制があるかのような強い印象だ。しかしあらゆる証拠が示すのは、群れの動きは個々の動物の行動の集積にすぎないということである。</p>
+<p class="pull-attr">— Craig Reynolds『Flocks, Herds, and Schools』（1987）</p>
+</div>
+
+<hr class="art-rule">
+
+<!-- S3: なぜか -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">なぜ3行のルールから秩序が生まれるのか</h2>
+
+<p class="body-text fade">3つのルールがそれぞれ別の力を生み出す。分離は個体同士の衝突を防ぎ、結合は群れがバラバラになるのを防ぐ。この2つだけだと、群れは固まるけれど方向がバラバラになる。整列がそこに加わることで、全体に一貫した流れが生まれる。3つの力が釣り合ったとき——そのとき初めて、群れは「群れらしく」動き始める。</p>
+
+<div class="steps-wrap fade">
+<p class="steps-head">創発が生まれる仕組み</p>
+<div class="step-card" id="sc1">
+<div class="step-hd" onclick="tog(1)">
+<div class="step-nb">1</div>
+<div class="step-tw"><div class="step-title">ローカルな知覚</div><div class="step-sub">各個体は「自分の周囲」しか見えない</div></div>
+<div class="step-arr">▼</div>
+</div>
+<div class="step-body"><p>レイノルズのモデルでは、各ボイドは一定の視野角と距離の範囲にいる仲間だけを認識する。群れの端にいるボイドは、反対側のボイドの存在を知らない。人間で言えば、満員電車の中で自分のすぐ周りの人だけを見ているようなもの。全体の混雑状況は見えていない。</p></div>
+</div>
+<div class="step-card" id="sc2">
+<div class="step-hd" onclick="tog(2)">
+<div class="step-nb">2</div>
+<div class="step-tw"><div class="step-title">3つの力の競合</div><div class="step-sub">分離・整列・結合が同時に働く</div></div>
+<div class="step-arr">▼</div>
+</div>
+<div class="step-body"><p>各ボイドは毎フレーム、3つのルールから得られるベクトルを合成して自分の進行方向を決める。分離と結合は相反する力で、近すぎれば分離が勝ち、遠すぎれば結合が勝つ。レイノルズの原論文では分離が最も優先度が高い。ぶつかるのが一番まずいからだ。</p></div>
+</div>
+<div class="step-card" id="sc3">
+<div class="step-hd" onclick="tog(3)">
+<div class="step-nb">3</div>
+<div class="step-tw"><div class="step-title">非線形な相互作用</div><div class="step-sub">1+1が2にならない</div></div>
+<div class="step-arr">▼</div>
+</div>
+<div class="step-body"><p>ボイドAがボイドBに影響を受けて方向を変えると、その変化がボイドCに影響し、Cの変化がまたAに返ってくる。フィードバックの連鎖が非線形に絡み合うことで、個体の単純なルールからは予測できない複雑なパターンが生まれる。群れが障害物の手前で二手に分かれ、通過後にまた合流するのは、この非線形性の産物だ。</p></div>
+</div>
+<div class="step-summary"><p>指揮者なしに秩序が生まれるのは、ローカルな判断の連鎖が全体に波及するからだ。各個体が「全体像」を持っていなくても、隣の仲間に正しく反応し続ければ、マクロな秩序は勝手に立ち上がる。</p></div>
+</div>
+
+<p class="body-text fade">ここで注意しておきたいのは、このモデルが「現実の鳥の行動を完璧に再現している」と主張しているわけではないことだ。レイノルズ自身が論文のなかで認めているように、実際の鳥はもっと長距離の視覚情報も使っている。ムクドリの群れを観測した2012年の研究では、各個体は距離ではなく<strong>最も近い6〜7羽の仲間</strong>との相互作用で動いていることが示された。距離ではなく<span class="tip" onclick="toggleTip(this)">トポロジカル<span class="tip-box"><strong>トポロジカル（topological）</strong><br>ここでは「距離が何メートルか」ではなく「何番目に近いか」という順位関係で判断すること。群れの密度が変わっても、常に最寄りの6〜7羽だけを見るので、密集時も散開時も同じように機能する。</span></span>な——つまり「何番目に近い仲間か」で判断するという、より洗練されたモデルだ。</p>
+
+<p class="body-text fade">だが重要なのは、レイノルズのモデルの核心——<em>ローカルなルールの集積からグローバルな秩序が生まれる</em>——は、その後の研究でも否定されていないということだ。むしろ補強されている。</p>
+
+<hr class="art-rule">
+
+<!-- S4: 歴史 -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">Boidsはどこから来て、どこへ行ったか</h2>
+
+<p class="body-text fade">赤い点は、群れの知能という考え方にとっての転換点を示す。</p>
+
+<div class="timeline fade">
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1931</p>
+<p class="tl-title">セロウスの「テレパシー仮説」</p>
+<p class="tl-desc">イギリスの鳥類学者エドマンド・セロウスが『Thought-transference (or what?) in Birds』を出版。群れの同調を超自然的な力で説明しようとした最初期の記録。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1982</p>
+<p class="tl-title">市起良一の先駆的モデル</p>
+<p class="tl-desc">日本の生物学者・市起良一（Ichiro Aoki）が、魚の群れの動きを数学的にモデル化した論文を発表。レイノルズのBoids論文に5年先行する。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">1986</p>
+<p class="tl-title">レイノルズがBoidsを開発</p>
+<p class="tl-desc">シンボリクス社のグラフィックス部門で、Lispを使って最初のBoidsプログラムを書く。「たった1〜2ヶ月で、群れらしい動きが出現した」とレイノルズは回想している。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">1987</p>
+<p class="tl-title">SIGGRAPH '87で論文発表</p>
+<p class="tl-desc">「Flocks, Herds, and Schools: A Distributed Behavioral Model」を発表。同年、デモフィルム『Stanley and Stella in: Breaking the Ice』をSIGGRAPH電子シアターで上映。人工生命の領域にも波及した。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">1992</p>
+<p class="tl-title">『バットマン リターンズ』で映画デビュー</p>
+<p class="tl-desc">ティム・バートン監督作品で、CGのコウモリの大群とペンギンの群れにBoidsアルゴリズムの改良版が使われた。映画産業でBoidsが使われた最初の事例。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1994</p>
+<p class="tl-title">『ライオン・キング』のヌーの暴走</p>
+<p class="tl-desc">ディズニーのCGI部門が、Boidsの考え方を応用した「回避プログラム」で数千頭のヌーの暴走シーンを制作。5人のアニメーターが2年以上をかけた。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">2012</p>
+<p class="tl-title">トポロジカル相互作用の発見</p>
+<p class="tl-desc">ローマの研究グループが、実際のムクドリの群れでは距離ではなく「最も近い6〜7羽」との相互作用が支配的であることを示した。Boidsの基本原理を実データで精緻化した重要な研究。</p>
+</div>
+</div>
+
+<hr class="art-rule">
+
+<!-- S5: つまり -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">知性は、どこにあるのか</h2>
+
+<p class="body-text fade">Boidsモデルが突きつけたのは、ある根本的な問いだ。群れが見事な回避運動をするとき、そこに「知性」はあるのだろうか。各個体は隣の仲間を見ているだけだ。全体のパターンを把握している者は誰もいない。にもかかわらず、結果として現れる群れの動きは、あたかも一つの知性が全体を操縦しているかのように見える。</p>
+
+<p class="body-text fade">これは鳥の話だけではない。蟻の巣を考えてほしい。女王蟻は兵隊蟻に命令を出していない。各個体が<span class="tip" onclick="toggleTip(this)">フェロモン<span class="tip-box"><strong>フェロモン</strong><br>昆虫などが体外に分泌する化学物質。蟻の場合、餌を見つけた個体がフェロモンの道を残し、他の蟻がそれを辿ることで効率的な餌探しが実現する。誰かが全体を設計したわけではない。</span></span>という化学物質の痕跡に反応して行動しているだけだ。それでも蟻の巣は、最短経路の発見、温度調節、死体の運搬といった高度な「問題解決」を実現している。交通渋滞の波もそうだ。ドライバーの一人ひとりは前の車の速度に反応しているだけで、渋滞を「作ろう」としている人は誰もいない。</p>
+
+<div class="img-placeholder fade">
+<div class="img-ph-area">
+<span class="img-ph-icon">🖼️</span>
+<p class="img-ph-title">イラスト①｜ムクドリの群れと蟻の列が重なるシーン</p>
+<p class="img-ph-desc">上半分に夕暮れの空を舞うムクドリの大群（ミュアミュレーション）、下半分に地面を行進する蟻の隊列。中央で二つの群れが鏡像のように交差する構図。「上も下も、同じ原理で動いている」ことを示唆する。</p>
+<div class="img-ph-prompt">
+<p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
+<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, upper half: murmuration of hundreds of birds swirling in evening sky, lower half: procession of ants marching along a branch, mirror composition where bird flock and ant trail echo each other's shape, Japanese scroll painting aesthetic, no text</p>
+</div>
+</div>
+<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+</div>
+
+<p class="body-text fade">私たちは「秩序があるなら設計者がいるはずだ」と考えがちだ。これは人間の認知に深く埋め込まれた傾向で、心理学では<span class="tip" onclick="toggleTip(this)">目的論的思考<span class="tip-box"><strong>目的論的思考（teleological thinking）</strong><br>物事に目的や意図があると考える思考の傾向。「雲は雨を降らすためにある」のような考え方。人間は幼少期からこの傾向を持ち、秩序のある現象を見ると「誰かがそう設計した」と直感的に判断しやすい。</span></span>と呼ばれる。川の流れを見て「水が海に行こうとしている」と感じるのと同じ構造だ。</p>
+
+<p class="body-text fade">だがBoidsが示したのは、まさにその直感の裏側だった。<strong>設計者なしに設計が生まれる。</strong> 目的なしに目的があるように見える振る舞いが生まれる。しかも、それは例外的な現象ではない。蟻の巣、脳のニューロン、都市の交通、経済市場——私たちが「知的だ」と感じるシステムの多くは、ローカルなルールの集積から立ち上がっている。</p>
+
+<p class="body-text fade">いや、こうまとめると、きれいすぎるかもしれない。「単純なルールで全部説明できる」という話ではない。Boidsモデルは群れの動きの多くを再現するが、すべてではない。実際のムクドリの群れは、Boidsでは説明できない急激な方向転換やカスケード反応を見せることがある。2012年のローマ大学の研究が示したトポロジカルな相互作用は、距離ベースのBoidsモデルでは捉えきれない性質だった。</p>
+
+<p class="body-text fade">でも——それでも、だ。「指揮者なしに秩序が生まれる」という発見は揺るがない。私たちがここから持ち帰るべきなのは、「全能の説明」ではなく、<em>ひとつの視点の転換</em>だ。秩序を見たとき、「誰がこれを作ったのか」ではなく、「何のルールがこれを生んだのか」と問いを変えること。答えは上にではなく、下に——個々の要素のあいだに——あるのかもしれない。</p>
+
+<div class="note-box fade">
+<strong>📌 この記事について</strong><br>
+この記事は、Craig Reynoldsの1987年のSIGGRAPH論文「Flocks, Herds, and Schools: A Distributed Behavioral Model」を主要な出典としている。群れの行動に関する近年の研究（ローマ大学のBalleriniらによるトポロジカル相互作用の研究を含む）と、映画産業での応用事例も参照した。シミュレーターはBoidsの3ルールモデルを教育目的で簡略化したもの。
+</div>
+
+<div class="tags fade">
+<span class="tag">数学・論理</span>
+<span class="tag">創発</span>
+<span class="tag">人工生命</span>
+<span class="tag">群知能</span>
+<span class="tag">SIGGRAPH</span>
+</div>
+
+<hr class="art-rule">
+
+<!-- S6: 文化の中に現れる -->
+<div class="sec-rule fade"><span class="sec-label">文化の中に現れる</span><div class="sec-line"></div></div>
+<h2 class="fade">群れのアルゴリズムが映画を変えた</h2>
+
+<div class="culture-block fade">
+<p class="culture-label">文化への登場</p>
+<div class="culture-item"><p class="culture-title">バットマン リターンズ（1992）</p><p class="culture-desc">ティム・バートン監督。Boidsアルゴリズムの改良版が映画で初めて使用された作品。CGで生成されたコウモリの大群とペンギンの行進に、シンボリクス社で開発された元のBoidsソフトウェアの派生版が使われた。</p></div>
+<div class="culture-item"><p class="culture-title">ライオン・キング（1994）</p><p class="culture-desc">ディズニーのCGI部門が2年以上かけて制作したヌーの暴走シーン。監督のロブ・ミンコフは「回避プログラムを発明しなければならなかった」と語っている。ヌー同士がぶつからず、個々に異なる動きをする仕組みは、Boidsの分離ルールと本質的に同じ原理だ。</p></div>
+<div class="culture-item"><p class="culture-title">Half-Life（1998）</p><p class="culture-desc">Valve社のFPSゲーム。終盤に登場する飛行クリーチャーの動きにBoidsアルゴリズムが採用され、ゲームファイル上でも「boid」という名前で参照されている。</p></div>
+</div>
+
+<hr class="art-rule">
+
+<!-- S7: 参考文献 -->
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+<div class="ref-list">
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1987</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1145/37402.37406" target="_blank" rel="noopener">Flocks, Herds, and Schools: A Distributed Behavioral Model</a></p>
+<p class="ref-author">Craig W. Reynolds — ACM SIGGRAPH Computer Graphics, 21(4), 25-34</p>
+<p class="ref-desc">すべてはこの論文から始まった。3つのルールの定義、優先順位の設計、障害物回避の拡張まで読める。アルゴリズムの説明は素朴に明快で、プログラミング経験がなくても追える。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">実験論文</span><span class="ref-year">2008</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1073/pnas.0711437105" target="_blank" rel="noopener">Interaction ruling animal collective behavior depends on topological rather than metric distance</a></p>
+<p class="ref-author">M. Ballerini, N. Cabibbo, R. Candelier et al. — PNAS, 105(4), 1232-1237</p>
+<p class="ref-desc">実際のムクドリの群れでは、距離ではなく「近い順の6〜7羽」で相互作用が起きていることを示した画期的な論文。Boidsモデルの前提を実データで検証・更新している。読むと「モデルと現実の距離」が体感できる。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">解説ページ</span><span class="ref-year">2001</span></div>
+<p class="ref-title"><a href="https://www.red3d.com/cwr/boids/" target="_blank" rel="noopener">Boids: Background and Update</a></p>
+<p class="ref-author">Craig Reynolds — red3d.com</p>
+<p class="ref-desc">レイノルズ自身が管理するBoidsの公式ページ。1987年以降の応用事例、関連研究、デモへのリンクが網羅されている。人工生命・群知能の文献リストとしても有用。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1994</span></div>
+<p class="ref-title"><a href="https://kk.org/mt-files/outofcontrol/ch2-b.html" target="_blank" rel="noopener">Out of Control: The New Biology of Machines, Social Systems and the Economic World — Chapter 2B</a></p>
+<p class="ref-author">Kevin Kelly — Addison-Wesley</p>
+<p class="ref-desc">WIRED誌初代編集長が書いた創発と複雑系の名著。第2章Bのセクションでは、Boidsモデルを「制御なき秩序」の代表例として鮮やかに紹介している。科学とテクノロジーの交差点を楽しめる一冊。</p>
+</div>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+<div style="position:sticky;top:40px;">
+<div class="sidebar-block fade">
+<p class="sidebar-label">Key Number</p>
+<p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">3</p>
+<p class="sidebar-text">Boidsの全行動を生み出すルールの数。分離・整列・結合。これだけで群れが出現する。</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">歴史的背景</p>
+<p class="sidebar-text">1986年当時、CGアニメーションで群れを描くには各キャラクターの軌道を手動で設計する必要があった。Boidsは「動きを設計しない」という逆転の発想で、この問題を解決した。</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">作品への登場</p>
+<p class="sidebar-text">映画『バットマン リターンズ』（1992）のコウモリ・ペンギン群、『ライオン・キング』（1994）のヌー暴走、ゲーム『Half-Life』（1998）の飛行クリーチャーなど。</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">関連トピック</p>
+<p class="sidebar-text">— ラングトンのアリ（単純ルール・複雑パターン）<br>— セルオートマトン（ライフゲーム）<br>— フラクタル（マンデルブロ集合）<br>— 蟻コロニー最適化</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">今日の見方を振り返る</p>
+<ul class="sidebar-check">
+<li>日常の中で「秩序があるなら指揮者がいるはず」と無意識に思った場面はないか</li>
+<li>自分のチームや組織で、ローカルなルールだけで機能していることはあるか</li>
+<li>「単純なルールの組み合わせ」で説明できる複雑な現象を、他に思いつくか</li>
+</ul>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">信頼度</p>
+<p class="sidebar-text">1987年の原著論文、Reynolds自身の解説ページ、および2008年のPNAS論文（ムクドリのトポロジカル相互作用）を主要な出典として構成した。</p>
+</div>
+</div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+<div class="terminal-label">
+<span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+<span class="terminal-label-line"></span>
+</div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+<div class="terminal fade" id="terminalBlock">
+<div class="terminal-bar">
+<div class="terminal-dots">
+<div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+</div>
+<div class="terminal-title">after.sh — 読後の対話ログ（架空）</div>
+</div>
+<div class="terminal-body">
+<span class="t-sys" id="ts0">// session started — 群れに指揮者はいない</span>
+
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;3つのルールのうちどれか1つを消すとどうなる？</span></div>
+<span class="t-output" id="to1">分離を消すと全員が一点に収束して団子になる。整列を消すと固まるけど方向がバラバラ。結合を消すとバラバラに散って<em>二度と集まらない</em>。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;実際の鳥はもっとルール多いの？</span></div>
+<span class="t-output" id="to2">たぶんね。捕食者の回避、地形への対応、風の読み。でも面白いのは、<strong>3つだけでもう「群れっぽく」見える</strong>こと。最低限の材料でそれらしさが出る。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;これって渋滞とかにも応用できる？</span></div>
+<span class="t-output" id="to3">レイノルズも論文の中で交通流に触れてる。車はレーンという制約がある分ルールが増えるけど、基本は同じ。<em>ぶつからない・流れに合わせる・近くにいる</em>。渋滞が「誰のせいでもなく」生まれるのも、同じ構造。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;人間の社会にも創発ってあるのかな</span></div>
+<span class="t-output" id="to4">言語、市場、流行。全部誰かが設計したわけじゃない。でも人間は鳥と違って<em>ルールそのものを変えようとする</em>。それが厄介でもあり、面白くもある。</span>
+<hr class="t-divider">
+
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# おもしろかった</span></div>
+</div>
+</div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+<p class="related-label">次に読む</p>
+<div class="related-grid">
+<a class="related-card" href="#">
+<p class="related-card-tag">数学・論理 × 創発</p>
+<p class="related-card-title">ラングトンのアリ</p>
+<p class="related-card-desc">2色のルールだけで動くアリが、なぜか「高速道路」を建設し始める。単純さと複雑さの境界を歩く。</p>
+<p class="related-card-arrow">読む →</p>
+</a>
+<a class="related-card" href="#">
+<p class="related-card-tag">数学・論理 × パターン</p>
+<p class="related-card-title">マンデルブロ集合</p>
+<p class="related-card-desc">無限に拡大しても同じ形が現れる。「自己相似」という概念が、自然界の形を根底から書き換えた。</p>
+<p class="related-card-arrow">読む →</p>
+</a>
+</div>
+</div>
+
+<script>
+// Progress bar
+window.addEventListener('scroll',()=>{
+const h=document.documentElement.scrollHeight-innerHeight;
+document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// Fade in
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// Tooltips
+function toggleTip(el){
+const isOpen=el.classList.contains('open');
+document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+if(!isOpen)el.classList.add('open');
+}
+document.addEventListener('click',e=>{
+if(!e.target.closest('.tip'))
+document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+});
+
+// Step accordion
+function tog(n){
+const c=document.getElementById('sc'+n);
+const was=c.classList.contains('open');
+document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+if(!was)c.classList.add('open');
+}
+tog(1);
+
+// Terminal animation
+const tseq=[
+{id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+{id:'tl2',delay:2300},{id:'to2',delay:2900},
+{id:'tl3',delay:3900},{id:'to3',delay:4500},
+{id:'tl4',delay:5600},{id:'to4',delay:6200},
+{id:'tl5',delay:7200}
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+if(entries[0].isIntersecting&&!tStarted){
+tStarted=true;
+tseq.forEach(s=>{
+setTimeout(()=>{
+const el=document.getElementById(s.id);
+if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+},s.delay);
+});
+}
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === BOIDS SIMULATOR ===
+const sepSlider=document.getElementById('sepSlider');
+const aliSlider=document.getElementById('aliSlider');
+const cohSlider=document.getElementById('cohSlider');
+const sepVal=document.getElementById('sepVal');
+const aliVal=document.getElementById('aliVal');
+const cohVal=document.getElementById('cohVal');
+
+function applyPreset(btn){
+document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+sepSlider.value=btn.dataset.sep;
+aliSlider.value=btn.dataset.ali;
+cohSlider.value=btn.dataset.coh;
+sepVal.textContent=btn.dataset.sep;
+aliVal.textContent=btn.dataset.ali;
+cohVal.textContent=btn.dataset.coh;
+}
+
+// Clear active preset when sliders are manually adjusted
+[sepSlider,aliSlider,cohSlider].forEach(sl=>{
+sl.addEventListener('input',()=>{
+document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
+sepVal.textContent=sepSlider.value;
+aliVal.textContent=aliSlider.value;
+cohVal.textContent=cohSlider.value;
+});
+});
+
+(function(){
+const canvas=document.getElementById('boidsCanvas');
+const ctx=canvas.getContext('2d');
+let W,H;
+function resize(){
+const rect=canvas.parentElement.getBoundingClientRect();
+const dpr=Math.min(window.devicePixelRatio||1,2);
+W=canvas.width=Math.floor(rect.width*dpr);
+H=canvas.height=Math.floor(480*dpr);
+canvas.style.width=rect.width+'px';
+canvas.style.height='480px';
+}
+resize();
+window.addEventListener('resize',resize);
+
+const NUM=100;
+let boids=[];
+
+function initBoids(){
+boids=[];
+for(let i=0;i<NUM;i++){
+boids.push({
+x:W*0.2+Math.random()*W*0.6,
+y:H*0.2+Math.random()*H*0.6,
+vx:(Math.random()-0.5)*3,
+vy:(Math.random()-0.5)*3
+});
+}
+}
+initBoids();
+document.getElementById('resetBtn').addEventListener('click',initBoids);
+
+function update(){
+const sepF=sepSlider.value/50;
+const aliF=aliSlider.value/50;
+const cohF=cohSlider.value/50;
+
+const visualRange=Math.max(W,H)*0.12;
+const protectedRange=visualRange*0.35;
+const maxSpeed=Math.max(W,H)*0.005;
+const minSpeed=maxSpeed*0.25;
+const turnFactor=maxSpeed*0.15;
+const margin=Math.max(W,H)*0.08;
+
+for(let i=0;i<boids.length;i++){
+const b=boids[i];
+let closeDx=0,closeDy=0;
+let xPosAvg=0,yPosAvg=0,xVelAvg=0,yVelAvg=0,neighbors=0;
+
+for(let j=0;j<boids.length;j++){
+if(i===j)continue;
+const o=boids[j];
+const dx=b.x-o.x, dy=b.y-o.y;
+const d2=dx*dx+dy*dy;
+if(d2<protectedRange*protectedRange){
+closeDx+=dx;closeDy+=dy;
+}else if(d2<visualRange*visualRange){
+xPosAvg+=o.x;yPosAvg+=o.y;
+xVelAvg+=o.vx;yVelAvg+=o.vy;
+neighbors++;
+}
+}
+
+b.vx+=closeDx*0.05*sepF;
+b.vy+=closeDy*0.05*sepF;
+
+if(neighbors>0){
+xPosAvg/=neighbors;yPosAvg/=neighbors;
+xVelAvg/=neighbors;yVelAvg/=neighbors;
+b.vx+=(xVelAvg-b.vx)*0.05*aliF;
+b.vy+=(yVelAvg-b.vy)*0.05*aliF;
+b.vx+=(xPosAvg-b.x)*0.0005*cohF;
+b.vy+=(yPosAvg-b.y)*0.0005*cohF;
+}
+
+if(b.x<margin)b.vx+=turnFactor;
+if(b.x>W-margin)b.vx-=turnFactor;
+if(b.y<margin)b.vy+=turnFactor;
+if(b.y>H-margin)b.vy-=turnFactor;
+
+const spd=Math.sqrt(b.vx*b.vx+b.vy*b.vy);
+if(spd>maxSpeed){b.vx=(b.vx/spd)*maxSpeed;b.vy=(b.vy/spd)*maxSpeed;}
+if(spd<minSpeed&&spd>0){b.vx=(b.vx/spd)*minSpeed;b.vy=(b.vy/spd)*minSpeed;}
+
+b.x+=b.vx;b.y+=b.vy;
+}
+}
+
+function draw(){
+ctx.fillStyle='#1a1a2e';
+ctx.fillRect(0,0,W,H);
+
+const sz=Math.max(W,H)*0.008;
+for(const b of boids){
+const angle=Math.atan2(b.vy,b.vx);
+ctx.save();
+ctx.translate(b.x,b.y);
+ctx.rotate(angle);
+ctx.beginPath();
+ctx.moveTo(sz,0);
+ctx.lineTo(-sz*0.5,-sz*0.4);
+ctx.lineTo(-sz*0.3,0);
+ctx.lineTo(-sz*0.5,sz*0.4);
+ctx.closePath();
+ctx.fillStyle='rgba(200,191,170,0.85)';
+ctx.fill();
+ctx.restore();
+}
+}
+
+function loop(){update();draw();requestAnimationFrame(loop);}
+loop();
+})();
+</script>
+</body>
+</html>
