@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>植物は会話しているかもしれない</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}
+.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;margin-bottom:6px;}
+.masthead-name a{color:inherit;text-decoration:none;}
+.masthead-date{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;letter-spacing:.08em;}
+
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+.diagram-wrap{margin:28px 0;text-align:center;overflow-x:auto;}
+.diagram-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;text-align:center;max-width:520px;margin-left:auto;margin-right:auto;}
+
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+.step-summary{margin-top:2px;padding:16px 20px;background:#f3efe6;border:1px solid #c8bfaa;}
+.step-summary p{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;margin:0;line-height:1.8;}
+
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+.ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.ix-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}
+.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.ix-body{padding:24px 20px;background:white;}
+.ix-desc{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:18px;}
+.ix-desc strong{font-weight:600;color:#1a1208;}
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:14px;padding-top:12px;border-top:1px solid #e0d8c8;line-height:1.7;}
+.sim-canvas{width:100%;height:280px;display:block;background:#faf8f3;border:1px solid #e0d8c8;margin:12px 0;cursor:pointer;}
+.sim-controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;}
+.sim-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;padding:8px 16px;border:1px solid #c8bfaa;background:#f3efe6;color:#3d3020;cursor:pointer;transition:all .15s;}
+.sim-btn:hover,.sim-btn.active{border-color:#8b1a1a;background:#8b1a1a;color:white;}
+.sim-status{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;margin:10px 0;line-height:1.7;transition:opacity .6s ease;}
+.sim-status strong{color:#8b1a1a;font-weight:600;}
+
+
+.mixer-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.mixer-header{background:#3d3020;color:white;padding:11px 20px;}
+.mixer-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.mixer-body{padding:24px 20px;background:white;}
+.mixer-desc{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:18px;}
+.mixer-desc strong{font-weight:600;color:#1a1208;}
+.mixer-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.mixer-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;padding:8px 16px;border:1px solid #c8bfaa;background:#f3efe6;color:#3d3020;cursor:pointer;transition:all .2s;}
+.mixer-btn:hover{border-color:#8b1a1a;}
+.mixer-btn.active{border-color:#8b1a1a;background:#8b1a1a;color:white;}
+.mixer-chart{display:flex;flex-direction:column;gap:10px;}
+.mixer-row{display:flex;align-items:center;gap:12px;}
+
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+@media(max-width:720px){
+.cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+.cover-right{display:none;}
+.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+.summary-box{padding:0 20px;}
+.scenario{padding:0 20px;}
+.article{grid-template-columns:1fr;padding:0 20px;}
+.article-side{display:none;}
+.misconception-item{flex-direction:column;}
+.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+
+.mixer-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.mixer-header{background:#3d3020;color:white;padding:11px 20px;}
+.mixer-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.mixer-body{padding:24px 20px;background:white;}
+.mixer-desc{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:18px;}
+.mixer-desc strong{font-weight:600;color:#1a1208;}
+.mixer-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.mixer-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;padding:8px 16px;border:1px solid #c8bfaa;background:#f3efe6;color:#3d3020;cursor:pointer;transition:all .2s;}
+.mixer-btn:hover{border-color:#8b1a1a;}
+.mixer-btn.active{border-color:#8b1a1a;background:#8b1a1a;color:white;}
+.mixer-chart{display:flex;flex-direction:column;gap:10px;}
+.mixer-row{display:flex;align-items:center;gap:12px;}
+
+.terminal-label-wrap{padding:0 20px;}
+.terminal-wrap{padding:0 20px 40px;}
+.related{padding:32px 20px;}
+.related-grid{grid-template-columns:1fr;}
+.tip-box{left:0;transform:none;width:200px;}
+.tip-box::after{left:20px;transform:none;}
+.person-block{grid-template-columns:1fr;}
+.person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+<p class="masthead-name"><a href="https://qualiajournal.com/">知的好奇心シリーズ</a></p>
+<p class="masthead-date">生命・進化・生物</p>
+</div>
+
+<!-- COVER -->
+<div class="cover fade">
+<div class="cover-left">
+<p class="cover-kicker">Special Report</p>
+<h1>植物は<em>会話している</em>かもしれない</h1>
+<p class="cover-deck">芝を刈ったとき、あの青い匂いがする。それは草の「悲鳴」だ——少なくとも、化学的には。傷ついた植物が放つ揮発性の分子は、隣の植物の防御遺伝子を起動させる。目に見えない空気中のシグナルで、植物は「何か来る」と伝え合っている。</p>
+<div class="cover-byline"><span>Plant Biology</span><span>Chemical Ecology</span><span>Mycorrhizal Networks</span></div>
+</div>
+<div class="cover-right">
+<div class="est-card">
+<span class="est-label">Est.</span>
+<span class="est-year">1983</span>
+<p class="est-event">ボールドウィンとシュルツがポプラとカエデの「植物間コミュニケーション」をScience誌に発表。科学界に激しい論争を引き起こした。</p>
+<p class="est-context">同年、サリー・ライドが米国初の女性宇宙飛行士に。大韓航空機撃墜事件。任天堂ファミコン発売。</p>
+</div>
+<p class="cover-aside">2023年、埼玉大学のトヨタらが<strong>植物間の揮発性シグナルをリアルタイムで可視化</strong>することに成功。Nature Communications に掲載された。</p>
+</div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+<div class="scenario-inner">
+<p>芝を刈ったあと、庭に立ちこめるあの緑の匂い。雨上がりの森で、土と葉が混じった深い香り。私たちはそれを「自然のいい匂い」として楽しんでいる。</p>
+<p>だが、その匂いの正体は何だろう。あなたが「心地よい」と感じている分子は、もしかすると——隣の植物に向けて放たれた緊急メッセージかもしれない。</p>
+<p>植物は、声を持たないまま「会話」している。40年以上の研究が、その化学的な証拠を積み上げてきた。</p>
+</div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+<div class="meta-item">
+<span class="meta-label">難易度</span>
+<div class="difficulty-dots">
+<div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+<div class="dot"></div><div class="dot"></div>
+</div>
+<span class="difficulty-text">中級 — 専門知識は不要</span>
+</div>
+<div class="meta-sep"></div>
+<div class="meta-item">
+<span class="meta-label">読了時間</span>
+<span class="read-time">
+<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+約 20 分
+</span>
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+<div class="summary-inner">
+<span class="summary-icon">要点</span>
+<p class="summary-text">植物が放つ化学シグナルのしくみを体験し、「会話」と呼べるかどうかの境界線を自分で考える記事。</p>
+</div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+<!-- S1: 背景 -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">草の匂いは、悲鳴である。</h2>
+
+<p class="body-text fade">芝刈り機が通り過ぎたあと、あの鮮やかな緑の匂いが立ちのぼる。多くの人が「自然の匂い」として好む、あの香り。その正体は<strong><span class="tip" onclick="toggleTip(this)">グリーンリーフボラタイル<span class="tip-box"><strong>グリーンリーフボラタイル（GLV）</strong><br>植物の葉が傷つくと放出される揮発性の有機分子群。炭素数6のアルデヒドやアルコールが中心。あの「草の匂い」の正体で、隣の植物への警報シグナルとしても機能する。</span></span></strong>（GLV）と呼ばれる<span class="tip" onclick="toggleTip(this)">揮発性有機化合物<span class="tip-box"><strong>揮発性有機化合物（VOC）</strong><br>常温で空気中に気化しやすい有機分子の総称。植物が放つVOCは数百種に及び、匂いの元になるだけでなく、他の植物や昆虫への情報伝達に使われている。</span></span>だ。植物の組織が壊れたとき——葉がちぎれたとき、虫に食われたとき——1〜2秒以内にこの化合物は空気中に放出される。</p>
+
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 560 180" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<rect x="10" y="30" width="120" height="60" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="70" y="55" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#1a1208">植物が傷つく</text>
+<text x="70" y="72" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">虫・風・動物</text>
+<text x="152" y="64" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<rect x="175" y="30" width="120" height="60" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="235" y="52" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#1a1208">VOCを放出</text>
+<text x="235" y="68" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">GLV・テルペン類</text>
+<text x="235" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">1〜2秒で気化</text>
+<text x="317" y="64" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<rect x="340" y="30" width="120" height="60" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="400" y="52" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#1a1208">隣の植物が受信</text>
+<text x="400" y="68" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">気孔からVOCが侵入</text>
+<text x="400" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">Ca²⁺シグナル発生</text>
+<text x="482" y="64" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<rect x="505" y="20" width="50" height="80" rx="4" fill="#8b1a1a" stroke="#8b1a1a"/>
+<text x="530" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="white">防御</text>
+<text x="530" y="64" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#e8e4de">遺伝子</text>
+<text x="530" y="78" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#e8e4de">起動</text>
+<text x="280" y="130" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">空気を介した植物間シグナル伝達の基本フロー</text>
+<text x="280" y="148" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">※ 30種以上の植物種で確認されている</text>
+</svg>
+</div>
+
+<p class="body-text fade">ここで重要なのは、GLVが「ただの残骸」ではないということだ。傷ついた植物が放つGLVを受け取った隣の植物は、<strong>まだ自分は攻撃されていないのに</strong>、防御関連の遺伝子を起動させる。害虫に対する化学的な毒素を増産したり、害虫の天敵である寄生蜂を引き寄せる匂いを出し始めたりする。噛みくだいて言えば、「そっちに虫が来たなら、こっちにも来るかもしれない」という<em>先手の備え</em>をしている。</p>
+
+<div class="quote-block fade">
+<p class="quote-en">"A VOC emitted by one plant can be picked up by another plant, and they can either ready their defenses or they may actually directly induce those defenses."</p>
+<p class="quote-ja">ある植物が放出したVOCを別の植物が受け取ると、防御態勢を整えるか、あるいは実際に防御反応そのものを発動させる。</p>
+<p class="quote-attr">— André Kessler, Cornell大学 化学生態学者</p>
+</div>
+
+<p class="body-text fade">だが、これは本当に「会話」なのだろうか。それとも、隣人の非常ベルを偶然聞いただけの「盗み聞き」なのだろうか。この問いは、1983年の最初の発見以来、40年以上にわたって科学者たちを分断し続けている。</p>
+
+<div class="misconception fade">
+<div class="misconception-header"><span class="misconception-hl">読む前に確認 — よくある誤解</span></div>
+<div class="misconception-body">
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">植物は「Wood Wide Web」と呼ばれる菌糸ネットワークで意図的にお互いを助け合っている</p></div>
+<div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">菌根ネットワーク自体は存在するが、「意図的な助け合い」という解釈には近年強い批判がある。化学シグナルは確認済みだが、それが利他的行為かどうかは未決着</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">植物は脳がないから、何も「感じて」いないし、コミュニケーションもしない</p></div>
+<div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">脳は不要。植物は化学物質を放出・受信し、遺伝子発現を変化させる。このプロセスは30種以上の植物で再現されている</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">植物のコミュニケーションは最近発見された新しい概念だ</p></div>
+<div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">最初の論文は1983年。40年以上の蓄積がある。初期は「トーキング・ツリー」と嘲笑されたが、現在は化学シグナルの存在自体に異論はない</p></div>
+</div>
+</div>
+</div>
+
+<hr class="art-rule">
+
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">嘲笑から始まった40年</h2>
+
+<p class="body-text fade">1983年7月、ダートマス大学の<span class="tip" onclick="toggleTip(this)">イアン・ボールドウィン<span class="tip-box"><strong>イアン・ボールドウィン</strong><br>植物の化学的防御を研究する生物学者。1983年にジャック・シュルツとの共同研究で「植物間コミュニケーション」の仮説を発表。後にマックス・プランク化学生態学研究所の所長に。</span></span>とジャック・シュルツがScience誌に短い論文を出した。ポプラの若木を密閉容器に入れ、一部の葉を手で引き裂く。すると52時間以内に、<strong>傷つけた木だけでなく、同じ容器内の無傷の木まで</strong><span class="tip" onclick="toggleTip(this)">フェノール類化合物<span class="tip-box"><strong>フェノール類化合物</strong><br>植物が作る防御物質の一群。タンニンもこの仲間。虫に食われにくくする苦み・渋みの成分で、植物がストレスを受けると生産量が増える。</span></span>の濃度を上昇させた。別の密閉容器に入れた無傷の木には、そのような変化は起きなかった。</p>
+
+<div class="person-block fade">
+<div class="person-block-img">
+<svg width="80" height="90" viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+<circle cx="40" cy="28" r="18" fill="#c8bfaa"/>
+<rect x="20" y="50" width="40" height="35" rx="8" fill="#c8bfaa"/>
+<circle cx="34" cy="25" r="2" fill="#7a6a55"/>
+<circle cx="46" cy="25" r="2" fill="#7a6a55"/>
+<path d="M35 33 Q40 37 45 33" stroke="#7a6a55" fill="none" stroke-width="1.5"/>
+</svg>
+</div>
+<div class="person-block-body">
+<p class="person-block-name">Ian T. Baldwin & Jack C. Schultz</p>
+<p class="person-block-role">Dartmouth College, 1983</p>
+<p class="person-block-desc">ポプラとカエデの実験で「植物間の空気を介した化学的コミュニケーション」の証拠を初めて報告。メディアには「トーキング・ツリー」として紹介されたが、科学者からは激しい批判を受けた。統計手法の不備を指摘する反論論文が翌年Nature系列誌に出された。</p>
+</div>
+</div>
+
+<p class="body-text fade">報道が先走った。「木が会話している」とニューヨーク・タイムズが書いた。当時ベストセラーだった『植物の秘密の生活』が広めた「植物に話しかけると育つ」式のニューエイジ的な空気の中で、科学者たちはこの発見を冷ややかに見た。「統計的に不十分」「再現条件が不明」——批判は的を射ていた部分もあり、ボールドウィンとシュルツはその後の追加研究の資金調達に苦しむことになる。</p>
+
+<p class="body-text fade">しかし、嘲笑は長くは続かなかった。2000年代に入ると、技術の進歩が状況を変えた。<span class="tip" onclick="toggleTip(this)">ガスクロマトグラフィー質量分析法<span class="tip-box"><strong>ガスクロマトグラフィー質量分析法（GC-MS）</strong><br>気体にした試料を成分ごとに分離し、それぞれの分子量を測定する分析技術。どの化学物質がどれだけ含まれているかを精密に特定できる。植物VOCの同定に欠かせないツール。</span></span>（GC-MS）の精度が上がり、植物が放出するVOCの成分を個別に特定できるようになった。<span class="tip" onclick="toggleTip(this)">テルペノイド<span class="tip-box"><strong>テルペノイド</strong><br>植物が作る大きな化合物グループ。樹脂の匂い、花の香り、柑橘系の香りなどの正体。モノテルペン（炭素10個）とセスキテルペン（炭素15個）が植物間シグナルでは重要。</span></span>、グリーンリーフボラタイル、<span class="tip" onclick="toggleTip(this)">メチルジャスモン酸<span class="tip-box"><strong>メチルジャスモン酸（MeJA）</strong><br>ジャスモン酸のメチル化体。植物の防御応答を誘導する主要なシグナル分子。空気中を漂って隣の植物にも防御態勢を取らせることから、「植物の警報フェロモン」とも呼ばれる。</span></span>、<span class="tip" onclick="toggleTip(this)">メチルサリチル酸<span class="tip-box"><strong>メチルサリチル酸（MeSA）</strong><br>サリチル酸のメチル化体。病原菌に感染した植物が多く放出する。湿布薬の匂い成分でもある。隣の植物に「病原菌が来た」と伝える役割を持つ。</span></span>——「匂い」は一枚岩ではなく、数百種類の分子が混ざったカクテルだった。そして成分の配合比は、<em>何に攻撃されているかによって変わる</em>ことがわかってきた。</p>
+
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 580 230" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<text x="290" y="20" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#7a6a55" letter-spacing=".08em">植物VOCの主な分子グループ</text>
+<rect x="10" y="38" width="130" height="85" rx="4" fill="white" stroke="#c8bfaa"/>
+<text x="75" y="60" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#8b1a1a">GLV</text>
+<text x="75" y="78" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">グリーンリーフ</text>
+<text x="75" y="93" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">ボラタイル</text>
+<text x="75" y="112" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">草の匂い</text>
+
+<rect x="155" y="38" width="130" height="85" rx="4" fill="white" stroke="#c8bfaa"/>
+<text x="220" y="60" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#8b1a1a">テルペノイド</text>
+<text x="220" y="78" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">モノテルペン</text>
+<text x="220" y="93" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">セスキテルペン</text>
+<text x="220" y="112" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">樹脂・花の香り</text>
+
+<rect x="300" y="38" width="130" height="85" rx="4" fill="white" stroke="#c8bfaa"/>
+<text x="365" y="56" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#8b1a1a">メチル</text>
+<text x="365" y="73" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#8b1a1a">ジャスモン酸</text>
+<text x="365" y="93" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">MeJA</text>
+<text x="365" y="112" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">防御誘導の鍵</text>
+
+<rect x="445" y="38" width="130" height="85" rx="4" fill="white" stroke="#c8bfaa"/>
+<text x="510" y="56" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#8b1a1a">メチル</text>
+<text x="510" y="73" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#8b1a1a">サリチル酸</text>
+<text x="510" y="93" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">MeSA</text>
+<text x="510" y="112" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">病原体の警報</text>
+
+<text x="290" y="152" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020">攻撃の種類によって、配合が変わる</text>
+<line x1="80" y1="168" x2="500" y2="168" stroke="#e0d8c8" stroke-width="1"/>
+<text x="140" y="188" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">虫に食われた場合</text>
+<text x="140" y="206" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a">GLV + テルペン ↑</text>
+<text x="320" y="188" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">病原菌に感染した場合</text>
+<text x="320" y="206" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a">MeSA ↑</text>
+<text x="480" y="188" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">機械的に切断した場合</text>
+<text x="480" y="206" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a">GLV のみ</text>
+</svg>
+</div>
+
+<!-- VOC Cocktail Mixer -->
+<div class="mixer-wrap fade">
+<div class="mixer-header"><span class="mixer-hl">VOCカクテル調合器 — 攻撃の種類でレシピが変わる</span></div>
+<div class="mixer-body">
+<p class="mixer-desc">植物が放出するVOCの配合は、<strong>何に攻撃されているか</strong>によって変わる。下のボタンで攻撃の種類を切り替えると、4種のVOCグループの放出比率がリアルタイムで変化する。</p>
+<div class="mixer-btns">
+<button class="mixer-btn active" onclick="setMixer('caterpillar')">🐛 毛虫</button>
+<button class="mixer-btn" onclick="setMixer('aphid')">🐜 アブラムシ</button>
+<button class="mixer-btn" onclick="setMixer('pathogen')">🦠 病原菌</button>
+<button class="mixer-btn" onclick="setMixer('mowing')">✂️ 芝刈り機</button>
+</div>
+<div class="mixer-chart">
+<div class="mixer-row"><span class="mixer-label" style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#7a6a55;width:60px;flex-shrink:0;text-align:right;">GLV</span><div style="flex:1;height:24px;background:#f3efe6;border:1px solid #e0d8c8;position:relative;overflow:hidden;"><div id="mxGLV" style="height:100%;width:70%;background:#7a9a40;position:absolute;left:0;top:0;transition:width 1s ease;"></div></div><span id="mxGLVv" style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;width:32px;flex-shrink:0;text-align:right;">70%</span></div>
+<div class="mixer-row"><span class="mixer-label" style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#7a6a55;width:60px;flex-shrink:0;text-align:right;">テルペン</span><div style="flex:1;height:24px;background:#f3efe6;border:1px solid #e0d8c8;position:relative;overflow:hidden;"><div id="mxTerp" style="height:100%;width:80%;background:#c8a040;position:absolute;left:0;top:0;transition:width 1s ease;"></div></div><span id="mxTerpv" style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;width:32px;flex-shrink:0;text-align:right;">80%</span></div>
+<div class="mixer-row"><span class="mixer-label" style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#7a6a55;width:60px;flex-shrink:0;text-align:right;">MeJA</span><div style="flex:1;height:24px;background:#f3efe6;border:1px solid #e0d8c8;position:relative;overflow:hidden;"><div id="mxMeJA" style="height:100%;width:60%;background:#8b1a1a;position:absolute;left:0;top:0;transition:width 1s ease;"></div></div><span id="mxMeJAv" style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;width:32px;flex-shrink:0;text-align:right;">60%</span></div>
+<div class="mixer-row"><span class="mixer-label" style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#7a6a55;width:60px;flex-shrink:0;text-align:right;">MeSA</span><div style="flex:1;height:24px;background:#f3efe6;border:1px solid #e0d8c8;position:relative;overflow:hidden;"><div id="mxMeSA" style="height:100%;width:15%;background:#4a6a90;position:absolute;left:0;top:0;transition:width 1s ease;"></div></div><span id="mxMeSAv" style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;width:32px;flex-shrink:0;text-align:right;">15%</span></div>
+</div>
+<p id="mixerExplain" style="font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;margin-top:16px;padding-top:12px;border-top:1px solid #e0d8c8;transition:opacity .6s ease;"><strong>毛虫が葉を噛む</strong>と、GLVとテルペノイドが大量に放出される。テルペノイドは毛虫の天敵である寄生蜂を引き寄せる「間接防御」のシグナルだ。MeJAも上昇し、隣の植物にプロテアーゼ阻害物質（毛虫の消化を妨げる毒素）の増産を促す。</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:14px;padding-top:12px;border-top:1px solid #e0d8c8;line-height:1.7;">配合比率は複数の研究に基づく概念的な表現。実際の比率は植物種・環境条件・攻撃の強度によって異なる。GLV=グリーンリーフボラタイル、MeJA=メチルジャスモン酸、MeSA=メチルサリチル酸。</p>
+</div>
+</div>
+
+<hr class="art-rule">
+
+<!-- S2: 体験する -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">見えない会話を、目で見る</h2>
+
+<p class="body-text fade">2023年、埼玉大学の<span class="tip" onclick="toggleTip(this)">トヨタ正嗣<span class="tip-box"><strong>トヨタ正嗣（Masatsugu Toyota）</strong><br>埼玉大学教授。植物のカルシウムシグナル伝達を専門とする。蛍光タンパク質センサーを用いた植物の「会話」のリアルタイム可視化に成功し、2023年Nature Communicationsに発表。</span></span>らの研究チームが、植物間コミュニケーションの歴史を変える実験を行った。蛍光タンパク質を組み込んだシロイヌナズナを使い、VOCを受け取った瞬間に細胞内で起こる<span class="tip" onclick="toggleTip(this)">カルシウムイオン<span class="tip-box"><strong>カルシウムイオン（Ca²⁺）</strong><br>植物の細胞内シグナル伝達で重要な役割を果たすイオン。外部からの刺激を受けると細胞質内のCa²⁺濃度が上昇し、防御関連遺伝子のスイッチが入る。動物の神経伝達におけるイオンの役割と構造的に似ている。</span></span>濃度の変化を、リアルタイムで映像として捉えた。</p>
+
+<p class="body-text fade">結果は鮮烈だった。虫に食われた植物のそばに置いた無傷のシロイヌナズナが、VOCを受け取ると<strong>約1分以内に</strong>葉の気孔の細胞でカルシウムシグナルが光り、その光は葉肉細胞、表皮細胞へと広がっていった。植物に「鼻」はない。だがトヨタは述べている——<em>気孔が鼻の代わりをしている</em>と。</p>
+
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">体験 — 植物のシグナル伝達シミュレーション</span></div>
+<div class="ix-body">
+<p class="ix-desc">下のキャンバスは、植物間のVOCシグナル伝達を概念的に再現したものだ。<strong>左の植物をクリック</strong>すると「虫に食われた」状態になり、VOC分子が空気中に放出される。右の植物がそれを受け取ると、細胞内でカルシウムシグナルが光る——トヨタらの実験で実際に観察された現象の簡略版である。</p>
+<canvas id="plantSim" class="sim-canvas"></canvas>
+<div class="sim-controls">
+<button class="sim-btn" onclick="startDamage()">🐛 虫が食べる</button>
+<button class="sim-btn" onclick="resetSim()">リセット</button>
+</div>
+<p class="sim-status" id="simStatus">左の植物をクリックするか、「虫が食べる」ボタンを押してください。</p>
+<p class="ix-note">トヨタら（2023年）のNature Communications論文に基づく概念的な可視化。実際の実験ではシロイヌナズナの蛍光カルシウムセンサーを用い、GLV（(Z)-3-ヘキセナールおよび(E)-2-ヘキセナール）への応答を観察している。</p>
+</div>
+</div>
+
+<p class="body-text fade">ここで立ち止まって考えてほしい。いま見たのは、片方の植物の「傷」が化学分子として空気中を漂い、もう片方の植物の細胞内で物理的な反応を引き起こす、という一連の流れだ。電話回線もインターネットもない。ただ風に乗った分子が、受け手の遺伝子のスイッチを入れる。これを「コミュニケーション」と呼んでよいものだろうか。</p>
+
+<div class="pull fade">
+<p class="pull-q">"We have finally unveiled the intricate story of when, where, and how plants respond to airborne '<em>warning messages</em>' from their threatened neighbors."</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">私たちはついに、植物がいつ、どこで、どのように隣の植物からの空気を介した「警告メッセージ」に応答するかという複雑な物語を解明した。</p>
+<p class="pull-attr">— Masatsugu Toyota, Nature Communications (2023)</p>
+</div>
+
+<hr class="art-rule">
+
+<!-- S3: なぜか -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">メカニズム——植物はどう「聞いて」いるか</h2>
+
+<p class="body-text fade">VOCが空気中に放出されることまではわかった。だが、受け取る側の植物は、鼻も耳も脳も持たない。どうやって化学分子を「理解」するのだろうか。2023年のトヨタらの実験は、そのメカニズムの一端を明らかにした。</p>
+
+<div class="steps-wrap fade">
+<p class="steps-head">VOC受信のメカニズム（4ステップ）</p>
+<div class="step-card" id="sc1">
+<div class="step-hd" onclick="tog(1)">
+<div class="step-nb">1</div>
+<div class="step-tw"><div class="step-title">気孔がVOCを取り込む</div><div class="step-sub">植物の「鼻」は葉の表面にある</div></div>
+<div class="step-arr">▼</div>
+</div>
+<div class="step-body"><p>葉の表面にある<strong>気孔</strong>（きこう）は、通常は光合成のために二酸化炭素を取り込む小さな穴だ。しかしVOCもここから侵入する。トヨタらの実験では、気孔を閉じる植物ホルモン（アブシシン酸）を前処理すると、カルシウム応答が減弱した。気孔が開いているかどうかで、「聞こえるかどうか」が変わる。</p></div>
+</div>
+<div class="step-card" id="sc2">
+<div class="step-hd" onclick="tog(2)">
+<div class="step-nb">2</div>
+<div class="step-tw"><div class="step-title">ガードセルがまず反応する</div><div class="step-sub">約1分以内にカルシウム濃度が上昇</div></div>
+<div class="step-arr">▼</div>
+</div>
+<div class="step-body"><p>気孔を構成する<strong>孔辺細胞</strong>（ガードセル）が最初にVOCに触れ、約1分以内に細胞質内のカルシウムイオン濃度が急上昇する。蛍光タンパク質センサーでこれを捉えると、孔辺細胞が明るく光るのが見える。門番が最初に「侵入者」を検知する構図だ。</p></div>
+</div>
+<div class="step-card" id="sc3">
+<div class="step-hd" onclick="tog(3)">
+<div class="step-nb">3</div>
+<div class="step-tw"><div class="step-title">シグナルが内部に伝播する</div><div class="step-sub">葉肉細胞→表皮細胞へ広がる</div></div>
+<div class="step-arr">▼</div>
+</div>
+<div class="step-body"><p>孔辺細胞で始まったカルシウムシグナルは、次に<strong>葉肉細胞</strong>に伝わり、最終的に表皮細胞にまで到達する。このカスケードは数分以内に起こる。重要な点は、カルシウムチャネル阻害剤でこの伝播をブロックすると、防御遺伝子の発現も止まったということだ。カルシウムシグナルが防御反応の<em>必須のスイッチ</em>であることが裏付けられた。</p></div>
+</div>
+<div class="step-card" id="sc4">
+<div class="step-hd" onclick="tog(4)">
+<div class="step-nb">4</div>
+<div class="step-tw"><div class="step-title">防御遺伝子が起動する</div><div class="step-sub">毒素の増産、天敵の誘引</div></div>
+<div class="step-arr">▼</div>
+</div>
+<div class="step-body"><p>カルシウムシグナルをきっかけに、植物はストレス応答遺伝子群を一斉に活性化させる。具体的には、<strong>プロテアーゼ阻害物質</strong>（虫の消化を妨げる毒素）の増産、テルペン類（寄生蜂を引き寄せる匂い）の放出などが始まる。まだ攻撃されていない植物が、先手を打って武装する。これが<span class="tip" onclick="toggleTip(this)">防御プライミング<span class="tip-box"><strong>防御プライミング</strong><br>VOCを受けた植物が「臨戦態勢」に入ること。まだ攻撃されていないのに防御関連の遺伝子を準備状態にしておき、実際に攻撃されたときに素早く・強く反応できるようにする。2004年にエンゲルベルトらが報告。</span></span>と呼ばれる現象だ。</p></div>
+</div>
+<div class="step-summary"><p>要するに: 気孔 → カルシウムシグナル → 防御遺伝子の起動。脳も神経も使わず、化学的な連鎖反応だけで情報伝達が完結する。</p></div>
+</div>
+
+<hr class="art-rule">
+
+<!-- S4: 歴史 -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">「トーキング・ツリー」から科学へ</h2>
+
+<p class="body-text fade">この分野の歴史を追うと、嘲笑と再評価が繰り返されてきた。赤い点は、植物コミュニケーション研究の転換点を示す。</p>
+
+<div class="timeline fade">
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">1983</p>
+<p class="tl-title">ボールドウィン＆シュルツの論文</p>
+<p class="tl-desc">ポプラとカエデで「植物間の空気を介した化学的コミュニケーション」を報告。Science誌掲載。メディアは大きく取り上げたが、科学界は懐疑的だった。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1985</p>
+<p class="tl-title">批判論文の嵐</p>
+<p class="tl-desc">フォウラーとローソンが「悪魔の代弁者」的な反論論文をAmerican Naturalistに掲載。統計的不備と再現性の問題を指摘。「トーキング・ツリー」は一時的に科学の表舞台から退いた。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1997</p>
+<p class="tl-title">シマードのNature論文</p>
+<p class="tl-desc">スザンヌ・シマードがダグラスファーとシラカバの間で菌根ネットワークを介した炭素移動を報告。「Wood Wide Web」という呼称がNature編集部により付けられた。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">2000</p>
+<p class="tl-title">カーバンのフィールド実験</p>
+<p class="tl-desc">リチャード・カーバンが野外環境でセージブラッシュの揮発性シグナルがタバコの防御を誘導することを確認。実験室外での初の確実な証拠とされた。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">2004</p>
+<p class="tl-title">プライミングの発見</p>
+<p class="tl-desc">エンゲルベルトらがVOCによる「防御プライミング」を報告。VOCを受けた植物は、実際に攻撃されたとき、受けていない植物よりも速く強く反応することがわかった。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">2023</p>
+<p class="tl-title">トヨタらのリアルタイム可視化</p>
+<p class="tl-desc">埼玉大学のチームが蛍光カルシウムセンサーで植物間VOCシグナル伝達をリアルタイムに映像化。気孔→ガードセル→葉肉細胞の伝播経路を初めて特定した。Nature Communications掲載。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">2023</p>
+<p class="tl-title">「Wood Wide Web」への大規模批判</p>
+<p class="tl-desc">カーストらがNature Ecology & Evolutionに批判的レビューを発表。菌根ネットワークによる「意図的な栄養分配」の証拠は、既存論文の引用の半数以上が元論文の内容を不正確に再現していたと指摘。</p>
+</div>
+</div>
+
+<hr class="art-rule">
+
+<!-- S5: つまり -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">「会話」か「盗み聞き」か</h2>
+
+<p class="body-text fade">ここまでの話を整理しよう。化学的な事実のレベルでは、疑問の余地はほぼない。傷ついた植物がVOCを放出すること、隣の植物がそれを受け取って防御態勢を変えること——これらは30種以上の植物で確認されている。2023年には、そのメカニズムの一端（気孔→カルシウムシグナル→遺伝子発現）まで可視化された。</p>
+
+<p class="body-text fade">問題は、<em>これを「会話」と呼んでよいのか</em>という点に集約される。コミュニケーションという言葉は、ふつう「送り手が意図を持って情報を発信し、受け手がそれを解読する」という構図を想起させる。しかし植物のVOC放出は、意図的な「発信」なのか、それとも単なる組織損傷の副産物——いわば「血が出ている」のを見られたにすぎないのか。</p>
+
+<p class="body-text fade">2019年のカルスケらの研究は、この問いに興味深い手がかりを与えた。セイタカアワダチソウで実験した結果、害虫の攻撃を受けているときに限り、植物は遺伝的に近いかどうかにかかわらず<strong>VOCの組成を近づけ合う</strong>ことがわかった。つまり「暗号を共通化する」ような振る舞いを見せる。攻撃がないときは、血縁関係のない植物に対してはシグナルの「暗号」を変え、情報を共有しない。これは偶然の副産物というより、文脈に応じた情報制御に見える。</p>
+
+<div class="img-placeholder fade">
+<div class="img-ph-area">
+<span class="img-ph-icon">🖼️</span>
+<p class="img-ph-title">イラスト①｜植物のVOC「言語」が統一されていく場面</p>
+<p class="img-ph-desc">害虫の攻撃を受けた植物群が、種を超えてVOCの組成を近づけ合い「共通の警報」を出している概念図。平時の個別の匂いプロファイルが、攻撃時に収斂する。</p>
+<div class="img-ph-prompt">
+<p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
+<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, several plants of different species standing in a row, with wavy lines emanating from each plant converging into similar patterns when a caterpillar approaches from one side, Japanese scroll painting aesthetic, no text</p>
+</div>
+</div>
+<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+</div>
+
+<p class="body-text fade">一方で、地下のネットワーク——いわゆる「Wood Wide Web」——については、話が大きく変わってきた。2023年、カーストらがNature Ecology & Evolutionに発表したレビューは、菌根ネットワークを介した「木と木の意図的な助け合い」を支持する証拠が、これまで考えられていたほど強くないことを示した。2022年に出版された査読付き論文のうち、元の研究を正確に引用していたのは<strong>半数未満</strong>だったという。引用が繰り返されるうちに、「養分が移動した」が「養分を意図的に送った」に変わり、「菌糸がつながっていた」が「木が助け合っている」に書き換わる。伝言ゲームのように、科学の内部で物語が膨張していた。</p>
+
+<p class="body-text fade">これは、事実と解釈の区別を怠ったときに何が起こるかを示す好例だと思う。いや——好例というのは冷たすぎるかもしれない。シマードの研究を読んで森を見る目が変わった人は多いだろう。その感動自体を否定する理由はない。だが科学は感動の維持装置ではない。「データが示すこと」と「そこから私たちが読み取りたいこと」は、常に別のものだ。</p>
+
+<div class="pull fade">
+<p class="pull-q">化学シグナルの存在は<em>事実</em>だ。それを「会話」と呼ぶかどうかは、私たちが「会話」という言葉に何を込めるかによる。</p>
+</div>
+
+<!-- 文化 -->
+<div class="culture-block fade">
+<p class="culture-title">映画『Avatar』（2009）</p>
+<p class="culture-desc">パンドラの植物・動物・先住民が神経網のようなネットワークで接続されている設定は、菌根ネットワークの研究から着想を得ている。ジェームズ・キャメロンは植物学者・動物学者に助言を求め、パンドラの生態系を設計した。</p>
+</div>
+<div class="culture-block fade">
+<p class="culture-title">ペーター・ヴォールレーベン『樹木たちの知られざる生活』（2015）</p>
+<p class="culture-desc">ドイツの森林官による一般向け書籍。「母なる木」が菌糸ネットワークで子どもの木を育てるという物語は世界的ベストセラーになったが、科学者からは擬人化が過ぎるという批判も受けている。</p>
+</div>
+
+<!-- 参考文献 -->
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+<div class="ref-list">
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1983</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1126/science.221.4607.277" target="_blank" rel="noopener">Rapid Changes in Tree Leaf Chemistry Induced by Damage: Evidence for Communication Between Plants</a></p>
+<p class="ref-author">Ian T. Baldwin, Jack C. Schultz — Science</p>
+<p class="ref-desc">すべてはここから始まった。ポプラとカエデの実験の元論文。45本の苗木と密閉容器という素朴な実験デザインが、40年の論争を生んだ。短い論文だが、「被験者がどうなったか」が具体的に書かれていて読みやすい。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">実験論文</span><span class="ref-year">2023</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1038/s41467-023-41589-9" target="_blank" rel="noopener">Green leaf volatile sensory calcium transduction in Arabidopsis</a></p>
+<p class="ref-author">Yuri Aratani, Takuya Uemura, Takuma Hagihara, Kenji Matsui, Masatsugu Toyota — Nature Communications</p>
+<p class="ref-desc">「植物の会話」を映像として初めて見せた論文。蛍光カルシウムセンサーの動画は論文のSupplementaryから見られる。気孔→ガードセル→葉肉細胞と光が広がっていく映像は、一見の価値がある。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">批判的レビュー</span><span class="ref-year">2023</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1038/s41559-023-01986-1" target="_blank" rel="noopener">Positive citation bias and overinterpreted results lead to misinformation on common mycorrhizal networks in forests</a></p>
+<p class="ref-author">Justine Karst, Melanie D. Jones, Jason D. Hoeksema — Nature Ecology & Evolution</p>
+<p class="ref-desc">「Wood Wide Web」の通説に対する系統的な批判。1,676件の引用を追跡し、元論文の内容がどう歪んでいったかを記録した。科学における「物語の伝播」がどう起こるかの事例研究としても読める。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2022</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1093/jxb/erab519" target="_blank" rel="noopener">Volatile-mediated plant–plant interactions: volatile organic compounds as modulators of receiver plant defence, growth, and reproduction</a></p>
+<p class="ref-author">James D. Blande et al. — Journal of Experimental Botany</p>
+<p class="ref-desc">VOCを介した植物間相互作用の全体像をまとめた包括的レビュー。防御だけでなく、成長や繁殖にまでVOCが影響することを示す最新の知見が整理されている。</p>
+</div>
+</div>
+
+<!-- 信頼度ノート -->
+<div class="note-box fade">
+<strong>📌 この記事について</strong><br>
+植物のVOCを介した化学シグナル伝達については、1983年以降の査読付き論文を主な根拠としている。2023年のトヨタらの研究（Nature Communications）はカルシウムシグナルの可視化を報告した最新の成果だが、すべてのVOCの受信メカニズムが解明されたわけではない。菌根ネットワーク（Wood Wide Web）に関しては、カーストら（2023年）の批判的レビュー以降、解釈が分かれている。この記事では、確認されている事実と未決着の解釈を可能な限り分けて記述した。
+</div>
+
+<div class="tags">
+<span class="tag">Plant Communication</span>
+<span class="tag">VOC</span>
+<span class="tag">Mycorrhizal Network</span>
+<span class="tag">Chemical Ecology</span>
+<span class="tag">Calcium Signaling</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+<div style="position:sticky;top:40px;">
+<div class="sidebar-block fade">
+<p class="sidebar-label">Key Number</p>
+<p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">30+</p>
+<p class="sidebar-text">VOCを介した植物間シグナル伝達が確認されている植物の種数。1983年以降、実験室と野外の両方で蓄積された。</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">歴史的背景</p>
+<p class="sidebar-text">1983年のボールドウィン＆シュルツ論文が起点。「トーキング・ツリー」として嘲笑された後、2000年代の分析技術の進歩で復権した。2023年に可視化に成功。</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">作品への登場</p>
+<p class="sidebar-text">映画『Avatar』のパンドラの生態系は菌根ネットワーク研究から着想。HBO『The Last of Us』の菌糸感染もこの概念を応用。</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">関連トピック</p>
+<p class="sidebar-text">
+— C-06 音は存在しない<br>
+— D-01 色は存在しない<br>
+— I-14 粘菌の知性<br>
+— K-01 ボイドと群れの知能
+</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">信頼度</p>
+<p class="sidebar-text"><em>化学シグナルの存在</em>は査読付き論文で繰り返し再現されている。<strong>菌根ネットワークの「意図的分配」</strong>については2023年以降、解釈が大きく揺らいでいる。</p>
+</div>
+</div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+<div class="terminal-label">
+<span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+<span class="terminal-label-line"></span>
+</div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+<div class="terminal" id="terminalBlock">
+<div class="terminal-bar">
+<div class="terminal-dots">
+<div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+</div>
+<div class="terminal-title">after.sh — 読後の対話ログ（架空）</div>
+</div>
+<div class="terminal-body">
+<span class="t-sys" id="ts0">// session started — 植物は会話しているかもしれない</span>
+
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ芝刈りって、草にとっては集団虐殺みたいなこと？</span></div>
+<span class="t-output" id="to1">比喩としてはね。ただ、草の立場を想像する必要はないかもしれない。<em>匂い</em>は事実として出ている。それを「苦痛」と呼ぶかは、また別の問い。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;Wood Wide Webは嘘だったってこと？</span></div>
+<span class="t-output" id="to2">菌糸が木の根をつないでいること自体は嘘じゃない。<strong>「母なる木がわが子に栄養を送る」</strong>みたいな物語が、データより先に走りすぎた。引用のたびに盛られて、原論文が言っていないことが「事実」になっていた。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;植物に意図はあるの？</span></div>
+<span class="t-output" id="to3">意図があるかは、誰にもわからない。VOCの組成が状況に応じて変わるのは事実。でも<em>「変えようとして変えた」</em>のか、<em>「結果的に変わった」</em>のかは、区別がつかない。少なくとも今のところは。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;人間が植物の「言葉」を聞き取れる日は来る？</span></div>
+<span class="t-output" id="to4">もう来てる、とも言える。GC-MSやカルシウムイメージングで、何を放出しているかは読めるようになった。問題は、<strong>それが「言葉」なのか「症状」なのか</strong>を決めるのは、結局こっち側の解釈だということ。</span>
+<hr class="t-divider">
+
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 庭の匂い、ちょっと気になるようになったかも</span></div>
+</div>
+</div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+<p class="related-label">次に読む</p>
+<div class="related-grid">
+<a class="related-card" href="#">
+<p class="related-card-tag">音・音楽・知覚</p>
+<p class="related-card-title">音は存在しない</p>
+<p class="related-card-desc">空気の振動が存在するだけで「ドの音」は脳の解釈にすぎない。世界は、永遠に無音である。</p>
+<p class="related-card-arrow">読む →</p>
+</a>
+<a class="related-card" href="#">
+<p class="related-card-tag">生命・進化・生物</p>
+<p class="related-card-title">粘菌の知性</p>
+<p class="related-card-desc">脳を持たない単細胞生物が迷路の最短経路を解き、鉄道網に似た最適ネットワークを作る。</p>
+<p class="related-card-arrow">近日公開</p>
+</a>
+</div>
+</div>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+const h=document.documentElement.scrollHeight-innerHeight;
+document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ
+function toggleTip(el){
+const isOpen=el.classList.contains('open');
+document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+if(!isOpen)el.classList.add('open');
+}
+document.addEventListener('click',e=>{
+if(!e.target.closest('.tip'))
+document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+});
+
+// ステップアコーディオン
+function tog(n){
+const c=document.getElementById('sc'+n);
+const was=c.classList.contains('open');
+document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ターミナルアニメーション
+const tseq=[
+{id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+{id:'tl2',delay:2600},{id:'to2',delay:3200},
+{id:'tl3',delay:4400},{id:'to3',delay:5000},
+{id:'tl4',delay:6200},{id:'to4',delay:6800},
+{id:'tl5',delay:8000},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+if(entries[0].isIntersecting&&!tStarted){
+tStarted=true;
+tseq.forEach(s=>{
+setTimeout(()=>{
+const el=document.getElementById(s.id);
+if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+},s.delay);
+});
+}
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// ===== VOC Cocktail Mixer =====
+const mixerData={
+caterpillar:{glv:70,terp:80,meja:60,mesa:15,text:'<strong>毛虫が葉を噛む</strong>と、GLVとテルペノイドが大量に放出される。テルペノイドは毛虫の天敵である寄生蜂を引き寄せる「間接防御」のシグナルだ。MeJAも上昇し、隣の植物にプロテアーゼ阻害物質（毛虫の消化を妨げる毒素）の増産を促す。'},
+aphid:{glv:30,terp:50,meja:75,mesa:20,text:'<strong>アブラムシは葉を「噛む」のではなく「吸う」</strong>。組織の破壊が少ないためGLVの放出は控えめだが、MeJAが強く上昇する。植物はジャスモン酸経路を活性化し、アブラムシの繁殖を抑える防御物質を増産する。'},
+pathogen:{glv:10,terp:20,meja:25,mesa:85,text:'<strong>病原菌に感染</strong>すると、MeSA（メチルサリチル酸）が主役になる。サリチル酸経路が活性化し、感染箇所の周囲の細胞を自ら殺して病原菌の拡散を食い止める「過敏感反応」を誘導する。隣の植物もMeSAを受け取り、病原菌への備えを始める。'},
+mowing:{glv:95,terp:10,meja:5,mesa:5,text:'<strong>芝刈り機による機械的切断</strong>では、GLVがほぼ単独で大量に放出される。あの「草の匂い」の正体だ。虫による攻撃と違い、テルペノイドやMeJAの上昇はわずか——植物は「何に攻撃されたか」を区別していないが、損傷の種類によって放出パターンが異なる。'}
+};
+function setMixer(type){
+document.querySelectorAll('.mixer-btn').forEach(b=>b.classList.remove('active'));
+event.target.classList.add('active');
+const d=mixerData[type];
+document.getElementById('mxGLV').style.width=d.glv+'%';
+document.getElementById('mxTerp').style.width=d.terp+'%';
+document.getElementById('mxMeJA').style.width=d.meja+'%';
+document.getElementById('mxMeSA').style.width=d.mesa+'%';
+document.getElementById('mxGLVv').textContent=d.glv+'%';
+document.getElementById('mxTerpv').textContent=d.terp+'%';
+document.getElementById('mxMeJAv').textContent=d.meja+'%';
+document.getElementById('mxMeSAv').textContent=d.mesa+'%';
+const el=document.getElementById('mixerExplain');
+el.style.opacity='0';
+setTimeout(()=>{el.innerHTML=d.text;el.style.opacity='1';},400);
+}
+
+// ===== Plant Simulation (v2: fixed leaves, slower particles, fade status) =====
+const canvas=document.getElementById('plantSim');
+const ctx=canvas.getContext('2d');
+let cW,cH;
+let particles=[];
+let leftPlant={x:0,y:0,damaged:false,leaves:[]};
+let rightPlant={x:0,y:0,glowing:false,glowIntensity:0,leaves:[]};
+let vocReached=false;
+
+function initLeaves(px,py){
+const leaves=[];
+for(let i=0;i<5;i++){
+const side=i%2===0?1:-1;
+leaves.push({x:px+side*(16+Math.random()*4),y:py-15-i*12,rx:12,ry:6,rot:side*0.5});
+}
+return leaves;
+}
+
+function resizeCanvas(){
+const rect=canvas.getBoundingClientRect();
+cW=rect.width;cH=rect.height;
+canvas.width=cW*2;canvas.height=cH*2;
+ctx.setTransform(2,0,0,2,0,0);
+leftPlant.x=cW*0.25;leftPlant.y=cH*0.7;
+rightPlant.x=cW*0.75;rightPlant.y=cH*0.7;
+leftPlant.leaves=initLeaves(leftPlant.x,leftPlant.y);
+rightPlant.leaves=initLeaves(rightPlant.x,rightPlant.y);
+}
+resizeCanvas();
+window.addEventListener('resize',resizeCanvas);
+
+function drawPlantStatic(plant,damaged,glowing,glowI){
+const px=plant.x,py=plant.y;
+ctx.strokeStyle=damaged?'#6a5a20':'#4a7a30';
+ctx.lineWidth=3;
+ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(px,py-60);ctx.stroke();
+plant.leaves.forEach(lf=>{
+let col=damaged?'#8a7a30':'#5a9a40';
+if(glowing){const g=Math.min(glowI,1);col='rgb('+Math.floor(90+130*g)+','+Math.floor(154-20*g)+','+Math.floor(64+140*g)+')';}
+ctx.fillStyle=col;
+ctx.beginPath();ctx.ellipse(lf.x,lf.y,lf.rx,lf.ry,lf.rot,0,Math.PI*2);ctx.fill();
+});
+ctx.fillStyle='#b0a070';ctx.fillRect(px-30,py,60,8);
+}
+
+function update(){
+ctx.clearRect(0,0,cW,cH);
+ctx.fillStyle='#f5f0e8';ctx.fillRect(0,0,cW,cH);
+ctx.fillStyle='#e8e0c8';ctx.fillRect(0,cH*0.78,cW,cH*0.22);
+ctx.fillStyle='#f0e080';ctx.beginPath();ctx.arc(cW-40,30,20,0,Math.PI*2);ctx.fill();
+
+ctx.font="11px 'Source Sans 3',sans-serif";ctx.fillStyle='#7a6a55';ctx.textAlign='center';
+ctx.fillText('送り手',leftPlant.x,leftPlant.y+28);
+ctx.fillText('受け手',rightPlant.x,rightPlant.y+28);
+
+if(leftPlant.damaged){ctx.fillStyle='#8b1a1a';ctx.fillText('🐛 損傷中',leftPlant.x,leftPlant.y-75);}
+
+if(rightPlant.glowing){
+const i=rightPlant.glowIntensity;
+if(i>0){const grad=ctx.createRadialGradient(rightPlant.x,rightPlant.y-30,0,rightPlant.x,rightPlant.y-30,50*i);
+grad.addColorStop(0,'rgba(100,220,100,'+(0.4*i)+')');grad.addColorStop(1,'rgba(100,220,100,0)');
+ctx.fillStyle=grad;ctx.fillRect(rightPlant.x-60,rightPlant.y-90,120,70);}
+if(rightPlant.glowIntensity<1)rightPlant.glowIntensity+=0.004;
+}
+
+drawPlantStatic(leftPlant,leftPlant.damaged,false,0);
+drawPlantStatic(rightPlant,false,rightPlant.glowing,rightPlant.glowIntensity);
+
+const midX=(leftPlant.x+rightPlant.x)/2;
+for(let i=particles.length-1;i>=0;i--){
+const p=particles[i];
+p.x+=p.vx;p.y+=p.vy+Math.sin(p.x*0.015)*0.2;p.alpha-=0.0015;
+if(p.alpha<=0){particles.splice(i,1);continue;}
+if(p.x>rightPlant.x-25&&!vocReached){
+vocReached=true;rightPlant.glowing=true;
+const st=document.getElementById('simStatus');st.style.opacity='0';
+setTimeout(()=>{st.innerHTML='<strong>Ca²⁺シグナル検出</strong> — 右の植物の気孔がVOCを取り込み、カルシウムシグナルが伝播しています。防御遺伝子が起動中。';st.style.opacity='1';},600);
+}
+if(p.x>rightPlant.x+10){particles.splice(i,1);continue;}
+ctx.globalAlpha=p.alpha;ctx.fillStyle='#c8a040';
+ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
+}
+
+if(leftPlant.damaged&&Math.random()<0.08){
+particles.push({x:leftPlant.x+12,y:leftPlant.y-25-Math.random()*35,vx:0.35+Math.random()*0.25,vy:-0.15+Math.random()*0.3,r:2+Math.random()*2,alpha:0.6+Math.random()*0.3});
+}
+
+if(particles.length>3){ctx.font="9px 'Source Sans 3',sans-serif";ctx.fillStyle='#b0a070';ctx.textAlign='center';ctx.fillText('VOC分子',midX,leftPlant.y-55);}
+
+requestAnimationFrame(update);
+}
+
+function startDamage(){
+leftPlant.damaged=true;rightPlant.glowing=false;rightPlant.glowIntensity=0;vocReached=false;particles=[];
+const st=document.getElementById('simStatus');st.style.opacity='0';
+setTimeout(()=>{st.innerHTML='<strong>VOC放出中</strong> — 左の植物が傷つき、GLV（グリーンリーフボラタイル）を空気中に放出しています...';st.style.opacity='1';},400);
+}
+
+function resetSim(){
+leftPlant.damaged=false;rightPlant.glowing=false;rightPlant.glowIntensity=0;vocReached=false;particles=[];
+const st=document.getElementById('simStatus');st.style.opacity='0';
+setTimeout(()=>{st.innerHTML='左の植物をクリックするか、「虫が食べる」ボタンを押してください。';st.style.opacity='1';},400);
+}
+
+canvas.addEventListener('click',(e)=>{const rect=canvas.getBoundingClientRect();if(e.clientX-rect.left<rect.width/2)startDamage();});
+update();
+
+</script>
+</body>
+</html>
