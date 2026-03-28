@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>幸福を作る4つの物質 — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;}.masthead-name a{color:inherit;text-decoration:none;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;margin-bottom:20px;}.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:6px;}.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}.cover-aside strong{color:#3d3020;font-weight:600;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}.scenario-inner::after{content:'☺';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.25;line-height:1;pointer-events:none;}.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}.meta-item{display:flex;align-items:center;gap:10px;}.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}.difficulty-dots{display:flex;gap:4px;}.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}.dot.on{background:#8b1a1a;}.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;}.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}.article-main{padding:48px 0;}.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;margin-bottom:20px;}.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}.body-text strong{color:#1a1208;font-weight:600;}.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}.pull-q em{color:#8b1a1a;}.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}.tip-box strong{color:#e8c56a;font-weight:600;}.tip.open .tip-box{display:block;}
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}.img-ph-area{min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}.img-ph-icon{font-size:28px;opacity:.4;}.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;}.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}.person-block-wiki{margin-bottom:8px;}.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.misconception-header{background:#3d3020;color:white;padding:11px 20px;}.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.misconception-body{background:white;}.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}.misconception-item:last-child{border-bottom:none;}.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}.mis-label.wrong{color:#c4392a;}.mis-label.right{color:#1a5a30;}.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.note-table{width:100%;border-collapse:collapse;margin:24px 0;font-family:'Source Sans 3',sans-serif;font-size:13px;}.note-table th,.note-table td{border:1px solid #e0d8c8;padding:8px 12px;text-align:center;}.note-table th{background:#f3efe6;font-weight:600;color:#7a6a55;font-size:11px;letter-spacing:.08em;text-transform:uppercase;}.note-table td{font-weight:300;color:#3d3020;}.note-table .row-label{text-align:left;font-weight:500;color:#7a6a55;background:#f3efe6;}
+.diagram-wrap{margin:28px 0;text-align:center;overflow-x:auto;}.diagram-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;text-align:center;max-width:520px;margin-left:auto;margin-right:auto;}
+.ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.ix-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.ix-body{padding:24px 20px;background:white;}.ix-desc{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:18px;}.ix-desc strong{font-weight:600;color:#1a1208;}.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:14px;padding-top:12px;border-top:1px solid #e0d8c8;line-height:1.7;}
+.scene-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0;}.scene-card{border:1px solid #c8bfaa;padding:14px 16px;background:white;cursor:pointer;transition:all .15s;text-align:left;}.scene-card:hover{border-color:#8b1a1a;background:#f3efe6;}.scene-card.active{border-color:#8b1a1a;background:#f3efe6;}.scene-icon{font-size:22px;margin-bottom:6px;}.scene-txt{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:400;color:#3d3020;line-height:1.5;}.scene-result{display:none;margin-top:16px;padding:16px;background:#f3efe6;border:1px solid #e0d8c8;}.scene-result.show{display:block;}.scene-result-title{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#1a1208;margin-bottom:8px;}.scene-chems{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}.scene-chip{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;padding:4px 10px;border-radius:3px;color:white;}.scene-chip.dopa{background:#c4392a;}.scene-chip.sero{background:#2a6a6a;}.scene-chip.oxy{background:#6a5a8e;}.scene-chip.endo{background:#a0522d;}.scene-explain{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.rpe-sim{margin:16px 0;}.rpe-phase{margin-bottom:24px;padding:16px;border:1px solid #e0d8c8;background:white;}.rpe-phase-title{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#1a1208;margin-bottom:8px;letter-spacing:.06em;}.rpe-scenario{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:12px;}.rpe-bar-area{height:60px;position:relative;margin:8px 0;background:#f3efe6;border:1px solid #e0d8c8;overflow:hidden;}.rpe-baseline{position:absolute;top:50%;left:0;right:0;height:1px;background:#c8bfaa;}.rpe-baseline-label{position:absolute;top:50%;left:4px;transform:translateY(-50%);font-family:'Source Sans 3',sans-serif;font-size:9px;color:#b0a090;}.rpe-bar{position:absolute;left:50%;width:60px;transform:translateX(-50%);transition:all .6s ease;}.rpe-bar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;text-align:center;margin-top:2px;}.rpe-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;padding:8px 16px;border:1px solid #8b1a1a;background:white;color:#8b1a1a;cursor:pointer;transition:all .15s;margin-top:8px;}.rpe-btn:hover{background:#8b1a1a;color:white;}.rpe-explanation{display:none;margin-top:10px;padding:10px 14px;background:#f3efe6;border-left:3px solid #8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}.tl-item{position:relative;margin-bottom:28px;}.tl-item:last-child{margin-bottom:0;}.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.steps-wrap{margin:32px 0;}.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}.step-n{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#8b1a1a;padding:14px 16px;border-right:1px solid #c8bfaa;min-width:52px;text-align:center;}.step-title{font-family:'Source Serif 4',serif;font-size:15px;font-weight:400;color:#1a1208;padding:14px 16px;flex:1;}.step-arrow{padding:14px 16px;color:#b0a090;font-size:12px;transition:transform .2s;}.step-card.open .step-arrow{transform:rotate(180deg);}.step-body{display:none;padding:16px 20px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;}.step-card.open .step-body{display:block;}.step-body strong{color:#3d3020;font-weight:600;}.step-body em{color:#8b1a1a;font-style:normal;}
+.culture-block{margin:32px 0;border:1px solid #c8bfaa;padding:20px 24px;background:#f3efe6;}.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:12px;}.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}.culture-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:4px;}.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}.ref-title a:hover{border-bottom-color:#8b1a1a;}.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}.sidebar-block:last-child{border-bottom:none;}.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}.sidebar-text strong{color:#3d3020;font-weight:600;}.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}.terminal-dots{display:flex;gap:6px;}.terminal-dot{width:12px;height:12px;border-radius:50%;}.terminal-dot.red{background:#ff5f57;}.terminal-dot.yellow{background:#febc2e;}.terminal-dot.green{background:#28c840;}.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;}.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;}.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}.t-prompt{color:#4a9e6a;margin-right:8px;user-select:none;}.t-input{color:#e8e4de;}.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}.t-output em{color:#e8c56a;font-style:normal;}.t-output strong{color:#fff;font-weight:500;}.t-exit .t-prompt{color:#555;}.t-exit .t-input{color:#555;}.t-exit .t-comment{color:#4a9e6a;}.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}.fade.on{opacity:1;transform:translateY(0);}
+@media(max-width:720px){.cover{grid-template-columns:1fr;padding:40px 20px 32px;}.cover-right{display:none;}.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.summary-box,.scenario{padding:0 20px;}.article{grid-template-columns:1fr;padding:0 20px;}.article-side{display:none;}.misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}.terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}.related{padding:32px 20px;}.related-grid{grid-template-columns:1fr;}.tip-box{left:0;transform:none;width:200px;}.tip-box::after{left:20px;transform:none;}.person-block{grid-template-columns:1fr;}.person-block-img{padding:16px;}.scene-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="masthead"><p class="masthead-name"><a href="https://qualiajournal.com/">Qualia Journal</a></p></div>
+
+<!-- COVER -->
+<div class="cover fade">
+<div class="cover-left">
+<p class="cover-kicker">行動心理学</p>
+<h1>幸福を作る<em>4つの物質</em></h1>
+<p class="cover-deck">「幸せになりたい」と人は言う。だがその言葉は、4つのまったく異なる化学物質が脳内で引き起こす、まったく異なる状態をひとつに束ねている。幸福は、単数形ではない。</p>
+<div class="cover-byline"><span>Last updated: Mar. 2026</span></div>
+</div>
+<div class="cover-right">
+<div class="est-card">
+<span class="est-label">Est.</span>
+<span class="est-year">1957</span>
+<p class="est-event">アルヴィド・カールソンがドーパミンを脳内の独立した神経伝達物質として同定。それまで単なる前駆体と見なされていた分子に、まったく新しい役割が見つかった。</p>
+<p class="est-context">同年の世界：ソ連がスプートニク1号を打ち上げ、宇宙時代が始まった。人類が宇宙に手を伸ばした年に、脳の内側にも未知の信号が見つかった。</p>
+</div>
+<p class="cover-aside">ドーパミンの発見から70年近く。4つの物質の輪郭は見えてきた。しかし<strong>「なぜそれが"幸福"に感じられるのか」</strong>は、いまだ説明されていない。</p>
+</div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade"><div class="scenario-inner">
+<p>朝、目が覚めて、カーテンの隙間から光が差し込んでいる。深く息を吸う。特別なことは何も起きていないのに、ふっと「悪くないな」と思える瞬間がある。コーヒーを淹れ、最初の一口を含んだとき、もう少しだけ気分が上がる。</p>
+<p>週末に友人と会い、くだらない話で笑い合ったあとの帰り道。なぜか胸の奥がじんわり温かい。あるいは、締め切りぎりぎりで仕上げた仕事を提出した直後の、あの短い快感。ランニング後の、痛みと爽快感が混じった妙な高揚。</p>
+<p>これらはすべて「幸福」と呼ばれる。だが、同じ現象ではない。脳の中で起きていることは、場面ごとにまるで違う。</p>
+</div></div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+<div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span class="difficulty-text">入門 — 化学の知識は不要</span></div>
+<div class="meta-sep"></div>
+<div class="meta-item"><span class="meta-label">読了時間</span><span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 18 分</span></div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade"><div class="summary-inner">
+<span class="summary-icon">要点</span>
+<p class="summary-text">「幸福」という一語の裏に隠れた4つの脳内物質を分解し、<strong>日常の場面がどの物質に対応しているか</strong>を自分で確かめる。期待と報酬のメカニズムを手で触れる体験も用意した。</p>
+</div></div>
+
+<!-- ===== ARTICLE ===== -->
+<div class="article">
+<div class="article-main">
+
+<!-- ===== 背景セクション ===== -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">幸福は一色ではない</h2>
+
+<p class="body-text fade">「幸せになりたい」という言葉を、私たちは何の疑問もなく使う。だが、その「幸せ」は少なくとも4つの異なる化学物質が脳内で引き起こす、異なる状態を束ねた言葉だ。朝の穏やかな安心感と、締め切りを乗り越えた瞬間の快感と、我が子を抱きしめたときの温かさと、マラソン後の陶酔は、同じ「幸福」ではない。<em>脳の中で起きている化学反応が、根本的に違う。</em></p>
+
+<p class="body-text fade">その4つの物質とは、<strong><span class="tip" onclick="toggleTip(this)">ドーパミン<span class="tip-box"><strong>ドーパミン（Dopamine）</strong><br>報酬系に関わる神経伝達物質。「快楽」ではなく「期待」と「予測との差」を伝えるのが主な役割。</span></span></strong>、<strong><span class="tip" onclick="toggleTip(this)">セロトニン<span class="tip-box"><strong>セロトニン（Serotonin）</strong><br>気分の安定に関わる神経伝達物質。体内の約90%は消化管に存在し、脳にあるのは全体のわずか1〜2%。</span></span></strong>、<strong><span class="tip" onclick="toggleTip(this)">オキシトシン<span class="tip-box"><strong>オキシトシン（Oxytocin）</strong><br>「絆のホルモン」と呼ばれる。出産・授乳時に大量に分泌されるが、スキンシップや信頼関係でも分泌される。</span></span></strong>、<strong><span class="tip" onclick="toggleTip(this)">エンドルフィン<span class="tip-box"><strong>β-エンドルフィン（β-Endorphin）</strong><br>脳内で作られるモルヒネ様物質。鎮痛作用はモルヒネの数倍とも言われる。「脳内麻薬」の異名を持つ。</span></span></strong>である。名前を聞いたことがあるかもしれない。しかし、それぞれが何をしているかを正確に知っている人は少ない。</p>
+
+<!-- SVG図解: 4物質の俯瞰マップ（パターンA） -->
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 560 180" style="max-width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
+<!-- ゾーンラベル -->
+<text x="70" y="16" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090" text-anchor="middle" letter-spacing=".1em">期待</text>
+<text x="210" y="16" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090" text-anchor="middle" letter-spacing=".1em">安定</text>
+<text x="350" y="16" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090" text-anchor="middle" letter-spacing=".1em">絆</text>
+<text x="490" y="16" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090" text-anchor="middle" letter-spacing=".1em">鎮痛</text>
+<!-- ボックス -->
+<rect x="15" y="28" width="110" height="60" rx="4" fill="white" stroke="#c4392a" stroke-width="2"/>
+<text x="70" y="52" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#c4392a" font-weight="600" text-anchor="middle">ドーパミン</text>
+<text x="70" y="72" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">報酬予測誤差</text>
+
+<rect x="155" y="28" width="110" height="60" rx="4" fill="white" stroke="#2a6a6a" stroke-width="2"/>
+<text x="210" y="52" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#2a6a6a" font-weight="600" text-anchor="middle">セロトニン</text>
+<text x="210" y="72" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">気分の恒常性</text>
+
+<rect x="295" y="28" width="110" height="60" rx="4" fill="white" stroke="#6a5a8e" stroke-width="2"/>
+<text x="350" y="52" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#6a5a8e" font-weight="600" text-anchor="middle">オキシトシン</text>
+<text x="350" y="72" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">社会的信頼</text>
+
+<rect x="435" y="28" width="110" height="60" rx="4" fill="white" stroke="#a0522d" stroke-width="2"/>
+<text x="490" y="52" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#a0522d" font-weight="600" text-anchor="middle">エンドルフィン</text>
+<text x="490" y="72" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">苦痛の緩和</text>
+
+<!-- 下段: 典型場面 -->
+<text x="70" y="114" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020" text-anchor="middle">🎯</text>
+<text x="70" y="132" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">目標を達成した</text>
+<text x="70" y="148" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">あの瞬間の快感</text>
+
+<text x="210" y="114" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020" text-anchor="middle">☀️</text>
+<text x="210" y="132" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">朝の散歩で</text>
+<text x="210" y="148" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">気持ちが整う感覚</text>
+
+<text x="350" y="114" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020" text-anchor="middle">🤗</text>
+<text x="350" y="132" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">大切な人と過ごす</text>
+<text x="350" y="148" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">温かさ</text>
+
+<text x="490" y="114" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020" text-anchor="middle">🏃</text>
+<text x="490" y="132" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">激しい運動の後の</text>
+<text x="490" y="148" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">高揚と鎮痛</text>
+
+<!-- 矢印（ボックス→場面） -->
+<text x="70" y="100" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#c8bfaa" text-anchor="middle">↓</text>
+<text x="210" y="100" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#c8bfaa" text-anchor="middle">↓</text>
+<text x="350" y="100" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#c8bfaa" text-anchor="middle">↓</text>
+<text x="490" y="100" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#c8bfaa" text-anchor="middle">↓</text>
+
+<!-- 注: 区切り線 -->
+<line x1="140" y1="28" x2="140" y2="168" stroke="#e0d8c8" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="280" y1="28" x2="280" y2="168" stroke="#e0d8c8" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="420" y1="28" x2="420" y2="168" stroke="#e0d8c8" stroke-width="1" stroke-dasharray="3,3"/>
+</svg>
+<p class="diagram-caption">4つの物質は「幸福」という一語の内側で、それぞれまったく異なる役割を担っている。ひとつも重複しない。</p>
+</div>
+
+<!-- テーブル: 4物質比較 -->
+<div class="fade" style="overflow-x:auto;">
+<table class="note-table">
+<thead><tr><th></th><th>ドーパミン</th><th>セロトニン</th><th>オキシトシン</th><th>β-エンドルフィン</th></tr></thead>
+<tbody>
+<tr><td class="row-label">主な役割</td><td>期待・動機づけ</td><td>気分の安定</td><td>信頼・絆</td><td>鎮痛・高揚</td></tr>
+<tr><td class="row-label">分類</td><td>神経伝達物質</td><td>神経伝達物質</td><td>ホルモン/神経伝達物質</td><td>ホルモン</td></tr>
+<tr><td class="row-label">体感</td><td>短い快感のスパイク</td><td>穏やかな安心感</td><td>じんわりとした温かさ</td><td>痛みが和らぐ陶酔</td></tr>
+<tr><td class="row-label">持続</td><td>数秒〜数分</td><td>持続的（条件付き）</td><td>持続的（接触中）</td><td>数分〜数十分</td></tr>
+<tr><td class="row-label">暴走すると</td><td>依存症・中毒</td><td>セロトニン症候群</td><td>排他的な内集団意識</td><td>痛覚の鈍麻</td></tr>
+</tbody>
+</table>
+</div>
+
+<p class="body-text fade">注目してほしいのは「暴走すると」の行だ。<strong>4つの物質はどれも、多ければ多いほどよいわけではない。</strong>ドーパミンが過剰に出続けると、ギャンブルやアルコールへの依存に繋がる。オキシトシンは「愛のホルモン」と呼ばれるが、内集団への結束を強めるあまり、外集団への攻撃性を高めることもある。幸福の化学は、バランスの化学でもある。</p>
+
+<!-- 誤解あるある -->
+<div class="misconception fade">
+<div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+<div class="misconception-body">
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">よくある誤解</p><p class="mis-text">ドーパミンは「快楽物質」である</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">ドーパミンの主な役割は「予測との差」を伝えること。快楽そのものではなく、期待が裏切られたか満たされたかの信号に近い</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">よくある誤解</p><p class="mis-text">セロトニンを増やせばうつ病は治る</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">SSRIがセロトニンを増やすのは事実だが、うつ病のメカニズムは単一の物質不足では説明できない。モノアミン仮説は有力だが、すべてを説明するわけではない</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">よくある誤解</p><p class="mis-text">オキシトシンは「愛のホルモン」だから常に良いもの</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">オキシトシンは内集団バイアスを強化する。「仲間」への信頼が高まる一方で、「よそ者」への警戒も同時に強まることがある</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">よくある誤解</p><p class="mis-text">ランナーズハイはエンドルフィンのおかげ</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">エンドルフィンは血液脳関門を通過しにくい。近年の研究では、エンドカンナビノイド（体内の大麻類似物質）が主因かもしれないとされている</p></div>
+</div>
+</div>
+</div>
+
+<!-- サブセクション: ドーパミンの正体 -->
+<hr class="art-rule">
+<h2 class="fade">期待のシグナル——ドーパミンの正体</h2>
+
+<p class="body-text fade">ドーパミンの物語は、1957年のスウェーデンから始まる。<span class="tip" onclick="toggleTip(this)">アルヴィド・カールソン<span class="tip-box"><strong>アルヴィド・カールソン（Arvid Carlsson, 1923–2018）</strong><br>スウェーデンの神経薬理学者。ドーパミンが脳内の独立した神経伝達物質であることを証明し、2000年にノーベル生理学・医学賞を受賞した。</span></span>は、ある動物実験で奇妙なことに気づいた。抗精神病薬レセルピンを投与されたウサギが、まるで彫像のように動かなくなる。当時、レセルピンはセロトニンを枯渇させることが知られていたが、カールソンはセロトニンだけでは動けなくなる現象を説明できないと考えた。</p>
+
+<!-- 人物ブロック -->
+<div class="person-block fade">
+<div class="person-block-img"><svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="30" r="16" fill="#c8bfaa"/><ellipse cx="40" cy="70" rx="24" ry="18" fill="#c8bfaa"/></svg></div>
+<div class="person-block-body">
+<p class="person-block-name">アルヴィド・カールソン</p>
+<p class="person-block-role">Arvid Carlsson — 1923–2018</p>
+<p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Arvid_Carlsson" target="_blank" rel="noopener">Wikipedia</a></p>
+<p class="person-block-desc">スウェーデンの神経薬理学者。ドーパミンが脳の独立した神経伝達物質であることを証明した。上司のブロディはカールソンの仮説を「時間の無駄」と退けたが、カールソンは直感を信じて研究を続けた。その成果は2000年にノーベル生理学・医学賞として結実する。</p>
+</div>
+</div>
+
+<div class="quote-block fade">
+<p class="quote-en">"Although Brodie reportedly considered Carlsson's idea a 'waste of time,' Carlsson decided to follow his intuition."</p>
+<p class="quote-ja">ブロディはカールソンのアイデアを「時間の無駄」と見なしたと言われるが、カールソンは自らの直感に従うことを選んだ。</p>
+<p class="quote-attr">— Nature Reviews Neuroscience, "Sometimes science needs a stubborn mind"（2023年）</p>
+</div>
+
+<p class="body-text fade">カールソンはL-DOPAという化合物をレセルピンで動けなくなったウサギに投与した。ウサギは劇的に回復した。脳内で枯渇していたのはセロトニンだけではなく、ドーパミンだったのだ。この発見が、のちにパーキンソン病の治療法（L-DOPA療法）の基礎となる。だが、ドーパミンの役割はそれだけではなかった。</p>
+
+<!-- SVG図解: 報酬予測誤差の3パターン（パターンD拡張） -->
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 560 170" style="max-width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
+<!-- 3列 -->
+<!-- 列1: 予測なしで報酬 -->
+<rect x="10" y="24" width="170" height="110" rx="4" fill="white" stroke="#e0d8c8" stroke-width="1"/>
+<text x="95" y="16" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#8b1a1a" font-weight="600" text-anchor="middle" letter-spacing=".08em">予測なし × 報酬あり</text>
+<text x="95" y="46" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020" text-anchor="middle">予想外のプレゼント</text>
+<!-- 棒グラフ（上に突出） -->
+<line x1="30" y1="90" x2="160" y2="90" stroke="#e0d8c8" stroke-width="1"/>
+<text x="24" y="93" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#b0a090">0</text>
+<rect x="75" y="62" width="40" height="28" rx="2" fill="#c4392a"/>
+<text x="95" y="58" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#c4392a" font-weight="600" text-anchor="middle">⬆ 発火</text>
+<text x="95" y="124" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">＋ 予測誤差</text>
+
+<!-- 列2: 予測通りの報酬 -->
+<rect x="195" y="24" width="170" height="110" rx="4" fill="white" stroke="#e0d8c8" stroke-width="1"/>
+<text x="280" y="16" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" font-weight="600" text-anchor="middle" letter-spacing=".08em">予測あり × 報酬あり</text>
+<text x="280" y="46" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020" text-anchor="middle">いつもの給料日</text>
+<line x1="215" y1="90" x2="345" y2="90" stroke="#e0d8c8" stroke-width="1"/>
+<text x="209" y="93" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#b0a090">0</text>
+<rect x="260" y="87" width="40" height="6" rx="2" fill="#c8bfaa"/>
+<text x="280" y="82" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" font-weight="500" text-anchor="middle">— 無反応</text>
+<text x="280" y="124" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">予測誤差ゼロ</text>
+
+<!-- 列3: 予測したのに報酬なし -->
+<rect x="380" y="24" width="170" height="110" rx="4" fill="white" stroke="#e0d8c8" stroke-width="1"/>
+<text x="465" y="16" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#3d3020" font-weight="600" text-anchor="middle" letter-spacing=".08em">予測あり × 報酬なし</text>
+<text x="465" y="46" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020" text-anchor="middle">約束が破られた</text>
+<line x1="400" y1="90" x2="530" y2="90" stroke="#e0d8c8" stroke-width="1"/>
+<text x="394" y="93" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#b0a090">0</text>
+<rect x="445" y="92" width="40" height="24" rx="2" fill="#2a6a6a"/>
+<text x="465" y="128" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#2a6a6a" font-weight="600" text-anchor="middle">⬇ 抑制</text>
+<text x="465" y="148" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">－ 予測誤差</text>
+</svg>
+<p class="diagram-caption">ドーパミンは「快楽」ではなく「予測との差」を報告する。予測通りの報酬にはほぼ反応しない。この発見はシュルツらの1997年の研究に基づく。</p>
+</div>
+
+<p class="body-text fade"><span class="tip" onclick="toggleTip(this)">ヴォルフラム・シュルツ<span class="tip-box"><strong>ヴォルフラム・シュルツ（Wolfram Schultz）</strong><br>ドイツ出身の神経科学者。サルの脳のドーパミン神経細胞を記録し、報酬予測誤差の概念を確立した。</span></span>が1997年に発表した研究は、ドーパミンの理解を一変させた。サルにジュースを与える実験で、ドーパミン神経細胞は予想外の報酬に強く反応するが、予測通りの報酬にはほとんど反応しない。しかも、予測していた報酬が来なかったときには、発火が抑制される。つまりドーパミンは「快楽」を伝えているのではない。<em>「予測との差」を伝えている。</em>この概念を<span class="tip" onclick="toggleTip(this)">報酬予測誤差<span class="tip-box"><strong>報酬予測誤差（Reward Prediction Error）</strong><br>「期待していた報酬」と「実際に得られた報酬」の差。この差がプラスならドーパミンが発火し、ゼロなら無反応、マイナスなら抑制される。</span></span>と呼ぶ。</p>
+
+<!-- インタラクティブ: 場面→物質マッチング -->
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">✦ Scene Analyzer</span></div>
+<div class="ix-body">
+<p class="ix-desc">以下の場面をクリックすると、<strong>どの物質が主に関与しているか</strong>がわかる。ひとつの場面に複数の物質が関わることもある。</p>
+<div class="scene-grid" id="sceneGrid">
+<div class="scene-card" onclick="showScene(0)"><div class="scene-icon">☀️</div><div class="scene-txt">朝の散歩で気分が整う</div></div>
+<div class="scene-card" onclick="showScene(1)"><div class="scene-icon">🎯</div><div class="scene-txt">締め切りに間に合った！</div></div>
+<div class="scene-card" onclick="showScene(2)"><div class="scene-icon">🤗</div><div class="scene-txt">子どもを抱きしめた</div></div>
+<div class="scene-card" onclick="showScene(3)"><div class="scene-icon">🏃</div><div class="scene-txt">10km走り切った後</div></div>
+<div class="scene-card" onclick="showScene(4)"><div class="scene-icon">📱</div><div class="scene-txt">SNSの通知を確認する</div></div>
+<div class="scene-card" onclick="showScene(5)"><div class="scene-icon">🍫</div><div class="scene-txt">チョコレートを一口食べた</div></div>
+</div>
+<div class="scene-result" id="sceneResult"></div>
+<p class="ix-note">このマッチングは概念的なものであり、実際の脳内反応はより複雑な相互作用を含む。単一の物質が単独で「幸福」を生み出すわけではない。</p>
+</div>
+</div>
+
+<!-- ===== 体験セクション ===== -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">報酬予測誤差を体験する</h2>
+
+<p class="body-text fade">ドーパミンの最も重要な特性は、報酬そのものではなく「予測との差」に反応するという点だ。言葉で読むだけでは実感が湧きにくいかもしれない。以下のシミュレーターで、3つのパターンを自分で操作してみてほしい。</p>
+
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">✦ Reward Prediction Error Simulator</span></div>
+<div class="ix-body">
+<p class="ix-desc">3つのシナリオで「報酬を与える」ボタンを押すと、ドーパミン神経細胞の反応がバーに表示される。棒が上に伸びれば発火（正の予測誤差）、下に沈めば抑制（負の予測誤差）。</p>
+
+<div class="rpe-sim" id="rpeSim">
+<!-- Phase 1 -->
+<div class="rpe-phase">
+<div class="rpe-phase-title">フェーズ 1：予想していない報酬</div>
+<div class="rpe-scenario">あなたは何も期待していない。突然、1,000円もらえた。</div>
+<div class="rpe-bar-area">
+<div class="rpe-baseline"></div>
+<span class="rpe-baseline-label">基準</span>
+<div class="rpe-bar" id="rpeBar1" style="bottom:50%;height:0;background:#c4392a;"></div>
+</div>
+<button class="rpe-btn" onclick="fireRPE(1)">報酬を与える</button>
+<div class="rpe-explanation" id="rpeExp1"><strong>＋ 予測誤差</strong>：期待していなかった報酬が来た。ドーパミンが強く発火する。この「嬉しい驚き」がドーパミンの本質だ。</div>
+</div>
+
+<!-- Phase 2 -->
+<div class="rpe-phase">
+<div class="rpe-phase-title">フェーズ 2：予測通りの報酬</div>
+<div class="rpe-scenario">あなたは今日が給料日だと知っている。予定通り振り込まれた。</div>
+<div class="rpe-bar-area">
+<div class="rpe-baseline"></div>
+<span class="rpe-baseline-label">基準</span>
+<div class="rpe-bar" id="rpeBar2" style="bottom:50%;height:0;background:#c8bfaa;"></div>
+</div>
+<button class="rpe-btn" onclick="fireRPE(2)">報酬を与える</button>
+<div class="rpe-explanation" id="rpeExp2"><strong>予測誤差ゼロ</strong>：予測通りの報酬が来ても、ドーパミンはほぼ反応しない。給料日に「嬉しい」と感じにくいのはこのため。</div>
+</div>
+
+<!-- Phase 3 -->
+<div class="rpe-phase">
+<div class="rpe-phase-title">フェーズ 3：期待したのに報酬なし</div>
+<div class="rpe-scenario">あなたは今日が給料日だと思っていた。だが口座を確認すると、振り込まれていない。</div>
+<div class="rpe-bar-area">
+<div class="rpe-baseline"></div>
+<span class="rpe-baseline-label">基準</span>
+<div class="rpe-bar" id="rpeBar3" style="top:50%;height:0;background:#2a6a6a;"></div>
+</div>
+<button class="rpe-btn" onclick="fireRPE(3)">報酬を省略する</button>
+<div class="rpe-explanation" id="rpeExp3"><strong>－ 予測誤差</strong>：期待していた報酬が来なかった。ドーパミンの発火が基準線を下回る。この落胆、失望、不快感——それが負の予測誤差だ。「損した」という感覚の化学的な正体でもある。</div>
+</div>
+</div>
+
+<p class="ix-note">シュルツら（1997年）のサル実験における中脳ドーパミン神経細胞の反応パターンを概念的に再現したもの。実際の神経発火は数百ミリ秒単位で起きる。</p>
+</div>
+</div>
+
+<p class="body-text fade">3つのフェーズを操作してみると、直感的にわかるはずだ。ドーパミンは「報酬」に反応しているのではない。「予測との差」に反応している。これは厄介な性質だ。<em>どれだけ良いものを手に入れても、それが「予測通り」になった瞬間、ドーパミンは沈黙する。</em>昇給に慣れる。新しい車に慣れる。美味しい食事に慣れる。これがいわゆる<span class="tip" onclick="toggleTip(this)">快楽順応<span class="tip-box"><strong>快楽順応（Hedonic Adaptation）</strong><br>良い出来事に慣れて幸福感が基準値に戻る現象。宝くじの当選者は1年後には当選前と同程度の幸福度に戻るという研究がある。</span></span>と呼ばれる現象の神経科学的な説明だ。</p>
+
+<!-- ===== メカニズムセクション ===== -->
+<div class="sec-rule fade"><span class="sec-label">メカニズム</span><div class="sec-line"></div></div>
+<h2 class="fade">なぜ幸福は持続しないか</h2>
+
+<p class="body-text fade">4つの物質はそれぞれ異なるメカニズムで分泌され、異なる速度で消える。だが共通しているのは、<strong>どれも「持続する幸福」を保証してはくれない</strong>という事実だ。これは設計上のバグではない。進化が仕組んだ、生存のための仕掛けである。</p>
+
+<!-- SVGフロー図: ドーパミンループ -->
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 560 110" style="max-width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="30" width="110" height="50" rx="4" fill="white" stroke="#c4392a" stroke-width="1.5"/>
+<text x="65" y="52" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#c4392a" font-weight="600" text-anchor="middle">期待する</text>
+<text x="65" y="68" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">ドーパミン↑</text>
+
+<text x="152" y="58" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a" text-anchor="middle">→</text>
+
+<rect x="175" y="30" width="110" height="50" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1.5"/>
+<text x="230" y="52" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020" font-weight="600" text-anchor="middle">行動する</text>
+<text x="230" y="68" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">目標に向かう</text>
+
+<text x="317" y="58" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a" text-anchor="middle">→</text>
+
+<rect x="340" y="30" width="110" height="50" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1.5"/>
+<text x="395" y="52" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020" font-weight="600" text-anchor="middle">結果を得る</text>
+<text x="395" y="68" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">報酬 or 失望</text>
+
+<text x="482" y="58" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a" text-anchor="middle">→</text>
+
+<rect x="505" y="30" width="50" height="50" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.5"/>
+<text x="530" y="52" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55" font-weight="600" text-anchor="middle">学習</text>
+<text x="530" y="68" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">更新</text>
+
+<!-- ループ矢印 -->
+<text x="280" y="102" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" text-anchor="middle">← 予測が更新され、次の期待に反映される →</text>
+<line x1="65" y1="90" x2="65" y2="94" stroke="#8b1a1a" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="530" y1="90" x2="530" y2="94" stroke="#8b1a1a" stroke-width="1" stroke-dasharray="2,2"/>
+</svg>
+<p class="diagram-caption">ドーパミンのループ。報酬が予測に組み込まれるたびにドーパミンの反応は弱くなり、より大きな報酬を求めて次の行動に駆り立てられる。</p>
+</div>
+
+<!-- ステップ図解（アコーディオン） -->
+<div class="steps-wrap fade">
+<p class="steps-head">幸福が消える3つのメカニズム</p>
+<div class="step-card open" id="sc1">
+<div class="step-hd" onclick="tog(1)"><span class="step-n">1</span><span class="step-title">快楽順応——慣れてしまう脳</span><span class="step-arrow">▼</span></div>
+<div class="step-body"><p>どんなに嬉しいことがあっても、脳はそれを「新しい基準」にしてしまう。<strong>昇給した直後は嬉しいが、3ヶ月もすればその給料が「普通」になる。</strong>ドーパミンは予測との差に反応するため、予測が更新されれば反応は消える。宝くじに当たった人が1年後には当選前と同程度の幸福度に戻るという研究は、この仕組みの極端な例だ。</p></div>
+</div>
+<div class="step-card" id="sc2">
+<div class="step-hd" onclick="tog(2)"><span class="step-n">2</span><span class="step-title">ホメオスタシス——引き戻す力</span><span class="step-arrow">▼</span></div>
+<div class="step-body"><p><strong>ホメオスタシス<sup style="color:#8b1a1a;font-size:10px;cursor:default;">※1</sup></strong>とは、身体が内部環境を一定に保とうとする仕組みだ。脳内の化学物質にも同じ原理が働く。セロトニンが急増すれば、脳はそれを抑えようとする。オキシトシンが大量に出ても、やがて基準値に戻る。<strong>日常の例で言えば、温泉に入った直後の極楽気分が30分もすれば薄れるあの感覚。</strong>身体が「これが普通」に戻そうとしている。</p></div>
+</div>
+<div class="step-card" id="sc3">
+<div class="step-hd" onclick="tog(3)"><span class="step-n">3</span><span class="step-title">依存のループ——もっと欲しくなる罠</span><span class="step-arrow">▼</span></div>
+<div class="step-body"><p>快楽順応とホメオスタシスの組み合わせは、ときに危険な結果を生む。<strong>同じ量では満足できなくなり、より強い刺激を求め始める。</strong>ギャンブル、アルコール、SNSの無限スクロール——どれもドーパミン系を過剰に刺激し続けた結果、「予測」がどんどん高くなり、「予測通り」が「つまらない」に変わる。自覚していてもやめられないのは、意志の弱さではなく、<em>報酬系がそう設計されている</em>からだ。</p></div>
+</div>
+</div>
+
+<p class="body-text fade" style="font-size:14px;color:#7a6a55;border-left-color:#c8bfaa;"><sup style="color:#8b1a1a;font-weight:600;">※1</sup> <strong style="color:#7a6a55;">ホメオスタシス（Homeostasis）</strong>——生体が内部環境を一定に保とうとする性質のこと。体温を36.5℃前後に維持する仕組みがその代表例。脳内の化学物質の濃度にも同じ原理が働いており、一時的に急増した幸福物質を脳は「通常値」に引き戻そうとする。</p>
+
+<!-- ===== 歴史セクション ===== -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">4つの物質が見つかるまで——発見の年表</h2>
+
+<p class="body-text fade">4つの物質の発見は、神経科学の歴史そのものに重なる。以下の年表で赤丸（●）は各物質の発見・同定に直接関わる出来事、白丸（○）は関連する周辺の出来事を示す。</p>
+
+<div class="timeline fade">
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">1906</p>
+<p class="tl-title">オキシトシンの発見</p>
+<p class="tl-desc">イギリスの薬理学者ヘンリー・デールが、下垂体後葉の抽出物が妊娠中のネコの子宮を収縮させることを発見。ギリシャ語で「速い出産」を意味するオキシトシンと命名された。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1948</p>
+<p class="tl-title">セロトニンの同定</p>
+<p class="tl-desc">モーリス・ラッポートらがセロトニンを血清から単離。当初は血管収縮物質として研究され、脳内での役割が注目されるのは1960年代以降。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">1957</p>
+<p class="tl-title">ドーパミンが脳の神経伝達物質として同定</p>
+<p class="tl-desc">カールソンとヒラルプがドーパミンを単なるノルエピネフリンの前駆体ではなく、脳内の独立した神経伝達物質であることを証明。翌年の論文がパーキンソン病研究を一変させる。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1973–1975</p>
+<p class="tl-title">エンドルフィンの発見</p>
+<p class="tl-desc">ジョン・ヒューズとハンス・コスターリッツが脳内にモルヒネ様物質が存在することを発見。「endogenous morphine（内因性モルヒネ）」を略してエンドルフィンと名付けられた。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">1997</p>
+<p class="tl-title">報酬予測誤差の発見</p>
+<p class="tl-desc">シュルツ、デイアン、モンタギューの3名がScience誌に発表。ドーパミン神経細胞が「報酬そのもの」ではなく「予測との差」に反応することを示し、ドーパミンの理解を根本から変えた。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">2000</p>
+<p class="tl-title">カールソンにノーベル賞</p>
+<p class="tl-desc">アルヴィド・カールソンがポール・グリーンガード、エリック・カンデルとともにノーベル生理学・医学賞を受賞。ドーパミン研究が脳科学の中心に位置づけられた。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">2000s–2010s</p>
+<p class="tl-title">オキシトシンの「社会的機能」研究の急増</p>
+<p class="tl-desc">「愛のホルモン」という呼称が広まると同時に、内集団バイアスの強化や排他性の増大といった負の側面も報告されるようになる。「万能の絆の分子」という素朴なイメージは修正を迫られた。</p>
+</div>
+</div>
+
+<!-- ===== つまりセクション ===== -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">幸福は追うものではなく、構造を知るものだ</h2>
+
+<p class="body-text fade">ここまでの話をまとめると、こうなる。幸福は単数形ではない。ドーパミンは期待と驚きの信号であり、セロトニンは安定の土台であり、オキシトシンは人との繋がりの接着剤であり、エンドルフィンは身体が自分自身を守るための鎮痛剤だ。4つが同時に動くこともあるが、それぞれの性質はまったく異なる。</p>
+
+<div class="pull fade">
+<p class="pull-q">"The capacity to predict future events permits a creature to detect, model, and manipulate the <em>causal structure</em> of its interactions with its environment."</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">未来の出来事を予測する能力は、生物が環境との相互作用の因果構造を検出し、モデル化し、操作することを可能にする。</p>
+<p class="pull-attr">— ヴォルフラム・シュルツ, ピーター・デイアン, P・リード・モンタギュー, "A Neural Substrate of Prediction and Reward", Science (1997)</p>
+</div>
+
+<p class="body-text fade">この構造を知ったうえで、私たちに何ができるだろうか。いくつかの手がかりはある。だが、万能ではない。</p>
+
+<p class="body-text fade"><strong>手がかり1：ドーパミンの罠を自覚する。</strong>ドーパミンは「もっと」を求めさせる物質だ。新しい通知、新しい購入、新しい刺激。それ自体が悪いわけではないが、<em>同じ量では満足できなくなる仕組み</em>が組み込まれていることを知っておくだけでも、無限スクロールを止める瞬間が1回増えるかもしれない。</p>
+
+<p class="body-text fade"><strong>手がかり2：セロトニンの土台を崩さない。</strong>太陽の光を浴びること、リズミカルな運動をすること、トリプトファンを含む食品を摂ること。これらはセロトニンの分泌を助けるとされる。派手な快楽ではないが、この穏やかな安定が崩れると、他のすべてが不安定になる。</p>
+
+<!-- 画像プレースホルダー -->
+<div class="img-placeholder fade">
+<div class="img-ph-area">
+<div class="img-ph-icon">🖼</div>
+<p class="img-ph-title">イラスト①｜4つの幸福の構造図</p>
+<p class="img-ph-desc">セロトニンの土台の上にオキシトシンの層、さらにその上にドーパミンとエンドルフィンが乗る「幸福のピラミッド」の概念図。土台が崩れると上が不安定になることを視覚的に示す。</p>
+<div class="img-ph-prompt">
+<p class="img-ph-prompt-lbl">画像生成プロンプト</p>
+<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, four frogs stacking on top of each other forming a pyramid, the bottom frog is calm and stable (serotonin), the second holds hands with another frog (oxytocin), the third leaps excitedly (dopamine), the top one meditates serenely (endorphin), Japanese scroll painting aesthetic, no text</p>
+</div>
+</div>
+<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+</div>
+
+<p class="body-text fade"><strong>手がかり3：オキシトシンは「接触」から生まれる。</strong>家族やペットとのスキンシップ、信頼できる友人との会話。オキシトシンはデジタルなつながりよりも、物理的な接触で分泌されやすい。ただし、オキシトシンが強化するのは「内集団への信頼」であって、「すべての人への信頼」ではないことも覚えておきたい。</p>
+
+<p class="body-text fade"><strong>手がかり4：エンドルフィンは「少しだけ苦しい」から出る。</strong>β-エンドルフィンは身体がストレスにさらされたときに分泌される鎮痛物質だ。激しい運動、辛い食べ物、大笑い——どれも身体にとっては軽い「ストレス」であり、それに対する防御反応として鎮痛と高揚が訪れる。ソファに座っているだけでは出ない。快適圏のほんの少し外に出る必要がある。ただし、痛みを求めること自体が目的になってしまうと本末転倒であり、あくまで日常の運動や笑いの延長線上の話だ。</p>
+
+<!-- 文化への登場 -->
+<div class="culture-block fade">
+<p class="culture-label">文化への登場</p>
+<div class="culture-item">
+<p class="culture-title">『インサイド・ヘッド』（2015年、ピクサー）</p>
+<p class="culture-desc">感情を擬人化した映画として有名だが、「幸福」が単一の感情（ヨロコビ）として描かれている点は、科学的にはかなりの単純化。4つの物質が異なる種類の幸福を担うという現実は、もう少し複雑だ。</p>
+</div>
+<div class="culture-item">
+<p class="culture-title">『三つの幸福』（樺沢紫苑, 2021年）</p>
+<p class="culture-desc">精神科医の著者がセロトニン・オキシトシン・ドーパミンの順に幸福を積み上げるべきだと提唱したベストセラー。科学的に正確かどうかには議論があるが、「幸福には順序がある」という視点を広く伝えた。</p>
+</div>
+</div>
+
+<!-- 参考文献 -->
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+
+<div class="ref-list">
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1997</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1126/science.275.5306.1593" target="_blank" rel="noopener">A Neural Substrate of Prediction and Reward</a></p>
+<p class="ref-author">Wolfram Schultz, Peter Dayan, P. Read Montague — Science</p>
+<p class="ref-desc">ドーパミンが「快楽」ではなく「予測との差」を伝えているという革命的な発見を記した論文。この1本を読むだけで、報酬系の理解が根本から変わる。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2016</span></div>
+<p class="ref-title"><a href="https://doi.org/10.31887/DCNS.2016.18.1/wschultz" target="_blank" rel="noopener">Dopamine Reward Prediction Error Coding</a></p>
+<p class="ref-author">Wolfram Schultz — Dialogues in Clinical Neuroscience</p>
+<p class="ref-desc">報酬予測誤差の20年間の研究を著者自身がまとめた総説。依存症との関連や経済的効用との接点まで網羅している。読み物としても面白い。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2017</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1152/physrev.00031.2017" target="_blank" rel="noopener">The Oxytocin Receptor: From Intracellular Signaling to Behavior</a></p>
+<p class="ref-author">Jurek B., Neumann I.D. — Physiological Reviews</p>
+<p class="ref-desc">オキシトシンの受容体研究から行動への影響まで包括的にまとめた論文。「愛のホルモン」という単純なラベルがいかに不十分かがよくわかる。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">歴史論文</span><span class="ref-year">2007</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1016/j.tins.2007.03.002" target="_blank" rel="noopener">Dopamine: 50 Years in Perspective</a></p>
+<p class="ref-author">Leslie L. Iversen, Susan D. Iversen — Trends in Neurosciences</p>
+<p class="ref-desc">ドーパミン発見50周年の記念号巻頭論文。カールソンの最初の実験から依存症研究まで、半世紀の物語を追える。不穏な結果が淡々と記録されている。</p>
+</div>
+</div>
+
+<!-- 信頼度ノート -->
+<div class="note-box fade">
+<strong>📌 この記事について</strong><br>
+ドーパミンの報酬予測誤差はSchultzらの1997年のScience論文を主な根拠としている。4物質の基本的な機能については複数の教科書・総説を参照した。「幸せホルモン」という通称は一般向けの表現であり、厳密にはドーパミンとセロトニンはホルモンではなく神経伝達物質、エンドルフィンとオキシトシンはホルモンに分類される。オキシトシンの社会的機能に関する研究は現在も進行中で、結論が変わる可能性がある。
+</div>
+
+<!-- タグ -->
+<div class="tags fade">
+<span class="tag">ドーパミン</span>
+<span class="tag">セロトニン</span>
+<span class="tag">オキシトシン</span>
+<span class="tag">エンドルフィン</span>
+<span class="tag">報酬予測誤差</span>
+<span class="tag">神経伝達物質</span>
+<span class="tag">快楽順応</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+<div style="position:sticky;top:40px;">
+<div class="sidebar-block fade">
+<p class="sidebar-label">Key Number</p>
+<p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">4</p>
+<p class="sidebar-text">幸福に関与する主な脳内物質の数。ドーパミン、セロトニン、オキシトシン、エンドルフィン。すべて異なるメカニズムで動く。</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">歴史的背景</p>
+<p class="sidebar-text">ドーパミンの発見（1957年）は、パーキンソン病の治療を可能にし、依存症の理解を変え、報酬系の研究を誕生させた。<strong>1つの分子が3つの分野を変えた</strong>稀有な例。</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">作品への登場</p>
+<p class="sidebar-text">樺沢紫苑『三つの幸福』がセロトニン→オキシトシン→ドーパミンの順序を提唱。ピクサー『インサイド・ヘッド』は感情を擬人化したが、化学的な層は描かれていない。</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">関連トピック</p>
+<p class="sidebar-text">— 報酬予測誤差とドーパミン<br>— スキナー箱とスロットマシン<br>— ランナーズハイの正体<br>— 損失回避</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">信頼度</p>
+<p class="sidebar-text">4物質の基本機能は教科書レベル。報酬予測誤差はScience掲載の一級論文。オキシトシンの社会的効果は研究が進行中。</p>
+</div>
+</div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL -->
+<div class="terminal-label-wrap fade">
+<div class="terminal-label"><span class="terminal-label-text">▼ Internal Dialogue >> Active</span><span class="terminal-label-line"></span></div>
+</div>
+
+<div class="terminal-wrap">
+<div class="terminal fade" id="terminalBlock">
+<div class="terminal-bar">
+<div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div>
+<span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+</div>
+<div class="terminal-body">
+<span class="t-sys" id="ts0">// session started — 幸福を作る4つの物質</span>
+
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ、新しいiPhoneを買ったときのワクワクがすぐ消えるのもドーパミンのせい？</span></div>
+<span class="t-output" id="to1">正確に言えば、ドーパミンの「仕様」だ。買う前の期待がドーパミンのピーク。手に入った瞬間にそれは<em>「予測通り」</em>になる。次の日にはもう、基準が更新されている。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;セロトニンの安定感って、地味だけど一番大事なんじゃない？</span></div>
+<span class="t-output" id="to2">地味なものほど、なくなって初めて気づく。朝起きて「特に不幸ではない」と感じられること自体が、セロトニンの仕事だ。派手さはないが、<strong>これが崩れると他の3つが全部おかしくなる</strong>。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、幸福って化学反応にすぎないってこと？</span></div>
+<span class="t-output" id="to3">化学反応が「すぎない」かどうかは、答えのない問いだ。ただ、化学反応であることと、それが大切であることは矛盾しない。コーヒーの美味しさもドーパミンの仕業かもしれないが、<em>だからといってコーヒーが美味しくなくなるわけではない</em>。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;4つの物質を知ったら、幸福に対する態度って変わる？</span></div>
+<span class="t-output" id="to4">少なくとも、「幸せになりたい」という漠然とした願いが、もう少し具体的になる。どの物質が足りないのか。どの刺激に偏っているのか。自分の幸福を<strong>一色ではなく四色で見る</strong>ことはできるようになる。</span>
+<hr class="t-divider">
+
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# ちょっと安心した</span></div>
+</div>
+</div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+<p class="related-label">次に読む</p>
+<div class="related-grid">
+<a class="related-card" href="reward_prediction_error.html">
+<p class="related-card-tag">行動心理学 × 報酬系</p>
+<p class="related-card-title">報酬予測誤差とドーパミン</p>
+<p class="related-card-desc">ドーパミンは快楽ではなく「予測との差」を伝える。1997年の革命的発見。</p>
+<p class="related-card-arrow">読む →</p>
+</a>
+<a class="related-card" href="skinner_box_v6.html">
+<p class="related-card-tag">行動心理学 × 依存</p>
+<p class="related-card-title">スキナー箱とスロットマシン</p>
+<p class="related-card-desc">報酬が不規則に来るほど行動は強化される。ガチャ、SNS通知、プルトゥリフレッシュの原理。</p>
+<p class="related-card-arrow">読む →</p>
+</a>
+</div>
+</div>
+
+<script>
+// プログレスバー
+window.addEventListener('scroll',()=>{
+const h=document.documentElement.scrollHeight-innerHeight;
+document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ
+function toggleTip(el){
+const isOpen=el.classList.contains('open');
+document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+if(!isOpen)el.classList.add('open');
+}
+document.addEventListener('click',e=>{
+if(!e.target.closest('.tip'))
+document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+});
+
+// ステップアコーディオン
+function tog(n){
+const c=document.getElementById('sc'+n);
+const was=c.classList.contains('open');
+document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+if(!was)c.classList.add('open');
+}
+
+// 場面→物質マッチング
+const sceneData=[
+{chems:['sero'],labels:['セロトニン'],explain:'朝日がセロトニン神経を活性化する。リズミカルな歩行も分泌を促す。派手な快感ではないが、「今日も悪くないな」という穏やかな安定感はここから来る。'},
+{chems:['dopa'],labels:['ドーパミン'],explain:'目標達成の瞬間に正の報酬予測誤差が発生し、ドーパミンがスパイクする。ただし、この快感は短い。翌日には「次の締め切り」が新しい基準になる。'},
+{chems:['oxy','dopa'],labels:['オキシトシン','ドーパミン'],explain:'スキンシップでオキシトシンが分泌される。同時に、子どもの笑顔という「予想外の報酬」がドーパミンも動かす。2つの物質が重なるから、この幸福感は厚い。'},
+{chems:['endo','dopa'],labels:['エンドルフィン','ドーパミン'],explain:'身体的な負荷でβ-エンドルフィンが分泌され、痛みが和らぐ。同時に「走り切った」という達成感がドーパミンを呼ぶ。ランナーズハイの正体はエンドカンナビノイドという別の物質かもしれないが、エンドルフィンも関与している。'},
+{chems:['dopa'],labels:['ドーパミン'],explain:'通知は「何か良いことがあるかもしれない」という期待を作る。それが報酬予測誤差を生む。問題は、この刺激が無限に供給されること。ドーパミン系が過剰に刺激され続ける典型例だ。'},
+{chems:['dopa','endo'],labels:['ドーパミン','エンドルフィン'],explain:'チョコレートの甘さは報酬系を活性化し、ドーパミンが出る。脂肪と糖の組み合わせは進化的に「貴重なカロリー源」なので、脳が強く反応する。食べたときの快感にはエンドルフィンも関与する。'}
+];
+function showScene(i){
+const cards=document.querySelectorAll('.scene-card');
+cards.forEach((c,j)=>{c.classList.toggle('active',j===i);});
+const d=sceneData[i];
+const el=document.getElementById('sceneResult');
+let html='<p class="scene-result-title">関与する物質</p><div class="scene-chems">';
+d.chems.forEach((c,j)=>{
+const cls=c==='dopa'?'dopa':c==='sero'?'sero':c==='oxy'?'oxy':'endo';
+html+='<span class="scene-chip '+cls+'">'+d.labels[j]+'</span>';
+});
+html+='</div><p class="scene-explain">'+d.explain+'</p>';
+el.innerHTML=html;
+el.classList.add('show');
+}
+
+// 報酬予測誤差シミュレーター
+function fireRPE(phase){
+if(phase===1){
+const bar=document.getElementById('rpeBar1');
+bar.style.height='28px';bar.style.bottom='50%';
+document.getElementById('rpeExp1').style.display='block';
+}else if(phase===2){
+const bar=document.getElementById('rpeBar2');
+bar.style.height='3px';bar.style.bottom='calc(50% - 1px)';
+document.getElementById('rpeExp2').style.display='block';
+}else if(phase===3){
+const bar=document.getElementById('rpeBar3');
+bar.style.height='20px';bar.style.top='50%';
+document.getElementById('rpeExp3').style.display='block';
+}
+}
+
+// ターミナルアニメーション
+const tseq=[
+{id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+{id:'tl2',delay:2300},{id:'to2',delay:2900},
+{id:'tl3',delay:3900},{id:'to3',delay:4500},
+{id:'tl4',delay:5500},{id:'to4',delay:6100},
+{id:'tl5',delay:7200},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+if(entries[0].isIntersecting&&!tStarted){
+tStarted=true;
+tseq.forEach(s=>{
+setTimeout(()=>{
+const el=document.getElementById(s.id);
+if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+},s.delay);
+});
+}
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>
