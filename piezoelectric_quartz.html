@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>石を押すと、電気が生まれる — Qualia Journal</title>
+<meta name="description" content="水晶を押すと電気が生まれ、電気をかけると水晶が震える。1880年の発見がデジタル機器の心臓部を支えている。">
+<link rel="canonical" href="https://qualiajournal.com/piezoelectric_quartz">
+<meta property="og:title" content="石を押すと、電気が生まれる — Qualia Journal">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Qualia Journal"><meta property="og:locale" content="ja_JP">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+
+/* MASTHEAD */
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}
+.masthead-name a{color:inherit;text-decoration:none;}.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;margin-bottom:6px;}
+.masthead-date{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;letter-spacing:.08em;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-stat{border:1px solid #c8bfaa;padding:28px 24px;background:#f3efe6;text-align:center;margin-bottom:20px;}
+.cover-stat-n{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:8px;}
+.cover-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.6;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* META BAR（難易度・読了時間のみ） */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+
+/* SUMMARY（内容説明ではなく「何を体験するか」を抽象的に） */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP（専門用語・説明なしの人名に使用） */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* IMAGE PLACEHOLDER */
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* MISCONCEPTION（誤解あるあるブロック） */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS（アコーディオン） */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+.outcome{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;margin-top:6px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;}
+.outcome.lose{background:rgba(196,57,42,.08);color:#c4392a;border:1px solid rgba(196,57,42,.25);}
+.outcome.win{background:rgba(26,90,48,.08);color:#1a5a30;border:1px solid rgba(26,90,48,.25);}
+.step-summary{margin-top:2px;padding:16px 20px;background:#f3efe6;border:1px solid #c8bfaa;}
+.step-summary p{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;margin:0;line-height:1.8;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* TERMINAL（after.sh） */
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+}
+
+.ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.ix-header{background:#1a1208;color:white;padding:11px 20px;}.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.ix-body{padding:24px 20px;background:white;}.ix-label{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;color:#3d3020;margin-bottom:8px;}.ix-slider-row{display:flex;align-items:center;gap:12px;margin:12px 0;}.ix-slider-row input[type=range]{flex:1;accent-color:#8b1a1a;}.ix-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;padding:8px 16px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;transition:all .15s;margin:4px;}.ix-btn:hover{border-color:#8b1a1a;background:#f3efe6;}
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:8px;}
+.cmp-table{width:100%;border-collapse:collapse;margin:24px 0;font-family:'Source Sans 3',sans-serif;font-size:13px;}.cmp-table th{background:#3d3020;color:#faf8f3;padding:10px 14px;text-align:left;font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;}.cmp-table td{padding:10px 14px;border-bottom:1px solid #e0d8c8;color:#3d3020;font-weight:300;line-height:1.6;}.cmp-table tr:nth-child(even) td{background:#f3efe6;}
+.flow-diagram{margin:24px 0;overflow-x:auto;}.flow-diagram svg{min-width:480px;}
+.person-block-wiki{margin-bottom:8px;}.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}.scenario-inner::after{content:'\23F1';position:absolute;right:20px;top:-10px;font-size:100px;opacity:.12;line-height:1;pointer-events:none;}.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:24px 48px 8px;}.terminal-label{display:flex;align-items:center;gap:12px;}.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;}.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="masthead"><p class="masthead-name"><a href="https://qualiajournal.com/">Qualia Journal</a></p></div>
+
+<div class="cover fade"><div class="cover-left"><p class="cover-kicker">物理学 × 日常のテクノロジー</p><h1>石を押すと、<em>電気が生まれる</em></h1><p class="cover-deck">1880年、パリの研究室でキュリー兄弟は水晶を押して電気を取り出した。その双方向の不思議——圧電効果——が、いまあなたの腕時計とスマートフォンの心臓を動かしている。</p><div class="cover-byline"><span>Last updated: Mar. 2026</span></div></div><div class="cover-right"><div class="est-card"><span class="est-label">Est.</span><span class="est-year">1880</span><p class="est-event">ピエール・キュリーとジャック・キュリーが圧電効果を発見。錫箔と接着剤と糸鋸だけで、結晶を圧縮すると電荷が生じることを実証した。</p><p class="est-context">同年の世界：エジソンが白熱電球の特許を取得（1月）。ケルン大聖堂が着工から632年を経て完成（9月）。</p></div><p class="cover-aside">キュリー兄弟の発見から145年。水晶振動子は年間<strong>数十億個</strong>が生産され、スマートフォン、GPS、医療機器、自動車——あらゆるデジタル機器の時間の基準になっている。</p></div></div>
+
+<div class="scenario fade"><div class="scenario-inner"><p>腕時計を見る。壁に掛かった時計を見る。スマートフォンの画面右上を見る。時刻が表示されている。表示が1秒ごとに変わる。私たちはそれを当たり前だと思っている。「1秒」がどこから来ているのか、考えたことすらない。</p><p>機械式の時計はゼンマイとテンプで時を刻む。あれは人間の手が作った精密な機械だ。しかし、あなたのスマートフォンの中にある「1秒」は、機械ではない。鉱物の振動だ。地球上で最もありふれた鉱物のひとつ——水晶が、1秒間に32,768回震えている。</p><p>押すと電気を出し、電気をかけると震える。石がそんなことをする理由は、結晶の原子配列にある。</p></div></div>
+
+<div class="meta-bar fade"><div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span class="difficulty-text">初中級 — 数学の知識は不要</span></div><div class="meta-sep"></div><div class="meta-item"><span class="meta-label">読了時間</span><span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 18 分</span></div></div>
+
+<div class="summary-box fade"><div class="summary-inner"><span class="summary-icon">要点</span><p class="summary-text">結晶を押して電気を生み出し、電気で結晶を震わせる。その<strong>双方向性</strong>を手で触って確かめながら、鉱物の振動がどのように「1秒」を作り出しているかを体験する。</p></div></div>
+
+<div class="article"><div class="article-main">
+
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">1880年、パリ。錫箔と糸鋸の実験</h2>
+
+<p class="body-text fade">1880年のパリ理学部。<span class="tip" onclick="toggleTip(this)">ピエール・キュリー<span class="tip-box"><strong>ピエール・キュリー（Pierre Curie, 1859–1906）</strong><br>フランスの物理学者。妻マリー・キュリーとともにラジウムを発見し、1903年にノーベル物理学賞を受賞。圧電効果の発見時はまだ21歳の研究助手だった。</span></span>は21歳、兄の<span class="tip" onclick="toggleTip(this)">ジャック・キュリー<span class="tip-box"><strong>ジャック・キュリー（Jacques Curie, 1855–1941）</strong><br>ピエールの兄。鉱物学と焦電気の知識を弟と持ち寄り、圧電効果を共同発見した。発見への貢献は対等だったとされる。</span></span>は25歳。ふたりはシャルル・フリーデルの指導のもと、<span class="tip" onclick="toggleTip(this)">錫箔<span class="tip-box"><strong>錫箔（すずはく）</strong><br>スズを薄く延ばした金属箔。アルミホイルのようなもので、当時は電極として使われた。現代のアルミホイルとほぼ同じ用途。</span></span>と接着剤と宝石職人の糸鋸だけで——文字通りそれだけで——水晶や<span class="tip" onclick="toggleTip(this)">トルマリン<span class="tip-box"><strong>トルマリン（tourmaline）</strong><br>ケイ酸塩鉱物の一種。宝石としても知られるが、加熱すると電荷を帯びる「焦電気」の性質があり、キュリー兄弟が圧電効果を予測するきっかけになった。</span></span>を特定の方向から切り出し、圧縮し、表面に電荷が現れることを測定した。</p>
+
+<p class="body-text fade">水晶と聞くと、占いに使われる透明な球体を思い浮かべる人がいるかもしれない。だが水晶——化学式SiO₂——は地球上で最もありふれた鉱物のひとつだ。花崗岩の主成分であり、砂浜の砂粒の大半も水晶（石英）だ。道端の石ころの中にもある。特別な石ではない。<em>あまりにもありふれた石に、極めて特殊な性質が隠れていた</em>——それが圧電効果の発見を際立たせている。</p>
+
+
+
+<p class="body-text fade"><strong>結晶を押すと、電気が生まれる。</strong>これが<span class="tip" onclick="toggleTip(this)">圧電効果<span class="tip-box"><strong>圧電効果（piezoelectric effect）</strong><br>ギリシャ語の「piezein（押す）」に由来。特定の結晶に力を加えると電圧が生じる現象。逆に電圧をかけると結晶が変形する。ライターの着火がわかりやすい例。</span></span>だ。力を加えると結晶内部で正と負の電荷の中心がずれ、表面に電圧が発生する。1cm³の水晶に約2kNの力を正しい方向からかけると、12,500Vもの電圧が生じる。家庭用コンセントの100倍以上だ。ただし電荷量は極めて小さいので感電はしない。ライターの火花が痛くないのと同じだ。</p>
+
+
+<p class="body-text fade">なぜ力が電気になるのか。水晶の結晶は、シリコン原子（正の電荷）と酸素原子（負の電荷）が規則正しく並んでいるが、その並び方が<strong>非対称</strong>だ。通常は正と負の電荷の中心がぴったり重なっていて電気的に中性。しかし力を加えると結晶が変形し、正の電荷の中心と負の電荷の中心がわずかにずれる。このずれが結晶の表面に電圧として現れる。重要なのは、対称な結晶構造ではこのずれが打ち消し合って電圧が生じないということ。非対称な構造を持つ結晶だけが圧電効果を示す。自然界の32の結晶クラスのうち、圧電効果を持つのは20クラスだ。</p>
+
+<div class="flow-diagram fade" style="overflow-x:auto;"><svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;"><text x="95" y="14" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55">力なし</text><text x="345" y="14" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55">力を加える</text><rect x="20" y="28" width="150" height="100" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1.5"/><text x="95" y="52" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#1a1208">非対称な結晶</text><text x="95" y="70" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">＋と－が均等に分布</text><circle cx="60" cy="96" r="6" fill="#8b1a1a" opacity=".3"/><text x="60" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="white" font-weight="600">+</text><circle cx="95" cy="96" r="6" fill="#3d6a8b" opacity=".3"/><text x="95" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="white" font-weight="600">−</text><circle cx="130" cy="96" r="6" fill="#8b1a1a" opacity=".3"/><text x="130" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="white" font-weight="600">+</text><text x="95" y="118" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">電圧 = 0</text><text x="220" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text><text x="220" y="94" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">圧縮</text><rect x="270" y="28" width="150" height="100" rx="4" fill="white" stroke="#8b1a1a" stroke-width="1.5"/><text x="345" y="52" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#1a1208">圧縮された結晶</text><text x="345" y="70" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">＋と－の中心がずれる</text><circle cx="305" cy="96" r="6" fill="#8b1a1a" opacity=".6"/><text x="305" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="white" font-weight="600">+</text><circle cx="325" cy="96" r="6" fill="#8b1a1a" opacity=".6"/><text x="325" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="white" font-weight="600">+</text><circle cx="365" cy="96" r="6" fill="#3d6a8b" opacity=".6"/><text x="365" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="white" font-weight="600">−</text><circle cx="385" cy="96" r="6" fill="#3d6a8b" opacity=".6"/><text x="385" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="white" font-weight="600">−</text><text x="345" y="118" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#8b1a1a" font-weight="600">電圧が発生 ⚡</text><rect x="440" y="48" width="110" height="56" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/><text x="495" y="70" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#8b1a1a">直接圧電効果</text><text x="495" y="86" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">力 → 電気</text><text x="280" y="155" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">非対称な結晶構造を持つ物質でのみ起きる</text></svg></div>
+<p class="body-text fade">翌1881年、物理学者<span class="tip" onclick="toggleTip(this)">ガブリエル・リップマン<span class="tip-box"><strong>ガブリエル・リップマン（Gabriel Lippmann, 1845–1921）</strong><br>ルクセンブルク出身のフランスの物理学者。熱力学の原理から逆圧電効果を予言。1908年にカラー写真でノーベル賞受賞。</span></span>が「逆もまた成り立つはずだ」と数学的に予言した。電気をかければ結晶が変形する、と。キュリー兄弟はすぐにこれを実験で確認した。<em>押すと電気が出る。電気をかけると変形する。</em>この完全な双方向性が、圧電効果の核心だ。</p>
+
+<table class="cmp-table fade"><tr><th>項目</th><th>直接圧電効果</th><th>逆圧電効果</th></tr><tr><td>入力</td><td>力（圧縮・引張）</td><td>電圧（電場）</td></tr><tr><td>出力</td><td>電圧（電荷）</td><td>変形（伸縮）</td></tr><tr><td>発見</td><td>1880年、キュリー兄弟が実証</td><td>1881年、リップマンが予言→キュリー兄弟が確認</td></tr><tr><td>身近な例</td><td>ライターの着火</td><td>クオーツ時計の振動</td></tr><tr><td>応用</td><td>センサー（力→電気信号）</td><td>発振器（電気→振動）</td></tr></table>
+
+<p class="body-text fade">キュリー兄弟が最初に圧電効果を確認した物質は、水晶だけではなかった。トルマリン、トパーズ、砂糖の結晶、ロッシェル塩——合計5種類の鉱物で実証した。その後、天然・人工を問わず、多くの圧電物質が見つかっている。</p>
+
+<table class="cmp-table fade">
+<tr><th>物質</th><th>種類</th><th>特徴と主な用途</th></tr>
+<tr><td>水晶（SiO₂）</td><td>天然鉱物</td><td>安定性が極めて高い。時計・発振器・センサー。現在はほぼ人工合成品。</td></tr>
+<tr><td>トルマリン</td><td>天然鉱物</td><td>温度変化に強い。高温環境の超音波センサー。宝石としても知られる。</td></tr>
+<tr><td>ロッシェル塩</td><td>天然結晶</td><td>圧電定数が非常に高いが湿気と温度に弱い。初期のマイクロフォンやレコードプレーヤーに使用。</td></tr>
+<tr><td>チタン酸バリウム（BaTiO₃）</td><td>人工セラミック</td><td>WWII中に発見。水晶の100倍以上の圧電定数。コンデンサー、超音波トランスデューサー。</td></tr>
+<tr><td>PZT（チタン酸ジルコン酸鉛）</td><td>人工セラミック</td><td>現在最も広く使われる圧電材料。医療用超音波、インクジェットプリンター、ソナー。鉛を含むため代替材料の研究が進行中。</td></tr>
+<tr><td>PVDF（ポリフッ化ビニリデン）</td><td>高分子ポリマー</td><td>柔軟で薄いフィルム状にできる。タッチセンサー、ウェアラブルデバイス。</td></tr>
+<tr><td>骨（コラーゲン）</td><td>生体材料</td><td>骨に力がかかると微弱な電気信号が生じ、骨の修復・成長を促す。圧電効果は生命の中にもある。</td></tr>
+</table>
+
+
+<div class="person-block fade"><div class="person-block-img"><svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="30" r="16" fill="#c8bfaa"/><ellipse cx="40" cy="70" rx="24" ry="18" fill="#c8bfaa"/><circle cx="40" cy="30" r="14" fill="#e0d8c8"/><circle cx="35" cy="28" r="2" fill="#7a6a55"/><circle cx="45" cy="28" r="2" fill="#7a6a55"/><path d="M36 34 Q40 38 44 34" stroke="#7a6a55" fill="none" stroke-width="1.5"/></svg></div><div class="person-block-body"><p class="person-block-name">ピエール・キュリー</p><p class="person-block-role">Pierre Curie（1859–1906）</p><p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%94%E3%82%A8%E3%83%BC%E3%83%AB%E3%83%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%BC" target="_blank" rel="noopener">Wikipedia</a></p><p class="person-block-desc">21歳で兄ジャックとともに圧電効果を発見。磁性の研究（キュリー温度）を経て、妻マリーとの放射能研究へ。圧電効果で開発した電気計はラジウム発見にも使われた。46歳で馬車事故により死去。</p></div></div>
+
+<div class="quote-block fade"><p class="quote-en">"These results were a credit to the Curies' imagination and perseverance, considering that they were obtained with nothing more than tinfoil, glue, wire, magnets and a jeweler's saw."</p><p class="quote-ja">これらの成果は、錫箔と接着剤と針金と磁石と糸鋸だけで得られたことを考えれば、キュリー兄弟の想像力と忍耐力の賜物だった。</p><p class="quote-attr">— PIEZO.COM "History of Piezoelectricity"、1880年の実験についての記述</p></div>
+
+<hr class="art-rule">
+<h2 class="fade">振動する鉱物、時を刻む</h2>
+
+<p class="body-text fade">発見から40年近く、圧電効果は「研究室の珍品」だった。ピエール自身はこの効果を放射能の測定に転用した——マリー・キュリーとともにラジウムを発見する過程で、圧電電気計が微弱な電荷を測る装置として活躍した。だが圧電効果そのものの応用は進まなかった。</p>
+
+<div class="img-placeholder fade"><div class="img-ph-area"><span class="img-ph-icon">🖼️</span><p class="img-ph-title">イラスト①｜キュリー兄弟の実験室</p><p class="img-ph-desc">兄弟が錫箔を貼った水晶片を万力で挟み、検電器の針が振れるのを見つめる場面。</p><div class="img-ph-prompt"><p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p><p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, two rabbit scholars in 19th century lab coats examining a crystal in a vise with tinfoil electrodes, one watching a galvanometer needle, lab bench with saw glue wire, Japanese scroll painting aesthetic, no text</p></div></div><p class="img-caption">イメージ図（画像生成AI使用予定）</p></div>
+
+<p class="body-text fade">転機は第一次世界大戦だった。1917年、フランスの物理学者<span class="tip" onclick="toggleTip(this)">ポール・ランジュバン<span class="tip-box"><strong>ポール・ランジュバン（Paul Langevin, 1872–1946）</strong><br>フランスの物理学者。水晶の圧電効果で超音波ソナーを開発。近代的ソナー技術の祖。</span></span>が、薄い水晶板を2枚の鋼板で挟んだ装置で超音波を海中に発射し、潜水艦からの反射を検出するソナーを開発した。圧電効果の初の実用的応用だ。</p>
+
+<p class="body-text fade">そして1921年。アメリカ・ウェズリアン大学の<span class="tip" onclick="toggleTip(this)">ウォルター・キャディ<span class="tip-box"><strong>ウォルター・G・キャディ（Walter G. Cady, 1874–1974）</strong><br>アメリカの物理学者。1921年に世界初の水晶発振器を開発し「近代圧電技術の父」と呼ばれる。100歳の誕生日前日に死去。</span></span>が決定的な発見をする。水晶に交流電圧をかけ周波数をゆっくり変えると、<em>ある特定の周波数でだけ水晶が激しく共振する</em>ことに気づいた。少しでもずれると振動は止まる。この安定した<span class="tip" onclick="toggleTip(this)">共振<span class="tip-box"><strong>共振（resonance）</strong><br>物体の固有振動数と同じ周波数の力が加わると振動が急激に大きくなる現象。ブランコをちょうどいいタイミングで押すのと同じ。</span></span>を利用した世界初の水晶発振器が誕生した。</p>
+
+<div class="ix-wrap fade"><div class="ix-header"><span class="ix-hl">✦ Resonance Simulator</span></div><div class="ix-body"><p class="ix-label">印加する周波数を変えてみよう。水晶の共振周波数に近づくと振幅が急激に増大する。</p><div class="ix-slider-row"><span style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;">20 kHz</span><input type="range" id="resSlider" min="0" max="100" value="30" style="flex:1;accent-color:#8b1a1a;"><span style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;">45 kHz</span></div><div style="text-align:center;margin:4px 0;"><span id="resFreqDisp" style="font-family:'JetBrains Mono',monospace;font-size:16px;color:#8b1a1a;font-weight:500;">27.5 kHz</span></div><div style="position:relative;margin:16px 0;background:#faf8f3;border:1px solid #e0d8c8;"><canvas id="resCanvas" width="520" height="200"></canvas></div><div id="resMsg" style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;text-align:center;min-height:20px;margin-top:8px;"></div></div></div>
+<p class="ix-note fade">概念的シミュレーション。共振曲線はローレンツ関数で近似。実際のQ値は数万〜数十万。</p>
+
+<div class="flow-diagram fade" style="overflow-x:auto;"><svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;"><text x="260" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#7a6a55">音叉型水晶振動子の構造</text><rect x="160" y="30" width="200" height="150" rx="6" fill="none" stroke="#c8bfaa" stroke-width="1.5" stroke-dasharray="4,3"/><text x="370" y="45" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">セラミック</text><text x="370" y="57" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">パッケージ</text><rect x="230" y="50" width="12" height="80" rx="2" fill="#e0d8c8" stroke="#7a6a55" stroke-width="1"/><rect x="278" y="50" width="12" height="80" rx="2" fill="#e0d8c8" stroke="#7a6a55" stroke-width="1"/><rect x="230" y="130" width="60" height="16" rx="2" fill="#e0d8c8" stroke="#7a6a55" stroke-width="1"/><text x="260" y="163" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">台座</text><rect x="233" y="55" width="6" height="70" rx="1" fill="#8b1a1a" opacity=".5"/><rect x="281" y="55" width="6" height="70" rx="1" fill="#3d6a8b" opacity=".5"/><text x="218" y="90" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">電極(+)</text><text x="302" y="90" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#3d6a8b">電極(−)</text><text x="222" y="72" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#8b1a1a">←</text><text x="298" y="72" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#8b1a1a">→</text><text x="260" y="48" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">振動方向</text><text x="50" y="100" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">実物は</text><text x="50" y="115" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">約3mm×1mm。</text><text x="50" y="130" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">米粒より小さい。</text><rect x="380" y="80" width="120" height="44" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/><text x="440" y="100" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="12" fill="#8b1a1a" font-weight="500">32,768 Hz</text><text x="440" y="114" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">= 2¹⁵ 回/秒</text></svg></div>
+
+<div class="misconception fade"><div class="misconception-header"><span class="misconception-hl">読む前に確認 — よくある誤解</span></div><div class="misconception-body"><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">水晶は自然に32,768 Hzで振動する</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">振動数は形と大きさで決まる。音叉型に精密加工し、レーザーで微調整して初めてこの周波数になる。</p></div></div><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">クオーツ時計の水晶はすり減る</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">振動はナノメートル単位の微小変形で機械摩耗はほぼない。精度低下の主因は温度変化と電極劣化。</p></div></div><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">圧電効果はスピリチュアルな「水晶のパワー」</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">結晶構造の非対称性から生じる物理現象。SiO₂の原子配列の性質にすぎない。</p></div></div></div></div>
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">押して、震わせて、共振させる</h2>
+
+<p class="body-text fade">圧電効果の話を文章で読むだけでは実感が湧かない。以下の3つのフェーズで双方向性を手で触って確かめてほしい。</p>
+
+<div class="ix-wrap fade"><div class="ix-header"><span class="ix-hl">✦ Piezoelectric Experience — 3 Phases</span></div><div class="ix-body">
+<div id="phase1"><p class="ix-label">Phase 1 ／ 押す → 電気が出る</p><p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;line-height:1.7;margin-bottom:12px;">水晶をクリック（タップ）して押してみよう。</p><div style="display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;"><div id="crystalBox" style="width:120px;height:120px;background:linear-gradient(135deg,#e0d8c8,#c8bfaa);border:2px solid #7a6a55;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;user-select:none;" onmousedown="pressCrystal()" ontouchstart="pressCrystal()"><span style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;pointer-events:none;">クリックで押す</span></div><div style="text-align:center;"><div style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-bottom:4px;">電圧計</div><div id="voltDisp" style="font-family:'JetBrains Mono',monospace;font-size:28px;color:#8b1a1a;font-weight:500;">0 V</div><div style="width:100px;height:8px;background:#e0d8c8;border-radius:4px;margin-top:6px;overflow:hidden;"><div id="voltFill" style="width:0%;height:100%;background:#8b1a1a;transition:width .3s;border-radius:4px;"></div></div></div></div><p id="phase1Note" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;text-align:center;margin-top:12px;min-height:18px;"></p></div>
+<hr style="border:none;border-top:1px solid #e0d8c8;margin:24px 0;">
+<div id="phase2"><p class="ix-label">Phase 2 ／ 電気をかける → 変形する</p><div class="ix-slider-row"><span style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;">0V</span><input type="range" id="deformSlider" min="0" max="100" value="0" oninput="updateDeform()"><span style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;">500V</span></div><div style="display:flex;align-items:center;justify-content:center;gap:16px;margin:12px 0;"><div style="text-align:center;"><div style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;">印加電圧</div><div id="deformVoltDisp" style="font-family:'JetBrains Mono',monospace;font-size:18px;color:#8b1a1a;">0 V</div></div><svg id="deformSVG" width="140" height="100" viewBox="0 0 140 100"><rect id="deformRect" x="30" y="15" width="80" height="70" rx="6" fill="#e0d8c8" stroke="#7a6a55" stroke-width="1.5" style="transition:all .15s;"/><text x="70" y="55" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">水晶片</text></svg><div style="text-align:center;"><div style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;">変形量</div><div id="deformAmtDisp" style="font-family:'JetBrains Mono',monospace;font-size:18px;color:#3d6a8b;">0 nm</div></div></div></div>
+<hr style="border:none;border-top:1px solid #e0d8c8;margin:24px 0;">
+<div id="phase3"><p class="ix-label">Phase 3 ／ 共振を探せ</p><p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;line-height:1.7;margin-bottom:12px;">周波数を変えて共振点を見つけよう。振幅が最大になるポイントだ。</p><div class="ix-slider-row"><span style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;">30 kHz</span><input type="range" id="resSearchSlider" min="0" max="100" value="10" oninput="updateResSearch()"><span style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;">36 kHz</span></div><div style="text-align:center;margin:8px 0;"><span id="resSearchFreq" style="font-family:'JetBrains Mono',monospace;font-size:16px;color:#8b1a1a;">30.6 kHz</span></div><div style="display:flex;align-items:center;justify-content:center;gap:16px;"><div style="width:60px;text-align:center;"><div id="ampBar" style="width:24px;height:0px;background:#8b1a1a;border-radius:2px;margin:0 auto;transition:height .2s;"></div><div style="font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:4px;">振幅</div></div><div id="resSearchResult" style="font-family:'Source Sans 3',sans-serif;font-size:14px;color:#7a6a55;min-width:200px;"></div></div></div>
+</div></div>
+<p class="ix-note fade">体験用の概念的シミュレーション。実際の水晶振動子は真空パッケージ内で動作し変形はナノメートル単位。</p>
+
+<p class="body-text fade">共振を見つけたとき、スライダーを少しでもずらすと振幅が急落するのに気づいただろうか。この「頑固さ」が水晶振動子の精度の源だ。共振周波数から外れることを許さない——その性質が時計の正確さを保証する。</p>
+
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">なぜ32,768回なのか</h2>
+
+<p class="body-text fade">クオーツ時計の水晶は1秒間に32,768回振動する。なぜこの中途半端な数字か。32,768は2¹⁵だ。<strong>32,768回の振動を15段のデジタル回路で÷2していくと、正確に「1秒に1回」のパルスが得られる。</strong></p>
+
+<div class="flow-diagram fade" style="overflow-x:auto;"><svg viewBox="0 0 580 100" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;"><rect x="10" y="25" width="70" height="50" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1.5"/><text x="45" y="47" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#1a1208">電池</text><text x="45" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">1.5V</text><text x="95" y="53" text-anchor="middle" font-size="14" fill="#8b1a1a">→</text><rect x="110" y="25" width="90" height="50" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1.5"/><text x="155" y="47" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#1a1208">発振回路</text><text x="155" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">+水晶</text><text x="215" y="53" text-anchor="middle" font-size="14" fill="#8b1a1a">→</text><rect x="230" y="20" width="100" height="60" rx="4" fill="#f3efe6" stroke="#8b1a1a" stroke-width="1.5"/><text x="280" y="42" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b1a1a" font-weight="500">32,768 Hz</text><text x="280" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">÷2を15回</text><text x="280" y="70" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">→ 1 Hz</text><text x="345" y="53" text-anchor="middle" font-size="14" fill="#8b1a1a">→</text><rect x="360" y="25" width="90" height="50" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1.5"/><text x="405" y="47" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#1a1208">モーター</text><text x="405" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">1秒ずつ</text><text x="465" y="53" text-anchor="middle" font-size="14" fill="#8b1a1a">→</text><rect x="480" y="25" width="80" height="50" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1.5"/><text x="520" y="47" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#1a1208">秒針</text><text x="520" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">カチッ</text><text x="290" y="95" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">クオーツ時計の信号の流れ</text></svg></div>
+
+<div class="steps-wrap fade"><p class="steps-head">なぜ32,768 Hzが選ばれたのか</p><div class="step-card" id="sc1"><div class="step-hd" onclick="tog(1)"><div class="step-nb">1</div><div class="step-tw"><div class="step-title">2の冪乗は分周が簡単</div><div class="step-sub">デジタル回路との相性</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>フリップフロップは入力周波数を半分にする。32,768 = 2¹⁵ なので15個つなぐだけで1Hzが得られる。<strong>割り算回路が不要</strong>で設計がシンプル。紙を半分に折る作業を15回繰り返すと32,768層——その逆をやっている。</p></div></div><div class="step-card" id="sc2"><div class="step-hd" onclick="tog(2)"><div class="step-nb">2</div><div class="step-tw"><div class="step-title">消費電力が低い</div><div class="step-sub">電池1個で数年持つ理由</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>周波数が高いほど消費電力は大きい。32,768 Hzは人間の耳に聞こえないぎりぎり上の帯域で、精度と省電力のバランス点。<strong>ボタン電池1個で2〜3年動く</strong>。1MHzの水晶なら電池は数週間で切れる。</p></div></div><div class="step-card" id="sc3"><div class="step-hd" onclick="tog(3)"><div class="step-nb">3</div><div class="step-tw"><div class="step-title">製造しやすい大きさ</div><div class="step-sub">音叉型の絶妙なバランス</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>振動周波数は形と大きさで決まる。32,768 Hzの音叉型水晶は約3mm×1mmで腕時計に収まるサイズ。低周波にすると大きすぎ、高周波にすると小さすぎて加工困難。<strong>1970年代の量産技術と合致した</strong>。</p></div></div><div class="step-summary"><p>32,768 Hzは物理的必然ではなく、<strong>2進数の数学、消費電力、製造サイズの三者が交差する「設計上の最適解」</strong>。産業が標準化し後戻りできなくなった面もある。</p></div></div>
+
+<div class="ix-wrap fade"><div class="ix-header"><span class="ix-hl">✦ Binary Divider — 2¹⁵ → 1 Hz</span></div><div class="ix-body"><p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;margin-bottom:12px;">「スタート」で32,768 Hzが15段の÷2回路を通り1 Hzになる過程を見る。</p><div style="text-align:center;margin-bottom:16px;"><button class="ix-btn" id="divStartBtn" onclick="startDivider()">▶ スタート</button></div><div id="dividerGrid" style="display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;"></div><div id="divFinalPulse" style="text-align:center;margin-top:16px;font-family:'Source Sans 3',sans-serif;font-size:14px;color:#8b1a1a;font-weight:600;min-height:24px;"></div></div></div>
+<p class="ix-note fade">各段のフリップフロップが周波数を半分に。15段で2¹⁵分の1。実際のICでは数μm角のトランジスタペアで実現。</p>
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">石から時計へ——145年のタイムライン</h2>
+<p class="body-text fade"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#8b1a1a;vertical-align:middle;margin-right:4px;"></span><span style="font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;">赤丸は圧電効果・水晶振動子の直接的マイルストーン</span>　<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;vertical-align:middle;margin-right:4px;"></span><span style="font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;">白丸は関連する出来事</span></p>
+<div class="timeline fade">
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1880</p><p class="tl-title">圧電効果の発見</p><p class="tl-desc">ピエール（21歳）とジャック（25歳）が水晶やトルマリンに圧力をかけると表面に電荷が生じることを実証。翌年、逆圧電効果も確認。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1910</p><p class="tl-title">フォイクトの教科書</p><p class="tl-desc">『結晶物理学教科書』刊行。圧電効果を示す20の結晶クラスを特定し、テンソル解析で圧電定数を定義。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1917</p><p class="tl-title">ランジュバンのソナー</p><p class="tl-desc">水晶の圧電効果を利用した超音波潜水艦探知機を開発。初の実用的応用。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1921</p><p class="tl-title">世界初の水晶発振器</p><p class="tl-desc">ウォルター・キャディが水晶の共振を利用した発振回路を発明。ラジオ周波数の安定化に革命。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1928</p><p class="tl-title">初の水晶時計</p><p class="tl-desc">ベル研のウォーレン・マリソンが開発。年差30ミリ秒。まだファイリングキャビネット大。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1940s</p><p class="tl-title">合成圧電セラミック登場</p><p class="tl-desc">WWII中に米・ソ・日で強誘電体セラミック（チタン酸バリウム等）が発見。天然水晶の100倍以上の圧電定数。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1950s</p><p class="tl-title">人工水晶の時代へ</p><p class="tl-desc">WWIIで天然水晶（ほぼ全量ブラジル産）が枯渇。ベル研究所が水熱合成法を商業化し、人工水晶の大量生産が始まる。1970年代以降、電子機器の水晶はほぼすべて人工合成品に。あなたのスマートフォンの中の水晶も、オートクレーブで育てられた人工結晶だ。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1969</p><p class="tl-title">セイコー・クオーツアストロン</p><p class="tl-desc">12月25日、世界初の市販クオーツ腕時計発売。価格45万円（トヨタ・カローラとほぼ同額）。月差±5秒。機械式の100倍正確。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">現在</p><p class="tl-title">年間数十億個の水晶振動子</p><p class="tl-desc">スマートフォン、PC、自動車、GPS衛星——あらゆるデジタル機器に搭載。1台のスマホに複数個。</p></div>
+</div>
+
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">鉱物の振動が支える日常</h2>
+
+<p class="body-text fade">圧電効果の本質は「可逆性」にある。力を電気に、電気を力に。この双方向性がひとつの現象からセンサーと発振器というまったく異なる応用を生んだ。ライターの着火は前者、クオーツ時計は後者だ。</p>
+
+<p class="body-text fade">ひとつ、よくある疑問に答えておく。あらゆるスマートフォンや時計に水晶を入れるなら、天然の水晶を掘り出しているのだろうか。答えはノーだ。第二次世界大戦中、天然の電子グレード水晶はほぼすべてブラジルから輸入されており、潜水艦による海上封鎖で供給が途絶えた。戦後、ベル研究所が「水熱合成法」——高温高圧のオートクレーブで水晶を「育てる」技術——を商業化し、1970年代以降、電子機器に使われる水晶はほぼ100%が人工合成品になった。天然水晶と化学的にまったく同じSiO₂だが、不純物が少なく、双晶（結晶の向きがずれる欠陥）がない。むしろ天然より品質が高い。</p>
+
+
+<div class="flow-diagram fade" style="overflow-x:auto;"><svg viewBox="0 0 520 160" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;"><text x="130" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55">機械式時計</text><text x="390" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55">クオーツ時計</text><rect x="20" y="28" width="220" height="110" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1.5"/><text x="130" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#1a1208">ゼンマイ＋テンプ</text><text x="130" y="70" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">振動数: 3〜5 Hz</text><text x="130" y="90" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">日差: ±5〜15秒</text><text x="130" y="110" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">動力: ゼンマイ</text><text x="130" y="128" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">200年以上の歴史</text><text x="260" y="85" text-anchor="middle" font-family="'Playfair Display',serif" font-size="16" fill="#c8bfaa">vs</text><rect x="280" y="28" width="220" height="110" rx="4" fill="white" stroke="#8b1a1a" stroke-width="1.5"/><text x="390" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#1a1208">水晶振動子</text><text x="390" y="70" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="500">振動数: 32,768 Hz</text><text x="390" y="90" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">月差: ±15〜20秒</text><text x="390" y="110" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">動力: ボタン電池(2〜3年)</text><text x="390" y="128" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">1969年から市販</text><text x="260" y="155" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">振動数が約10,000倍。精度は約100倍。</text></svg></div>
+
+<p class="body-text fade">スマートフォンが正確な時刻を刻めるのは、中の米粒より小さな水晶片が1秒間に32,768回震えているからだ。GPSが現在地を10メートル以内で特定できるのも、衛星の原子時計と地上の水晶発振器が正確な時間差を測れるからだ。時間のずれが1マイクロ秒あるとGPSの位置は300メートルずれる。</p>
+
+<p class="body-text fade">もっと根本的なことがある。コンピューターのあらゆる計算はクロック信号に同期して行われる。そのクロックの源は水晶発振器だ。メールを送る、動画を再生する、AIに質問する——すべての裏側で水晶が震えている。1880年にキュリー兄弟が錫箔と糸鋸で見つけた現象が、デジタル社会の時間的基盤になっている。</p>
+
+<div class="pull fade"><p class="pull-q">"In experimental work I have learned the value of making a special study of obstacles to see if they can be made to <em>serve a useful purpose</em>. In other words, to convert stumbling blocks into stepping stones."</p><p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">実験で私が学んだのは、障害物を特別に研究し役に立てられないか考えることの価値だ。つまり、つまずきの石を踏み石に変えるのだ。</p><p class="pull-attr">— ウォルター・キャディ、IEEE UFFC Milestone記念ページより</p></div>
+
+<p class="body-text fade">キャディの言葉は象徴的だ。水晶の共振は初め「厄介な外乱」だった。回路が不安定になる。だがキャディはその外乱をひっくり返して世界で最も安定した発振器を作った。つまずきの石を踏み石に——圧電効果の歴史そのものがこの姿勢で綴られている。</p>
+
+<div class="culture-block fade"><p class="culture-title">MIT Media Lab『32,768 Times Per Second』</p><p class="culture-desc">クオーツ腕時計内部の電子機械的プロセスを人間が知覚できるスケールに拡大した機能する彫刻。1秒間に32,768回の振動が何を意味するかを目に見える形で体験させる。</p></div>
+
+<div class="img-placeholder fade"><div class="img-ph-area"><span class="img-ph-icon">🖼️</span><p class="img-ph-title">イラスト②｜1969年のクリスマス、東京</p><p class="img-ph-desc">セイコーの店頭に飾られたクオーツアストロン。金色のケース。価格札「450,000円」。隣にトヨタ・カローラのミニチュア。</p><div class="img-ph-prompt"><p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p><p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, 1969 Tokyo shop window display with gold wristwatch on velvet next to small car model with price tags, rabbit shoppers amazed, Japanese scroll painting aesthetic, no text</p></div></div><p class="img-caption">イメージ図（画像生成AI使用予定）</p></div>
+
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+<div class="ref-list">
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1880</span></div><p class="ref-title"><a href="https://gallica.bnf.fr/ark:/12148/bpt6k3049g/f297.item" target="_blank" rel="noopener">Développement, par pression, de l'électricité polaire dans les cristaux hémièdres à faces inclinées</a></p><p class="ref-author">Pierre Curie & Jacques Curie — Comptes rendus, vol. 91</p><p class="ref-desc">圧電効果の最初の報告。たった2ページ。この2ページが145年後の数十億個の産業に繋がっていると思うと不思議な読後感がある。フランス語。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">技術史論文</span><span class="ref-year">2009</span></div><p class="ref-title"><a href="https://doi.org/10.1179/174227109X12500830049951" target="_blank" rel="noopener">'The Electrical Expansion of Quartz' by Jacques and Pierre Curie</a></p><p class="ref-author">Francis Duck — Journal of Medical Ultrasound</p><p class="ref-desc">キュリー兄弟の1889年論文の英訳と解説。実験器具の図面が唯一掲載された論文。原文の前に文脈を掴むのに最適。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">IEEE マイルストーン</span><span class="ref-year">2020</span></div><p class="ref-title"><a href="https://ethw.org/Milestones:Piezoelectric_Oscillator,_1921-1923" target="_blank" rel="noopener">Milestones: Piezoelectric Oscillator, 1921–1923</a></p><p class="ref-author">IEEE ETHW</p><p class="ref-desc">キャディによる水晶発振器の発明経緯。本人の言葉が多く引用されており発明者の思考回路が垣間見える。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">IEEE マイルストーン</span><span class="ref-year">2004</span></div><p class="ref-title"><a href="https://ethw.org/Milestones:Electronic_Quartz_Wristwatch,_1969" target="_blank" rel="noopener">Milestones: Electronic Quartz Wristwatch, 1969</a></p><p class="ref-author">IEEE ETHW</p><p class="ref-desc">セイコー・クオーツアストロンの開発史。59Aプロジェクトから1969年クリスマスの発売まで、技術と葛藤の記録。</p></div>
+</div>
+
+<div class="note-box fade"><strong>📌 この記事について</strong><br>圧電効果の原理はキュリー兄弟の1880年の原論文とフォイクト（1910）の体系化に基づく。水晶発振器の歴史はIEEE Milestone登録文書を主な情報源とした。セイコーの記述はスミソニアン協会と公式資料による。体験コンテンツの共振シミュレーションは概念的可視化であり、実際のQ値をそのまま再現してはいない。</div>
+
+<div class="tags fade"><span class="tag">圧電効果</span><span class="tag">水晶振動子</span><span class="tag">キュリー兄弟</span><span class="tag">クオーツ時計</span><span class="tag">共振</span><span class="tag">周波数制御</span></div>
+
+</div>
+
+<div class="article-side"><div style="position:sticky;top:40px;">
+<div class="sidebar-block fade"><p class="sidebar-label">Key Number</p><p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">32,768</p><p class="sidebar-text">クオーツ時計の水晶が<strong>1秒間に振動する回数</strong>。2¹⁵。この数を2で15回割ると1。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">1880年、キュリー兄弟は21歳と25歳。発見から89年後の1969年、セイコーが世界初のクオーツ腕時計を発売。価格はトヨタ・カローラと同じ。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">MIT Media Lab『32,768 Times Per Second』——クオーツ時計内部の振動を知覚スケールに拡大した彫刻。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— 音は存在しない<br>— なぜピアノは12音なのか<br>— 色は存在しない</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">圧電効果は1880年以来再現され続けている基礎物理現象。技術史はIEEE公式資料に基づく。</p></div>
+</div></div>
+
+</div>
+
+<div class="terminal-label-wrap"><div class="terminal-label"><span class="terminal-label-text">▼ Internal Dialogue >> Active</span><div class="terminal-label-line"></div></div></div>
+<div class="terminal-wrap"><div class="terminal fade" id="terminalBlock"><div class="terminal-bar"><div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div><span class="terminal-title">after.sh — 読後の対話ログ（架空）</span></div><div class="terminal-body">
+<span class="t-sys" id="ts0">// 圧電効果と水晶振動子 を読み終えた人との対話</span>
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ライターをカチッてやるたびに水晶が割れてるわけじゃないよね？</span></div><span class="t-output" id="to1">割れてない。圧電セラミックを叩いて一瞬だけ高電圧を出してるだけ。変形量はナノメートル単位。<em>叩くたびに新品同様</em>。</span><hr class="t-divider">
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;32768って覚えにくい数字だなと思ってたけど2の15乗なのか</span></div><span class="t-output" id="to2">2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768。プログラマーにとっては<em>キリのいい数字</em>。</span><hr class="t-divider">
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;水晶ってずっと震えてて壊れないの？</span></div><span class="t-output" id="to3">原子レベルの伸縮だから摩耗はほぼない。精度低下は主に温度変化と電極劣化。<strong>振動そのものは半永久的</strong>。電池が先に切れる。</span><hr class="t-divider">
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;キュリー兄弟が錫箔と糸鋸だけでやったのがすごい</span></div><span class="t-output" id="to4">あの時代は道具より<em>問いの立て方</em>が重要だった。145年後に年間数十億個の産業になるとは本人たちも想像しなかっただろう。</span><hr class="t-divider">
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# すっきりした</span></div>
+</div></div></div>
+
+<div class="related fade"><p class="related-label">次に読む</p><div class="related-grid">
+<a class="related-card" href="/twelve_tones"><p class="related-card-tag">物理学 × 音楽</p><p class="related-card-title">なぜピアノは12音なのか</p><p class="related-card-desc">周波数比の数学的妥協が西洋音楽の全てを決めた。物理が文化を形作る話。</p><p class="related-card-arrow">→ 読む</p></a>
+<a class="related-card" href="/sound"><p class="related-card-tag">知覚と錯覚 × 聴覚</p><p class="related-card-title">音は存在しない</p><p class="related-card-desc">空気の振動は存在する。しかし「音」は脳の中にしかない。圧電効果が生む振動の先の話。</p><p class="related-card-arrow">→ 読む</p></a>
+</div></div>
+<script>
+window.addEventListener('scroll',function(){var h=document.documentElement,b=document.body,st=h.scrollTop||b.scrollTop,sh=h.scrollHeight||b.scrollHeight,ch=h.clientHeight;document.getElementById('prog').style.width=((st/(sh-ch))*100)+'%';});
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('on');});},{threshold:.12});
+document.querySelectorAll('.fade').forEach(function(el){obs.observe(el);});
+function toggleTip(el){var w=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(function(t){t.classList.remove('open');});if(!w)el.classList.add('open');}
+document.addEventListener('click',function(e){if(!e.target.closest('.tip'))document.querySelectorAll('.tip.open').forEach(function(t){t.classList.remove('open');});});
+function tog(n){var c=document.getElementById('sc'+n);if(c)c.classList.toggle('open');}
+
+// Resonance Simulator
+(function(){
+var sl=document.getElementById('resSlider'),cv=document.getElementById('resCanvas'),ctx=cv.getContext('2d'),fd=document.getElementById('resFreqDisp'),msg=document.getElementById('resMsg');
+var rf=32.768;
+function s2f(v){return 20+v*0.25;}
+function draw(){
+  var w=cv.width,h=cv.height;ctx.clearRect(0,0,w,h);
+  ctx.beginPath();var Q=60;
+  for(var p=0;p<w;p++){var f=20+(p/w)*25,r=f/rf,a=1/Math.sqrt(Math.pow(1-r*r,2)+Math.pow(r/Q,2));a=Math.min(a,Q);var y=h-20-(a/Q)*(h-40);if(p===0)ctx.moveTo(p,y);else ctx.lineTo(p,y);}
+  ctx.strokeStyle='#c8bfaa';ctx.lineWidth=2;ctx.stroke();
+  var cf=s2f(parseFloat(sl.value)),cx2=(cf-20)/25*w,r2=cf/rf,ca=1/Math.sqrt(Math.pow(1-r2*r2,2)+Math.pow(r2/Q,2));ca=Math.min(ca,Q);var cy=h-20-(ca/Q)*(h-40);
+  ctx.beginPath();ctx.arc(cx2,cy,6,0,Math.PI*2);ctx.fillStyle='#8b1a1a';ctx.fill();
+  var bh=(ca/Q)*(h-40);ctx.fillStyle='rgba(139,26,26,0.15)';ctx.fillRect(w-30,h-20-bh,20,bh);ctx.fillStyle='#8b1a1a';ctx.fillRect(w-30,h-20-bh,20,3);
+  ctx.font="10px 'Source Sans 3',sans-serif";ctx.fillStyle='#b0a090';ctx.textAlign='left';ctx.fillText('20 kHz',4,h-4);ctx.textAlign='right';ctx.fillText('45 kHz',w-36,h-4);ctx.textAlign='center';ctx.fillText('\u632f\u5e45',w-20,14);
+  var rx=(rf-20)/25*w;ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(rx,0);ctx.lineTo(rx,h-20);ctx.strokeStyle='#8b1a1a';ctx.lineWidth=1;ctx.stroke();ctx.setLineDash([]);
+  ctx.font="9px 'Source Sans 3',sans-serif";ctx.fillStyle='#8b1a1a';ctx.fillText('\u5171\u632f\u70b9',rx,h-4);
+  fd.textContent=cf.toFixed(1)+' kHz';
+  var d=Math.abs(cf-rf);
+  if(d<0.3){msg.innerHTML='\ud83d\udd34 \u5171\u632f\uff01 \u632f\u5e45\u304c\u6700\u5927\u3002';msg.style.color='#8b1a1a';msg.style.fontWeight='600';}
+  else if(d<2){msg.textContent='\u8fd1\u3044\u2026\u2026\u3082\u3046\u5c11\u3057\u3002';msg.style.color='#7a6a55';msg.style.fontWeight='300';}
+  else{msg.textContent='';}
+}
+sl.addEventListener('input',draw);
+function rs(){cv.width=Math.min(520,cv.parentElement.clientWidth-4);cv.height=200;draw();}
+window.addEventListener('load',rs);window.addEventListener('resize',rs);
+})();
+
+// Phase 1: Press Crystal
+var pc=0;
+function pressCrystal(){
+  pc++;var b=document.getElementById('crystalBox');
+  b.style.transform='scale(0.92)';b.style.background='linear-gradient(135deg,#c8bfaa,#b0a090)';
+  var v=Math.floor(800+Math.random()*400);
+  document.getElementById('voltDisp').textContent=v+' V';
+  document.getElementById('voltFill').style.width=Math.min(100,(v/1400)*100)+'%';
+  setTimeout(function(){b.style.transform='scale(1)';b.style.background='linear-gradient(135deg,#e0d8c8,#c8bfaa)';},200);
+  var n=document.getElementById('phase1Note');
+  if(pc===1)n.textContent='\u62bc\u3059\u305f\u3073\u306b\u96fb\u5727\u304c\u751f\u307e\u308c\u308b\u3002\u3053\u308c\u304c\u76f4\u63a5\u5727\u96fb\u52b9\u679c\u3002';
+  else if(pc===3)n.textContent='\u5f37\u304f\u62bc\u3059\u307b\u3069\u96fb\u5727\u306f\u9ad8\u304f\u306a\u308b\u30021cm\u00b3\u3067\u6700\u592712,500V\u3002';
+  else if(pc>=5)n.textContent='\u4f55\u5ea6\u62bc\u3057\u3066\u3082\u6c34\u6676\u306f\u58ca\u308c\u306a\u3044\u3002\u5909\u5f62\u306f\u30ca\u30ce\u30e1\u30fc\u30c8\u30eb\u5358\u4f4d\u3002';
+}
+
+// Phase 2: Deform
+function updateDeform(){
+  var v=parseInt(document.getElementById('deformSlider').value),volt=v*5;
+  document.getElementById('deformVoltDisp').textContent=volt+' V';
+  document.getElementById('deformAmtDisp').textContent=Math.round(volt*0.08)+' nm';
+  var r=document.getElementById('deformRect'),sq=v*0.15;
+  r.setAttribute('width',80+sq*0.3);r.setAttribute('height',70-sq*0.2);
+  r.setAttribute('x',30-sq*0.15);r.setAttribute('y',15+sq*0.1);
+}
+
+// Phase 3: Resonance Search
+function updateResSearch(){
+  var v=parseInt(document.getElementById('resSearchSlider').value),f=30+v*0.06,t=32.768,d=Math.abs(f-t),Q=60,r=f/t;
+  var a=1/Math.sqrt(Math.pow(1-r*r,2)+Math.pow(r/Q,2));a=Math.min(a,Q);
+  document.getElementById('resSearchFreq').textContent=f.toFixed(1)+' kHz';
+  document.getElementById('ampBar').style.height=Math.round((a/Q)*100)+'px';
+  var el=document.getElementById('resSearchResult');
+  if(d<0.15){el.innerHTML='<strong style="color:#8b1a1a;">\ud83d\udd34 \u5171\u632f\uff01</strong> \u6c34\u6676\u304c\u6700\u3082\u6fc0\u3057\u304f\u632f\u52d5\u3059\u308b\u3002';document.getElementById('ampBar').style.background='#8b1a1a';}
+  else if(d<1){el.textContent='\u632f\u5e45\u304c\u4e0a\u304c\u3063\u3066\u304d\u305f\u3002\u3082\u3046\u5c11\u3057\u2026\u2026';document.getElementById('ampBar').style.background='#c8bfaa';}
+  else{el.textContent='\u632f\u5e45\u306f\u5c0f\u3055\u3044\u3002\u5171\u632f\u5468\u6ce2\u6570\u304b\u3089\u9060\u3044\u3002';document.getElementById('ampBar').style.background='#e0d8c8';}
+}
+updateResSearch();
+
+// Binary Divider Animation
+function startDivider(){
+  var g=document.getElementById('dividerGrid');g.innerHTML='';
+  var btn=document.getElementById('divStartBtn');btn.style.pointerEvents='none';btn.style.opacity='.5';
+  document.getElementById('divFinalPulse').textContent='';
+  var stages=[];
+  for(var i=0;i<=15;i++){
+    var lbl=document.createElement('span');
+    lbl.style.cssText="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-align:right;";
+    lbl.textContent=i===0?'\u5165\u529b':'\u00f72 \u00d7'+i;
+    var bar=document.createElement('div');bar.style.cssText='height:16px;background:#e0d8c8;border-radius:2px;position:relative;overflow:hidden;';
+    var fill=document.createElement('div');fill.style.cssText='position:absolute;left:0;top:0;height:100%;width:0%;background:#8b1a1a;border-radius:2px;transition:width .4s;';
+    bar.appendChild(fill);
+    var val=document.createElement('span');val.style.cssText="font-family:'JetBrains Mono',monospace;font-size:11px;color:#b0a090;min-width:80px;";
+    var hz=32768/Math.pow(2,i);
+    val.textContent=hz>=1000?(hz/1000).toFixed(hz>=1000&&hz<10000?3:hz>=10000?3:3)+' kHz':hz+' Hz';
+    if(i===15)val.textContent='1 Hz';
+    if(i===0)val.textContent='32.768 kHz';
+    g.appendChild(lbl);g.appendChild(bar);g.appendChild(val);
+    stages.push({fill:fill,val:val});
+  }
+  stages.forEach(function(s,i){
+    setTimeout(function(){
+      s.fill.style.width=Math.max(2,100*Math.pow(2,-i))+'%';
+      s.val.style.color=i===15?'#8b1a1a':'#3d3020';
+      if(i===15){document.getElementById('divFinalPulse').textContent='\u2713 1 Hz \u2014 1\u79d2\u306b1\u56de\u306e\u30d1\u30eb\u30b9\u304c\u5b8c\u6210';btn.style.pointerEvents='auto';btn.style.opacity='1';}
+    },i*200);
+  });
+}
+
+// Terminal Animation
+var tseq=[{id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},{id:'tl2',delay:2400},{id:'to2',delay:3000},{id:'tl3',delay:4000},{id:'to3',delay:4600},{id:'tl4',delay:5600},{id:'to4',delay:6200},{id:'tl5',delay:7200}];
+var tS=false;tseq.forEach(function(s){var el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+new IntersectionObserver(function(entries){if(entries[0].isIntersecting&&!tS){tS=true;tseq.forEach(function(s){setTimeout(function(){var el=document.getElementById(s.id);if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}},s.delay);});}},{threshold:.2}).observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>
