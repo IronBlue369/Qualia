@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>年表 — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#faf8f3;color:#3d3020;font-family:'Source Serif 4',serif;min-height:100vh;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200}
+.mh-left{display:flex;align-items:center;gap:16px}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s}
+.mh-burger:hover span{background:#8b1a1a}
+.mh-center{text-align:center}
+.mh-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:900;letter-spacing:.05em;color:#1a1208;display:block;line-height:1.1}
+.mh-name em{color:#8b1a1a;font-style:normal}
+.mh-right{display:flex;align-items:center;gap:14px}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;transition:color .2s}
+.mh-search:hover{color:#8b1a1a}
+
+/* ── PAGE HEADER ── */
+.page-header{max-width:840px;margin:0 auto;padding:52px 24px 0;text-align:center}
+.page-title{font-family:'Playfair Display',serif;font-size:32px;color:#1a1208;font-weight:400;margin-bottom:10px}
+.page-subtitle{font-family:'Source Serif 4',serif;font-size:14.5px;color:#5a4a36;line-height:1.85;font-style:italic;max-width:480px;margin:0 auto}
+
+/* ── CONTROLS ── */
+.controls-wrap{max-width:840px;margin:28px auto 0;padding:0 24px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}
+.cat-btn{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:400;padding:4px 11px;border-radius:2px;border:1px solid #e0d8c8;background:transparent;color:#7a6a55;cursor:pointer;transition:all .22s}
+.cat-btn.active{border-color:#1a1208;color:#1a1208;background:rgba(26,18,8,.05)}
+.cat-btn:hover:not(.active){border-color:#a09080;color:#5a4a36}
+.cat-btn .cb-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:4px;vertical-align:middle}
+
+/* ── TIMELINE ── */
+.tl{max-width:840px;margin:0 auto;padding:40px 24px 80px;position:relative}
+
+/* ── ERA ── */
+.era{position:relative;margin-left:90px;padding-left:44px;padding-bottom:20px;border-left:1.5px solid #d8d0c0}
+.era:last-child .era-spine-end{display:block}
+.era::before{content:'';position:absolute;left:-6px;top:0;width:11px;height:11px;border-radius:50%;background:#faf8f3;border:2px solid #8b1a1a;z-index:2}
+
+/* era header */
+.era-head{margin-bottom:20px}
+.era-year-range{position:absolute;left:-92px;top:-1px;width:78px;text-align:right;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:#8b1a1a;line-height:1.4}
+.era-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:6px}
+
+/* narrative */
+.era-narrative{font-family:'Source Serif 4',serif;font-size:14px;color:#5a4a36;line-height:1.85;margin-bottom:24px;padding:14px 18px;border-left:3px solid #e0d8c8;background:linear-gradient(120deg,rgba(243,239,230,.6) 0%,rgba(237,232,220,.25) 100%);border-radius:0 3px 3px 0;position:relative}
+.era-narrative::before{content:'"';position:absolute;top:6px;left:6px;font-family:'Playfair Display',serif;font-size:32px;color:#d8d0c0;line-height:1;pointer-events:none}
+
+/* ── CLUSTER (同時代グループ) ── */
+.cluster{margin-bottom:24px;position:relative}
+.cluster-year{position:absolute;left:-136px;top:6px;width:78px;text-align:right;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;color:#3d3020}
+.cluster-items{display:flex;flex-direction:column;gap:6px}
+
+/* ── ENTRY ── */
+.entry{position:relative;padding:12px 16px;border-radius:3px;transition:all .3s;cursor:default}
+
+/* dot on spine */
+.entry::before{content:'';position:absolute;left:-51px;top:16px;width:7px;height:7px;border-radius:50%;background:#8b1a1a;z-index:2;transition:transform .2s}
+.entry:hover::before{transform:scale(1.5)}
+
+/* published article */
+.entry.published{background:#fff;border:1px solid #e0d8c8;box-shadow:0 1px 3px rgba(60,40,10,.05)}
+.entry.published:hover{border-color:#c8bfaa;box-shadow:0 2px 8px rgba(60,40,10,.1)}
+.entry.published .entry-title a{color:#1a1208;transition:color .2s}
+.entry.published .entry-title a:hover{color:#8b1a1a}
+
+/* unpublished article (density filler) */
+.entry.unpublished{background:transparent;border:1px dashed #e0d8c8;opacity:.55}
+.entry.unpublished:hover{opacity:.8}
+.entry.unpublished::before{background:#c8bfaa}
+
+/* cat bar */
+.entry-cat-bar{position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px}
+
+.entry-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+.entry-title{font-family:'Playfair Display',serif;font-size:15.5px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:3px}
+.entry-desc{font-family:'Source Sans 3',sans-serif;font-size:12.5px;font-weight:400;color:#5a4a36;line-height:1.55}
+.entry-badge{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:500;letter-spacing:.08em;padding:1px 6px;border-radius:2px;margin-left:6px;vertical-align:middle}
+.entry-badge.soon{color:#a09080;border:1px solid #d8d0c0}
+
+/* ── SIMULTANEITY CONNECTOR ── */
+.simul-note{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;font-style:italic;padding:4px 0 4px 18px;border-left:2px solid rgba(139,26,26,.15);margin:2px 0 8px}
+
+/* ── FADE ── */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.fade.on{opacity:1;transform:none}
+
+/* ── LEGEND (bottom) ── */
+.legend{max-width:840px;margin:0 auto;padding:0 24px 20px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center}
+.legend-item{display:flex;align-items:center;gap:5px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55}
+.legend-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+/* ── FOOTER ── */
+footer{background:#1a1208;padding:40px 24px 28px;margin-top:40px}
+.footer-inner{max-width:840px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px}
+.f-name em{color:#8b1a1a;font-style:normal}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5a48}
+.f-links{display:flex;gap:24px}
+.f-links a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#9a8878;transition:color .2s}
+.f-links a:hover{color:#e8ddd0}
+
+/* ── RESPONSIVE ── */
+@media(max-width:700px){
+  .era{margin-left:56px;padding-left:28px}
+  .era-year-range{left:-58px;width:50px;font-size:9px}
+  .cluster-year{left:-86px;width:50px;font-size:11px}
+  .entry::before{left:-35px}
+  .era::before{left:-6px}
+  .page-title{font-size:26px}
+  .footer-inner{flex-direction:column;gap:16px}
+}
+</style>
+</head>
+<body>
+
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name"><em>Qualia</em> Journal</a></div>
+  <div class="mh-right"><button class="mh-search" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<div class="page-header fade">
+  <h1 class="page-title">年表</h1>
+  <p class="page-subtitle">ひとつの発見は、別の問いの種だった。<br>時間の流れのなかで、知のつながりを眺める。</p>
+</div>
+
+<div class="controls-wrap fade" id="controls"></div>
+
+<div class="tl" id="tl"></div>
+
+<div class="legend fade">
+  <div class="legend-item"><div class="legend-dot" style="background:#8b1a1a"></div>公開済み記事</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#c8bfaa"></div>準備中のトピック</div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div><p class="f-name"><em>Qualia</em> Journal</p><p class="f-copy">&copy; 2025 Qualia Journal.</p></div>
+    <div class="f-links"><a href="https://qualiajournal.com/">トップ</a><a href="https://qualiajournal.com/topic_map_v10.html">つながりの索引</a></div>
+  </div>
+</footer>
+
+<script>
+/* ==============================================================
+   DATA
+   ============================================================== */
+const cats=[
+  {id:'cog',name:'認知バイアス',color:'#8b1a1a'},
+  {id:'behav',name:'行動心理学',color:'#a0522d'},
+  {id:'social',name:'社会心理学',color:'#6a5a8e'},
+  {id:'percep',name:'知覚・錯覚',color:'#2a6a6a'},
+  {id:'brain',name:'脳と意識',color:'#4a4a7a'},
+  {id:'math',name:'数学・論理',color:'#1a3a5a'},
+  {id:'phil',name:'思考実験・哲学',color:'#5a3a2a'},
+  {id:'phys',name:'物理・宇宙',color:'#3a5a3a'},
+  {id:'life',name:'生命・進化',color:'#6a7a3a'},
+  {id:'culture',name:'科学と文化',color:'#7a5a5a'},
+];
+const cm={};cats.forEach(c=>cm[c.id]=c);
+
+const eras=[
+/* ── ERA 1 ── */
+{
+  yearLabel:'BC530–\n1415',
+  title:'問いの始まり',
+  narrative:'紀元前6世紀、ピタゴラスは弦を弾いて「長さの比が美しい和音を決める」ことに気づいた。音楽と数学が交差した最初の瞬間だ。ほぼ同じ頃、プラトンは洞窟の壁に映る影だけを見て育った囚人の話を語り、荘子は蝶の夢から目覚めて「どちらが本物か」と問うた。知覚を疑うこの問いは、2300年後の量子力学まで一直線に繋がっている。',
+  entries:[
+    {year:-530,cat:'percep',title:'ピタゴラスの弦の実験',desc:'弦の長さの整数比が協和音を決める。音楽と数学の最初の接点。',published:false},
+    {year:-300,cat:'phil',title:'洞窟の比喩（プラトン）',desc:'影しか見たことのない囚人。知覚の限界と「本当の現実」。',published:false},
+    {year:-300,cat:'phil',title:'胡蝶の夢（荘子）',desc:'蝶の夢を見たのか、蝶が人間の夢を見ているのか。',published:false},
+    {year:75,cat:'phil',title:'テセウスの船',desc:'部品をすべて入れ替えた船は、まだ同じ船か。',published:false},
+    {year:1202,cat:'math',title:'フィボナッチ数列',desc:'ひまわりの種、貝の螺旋。自然は数列を知っていた。',published:false},
+    {year:1415,cat:'culture',title:'遠近法の発明（ブルネレスキ）',desc:'「正しく見える」は技術だった。透視図法の発明。',published:false},
+  ]
+},
+/* ── ERA 2 ── */
+{
+  yearLabel:'1600–\n1801',
+  title:'光と確率の世紀',
+  narrative:'1666年、ニュートンがプリズムで白色光を七色に分解した。光はスペクトルだった——つまり「赤いリンゴ」の赤は、リンゴの性質ではなく光の性質だった。この発見は200年後に「色は脳の中にしかない」という知覚研究の出発点になる。同じ世紀、ベイズは条件付き確率の定理を遺稿として残し、トーマス・ヤングは二重スリット実験で光の波動性を示した。プリズム、確率、干渉——この3つが、今の記事の驚くほど多くの土台になっている。',
+  entries:[
+    {year:1666,cat:'percep',title:'色は存在しない',desc:'色は外界にはない。脳が電磁波に「色」を与えている。',url:'color_v7.html',published:true},
+    {year:1666,cat:'percep',title:'色の三原色 vs 光の三原色',desc:'減法混色と加法混色。正反対になる理由。',published:false},
+    {year:1763,cat:'math',title:'基準率の無視（ベイズの定理）',desc:'99%正確な検査で陽性でも、実際の確率は低いかもしれない。',published:false},
+    {year:1801,cat:'phys',title:'二重スリット実験',desc:'粒子を1つずつ飛ばしても干渉が起きる。観測すると消える。',url:'double_slit_v3.html',published:true},
+  ]
+},
+/* ── ERA 3 ── */
+{
+  yearLabel:'1860–\n1939',
+  title:'測る時代',
+  narrative:'19世紀後半、心理学が哲学から独立し、人の知覚と認知を「測定可能なもの」として扱い始めた。ピアソンが相関係数を体系化した1896年は、「因果と相関を混同するな」という科学の基本作法が生まれた年でもある。スキナーはネズミの行動をレバーで制御し、ベンフォードは数字の先頭桁に法則を見つけた。1939年にはA=440Hzが国際標準となり、誕生日のパラドックスが初めて論文に現れた——同じ年に第二次世界大戦が始まっている。',
+  entries:[
+    {year:1896,cat:'culture',title:'相関は因果ではない',desc:'ピアソンの相関係数。アイスと溺死者数は相関するが因果ではない。',published:false},
+    {year:1938,cat:'behav',title:'スキナー箱',desc:'ランダム報酬が最も強い依存を生む。ガチャの源流。',url:'skinner_box_v6.html',published:true},
+    {year:1938,cat:'math',title:'ベンフォードの法則',desc:'自然界の数値の先頭桁は「1」が最も多い。不正検出にも。',published:false},
+    {year:1939,cat:'math',title:'誕生日のパラドックス',desc:'23人集まれば、同じ誕生日のペアがいる確率は50%を超える。',url:'birthday_paradox.html',published:true},
+    {year:1939,cat:'percep',title:'なぜピアノは12音なのか',desc:'A=440Hzが国際標準に。周波数比の数学的妥協の歴史。',url:'c01_twelve_tones_v6.html',published:true},
+  ]
+},
+/* ── ERA 4 ── */
+{
+  yearLabel:'1940–\n1965',
+  title:'認知の目覚め',
+  narrative:'戦後の心理学は「行動を測る」段階から「思考の癖を測る」段階に入った。バーナムは「誰にでも当てはまる文」が個人的に感じられることを示し、アッシュは集団の圧力で明らかな正解を曲げる人間を実験室に連れてきた。1950年、冷戦のさなかにゲーム理論が核戦略の教室で産声を上げ、囚人のジレンマが定式化された。1954年、ネズミは脳の快楽中枢への電極を選んで餓死した。認知バイアスという言葉はまだなかったが、その種はすでに蒔かれていた。',
+  entries:[
+    {year:1948,cat:'social',title:'バーナム効果',desc:'誰にでも当てはまる記述を「自分だけに当てはまる」と感じる。',published:false},
+    {year:1950,cat:'behav',title:'囚人のジレンマ',desc:'個人の合理的選択が全体の最悪結果を生む構造。',published:false},
+    {year:1951,cat:'social',title:'同調圧力（アッシュの実験）',desc:'明らかに間違った答えでも、周囲に合わせてしまう。',published:false},
+    {year:1954,cat:'behav',title:'ネズミはドーパミンを選んで餓死した',desc:'快楽中枢への電極。食事も睡眠も放棄した。',published:false},
+    {year:1960,cat:'cog',title:'確証バイアス',desc:'自分の信念を支持する情報ばかり集めてしまう。',url:'confirmation_bias_v3.html',published:true},
+  ]
+},
+/* ── ERA 5 ── */
+{
+  yearLabel:'1970–\n1986',
+  title:'バイアスとフラクタル',
+  narrative:'1970年代、カーネマンとトヴェルスキーが人間の判断の系統的な歪みを次々と暴いた。アンカリング、損失回避、フレーミング——私たちの意思決定は思ったほど合理的ではなかった。奇妙なことに、ほぼ同じ時期に数学者たちは「単純な規則から複雑な形が生まれる」ことに夢中になっていた。マンデルブロは z=z²+c から無限の複雑さを引き出し、ラングトンのアリは2つの規則だけで混沌から秩序を生んだ。人間の非合理性と数学の創発——まるで無関係に見える二つの探求が、同じ10年に密集している。',
+  entries:[
+    {year:1972,cat:'behav',title:'マシュマロ実験の再解釈',desc:'我慢できる子は成功する——再検証で揺らいだ結論。',published:false},
+    {year:1974,cat:'cog',title:'アンカリング効果',desc:'最初に見た数字がその後の判断を引きずる。',published:false},
+    {year:1979,cat:'cog',title:'損失回避',desc:'得る喜びより失う苦痛の方が約2倍大きい。',published:false},
+    {year:1980,cat:'math',title:'マンデルブロ集合',desc:'z=z²+c。単純な式が無限の複雑さを生む。',url:'mandelbrot_set.html',published:true},
+    {year:1980,cat:'culture',title:'スキューモーフィズム',desc:'デジカメのシャッター音。存在しないものを模倣して安心させる。',published:false},
+    {year:1981,cat:'cog',title:'フレーミング効果',desc:'「200人が助かる」と「400人が死ぬ」は同じなのに選択が変わる。',published:false},
+    {year:1982,cat:'phil',title:'マリーの部屋',desc:'すべてを知る科学者が初めて赤を見たとき、知識は増えるか。',url:'mary_room_v5.html',published:true},
+    {year:1983,cat:'brain',title:'自由意志への疑問（リベット実験）',desc:'意識的「決断」の0.3秒前に脳が動いている。',published:false},
+    {year:1985,cat:'cog',title:'サンクコスト錯誤',desc:'すでに投じたコストに引きずられて判断できなくなる。',published:false},
+    {year:1986,cat:'math',title:'ラングトンのアリ',desc:'2つのルールだけ。混沌から突然、秩序が現れる。',url:'langton_ant.html',published:true},
+  ]
+},
+/* ── ERA 6 ── */
+{
+  yearLabel:'1990–\n2000',
+  title:'ネットワークと再検証',
+  narrative:'インターネットの爆発とともに、科学そのものが自らを問い直し始めた。モンティ・ホール問題がマリリン・ヴォス・サヴァントの回答で再び世界を騒がせ、報酬予測誤差のドーパミンコードが発見された。ダニング＝クルーガー効果が命名され、記憶が再構築されるという知見が蓄積された。チェッカーシャドウ錯視は「脳が照明を補正する」ことを一枚の画像で突きつけた。そして——かつて盤石だった実験結果の多くが追試で揺らぎ始めた。再現性の危機が静かに進行していた。',
+  entries:[
+    {year:1990,cat:'math',title:'モンティ・ホール問題',desc:'ドアを変えた方が確率2倍。直感は確率を裏切る。',url:'monty_hall_v12.html',published:true},
+    {year:1995,cat:'percep',title:'チェッカーシャドウ錯視',desc:'同じ色なのに違って見える。脳の補正が見せる嘘。',url:'checker_shadow.html',published:true},
+    {year:1997,cat:'behav',title:'報酬予測誤差とドーパミン',desc:'期待と現実のズレがドーパミンを放出させる。',published:false},
+    {year:1999,cat:'cog',title:'ダニング＝クルーガー効果',desc:'能力が低いほど自分を過大評価する——再解釈が進行中。',published:false},
+    {year:2000,cat:'brain',title:'記憶は毎回「再構築」される',desc:'思い出すたびに書き換わる。ビデオ的保存ではない。',published:false},
+    {year:2000,cat:'culture',title:'再現性の危機',desc:'有名な心理学実験の多くが、追試で再現できない。',published:false},
+  ]
+}
+];
+
+/* ==============================================================
+   SIMULTANEITY NOTES — 同じ年のトピックに気づきメモを添える
+   ============================================================== */
+const simulNotes={
+  '1666':'同じ1666年。ニュートンのプリズム実験が「色とは何か」の問いを二つに分岐させた。',
+  '1938':'同じ1938年。スキナーのネズミとベンフォードの数字——行動と数学がすれ違う。',
+  '1939':'同じ1939年。A=440Hzの国際標準化、誕生日のパラドックスの論文発表、そして第二次世界大戦の開戦。',
+  '1980':'1980年前後。フラクタルの無限とスキューモーフィズムの模倣——複雑さと単純化が同居した時代。',
+  '-300':'紀元前300年頃。プラトンと荘子が、互いの存在を知らないまま、同じ問いを立てた。',
+};
+
+/* ==============================================================
+   RENDER
+   ============================================================== */
+const activeCats=new Set(cats.map(c=>c.id));
+
+function buildControls(){
+  const el=document.getElementById('controls');
+  let h='';
+  cats.forEach(c=>{
+    h+=`<button class="cat-btn active" data-cat="${c.id}" onclick="toggleCat(this)"><span class="cb-dot" style="background:${c.color}"></span>${c.name}</button>`;
+  });
+  el.innerHTML=h;
+}
+
+function toggleCat(btn){
+  const cat=btn.dataset.cat;
+  if(activeCats.has(cat)){activeCats.delete(cat);btn.classList.remove('active')}
+  else{activeCats.add(cat);btn.classList.add('active')}
+  applyFilters();
+}
+
+function applyFilters(){
+  document.querySelectorAll('.entry').forEach(el=>{
+    const cat=el.dataset.cat;
+    el.style.display=activeCats.has(cat)?'':'none';
+  });
+  // hide simul notes if their year cluster is fully hidden
+  document.querySelectorAll('.simul-note').forEach(el=>{
+    const cluster=el.closest('.cluster');
+    if(!cluster)return;
+    const visible=cluster.querySelectorAll('.entry[style=""], .entry:not([style])');
+    let count=0;
+    cluster.querySelectorAll('.entry').forEach(e=>{if(e.style.display!=='none')count++});
+    el.style.display=count>1?'':'none';
+  });
+}
+
+function render(){
+  buildControls();
+  const tl=document.getElementById('tl');
+  let html='';
+
+  eras.forEach(era=>{
+    html+=`<div class="era fade">`;
+    html+=`<div class="era-head">`;
+    html+=`<div class="era-year-range">${era.yearLabel.replace('\n','<br>')}</div>`;
+    html+=`<div class="era-title">${era.title}</div>`;
+    html+=`</div>`;
+    html+=`<div class="era-narrative">${era.narrative}</div>`;
+
+    // Group entries by year for cluster rendering
+    const groups={};
+    era.entries.forEach(e=>{
+      const k=e.year;
+      if(!groups[k])groups[k]=[];
+      groups[k].push(e);
+    });
+    const sortedYears=Object.keys(groups).map(Number).sort((a,b)=>a-b);
+
+    sortedYears.forEach(yr=>{
+      const items=groups[yr];
+      const yrStr=yr<0?`BC${Math.abs(yr)}`:yr;
+      html+=`<div class="cluster">`;
+      html+=`<div class="cluster-year">${yrStr}</div>`;
+
+      // Simultaneity note
+      if(items.length>1 && simulNotes[String(yr)]){
+        html+=`<div class="simul-note">${simulNotes[String(yr)]}</div>`;
+      }
+
+      html+=`<div class="cluster-items">`;
+      items.forEach(e=>{
+        const c=cm[e.cat]||{color:'#7a6a55',name:''};
+        const cls=e.published?'published':'unpublished';
+        html+=`<div class="entry ${cls} fade" data-cat="${e.cat}">`;
+        html+=`<div class="entry-cat-bar" style="background:${c.color}"></div>`;
+        html+=`<div class="entry-cat" style="color:${c.color}">${c.name}</div>`;
+        if(e.published && e.url){
+          html+=`<div class="entry-title"><a href="${e.url}">${e.title}</a></div>`;
+        } else {
+          html+=`<div class="entry-title">${e.title}`;
+          if(!e.published) html+=`<span class="entry-badge soon">準備中</span>`;
+          html+=`</div>`;
+        }
+        html+=`<div class="entry-desc">${e.desc}</div>`;
+        html+=`</div>`;
+      });
+      html+=`</div></div>`;
+    });
+
+    html+=`</div>`;
+  });
+
+  tl.innerHTML=html;
+  observeFades();
+}
+
+/* ==============================================================
+   SCROLL FADE
+   ============================================================== */
+function observeFades(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')});
+  },{threshold:.06,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+}
+
+render();
+</script>
+</body>
+</html>
