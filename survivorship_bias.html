@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生存者バイアス — 帰ってこなかった飛行機のことを考える | Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;}.masthead-name a{color:#7a6a55;text-decoration:none;}.masthead-name a:hover{color:#8b1a1a;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;margin-bottom:20px;}.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:6px;}.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}.cover-aside strong{color:#3d3020;font-weight:600;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}.scenario-inner::after{content:'✈';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.3;line-height:1;pointer-events:none;}.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}.meta-item{display:flex;align-items:center;gap:10px;}.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}.difficulty-dots{display:flex;gap:4px;}.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}.dot.on{background:#8b1a1a;}.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;}.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}.article-main{padding:48px 0;}.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;margin-bottom:20px;}.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}.body-text strong{color:#1a1208;font-weight:600;}.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}.pull-q em{color:#8b1a1a;}.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;}.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}.tip-box strong{color:#e8c56a;font-weight:600;}.tip.open .tip-box{display:block;}
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}.img-ph-area{min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}.img-ph-icon{font-size:28px;opacity:.4;}.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;}.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;margin-bottom:8px;}.person-block-wiki a{color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.misconception-header{background:#3d3020;color:white;padding:11px 20px;}.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.misconception-body{background:white;}.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}.misconception-item:last-child{border-bottom:none;}.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}.mis-label.wrong{color:#c4392a;}.mis-label.right{color:#1a5a30;}.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.diagram-wrap{margin:28px 0;text-align:center;overflow-x:auto;}.diagram-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;text-align:center;max-width:520px;margin-left:auto;margin-right:auto;}
+.ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.ix-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.ix-body{padding:24px 20px;background:white;}.ix-desc{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:18px;}.ix-desc strong{font-weight:600;color:#1a1208;}.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:14px;padding-top:12px;border-top:1px solid #e0d8c8;line-height:1.7;}
+.note-table{width:100%;border-collapse:collapse;margin:24px 0;font-family:'Source Sans 3',sans-serif;font-size:13px;}.note-table th,.note-table td{border:1px solid #e0d8c8;padding:8px 12px;text-align:left;}.note-table th{background:#f3efe6;font-weight:600;color:#7a6a55;font-size:11px;letter-spacing:.08em;text-transform:uppercase;}.note-table td{font-weight:300;color:#3d3020;line-height:1.6;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}.tl-item{position:relative;margin-bottom:28px;}.tl-item:last-child{margin-bottom:0;}.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.steps-wrap{margin:32px 0;}.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}.step-n{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#8b1a1a;padding:14px 16px;border-right:1px solid #c8bfaa;min-width:52px;text-align:center;}.step-title{font-family:'Source Serif 4',serif;font-size:15px;font-weight:400;color:#1a1208;padding:14px 16px;flex:1;}.step-arrow{padding:14px 16px;color:#b0a090;font-size:12px;transition:transform .2s;}.step-card.open .step-arrow{transform:rotate(180deg);}.step-body{display:none;padding:16px 20px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;}.step-card.open .step-body{display:block;}.step-body strong{color:#3d3020;font-weight:600;}
+.culture-block{margin:32px 0;border:1px solid #c8bfaa;padding:20px 24px;background:#f3efe6;}.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:12px;}.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}.culture-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:4px;}.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}.ref-title a:hover{border-bottom-color:#8b1a1a;}.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}.sidebar-block:last-child{border-bottom:none;}.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}.sidebar-text strong{color:#3d3020;font-weight:600;}.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}.terminal-dots{display:flex;gap:6px;}.terminal-dot{width:12px;height:12px;border-radius:50%;}.terminal-dot.red{background:#ff5f57;}.terminal-dot.yellow{background:#febc2e;}.terminal-dot.green{background:#28c840;}.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;}.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;}.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}.t-prompt{color:#4a9e6a;margin-right:8px;user-select:none;}.t-input{color:#e8e4de;}.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}.t-output em{color:#e8c56a;font-style:normal;}.t-output strong{color:#fff;font-weight:500;}.t-exit .t-prompt{color:#555;}.t-exit .t-input{color:#555;}.t-exit .t-comment{color:#4a9e6a;}.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}.fade.on{opacity:1;transform:translateY(0);}
+/* Bomber interactive */
+.bomber-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.bomber-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}
+.bomber-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.bomber-body{padding:24px 20px;background:white;text-align:center;}
+.bomber-toggle-wrap{display:flex;gap:12px;justify-content:center;margin-bottom:18px;flex-wrap:wrap;}
+.bomber-toggle{font-family:'Source Sans 3',sans-serif;font-size:12px;padding:6px 16px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;transition:all .15s;}.bomber-toggle:hover,.bomber-toggle.active{border-color:#8b1a1a;background:#8b1a1a;color:white;}
+.bomber-svg-wrap{position:relative;max-width:520px;margin:0 auto;}
+.bomber-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:14px;padding-top:12px;border-top:1px solid #e0d8c8;line-height:1.7;text-align:left;}
+/* IX experience */
+.ix-phase{display:none;}.ix-phase.active{display:block;}
+.fund-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;}
+.fund-card{border:1px solid #c8bfaa;padding:16px 18px;background:#faf8f3;cursor:pointer;transition:all .15s;text-align:left;}.fund-card:hover{border-color:#8b1a1a;background:#f3efe6;}.fund-card.selected{border-color:#8b1a1a;background:#8b1a1a;color:white;}.fund-card.selected .fc-return{color:rgba(255,255,255,.85);}.fund-card.selected .fc-name{color:white;}.fund-card.selected .fc-line{stroke:rgba(255,255,255,.7);}.fund-card.selected .fc-area{fill:rgba(255,255,255,.15);}.fund-card.selected .fc-arrow{fill:rgba(255,255,255,.7);}.fund-card.selected .fc-dot{fill:white;}
+.fc-name{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;margin-bottom:4px;}
+.fc-return{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;margin-top:6px;}
+.fc-chart-svg{width:100%;height:70px;display:block;}
+.ix-btn{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;padding:10px 24px;border:1px solid #8b1a1a;background:#8b1a1a;color:white;cursor:pointer;margin-top:16px;transition:all .15s;}.ix-btn:hover{background:#6a1414;}.ix-btn:disabled{opacity:.4;cursor:not-allowed;}
+.reveal-box{margin-top:18px;padding:18px;background:#f3efe6;border:1px solid #e0d8c8;text-align:left;}.reveal-box p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:10px;}.reveal-box p:last-child{margin-bottom:0;}.reveal-box strong{font-weight:600;color:#1a1208;}.reveal-box em{color:#8b1a1a;font-style:normal;font-weight:600;}
+@media(max-width:720px){.cover{grid-template-columns:1fr;padding:40px 20px 32px;}.cover-right{display:none;}.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.summary-box,.scenario{padding:0 20px;}.article{grid-template-columns:1fr;padding:0 20px;}.article-side{display:none;}.misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}.terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}.related{padding:32px 20px;}.related-grid{grid-template-columns:1fr;}.tip-box{left:0;transform:none;width:200px;}.tip-box::after{left:20px;transform:none;}.person-block{grid-template-columns:1fr;}.person-block-img{padding:16px;}.fund-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- MASTHEAD -->
+<div class="masthead"><p class="masthead-name"><a href="https://qualiajournal.com/">Qualia Journal</a></p></div>
+
+<!-- COVER -->
+<div class="cover fade">
+<div class="cover-left">
+<p class="cover-kicker">認知バイアス</p>
+<h1>帰ってこなかった飛行機の<em>弾痕</em>を数える</h1>
+<p class="cover-deck">成功者の共通点を集めれば成功法則が見つかる——その前提そのものが、私たちの判断を歪めている。見えているデータだけを見ていることに、人はなかなか気づけない。</p>
+<div class="cover-byline"><span>Last updated: Mar. 2026</span></div>
+</div>
+<div class="cover-right">
+<div class="est-card">
+<span class="est-label">Est.</span>
+<span class="est-year">1943</span>
+<p class="est-event">エイブラハム・ウォルドが爆撃機の脆弱性評価に関する覚書を執筆。「帰還した機体」だけを見る統計的錯誤を指摘した。</p>
+<p class="est-context">同年の世界：スターリングラードの戦いが終結。連合軍がシチリアに上陸。ワルシャワ・ゲットーで蜂起が起きた年でもある。</p>
+</div>
+<p class="cover-aside"><strong>「見えないもの」を数える技術。</strong>ウォルドの覚書は軍の機密扱いとなり、公開されたのは1980年のことだった。彼自身は1950年、インドでの講演旅行中に飛行機事故で亡くなっている。</p>
+</div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade"><div class="scenario-inner">
+<p>成功した起業家の本を読んだことがあるだろう。早起きをしていた。大学を中退していた。リスクを恐れなかった。共通点を見つけると、そこに法則があるように思える。</p>
+<p>しかし、同じように早起きをし、大学を中退し、リスクを恐れなかった人が何万人もいることを、私たちは知らない。なぜなら、彼らの本は出版されないからだ。失敗した人のインタビューは記事にならない。消えた会社の社名は誰も覚えていない。</p>
+<p>成功者だけを見て法則を導くとき、私たちはすでに間違えている。</p>
+</div></div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+<div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span class="difficulty-text">初級 — 数学の知識は不要</span></div>
+<div class="meta-sep"></div>
+<div class="meta-item"><span class="meta-label">読了時間</span><span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 14 分</span></div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade"><div class="summary-inner"><span class="summary-icon">要点</span><p class="summary-text">爆撃機の弾痕データを自分の目で切り替え、<strong>「見えていないもの」がどれほど判断を歪めるか</strong>を体感する。成功法則の裏にある見えない失敗に、手を動かして気づく。</p></div></div>
+
+<!-- ===== ARTICLE ===== -->
+<div class="article">
+<div class="article-main">
+
+<!-- ===== 背景セクション ===== -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">1943年、マンハッタンの一室で弾痕を数えた男</h2>
+
+<p class="body-text fade">1943年。アメリカの爆撃機は、ヨーロッパ上空で次々と撃ち落とされていた。帰還率の低下に焦った軍は、機体に装甲を追加することを検討した。しかし装甲は重い。全体を覆えば飛行性能が著しく落ちる。問題は<strong>「どこに装甲を貼るか」</strong>だった。</p>
+
+<p class="body-text fade">軍はコロンビア大学に設置された統計研究グループ（SRG）に助言を求めた。SRGのディレクター、W・アレン・ウォリスが後に語ったところによれば、このグループは「人数と質の両面で、史上最も優秀な統計家集団」だった。メンバーには後にノーベル経済学賞を受賞するミルトン・フリードマンとジョージ・スティグラーも含まれていた。しかし、この集団の中で最も鋭い頭脳と評されたのは、ハンガリー出身の数学者<span class="tip" onclick="toggleTip(this)">エイブラハム・ウォルド<span class="tip-box"><strong>エイブラハム・ウォルド（Abraham Wald, 1902–1950）</strong><br>ハンガリー生まれの数学者・統計学者。逐次分析の創始者でもある。ナチスの迫害を逃れて1938年に渡米し、コロンビア大学で研究を続けた。</span></span>だった。</p>
+
+<!-- SVG D: 見えている弾痕 vs 見えていない致命傷 -->
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 520 460" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<text x="260" y="18" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55" font-weight="600">爆撃機の上面図（帰還した機体の弾痕分布）</text>
+<!-- 胴体: 前方丸く後方に細くなる -->
+<path d="M260,38 C288,38 302,60 302,95 L302,200 C302,230 298,280 293,320 L285,375 C280,400 270,418 260,422 C250,418 240,400 235,375 L227,320 C222,280 218,230 218,200 L218,95 C218,60 232,38 260,38Z" fill="#ede8dc" stroke="#c8bfaa" stroke-width="1.5"/>
+<!-- 操縦席 -->
+<ellipse cx="260" cy="62" rx="18" ry="16" fill="#d8d0c0" stroke="#c8bfaa" stroke-width="1"/>
+<!-- 左翼: 前縁が斜め下に下がり、後縁がさらに下がる。付け根が太く先端が細い。先端丸い -->
+<path d="M218,135 L218,215 L100,200 C60,196 35,190 28,182 C24,176 28,168 38,165 L100,158 Z" fill="#ede8dc" stroke="#c8bfaa" stroke-width="1.5"/>
+<!-- 右翼 -->
+<path d="M302,135 L302,215 L420,200 C460,196 485,190 492,182 C496,176 492,168 482,165 L420,158 Z" fill="#ede8dc" stroke="#c8bfaa" stroke-width="1.5"/>
+<!-- 左エンジンナセル -->
+<ellipse cx="148" cy="178" rx="24" ry="16" fill="#d8d0c0" stroke="#c8bfaa" stroke-width="1.2"/>
+<!-- 右エンジンナセル -->
+<ellipse cx="372" cy="178" rx="24" ry="16" fill="#d8d0c0" stroke="#c8bfaa" stroke-width="1.2"/>
+<!-- 左尾翼: 同じ原則、前縁が斜め下 -->
+<path d="M237,390 L237,404 L175,404 C162,404 156,400 156,396 C156,392 162,389 175,389 Z" fill="#e0d8c8" stroke="#c8bfaa" stroke-width="1"/>
+<!-- 右尾翼 -->
+<path d="M283,390 L283,404 L345,404 C358,404 364,400 364,396 C364,392 358,389 345,389 Z" fill="#e0d8c8" stroke="#c8bfaa" stroke-width="1"/>
+<!-- ラベル -->
+<text x="260" y="250" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">胴体</text>
+<text x="260" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">操縦席</text>
+<text x="148" y="170" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">左エンジン</text>
+<text x="372" y="170" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">右エンジン</text>
+<text x="60" y="175" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">左翼</text>
+<text x="460" y="175" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">右翼</text>
+<!-- 弾痕: 胴体 -->
+<circle cx="248" cy="108" r="5" fill="#8b1a1a" opacity=".6"/>
+<circle cx="272" cy="148" r="4.5" fill="#8b1a1a" opacity=".6"/>
+<circle cx="245" cy="230" r="5" fill="#8b1a1a" opacity=".6"/>
+<circle cx="270" cy="270" r="4.5" fill="#8b1a1a" opacity=".6"/>
+<circle cx="252" cy="330" r="4" fill="#8b1a1a" opacity=".6"/>
+<circle cx="265" cy="185" r="4" fill="#8b1a1a" opacity=".6"/>
+<!-- 弾痕: 翼 -->
+<circle cx="72" cy="180" r="4.5" fill="#8b1a1a" opacity=".6"/>
+<circle cx="178" cy="192" r="4" fill="#8b1a1a" opacity=".6"/>
+<circle cx="448" cy="180" r="4.5" fill="#8b1a1a" opacity=".6"/>
+<circle cx="342" cy="194" r="4" fill="#8b1a1a" opacity=".6"/>
+<!-- 弾痕: 尾翼付近 -->
+<circle cx="256" cy="400" r="4" fill="#8b1a1a" opacity=".6"/>
+</svg>
+<p class="diagram-caption">上面から見た爆撃機の模式図。暗い赤の点が帰還機に見られた弾痕で、胴体・翼・尾翼に集中している。エンジンと操縦席の周辺にはほとんど弾痕がない——撃たれた機体は帰還できなかったからだ。</p>
+</div>
+
+<p class="body-text fade">軍は帰還した爆撃機を調べ、弾痕の分布を記録した。胴体と翼に被弾が集中していた。結論は明快に思えた——弾痕の多い場所に装甲を貼ればいい。しかしウォルドは、その結論をひっくり返した。<em>装甲を貼るべきは、弾痕の少ない場所だ。</em></p>
+
+<div class="person-block fade">
+<div class="person-block-img"><svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="30" r="18" fill="#c8bfaa"/><ellipse cx="40" cy="72" rx="28" ry="20" fill="#c8bfaa"/></svg></div>
+<div class="person-block-body">
+<p class="person-block-name">エイブラハム・ウォルド</p>
+<p class="person-block-role">Abraham Wald, 1902–1950</p>
+<p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Abraham_Wald" target="_blank" rel="noopener">Wikipedia</a></p>
+<p class="person-block-desc">ハンガリー（現ルーマニア・クルージュ＝ナポカ）生まれの数学者。正統派ユダヤ教徒の家庭で育ち、安息日の制約から初等・中等教育を家庭で受けた。ウィーン大学で博士号を取得したが、反ユダヤ主義のため大学職を得られず、1938年にナチスの併合を逃れて渡米。コロンビア大学で統計研究に没頭し、逐次分析という新分野を創設した。1950年、インド政府の招待講演中に飛行機事故で妻とともに死去。48歳だった。</p>
+</div>
+</div>
+
+<p class="body-text fade">ウォルドの論理はこうだ。帰還した機体を調べることができるのは、それが<strong>帰還できたから</strong>にほかならない。胴体や翼に弾痕が多いのは、そこを撃たれても飛行機は墜落しないという証拠だ。逆に、弾痕が少ないエンジンや操縦席の周辺は、撃たれた機体が帰還できなかったから弾痕データに現れない。見えていないデータの方が致命的な情報を持っている。</p>
+
+<!-- ===== 爆撃機インタラクティブ ===== -->
+<div class="bomber-wrap fade">
+<div class="bomber-header"><span class="bomber-hl">✦ Missing Bullet Holes</span></div>
+<div class="bomber-body">
+<p class="ix-desc"><strong>帰還した機体だけを見ると、被弾パターンはどう見えるか。</strong>トグルを切り替えて、「見えないデータ」が加わったときの変化を確認しよう。</p>
+<div class="bomber-toggle-wrap">
+<button class="bomber-toggle active" onclick="setBomberView('survivors')">帰還機のみ表示</button>
+<button class="bomber-toggle" onclick="setBomberView('all')">全機体を表示</button>
+</div>
+<div class="bomber-svg-wrap">
+<svg id="bomberSvg" viewBox="0 0 520 460" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<path d="M260,38 C288,38 302,60 302,95 L302,200 C302,230 298,280 293,320 L285,375 C280,400 270,418 260,422 C250,418 240,400 235,375 L227,320 C222,280 218,230 218,200 L218,95 C218,60 232,38 260,38Z" fill="#ede8dc" stroke="#c8bfaa" stroke-width="1.5"/>
+<ellipse cx="260" cy="62" rx="18" ry="16" fill="#d8d0c0" stroke="#c8bfaa" stroke-width="1"/>
+<path d="M218,135 L218,215 L100,200 C60,196 35,190 28,182 C24,176 28,168 38,165 L100,158 Z" fill="#ede8dc" stroke="#c8bfaa" stroke-width="1.5"/>
+<path d="M302,135 L302,215 L420,200 C460,196 485,190 492,182 C496,176 492,168 482,165 L420,158 Z" fill="#ede8dc" stroke="#c8bfaa" stroke-width="1.5"/>
+<ellipse cx="148" cy="178" rx="24" ry="16" fill="#d8d0c0" stroke="#c8bfaa" stroke-width="1.2"/>
+<ellipse cx="372" cy="178" rx="24" ry="16" fill="#d8d0c0" stroke="#c8bfaa" stroke-width="1.2"/>
+<path d="M237,390 L237,404 L175,404 C162,404 156,400 156,396 C156,392 162,389 175,389 Z" fill="#e0d8c8" stroke="#c8bfaa" stroke-width="1"/>
+<path d="M283,390 L283,404 L345,404 C358,404 364,400 364,396 C364,392 358,389 345,389 Z" fill="#e0d8c8" stroke="#c8bfaa" stroke-width="1"/>
+<text x="260" y="250" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">胴体</text>
+<text x="260" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">操縦席</text>
+<text x="148" y="170" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">左エンジン</text>
+<text x="372" y="170" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">右エンジン</text>
+<text x="60" y="175" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">左翼</text>
+<text x="460" y="175" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">右翼</text>
+<g id="survivorHoles">
+<circle cx="248" cy="108" r="5" fill="#8b1a1a" opacity=".55"/>
+<circle cx="272" cy="148" r="4.5" fill="#8b1a1a" opacity=".55"/>
+<circle cx="245" cy="230" r="5" fill="#8b1a1a" opacity=".55"/>
+<circle cx="270" cy="270" r="4.5" fill="#8b1a1a" opacity=".55"/>
+<circle cx="252" cy="330" r="4" fill="#8b1a1a" opacity=".55"/>
+<circle cx="265" cy="185" r="4" fill="#8b1a1a" opacity=".55"/>
+<circle cx="72" cy="180" r="4.5" fill="#8b1a1a" opacity=".55"/>
+<circle cx="178" cy="192" r="4" fill="#8b1a1a" opacity=".55"/>
+<circle cx="448" cy="180" r="4.5" fill="#8b1a1a" opacity=".55"/>
+<circle cx="342" cy="194" r="4" fill="#8b1a1a" opacity=".55"/>
+<circle cx="256" cy="400" r="4" fill="#8b1a1a" opacity=".55"/>
+</g>
+<g id="missingHoles" style="display:none;">
+<circle cx="140" cy="174" r="5.5" fill="#c4392a"/>
+<circle cx="156" cy="182" r="5" fill="#c4392a"/>
+<circle cx="134" cy="184" r="4.5" fill="#c4392a"/>
+<circle cx="364" cy="172" r="5.5" fill="#c4392a"/>
+<circle cx="380" cy="180" r="5" fill="#c4392a"/>
+<circle cx="386" cy="174" r="4.5" fill="#c4392a"/>
+<circle cx="253" cy="58" r="5" fill="#c4392a"/>
+<circle cx="268" cy="66" r="4.5" fill="#c4392a"/>
+</g>
+</svg>
+</div>
+<div id="bomberCaption" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;margin-top:12px;line-height:1.6;">暗い赤の点は、帰還した機体に見られた弾痕。胴体・翼・尾翼に集中し、エンジンと操縦席にはほとんどない。</div>
+<p class="bomber-note">ウォルドの1943年の覚書 "A Method of Estimating Plane Vulnerability Based on Damage of Survivors" に基づく概念的な可視化。実際の弾痕分布は機種や戦域によって異なる。帰還率のデータはウォルドの推定（エンジン被弾時の生存率約60%、胴体被弾時の生存率約95%）を参照。</p>
+</div>
+</div>
+
+<p class="body-text fade">この逆転の発想が、後に<span class="tip" onclick="toggleTip(this)">生存者バイアス<span class="tip-box"><strong>生存者バイアス（survivorship bias）</strong><br>選別プロセスを通過した「生存者」だけに注目し、脱落したものを見落とす論理的な誤り。成功例だけを見て法則を導こうとするとき、典型的にこのバイアスが発生する。</span></span>と呼ばれる概念の原型となった。ウォルドの覚書は軍の機密文書として扱われ、公開されたのは1980年のことだった。</p>
+
+<hr class="art-rule">
+<h2 class="fade">成功者のレシピという罠</h2>
+
+<p class="body-text fade">弾痕の話は80年前の戦争の逸話に聞こえるかもしれない。しかし、このバイアスは今この瞬間も、私たちの日常で作動している。書店のビジネス書コーナーを想像してほしい。成功した起業家が共通して持っていた7つの習慣。成功した投資家の10の原則。「なぜ彼らは成功したのか」を分析し、共通項を抽出し、法則化する。それ自体は論理的に見える。</p>
+
+<p class="body-text fade">しかし同じ7つの習慣を持ち、同じ10の原則を実践し、それでも失敗した人が何千人いるかは、誰も調べていない。失敗した会社は消滅する。閉店したレストランの看板は撤去される。破産した起業家のインタビュー記事に読者はつかない。成功した店だけが街角に残り、潰れた店は跡形もなく消える——だからレストラン業界は、実際よりずっと成功しやすく見える。<span class="tip" onclick="toggleTip(this)">ナシーム・タレブ<span class="tip-box"><strong>ナシーム・ニコラス・タレブ（Nassim Nicholas Taleb, 1960–）</strong><br>レバノン出身の数学者・思想家。著書『ブラック・スワン』『まぐれ』で確率論的思考の重要性を広めた。生存者バイアスを「沈黙の証拠」という概念で説明した。</span></span>はこの状況を一文で言い当てた。</p>
+
+<!-- テーブル: 生存者バイアスの典型パターン -->
+<table class="note-table fade">
+<thead><tr><th>場面</th><th>見えているもの</th><th>見えていないもの</th></tr></thead>
+<tbody>
+<tr><td>ビジネス書</td><td>成功した起業家の共通点</td><td>同じ特徴を持ち失敗した何万人</td></tr>
+<tr><td>投資信託</td><td>現在運用中のファンドの好成績</td><td>成績不振で閉鎖された数千のファンド</td></tr>
+<tr><td>音楽の思い出</td><td>60年代・70年代の名曲</td><td>同時代に作られた無数の凡庸な曲</td></tr>
+<tr><td>建築・製品</td><td>「昔のものは頑丈だ」</td><td>壊れて捨てられた同時代の製品</td></tr>
+<tr><td>大学中退の成功者</td><td>ゲイツ、ジョブズ、ザッカーバーグ</td><td>中退して成功しなかった数百万人</td></tr>
+</tbody>
+</table>
+
+<p class="body-text fade">投資の世界は、このバイアスの影響が数字で測れる珍しい分野だ。1996年のエルトン、グルーバー、ブレイクの研究では、投資信託のパフォーマンス評価に消滅したファンドを含めると、平均リターンが大幅に下がることが示された。2013年のヴァンガードの分析では、15年間で投資信託の46%が清算または合併で消滅していた。生き残ったファンドだけを見ていると、投資信託は実際よりもずっと優秀な運用商品に見える。</p>
+
+<div class="misconception fade">
+<div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+<div class="misconception-body">
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">成功者に共通するパターンを見つければ、成功の法則がわかる</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">同じパターンを持つ失敗者を調べない限り、それが「成功の原因」か「単なる偶然の共通点」かは区別できない</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">「昔の製品は丈夫だった」から、昔の技術の方が優れている</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">壊れた製品はすでに廃棄されて見えない。今残っているのは、たまたま丈夫だった数%</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">生存者バイアスは統計の話であって、自分の日常には関係ない</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">転職先の口コミ、ダイエット法の体験談、大学選びの評判——あらゆる「成功例から学ぶ」行為に潜む</p></div>
+</div>
+</div>
+</div>
+
+<!-- SVG A: フロー図 -->
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<text x="60" y="20" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090" letter-spacing=".1em">STEP 1</text>
+<rect x="10" y="28" width="100" height="50" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="60" y="48" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020" font-weight="600">全体の集団</text>
+<text x="60" y="64" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">成功者＋失敗者</text>
+<text x="135" y="57" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<text x="200" y="20" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090" letter-spacing=".1em">STEP 2</text>
+<rect x="150" y="28" width="100" height="50" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="200" y="48" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020" font-weight="600">選別プロセス</text>
+<text x="200" y="64" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">市場・競争・運</text>
+<text x="275" y="57" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<text x="340" y="20" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090" letter-spacing=".1em">STEP 3</text>
+<rect x="290" y="28" width="100" height="50" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="340" y="48" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020" font-weight="600">生存者のみ</text>
+<text x="340" y="64" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">可視データ</text>
+<text x="415" y="57" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<text x="480" y="20" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090" letter-spacing=".1em">STEP 4</text>
+<rect x="430" y="28" width="120" height="50" rx="4" fill="#8b1a1a" stroke="#8b1a1a"/>
+<text x="490" y="48" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="white" font-weight="600">偏った結論</text>
+<text x="490" y="64" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="rgba(255,255,255,.7)">「成功の法則」</text>
+<!-- 脱落者 -->
+<text x="200" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#c4392a">↓</text>
+<rect x="150" y="108" width="100" height="42" rx="4" fill="white" stroke="#c4392a" stroke-dasharray="4,3"/>
+<text x="200" y="128" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#c4392a" font-weight="600">脱落者</text>
+<text x="200" y="142" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">不可視 → 無視される</text>
+</svg>
+<p class="diagram-caption">生存者バイアスの構造。集団全体から選別プロセスを経て、生き残ったものだけが観測可能になる。脱落したものは「見えない」ため、分析から除外される。</p>
+</div>
+
+<div class="quote-block fade">
+<p class="quote-en">"The cemetery of failed restaurants is very silent."</p>
+<p class="quote-ja">倒産したレストランの墓場はとても静かだ。——つまり、潰れた店は声を上げられない。残っている店だけを見て「この業界はうまくいく」と思うのは、墓場を見ずに生存者だけを数えているのと同じだ。</p>
+<p class="quote-attr">— ナシーム・ニコラス・タレブ『ブラック・スワン』（2007年）</p>
+</div>
+
+<!-- ===== 体験セクション（投資テーマ） ===== -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">どのファンドに投資する？</h2>
+
+<p class="body-text fade">ここで、生存者バイアスを自分の判断で体験してみよう。以下に6つの投資ファンドの過去5年間の成績が表示される。簡易的な棒グラフと年平均リターンを見て、<strong>「今後も成長しそうな」ファンドを2つ選んでほしい。</strong></p>
+
+<p class="body-text fade">どれも右肩上がりに見えるはずだ。その中で「特に良さそうな2つ」を選ぶとき、あなたは何を手がかりにしているだろうか。</p>
+
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">✦ Survivor Funds</span></div>
+<div class="ix-body">
+<div class="ix-phase active" id="ixPhase1">
+<p class="ix-desc"><strong>6つのファンドから、「今後も有望」だと思うものを2つ選んでください。</strong></p>
+<div class="fund-grid" id="fundGrid">
+<div class="fund-card" data-id="1" onclick="toggleFund(this)"><p class="fc-name">アルファ成長ファンド</p><svg class="fc-chart-svg" viewBox="0 0 200 70" xmlns="http://www.w3.org/2000/svg">
+<path class="fc-area" d="M10,55 L40,48 L70,40 L100,32 L130,24 L160,17 L190,10 L190,65 L10,65 Z" fill="#2a7a3a" opacity=".1"/>
+<polyline class="fc-line" points="10,55 40,48 70,40 100,32 130,24 160,17 190,10" fill="none" stroke="#2a7a3a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle class="fc-dot" cx="190" cy="10" r="3.5" fill="#2a7a3a"/><polygon class="fc-arrow" points="188,9 196,4 191,14" fill="#2a7a3a" opacity=".7"/>
+</svg><p class="fc-return">年平均リターン: <strong>+12.4%</strong> ／ 運用歴: 8年</p></div>
+<div class="fund-card" data-id="2" onclick="toggleFund(this)"><p class="fc-name">グローバル・バリューII</p><svg class="fc-chart-svg" viewBox="0 0 200 70" xmlns="http://www.w3.org/2000/svg">
+<path class="fc-area" d="M10,52 L40,45 L70,42 L100,40 L130,32 L160,22 L190,15 L190,65 L10,65 Z" fill="#2a6a6a" opacity=".1"/>
+<polyline class="fc-line" points="10,52 40,45 70,42 100,40 130,32 160,22 190,15" fill="none" stroke="#2a6a6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle class="fc-dot" cx="190" cy="15" r="3.5" fill="#2a6a6a"/><polygon class="fc-arrow" points="188,14 196,9 191,19" fill="#2a6a6a" opacity=".7"/>
+</svg><p class="fc-return">年平均リターン: <strong>+9.8%</strong> ／ 運用歴: 12年</p></div>
+<div class="fund-card" data-id="3" onclick="toggleFund(this)"><p class="fc-name">テクノフロンティア</p><svg class="fc-chart-svg" viewBox="0 0 200 70" xmlns="http://www.w3.org/2000/svg">
+<path class="fc-area" d="M10,58 L40,52 L70,45 L100,35 L130,22 L160,12 L190,5 L190,65 L10,65 Z" fill="#8b1a1a" opacity=".1"/>
+<polyline class="fc-line" points="10,58 40,52 70,45 100,35 130,22 160,12 190,5" fill="none" stroke="#8b1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle class="fc-dot" cx="190" cy="5" r="3.5" fill="#8b1a1a"/><polygon class="fc-arrow" points="188,4 196,-1 191,9" fill="#8b1a1a" opacity=".7"/>
+</svg><p class="fc-return">年平均リターン: <strong>+15.2%</strong> ／ 運用歴: 5年</p></div>
+<div class="fund-card" data-id="4" onclick="toggleFund(this)"><p class="fc-name">安定配当セレクト</p><svg class="fc-chart-svg" viewBox="0 0 200 70" xmlns="http://www.w3.org/2000/svg">
+<path class="fc-area" d="M10,48 L40,45 L70,42 L100,38 L130,34 L160,30 L190,26 L190,65 L10,65 Z" fill="#7a6a55" opacity=".1"/>
+<polyline class="fc-line" points="10,48 40,45 70,42 100,38 130,34 160,30 190,26" fill="none" stroke="#7a6a55" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle class="fc-dot" cx="190" cy="26" r="3.5" fill="#7a6a55"/><polygon class="fc-arrow" points="188,25 196,20 191,30" fill="#7a6a55" opacity=".7"/>
+</svg><p class="fc-return">年平均リターン: <strong>+6.3%</strong> ／ 運用歴: 15年</p></div>
+<div class="fund-card" data-id="5" onclick="toggleFund(this)"><p class="fc-name">新興国ブリッジ</p><svg class="fc-chart-svg" viewBox="0 0 200 70" xmlns="http://www.w3.org/2000/svg">
+<path class="fc-area" d="M10,55 L40,42 L70,50 L100,35 L130,28 L160,18 L190,8 L190,65 L10,65 Z" fill="#a0522d" opacity=".1"/>
+<polyline class="fc-line" points="10,55 40,42 70,50 100,35 130,28 160,18 190,8" fill="none" stroke="#a0522d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle class="fc-dot" cx="190" cy="8" r="3.5" fill="#a0522d"/><polygon class="fc-arrow" points="188,7 196,2 191,12" fill="#a0522d" opacity=".7"/>
+</svg><p class="fc-return">年平均リターン: <strong>+13.7%</strong> ／ 運用歴: 6年</p></div>
+<div class="fund-card" data-id="6" onclick="toggleFund(this)"><p class="fc-name">インフラ長期投資</p><svg class="fc-chart-svg" viewBox="0 0 200 70" xmlns="http://www.w3.org/2000/svg">
+<path class="fc-area" d="M10,50 L40,46 L70,40 L100,35 L130,28 L160,22 L190,18 L190,65 L10,65 Z" fill="#4a5a7a" opacity=".1"/>
+<polyline class="fc-line" points="10,50 40,46 70,40 100,35 130,28 160,22 190,18" fill="none" stroke="#4a5a7a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle class="fc-dot" cx="190" cy="18" r="3.5" fill="#4a5a7a"/><polygon class="fc-arrow" points="188,17 196,12 191,22" fill="#4a5a7a" opacity=".7"/>
+</svg><p class="fc-return">年平均リターン: <strong>+8.1%</strong> ／ 運用歴: 10年</p></div>
+</div>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;margin-top:8px;" id="selCount">選択数: 0 / 2</p>
+<button class="ix-btn" id="ixSubmit" onclick="submitFundSelection()" disabled>この2つに投資する</button>
+</div>
+<div class="ix-phase" id="ixPhase2">
+<div class="reveal-box">
+<p><strong>あなたが見ていたのは、「今も存続しているファンド」だけだ。</strong></p>
+<p>実は、同じ期間に運用されていたファンドは全部で15本あった。残りの9本は成績不振で清算・合併され、データベースから消えている。あなたが選択肢として見ることすらできなかったファンドが、全体の60%を占めていた。</p>
+<p>消えた9本を含めた全体の年平均リターンは <em>+3.1%</em> だ。あなたが見ていた6本の平均 +10.9% とは大きな開きがある。</p>
+<p>あなたが選んだ: <strong id="chosenFunds"></strong></p>
+<p>どれを選んでも「悪くない選択」に見えただろう。それは当然だ——<em>悪い選択肢はすでに消えていたのだから。</em>残ったファンドだけを見て「投資信託は優秀だ」と判断するのは、帰還した爆撃機だけを見て「胴体に装甲を貼ろう」と判断するのと、構造的にまったく同じだ。</p>
+</div>
+</div>
+<p class="ix-note">この体験は生存者バイアスの構造を体感するための架空シナリオ。実際のファンド運用データではない。ただし、15年間で投資信託の46%が消滅するという数値はヴァンガードの2013年分析に基づく実際の統計。</p>
+</div>
+</div>
+
+<p class="body-text fade">ここで「自分は引っかからなかった」と思った人もいるだろう。しかしポイントは、正しいファンドを選べたかどうかではない。<strong>選択肢が最初から偏っていたこと</strong>に、選ぶ前に気づけたかどうかだ。「このデータは全体のうちのどの部分を見ているのか」という問いが浮かばない限り、生存者バイアスは静かに判断を歪め続ける。</p>
+
+<!-- ===== メカニズム ===== -->
+<div class="sec-rule fade"><span class="sec-label">なぜ起きるのか</span><div class="sec-line"></div></div>
+<h2 class="fade">3つのステップで判断が歪む</h2>
+
+<p class="body-text fade">生存者バイアスは単純なメカニズムで動いている。理解するのは簡単だ。しかし「理解できること」と「回避できること」は別問題で、その溝は思ったよりも深い。</p>
+
+<div class="steps-wrap fade">
+<div class="steps-head">プロセス</div>
+<div class="step-card open" id="sc1">
+<div class="step-hd" onclick="tog(1)"><span class="step-n">1</span><span class="step-title">選別——生き残りと脱落が分かれる</span><span class="step-arrow">▼</span></div>
+<div class="step-body"><p>あらゆる分野に選別プロセスが存在する。<strong>市場競争、自然淘汰、審査、試験。</strong>この段階で、集団は「通過した者」と「脱落した者」に分かれる。ここまでは事実の記述であり、バイアスはまだ発生していない。</p><p>日常の例: 転職サイトの口コミは、<strong>その会社に入れた人</strong>の声だ。書類で落ちた人の体験談は存在しない。面接で不合格になった人の感想も載っていない。口コミを読んでいる時点で、すでに選別後のデータだけを見ている。</p></div>
+</div>
+<div class="step-card" id="sc2">
+<div class="step-hd" onclick="tog(2)"><span class="step-n">2</span><span class="step-title">消失——脱落者が「見えなくなる」</span><span class="step-arrow">▼</span></div>
+<div class="step-body"><p>選別プロセスを通過しなかった者は、多くの場合、<strong>文字通り消える。</strong>閉店した店の看板は撤去され、清算された投資信託はデータベースから削除され、落選した論文は学術誌に載らない。これは意図的な隠蔽ではなく、「存在しなくなったものは記録されない」という構造的な問題だ。</p><p>日常の例: 「昔の音楽は良かった」という感覚。1960年代に作られた曲は膨大だが、今も聴かれているのは名曲だけだ。凡庸な曲は忘れ去られ、プレイリストに入らない。残ったものだけを聴いて「あの時代は音楽のレベルが高かった」と感じるのは、脱落した曲が見えないからだ。</p></div>
+</div>
+<div class="step-card" id="sc3">
+<div class="step-hd" onclick="tog(3)"><span class="step-n">3</span><span class="step-title">法則化——偏ったサンプルから法則を導く</span><span class="step-arrow">▼</span></div>
+<div class="step-body"><p>生き残ったものだけを観察し、そこから「法則」を抽出する。<strong>これがバイアスの完成段階だ。</strong>成功者だけを調べて「リスクを取ることが成功の鍵」と結論づける。しかし、リスクを取って失敗した人は調査対象に入っていない。見えているデータが全体を代表していないのに、全体に当てはまる法則として語られる。</p><p>日常の例: 「喫煙者の祖父が90歳まで生きた」という話を聞いて、喫煙のリスクを軽く見る。しかし、喫煙によって早世した何千人の話は聞こえてこない。長生きした喫煙者は「生存者」であり、例外中の例外かもしれない。</p></div>
+</div>
+</div>
+
+<!-- ===== 歴史セクション ===== -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">見えないものを見ようとした人々</h2>
+
+<p class="body-text fade">生存者バイアスという名前は20世紀のものだが、この問題に気づいた人は古代から存在した。以下の年表で、<span style="color:#8b1a1a;font-weight:600;">●</span> は生存者バイアスに直接関わる出来事、<span style="color:#c8bfaa;font-weight:600;">○</span> は関連する出来事を示す。</p>
+
+<div class="timeline fade">
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">紀元前1世紀頃</p>
+<p class="tl-title">ディアゴラスの反論</p>
+<p class="tl-desc">難破を免れた者たちの奉納画を見せられたディアゴラスは、「では、溺れて死んだ者たちの絵はどこにある？」と問い返した。キケロが『神々の本性について』の中で紹介したこの逸話は、記録に残る最古の生存者バイアスへの指摘とされる。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1620</p>
+<p class="tl-title">フランシス・ベーコン『ノヴム・オルガヌム』</p>
+<p class="tl-desc">ベーコンは人間の知性が「肯定的な事例」に引きずられやすいことを指摘した。嵐の中で祈って助かった人は記録に残るが、祈って死んだ人は沈黙する。確証バイアスと生存者バイアスが交差する地点。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">1943</p>
+<p class="tl-title">ウォルドの覚書</p>
+<p class="tl-desc">エイブラハム・ウォルドがコロンビア大学SRGで爆撃機の脆弱性評価に関する覚書を執筆。帰還機のデータだけでは正しい結論が出せないことを数学的に示した。覚書は軍の機密扱いとなった。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1980–1981</p>
+<p class="tl-title">ウォルドの覚書が公開される</p>
+<p class="tl-desc">海軍分析センター（CNA）がウォルドの1943年の覚書を出版。同時期にマンゲルとサマニエゴが学術論文として再評価した。「生存者バイアス」の概念が学術界で広く知られるきっかけとなった。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1996</p>
+<p class="tl-title">投資信託の生存者バイアスが数値化される</p>
+<p class="tl-desc">エルトン、グルーバー、ブレイクが Review of Financial Studies に論文を発表。消滅したファンドを含めると、投資信託のパフォーマンス評価が大幅に変わることを実証した。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">2005</p>
+<p class="tl-title">「なぜ出版された研究結果の大半は誤りなのか」</p>
+<p class="tl-desc">スタンフォード大学のジョン・イオアニディスが画期的な論文を発表。出版バイアス——陽性結果のみが論文になりやすいこと——が科学研究全体を歪めていると指摘した。生存者バイアスの科学版。</p>
+</div>
+</div>
+
+<!-- ===== つまり ===== -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">沈黙が教えてくれること</h2>
+
+<p class="body-text fade">生存者バイアスの核心は、<strong>データの不在</strong>にある。見えているものではなく、見えていないものが判断を歪めている。そして厄介なことに、「見えていないもの」は定義上、気づくのが難しい。弾痕のない部分にこそ致命的な情報があったように、沈黙している部分にこそ重要な真実が隠れている。</p>
+
+<div class="pull fade">
+<p class="pull-q">"The advice business is a monopoly run by survivors. When something becomes a non-survivor, it is either completely eliminated, or whatever voice it has is <em>muted to zero</em>."</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">アドバイスというビジネスは生存者が独占している。何かが非生存者になったとき、それは完全に消去されるか、その声はゼロにまで消される。</p>
+<p class="pull-attr">— デイヴィッド・マクレイニー『You Are Not So Smart』（2013年）</p>
+</div>
+
+<p class="body-text fade">では、このバイアスに対してできることはあるだろうか。「知っているだけで防げる」と言えたら楽だが、そうはいかない。確証バイアスの記事でも触れた通り、認知バイアスは自覚だけでは消えない。ただし、環境を整えることで影響を減らすことはできる。</p>
+
+<p class="body-text fade"><strong>対処法①: <span class="tip" onclick="toggleTip(this)">プレモーテム<span class="tip-box"><strong>プレモーテム（pre-mortem）</strong><br>プロジェクトを始める前に「これが失敗したとしたら、何が原因だったか」を想像する手法。心理学者ゲイリー・クラインが提唱。失敗を事前にシミュレーションすることで、見えていないリスクに目を向ける。</span></span>を行う。</strong>何かを始める前に「もしこれが失敗したとしたら、原因は何だったか」を具体的に書き出す。成功事例を集める前に、失敗のシナリオを先に考える。万能ではないが、「見えていないもの」に意識を向ける強制力がある。</p>
+
+<p class="body-text fade"><strong>対処法②: 脱落者のデータを探す。</strong>成功事例を見たとき、「同じことをして失敗した人はいないか」と問う。投資判断なら、消滅したファンドも含めたデータベースを使う。ダイエット法なら、途中でやめた人の割合を調べる。この一手間が、判断の偏りを大きく補正する。ただし、脱落者のデータは構造的に見つけにくい。だからこそ意識的に探す必要がある。</p>
+
+<p class="body-text fade"><strong>対処法③: <span class="tip" onclick="toggleTip(this)">ベースレート<span class="tip-box"><strong>ベースレート（base rate）</strong><br>ある結果が母集団全体でどのくらいの確率で起きるかを示す数値。「大学中退者のうち億万長者になった割合」のように、全体像から見た確率を確認することで、成功例だけに引きずられることを防げる。</span></span>を確認する。</strong>「大学中退の成功者がいる」と聞いたら、まず「大学中退者全体のうち何%が経済的に成功しているか」を調べる。個別の成功談に飛びつく前に、母集団の全体像を確認する習慣をつける。</p>
+
+<p class="body-text fade">私はこれらの対処法を知っているが、正直に言えば、自分がどれだけ実践できているか自信がない。「成功した起業家の本」を読んで心が動いたことは何度もある。知っているだけでは足りない。でも、知らないよりはずっとましだ——少なくとも、ウォルドが弾痕を見たように、「ここに何かが足りない」と立ち止まる瞬間は作れる。</p>
+
+<div class="culture-block fade">
+<p class="culture-label">文化への登場</p>
+<div class="culture-item"><p class="culture-title">ジョーダン・エレンバーグ『How Not to Be Wrong』（2014年）</p><p class="culture-desc">数学者エレンバーグがウォルドの爆撃機の逸話を一般向けに紹介し、生存者バイアスの認知度を大きく広めた。この本の冒頭章がきっかけで、弾痕のイラストがインターネット上で広く共有されるようになった。</p></div>
+<div class="culture-item"><p class="culture-title">ナシーム・タレブ『ブラック・スワン』『まぐれ』</p><p class="culture-desc">タレブは生存者バイアスを「沈黙の証拠（silent evidence）」と呼び、私たちが見ている成功談がいかに偏ったサンプルであるかを繰り返し論じた。「倒産したレストランの墓場」の比喩はこの分野で最も有名な一節。</p></div>
+</div>
+
+<div class="img-placeholder fade">
+<div class="img-ph-area">
+<span class="img-ph-icon">✈</span>
+<p class="img-ph-title">イラスト①｜弾痕だらけの爆撃機と、無傷のエンジン周辺</p>
+<p class="img-ph-desc">帰還した爆撃機の胴体・翼に弾痕が密集している一方、エンジン付近はほぼ無傷。地上整備員が困惑した表情で機体を見上げている場面。</p>
+<div class="img-ph-prompt">
+<p class="img-ph-prompt-lbl">画像生成プロンプト</p>
+<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, a WWII bomber covered in bullet holes on fuselage and wings but engine area is clean, ground crew frogs and rabbits looking puzzled at the plane, Japanese scroll painting aesthetic, no text</p>
+</div>
+</div>
+<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+</div>
+
+<!-- ===== 参考文献 ===== -->
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+
+<div class="ref-list">
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">原著覚書</span><span class="ref-year">1943 / 1980</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1007/978-1-4612-0919-5_25" target="_blank" rel="noopener">A Method of Estimating Plane Vulnerability Based on Damage of Survivors</a></p>
+<p class="ref-author">Abraham Wald — Center for Naval Analyses (1980年再版)</p>
+<p class="ref-desc">すべてはここから始まった。軍の機密だった覚書が37年後に公開されたもの。数式は本格的だが、冒頭の問題設定だけ読めば、ウォルドの思考の切れ味が伝わる。「帰還した機体のデータだけで脆弱性を推定する」というアプローチは、今読んでも鮮やかだ。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">解説論文</span><span class="ref-year">1984</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1080/01621459.1984.10478038" target="_blank" rel="noopener">Abraham Wald's Work on Aircraft Survivability</a></p>
+<p class="ref-author">Marc Mangel, Francisco J. Samaniego — Journal of the American Statistical Association</p>
+<p class="ref-desc">ウォルドの覚書を現代の統計学の文脈で再評価した論文。ウォルドが実際に何を計算し、何を仮定していたかが丁寧に解説されている。インターネット上の「弾痕の逸話」がどこまで正確で、どこから脚色なのかを知りたい人に。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">実証論文</span><span class="ref-year">1996</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1093/rfs/9.4.1097" target="_blank" rel="noopener">Survivorship Bias and Mutual Fund Performance</a></p>
+<p class="ref-author">Edwin J. Elton, Martin J. Gruber, Christopher R. Blake — Review of Financial Studies</p>
+<p class="ref-desc">生存者バイアスが投資信託のリターン評価をどれだけ歪めるかを数値で示した研究。消滅したファンドを含めると平均リターンが大幅に下がるという結果は、金融業界に衝撃を与えた。「データの不在」が実際のお金にどう影響するかを知る格好の入口。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2005</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1371/journal.pmed.0020124" target="_blank" rel="noopener">Why Most Published Research Findings Are False</a></p>
+<p class="ref-author">John P. A. Ioannidis — PLOS Medicine</p>
+<p class="ref-desc">史上最も引用された医学論文のひとつ。<span class="tip" onclick="toggleTip(this)">出版バイアス<span class="tip-box"><strong>出版バイアス（publication bias）</strong><br>「効果あり」の結果が出た研究は論文として発表されやすく、「効果なし」の結果は発表されにくい傾向。生存者バイアスの科学研究版とも言える。</span></span>——つまり「陽性結果だけが出版される」構造が、科学研究全体をどう歪めているかを論じた。生存者バイアスが学術界に何をしているかを知ると、背筋が寒くなる。オープンアクセス。</p>
+</div>
+</div>
+
+<!-- 信頼度ノート -->
+<div class="note-box fade">
+<strong>📌 この記事について</strong><br>
+ウォルドの爆撃機の逸話は、ウォルド自身の覚書（1943/1980再版）およびマンゲル＆サマニエゴの解説論文（1984）、W・アレン・ウォリスの回想録（1980）に基づいている。インターネット上では逸話の脚色されたバージョンが多く出回っているが、AMS（アメリカ数学会）の2016年のコラムが史実と伝説の区別を丁寧に整理している。投資信託の数値はエルトンらの1996年の論文およびヴァンガードの2013年分析による。
+</div>
+
+<!-- タグ -->
+<div class="tags fade">
+<span class="tag">認知バイアス</span>
+<span class="tag">意思決定</span>
+<span class="tag">統計</span>
+<span class="tag">標本の偏り</span>
+<span class="tag">エイブラハム・ウォルド</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- ===== SIDEBAR ===== -->
+<div class="article-side">
+<div style="position:sticky;top:40px;">
+
+<div class="sidebar-block fade">
+<p class="sidebar-label">Key Number</p>
+<p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">46%</p>
+<p class="sidebar-text">15年間で清算または合併により消滅した投資信託の割合（ヴァンガード、2013年）。残ったファンドだけを見ていると、業界の成績は実際より良く見える。</p>
+</div>
+
+<div class="sidebar-block fade">
+<p class="sidebar-label">歴史的背景</p>
+<p class="sidebar-text">古代ギリシャのディアゴラスが「溺れた者の絵はどこにある」と問うたのが最古の指摘。フランシス・ベーコンも1620年に類似の問題を論じている。概念に「生存者バイアス」という名前がついたのは20世紀後半になってからだ。</p>
+</div>
+
+<div class="sidebar-block fade">
+<p class="sidebar-label">作品への登場</p>
+<p class="sidebar-text">ジョーダン・エレンバーグ『How Not to Be Wrong』（2014年）の冒頭章で取り上げられ、一般に広く知られるようになった。タレブの「沈黙の証拠」概念も同義。</p>
+</div>
+
+<div class="sidebar-block fade">
+<p class="sidebar-label">関連トピック</p>
+<p class="sidebar-text">
+— 確証バイアス<br>
+— 基準率の無視<br>
+— 後知恵バイアス<br>
+— 相関と因果<br>
+— 出版バイアス
+</p>
+</div>
+
+<div class="sidebar-block fade">
+<p class="sidebar-label">今日の判断を振り返る</p>
+<ul class="sidebar-check">
+<li>今日、成功事例だけを見て判断しなかったか</li>
+<li>「消えたもの」のデータを探したか</li>
+<li>口コミや体験談を読んだとき、書いていない人の存在を考えたか</li>
+<li>「昔は良かった」と思ったとき、忘れられたものを思い出したか</li>
+</ul>
+</div>
+
+<div class="sidebar-block fade">
+<p class="sidebar-label">信頼度</p>
+<p class="sidebar-text">生存者バイアスの存在自体は統計学・認知心理学の基本概念として広く認められている。投資信託への影響は複数の独立した研究で数値化されている。ウォルドの爆撃機の逸話には脚色された部分もあるが、覚書の内容自体は原典で確認可能。</p>
+</div>
+
+</div>
+</div>
+
+</div><!-- /article -->
+
+<!-- ===== TERMINAL ===== -->
+<div class="terminal-label-wrap fade">
+<div class="terminal-label"><span class="terminal-label-text">▼ Internal Dialogue >> Active</span><span class="terminal-label-line"></span></div>
+</div>
+
+<div class="terminal-wrap">
+<div class="terminal" id="terminalBlock">
+<div class="terminal-bar">
+<div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div>
+<span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+</div>
+<div class="terminal-body">
+<span class="t-sys" id="ts0">// 生存者バイアス を読み終えた人との対話</span>
+
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;つまり成功者の本は読んでも意味ないってこと？</span></div>
+<span class="t-output" id="to1">そこまでは言っていない。ただ、その本に書かれていることが「成功の原因」なのか「成功者にたまたま共通していた特徴」なのかは、その本だけでは区別できない。同じことをして失敗した人のデータがないから。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;でも参考にはなるでしょ</span></div>
+<span class="t-output" id="to2">なる。ただし<em>「これは偏ったサンプルから得られた情報だ」</em>という前提を忘れなければ。ワインの味見は参考になるけど、店に並んでいるワインだけ飲んで「ワインはみんなおいしい」と言ったら変でしょう。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;自分がこのバイアスにかかってるかどうか、わかるもの？</span></div>
+<span class="t-output" id="to3">正直、わかりにくい。見えていないものに気づくのは、定義上、難しい。でもひとつだけ確実な手がかりがある。<strong>「失敗した人のデータが手元にない」</strong>と気づいた瞬間、それがバイアスの入り口だ。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ウォルドの話、飛行機事故で亡くなったっていうのが皮肉すぎない？</span></div>
+<span class="t-output" id="to4">1950年、インドのニルギリ山脈で。帰還しなかった飛行機の弾痕を数えた人が、帰還しなかった飛行機に乗っていた。皮肉というか——なんと言えばいいのかわからない。</span>
+<hr class="t-divider">
+
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 覚えとくわ</span></div>
+</div>
+</div>
+</div>
+
+<!-- ===== RELATED ===== -->
+<div class="related fade">
+<p class="related-label">次に読む</p>
+<div class="related-grid">
+<a class="related-card" href="confirmation_bias_v6.html">
+<p class="related-card-tag">認知バイアス × 推論</p>
+<p class="related-card-title">確証バイアス</p>
+<p class="related-card-desc">自分の信念を支持する情報ばかり集め、矛盾する証拠を無視する。2-4-6課題が暴く推論の歪み。</p>
+<p class="related-card-arrow">読む →</p>
+</a>
+<a class="related-card" href="#">
+<p class="related-card-tag">認知バイアス × 意思決定</p>
+<p class="related-card-title">後知恵バイアス</p>
+<p class="related-card-desc">結果を知った後に「そうなると思っていた」と感じる傾向。予測の記憶が書き換わる。</p>
+<p class="related-card-arrow">近日公開</p>
+</a>
+</div>
+</div>
+
+<script>
+// Progress bar
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;document.getElementById('prog').style.width=(scrollY/h*100)+'%';});
+
+// Fade-in
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// Tooltip
+function toggleTip(el){const isOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(!isOpen)el.classList.add('open');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip'))document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));});
+
+// Steps accordion
+function tog(n){const c=document.getElementById('sc'+n);const was=c.classList.contains('open');document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));if(!was)c.classList.add('open');}
+
+// Bomber interactive
+function setBomberView(mode){
+  document.querySelectorAll('.bomber-toggle').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  const survivors=document.getElementById('survivorHoles');
+  const missing=document.getElementById('missingHoles');
+  const caption=document.getElementById('bomberCaption');
+  if(mode==='all'){
+    missing.style.display='inline';
+    survivors.querySelectorAll('circle').forEach(c=>c.setAttribute('opacity','.3'));
+    caption.innerHTML='<span style="color:#c4392a;font-weight:600;">鮮やかな赤い点</span>がエンジンと操縦席に追加された。これらの場所を撃たれた機体は帰還できなかったため、最初のデータには現れなかった。<strong>見えていなかった弾痕が、致命的な情報を持っていた。</strong>';
+  } else {
+    missing.style.display='none';
+    survivors.querySelectorAll('circle').forEach(c=>c.setAttribute('opacity','.55'));
+    caption.innerHTML='暗い赤の点は、帰還した機体に見られた弾痕。胴体・翼・尾翼に集中し、エンジンと操縦席にはほとんどない。';
+  }
+}
+
+// Fund selection
+let selectedFunds=[];
+function toggleFund(el){
+  const id=el.dataset.id;
+  if(el.classList.contains('selected')){
+    el.classList.remove('selected');
+    selectedFunds=selectedFunds.filter(x=>x!==id);
+  } else {
+    if(selectedFunds.length>=2) return;
+    el.classList.add('selected');
+    selectedFunds.push(id);
+  }
+  document.getElementById('selCount').textContent='選択数: '+selectedFunds.length+' / 2';
+  document.getElementById('ixSubmit').disabled=selectedFunds.length!==2;
+}
+
+const fundMap={'1':'アルファ成長ファンド','2':'グローバル・バリューII','3':'テクノフロンティア','4':'安定配当セレクト','5':'新興国ブリッジ','6':'インフラ長期投資'};
+function submitFundSelection(){
+  const chosen=selectedFunds.map(id=>fundMap[id]);
+  document.getElementById('chosenFunds').textContent=chosen.join(' と ');
+  document.getElementById('ixPhase1').classList.remove('active');
+  document.getElementById('ixPhase2').classList.add('active');
+}
+
+// Terminal animation
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2400},{id:'to2',delay:3000},
+  {id:'tl3',delay:4000},{id:'to3',delay:4600},
+  {id:'tl4',delay:5600},{id:'to4',delay:6200},
+  {id:'tl5',delay:7200}
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{setTimeout(()=>{const el=document.getElementById(s.id);if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}},s.delay);});
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>
