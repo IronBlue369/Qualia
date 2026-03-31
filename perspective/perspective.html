@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>「正しく見える」は発明だった——遠近法の誕生 — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;}.masthead-name a{color:inherit;text-decoration:none;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;margin-bottom:20px;}.cover h1 em{font-style:italic;color:#8b1a1a;}.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:6px;}.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}.cover-aside strong{color:#3d3020;font-weight:600;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}.scenario-inner::after{content:'▽';position:absolute;right:20px;top:-10px;font-size:100px;opacity:.06;line-height:1;pointer-events:none;}.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}.meta-item{display:flex;align-items:center;gap:10px;}.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}.difficulty-dots{display:flex;gap:4px;}.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}.dot.on{background:#8b1a1a;}.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;}.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}.article-main{padding:48px 0;}.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}.body-text strong{color:#1a1208;font-weight:600;}.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}.pull-q em{color:#8b1a1a;}.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}.tip-box strong{color:#e8c56a;font-weight:600;}.tip.open .tip-box{display:block;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block-img{background:#ede8dc;display:flex;align-items:center;justify-content:center;padding:0;overflow:hidden;}.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}.person-block-wiki{margin-bottom:8px;}.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.misconception-header{background:#3d3020;color:white;padding:11px 20px;}.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.misconception-body{background:white;}.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}.misconception-item:last-child{border-bottom:none;}.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}.mis-label.wrong{color:#c4392a;}.mis-label.right{color:#1a5a30;}.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.painting-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;}.painting-wrap img{width:100%;height:auto;display:block;}.painting-caption{padding:10px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;}.painting-caption strong{color:#1a1208;font-weight:600;}.painting-caption em{color:#8b1a1a;font-style:normal;}
+.painting-compare{margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:2px;}.painting-compare .painting-wrap{margin:0;}
+.diagram-wrap{margin:28px 0;overflow-x:auto;}.diagram-caption{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:8px;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}.tl-item{position:relative;margin-bottom:28px;}.tl-item:last-child{margin-bottom:0;}.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.steps-wrap{margin:32px 0;}.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}.step-card.open .step-nb{background:#8b1a1a;color:white;}.step-tw{flex:1;padding:13px 18px;}.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}.step-card.open .step-body{display:block;}.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}.step-body p strong{color:#1a1208;font-weight:600;}.step-summary{margin-top:2px;padding:16px 20px;background:#f3efe6;border:1px solid #c8bfaa;}.step-summary p{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;margin:0;line-height:1.8;}
+.culture-block{margin:28px 0;border:1px solid #c8bfaa;padding:20px 24px;background:#f3efe6;}.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:12px;}.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}.culture-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:4px;}.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}.ref-title a:hover{border-bottom-color:#8b1a1a;}.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}.sidebar-block:last-child{border-bottom:none;}.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}.sidebar-text strong{color:#3d3020;font-weight:600;}
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}.terminal-dots{display:flex;gap:6px;}.terminal-dot{width:12px;height:12px;border-radius:50%;}.terminal-dot.red{background:#ff5f57;}.terminal-dot.yellow{background:#febc2e;}.terminal-dot.green{background:#28c840;}.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;}.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;}.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}.t-prompt{color:#4a9e6a;margin-right:8px;user-select:none;}.t-input{color:#e8e4de;}.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}.t-output em{color:#e8c56a;font-style:normal;}.t-output strong{color:#fff;font-weight:500;}.t-exit .t-prompt{color:#555;}.t-exit .t-input{color:#555;}.t-exit .t-comment{color:#4a9e6a;}.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}.fade.on{opacity:1;transform:translateY(0);}
+.ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.ix-header{background:#1a1208;color:white;padding:11px 20px;}.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.ix-body{padding:24px 20px;background:white;}.ix-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;margin-bottom:6px;}.ix-slider{width:100%;margin:8px 0;cursor:pointer;}
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:8px;}
+@media(max-width:720px){.cover{grid-template-columns:1fr;padding:40px 20px 32px;}.cover-right{display:none;}.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.summary-box,.scenario{padding:0 20px;}.article{grid-template-columns:1fr;padding:0 20px;}.article-side{display:none;}.misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}.terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}.related{padding:32px 20px;}.related-grid{grid-template-columns:1fr;}.tip-box{left:0;transform:none;width:200px;}.tip-box::after{left:20px;transform:none;}.person-block{grid-template-columns:1fr;}.person-block-img{padding:16px;}.painting-compare{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="masthead"><p class="masthead-name"><a href="https://qualiajournal.com/">Qualia Journal</a></p></div>
+
+<div class="cover fade"><div class="cover-left"><p class="cover-kicker">科学と文化</p><h1>「正しく見える」は<em>発明</em>だった</h1><p class="cover-deck">1415年、フィレンツェ。一人の建築家が鏡と小さな板で証明したのは、三次元の世界を二次元の面に移す数学的方法だった。遠近法——それは「見えるとおりに描く」技術ではなく、「見えるとおりに見えるように描く」技術の発明だった。</p><div class="cover-byline"><span>Last updated: Mar. 2026</span></div></div><div class="cover-right"><div class="est-card"><span class="est-label">Est.</span><span class="est-year">1415</span><p class="est-event">フィリッポ・ブルネレスキがフィレンツェ大聖堂の入口で線遠近法の公開実験を行う。</p><p class="est-context">同年の世界：英仏百年戦争のアジャンクールの戦いでイングランドのヘンリー5世がフランス軍を破る。コンスタンツ公会議でヤン・フスが異端として火刑に処される。</p></div><p class="cover-aside">遠近法の発明から600年。私たちはスマートフォンの写真も、Googleマップの3D表示も、ゲームのオープンワールドも、すべて同じ原理で「奥行き」を見ている。<strong>「正しく見える」ことが当たり前すぎて、それが発明だったことを忘れている。</strong></p></div></div>
+
+<div class="scenario fade"><div class="scenario-inner"><p>線路に立って、遠くを見たことがある。2本のレールは目の前ではたしかに平行なのに、遠くに行くほど近づいていき、やがて一点に消える。道の並木も、ビルの壁面も、同じように遠くで収束する。あなたはそれを「当たり前」だと思っている。遠くのものが小さく見えるのは、世界がそうなっているからだ、と。</p><p>だが、中世ヨーロッパの画家は——1000年にわたって——その「当たり前」を絵にすることができなかった。遠くのものも近くのものも同じ大きさで描かれ、重要な人物は大きく、そうでない人物は小さく描かれた。平行線が一点に収束するという、あなたが毎日見ている光景を、体系的に絵に翻訳する方法を誰も持っていなかった。</p><p>遠近法は「発見」ではない。発明だ。数学と幾何学で構築された、現実を平面に射影するための技術体系だ。</p></div></div>
+
+<div class="meta-bar fade"><div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span class="difficulty-text">初〜中級 — 数学・美術史の予備知識は不要</span></div><div class="meta-sep"></div><div class="meta-item"><span class="meta-label">読了時間</span><span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 20 分</span></div></div>
+
+<div class="summary-box fade"><div class="summary-inner"><span class="summary-icon">要点</span><p class="summary-text">自分の手で消失点と地平線を動かし、「正しく見える」空間が数学的にどう構成されているかを体感する。600年前の発明が<strong>なぜ今なお写真・映画・ゲームのすべてを支配しているのか</strong>を知覚のレベルで理解する。</p></div></div>
+
+<!-- ===== ZONE B ===== -->
+<div class="article"><div class="article-main">
+
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">1415年、フィレンツェ大聖堂の入口で魔法が起きた</h2>
+
+<p class="body-text fade">ある晴れた朝、フィレンツェ大聖堂の正面入口に一人の男が立っていた。<span class="tip" onclick="toggleTip(this)">フィリッポ・ブルネレスキ<span class="tip-box"><strong>フィリッポ・ブルネレスキ（1377–1446）</strong><br>フィレンツェの建築家・金細工師。フィレンツェ大聖堂のドームの設計者。線遠近法を体系化した最初の人物とされる。</span></span>——建築家であり金細工師であり、のちにフィレンツェ大聖堂のドームを設計することになる人物だ。彼は手に小さな板を持っていた。板の表面にはサン・ジョヴァンニ洗礼堂の絵が描かれ、裏面の中央には小さな穴が開いている。もう片方の手には鏡。</p>
+
+<div class="person-block fade"><div class="person-block-img"><img src="img_brunelleschi_portrait.jpg" alt="ブルネレスキの大理石レリーフ" style="width:120px;height:auto;display:block;margin:auto 0;"></div><div class="person-block-body"><p class="person-block-name">フィリッポ・ブルネレスキ</p><p class="person-block-role">Filippo Brunelleschi / 1377–1446</p><p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%AA%E3%83%83%E3%83%9D%E3%83%BB%E3%83%96%E3%83%AB%E3%83%8D%E3%83%AC%E3%82%B9%E3%82%AD" target="_blank" rel="noopener">Wikipedia</a></p><p class="person-block-desc">フィレンツェの建築家。1401年の洗礼堂扉コンペでギベルティに敗れた後、建築と光学に転向。フィレンツェ大聖堂のドーム（1436年完成）を設計し、1415〜1420年頃に線遠近法の実験を行った。「ルネサンス建築の父」と呼ばれる。<br><span style="font-size:10px;color:#b0a090;">肖像: Sailko, via Wikimedia Commons, CC BY 3.0</span></p></div></div>
+
+<p class="body-text fade">ブルネレスキは群衆の一人に板を渡し、裏面から穴を覗くよう指示した。反対の手で板の前に鏡をかざす。すると——穴の向こうに映る鏡には、絵に描かれた洗礼堂が見える。板の上部は銀箔で覆われており、本物の空が鏡に反射して、風に流れる雲が絵の中に入り込んだ。鏡を外すと、穴の向こうには本物の洗礼堂がある。<em>絵と現実の区別がつかなかった。</em></p>
+
+<div class="diagram-wrap fade"><svg viewBox="0 0 600 240" width="600" style="max-width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg"><text x="300" y="22" font-family="Source Sans 3,sans-serif" font-size="15" fill="#1a1208" font-weight="600" text-anchor="middle">ブルネレスキの実験装置</text><rect x="30" y="48" width="100" height="130" rx="5" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.5"/><text x="80" y="68" font-family="Source Sans 3,sans-serif" font-size="13" fill="#7a6a55" text-anchor="middle">板（裏面）</text><circle cx="80" cy="108" r="6" fill="#8b1a1a"/><text x="80" y="130" font-family="Source Sans 3,sans-serif" font-size="12" fill="#8b1a1a" text-anchor="middle">覗き穴</text><text x="80" y="192" font-family="Source Sans 3,sans-serif" font-size="11" fill="#7a6a55" text-anchor="middle">表面に洗礼堂の絵</text><text x="160" y="106" font-family="Source Sans 3,sans-serif" font-size="18" fill="#8b1a1a" text-anchor="middle">→</text><text x="160" y="126" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55" text-anchor="middle">視線</text><rect x="195" y="64" width="16" height="90" rx="3" fill="#3d3020"/><text x="203" y="174" font-family="Source Sans 3,sans-serif" font-size="16" fill="#1a1208" text-anchor="middle" font-weight="700">鏡</text><text x="250" y="106" font-family="Source Sans 3,sans-serif" font-size="18" fill="#8b1a1a" text-anchor="middle">←</text><text x="250" y="126" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55" text-anchor="middle">反射</text><rect x="290" y="48" width="130" height="130" rx="5" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.5"/><rect x="310" y="48" width="90" height="28" rx="3" fill="#c8bfaa"/><text x="355" y="67" font-family="Source Sans 3,sans-serif" font-size="11" fill="#3d3020" text-anchor="middle">銀箔（空が映る）</text><text x="355" y="108" font-family="Source Sans 3,sans-serif" font-size="14" fill="#1a1208" text-anchor="middle" font-weight="600">鏡に映る</text><text x="355" y="128" font-family="Source Sans 3,sans-serif" font-size="14" fill="#1a1208" text-anchor="middle" font-weight="600">洗礼堂の絵</text><text x="456" y="112" font-family="Source Sans 3,sans-serif" font-size="18" fill="#7a6a55" text-anchor="middle">vs</text><rect x="490" y="48" width="90" height="130" rx="5" fill="#ede8dc" stroke="#c8bfaa" stroke-width="1.5"/><text x="535" y="108" font-family="Source Sans 3,sans-serif" font-size="14" fill="#1a1208" text-anchor="middle" font-weight="600">本物の</text><text x="535" y="128" font-family="Source Sans 3,sans-serif" font-size="14" fill="#1a1208" text-anchor="middle" font-weight="600">洗礼堂</text><text x="300" y="230" font-family="Source Sans 3,sans-serif" font-size="13" fill="#3d3020" text-anchor="middle">鏡を外すと本物が見える。絵と現実が区別できないことを証明した。</text></svg><p class="diagram-caption">ブルネレスキの鏡の実験（1415年頃）。観察者は板の裏面から穴を覗き、鏡に映った絵を見る。鏡を外すと同じ位置に本物の建物が現れる。伝記作家マネッティの記述に基づく。</p></div>
+
+<p class="body-text fade">これは手品ではなかった。ブルネレスキが証明したのは、<strong>三次元の空間を二次元の平面に、幾何学的に正確に射影する方法</strong>だということだ。彼は洗礼堂の大理石の縞模様が遠ざかるにつれて近づいていくことに気づき、そこに数学的法則を見出した。すべての平行線は、画面上の一点——<span class="tip" onclick="toggleTip(this)">消失点<span class="tip-box"><strong>消失点（Vanishing point）</strong><br>遠近法において、奥行き方向の平行線が画面上で収束する一点。「目の高さ」の地平線上に位置する。</span></span>——に向かって収束する。</p>
+
+<div class="quote-block fade"><p class="quote-en">"Since then, I have been brought back here — from the long exile in which we Alberti have grown old — into this our city, adorned above all others."</p><p class="quote-ja">長い追放生活から——私たちアルベルティ家が老いていったその追放から——この、何よりも美しいわが街へ戻ってきた。</p><p class="quote-attr">— レオン・バッティスタ・アルベルティ『絵画論（De pictura）』序文（1435年）</p></div>
+
+<div class="painting-wrap fade">
+<img src="img_masaccio_trinity.jpg" alt="マザッチョ『聖三位一体』1425–27年" loading="lazy">
+<p class="painting-caption"><strong>マザッチョ『聖三位一体（La Trinità）』</strong>（1425–27年）｜フレスコ、667×317cm｜<em>サンタ・マリア・ノヴェッラ聖堂（フィレンツェ）</em>｜線遠近法を用いた最初期の大規模絵画。消失点は十字架の下、鑑賞者の目の高さに設定されている。ブルネレスキが制作に協力した可能性が指摘されている。パブリックドメイン。</p>
+</div>
+
+<p class="body-text fade">ブルネレスキの友人であった画家<span class="tip" onclick="toggleTip(this)">マザッチョ<span class="tip-box"><strong>マザッチョ（1401–1428）</strong><br>本名トンマーゾ・ディ・セル・ジョヴァンニ。初期ルネサンス最大の画家。わずか26歳で没したが、遠近法と明暗法で以後の絵画の方向を決定づけた。</span></span>は、この原理を絵画に初めて本格的に応用した。サンタ・マリア・ノヴェッラ聖堂の『聖三位一体』は、壁に穴が開いたような錯覚を生む。マザッチョは消失点の位置に実際に釘を打ち、そこから紐を張って<span class="tip" onclick="toggleTip(this)">オルソゴナル線<span class="tip-box"><strong>オルソゴナル線（Orthogonals）</strong><br>遠近法における、画面に対して垂直に奥へ向かう仮想的な線。消失点で交わることで奥行きの錯覚が生まれる。</span></span>を漆喰に刻み込んだ。その痕跡は今もフレスコの下に残っている。</p>
+
+<hr class="art-rule">
+<h2 class="fade">1000年の空白——中世は「深さ」を描けなかった</h2>
+
+<p class="body-text fade">ブルネレスキの発明がどれほど革命的だったかを理解するには、それ以前の1000年間を知る必要がある。古代ローマのポンペイの壁画には、建築物が奥に後退していくような空間描写がすでにある。しかしローマ帝国の崩壊とともに、この技術は失われた。</p>
+
+<div class="painting-wrap fade">
+<img src="img_pompeii_fresco.jpg" alt="ボスコレアーレのヴィラのフレスコ（紀元前50–40年頃）" loading="lazy">
+<p class="painting-caption"><strong>ボスコレアーレのヴィラのフレスコ</strong>（紀元前50–40年頃）｜<em>マリエモント博物館蔵</em>｜古代ローマの「第二様式」の壁画。柱や建築物が画面の奥に後退していく錯覚を、経験的な遠近法で生み出している。体系的な消失点はないが、空間の奥行きを感じさせる表現がすでに存在していた。ブルネレスキの発明から約1500年前の作品。Photo: Sam.Donvil, via Wikimedia Commons, CC BY-SA 4.0</p>
+</div>
+
+<div class="painting-compare fade">
+<div class="painting-wrap">
+<img src="img_giotto_lamentation.jpg" alt="ジョット『哀悼』1305年頃" loading="lazy">
+<p class="painting-caption"><strong>ジョット『キリストへの哀悼』</strong>（c.1305）｜フレスコ｜<em>スクロヴェーニ礼拝堂（パドヴァ）</em>｜中世としては革新的な空間表現だが、統一的な消失点はない。パブリックドメイン。</p>
+</div>
+<div class="painting-wrap">
+<img src="img_perugino_keys.jpg" alt="ペルジーノ『鍵の授与』1481–82年" loading="lazy">
+<p class="painting-caption"><strong>ペルジーノ『鍵の授与』</strong>（1481–82）｜フレスコ｜<em>システィーナ礼拝堂</em>｜ブルネレスキの発明から約60年後。床のタイルが完璧なオルソゴナル線を形成する。パブリックドメイン。</p>
+</div>
+</div>
+
+<p class="body-text fade">遠近法がない絵を見たとき、私たちは何か「違和感」を感じる。子どもの絵に近い感覚だ。家は真正面から描かれ、人は大きさがバラバラで、道は上に行くほど遠いはずなのに狭くならない。あるいはスマートフォンの地図アプリを思い浮かべてもいい。2D表示（真上からの地図）から3D表示に切り替えたときに感じる「奥行きが突然現れる」あの感覚——遠近法の発明とは、まさにその切り替えが初めて起きた瞬間だった。</p>
+<p class="body-text fade">中世の画家たちが「下手だった」わけではない。彼らには別の関心があった。絵画の目的は現実の模写ではなく、聖書の物語を伝えることだった。重要な人物は大きく描き、背景は金箔で覆い、天上と地上を分けるヒエラルキーを視覚化する。空間の正確さは優先事項ではなかったのだ。</p>
+
+<div class="misconception fade"><div class="misconception-header"><p class="misconception-hl">読む前に確認 — よくある誤解</p></div><div class="misconception-body"><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">中世の画家は「遠近法を知らなかった」から平面的に描いた</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">中世絵画の目的は聖書の物語とヒエラルキーの視覚化。体系的な手法は存在しなかったが、「知らなかった」ではなく「必要としなかった」が正確</p></div></div><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">遠近法は「自然な見え方」を忠実に再現する方法</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">単一の固定視点からの数学的な射影であり、両眼・眼球運動・周辺視野は再現していない。ある意味で「もっとも説得力のある約束事」</p></div></div><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">ブルネレスキが遠近法を「発見」した</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">古代ローマに経験的な遠近法表現はあった。ブルネレスキの功績は「再発見」と「数学的・幾何学的な体系化」にある</p></div></div></div></div>
+
+<div class="diagram-wrap fade"><svg viewBox="0 0 600 230" width="600" style="max-width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg"><text x="300" y="22" font-family="Source Sans 3,sans-serif" font-size="15" fill="#1a1208" font-weight="600" text-anchor="middle">1点透視の基本構造</text><rect x="50" y="36" width="90" height="44" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/><text x="95" y="56" font-family="Source Sans 3,sans-serif" font-size="13" fill="#1a1208" text-anchor="middle" font-weight="600">近い物</text><text x="95" y="72" font-family="Source Sans 3,sans-serif" font-size="11" fill="#7a6a55" text-anchor="middle">大きく描く</text><rect x="265" y="36" width="56" height="30" rx="3" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/><text x="293" y="56" font-family="Source Sans 3,sans-serif" font-size="11" fill="#1a1208" text-anchor="middle" font-weight="600">遠い物</text><rect x="460" y="36" width="90" height="44" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/><text x="505" y="56" font-family="Source Sans 3,sans-serif" font-size="13" fill="#1a1208" text-anchor="middle" font-weight="600">近い物</text><text x="505" y="72" font-family="Source Sans 3,sans-serif" font-size="11" fill="#7a6a55" text-anchor="middle">大きく描く</text><line x1="40" y1="110" x2="540" y2="110" stroke="#c8bfaa" stroke-width="1.2" stroke-dasharray="6,4"/><text x="555" y="114" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55" text-anchor="start">地平線</text><circle cx="300" cy="110" r="7" fill="#8b1a1a"/><text x="300" y="96" font-family="Source Sans 3,sans-serif" font-size="14" fill="#8b1a1a" text-anchor="middle" font-weight="600">消失点</text><line x1="300" y1="110" x2="40" y2="200" stroke="#3d3020" stroke-width="1.2"/><line x1="300" y1="110" x2="160" y2="200" stroke="#3d3020" stroke-width="1.2"/><line x1="300" y1="110" x2="440" y2="200" stroke="#3d3020" stroke-width="1.2"/><line x1="300" y1="110" x2="560" y2="200" stroke="#3d3020" stroke-width="1.2"/><line x1="100" y1="148" x2="500" y2="148" stroke="#c8bfaa" stroke-width="0.6"/><line x1="70" y1="175" x2="530" y2="175" stroke="#c8bfaa" stroke-width="0.6"/><text x="300" y="222" font-family="Source Sans 3,sans-serif" font-size="13" fill="#7a6a55" text-anchor="middle">オルソゴナル線が1点に収束する。これが奥行きの錯覚を生む。</text></svg></div>
+
+<hr class="art-rule">
+<h2 class="fade">見ることの数学——アルベルティが書き残したもの</h2>
+
+<p class="body-text fade">ブルネレスキは実演で遠近法を証明したが、その方法を書き残さなかった。体系的な理論を文章にしたのは、人文主義者の<span class="tip" onclick="toggleTip(this)">レオン・バッティスタ・アルベルティ<span class="tip-box"><strong>レオン・バッティスタ・アルベルティ（1404–1472）</strong><br>イタリアの建築家・人文主義者。1435年に『絵画論』を著し、線遠近法を体系的に記述した最初の人物。</span></span>だった。1435年、アルベルティは『絵画論（De pictura）』を著した。この本は西洋美術史上初の絵画に関する理論的著作だ。</p>
+
+<div class="person-block fade"><div class="person-block-img"><img src="img_alberti_portrait.jpg" alt="アルベルティの自画像メダリオン" style="width:120px;height:auto;"></div><div class="person-block-body"><p class="person-block-name">レオン・バッティスタ・アルベルティ</p><p class="person-block-role">Leon Battista Alberti / 1404–1472</p><p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%AC%E3%82%AA%E3%83%B3%E3%83%BB%E3%83%90%E3%83%83%E3%83%86%E3%82%A3%E3%82%B9%E3%82%BF%E3%83%BB%E3%82%A2%E3%83%AB%E3%83%99%E3%83%AB%E3%83%86%E3%82%A3" target="_blank" rel="noopener">Wikipedia</a></p><p class="person-block-desc">フィレンツェの名門銀行家の家系出身だが、家族は追放されていた。1434年に教皇庁に従ってフィレンツェに戻り、ブルネレスキやマザッチョの革新を目撃。「絵画は開かれた窓である」という比喩は美術理論の基礎となった。<br><span style="font-size:10px;color:#b0a090;">肖像: Sailko, via Wikimedia Commons, CC BY 2.5</span></p></div></div>
+
+<p class="body-text fade">アルベルティの核心的な比喩は「絵画は開かれた窓である」というものだ。画家はキャンバスの向こうに広がる世界を、窓枠を通して見ている。この窓は<span class="tip" onclick="toggleTip(this)">視覚のピラミッド<span class="tip-box"><strong>視覚のピラミッド（Visual pyramid）</strong><br>アルベルティの理論で、観察者の目を頂点とし、見える範囲を底面とするピラミッド状の空間。絵画はこのピラミッドの断面図にあたる。</span></span>を平面で切断したものであり、その断面が絵画になる。感覚ではなく幾何学で説明できる。</p>
+
+<div class="ix-wrap fade"><div class="ix-header"><span class="ix-hl">✦ Vanishing Point — 消失点を動かす（1点 / 2点 / 3点）</span></div><div class="ix-body"><p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;margin-bottom:12px;">赤い点をドラッグして消失点を動かしてみよう。ボタンで1点・2点・3点透視を切り替えられる。</p><div style="display:flex;gap:8px;margin-bottom:14px;"><button id="vpBtn1" onclick="setVPMode(1)" style="font-family:Source Sans 3,sans-serif;font-size:13px;font-weight:500;padding:6px 16px;border:1px solid #8b1a1a;background:#8b1a1a;color:white;cursor:pointer;">1点透視</button><button id="vpBtn2" onclick="setVPMode(2)" style="font-family:Source Sans 3,sans-serif;font-size:13px;font-weight:500;padding:6px 16px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;">2点透視</button><button id="vpBtn3" onclick="setVPMode(3)" style="font-family:Source Sans 3,sans-serif;font-size:13px;font-weight:500;padding:6px 16px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;">3点透視</button></div><canvas id="vpCanvas" width="520" height="300" style="border:1px solid #c8bfaa;width:100%;cursor:crosshair;"></canvas><p id="vpCaption" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;text-align:center;margin-top:10px;"></p></div></div>
+<p class="ix-note fade">1点透視＝正面を見る。2点透視＝建物の角を見る。3点透視＝見上げる・見下ろす。現実に近づくほど消失点が増える。</p>
+
+<div class="painting-wrap fade">
+<img src="img_uccello_battle.jpg" alt="パオロ・ウッチェロ『サン・ロマーノの戦い』" loading="lazy">
+<p class="painting-caption"><strong>パオロ・ウッチェロ『サン・ロマーノの戦い』</strong>（c.1438–40年）｜テンペラ、182×320cm｜<em>ウフィツィ美術館蔵</em>｜地面の折れた槍が消失点に向かって配置されている。ウッチェロは遠近法に取り憑かれ、妻に「この美しい遠近法を放っておけるものか」と言ったとヴァザーリが伝えている。Photo: VivaItalia1974, via Wikimedia Commons, CC BY-SA 3.0</p>
+</div>
+
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">アルベルティの窓——空間を自分の手で組み立てる</h2>
+
+<p class="body-text fade">消失点と地平線の関係を知識として理解するのと、自分の手で空間を操作するのは別のことだ。次のシミュレーターには2つのスライダーがある。<strong>「消失点の高さ」</strong>は、鑑賞者がどこから見ているかを決める。高ければ上空から見下ろし、低ければ地面の高さから見上げる。マザッチョの『聖三位一体』は消失点を鑑賞者の目の高さに置いたからこそ、壁に穴が開いたように見えた。</p>
+<p class="body-text fade">もう一つの<strong>「視距離」</strong>は、「広角レンズと望遠レンズの違い」に近い。視距離が小さい（＝広角）と、近くのタイルと遠くのタイルの大きさの差が極端になり、空間が歪んで見える。スマートフォンで顔を近くから撮ると鼻が大きくなるのと同じ原理だ。視距離が大きい（＝望遠）と、手前と奥の大きさの差が縮まり、空間が圧縮されて見える。</p>
+<p class="body-text fade">スライダーを動かしながら、「どの設定がもっとも自然に見えるか」を探してみてほしい。そこに唯一の正解はない。画家はこれを意識的に選んでいる。遠近法は<em>選択</em>なのだ。</p>
+
+<div class="ix-wrap fade"><div class="ix-header"><span class="ix-hl">✦ Alberti's Window — 遠近法シミュレーター</span></div><div class="ix-body"><div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;"><div style="flex:1;min-width:180px;"><p class="ix-label">消失点の高さ: <span id="vpHVal">50</span>%</p><input type="range" id="vpH" min="10" max="90" value="50" class="ix-slider"></div><div style="flex:1;min-width:180px;"><p class="ix-label">視距離（広角↔望遠）: <span id="distVal">50</span>%</p><input type="range" id="distSlider" min="10" max="90" value="50" class="ix-slider"></div></div><canvas id="albertiCanvas" width="520" height="360" style="border:1px solid #c8bfaa;width:100%;"></canvas><p id="albertiCaption" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;text-align:center;margin-top:10px;"></p></div></div>
+<p class="ix-note fade">アルベルティの『絵画論』（1435年）に基づく概念的シミュレーション。実際の絵画では画家が自由に構図を選ぶため、数学的な正確さと芸術的な判断は常に緊張関係にある。</p>
+
+<div class="pull fade"><p class="pull-q">"Know that <em>a painted thing</em> can never appear truthful where there is not a definite distance for seeing it."</p><p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">描かれたものは、それを見るための一定の距離がなければ、真実らしく見えることは決してない。</p><p class="pull-attr">— レオン・バッティスタ・アルベルティ『絵画論（De pictura）』（1435年）</p></div>
+
+<hr class="art-rule">
+
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">なぜ遠近法は「正しく見える」のか</h2>
+
+<p class="body-text fade">なぜ紙の上に描かれた線を見て「奥行きがある」と感じるのか。答えはシンプルだ——<strong>脳が毎日やっている作業と同じパターンを絵の中に見つけるから</strong>。線路のレールが遠くで近づいていく。廊下の壁が奥に向かって狭まる。脳はこうした視覚的なパターンを手がかりに「あれは遠くにある」と判断している。遠近法はその手がかりを紙の上に再現する。脳は紙を見ているのに、勝手に「ここには奥行きがある」と読んでしまう。</p>
+<p class="body-text fade">こうした手がかりは<span class="tip" onclick="toggleTip(this)">単眼手がかり<span class="tip-box"><strong>単眼手がかり（Monocular cues）</strong><br>片目だけで奥行きを知覚するための手がかり。線の収束、物体の重なり、大気遠近法（遠くが霞む）、テクスチャの勾配などがある。</span></span>と呼ばれる。「単眼」というのは、片目だけでも奥行きを感じ取れるという意味だ。遠近法が「片目の凍った世界」なのに説得力を持つのは、まさにこの片目でも機能する手がかりを利用しているからだ。しかし「正しく見える」は「正しい」とは限らない。</p>
+
+<div class="steps-wrap fade"><p class="steps-head">遠近法が「効く」3つの理由</p><div class="step-card" id="sc1"><div class="step-hd" onclick="tog(1)"><div class="step-nb">1</div><div class="step-tw"><div class="step-title">平行線の収束を脳が「奥行き」と読む</div><div class="step-sub">線遠近法の基本メカニズム</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>平行な線が視野の中で交差していくとき、脳はそれを「遠ざかっている」と解釈する。線路、廊下、並木道——日常的に経験するパターンと同じだ。<strong>遠近法はこの解釈を人工的に再現する。</strong></p></div></div><div class="step-card" id="sc2"><div class="step-hd" onclick="tog(2)"><div class="step-nb">2</div><div class="step-tw"><div class="step-title">テクスチャの勾配が距離を伝える</div><div class="step-sub">ギブソンの生態学的視覚論</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>床のタイルを見てみよう。足元では大きく見え、遠くでは小さくなる。心理学者ギブソンはこれを<strong>テクスチャの勾配</strong>と呼んだ。遠近法の格子状の床は、まさにこの勾配を人工的に作っている。</p></div></div><div class="step-card" id="sc3"><div class="step-hd" onclick="tog(3)"><div class="step-nb">3</div><div class="step-tw"><div class="step-title">だが遠近法は「片目の凍った世界」である</div><div class="step-sub">限界と批判</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>人間は2つの目で見ている。目は常に動く。周辺視野はぼやけている。遠近法はそのすべてを無視する。<strong>単一の、動かない、片目の視点からの世界。</strong>だから20世紀にキュビズムは遠近法を破壊した。遠近法の「正しさ」は絶対的なものではなく、ある前提のもとでの約束事にすぎない。</p></div></div><div class="step-summary"><p>遠近法は ①線の収束 ②テクスチャの勾配 という脳の奥行き推定メカニズムに合致するため「正しく見える」。しかし ③それは固定視点の数学的射影であり、人間の視覚そのものの再現ではない。</p></div></div>
+
+<hr class="art-rule">
+
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">ポンペイからピカソまで——視覚表現の2000年</h2>
+<p class="body-text fade"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#8b1a1a;vertical-align:middle;margin-right:4px;"></span>赤丸 = 遠近法の系譜に直接関わる出来事。<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;vertical-align:middle;margin-right:4px;margin-left:12px;"></span>白丸 = 関連する文化の動き。</p>
+
+<div class="timeline fade"><div class="tl-item"><div class="tl-dot"></div><p class="tl-year">紀元前1世紀</p><p class="tl-title">ポンペイの壁画に経験的な空間表現</p><p class="tl-desc">古代ローマの画家たちは「消失軸」を用いて建築物の奥行きを描いた。体系的な理論はなかったが、説得力のある空間描写が存在した。</p></div><div class="tl-item"><div class="tl-dot"></div><p class="tl-year">5–14世紀</p><p class="tl-title">中世ヨーロッパの「空白」</p><p class="tl-desc">絵画の目的が聖書の物語伝達に移り、空間の正確さへの関心が後退。金地背景が標準となった。</p></div><div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1305年頃</p><p class="tl-title">ジョットのスクロヴェーニ礼拝堂フレスコ</p><p class="tl-desc">人物に重量感と感情を与え、直感的な奥行きを持たせた。ルネサンスへの道を開いた先駆者。</p></div><div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1415年頃</p><p class="tl-title">ブルネレスキの遠近法実験</p><p class="tl-desc">フィレンツェ大聖堂の入口で鏡と板を使い、線遠近法の正確さを公開実証。</p></div><div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1425–27年</p><p class="tl-title">マザッチョ『聖三位一体』</p><p class="tl-desc">線遠近法を用いた最初期の大規模絵画。釘と紐で正確なオルソゴナル線を漆喰に刻んだ。</p></div><div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1435年</p><p class="tl-title">アルベルティ『絵画論』</p><p class="tl-desc">遠近法を幾何学的に体系化した最初の著作。「絵画は開かれた窓である」。</p></div><div class="tl-item"><div class="tl-dot"></div><p class="tl-year">c.1438–60年</p><p class="tl-title">ウッチェロの遠近法への執着</p><p class="tl-desc">『サン・ロマーノの戦い』で折れた槍を消失点に向けて配置。遠近法に「取り憑かれた」画家。</p></div><div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1509–11年</p><p class="tl-title">ラファエロ『アテネの学堂』</p><p class="tl-desc">遠近法の頂点。消失点をプラトンとアリストテレスの間に設定し、哲学的意味を構図に組み込んだ。</p></div><div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1907年</p><p class="tl-title">ピカソ『アヴィニョンの娘たち』</p><p class="tl-desc">単一視点を拒否し、複数の視点を同時に描くキュビズムの出発点。遠近法が支配した500年間への挑戦。</p></div></div>
+
+<div class="painting-wrap fade">
+<img src="img_raphael_school.jpg" alt="ラファエロ『アテネの学堂』1509–11年" loading="lazy">
+<p class="painting-caption"><strong>ラファエロ『アテネの学堂（The School of Athens）』</strong>（1509–11年）｜フレスコ、500×770cm｜<em>ヴァティカン宮殿</em>｜遠近法の頂点。消失点はプラトンとアリストテレスの中間に設定されている。ブルネレスキの実験から約100年で、遠近法は成熟の極みに達した。パブリックドメイン。</p>
+</div>
+
+<hr class="art-rule">
+
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">遠近法は現実を写していない——それでも世界を変えた</h2>
+
+<p class="body-text fade">遠近法は確かに脳の奥行き推定メカニズムと合致するため説得力がある。だが、それは人間の視覚を再現しているわけではない。私たちは2つの目で見ている。目は絶えず動いている。遠近法はそのすべてを無視し、<em>単一の、動かない、片目の視点</em>からの世界を数学的に構成する。</p>
+
+<p class="body-text fade">美術史家のジョン・バーガーは、遠近法にはイデオロギーが埋め込まれていると指摘した。遠近法には必ず「どこから見るか」が設定される。一人の人間が、自分の目の高さから、ある一瞬に見えるものだけを描く——それが遠近法の前提だ。中世の絵画がそうではなかったことを思い出してほしい。中世の画家は、重要なものを大きく、そうでないものを小さく描いた。視点は「個人」ではなく「神」のものだった。遠近法が「一人の個人が、自分の位置から世界を見る」ことを前提にするのは、ルネサンスの「人間中心主義」と同じ構造だ。描き方が変わったのではない。<em>世界の見方が変わったのだ。</em></p>
+
+<div class="painting-wrap fade">
+<img src="img_piero_flagellation.jpg" alt="ピエロ・デッラ・フランチェスカ『キリストの鞭打ち』" loading="lazy">
+<p class="painting-caption"><strong>ピエロ・デッラ・フランチェスカ『キリストの鞭打ち』</strong>（c.1468–70年）｜テンペラ、59×81.5cm｜<em>マルケ国立美術館（ウルビーノ）蔵</em>｜左奥でキリストが鞭打たれ、右手前で3人が無関心に立つ。2つの空間を遠近法で統合した不穏な構図。Photo: Mongolo1984, via Wikimedia Commons, CC BY-SA 4.0</p>
+</div>
+
+<p class="body-text fade">それでも遠近法は世界を変えた。写真のレンズは遠近法の原理で設計されている。映画のフレームは消失点を意識して構成される。ゲームの3Dエンジンは毎秒60回、遠近法の数学を計算している。600年前の一人の建築家が証明した「平面に奥行きを映す方法」は、今も——気づかないほど静かに——私たちの視覚世界を支配し続けている。</p>
+
+<div class="culture-block fade"><p class="culture-label">文化の中に現れる</p><div class="culture-item"><p class="culture-title">映画『市民ケーン』（1941年）</p><p class="culture-desc">パンフォーカスと深い奥行き構図で、遠近法的な空間表現を映画言語として確立。カメラアングルと消失点の操作で権力関係を視覚化した。</p></div><div class="culture-item"><p class="culture-title">M・C・エッシャーの版画（1930–60年代）</p><p class="culture-desc">遠近法の法則を意図的に破壊し「ありえない空間」を構成した。単一の消失点・一貫した重力を崩すことで、視覚の限界を暴いた。</p></div><div class="culture-item"><p class="culture-title">3Dゲームエンジンとリアルタイムレンダリング</p><p class="culture-desc">ゲームの透視投影（perspective projection）はブルネレスキの原理そのもの。600年前の数学がGPUの中で毎秒数十億回実行されている。</p></div></div>
+
+<hr class="art-rule">
+
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+
+<div class="ref-list">
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">古典的著作</span><span class="ref-year">1435</span></div><p class="ref-title"><a href="https://doi.org/10.1017/CBO9780511782770" target="_blank" rel="noopener">De pictura (On Painting)</a></p><p class="ref-author">Leon Battista Alberti — 複数の英訳版あり</p><p class="ref-desc">遠近法の理論的基礎を据えた美術史上最初の絵画理論書。「開かれた窓」の比喩は今なお美術教育で引用される。Penguin Classicsなどから入手しやすい英訳がある。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">美術史</span><span class="ref-year">1927/1991</span></div><p class="ref-title"><a href="https://doi.org/10.7551/mitpress/5765.001.0001" target="_blank" rel="noopener">Perspective as Symbolic Form</a></p><p class="ref-author">Erwin Panofsky — Zone Books</p><p class="ref-desc">遠近法を「象徴形式」として論じた古典。遠近法は光学的事実ではなく時代の世界観の表現だと主張する。「遠近法は客観的か」を考える上で避けて通れない。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">科学史</span><span class="ref-year">2000</span></div><p class="ref-title"><a href="https://doi.org/10.5860/choice.38-3009" target="_blank" rel="noopener">Brunelleschi's Dome: How a Renaissance Genius Reinvented Architecture</a></p><p class="ref-author">Ross King — Penguin Books</p><p class="ref-desc">ブルネレスキのドーム建設を中心に据えた一般向け科学史。遠近法の実験にも触れている。ルネサンス・フィレンツェの空気を感じるのに最適。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">知覚心理学</span><span class="ref-year">1979</span></div><p class="ref-title"><a href="https://doi.org/10.4324/9781315740218" target="_blank" rel="noopener">The Ecological Approach to Visual Perception</a></p><p class="ref-author">James J. Gibson — Psychology Press</p><p class="ref-desc">テクスチャの勾配やアフォーダンスの概念を提唱した名著。遠近法が「なぜ効くのか」の知覚的基盤を理解するために読む価値がある。</p></div>
+</div>
+
+<div class="note-box fade"><strong>📌 この記事について</strong><br>ブルネレスキの実験については、伝記作家アントニオ・マネッティの記述（1480年頃）が主要な一次資料であり、実験の正確な年代や手順には諸説ある。アルベルティ『絵画論』の内容は原典と複数の翻訳・研究に基づく。知覚メカニズムの説明はギブソンの生態学的視覚論に拠っている。</div>
+
+<div class="tags fade"><span class="tag" style="background:#8b1a1a;color:white;border-color:#8b1a1a;">科学と文化</span><span class="tag">遠近法</span><span class="tag">ルネサンス</span><span class="tag">知覚</span></div>
+
+</div><!-- /article-main -->
+
+<div class="article-side"><div style="position:sticky;top:40px;">
+<div class="sidebar-block fade"><p class="sidebar-label">Key Number</p><p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">1</p><p class="sidebar-text">消失点。奥行き方向のすべての平行線が収束する1つの点。これが遠近法の核心だ。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">15世紀初頭のフィレンツェはメディチ家の台頭期。都市国家間の競争が芸術と科学のパトロネージを加速させた。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text"><strong>印象派と筆触分割</strong> — 遠近法の次の革命<br><strong>キュビズム</strong> — 遠近法の破壊<br><strong>色は存在しない</strong> — 知覚の構築性</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">遠近法の数学的原理は幾何光学に基づく。歴史的記述はマネッティの伝記と標準的な美術史文献に拠っている。</p></div>
+</div></div>
+
+</div><!-- /article -->
+
+<!-- ═══ ZONE C ═══ -->
+<div class="terminal-label-wrap fade"><div class="terminal-label"><span class="terminal-label-text">▼ Internal Dialogue >> Active</span><div class="terminal-label-line"></div></div></div>
+
+<div class="terminal-wrap"><div class="terminal fade" id="terminalBlock"><div class="terminal-bar"><div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div><span class="terminal-title">after.sh — 読後の対話ログ（架空）</span></div><div class="terminal-body">
+<span class="t-sys" id="ts0">// 遠近法の発明 を読み終えた人との対話</span>
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;1000年も遠近法なしで絵を描いてたのが信じられない</span></div>
+<span class="t-output" id="to1">「なしで」というより「必要としなかった」。中世の絵は空間ではなく<em>物語と序列</em>を伝えるもの。王は大きく、従者は小さく。それは嘘じゃなく、別の目的。</span><hr class="t-divider">
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;写真も遠近法と同じ原理なんでしょ？</span></div>
+<span class="t-output" id="to2">レンズは光を平面に射影する。原理は同じ。ただし人間の目は2つあり、常に動く。<em>写真もまた「片目の凍った世界」</em>。それを自然だと感じるのは500年の訓練の結果かもしれない。</span><hr class="t-divider">
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ウッチェロが遠近法に取り憑かれた話、好き</span></div>
+<span class="t-output" id="to3">奥さんに「寝なさい」と言われて「この美しい遠近法を放っておけるか」と。<em>数学に酔える人間</em>がいる。幸福なのか不幸なのかわからないが、彼の槍の配置は600年後も教科書に載っている。</span><hr class="t-divider">
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、遠近法は「正しい」の？</span></div>
+<span class="t-output" id="to4">ある前提のもとでは。単一の固定視点、片目、一瞬の世界を描くには最適の方法。でも世界はそうじゃない。<em>どう見るかは、何を信じるかと地続きだ。</em></span><hr class="t-divider">
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 窓の外を見てくる</span></div>
+</div></div></div>
+
+<div class="related fade"><p class="related-label">次に読む</p><div class="related-grid">
+<a class="related-card" href="/impressionism"><p class="related-card-tag">科学と文化 × 色彩</p><p class="related-card-title">なぜ絵の具を混ぜないのか</p><p class="related-card-desc">印象派の画家たちは鑑賞者の網膜の上で色を混ぜることを選んだ。筆触分割——科学と直感が交差した色彩革命。</p><p class="related-card-arrow">読む →</p></a>
+<a class="related-card" href="/cubism"><p class="related-card-tag">科学と文化 × 知覚</p><p class="related-card-title">キュビズム——同時に全方向から見る</p><p class="related-card-desc">ピカソは遠近法の「単一視点」を拒否した。写真の登場が絵画に迫った問い。近日公開。</p><p class="related-card-arrow">読む →</p></a>
+</div></div>
+
+<script>
+window.addEventListener('scroll',function(){var h=document.documentElement;var p=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;document.getElementById('prog').style.width=p+'%';});
+var fades=document.querySelectorAll('.fade');var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});},{threshold:0.12});fades.forEach(function(el){obs.observe(el);});
+function toggleTip(el){var w=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(function(t){t.classList.remove('open');});if(!w)el.classList.add('open');}
+document.addEventListener('click',function(e){if(!e.target.closest('.tip'))document.querySelectorAll('.tip.open').forEach(function(t){t.classList.remove('open');});});
+function tog(n){var c=document.getElementById('sc'+n);if(c)c.classList.toggle('open');}
+
+// VP Drag Demo (1pt / 2pt toggle)
+var vpMode=1;
+var vp1x=260,vp1y=105,vp2x=420,vp2y=105;
+var vpDrag=0; // 0=none,1=vp1,2=vp2
+var vp3x=260,vp3y=280;
+function setVPMode(m){vpMode=m;['vpBtn1','vpBtn2','vpBtn3'].forEach(function(id,i){var b=document.getElementById(id);if(b){b.style.background=(i+1)===m?'#8b1a1a':'white';b.style.color=(i+1)===m?'white':'#3d3020';b.style.borderColor=(i+1)===m?'#8b1a1a':'#c8bfaa';}});if(m===1){vp1x=260;vp1y=105;}else if(m===2){vp1x=100;vp1y=105;vp2x=420;vp2y=105;}else{vp1x=80;vp1y=110;vp2x=440;vp2y=110;vp3x=260;vp3y=280;}drawVP();}
+(function(){
+var cv=document.getElementById('vpCanvas'),ctx=cv.getContext('2d');
+var dpr=window.devicePixelRatio||1;var W=520,H=300;
+cv.width=W*dpr;cv.height=H*dpr;ctx.scale(dpr,dpr);
+var cap=document.getElementById('vpCaption');
+window.drawVP=function(){
+ctx.clearRect(0,0,W,H);ctx.fillStyle='#f3efe6';ctx.fillRect(0,0,W,H);
+var hY=vpMode===1?vp1y:vp1y;
+ctx.strokeStyle='#c8bfaa';ctx.lineWidth=1;ctx.setLineDash([4,4]);
+ctx.beginPath();ctx.moveTo(0,hY);ctx.lineTo(W,hY);ctx.stroke();ctx.setLineDash([]);
+ctx.font="12px 'Source Sans 3',sans-serif";ctx.fillStyle='#7a6a55';ctx.textAlign='left';ctx.fillText('地平線',W-50,hY-6);
+if(vpMode===1){
+ctx.strokeStyle='#3d3020';ctx.lineWidth=0.8;
+for(var i=0;i<=10;i++){var bx=i*(W/10);ctx.beginPath();ctx.moveTo(bx,H);ctx.lineTo(vp1x,vp1y);ctx.stroke();}
+for(var j=1;j<=6;j++){var t=j/7;var y=H-(H-vp1y)*t;var lx=vp1x-(vp1x)*(1-t);var rx=vp1x+(W-vp1x)*(1-t);ctx.strokeStyle='rgba(200,191,170,'+(0.3+t*0.5)+')';ctx.beginPath();ctx.moveTo(lx,y);ctx.lineTo(rx,y);ctx.stroke();}
+ctx.fillStyle='#8b1a1a';ctx.beginPath();ctx.arc(vp1x,vp1y,8,0,Math.PI*2);ctx.fill();
+ctx.fillStyle='white';ctx.beginPath();ctx.arc(vp1x,vp1y,2.5,0,Math.PI*2);ctx.fill();
+ctx.font="13px 'Source Sans 3',sans-serif";ctx.fillStyle='#8b1a1a';ctx.textAlign='center';ctx.fillText('消失点（VP）',vp1x,vp1y-16);
+cap.textContent='1点透視: すべてのオルソゴナル線が1つの消失点に収束する。';
+}else if(vpMode===2){
+// 2-point perspective
+var cx=W/2,by=H;
+// Left VP lines
+ctx.strokeStyle='#8b1a1a';ctx.lineWidth=0.7;
+for(var i=0;i<8;i++){var bx=cx+(i-1)*40;ctx.beginPath();ctx.moveTo(bx,by);ctx.lineTo(vp1x,vp1y);ctx.stroke();}
+// Right VP lines
+ctx.strokeStyle='#3d6080';ctx.lineWidth=0.7;
+for(var i=0;i<8;i++){var bx=cx-(i-1)*40;ctx.beginPath();ctx.moveTo(bx,by);ctx.lineTo(vp2x,vp2y);ctx.stroke();}
+// Horizontal transversals
+ctx.strokeStyle='rgba(200,191,170,0.5)';ctx.lineWidth=0.5;
+for(var j=1;j<=5;j++){var t=j/6;var y=H-(H-hY)*t;ctx.beginPath();ctx.moveTo(30,y);ctx.lineTo(W-30,y);ctx.stroke();}
+// VP1 dot
+ctx.fillStyle='#8b1a1a';ctx.beginPath();ctx.arc(vp1x,vp1y,8,0,Math.PI*2);ctx.fill();
+ctx.fillStyle='white';ctx.beginPath();ctx.arc(vp1x,vp1y,2.5,0,Math.PI*2);ctx.fill();
+ctx.font="12px 'Source Sans 3',sans-serif";ctx.fillStyle='#8b1a1a';ctx.textAlign='center';ctx.fillText('VP1（左）',vp1x,vp1y-14);
+// VP2 dot
+ctx.fillStyle='#3d6080';ctx.beginPath();ctx.arc(vp2x,vp2y,8,0,Math.PI*2);ctx.fill();
+ctx.fillStyle='white';ctx.beginPath();ctx.arc(vp2x,vp2y,2.5,0,Math.PI*2);ctx.fill();
+ctx.font="12px 'Source Sans 3',sans-serif";ctx.fillStyle='#3d6080';ctx.textAlign='center';ctx.fillText('VP2（右）',vp2x,vp2y-14);
+cap.textContent='2点透視: 2つの消失点が地平線上に並ぶ。建物の角を正面に見たときの構図。';
+}else{
+// 3-point perspective
+var cx=W/2,by=H;
+ctx.strokeStyle='#8b1a1a';ctx.lineWidth=0.6;
+for(var i=0;i<7;i++){var bx=cx+(i-2)*50;ctx.beginPath();ctx.moveTo(bx,by);ctx.lineTo(vp1x,vp1y);ctx.stroke();}
+ctx.strokeStyle='#3d6080';ctx.lineWidth=0.6;
+for(var i=0;i<7;i++){var bx=cx-(i-2)*50;ctx.beginPath();ctx.moveTo(bx,by);ctx.lineTo(vp2x,vp2y);ctx.stroke();}
+ctx.strokeStyle='#5a8040';ctx.lineWidth=0.6;
+for(var i=0;i<6;i++){var bx=40+i*(W-80)/5;ctx.beginPath();ctx.moveTo(bx,by-20);ctx.lineTo(vp3x,vp3y);ctx.stroke();}
+ctx.strokeStyle='rgba(200,191,170,0.4)';ctx.lineWidth=0.5;
+for(var j=1;j<=4;j++){var t=j/5;var y=H-(H-hY)*t;ctx.beginPath();ctx.moveTo(30,y);ctx.lineTo(W-30,y);ctx.stroke();}
+ctx.fillStyle='#8b1a1a';ctx.beginPath();ctx.arc(vp1x,vp1y,8,0,Math.PI*2);ctx.fill();
+ctx.fillStyle='white';ctx.beginPath();ctx.arc(vp1x,vp1y,2.5,0,Math.PI*2);ctx.fill();
+ctx.font="12px 'Source Sans 3',sans-serif";ctx.fillStyle='#8b1a1a';ctx.textAlign='center';ctx.fillText('VP1（左）',vp1x,vp1y-14);
+ctx.fillStyle='#3d6080';ctx.beginPath();ctx.arc(vp2x,vp2y,8,0,Math.PI*2);ctx.fill();
+ctx.fillStyle='white';ctx.beginPath();ctx.arc(vp2x,vp2y,2.5,0,Math.PI*2);ctx.fill();
+ctx.fillStyle='#3d6080';ctx.textAlign='center';ctx.fillText('VP2（右）',vp2x,vp2y-14);
+ctx.fillStyle='#5a8040';ctx.beginPath();ctx.arc(vp3x,vp3y,8,0,Math.PI*2);ctx.fill();
+ctx.fillStyle='white';ctx.beginPath();ctx.arc(vp3x,vp3y,2.5,0,Math.PI*2);ctx.fill();
+ctx.fillStyle='#5a8040';ctx.textAlign='center';ctx.fillText('VP3（上下）',vp3x,vp3y+22);
+cap.textContent='3点透視: 上下方向にも消失点。高層ビルを見上げたときに壁が上で収束する——あれが3点透視。';
+}};
+function getPos(e){var r=cv.getBoundingClientRect();var x=(e.clientX||e.touches[0].clientX)-r.left;var y=(e.clientY||e.touches[0].clientY)-r.top;return{x:x*(W/r.width),y:y*(H/r.height)};}
+cv.addEventListener('mousedown',function(e){var p=getPos(e);if(Math.hypot(p.x-vp1x,p.y-vp1y)<20){vpDrag=1;}else if(vpMode>=2&&Math.hypot(p.x-vp2x,p.y-vp2y)<20){vpDrag=2;}else if(vpMode===3&&Math.hypot(p.x-vp3x,p.y-vp3y)<20){vpDrag=3;}});
+cv.addEventListener('mousemove',function(e){if(!vpDrag)return;var p=getPos(e);if(vpDrag===1){vp1x=Math.max(20,Math.min(W-20,p.x));vp1y=Math.max(20,Math.min(H-40,p.y));if(vpMode>=2)vp2y=vp1y;}else if(vpDrag===2){vp2x=Math.max(20,Math.min(W-20,p.x));vp2y=vp1y;}else if(vpDrag===3){vp3x=Math.max(20,Math.min(W-20,p.x));vp3y=Math.max(20,Math.min(H-10,p.y));}drawVP();});
+cv.addEventListener('mouseup',function(){vpDrag=0;});
+cv.addEventListener('touchstart',function(e){var p=getPos(e);if(Math.hypot(p.x-vp1x,p.y-vp1y)<30){vpDrag=1;e.preventDefault();}else if(vpMode>=2&&Math.hypot(p.x-vp2x,p.y-vp2y)<30){vpDrag=2;e.preventDefault();}else if(vpMode===3&&Math.hypot(p.x-vp3x,p.y-vp3y)<30){vpDrag=3;e.preventDefault();}},{passive:false});
+cv.addEventListener('touchmove',function(e){if(!vpDrag)return;e.preventDefault();var p=getPos(e);if(vpDrag===1){vp1x=Math.max(20,Math.min(W-20,p.x));vp1y=Math.max(20,Math.min(H-40,p.y));if(vpMode>=2)vp2y=vp1y;}else if(vpDrag===2){vp2x=Math.max(20,Math.min(W-20,p.x));vp2y=vp1y;}else if(vpDrag===3){vp3x=Math.max(20,Math.min(W-20,p.x));vp3y=Math.max(20,Math.min(H-10,p.y));}drawVP();},{passive:false});
+cv.addEventListener('touchend',function(){vpDrag=0;});
+drawVP();
+})();
+
+// Alberti's Window (improved with arched colonnade)
+(function(){
+var cv=document.getElementById('albertiCanvas'),ctx=cv.getContext('2d');
+var dpr=window.devicePixelRatio||1;var W=520,H=360;
+cv.width=W*dpr;cv.height=H*dpr;ctx.scale(dpr,dpr);
+var hSlider=document.getElementById('vpH'),dSlider=document.getElementById('distSlider');
+var hVal=document.getElementById('vpHVal'),dVal=document.getElementById('distVal');
+var cap=document.getElementById('albertiCaption');
+function draw(){
+var hPct=parseInt(hSlider.value),dPct=parseInt(dSlider.value);
+hVal.textContent=hPct;dVal.textContent=dPct;
+var vpY=H*(1-hPct/100),vpX=W/2,dist=0.3+dPct/100*1.4;
+ctx.clearRect(0,0,W,H);
+ctx.fillStyle='#e8e4de';ctx.fillRect(0,0,W,vpY);
+ctx.fillStyle='#f3efe6';ctx.fillRect(0,vpY,W,H-vpY);
+ctx.strokeStyle='#c8bfaa';ctx.lineWidth=1;
+ctx.beginPath();ctx.moveTo(0,vpY);ctx.lineTo(W,vpY);ctx.stroke();
+// Floor grid
+ctx.strokeStyle='#c8bfaa';ctx.lineWidth=0.6;
+for(var i=0;i<=12;i++){var bx=(i/12)*W;ctx.beginPath();ctx.moveTo(bx,H);ctx.lineTo(vpX,vpY);ctx.stroke();}
+for(var j=1;j<=10;j++){var t=1-Math.pow(1-j/12,dist);var y=vpY+(H-vpY)*(1-t);if(y>vpY&&y<H){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}}
+// Label for floor
+ctx.font="11px 'Source Sans 3',sans-serif";ctx.fillStyle='#b0a090';ctx.textAlign='right';ctx.fillText('床タイル',W-10,H-8);
+// Colonnade with arches
+var colPos=[0.18,0.38,0.62,0.82];
+var shrink=0.4+0.6*(1-Math.abs(vpY-H*0.5)/(H*0.5));
+for(var c=0;c<colPos.length;c++){
+var cx=colPos[c]*W;
+var ch=90*shrink,cw=10*shrink,cy=vpY+16;
+// Column
+ctx.fillStyle='#b0a090';ctx.fillRect(cx-cw/2,cy,cw,ch);
+// Capital (top)
+ctx.fillStyle='#9a9080';ctx.fillRect(cx-cw*0.9,cy,cw*1.8,5);
+// Base
+ctx.fillStyle='#9a9080';ctx.fillRect(cx-cw*0.9,cy+ch-3,cw*1.8,5);
+// Arch between pairs
+if(c===0||c===2){
+var nx=colPos[c+1]*W;
+var archY=cy;var archCx=(cx+nx)/2;var archR=(nx-cx)/2;
+ctx.strokeStyle='#9a9080';ctx.lineWidth=2*shrink;
+ctx.beginPath();ctx.arc(archCx,archY+2,archR,Math.PI,0);ctx.stroke();
+}
+}
+// Label
+ctx.font="11px 'Source Sans 3',sans-serif";ctx.fillStyle='#7a6a55';ctx.textAlign='center';
+ctx.fillText('← 柱廊（列柱＋アーチ） →',W/2,vpY+16+90*shrink+18);
+// VP marker
+ctx.fillStyle='#8b1a1a';ctx.beginPath();ctx.arc(vpX,vpY,6,0,Math.PI*2);ctx.fill();
+ctx.font="12px 'Source Sans 3',sans-serif";ctx.fillStyle='#8b1a1a';ctx.textAlign='center';ctx.fillText('VP（消失点）',vpX,vpY-12);
+if(hPct<35)cap.textContent='消失点が低い——見上げている。頭上の空間が広がり、建物やアーチが高くそびえて見える。';
+else if(hPct>65)cap.textContent='消失点が高い——見下ろしている。床のグリッドが広がり、俯瞰的な視点になる。';
+else cap.textContent='消失点が目の高さ付近。もっとも「自然」に感じる位置。多くのルネサンス絵画がここに消失点を置いた。';}
+hSlider.addEventListener('input',draw);dSlider.addEventListener('input',draw);draw();
+})();
+
+// Terminal
+var tseq=[{id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},{id:'tl2',delay:2400},{id:'to2',delay:3000},{id:'tl3',delay:4000},{id:'to3',delay:4600},{id:'tl4',delay:5600},{id:'to4',delay:6200},{id:'tl5',delay:7200}];
+var tS=false;tseq.forEach(function(s){var el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+new IntersectionObserver(function(entries){if(entries[0].isIntersecting&&!tS){tS=true;tseq.forEach(function(s){setTimeout(function(){var el=document.getElementById(s.id);if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}},s.delay);});}},{threshold:.2}).observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>
