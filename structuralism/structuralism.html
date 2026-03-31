@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>構造主義——「自由」の檻 | Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+
+/* MASTHEAD */
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}
+.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;margin-bottom:6px;}
+.masthead-name a{color:#7a6a55;text-decoration:none;}
+.masthead-name a:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip.open .tip-box{display:block;}
+.tip-box strong{color:#e8c56a;font-weight:600;display:block;margin-bottom:3px;font-size:12px;}
+
+/* IMAGE PLACEHOLDER */
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:180px 1fr;border:1px solid #c8bfaa;overflow:hidden;min-height:200px;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:0;min-height:200px;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-wiki{display:inline-block;margin-top:8px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.3);}
+.person-block-wiki:hover{border-bottom-color:#8b1a1a;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+.step-summary{margin-top:2px;padding:16px 20px;background:#f3efe6;border:1px solid #c8bfaa;}
+.step-summary p{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;margin:0;line-height:1.8;}
+
+/* CULTURE */
+.culture-block{margin:20px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:40px 48px 0;}
+.terminal-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.terminal-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* SVG FIGURES */
+.svg-fig{margin:32px 0;background:#f3efe6;border:1px solid #c8bfaa;padding:24px;overflow:hidden;}
+.svg-fig-cap{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;margin-top:0;text-align:left;line-height:1.7;padding:10px 16px;background:#ede8dc;border-top:1px solid #c8bfaa;}
+
+/* EXPERIENCE / INTERACTIVE */
+.exp-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.exp-header{background:#1a1208;color:white;padding:14px 20px;display:flex;align-items:center;gap:12px;}
+.exp-header-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#b0a090;}
+.exp-header-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:white;}
+.exp-body{padding:24px;background:white;}
+.exp-body p{font-family:'Source Serif 4',serif;font-size:15px;font-weight:300;color:#3d3020;line-height:1.9;margin-bottom:16px;}
+.exp-body p:last-child{margin-bottom:0;}
+
+/* LANG DEMO */
+.lang-demo{margin:20px 0;}
+.lang-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+.lang-btn{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;padding:10px 22px;border:2px solid #c8bfaa;background:white;color:#7a6a55;cursor:pointer;transition:all .2s;letter-spacing:.04em;}
+.lang-btn.active{border-color:#8b1a1a;background:#8b1a1a;color:white;}
+.lang-canvas-wrap{position:relative;width:100%;height:220px;}
+.lang-concept{transition:all .4s ease;}
+
+/* CHOICE EXPERIENCE */
+.choice-phase{display:none;}
+.choice-phase.active{display:block;}
+.choice-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
+.choice-opt{background:#f3efe6;border:2px solid #c8bfaa;padding:14px 18px;cursor:pointer;transition:all .2s;font-family:'Source Serif 4',serif;font-size:15px;color:#3d3020;line-height:1.6;text-align:center;}
+.choice-opt:hover{border-color:#8b1a1a;background:#fff;}
+.choice-opt.selected{border-color:#8b1a1a;background:#8b1a1a;color:white;}
+.structure-reveal{margin:16px 0;padding:16px 20px;background:#1a1208;color:#e8e4de;}
+.structure-reveal-title{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#9ab4cc;margin-bottom:12px;}
+.structure-reveal-note{font-size:11px;color:#9ab4cc;margin-top:10px;font-family:'Source Sans 3',sans-serif;line-height:1.7;}
+.structure-bars{display:flex;flex-direction:column;gap:8px;}
+.s-bar-row{display:flex;align-items:center;gap:10px;}
+.s-bar-label{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#9ab4cc;width:90px;flex-shrink:0;}
+.s-bar-track{flex:1;height:8px;background:#2a2a2a;overflow:hidden;}
+.s-bar-fill{height:100%;background:#8b1a1a;transition:width 1s ease;}
+.phase-nav{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+.phase-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;padding:8px 20px;border:1px solid #8b1a1a;background:white;color:#8b1a1a;cursor:pointer;transition:all .2s;}
+.phase-btn:hover{background:#8b1a1a;color:white;}
+.phase-btn.secondary{border-color:#c8bfaa;color:#7a6a55;}
+.phase-btn.secondary:hover{background:#f3efe6;color:#3d3020;}
+.map-result{margin-top:16px;padding:14px 18px;background:#f3efe6;border:1px solid #c8bfaa;}
+.map-result-title{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8b1a1a;margin-bottom:8px;}
+.map-result-text{font-family:'Source Serif 4',serif;font-size:14px;color:#3d3020;line-height:1.8;}
+.phase-indicator{display:flex;gap:6px;margin-bottom:16px;}
+.phase-dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.phase-dot.done{background:#8b1a1a;}
+
+/* COMPARE TABLE */
+.compare-table{width:100%;border-collapse:collapse;margin:20px 0;font-family:'Source Sans 3',sans-serif;}
+.compare-table th{background:#1a1208;color:white;padding:10px 16px;font-size:12px;font-weight:600;letter-spacing:.1em;text-align:left;}
+.compare-table td{padding:12px 16px;border-bottom:1px solid #e0d8c8;font-size:13px;color:#3d3020;vertical-align:top;line-height:1.7;}
+.compare-table tr:nth-child(even) td{background:#f3efe6;}
+.compare-table tr:last-child td{border-bottom:none;}
+.compare-table .col-label{font-weight:600;color:#1a1208;white-space:nowrap;}
+
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box{padding:0 20px;}
+  .scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-wrap{padding:0 20px 40px;}
+  .terminal-label-wrap{padding:40px 20px 0;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .choice-options{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <p class="masthead-name"><a href="https://qualiajournal.com/">Qualia Journal</a></p>
+</div>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">現代思想</p>
+    <h1>構造主義<br>——<em>「自由」</em>の檻</h1>
+    <p class="cover-deck">私たちは自分の意志で選び、考え、感じていると信じている。だが1960年代のパリで、ある思想が静かに問いかけた——その「私」はどこから来たのか、と。</p>
+    <div class="cover-byline">
+      <span>哲学・現代思想</span>
+      <span>文化人類学</span>
+      <span>Last updated: Mar. 2026</span>
+    </div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1949</span>
+      <p class="est-event">レヴィ＝ストロース『親族の基本構造』発表。婚姻体系に普遍的「構造」を発見し、構造主義の旗を立てる。</p>
+      <p class="est-context">同年、NATO創設。ボーヴォワール『第二の性』刊行。個人と自由をめぐる問いが、戦後世界に広がっていた。</p>
+    </div>
+    <p class="cover-aside">構造主義は1960年代のフランスで爆発的に広まり、人類学・言語学・哲学・文学批評・精神分析のすべてを塗り替えた。<strong>その核心は、主体（私）という概念そのものへの問い直しである。</strong></p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>朝、何気なくコーヒーを選んだ。コンビニで缶コーヒーではなく、少し高いドリップパックにした。「自分はそういう人間だから」と思いながら。仕事帰りに立ち寄る書店でも、手に取るのはいつも同じ棚。選ぶのは自分なのに、選ぶものはなぜかいつも似ている。</p>
+    <p>振り返ってみると、育った家庭、通った学校、仲良くなった友人——それらは「自分が選んだ」とは言いがたいものばかりだ。それなのに今の自分を形づくっているのは、まさにそうした出来事の積み重ねである。「私が選んだ」のか、「構造が私をそう選ばせた」のか。問いの立て方を変えるだけで、世界の見え方が揺らぐ。</p>
+    <p>構造主義とは、その問いを体系的に突き詰めた思想だ。主体としての「私」を自明視せず、私を成立させている目に見えない関係の網を問題にする。それは哲学の議論に留まらず、言語・神話・精神・文化のすべてに及んだ。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot on"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">上級寄り — 哲学の予備知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 18 分
+    </span>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">自分の「選択」を振り返りながら、その背後で働いている見えない力の正体に近づく。読み終えたとき、「私らしさ」という感覚が少し違って見えるかもしれない。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+<!-- ===== 背景 ===== -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">言語という「型枠」——ソシュールの発見</h2>
+
+<p class="body-text fade">1916年、スイスの言語学者<span class="tip" onclick="toggleTip(this)">フェルディナン・ド・ソシュール<span class="tip-box"><strong>Ferdinand de Saussure（1857–1913）</strong><br>スイス出身の言語学者。生前に主著を刊行せず、死後に学生のノートを編集した『一般言語学講義』（1916）が出版された。構造主義の理論的源泉とされる。</span></span>の講義録が世に出た。彼が言ったことは、当時の常識を静かに打ち崩すものだった。<strong>言葉は世界を写し取るのではない。言葉こそが世界を切り分けるのだ。</strong></p>
+
+<!-- SVG図解①: ソシュールの記号モデル -->
+<div class="svg-fig fade">
+  <svg viewBox="0 0 580 220" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:580px;display:block;margin:0 auto;">
+    <!-- 左：シニフィアン -->
+    <rect x="30" y="30" width="220" height="160" rx="4" fill="#ede8dc" stroke="#c8bfaa" stroke-width="1.5"/>
+    <text x="140" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" letter-spacing="2" fill="#7a6a55" text-transform="uppercase">SIGNIFIANT</text>
+    <text x="140" y="74" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55">（シニフィアン / 能記）</text>
+    <!-- 音・形のイラスト代わりの文字 -->
+    <text x="140" y="118" text-anchor="middle" font-family="'Playfair Display',serif" font-size="36" font-weight="700" fill="#3d3020">inu</text>
+    <text x="140" y="148" text-anchor="middle" font-family="'Playfair Display',serif" font-size="28" font-weight="700" fill="#7a6a55">犬</text>
+    <text x="140" y="180" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">音・文字の側面</text>
+    <!-- 右：シニフィエ -->
+    <rect x="330" y="30" width="220" height="160" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.5"/>
+    <text x="440" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" letter-spacing="2" fill="#7a6a55">SIGNIFIÉ</text>
+    <text x="440" y="74" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55">（シニフィエ / 所記）</text>
+    <!-- 概念のイラスト -->
+    <ellipse cx="440" cy="125" rx="60" ry="38" fill="none" stroke="#8b1a1a" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <text x="440" y="121" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="14" fill="#3d3020">四足歩行の</text>
+    <text x="440" y="138" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="14" fill="#3d3020">哺乳動物</text>
+    <text x="440" y="180" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">概念・意味の側面</text>
+    <!-- 矢印（両方向） -->
+    <line x1="252" y1="110" x2="328" y2="110" stroke="#8b1a1a" stroke-width="1.5"/>
+    <polygon points="325,106 333,110 325,114" fill="#8b1a1a"/>
+    <polygon points="255,106 247,110 255,114" fill="#8b1a1a"/>
+    <text x="290" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#8b1a1a">恣意的な結合</text>
+    <!-- 下部注釈 -->
+    <text x="290" y="210" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">この結合は「必然」ではなく「慣習」によって成立している</text>
+  </svg>
+  <p class="svg-fig-cap">ソシュールの記号モデル。「犬」という音声（シニフィアン）と、四足歩行の哺乳動物という概念（シニフィエ）の結合は任意であり、社会的慣習によって維持される。</p>
+</div>
+
+<p class="body-text fade">ここで重要なのは<span class="tip" onclick="toggleTip(this)">恣意性<span class="tip-box"><strong>恣意性（しいせい）</strong><br>ソシュールが提唱。「犬」という音と「犬」という概念の結びつきには必然性がなく、社会的慣習によって成立している。英語なら"dog"、フランス語なら"chien"。対象が変わるのではなく、切り分け方が変わる。</span></span>だけではない。<strong>言葉は差異のシステムである</strong>——これがソシュールのもう一つの核心だ。「犬」という概念は、「猫でも鳥でも石でもないもの」との対立によって成立している。意味は単独では存在せず、常に他の記号との関係の中でのみ生まれる。</p>
+
+<!-- インタラクティブ：言語切り替えデモ -->
+<div class="exp-wrap fade" id="langDemoWrap">
+  <div class="exp-header">
+    <div>
+      <p class="exp-header-lbl">インタラクティブ</p>
+      <p class="exp-header-title">「蝶」の境界線——言語が現実を切り分ける</p>
+    </div>
+  </div>
+  <div class="exp-body">
+    <p>同じ昆虫でも、言語によって「切り分け方」が違う。ボタンを押して、概念の輪郭がどう変わるか確かめてほしい。</p>
+    <div class="lang-demo">
+      <div class="lang-btns">
+        <button class="lang-btn active" >日本語</button>
+        <button class="lang-btn" >フランス語</button>
+        <button class="lang-btn" >英語</button>
+        <button class="lang-btn" >ドイツ語</button>
+      </div>
+      <svg id="langSvg" viewBox="0 0 540 230" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:540px;display:block;margin-top:16px;">
+        <defs>
+          <linearGradient id="insectGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#e8f4e8"/>
+            <stop offset="40%" stop-color="#fdf6e3"/>
+            <stop offset="100%" stop-color="#f0e8f0"/>
+          </linearGradient>
+        </defs>
+        <!-- 背景バー -->
+        <rect x="20" y="50" width="500" height="100" rx="4" fill="url(#insectGrad)" stroke="#c8bfaa" stroke-width="1"/>
+        <!-- 蝶（SVG Repo提供, CC0） -->
+        <g transform="translate(69.0,76.0) scale(0.0820)"><path d="M475.658,194.854C497.056,157.689,512,116.046,512,93.585c0-29.894-20.879-50.772-50.772-50.772c-34.608,0-78.098,31.181-129.263,92.676c-25.351,30.47-46.464,61.226-57.47,77.937c-2.512-2.734-5.62-4.907-9.117-6.319c9.951-45.227,39.33-82.474,39.641-82.865c2.762-3.457,2.201-8.499-1.255-11.264c-3.457-2.766-8.503-2.205-11.268,1.252c-1.159,1.448-23.198,29.327-36.496,67.391c-13.298-38.063-35.338-65.942-36.496-67.391c-2.766-3.459-7.813-4.019-11.268-1.252c-3.457,2.765-4.018,7.81-1.252,11.268c0.312,0.39,29.676,37.518,39.639,82.861c-3.496,1.412-6.606,3.586-9.118,6.319c-11.008-16.712-32.119-47.467-57.47-77.937C128.87,73.994,85.38,42.813,50.772,42.813C20.879,42.813,0,63.692,0,93.585c0,22.461,14.944,64.105,36.342,101.269c14.883,25.851,44.327,69.219,74.288,69.219h10.572c-6.457,4.671-12.742,9.825-18.85,15.462c-13.74,12.678-33.55,34.494-49.906,66.425l-0.254,0.496c-9.853,19.188-8.219,39.123,4.483,54.692c11.564,14.176,13.058,21.565,14.502,28.711c1.074,5.317,2.293,11.341,7.081,18.696c8.787,13.496,28.8,20.632,53.207,20.632c15.537,0,32.856-2.892,50.19-8.877c21.394-7.386,41.119-38.907,60.303-96.363c2.273-6.809,4.392-13.575,6.35-20.132c0.973,3.332,4.045,5.769,7.692,5.769c3.647,0,6.719-2.437,7.692-5.769c1.958,6.558,4.077,13.323,6.35,20.132c19.183,57.456,38.909,88.977,60.303,96.363c17.337,5.986,34.65,8.877,50.19,8.877c24.403,0,44.42-7.137,53.206-20.631c4.79-7.355,6.008-13.38,7.083-18.697c1.445-7.146,2.938-14.535,14.502-28.71c12.702-15.57,14.336-35.504,4.483-54.692l-0.254-0.496c-16.355-31.931-36.166-53.747-49.906-66.425c-6.109-5.637-12.394-10.79-18.85-15.461h10.572C431.331,264.074,460.773,220.706,475.658,194.854z" fill="#7a5a1a" opacity=".82"/></g>
+        <g transform="translate(166.0,78.0) scale(0.0742)"><path d="M475.658,194.854C497.056,157.689,512,116.046,512,93.585c0-29.894-20.879-50.772-50.772-50.772c-34.608,0-78.098,31.181-129.263,92.676c-25.351,30.47-46.464,61.226-57.47,77.937c-2.512-2.734-5.62-4.907-9.117-6.319c9.951-45.227,39.33-82.474,39.641-82.865c2.762-3.457,2.201-8.499-1.255-11.264c-3.457-2.766-8.503-2.205-11.268,1.252c-1.159,1.448-23.198,29.327-36.496,67.391c-13.298-38.063-35.338-65.942-36.496-67.391c-2.766-3.459-7.813-4.019-11.268-1.252c-3.457,2.765-4.018,7.81-1.252,11.268c0.312,0.39,29.676,37.518,39.639,82.861c-3.496,1.412-6.606,3.586-9.118,6.319c-11.008-16.712-32.119-47.467-57.47-77.937C128.87,73.994,85.38,42.813,50.772,42.813C20.879,42.813,0,63.692,0,93.585c0,22.461,14.944,64.105,36.342,101.269c14.883,25.851,44.327,69.219,74.288,69.219h10.572c-6.457,4.671-12.742,9.825-18.85,15.462c-13.74,12.678-33.55,34.494-49.906,66.425l-0.254,0.496c-9.853,19.188-8.219,39.123,4.483,54.692c11.564,14.176,13.058,21.565,14.502,28.711c1.074,5.317,2.293,11.341,7.081,18.696c8.787,13.496,28.8,20.632,53.207,20.632c15.537,0,32.856-2.892,50.19-8.877c21.394-7.386,41.119-38.907,60.303-96.363c2.273-6.809,4.392-13.575,6.35-20.132c0.973,3.332,4.045,5.769,7.692,5.769c3.647,0,6.719-2.437,7.692-5.769c1.958,6.558,4.077,13.323,6.35,20.132c19.183,57.456,38.909,88.977,60.303,96.363c17.337,5.986,34.65,8.877,50.19,8.877c24.403,0,44.42-7.137,53.206-20.631c4.79-7.355,6.008-13.38,7.083-18.697c1.445-7.146,2.938-14.535,14.502-28.71c12.702-15.57,14.336-35.504,4.483-54.692l-0.254-0.496c-16.355-31.931-36.166-53.747-49.906-66.425c-6.109-5.637-12.394-10.79-18.85-15.461h10.572C431.331,264.074,460.773,220.706,475.658,194.854z" fill="#c49a2a" opacity=".82"/></g>
+        <!-- 蛾（SVG Repo提供, CC0） -->
+        <g transform="translate(335.0,80.0) scale(0.0781)"><path d="M310.839,168.435c-0.254-19.922-11.174-37.308-27.308-46.712c-0.252-3.56-0.933-23.319,13.272-39.25c13.634-15.295,36.893-23.045,69.125-23.045c5.053,0,9.143-4.089,9.143-9.143c0-5.053-4.089-9.143-9.143-9.143c-37.848,0-65.768,9.902-83.009,29.42c-13.899,15.75-17.125,33.777-17.674,44.518c-3.009-0.513-6.094-0.795-9.245-0.795c-3.076,0-6.091,0.268-9.031,0.757c-0.556-10.746-3.79-28.748-17.674-44.48c-17.241-19.518-45.161-29.42-83.009-29.42c-5.053,0-9.143,4.089-9.143,9.143c0,5.054,4.089,9.143,9.143,9.143c32.232,0,55.491,7.75,69.125,23.045c14.045,15.745,13.54,35.239,13.281,39.123c-16.254,9.373-27.275,26.826-27.531,46.839C150.853,195.48,0,281.688,0,342.857c0,71.777,68.277,128,155.429,128c57.692,0,87.295-8.846,100.571-36.237c13.277,27.391,42.88,36.237,100.571,36.237c87.152,0,155.429-56.223,155.429-128C512,281.688,361.147,195.478,310.839,168.435z" fill="#5a6a4a" opacity=".82"/></g>
+        <g transform="translate(432.0,82.0) scale(0.0703)"><path d="M310.839,168.435c-0.254-19.922-11.174-37.308-27.308-46.712c-0.252-3.56-0.933-23.319,13.272-39.25c13.634-15.295,36.893-23.045,69.125-23.045c5.053,0,9.143-4.089,9.143-9.143c0-5.053-4.089-9.143-9.143-9.143c-37.848,0-65.768,9.902-83.009,29.42c-13.899,15.75-17.125,33.777-17.674,44.518c-3.009-0.513-6.094-0.795-9.245-0.795c-3.076,0-6.091,0.268-9.031,0.757c-0.556-10.746-3.79-28.748-17.674-44.48c-17.241-19.518-45.161-29.42-83.009-29.42c-5.053,0-9.143,4.089-9.143,9.143c0,5.054,4.089,9.143,9.143,9.143c32.232,0,55.491,7.75,69.125,23.045c14.045,15.745,13.54,35.239,13.281,39.123c-16.254,9.373-27.275,26.826-27.531,46.839C150.853,195.48,0,281.688,0,342.857c0,71.777,68.277,128,155.429,128c57.692,0,87.295-8.846,100.571-36.237c13.277,27.391,42.88,36.237,100.571,36.237c87.152,0,155.429-56.223,155.429-128C512,281.688,361.147,195.478,310.839,168.435z" fill="#404838" opacity=".82"/></g>
+                <!-- 軸ラベル -->
+        <text x="22" y="210" text-anchor="start" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55">← 日中に飛ぶ鱗翅目</text>
+        <text x="518" y="210" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55">夜間・鱗翅目全般 →</text>
+        <!-- 境界線（JS制御） -->
+        <g id="langBoundary"></g>
+        <!-- 言語名ラベル（JS制御） -->
+        <g id="langLabels"></g>
+      </svg>
+      <div id="langDesc" style="margin-top:12px;padding:12px 16px;background:#f3efe6;border-left:3px solid #8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.8;"></div>
+    </div>
+  </div>
+</div>
+
+<p class="body-text fade">フランス語の「papillon（パピヨン）」は蝶も蛾も包括する。日本語では「蝶」と「蛾」が別語だが、英語の「butterfly」と「moth」も同様に分かれている。しかし「どこで切るか」は言語ごとに微妙に異なる。<strong>現実の側に境界があるのではない。言語が境界を引いているのだ。</strong>これはソシュールの洞察であり、後に構造主義が「人間は言語に先行する現実を素直に経験できない」と主張する根拠になる。</p>
+
+<!-- SVG図解②: 実存主義 vs 構造主義 比較テーブル -->
+<div class="fade" style="margin:32px 0;">
+  <table class="compare-table">
+    <tr>
+      <th style="width:22%;">問い</th>
+      <th style="width:39%;">実存主義（サルトル）</th>
+      <th style="width:39%;">構造主義（レヴィ＝ストロース）</th>
+    </tr>
+    <tr>
+      <td class="col-label">人間とは</td>
+      <td>根源的に自由な主体。本質は後から作られる</td>
+      <td>構造に規定された存在。「主体」は幻想に近い</td>
+    </tr>
+    <tr>
+      <td class="col-label">歴史は</td>
+      <td>人間が積極的に参加して作るもの</td>
+      <td>表層的な出来事。深層の構造こそ重要</td>
+    </tr>
+    <tr>
+      <td class="col-label">文化の差は</td>
+      <td>発展段階の違い（西洋が先進的）</td>
+      <td>構造の違い。優劣はない（文化相対主義）</td>
+    </tr>
+    <tr>
+      <td class="col-label">分析の対象</td>
+      <td>個人の意識・選択・責任</td>
+      <td>個人の下にある無意識的な関係の網</td>
+    </tr>
+    <tr>
+      <td class="col-label">キーワード</td>
+      <td>自由・投企・実存は本質に先立つ</td>
+      <td>構造・差異・二項対立・無意識</td>
+    </tr>
+  </table>
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:6px;">実存主義と構造主義の主要な対立軸。1960年代フランス、この二つの思想が正面から衝突した。</p>
+</div>
+
+<p class="body-text fade">ソシュールの言語学は、20年後にアマゾンから帰ってきた一人の人類学者に引き継がれる。その男が「構造主義」という言葉を世界に広めることになった。</p>
+
+<!-- PERSON BLOCK: レヴィ＝ストロース -->
+<div class="person-block fade">
+  <div class="person-block-img" style="padding:0;overflow:hidden;background:#3d3020;">
+    <img src="levi-strauss-1973.jpg"
+         alt="クロード・レヴィ＝ストロース（1973年、エラスムス賞授賞式）"
+         style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+  </div>
+  <div class="person-block-body">
+    <p class="person-block-name">クロード・レヴィ＝ストロース</p>
+    <p class="person-block-role">Claude Lévi-Strauss  1908–2009</p>
+    <p class="person-block-desc">フランスの文化人類学者。構造主義人類学の創始者。アマゾンでのフィールドワークから、文化に普遍的な「構造」を発見した。</p>
+    <a href="https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%89%E3%83%BB%E3%83%AC%E3%83%B4%E3%82%A3%EF%BC%9D%E3%82%B9%E3%83%88%E3%83%AD%E3%83%BC%E3%82%B9" target="_blank" rel="noopener" class="person-block-wiki">Wikipedia で読む →</a>
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:6px;">Photo: Nationaal Archief, CC0</p>
+  </div>
+</div>
+
+<p class="body-text fade">レヴィ＝ストロースは1931年、哲学の最難関試験アグレガシオンに合格した。教育実習の3人1組の相方は、後のフェミニズムの旗手<span class="tip" onclick="toggleTip(this)">ボーヴォワール<span class="tip-box"><strong>シモーヌ・ド・ボーヴォワール（1908–1986）</strong><br>フランスの哲学者・作家。『第二の性』（1949）でフェミニズム思想の基礎を築いた。サルトルの生涯のパートナーでもある。</span></span>と哲学者メルロ＝ポンティ——そしてサルトルは試験に一度落第して1年後輩だった。後に思想上の宿敵となるサルトルとは、若き日の実習でただすれ違っていた。また幼少期から父の画室に飾られた浮世絵に親しんだことから、生涯にわたり日本文化に関心を持ち続け、親日家として知られた。</p>
+
+<p class="body-text fade">1935年、レヴィ＝ストロースはブラジルのサンパウロ大学に社会学の教員として赴任する。アマゾン川流域の先住民族との接触がすべての出発点だった。ボロロ族、カドゥヴェオ族——彼らの婚姻規則を調べるうちに、奇妙な発見が積み重なっていった。<strong>異なる文化のあいだに、驚くほど共通した「型」がある。</strong></p>
+
+<p class="body-text fade">その「型」の中で最も根本的なものが、<strong>インセスト・タブー（近親相姦の禁忌）</strong>だった。世界中のあらゆる社会で、ある範囲の血縁者とは性的・婚姻的な関係を結んではならないというルールが存在する。内容は文化によって異なる——兄弟姉妹はどこでも禁じられるが、いとこは禁じる社会もあれば推奨する社会もある。しかしルールが「ある」こと自体は普遍的だ。</p>
+
+<p class="body-text fade">なぜこれほど普遍的なのか。以前の人類学は「生物学的な退化を防ぐため」という説明に頼っていた。だがレヴィ＝ストロースはそれを否定する。<strong>インセスト・タブーは生物学的な本能ではなく、社会が成立するための構造的な要請だ</strong>——これが彼の答えだった。</p>
+
+<!-- インセスト・タブーと婚姻構造のシミュレーター -->
+<div class="svg-fig fade" style="padding:0;overflow:hidden;">
+  <!-- タイトルバー -->
+  <div style="background:#1a1208;padding:14px 22px;">
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#b0a090;margin-bottom:4px;">図解</p>
+    <p style="font-family:'Playfair Display',serif;font-size:17px;color:white;font-weight:700;">「禁止」が「社会」を生む——内婚 vs 外婚</p>
+  </div>
+  <!-- 2カラム比較 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #c8bfaa;">
+    <!-- 左：内婚のみ（タブーなし） -->
+    <div style="border-right:1px solid #c8bfaa;padding:0;">
+      <div style="background:rgba(50,32,16,0.92);padding:10px 16px;">
+        <p style="font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;color:#e8e4de;letter-spacing:.04em;">❌ タブーがない世界</p>
+        <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#d4c8aa;margin-top:2px;">各集団が内部で完結する</p>
+      </div>
+      <svg viewBox="0 0 260 280" xmlns="http://www.w3.org/2000/svg" width="100%" style="display:block;">
+        <!-- A -->
+        <circle cx="65" cy="72" r="40" fill="#8b1a1a0d" stroke="#8b1a1a" stroke-width="2" stroke-dasharray="5,3"/>
+        <text x="65" y="68" text-anchor="middle" font-family="Playfair Display,serif" font-size="22" font-weight="700" fill="#8b1a1a">A</text>
+        <text x="65" y="86" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#8b1a1a">閉じている</text>
+        <path d="M86,48 C114,22 118,52 94,62" stroke="#8b1a1a" stroke-width="1.8" fill="none" stroke-dasharray="4,2"/>
+        <polygon points="94,62 87,54 99,54" fill="#8b1a1a" opacity=".6"/>
+        <!-- B -->
+        <circle cx="195" cy="72" r="40" fill="#1a5a300d" stroke="#1a5a30" stroke-width="2" stroke-dasharray="5,3"/>
+        <text x="195" y="68" text-anchor="middle" font-family="Playfair Display,serif" font-size="22" font-weight="700" fill="#1a5a30">B</text>
+        <text x="195" y="86" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#1a5a30">閉じている</text>
+        <path d="M174,48 C146,22 142,52 166,62" stroke="#1a5a30" stroke-width="1.8" fill="none" stroke-dasharray="4,2"/>
+        <polygon points="166,62 173,54 161,54" fill="#1a5a30" opacity=".6"/>
+        <!-- C -->
+        <circle cx="130" cy="192" r="40" fill="#1a3a6a0d" stroke="#1a3a6a" stroke-width="2" stroke-dasharray="5,3"/>
+        <text x="130" y="188" text-anchor="middle" font-family="Playfair Display,serif" font-size="22" font-weight="700" fill="#1a3a6a">C</text>
+        <text x="130" y="206" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#1a3a6a">閉じている</text>
+        <path d="M130,152 C158,138 158,168 142,178" stroke="#1a3a6a" stroke-width="1.8" fill="none" stroke-dasharray="4,2"/>
+        <polygon points="142,178 135,170 147,170" fill="#1a3a6a" opacity=".6"/>
+        <!-- 仕切り線 -->
+        <line x1="105" y1="72" x2="155" y2="72" stroke="#c8bfaa" stroke-width="1.5"/>
+        <line x1="82" y1="112" x2="110" y2="152" stroke="#c8bfaa" stroke-width="1.5"/>
+        <line x1="178" y1="112" x2="150" y2="152" stroke="#c8bfaa" stroke-width="1.5"/>
+        <!-- 下部ラベル -->
+        <text x="130" y="252" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55">交換なし</text>
+        <text x="130" y="268" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55">→ 3集団は孤立したまま</text>
+      </svg>
+    </div>
+    <!-- 右：外婚制（タブーあり） -->
+    <div style="padding:0;">
+      <div style="background:rgba(16,48,16,0.92);padding:10px 16px;">
+        <p style="font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;color:#e8e4de;letter-spacing:.04em;">✅ タブーがある世界</p>
+        <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#d4c8aa;margin-top:2px;">集団外との結婚が義務になる</p>
+      </div>
+      <svg viewBox="0 0 260 280" xmlns="http://www.w3.org/2000/svg" width="100%" style="display:block;">
+        <defs>
+          <marker id="mRA" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8b1a1a"/></marker>
+          <marker id="mRB" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#1a5a30"/></marker>
+          <marker id="mRC" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#1a3a6a"/></marker>
+        </defs>
+        <!-- A -->
+        <circle cx="65" cy="72" r="40" fill="#8b1a1a18" stroke="#8b1a1a" stroke-width="2.2"/>
+        <text x="65" y="68" text-anchor="middle" font-family="Playfair Display,serif" font-size="22" font-weight="700" fill="#8b1a1a">A</text>
+        <text x="65" y="86" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#8b1a1a">部族 A</text>
+        <!-- B -->
+        <circle cx="195" cy="72" r="40" fill="#1a5a3018" stroke="#1a5a30" stroke-width="2.2"/>
+        <text x="195" y="68" text-anchor="middle" font-family="Playfair Display,serif" font-size="22" font-weight="700" fill="#1a5a30">B</text>
+        <text x="195" y="86" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#1a5a30">部族 B</text>
+        <!-- C -->
+        <circle cx="130" cy="192" r="40" fill="#1a3a6a18" stroke="#1a3a6a" stroke-width="2.2"/>
+        <text x="130" y="188" text-anchor="middle" font-family="Playfair Display,serif" font-size="22" font-weight="700" fill="#1a3a6a">C</text>
+        <text x="130" y="206" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#1a3a6a">部族 C</text>
+        <!-- A→B 矢印（上） -->
+        <path d="M103,58 C130,36 157,36 157,58" stroke="#8b1a1a" stroke-width="2.2" fill="none" marker-end="url(#mRA)"/>
+        <!-- A→B ラベル（円より上・十分に離す） -->
+        <rect x="100" y="14" width="60" height="18" rx="3" fill="#8b1a1a"/>
+        <text x="130" y="26" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700" fill="white">A♂ × B♀</text>
+        <!-- B→C 矢印（右） -->
+        <path d="M186,110 C196,140 178,168 166,178" stroke="#1a5a30" stroke-width="2.2" fill="none" marker-end="url(#mRB)"/>
+        <!-- B→C ラベル（右側・矢印の外） -->
+        <rect x="198" y="136" width="56" height="18" rx="3" fill="#1a5a30"/>
+        <text x="226" y="148" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700" fill="white">B♂ × C♀</text>
+        <!-- C→A 矢印（左） -->
+        <path d="M94,178 C82,168 64,140 74,110" stroke="#1a3a6a" stroke-width="2.2" fill="none" marker-end="url(#mRC)"/>
+        <!-- C→A ラベル（左側） -->
+        <rect x="6" y="136" width="56" height="18" rx="3" fill="#1a3a6a"/>
+        <text x="34" y="148" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" font-weight="700" fill="white">C♂ × A♀</text>
+        <!-- 中央ラベル（Cとかぶらない位置: y=128〜140） -->
+        <text x="130" y="130" text-anchor="middle" font-family="Source Serif 4,serif" font-size="12" fill="#3d3020">交換の輪が</text>
+        <text x="130" y="146" text-anchor="middle" font-family="Source Serif 4,serif" font-size="12" fill="#3d3020">社会をつくる</text>
+        <!-- 下部ラベル -->
+        <text x="130" y="252" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" font-weight="700" fill="#3d3020">外婚の連鎖</text>
+        <text x="130" y="268" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#3d3020">→ 3集団が1つの社会へ</text>
+      </svg>
+    </div>
+  </div>
+  <p class="svg-fig-cap">左：タブーがない世界では各集団は内部で閉じ、他集団との交流が生まれない。右：インセスト・タブーが「外で結婚せよ」という義務を生み、集団間の交換の輪が生まれる。これが「社会」の原型だとレヴィ＝ストロースは言う。（『親族の基本構造』1949年より）</p>
+</div>
+
+<p class="body-text fade">レヴィ＝ストロースが見抜いたのは、「禁じる」行為の背後にある交換の論理だ。女性（または交換されるもの）を集団の外に送り出すことで、別の集団との「贈与と返礼」の関係が生まれる。これを<span class="tip" onclick="toggleTip(this)">外婚制<span class="tip-box"><strong>外婚制（がいこんせい）</strong><br>自分が属する集団の外の人と結婚しなければならないルール。近親婚を禁じ、他集団との連帯・同盟を生み出す機能を持つ。内婚制（集団内での結婚）と対比される。</span></span>という。そして外婚制こそが、孤立した家族集団を「社会」へと変換する基本装置だとレヴィ＝ストロースは主張した。</p>
+
+<p class="body-text fade">数学者アンドレ・ヴェイユがこの婚姻体系を代数学で解析すると、驚くべき事実が判明した。<strong>アマゾンの先住民族の婚姻規則は、ヨーロッパの数学者が独立に発見した<span class="tip" onclick="toggleTip(this)">代数学<span class="tip-box"><strong>代数学（だいすうがく）</strong><br>数の代わりに文字や記号を使い、方程式・構造・演算を研究する数学の一分野。足し算や掛け算などの「演算」が満たすべき規則を抽象的に研究する。</span></span>の「<span class="tip" onclick="toggleTip(this)">群（クライン四元群）<span class="tip-box"><strong>群・クライン四元群</strong><br>「群」は代数学の基本概念で、ある演算のもとで閉じた集合の構造。クライン四元群は4つの元からなる最もシンプルな群の一つ。数学者フェリックス・クラインにちなむ。レヴィ＝ストロースの婚姻体系がこの構造と一致することを数学者アンドレ・ヴェイユが証明した。</span></span>）」と完全に同じ構造だった。</strong>「未開人」が数学を知らずに、数学と同じことをしていた。西洋と非西洋、科学と慣習——その境界が揺らいだ瞬間だった。</p>
+
+<div class="quote-block fade">
+  <p class="quote-en">"The prohibition of incest is less a rule prohibiting marriage with the mother, sister or daughter, than a rule obliging the gift of mother, sister, or daughter to another."</p>
+  <p class="quote-ja">「インセストの禁止とは、母・姉妹・娘との婚姻を禁じるルールというより、母・姉妹・娘を他者に贈ることを義務づけるルールである。」</p>
+  <p class="quote-attr">— Claude Lévi-Strauss, <em>The Elementary Structures of Kinship</em>, 1949</p>
+</div>
+
+<!-- 誤解あるあるブロック -->
+<div class="misconception fade">
+  <div class="misconception-header"><span class="misconception-hl">読む前に確認 — よくある誤解</span></div>
+  <div class="misconception-body">
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <p class="mis-label wrong">✗ よくある誤解</p>
+        <p class="mis-text">構造主義は「人間は自由ではない」と主張している決定論だ</p>
+      </div>
+      <div class="misconception-a">
+        <p class="mis-label right">✓ 実際は</p>
+        <p class="mis-text">「自由か不自由か」ではなく「主体そのものが構造の産物である」という問いの組み替えを行う。個人の選択を否定するのではなく、その選択を可能にしている前提条件を問う</p>
+      </div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <p class="mis-label wrong">✗ よくある誤解</p>
+        <p class="mis-text">構造主義は「西洋文明が一番進んでいる」と言っている</p>
+      </div>
+      <div class="misconception-a">
+        <p class="mis-label right">✓ 実際は</p>
+        <p class="mis-text">むしろ逆。レヴィ＝ストロースは「未開」とされた社会にも西洋と同等の論理的構造があることを示し、西洋中心主義を根底から批判した</p>
+      </div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <p class="mis-label wrong">✗ よくある誤解</p>
+        <p class="mis-text">構造主義と構成主義は同じものだ</p>
+      </div>
+      <div class="misconception-a">
+        <p class="mis-label right">✓ 実際は</p>
+        <p class="mis-text">別物。構成主義（ピアジェ）は構造が段階的に構成されると考えるが、構造主義は構造を所与の潜在的秩序として捉える。日本語では紛らわしいが英語では全く異なる語になる</p>
+      </div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <p class="mis-label wrong">✗ よくある誤解</p>
+        <p class="mis-text">構造主義はもう古い。現代では無関係な思想だ</p>
+      </div>
+      <div class="misconception-a">
+        <p class="mis-label right">✓ 実際は</p>
+        <p class="mis-text">認知言語学・文化人類学・記号論・批判的思考の基礎として生き続けている。SNSアルゴリズムが私たちの「選択」をいかに構造化するかを問う際にも、構造主義的な問い方は現役だ</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ===== 体験する ===== -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">「あなたらしさ」の解剖——選択の背後にあるもの</h2>
+
+<p class="body-text fade">構造主義の核心は、抽象的な議論よりも、自分自身の「選択」を振り返ることで実感できる。ここでは3つのフェーズで考えてみてほしい。①まず日常の選択に答える。②次にその選択が何に規定されているかを可視化する。③最後に「私らしさ」の正体を問う。答えに正解はない。気づくことに意味がある。</p>
+
+<div class="exp-wrap fade" id="choiceExp">
+  <div class="exp-header">
+    <div>
+      <p class="exp-header-lbl">3フェーズ体験</p>
+      <p class="exp-header-title">「私の選択」を解剖する</p>
+    </div>
+  </div>
+  <div class="exp-body">
+
+    <!-- Phase 1 -->
+    <div class="choice-phase active" id="ph1">
+      <div class="phase-indicator">
+        <div class="phase-dot done" id="pd1"></div>
+        <div class="phase-dot" id="pd2"></div>
+        <div class="phase-dot" id="pd3"></div>
+      </div>
+      <p style="font-weight:600;color:#1a1208;margin-bottom:4px;">Phase 1 — 直感で選ぶ</p>
+      <p>下の4つの場面で、より「自分らしい」と感じる方を選んでほしい。深く考えず、瞬時に。</p>
+      <div id="q1" style="margin-top:16px;">
+        <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#3d3020;margin-bottom:8px;">① 週末の過ごし方</p>
+        <div class="choice-options">
+          <div class="choice-opt" onclick="pick('q1','a')">人と会う・外出する</div>
+          <div class="choice-opt" onclick="pick('q1','b')">一人で・家にいる</div>
+        </div>
+      </div>
+      <div id="q2" style="margin-top:12px;">
+        <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#3d3020;margin-bottom:8px;">② 問題が起きたとき</p>
+        <div class="choice-options">
+          <div class="choice-opt" onclick="pick('q2','a')">すぐ誰かに話す</div>
+          <div class="choice-opt" onclick="pick('q2','b')">まず自分で考える</div>
+        </div>
+      </div>
+      <div id="q3" style="margin-top:12px;">
+        <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#3d3020;margin-bottom:8px;">③ 新しい仕事を頼まれたら</p>
+        <div class="choice-options">
+          <div class="choice-opt" onclick="pick('q3','a')">まずやってみる</div>
+          <div class="choice-opt" onclick="pick('q3','b')">慎重に確認してから</div>
+        </div>
+      </div>
+      <div id="q4" style="margin-top:12px;">
+        <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#3d3020;margin-bottom:8px;">④ 食事のとき</p>
+        <div class="choice-options">
+          <div class="choice-opt" onclick="pick('q4','a')">誰かと一緒に食べたい</div>
+          <div class="choice-opt" onclick="pick('q4','b')">一人でゆっくり食べたい</div>
+        </div>
+      </div>
+      <div class="phase-nav">
+        <button class="phase-btn" onclick="goPhase(2)" id="ph1btn" disabled>次へ：背後を見る →</button>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="choice-phase" id="ph2">
+      <div class="phase-indicator">
+        <div class="phase-dot done" id="pd1b"></div>
+        <div class="phase-dot done" id="pd2b"></div>
+        <div class="phase-dot" id="pd3b"></div>
+      </div>
+      <p style="font-weight:600;color:#1a1208;margin-bottom:4px;">Phase 2 — 構造を可視化する</p>
+      <p>その選択はどこから来たのだろうか。以下の「構造的要因」がどのくらい影響していると思うか、考えながら見てほしい。</p>
+      <div class="structure-reveal">
+        <p class="structure-reveal-title">あなたの「選択」を規定している可能性のある構造</p>
+        <div class="structure-bars">
+          <div class="s-bar-row">
+            <span class="s-bar-label">育った家庭</span>
+            <div class="s-bar-track"><div class="s-bar-fill" id="bar1" style="width:0%"></div></div>
+          </div>
+          <div class="s-bar-row">
+            <span class="s-bar-label">学校文化</span>
+            <div class="s-bar-track"><div class="s-bar-fill" id="bar2" style="width:0%"></div></div>
+          </div>
+          <div class="s-bar-row">
+            <span class="s-bar-label">言語・母国語</span>
+            <div class="s-bar-track"><div class="s-bar-fill" id="bar3" style="width:0%"></div></div>
+          </div>
+          <div class="s-bar-row">
+            <span class="s-bar-label">メディア環境</span>
+            <div class="s-bar-track"><div class="s-bar-fill" id="bar4" style="width:0%"></div></div>
+          </div>
+          <div class="s-bar-row">
+            <span class="s-bar-label">社会的役割</span>
+            <div class="s-bar-track"><div class="s-bar-fill" id="bar5" style="width:0%"></div></div>
+          </div>
+        </div>
+        <p class="structure-reveal-note">※これらは「あなたが選んだ」ものではない。しかしあなたの「選び方」を形成している。</p>
+      </div>
+      <div class="phase-nav">
+        <button class="phase-btn secondary" onclick="goPhase(1)">← 戻る</button>
+        <button class="phase-btn" onclick="goPhase(3)">次へ：問いを受け取る →</button>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="choice-phase" id="ph3">
+      <div class="phase-indicator">
+        <div class="phase-dot done"></div>
+        <div class="phase-dot done"></div>
+        <div class="phase-dot done"></div>
+      </div>
+      <p style="font-weight:600;color:#1a1208;margin-bottom:4px;">Phase 3 — 「私らしさ」とは何か</p>
+      <p>あなたが「私らしい」と感じた選択は、本当に「あなた」が作ったものだろうか。</p>
+      <div class="map-result" id="finalMsg">
+        <p class="map-result-title">構造主義が問うこと</p>
+        <p class="map-result-text" id="finalText"></p>
+      </div>
+      <p style="margin-top:16px;font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;line-height:1.8;">構造主義は「だから自由はない」と結論づけない。むしろ「自由であるとはどういうことか」という問いを、より深いところに持っていく。構造を知ることは、構造に飲み込まれることではない——そう信じたい。いや、信じたいと思う気持ち自体も、どこかで形成されたものかもしれないが。</p>
+      <div class="phase-nav">
+        <button class="phase-btn secondary" onclick="goPhase(1)">最初からやり直す</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pull fade">
+  <p class="pull-q">「人間科学の究極目的は人間を<em>構成する</em>ことではなく、人間を<em>溶解する</em>ことだ」<br><span style="font-size:14px;font-style:normal;font-family:'Source Sans 3',sans-serif;color:#7a6a55;">— クロード・レヴィ＝ストロース、『野生の思考』（1962）</span></p>
+</div>
+
+<hr class="art-rule">
+
+<!-- ===== なぜか / メカニズム ===== -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">二項対立——構造が世界を生み出す仕組み</h2>
+
+<p class="body-text fade">構造主義が明らかにしようとした「構造」とは何か。その鍵は<span class="tip" onclick="toggleTip(this)">二項対立<span class="tip-box"><strong>二項対立（にこうたいりつ）</strong><br>二つの相互に排他的な概念を対にして意味を構成する仕組み。自然/文化、生/死、男/女など。構造主義では、この対立の組み合わせが神話・言語・社会を生成すると考える。</span></span>にある。人間の思考は「AではなくB」「BではなくA」という対立の網によって世界を意味あるものとして分節する。</p>
+
+<p class="body-text fade">レヴィ＝ストロースが構造分析の実例として有名なのが、ギリシャ神話の「オイディプス神話」だ。まず話の筋を確認しておこう。テーバイ王ライオスは「息子に殺される」という神託を受け、生まれた赤ん坊を山に捨てる。しかし赤ん坊はコリントスの王に拾われてオイディプスとして育つ。成長したオイディプスは旅の途中で見知らぬ老人（実は父ライオス）を口論の末に殺し、テーバイでスフィンクスを退治して英雄として迎えられ、女王（実は母イオカステ）と結婚する。真実が判明するとイオカステは自死し、オイディプスは自ら目を潰して放浪の旅に出る。</p>
+
+<p class="body-text fade">フロイトはこの神話に「無意識の父親殺し・母親への欲望」を読んだ。しかしレヴィ＝ストロースはまったく別の問いを立てた。<strong>この神話が繰り返し語られる理由は何か。物語の内容ではなく、その構造に何が潜んでいるのか。</strong></p>
+
+<!-- SVG図解③: 二項対立の神話構造 -->
+<div class="svg-fig fade">
+  <svg viewBox="0 0 560 280" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:560px;display:block;margin:0 auto;">
+    <text x="280" y="26" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#7a6a55">レヴィ＝ストロース式 神話の構造分析（オイディプス神話）</text>
+    <!-- 4列のグリッド -->
+    <!-- 列ヘッダー -->
+    <rect x="20" y="38" width="120" height="28" fill="#1a1208"/>
+    <text x="80" y="56" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="white">血縁を過大評価</text>
+    <rect x="150" y="38" width="120" height="28" fill="#3d3020"/>
+    <text x="210" y="56" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="white">血縁を過小評価</text>
+    <rect x="280" y="38" width="120" height="28" fill="#8b1a1a"/>
+    <text x="340" y="56" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="white">大地の怪物を倒す</text>
+    <rect x="410" y="38" width="130" height="28" fill="#6b4a2a"/>
+    <text x="475" y="56" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="white">大地から生まれる</text>
+    <!-- 行1 -->
+    <rect x="20" y="68" width="120" height="44" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="80" y="88" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#3d3020">カドモスが</text>
+    <text x="80" y="103" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#3d3020">妹を探す</text>
+    <rect x="150" y="68" width="120" height="44" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="210" y="88" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#b0a090">—</text>
+    <rect x="280" y="68" width="120" height="44" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="340" y="88" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#3d3020">カドモスが</text>
+    <text x="340" y="103" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#3d3020">竜を倒す</text>
+    <rect x="410" y="68" width="130" height="44" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="475" y="88" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#b0a090">—</text>
+    <!-- 行2 -->
+    <rect x="20" y="114" width="120" height="44" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="80" y="134" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#3d3020">オイディプスが</text>
+    <text x="80" y="149" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#3d3020">母と結婚</text>
+    <rect x="150" y="114" width="120" height="44" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="210" y="134" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#3d3020">オイディプスが</text>
+    <text x="210" y="149" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#3d3020">父を殺す</text>
+    <rect x="280" y="114" width="120" height="44" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="340" y="88+46" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#b0a090">—</text>
+    <rect x="410" y="114" width="130" height="44" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="475" y="134" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#3d3020">スフィンクスを</text>
+    <text x="475" y="149" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#3d3020">倒す</text>
+    <!-- 矢印 -->
+    <text x="340" y="134" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#b0a090">—</text>
+    <!-- 行3 -->
+    <rect x="20" y="160" width="120" height="44" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="80" y="180" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#3d3020">エテオクレスが</text>
+    <text x="80" y="195" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#3d3020">兄弟を守る</text>
+    <rect x="150" y="160" width="120" height="44" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="210" y="180" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#b0a090">—</text>
+    <rect x="280" y="160" width="120" height="44" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="340" y="180" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#b0a090">—</text>
+    <rect x="410" y="160" width="130" height="44" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="475" y="180" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#3d3020">ラブダコスは</text>
+    <text x="475" y="195" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="12" fill="#3d3020">「跛行する者」</text>
+    <!-- 対立の矢印 -->
+    <line x1="80" y1="255" x2="210" y2="255" stroke="#8b1a1a" stroke-width="1.5"/>
+    <line x1="80" y1="255" x2="80" y2="248" stroke="#8b1a1a" stroke-width="1"/>
+    <line x1="210" y1="255" x2="210" y2="248" stroke="#8b1a1a" stroke-width="1"/>
+    <text x="145" y="272" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#8b1a1a">← 対立 →</text>
+    <line x1="340" y1="255" x2="475" y2="255" stroke="#6b4a2a" stroke-width="1.5"/>
+    <line x1="340" y1="255" x2="340" y2="248" stroke="#6b4a2a" stroke-width="1"/>
+    <line x1="475" y1="255" x2="475" y2="248" stroke="#6b4a2a" stroke-width="1"/>
+    <text x="408" y="272" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#6b4a2a">← 対立 →</text>
+  </svg>
+  <p class="svg-fig-cap">レヴィ＝ストロースによるオイディプス神話の構造分析。神話の「意味」は個別の物語ではなく、列と列のあいだにある対立関係に潜んでいる。この手法を「神話素（ミトゥン）分析」という。</p>
+</div>
+
+<p class="body-text fade">レヴィ＝ストロースは世界中の神話を集め、表面上はまったく異なる話が、同じ構造的パターンを持っていることを示した。<strong>神話は出来事の物語ではなく、矛盾（二項対立）を「媒介」することで、社会が抱える解けない問いに応答する装置だ</strong>——これが彼の結論だった。</p>
+
+<div class="steps-wrap fade">
+  <p class="steps-head">構造分析の 4 ステップ</p>
+  <div class="step-card" id="sc1">
+    <div class="step-hd" onclick="tog(1)">
+      <div class="step-nb">1</div>
+      <div class="step-tw"><div class="step-title">表層を捨てる</div><div class="step-sub">個別の物語・出来事を括弧に入れる</div></div>
+      <div class="step-arr">▼</div>
+    </div>
+    <div class="step-body"><p>構造主義は「何が起きたか」より「どんな関係が成立しているか」を問う。オイディプス神話なら「父を殺して母と結婚した悲劇」ではなく、「血縁の過大評価／過小評価」と「大地との関係」という二つの軸の対立こそが本質だと見る。物語の内容は「コード」を運ぶ乗り物にすぎない。</p></div>
+  </div>
+  <div class="step-card" id="sc2">
+    <div class="step-hd" onclick="tog(2)">
+      <div class="step-nb">2</div>
+      <div class="step-tw"><div class="step-title">二項対立を探す</div><div class="step-sub">生/死、自然/文化、生/煮炊き…</div></div>
+      <div class="step-arr">▼</div>
+    </div>
+    <div class="step-body"><p>構造の基本単位は二項対立だ。人間の思考は「熱い/冷たい」「甘い/辛い」「我々/他者」という対立を通して世界を意味付ける。レヴィ＝ストロースが『神話論理』で分析した「生のもの/調理されたもの」も、この二項対立が文化と自然の境界を引いている証拠として読んだ。</p></div>
+  </div>
+  <div class="step-card" id="sc3">
+    <div class="step-hd" onclick="tog(3)">
+      <div class="step-nb">3</div>
+      <div class="step-tw"><div class="step-title">媒介項を見つける</div><div class="step-sub">矛盾を解消するための「第三項」</div></div>
+      <div class="step-arr">▼</div>
+    </div>
+    <div class="step-body"><p>二項対立は解消できない矛盾を生む。「生/死」のあいだに何かが必要だ——神話はそこに「トリックスター（狡賢い動物）」や「英雄」という媒介項を差し込む。この媒介項が社会の矛盾を「一時的に落ち着かせる」。神話が繰り返し語られるのは、矛盾が解消されていないからでもある。</p></div>
+  </div>
+  <div class="step-card" id="sc4">
+    <div class="step-hd" onclick="tog(4)">
+      <div class="step-nb">4</div>
+      <div class="step-tw"><div class="step-title">変換群を発見する</div><div class="step-sub">異なる文化に現れる同じ「型」</div></div>
+      <div class="step-arr">▼</div>
+    </div>
+    <div class="step-body"><p>同じ構造が文化を越えて現れる。北米先住民の神話とギリシャ神話で、表面の登場人物はまったく違うのに、対立の組み合わせ方は同じ——これが構造の普遍性だ。レヴィ＝ストロースはここに、人類共通の「無意識の思考の型」があると考えた。文化相対主義でありながら、深層では人類の統一性を主張するという、複雑な立場になる。</p></div>
+  </div>
+  <div class="step-summary"><p>構造分析とは「深層の関係の網」を取り出す作業だ。それは考古学のように、表面の堆積を取り除いて、下にある形を明らかにしようとする。</p></div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ===== 歴史 ===== -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">ソシュールからポスト構造主義へ</h2>
+
+<div class="timeline fade">
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1916年</p>
+    <p class="tl-title">ソシュール『一般言語学講義』刊行</p>
+    <p class="tl-desc">学生のノートから編集・出版。「言語は差異のシステム」「記号の恣意性」を定式化。構造主義の思想的源泉となる。本人は「構造」という語を使っていなかった。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1920〜30年代</p>
+    <p class="tl-title">プラーグ学派の台頭</p>
+    <p class="tl-desc"><span class="tip" onclick="toggleTip(this)">ローマン・ヤーコブソン<span class="tip-box"><strong>Roman Jakobson（1896–1982）</strong><br>ロシア出身の言語学者。プラーグ学派を主導し、音素論を発展させた。後にニューヨークでレヴィ＝ストロースと出会い、構造主義人類学誕生の鍵を握る。</span></span>らが音韻論を発展させ、言語の「音素」を差異の体系として記述。この方法論をレヴィ＝ストロースが人類学に持ち込む。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1949年</p>
+    <p class="tl-title">レヴィ＝ストロース『親族の基本構造』</p>
+    <p class="tl-desc">婚姻体系に数学的構造を発見。「インセスト・タブー（近親相姦の禁忌）」を自然から文化への移行点と定義し、構造人類学の基礎を築く。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1955年</p>
+    <p class="tl-title">『悲しき熱帯』でブレイク</p>
+    <p class="tl-desc">フィールドワークの回想録として書かれたが、哲学的深度も持ち、学術書を超えてベストセラーになる。西洋中心主義への批判が広く響いた。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1962–1966年</p>
+    <p class="tl-title">「構造主義の時代」到来</p>
+    <p class="tl-desc">『野生の思考』（レヴィ＝ストロース）でサルトルと対決。続いてフーコー『言葉と物』、ラカン『エクリ』、バルト『モードの体系』、アルチュセール『資本論を読む』が相次いで登場。フランス知識人社会が構造主義に染まる。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1968年</p>
+    <p class="tl-title">五月革命と「構造主義は死んだ」</p>
+    <p class="tl-desc">学生・労働者の反乱の中で「構造主義は静的すぎる、歴史や変革を語れない」という批判が沸き起こる。構造主義の限界が問われ始める。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1970年代〜</p>
+    <p class="tl-title">ポスト構造主義へ</p>
+    <p class="tl-desc"><span class="tip" onclick="toggleTip(this)">デリダ<span class="tip-box"><strong>ジャック・デリダ（1930–2004）</strong><br>フランスの哲学者。「脱構築」を提唱し、構造主義が前提とする安定した構造や中心そのものを問い直した。ポスト構造主義の代表的存在。</span></span>の「脱構築」、フーコーの後期権力論、<span class="tip" onclick="toggleTip(this)">ドゥルーズ<span class="tip-box"><strong>ジル・ドゥルーズ（1925–1995）</strong><br>フランスの哲学者。ガタリと共著の『アンチ・オイディプス』でフロイト＝ラカン的無意識と構造主義双方を批判し、流動的な「欲望の機械」論を展開した。</span></span>＝ガタリの欲望論が台頭。「安定した構造」ではなく「差延・流動・脱中心」が思想の中心になる。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">現在</p>
+    <p class="tl-title">構造主義の遺産</p>
+    <p class="tl-desc">認知言語学・文化人類学・記号論・批判的思考の方法論として生き続ける。SNSの推薦アルゴリズムが人々の「好み」をいかに構造化するかを問う際にも、構造主義的な問い方は依然として有効だ。</p>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ===== つまり ===== -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">「主体の消滅」——これは何を意味するか</h2>
+
+<p class="body-text fade">構造主義が最終的に言おうとしたことは、ひどく挑発的だ。<span class="tip" onclick="toggleTip(this)">フーコー<span class="tip-box"><strong>ミシェル・フーコー（1926–1984）</strong><br>フランスの哲学者・歴史家。『言葉と物』で近代的な「人間」という概念は歴史的に構築されたものだと論じた。監獄・病院・性などの制度分析でも知られる。</span></span>は1966年の『言葉と物』でこう書いた——「人間は波打ちぎわの砂の表情のように消滅するだろう」と。</p>
+
+<p class="body-text fade">これは人間が死ぬという話ではない。<strong>「人間」という概念そのものが、ある歴史的な時代が作り出した幻想かもしれない</strong>、という宣言だ。「自由な主体としての私」は、西洋近代が16世紀以降に発明した特定の概念形象にすぎない——そうフーコーは言う。レヴィ＝ストロースも「人間科学の究極目的は人間を溶解することだ」と書いた。</p>
+
+<!-- 画像プレースホルダー2: フーコー関連 -->
+<div class="img-placeholder fade" style="border:none;background:none;margin:32px 0;">
+  <img src="amazon-rainforest.jpg"
+       alt="ブラジル・熱帯雨林——レヴィ＝ストロースがフィールドワークを行った場所"
+       style="width:100%;display:block;max-height:400px;object-fit:cover;">
+  <p class="img-caption">ブラジル・熱帯雨林。レヴィ＝ストロースが1935年から3年かけてフィールドワークを行った地。</p>
+</div>
+
+<p class="body-text fade">では、構造主義は「私」という感覚を否定しているのか。いや——そこは少し慎重に考えるべきだと思う。構造主義が否定しようとしたのは「あらかじめ完成した、自律した主体」という前提だ。<strong>私という感覚は確かにある。だがその感覚は、言語・文化・社会という構造が私を通過することで生じている</strong>——それが構造主義の立場に近い。</p>
+
+<p class="body-text fade">日常的な感覚で言えばこうだ。日本語で育った人は「甘い」「辛い」「しょっぱい」を別の味として経験するが、別の言語では「甘い」と「辛い」が1語で表現されることもある。「恥ずかしい」と「照れくさい」を使い分ける人と、それを1語でしか表現できない人では、経験の粒度が違う可能性がある。思考は言語に規定される——ソシュールの洞察は、私たちの経験そのものを問い直す。</p>
+
+<div class="pull fade">
+  <p class="pull-q">構造を知ることは、<em>構造に飲み込まれること</em>ではない。<br>——ではないか、と思いたい。</p>
+</div>
+
+<p class="body-text fade">構造主義は1968年の五月革命で「死んだ」と言われた。しかし死んだのは「構造主義というブランド」であって、問い方ではない。SNSのアルゴリズムが私の「好み」を学習し、私が「自発的に」選ぶコンテンツを形成していくとき——それは構造主義の問いそのものだ。「誰が私に何かを選ばせているのか。そしてその『誰か』はどこにいるのか。」</p>
+
+<!-- 文化への登場 -->
+<div class="sec-rule fade"><span class="sec-label">文化の中に現れる</span><div class="sec-line"></div></div>
+<h2 class="fade">思想が世界を変えた場所</h2>
+
+<div class="culture-block fade">
+  <p class="culture-title">ロラン・バルト『神話作用』（1957年）</p>
+  <p class="culture-desc">ファッション・広告・スポーツ・映画といった大衆文化の中に「神話（イデオロギーの自然化）」を読む試み。構造分析を日常のあらゆるテキストに適用し、「無邪気に見えるものほど構造を隠している」ことを示した。「顔のない著者」論にも発展し、後の文学批評を一変させた。</p>
+</div>
+
+<div class="culture-block fade">
+  <p class="culture-title">ジャック・ラカン『エクリ』（1966年）</p>
+  <p class="culture-desc">「無意識は言語のように構造化されている」という宣言で精神分析に構造主義を接ぎ木した。フロイトの無意識を記号論的に再解釈し、「主体は言語の中に生まれ、言語によって分裂する」と主張。現代の精神分析・臨床理論・映画批評に広く影響する。</p>
+</div>
+
+<div class="culture-block fade">
+  <p class="culture-title">ウルシュラ・K・ル＝グウィン『闇の左手』（1969年）</p>
+  <p class="culture-desc">SF小説。ジェンダーを持たない種族の惑星を舞台に、「男/女」という二項対立が当然だと思っていた人間の前提を崩す。構造主義的な問い——「自明と思っている分節はどこから来たのか」——をフィクションとして体験させる。</p>
+</div>
+
+<div class="culture-block fade">
+  <p class="culture-title">映画『マトリックス』（1999年）</p>
+  <p class="culture-desc">現実/仮想の二項対立と、その二項対立自体が「構造」によって維持されているというメタファー。劇中でネオが読んでいる本はボードリヤール『シミュラークルとシミュレーション』で、これはポスト構造主義の重要テキストだ。</p>
+</div>
+
+<hr class="art-rule">
+
+<!-- ===== 参考文献 ===== -->
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+<div class="ref-list">
+
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">原著</span><span class="ref-year">1949</span></div>
+    <p class="ref-title"><a href="https://doi.org/10.1515/9783110278828" target="_blank" rel="noopener">Les Structures élémentaires de la parenté（親族の基本構造）</a></p>
+    <p class="ref-author">Claude Lévi-Strauss</p>
+    <p class="ref-desc">構造主義人類学の基礎テキスト。婚姻体系の分析を通じて、文化的規則に普遍的構造があることを示した。数学的思考と人類学の融合という点で異例の著作。原著フランス語版は読解が難しいが、橋爪大三郎の入門書を先に読むと入りやすい。</p>
+  </div>
+
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">原著</span><span class="ref-year">1962</span></div>
+    <p class="ref-title"><a href="https://www.worldcat.org/title/6897893" target="_blank" rel="noopener">La Pensée sauvage（野生の思考）</a></p>
+    <p class="ref-author">Claude Lévi-Strauss</p>
+    <p class="ref-desc">サルトルとの直接対決が行われた著作。「具体の科学」という概念で、未開社会の思考が近代科学に劣らない論理的体系であることを示す。最終章でサルトルの弁証法的理性批判が実名で批判される。読み物としての面白さも高い。</p>
+  </div>
+
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">入門書</span><span class="ref-year">1988</span></div>
+    <p class="ref-title"><a href="https://www.worldcat.org/title/25225524" target="_blank" rel="noopener">はじめての構造主義</a></p>
+    <p class="ref-author">橋爪大三郎（講談社現代新書）</p>
+    <p class="ref-desc">日本語での入門書として最も読みやすい一冊。数学的なルーツから説き起こし、レヴィ＝ストロースの婚姻体系分析を平易に解説する。本記事を読んだあとにこちらを読むと、理解が一段深まる。</p>
+  </div>
+
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">原著</span><span class="ref-year">1966</span></div>
+    <p class="ref-title"><a href="https://www.worldcat.org/title/1529574" target="_blank" rel="noopener">Les Mots et les Choses（言葉と物）</a></p>
+    <p class="ref-author">Michel Foucault / ミシェル・フーコー</p>
+    <p class="ref-desc">「人間は波打ちぎわの砂の表情のように消滅するだろう」という結語で有名。「エピステーメー（知の配置）」という概念で、各時代の思考の前提構造を解剖する。難解だが、第1章と最終章だけでも読む価値がある。</p>
+  </div>
+
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">批判的検討</span><span class="ref-year">2021</span></div>
+    <p class="ref-title"><a href="https://doi.org/10.1093/acrefore/9780190228613.013.1353" target="_blank" rel="noopener">Structuralism — Oxford Research Encyclopedias</a></p>
+    <p class="ref-author">Oxford University Press</p>
+    <p class="ref-desc">構造主義の全体像と現代的な評価を英語でまとめた信頼性の高い百科事典項目。ポスト構造主義との関係、フェミニスト批判、脱植民地主義的視点からの再評価まで網羅している。</p>
+  </div>
+
+</div>
+
+<!-- 信頼度ノート -->
+<div class="note-box fade">
+  <strong>📌 この記事について</strong><br>
+  本記事の内容は、レヴィ＝ストロースの主要著作、橋爪大三郎・小田亮らの解説書、ならびにコトバンク・Wikipedia掲載の学術的記述をもとにしている。構造主義はそれ自体が解釈の多様性を許容する思想であり、研究者によって強調点が異なる。とくに「主体の消滅」をめぐる解釈には幅がある。記事内の体験コンテンツは理解補助のための簡略化であり、学術的な診断等を意図するものではない。
+</div>
+
+<div class="tags">
+  <span class="tag">構造主義</span>
+  <span class="tag">レヴィ＝ストロース</span>
+  <span class="tag">ソシュール</span>
+  <span class="tag">二項対立</span>
+  <span class="tag">現代思想</span>
+  <span class="tag">文化人類学</span>
+  <span class="tag">言語学</span>
+  <span class="tag">哲学</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:40px;">
+
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">4</p>
+      <p class="sidebar-text">構造主義の主要な知的ジャンル——<em>人類学</em>・<em>言語学</em>・<em>精神分析</em>・<em>文学批評</em>。レヴィ＝ストロースの方法論は、わずか10年でこれだけの分野を変えた。</p>
+    </div>
+
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">第二次世界大戦後の欧州で、サルトルの<strong>実存主義</strong>が知識人を席巻していた。しかし1950年代後半から「個人の自由」を中心に据える実存主義への異論が高まり、1960年代に構造主義がそれを塗り替えた。フランス知的言論を揺るがした世紀の思想交代劇だった。</p>
+    </div>
+
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text"><strong>村上春樹『ノルウェイの森』</strong>（1987）——登場人物が「自分の選択が自分のものか」という実存的な問いを抱え続ける。この問いは構造主義が問い直した「主体」と通底する。<br><br><strong>映画『マトリックス』</strong>（1999）——現実/仮想の二項対立とその構造的維持を扱うという点で構造主義・ポスト構造主義的。</p>
+    </div>
+
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">
+        — 実存主義（N-05）<br>
+        — 言語が思考を制約するか（L-03）<br>
+        — サピア＝ウォーフ仮説（L-01）<br>
+        — リベット実験・自由意志（A-03）<br>
+        — 確証バイアス（E-01）
+      </p>
+    </div>
+
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">チェックリスト</p>
+      <p class="sidebar-text">
+        □ 「好き嫌い」の一つを選び、それが形成された経緯を辿れるか試してみる<br><br>
+        □ 今日使った言葉の中で「他の言語に1対1対応する訳語がない」ものを探す<br><br>
+        □ 自分が「当然」と思っている二項対立をひとつ書き出す
+      </p>
+    </div>
+
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">構造主義の主要な事実（著作・年代・思想家）は文献的に確立されている。「構造主義は死んだ」という評価や、自由意志との関係については解釈の幅がある。体験コンテンツは理解補助のための簡略化。</p>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL -->
+<div class="terminal-label-wrap">
+  <p class="terminal-label">after.sh — 読後の対話</p>
+</div>
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div>
+        <div class="terminal-dot yellow"></div>
+        <div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 構造主義の記事を読み終えた人との対話</span>
+
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、自由意志はあるの？ないの？</span></div>
+      <span class="t-output" id="to1">構造主義はその問いに直接答えない。「自由意志があるかどうか」ではなく、<br>
+「その問いを立てている<em>あなた</em>はどこから来たのか」を先に問う。<br>
+問いの立て方を変えることで、答えではなく<strong>地図が変わる</strong>、そういう思想だよ。</span>
+
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;「構造に規定されている」と分かれば、変えられるの？</span></div>
+      <span class="t-output" id="to2">それが難しいところで。構造を意識できるようになること自体、<em>別の構造</em>の中での出来事だ。<br>
+「構造を知れば自由になれる」は少し楽観的すぎる。ただ——<br>
+<strong>知らないままより、知っていた方がいい</strong>、とは言えると思う。</span>
+
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;サルトルとの論争って、どっちが正しかったの？</span></div>
+      <span class="t-output" id="to3">正直、どちらも「正しい」し、どちらも「正しくない」。<br>
+サルトルは変革の意志を語り、レヴィ＝ストロースは無意識の型を語った。<br>
+片方だけ選ぶと何かが見えなくなる。<em>両方を持ち続けること</em>が難しくて、面白いところかな。</span>
+
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;SNSのアルゴリズムも「構造」なの？</span></div>
+      <span class="t-output" id="to4">そう。しかも厄介なのは、<strong>構造が私の過去の行動から生成されている</strong>という点。<br>
+昔の構造主義は「文化・言語・親族」を構造と見ていた。<br>
+今は<em>私自身のデータ</em>が構造を作っている。ループが閉じた感じがする。</span>
+
+      <hr class="t-divider">
+
+      <div class="t-line t-exit" id="tl5">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 問いが増えた</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="existentialism.html">
+      <p class="related-card-tag">哲学・現代思想</p>
+      <p class="related-card-title">実存主義——「自由の刑に処せられている」</p>
+      <p class="related-card-desc">構造主義と正面衝突したサルトルの思想。「実存は本質に先立つ」が意味することと、その限界とは。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="saussure_language.html">
+      <p class="related-card-tag">言語学・記号論</p>
+      <p class="related-card-title">言語が世界を切り分ける——ソシュールと分節</p>
+      <p class="related-card-desc">「papillon」は蝶か蛾か。言語がいかに連続する現実に境界を引くかを、複数の言語を通して探る。</p>
+      <p class="related-card-arrow">近日公開</p>
+    </a>
+  </div>
+</div>
+
+<script>
+// プログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ
+function toggleTip(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.tip'))
+    document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},
+  {id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2500},{id:'to2',delay:3100},
+  {id:'tl3',delay:4200},{id:'to3',delay:4800},
+  {id:'tl4',delay:5900},{id:'to4',delay:6500},
+  {id:'tl5',delay:7800},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.15});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// ===== 外婚ネットワーク図解JS =====
+const simSteps = [
+  {
+    arrows:['arrowAB','labelAB'],
+    statusA:'男性を送り出す →',
+    statusB:'← 女性を迎え入れる',
+    statusC:'',
+    center:'',
+    explain:'<strong>ステップ1：</strong>部族Aの男性が、部族Bの女性と結婚する。Aはインセスト・タブーにより、自分の部族の女性と結婚できないからだ。この瞬間、AとBのあいだに初めて「縁」ができる。'
+  },
+  {
+    arrows:['arrowAB','labelAB','arrowBC','labelBC','labelBC2'],
+    statusA:'男性を送り出す →',
+    statusB:'← 受け入れ、→ 送り出す',
+    statusC:'← 女性を迎え入れる',
+    center:'',
+    explain:'<strong>ステップ2：</strong>今度は部族Bの男性が、部族Cの女性と結婚する。BもBの中では結婚できない。この連鎖で、A・B・Cの三者がつながり始めた。'
+  },
+  {
+    arrows:['arrowAB','labelAB','arrowBC','labelBC','labelBC2','arrowCA','labelCA'],
+    statusA:'← 女性を迎え入れる',
+    statusB:'← 受け入れ、→ 送り出す',
+    statusC:'男性を送り出す →',
+    center:'',
+    explain:'<strong>ステップ3（完成）：</strong>部族Cの男性が部族Aの女性と結婚し、三角形の環が閉じた。これがレヴィ＝ストロースの発見だ。インセスト・タブーは「近親婚を禁じるルール」ではなく、<strong>「他者と交換せよ」という義務</strong>——その連鎖が、孤立した家族集団を社会へと変換する。'
+  }
+];
+let simCurrent = 0;
+
+function setOpacity(ids, val){
+  ids.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.setAttribute('opacity', val);
+  });
+}
+
+function simNext(){
+  if(simCurrent >= simSteps.length) return;
+  const step = simSteps[simCurrent];
+  // 全矢印を一旦0に
+  ['arrowAB','labelAB','arrowBC','labelBC','labelBC2','arrowCA','labelCA']
+    .forEach(id=>{ const el=document.getElementById(id); if(el) el.setAttribute('opacity','0'); });
+  // このステップの矢印を表示
+  setOpacity(step.arrows, '1');
+  // ステータス
+  const sa=document.getElementById('tribeAStatus');
+  const sb=document.getElementById('tribeBStatus');
+  const sc=document.getElementById('tribeCStatus');
+  if(sa) sa.textContent=step.statusA;
+  if(sb) sb.textContent=step.statusB;
+  if(sc) sc.textContent=step.statusC;
+  // 中央テキスト
+  const sc2=document.getElementById('simCenter');
+  if(sc2) sc2.innerHTML= step.center ? '<p style="font-size:12px;color:#8b1a1a;font-weight:600;">'+step.center+'</p>' : '';
+  // 説明
+  const ex=document.getElementById('simExplain2');
+  if(ex) ex.innerHTML=step.explain;
+  simCurrent++;
+  const btn=document.getElementById('simNextBtn');
+  if(simCurrent>=simSteps.length){
+    if(btn) btn.textContent='完成 ✓';
+    const rb=document.getElementById('simResetBtn');
+    if(rb) rb.style.display='inline-block';
+  } else {
+    if(btn) btn.textContent='ステップ '+(simCurrent+1)+' を見る →';
+  }
+}
+
+function simReset(){
+  simCurrent=0;
+  ['arrowAB','labelAB','arrowBC','labelBC','labelBC2','arrowCA','labelCA']
+    .forEach(id=>{ const el=document.getElementById(id); if(el) el.setAttribute('opacity','0'); });
+  ['tribeAStatus','tribeBStatus','tribeCStatus'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.textContent='';
+  });
+  const sc=document.getElementById('simCenter');
+  if(sc) sc.innerHTML='<p style="font-size:12px;color:#b0a090;">← 3つの部族が孤立している</p>';
+  const ex=document.getElementById('simExplain2');
+  if(ex) ex.innerHTML='ルールは単純だ。<strong>自分の部族の中では結婚しない。</strong> それだけ。では、そのルールは何を生むのか。';
+  const btn=document.getElementById('simNextBtn');
+  if(btn) btn.textContent='ステップ 1 を見る →';
+  const rb=document.getElementById('simResetBtn');
+  if(rb) rb.style.display='none';
+}
+
+
+// SVGバー: x=20〜520（幅500）, 中央=270
+// 2語の場合: 左ラベル中点=(20+270)/2=145, 右ラベル中点=(270+520)/2=395
+// 境界線: x=270（バーの真ん中）
+const langData={
+  ja:{
+    desc:'日本語：「蝶（チョウ）」と「蛾（ガ）」は完全に別語。昼間に飛ぶ美しいものと夜間の不気味なものとして、概念的に切り分けられている。',
+    split:true,
+    left: {label:'蝶',color:'#8b1a1a'},
+    right:{label:'蛾',color:'#3d3020'}
+  },
+  fr:{
+    desc:'フランス語：「papillon（パピヨン）」1語が蝶も蛾も指す。切り分けるための単語がないため、区別が意識されにくい。',
+    split:false,
+    left:{label:'papillon',color:'#6b4a2a'}
+  },
+  en:{
+    desc:'英語：「butterfly」と「moth」で分かれる。ただし日本語の蝶・蛾と境界線が完全に一致するわけではなく、どの種が含まれるかは微妙にずれる。',
+    split:true,
+    left: {label:'butterfly',color:'#8b1a1a'},
+    right:{label:'moth',color:'#3d3020'}
+  },
+  de:{
+    desc:'ドイツ語：「Schmetterling（シュメッタリング）」が蝶、「Nachtfalter（ナハトファルター）」が蛾。口語では混在することもある。',
+    split:true,
+    left: {label:'Schmetterling',color:'#8b1a1a'},
+    right:{label:'Nachtfalter',color:'#3d3020'}
+  }
+};
+
+function renderLang(code){
+  const d=langData[code];
+  document.getElementById('langDesc').textContent=d.desc;
+  const boundary=document.getElementById('langBoundary');
+  const labels=document.getElementById('langLabels');
+  boundary.innerHTML='';
+  labels.innerHTML='';
+
+  const BAR_L=20, BAR_R=520, MID=270;
+
+  if(d.split){
+    boundary.innerHTML=
+      `<line x1="${MID}" y1="45" x2="${MID}" y2="162" stroke="#8b1a1a" stroke-width="2.5" stroke-dasharray="6,3"/>`;
+    const lx1=(BAR_L+MID)/2;
+    const w1=Math.max(70, d.left.label.length*10+20);
+    labels.innerHTML+=
+      `<rect x="${lx1-w1/2}" y="164" width="${w1}" height="24" rx="3" fill="${d.left.color}"/>` +
+      `<text x="${lx1}" y="180" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" font-weight="700" fill="white">${d.left.label}</text>`;
+    const lx2=(MID+BAR_R)/2;
+    const w2=Math.max(70, d.right.label.length*10+20);
+    labels.innerHTML+=
+      `<rect x="${lx2-w2/2}" y="164" width="${w2}" height="24" rx="3" fill="${d.right.color}"/>` +
+      `<text x="${lx2}" y="180" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" font-weight="700" fill="white">${d.right.label}</text>`;
+  } else {
+    const lx=(BAR_L+BAR_R)/2;
+    const w=Math.max(90, d.left.label.length*10+24);
+    labels.innerHTML=
+      `<rect x="${lx-w/2}" y="164" width="${w}" height="24" rx="3" fill="${d.left.color}"/>` +
+      `<text x="${lx}" y="180" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" font-weight="700" fill="white">${d.left.label}</text>`;
+  }
+}
+
+// lang-btnsはevent delegationで管理（onclick属性なし）
+document.querySelector('.lang-btns').addEventListener('click',function(e){
+  const btn=e.target.closest('.lang-btn');
+  if(!btn)return;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const codeMap={'日本語':'ja','フランス語':'fr','英語':'en','ドイツ語':'de'};
+  const code=codeMap[btn.textContent.trim()];
+  if(code)renderLang(code);
+});
+
+// 初期表示
+renderLang('ja');
+
+// ===== 選択体験 =====
+const answers={};
+
+function pick(q,val){
+  answers[q]=val;
+  document.querySelectorAll('#'+q+' .choice-opt').forEach(o=>o.classList.remove('selected'));
+  const idx=val==='a'?0:1;
+  document.querySelectorAll('#'+q+' .choice-opt')[idx].classList.add('selected');
+  if(answers.q1&&answers.q2&&answers.q3&&answers.q4){
+    document.getElementById('ph1btn').disabled=false;
+  }
+}
+
+function goPhase(n){
+  document.querySelectorAll('.choice-phase').forEach(p=>p.classList.remove('active'));
+  document.getElementById('ph'+n).classList.add('active');
+  if(n===2){
+    const aCount=Object.values(answers).filter(v=>v==='a').length;
+    // 回答パターンに応じてバー値を変動
+    const vals= aCount>=3
+      ? [82,74,68,64,55]   // 社交的→家庭・学校・メディアが高め
+      : aCount<=1
+      ? [62,54,85,46,82]   // 内省的→言語・社会的役割が高め
+      : [74,66,80,54,70];  // 混在
+    setTimeout(()=>{
+      ['bar1','bar2','bar3','bar4','bar5'].forEach((id,i)=>{
+        document.getElementById(id).style.width=vals[i]+'%';
+      });
+    },200);
+  }
+  if(n===3){
+    const aCount=Object.values(answers).filter(v=>v==='a').length;
+    const msgs=[
+      '4つすべてを「一人で」選んだあなた。それは意志か、それとも習慣か。あるいは「一人でいることが好き」という物語を、どこかで受け取ったのかもしれない。',
+      '社会的な選択と内向きの選択が混在している。その「ちょうど中間」の感覚も、育った環境・言語・文化が用意した選択肢の中から生まれている可能性がある。',
+      '3〜4つを「人と」「外向きに」選んだあなた。その社交的な傾向はどこで学んだ？生まれながらのものか、それとも「そうあるべき」という構造の中で形成されたのか。'
+    ];
+    const msgIdx=aCount<=1?0:aCount>=3?2:1;
+    document.getElementById('finalText').textContent=msgs[msgIdx];
+  }
+  if(n===1){
+    document.querySelectorAll('.choice-opt').forEach(o=>o.classList.remove('selected'));
+    Object.keys(answers).forEach(k=>delete answers[k]);
+    document.getElementById('ph1btn').disabled=true;
+    [1,2,3,4,5].forEach(i=>{document.getElementById('bar'+i).style.width='0%';});
+  }
+}
+</script>
+</body>
+</html>
