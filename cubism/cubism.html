@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>なぜ絵画を壊したのか——キュビズムと多視点の革命 — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;}.masthead-name a{color:inherit;text-decoration:none;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;margin-bottom:20px;}.cover h1 em{font-style:italic;color:#8b1a1a;}.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:6px;}.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}.cover-aside strong{color:#3d3020;font-weight:600;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}.scenario-inner::after{content:'◇';position:absolute;right:20px;top:-10px;font-size:100px;opacity:.08;line-height:1;pointer-events:none;}.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}.meta-item{display:flex;align-items:center;gap:10px;}.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}.difficulty-dots{display:flex;gap:4px;}.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}.dot.on{background:#8b1a1a;}.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;}.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}.article-main{padding:48px 0;}.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}.body-text strong{color:#1a1208;font-weight:600;}.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}.pull-q em{color:#8b1a1a;}.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}.tip-box strong{color:#e8c56a;font-weight:600;}.tip.open .tip-box{display:block;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block-img{background:#ede8dc;overflow:hidden;}.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}.person-block-wiki{margin-bottom:8px;}.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.misconception-header{background:#3d3020;color:white;padding:11px 20px;}.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.misconception-body{background:white;}.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}.misconception-item:last-child{border-bottom:none;}.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}.mis-label.wrong{color:#c4392a;}.mis-label.right{color:#1a5a30;}.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.painting-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;}.painting-wrap img{width:100%;height:auto;display:block;}.painting-caption{padding:10px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;}.painting-caption strong{color:#1a1208;font-weight:600;}.painting-caption em{color:#8b1a1a;font-style:normal;}
+.painting-compare{margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:2px;}.painting-compare .painting-wrap{margin:0;}
+.diagram-wrap{margin:28px 0;overflow-x:auto;}.diagram-caption{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:8px;}
+.compare-table{width:100%;border-collapse:collapse;margin:24px 0;font-family:'Source Sans 3',sans-serif;font-size:13px;}.compare-table th{background:#3d3020;color:white;padding:10px 14px;text-align:left;font-weight:600;font-size:11px;letter-spacing:.08em;}.compare-table td{padding:10px 14px;border-bottom:1px solid #e0d8c8;color:#3d3020;line-height:1.6;font-weight:300;}.compare-table tr:nth-child(even) td{background:#f3efe6;}
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:8px;}
+.ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.ix-header{background:#1a1208;color:white;padding:11px 20px;}.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.ix-body{padding:24px 20px;background:white;}
+.ix-scope{margin:0 0 20px;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.ix-scope strong{color:#3d3020;font-weight:600;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}.tl-item{position:relative;margin-bottom:28px;}.tl-item:last-child{margin-bottom:0;}.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.steps-wrap{margin:32px 0;}.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}.step-card.open .step-nb{background:#8b1a1a;color:white;}.step-tw{flex:1;padding:13px 18px;}.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}.step-card.open .step-body{display:block;}.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}.step-body p strong{color:#1a1208;font-weight:600;}.step-body p em{color:#8b1a1a;font-style:normal;}.step-summary{margin-top:2px;padding:16px 20px;background:#f3efe6;border:1px solid #c8bfaa;}.step-summary p{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;margin:0;line-height:1.8;}
+.culture-block{margin:28px 0;border:1px solid #c8bfaa;padding:20px 24px;background:#f3efe6;}.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:12px;}.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}.culture-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:4px;}.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}.ref-title a:hover{border-bottom-color:#8b1a1a;}.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}.sidebar-block:last-child{border-bottom:none;}.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}.sidebar-text strong{color:#3d3020;font-weight:600;}
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}.terminal-dots{display:flex;gap:6px;}.terminal-dot{width:12px;height:12px;border-radius:50%;}.terminal-dot.red{background:#ff5f57;}.terminal-dot.yellow{background:#febc2e;}.terminal-dot.green{background:#28c840;}.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}.t-input{color:#e8e4de;}.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}.t-output em{color:#e8c56a;font-style:normal;}.t-output strong{color:#ffffff;font-weight:500;}.t-exit .t-prompt{color:#555;}.t-exit .t-input{color:#555;}.t-exit .t-comment{color:#4a9e6a;}.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}.fade.on{opacity:1;transform:translateY(0);}
+@media(max-width:720px){.cover{grid-template-columns:1fr;padding:40px 20px 32px;}.cover-right{display:none;}.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.summary-box,.scenario{padding:0 20px;}.article{grid-template-columns:1fr;padding:0 20px;}.article-side{display:none;}.misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}.terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}.related{padding:32px 20px;}.related-grid{grid-template-columns:1fr;}.tip-box{left:0;transform:none;width:200px;}.tip-box::after{left:20px;transform:none;}.person-block{grid-template-columns:1fr;}.painting-compare{grid-template-columns:1fr;}}
+.cup-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:16px;}
+.cup-sm{aspect-ratio:1;border:1px solid #c8bfaa;overflow:hidden;position:relative;cursor:pointer;transition:border-color .2s;background:#faf8f3;}
+.cup-sm:hover{border-color:#8b1a1a;}.cup-sm.on{border:2px solid #8b1a1a;}
+.cup-sm canvas{width:100%!important;height:100%!important;display:block;}
+.cup-sm-lbl{position:absolute;bottom:3px;left:50%;transform:translateX(-50%);font-family:'Source Sans 3',sans-serif;font-size:10px;color:#7a6a55;background:#faf8f3;padding:1px 5px;pointer-events:none;white-space:nowrap;}
+.cup-big{width:100%;max-width:420px;margin:0 auto;aspect-ratio:1;border:1px solid #c8bfaa;overflow:hidden;position:relative;background:#faf8f3;}
+.cup-big canvas{width:100%!important;height:100%!important;display:block;position:absolute;top:0;left:0;}
+.cup-big-lbl{position:absolute;top:6px;left:6px;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#7a6a55;background:#faf8f3;padding:2px 6px;border:1px solid #e0d8c8;pointer-events:none;z-index:10;}
+.cup-msg{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;text-align:center;margin-top:12px;min-height:40px;line-height:1.7;}
+.cup-count{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;margin-top:6px;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="masthead"><p class="masthead-name"><a href="https://qualiajournal.com/">Qualia Journal</a></p></div>
+
+<div class="cover fade"><div class="cover-left"><p class="cover-kicker">科学と文化</p><h1>なぜ絵画を<em>壊した</em>のか</h1><p class="cover-deck">1907年、パリのアトリエで2人の若い画家が500年続いた遠近法を破壊した。キュビズム——対象を分解し、多視点から再構築する試みは、「見る」とは何かを根底から問い直す実験だった。</p><div class="cover-byline"><span>Last updated: Mar. 2026</span></div></div><div class="cover-right"><div class="est-card"><span class="est-label">Est.</span><span class="est-year">1907</span><p class="est-event">ピカソが『アヴィニョンの娘たち』を完成。キュビズムの起点となる作品がパリのアトリエで誕生した。</p><p class="est-context">同年の世界：英仏露の三国協商が成立。フィンランドで世界初の女性候補者による国政選挙が実施。ウォール街で銀行恐慌が発生し、J・P・モルガンが救済に動いた。</p></div><p class="cover-aside">キュビズムから120年近く。多視点の原理は解明されている。しかし<strong>「なぜバラバラにした方が本質に迫れるのか」</strong>には、美術理論だけでは答えられない何かが残る。</p></div></div>
+
+<div class="scenario fade"><div class="scenario-inner"><p>友人の顔を思い浮かべてみてほしい。正面から見た目、鼻、口。横から見た輪郭。斜めから見たときの頬の丸み。あなたはその人の顔を「知っている」と思っている。だが、それは一つの角度から見た平面にすぎない。</p><p>写真を1枚撮っても、そこに映るのは一瞬の一方向だけだ。あなたが「知っている」顔——正面も横顔も、笑ったときの目尻も、うつむいたときの額も——その全部を1枚の絵に入れることはできないのだろうか。</p><p>できる、とピカソとブラックは考えた。500年間誰も疑わなかった「正しい絵の描き方」を壊すことで。</p></div></div>
+
+<div class="meta-bar fade"><div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span class="difficulty-text">初〜中級 — 美術の予備知識は不要</span></div><div class="meta-sep"></div><div class="meta-item"><span class="meta-label">読了時間</span><span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 22 分</span></div></div>
+
+<div class="summary-box fade"><div class="summary-inner"><span class="summary-icon">要点</span><p class="summary-text">自分の手で「複数の視点を1枚に重ねる」体験をする。<strong>なぜ画家たちは壊すことを選んだのか</strong>を、知覚の仕組みと時代の文脈から考える。</p></div></div>
+
+<div class="article"><div class="article-main">
+
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">1906年10月、セザンヌがこの世を去った。そして絵画が壊れ始めた。</h2>
+
+<p class="body-text fade"><span class="tip" onclick="toggleTip(this)">ポール・セザンヌ<span class="tip-box"><strong>ポール・セザンヌ（1839–1906）</strong><br>フランスの後期印象派の画家。「近代絵画の父」と呼ばれる。自然を円筒・球・円錐で捉えよと主張し、ピカソとブラックに決定的な影響を与えた。</span></span>は1906年10月22日、故郷エクス＝アン＝プロヴァンスで67歳で亡くなった。翌1907年、パリの<span class="tip" onclick="toggleTip(this)">サロン・ドートンヌ<span class="tip-box"><strong>サロン・ドートンヌ（Salon d'Automne）</strong><br>1903年にパリで始まった秋の美術展覧会。公式サロンより革新的な作品を受け入れた。</span></span>で大規模な回顧展が開かれた。56点の油彩と水彩が並んだ。パリの若い画家たちにとって、それは啓示だった。</p>
+
+<p class="body-text fade">セザンヌは晩年、故郷の<span class="tip" onclick="toggleTip(this)">サント＝ヴィクトワール山<span class="tip-box"><strong>サント＝ヴィクトワール山（Mont Sainte-Victoire）</strong><br>南フランス・プロヴァンス地方にある石灰岩の山。標高1,011m。セザンヌが生涯をかけて80回以上描いた。</span></span>を繰り返し描いた。油彩だけで36点、水彩を加えれば80点以上。だが彼が追いかけていたのは光の移ろいではない。印象派がそれをやった。セザンヌが欲しかったのは、山の<em>構造</em>だった。表面ではなく、奥にあるもの。「自然を円筒、球、円錐によって扱いなさい」——友人エミール・ベルナールへの手紙に残された有名な一節だ。</p>
+
+<div class="painting-wrap fade">
+<img src="img_cezanne_sainte_victoire.jpg" alt="セザンヌ『サント＝ヴィクトワール山』1885-87年頃" loading="lazy">
+<p class="painting-caption"><strong>ポール・セザンヌ『サント＝ヴィクトワール山』</strong>（1885–87年頃）｜油彩・カンヴァス｜<em>コートールド美術館蔵</em>｜同じ山を80回以上描いた連作のうちの1点。建物や木々は幾何学的な面に還元されている。</p>
+</div>
+
+<p class="body-text fade">セザンヌの絵をよく見ると、<strong>遠近法が「正しくない」</strong>。テーブルの上の果物は、上から見た角度と横から見た角度が1枚の絵の中に混在する。これは「間違い」ではない。セザンヌは意図的に複数の視点を1枚の絵に織り込んでいた。ただし、それはまだ控えめな実験だった。</p>
+
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 560 200" width="560" style="max-width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
+<text x="140" y="16" font-family="Source Sans 3,sans-serif" font-size="13" fill="#1a1208" font-weight="600" text-anchor="middle">ルネサンスの遠近法</text>
+<text x="420" y="16" font-family="Source Sans 3,sans-serif" font-size="13" fill="#1a1208" font-weight="600" text-anchor="middle">キュビズムの多視点</text>
+<rect x="20" y="30" width="240" height="135" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+<circle cx="140" cy="56" r="4" fill="#8b1a1a"/>
+<text x="160" y="52" font-family="Source Sans 3,sans-serif" font-size="9" fill="#8b1a1a">消失点</text>
+<line x1="40" y1="150" x2="140" y2="56" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="4"/>
+<line x1="240" y1="150" x2="140" y2="56" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="4"/>
+<rect x="95" y="78" width="38" height="48" rx="2" fill="#ede8dc" stroke="#7a6a55" stroke-width="1"/>
+<rect x="152" y="88" width="28" height="34" rx="2" fill="#ede8dc" stroke="#7a6a55" stroke-width="1"/>
+<text x="140" y="178" font-family="Source Sans 3,sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">1つの視点、1つの消失点</text>
+<text x="140" y="193" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090" text-anchor="middle">「窓の向こうの世界」を再現</text>
+<rect x="300" y="30" width="240" height="135" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+<circle cx="340" cy="48" r="3.5" fill="#8b1a1a"/><circle cx="400" cy="42" r="3.5" fill="#8b1a1a"/><circle cx="460" cy="50" r="3.5" fill="#8b1a1a"/><circle cx="370" cy="68" r="3.5" fill="#8b1a1a"/>
+<text x="420" y="82" font-family="Source Sans 3,sans-serif" font-size="9" fill="#8b1a1a" text-anchor="middle">複数の視点</text>
+<polygon points="360,95 390,87 398,110 368,114" fill="#ede8dc" stroke="#7a6a55" stroke-width="1"/>
+<polygon points="393,88 425,82 430,106 398,100" fill="#f3efe6" stroke="#7a6a55" stroke-width="1"/>
+<polygon points="428,92 458,86 454,118 424,114" fill="#ede8dc" stroke="#7a6a55" stroke-width="1"/>
+<polygon points="378,112 406,107 410,138 382,135" fill="#f3efe6" stroke="#7a6a55" stroke-width="1"/>
+<polygon points="416,104 448,98 444,132 414,128" fill="#ede8dc" stroke="#7a6a55" stroke-width="1"/>
+<text x="420" y="178" font-family="Source Sans 3,sans-serif" font-size="10" fill="#7a6a55" text-anchor="middle">複数の視点を同時に重ねる</text>
+<text x="420" y="193" font-family="Source Sans 3,sans-serif" font-size="10" fill="#b0a090" text-anchor="middle">対象の「全体」を1枚に圧縮</text>
+</svg>
+<p class="diagram-caption">左: ルネサンスの一点透視図法。右: キュビズムの多視点。対象を複数の角度から同時に描き、1枚の平面に再構築する。</p>
+</div>
+
+<p class="body-text fade">セザンヌが残した着想を爆発的に推し進めたのが、<span class="tip" onclick="toggleTip(this)">パブロ・ピカソ<span class="tip-box"><strong>パブロ・ピカソ（1881–1973）</strong><br>スペイン生まれの画家・彫刻家。ブラックとともにキュビズムを創始した。</span></span>——1907年当時25歳——と<span class="tip" onclick="toggleTip(this)">ジョルジュ・ブラック<span class="tip-box"><strong>ジョルジュ・ブラック（1882–1963）</strong><br>フランスの画家。ピカソとともにキュビズムを共同で発展させた。</span></span>だ。だが「なぜ彼らは壊す必要があったのか」を理解するには、もう少し背景が必要だ。</p>
+
+<div class="person-block fade">
+<div class="person-block-img"><img src="img_picasso_photo_1908.jpg" alt="ピカソ（1908年）" loading="lazy"></div>
+<div class="person-block-body">
+<p class="person-block-name">パブロ・ピカソ</p>
+<p class="person-block-role">Pablo Ruiz Picasso / 1881–1973</p>
+<p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Pablo_Picasso" target="_blank" rel="noopener">Wikipedia</a></p>
+<p class="person-block-desc">1907年に『アヴィニョンの娘たち』を完成。セザンヌの幾何学とアフリカ彫刻を融合させ、ルネサンス以来の絵画の約束を破壊した。写真はモンマルトルのアトリエにて（1908年）。背後にアフリカ彫刻のコレクションが見える。</p>
+</div>
+</div>
+
+<hr class="art-rule">
+<h2 class="fade">なぜ壊す必要があったのか——3つの圧力</h2>
+
+<p class="body-text fade"><strong>第一の圧力は、写真の存在だ。</strong>1839年に<span class="tip" onclick="toggleTip(this)">ダゲレオタイプ<span class="tip-box"><strong>ダゲレオタイプ（Daguerreotype）</strong><br>1839年にフランスのルイ・ダゲールが実用化した世界初の商業的写真技法。銀メッキした銅板に像を定着させる。露光時間は当初15分以上かかった。</span></span>が発明されて以来、「見えるままに描く」という絵画の存在意義は根底から揺らいでいた。写真は遠近法を完璧に再現する。光と影を忠実に捉える。画家が何百時間かけて描いたものを、カメラは一瞬で記録する。印象派は「写真にはできない光の表現」で応答した。セザンヌは「写真には見えない構造の表現」で応答した。キュビズムは、その先に進んだ——<em>写真が絶対に捉えられないもの</em>、つまり「複数の視点」「内部構造」「時間の重なり」を描くことで。</p>
+
+<p class="body-text fade"><strong>第二の圧力は、アフリカ彫刻との出会いだ。</strong>ピカソは1907年、パリの<span class="tip" onclick="toggleTip(this)">トロカデロ宮殿<span class="tip-box"><strong>トロカデロ宮殿（Palais du Trocadéro）</strong><br>パリの民族学博物館。1878年の万博のために建設された。アフリカ、オセアニア、アジアの美術品を収蔵していた。</span></span>の民族学博物館でアフリカの仮面と彫刻を見た。衝撃だった。それらは写実とは無縁だが、人間の本質を力強く捉えていた。顔を抽象化し、目と口を幾何学的な記号に変換し、それでも「顔」として強烈に存在する。<strong>写実だけが正解ではない。</strong>ピカソはそれを確信した。</p>
+
+<div class="painting-wrap fade">
+<img src="img_cezanne_large_bathers.jpg" alt="セザンヌ『大水浴図』" loading="lazy">
+<p class="painting-caption"><strong>セザンヌ『大水浴図（Les Grandes Baigneuses）』</strong>（1898–1905年）｜油彩・カンヴァス、210.5×250.8cm｜<em>フィラデルフィア美術館蔵</em>｜セザンヌ最大の野心作。人体は幾何学的な三角形の構図に組み込まれ、個々の肉体よりも全体の構造が優先されている。ピカソの『アヴィニョンの娘たち』に直接影響を与えた。</p>
+</div>
+
+<p class="body-text fade"><strong>第三の圧力は、時代の空気だ。</strong>1905年にアインシュタインが<span class="tip" onclick="toggleTip(this)">特殊相対性理論<span class="tip-box"><strong>特殊相対性理論（1905年）</strong><br>アインシュタインが発表した理論。時間と空間は観測者の速度によって変化するという、直感に反する結論を導いた。「絶対的な視点はない」という考えの科学的裏付けとなった。</span></span>を発表し、「絶対的な視点」という概念自体が物理学で崩壊しつつあった。哲学者<span class="tip" onclick="toggleTip(this)">アンリ・ベルクソン<span class="tip-box"><strong>アンリ・ベルクソン（1859–1941）</strong><br>フランスの哲学者。時間は固定された瞬間の連続ではなく「持続」であると論じた。知覚と記憶の関係を探求し、芸術家たちに大きな影響を与えた。</span></span>は「時間は固定された瞬間の連続ではなく、流れる持続である」と論じていた。数学では<span class="tip" onclick="toggleTip(this)">非ユークリッド幾何学<span class="tip-box"><strong>非ユークリッド幾何学</strong><br>平行線の公準を否定する幾何学。19世紀にリーマン、ロバチェフスキーらが確立した。空間そのものが曲がりうるという考えを数学的に証明した。</span></span>が空間そのものの曲がりを記述していた。<em>「1つの正しい見方」という前提自体が崩れ始めていた。</em>ピカソとブラックが遠近法を壊したのは、彼らだけの奇行ではない。時代全体が「唯一の正解」を解体しつつあった。</p>
+
+<div class="quote-block fade">
+<p class="quote-en">"The hard-and-fast rules of perspective which it succeeded in imposing on art were a ghastly mistake which it has taken four centuries to redress."</p>
+<p class="quote-ja">遠近法が芸術に強制した厳格なルールは、修正するのに4世紀を要した恐ろしい過ちだった。</p>
+<p class="quote-attr">— ジョルジュ・ブラック、The Observer紙（1957年）</p>
+</div>
+
+<p class="body-text fade">1907年、ピカソは巨大なカンヴァス（243.9×233.7cm）に『アヴィニョンの娘たち』を完成させた。5人の裸婦が幾何学的な面に分割され、右側の2人にはアフリカの仮面のような造形が与えられている。正面と横顔が同時に見える。友人たちの反応は散々だった。<span class="tip" onclick="toggleTip(this)">マティス<span class="tip-box"><strong>アンリ・マティス（1869–1954）</strong><br>フォーヴィスムの中心人物。ピカソの最大のライバルであり友人でもあった。</span></span>は怒り、ブラックは最初「まやかしだ」と言った。だがブラックはこの絵に引き寄せられた。翌1908年、彼は南仏レスタックの風景を幾何学的な立体に還元して描き、批評家ヴォーセルの「小さな立方体の奇妙な集まり」という評から、<em>キュビズム</em>という名前が生まれた。</p>
+
+<table class="compare-table fade">
+<tr><th></th><th>ルネサンス〜印象派</th><th>キュビズム</th></tr>
+<tr><td style="font-weight:600">視点</td><td>1つの固定された視点</td><td>複数の視点を同時に重ねる</td></tr>
+<tr><td style="font-weight:600">空間</td><td>奥行きの錯覚（遠近法）</td><td>平面に圧縮する</td></tr>
+<tr><td style="font-weight:600">対象</td><td>見えるままに描く</td><td>分解し、知っている形すべてを再構築する</td></tr>
+<tr><td style="font-weight:600">色彩</td><td>光と影を再現する</td><td>形を識別するための手段（褐色・灰色中心）</td></tr>
+<tr><td style="font-weight:600">目標</td><td>「見えている世界」の再現</td><td>「知っている世界」の再構築</td></tr>
+</table>
+
+<div class="misconception fade">
+<div class="misconception-header"><p class="misconception-hl">読む前に確認 — よくある誤解</p></div>
+<div class="misconception-body">
+<div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">キュビズムは「子供の絵のような下手な絵」</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">ピカソは14歳で美術アカデミーの入試を1日で突破した。写実力を極めた上で、意図的に壊すことを選んだ</p></div></div>
+<div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">キュビズムは完全な抽象画だ</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">主題は瓶、ギター、新聞、人物の顔など現実の対象。分解しても「何が描かれているか」は常に辿れる</p></div></div>
+<div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">ピカソが一人で発明した</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">ピカソとブラックの共同作業。2人の絵は区別がつかないほど似ていた</p></div></div>
+</div>
+</div>
+
+<!-- 体験セクション -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">視点を重ねる——コーヒーカップで理解するキュビズム</h2>
+
+<p class="body-text fade">キュビズムには複数の要素がある——多視点の重畳、内部構造の可視化、形の幾何学化、奥行きの圧縮、現実素材の混入。ここではそのうち最初の2つ、<strong>「複数の視点を重ねること」と「見えない内部を可視化すること」</strong>を、コーヒーカップを使って体験する。残りの要素は次のセクションで解説する。</p>
+
+<p class="body-text fade">下に3Dのコーヒーカップがある。上段の5つのビュー（正面・上・横・底・断面）をクリックすると、そのビューが下の合成キャンバスに重なっていく。全部重ねたとき——それがキュビズムの出発点にある発想だ。</p>
+
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">✦ Multi-View Cup</span></div>
+<div class="ix-body">
+<div class="ix-scope"><strong>このシミュレーションが扱う範囲：</strong>キュビズムの「多視点の重畳」と「内部の可視化」。実際のキュビズム絵画では、これに加えて形の幾何学化（曲面を直線的な面に変換）、奥行きの完全な圧縮、現実素材の貼り込みが行われる。ここで体験するのはキュビズムの発想の入口であり、全体像ではない。</div>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;margin-bottom:14px;">上段のビューをクリックでON/OFF。下のキャンバスに重なっていく。</p>
+<div class="cup-grid" id="cupGrid">
+<div class="cup-sm on" id="sm0" onclick="toggleV(0)"><div class="cup-sm-lbl">正面</div></div>
+<div class="cup-sm" id="sm1" onclick="toggleV(1)"><div class="cup-sm-lbl">上から</div></div>
+<div class="cup-sm" id="sm2" onclick="toggleV(2)"><div class="cup-sm-lbl">横から</div></div>
+<div class="cup-sm" id="sm3" onclick="toggleV(3)"><div class="cup-sm-lbl">底から</div></div>
+<div class="cup-sm" id="sm4" onclick="toggleV(4)"><div class="cup-sm-lbl">断面</div></div>
+</div>
+<div class="cup-big" id="bigBox"><div class="cup-big-lbl" id="bigLbl">正面のみ</div></div>
+<p class="cup-msg" id="cupMsg">正面から見たカップ。取っ手が右に見える。でも上は？ 中は？ 底は？</p>
+<p class="cup-count" id="cupCount">1 / 5 視点</p>
+</div>
+</div>
+<p class="ix-note fade">キュビズムの画家たちはこの「重ねる」操作を直感で行った。このシミュレーションは原理を概念的に示したもの。</p>
+
+<p class="body-text fade">あなたが5つの視点をすべて重ねたとき、画面には「ありえないカップ」が映っている。現実にはこの角度から見ることは不可能だ。だがこの「ありえない絵」は、あなたがコーヒーカップについて<em>知っているすべて</em>を含んでいる。</p>
+
+<p class="body-text fade"><strong>実際のキュビズムの絵画は、ここからさらに踏み込んでいる。</strong>曲面を直線的な面に分解する「幾何学化」がその一つだ。あなたがカップで体験した多視点の重畳に加え、画家たちはすべての丸みを四角い面の集合に変換した。次の絵を見てほしい。</p>
+
+<div class="painting-wrap fade">
+<img src="img_gris_picasso_portrait.jpg" alt="グリス『ピカソの肖像』1912年" loading="lazy">
+<p class="painting-caption"><strong>フアン・グリス『ピカソの肖像』</strong>（1912年）｜油彩・カンヴァス、93.3×74.4cm｜<em>シカゴ美術館蔵</em>｜あなたがカップでやったことを、グリスは人物の顔でやった。さらに、すべての曲面が直線的な面に変換されている——これが「幾何学化」だ。</p>
+</div>
+
+<hr class="art-rule">
+<h2 class="fade">「小さな立方体」——分析から総合へ</h2>
+
+<p class="body-text fade">1908年から1912年にかけて、ピカソとブラックは<strong>分析的キュビズム（Analytic Cubism）</strong>を深化させた。対象を徹底的に「分析」し、褐色と灰色のモノクロームで断片化する。2人は毎日のようにアトリエを行き来し、署名は絵の裏にだけ書いた。ブラックは「あの頃ピカソと話したことは、もう二度と話されることはないだろう」と語っている。</p>
+
+<p class="body-text fade">だが分析を極めた結果、1911年頃、2人の絵は何が描かれているかほとんど判別できなくなった。<strong>抽象画の手前まで来ていた。しかし2人はそこで踏みとどまった。</strong>ギターの弦の一本、グラスの曲線、新聞の文字——対象への手がかりを必ず残した。完全な抽象に踏み込むことを拒んだのだ。</p>
+
+<p class="body-text fade">1912年、ブラックが<strong>本物の壁紙を絵に貼り付けた</strong>。ピカソは新聞を貼った。<span class="tip" onclick="toggleTip(this)">パピエ・コレ<span class="tip-box"><strong>パピエ・コレ（Papier collé）</strong><br>「貼り紙」の意。紙を切り貼りする技法で、キュビズムの中から生まれた。現代のコラージュの直接の祖先。</span></span>の誕生だ。ここから<strong>総合的キュビズム（Synthetic Cubism）</strong>が始まる。色が戻り、形は大胆に単純化された。「描く」から「組み立てる」へ。</p>
+
+<div class="painting-wrap fade">
+<img src="img_gris_guitar_table.jpg" alt="グリス『テーブルの上のギター』" loading="lazy">
+<p class="painting-caption"><strong>フアン・グリス『テーブルの上のギター』</strong>（1915年）｜油彩・カンヴァス｜<em>リジクス美術館蔵</em>｜総合的キュビズム。形は大胆に単純化され、色が鮮やかに戻っている。分析的キュビズムのモノクロームとは対照的だ。</p>
+</div>
+
+<div class="painting-wrap fade">
+<img src="img_gris_open_window.jpg" alt="グリス『開いた窓の前の静物』" loading="lazy">
+<p class="painting-caption"><strong>フアン・グリス『開いた窓の前の静物、ラヴィニャン広場』</strong>（1915年）｜油彩・カンヴァス｜<em>フィラデルフィア美術館蔵</em>｜窓の外の風景と室内の静物が同一平面上で透過し合う。内と外の境界が消えている。</p>
+</div>
+
+<!-- なぜかセクション -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">キュビズムの5つの操作</h2>
+
+<p class="body-text fade">体験コンテンツで触れた2つに加え、残り3つの操作がある。5つ合わせてはじめて「キュビズム」になる。</p>
+
+<div class="steps-wrap fade">
+<p class="steps-head">キュビズムの5つの操作</p>
+<div class="step-card" id="sc1"><div class="step-hd" onclick="tog(1)"><div class="step-nb">1</div><div class="step-tw"><div class="step-title">多視点の重畳</div><div class="step-sub">体験コンテンツで体験済み</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>正面・横・上・後ろから見た形を1枚の平面に重ねる。<strong>写真が1つの角度しか捉えられないのに対し、キュビズムはすべての角度を同時に持とうとした。</strong>エジプトの壁画が顔を横から、目を正面から描いたのと同じ発想だ。</p></div></div>
+<div class="step-card" id="sc2"><div class="step-hd" onclick="tog(2)"><div class="step-nb">2</div><div class="step-tw"><div class="step-title">内部の可視化</div><div class="step-sub">体験コンテンツで体験済み</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>外から見えないはずの断面・中身を描く。<strong>レモンの丸ごとの外観と、切った断面が同じ絵に共存する。</strong>「知っているなら描く」——見えるかどうかは関係ない。</p></div></div>
+<div class="step-card" id="sc3"><div class="step-hd" onclick="tog(3)"><div class="step-nb">3</div><div class="step-tw"><div class="step-title">幾何学化</div><div class="step-sub">曲面を直線的な面に分解する</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>セザンヌの「円筒・球・円錐」をさらに推し進め、<strong>すべての曲面を平らな面の集合に変換する。</strong>3Dゲームでポリゴン数を下げるとキャラの顔がカクカクになるのと似ている。ただしゲームでは「ポリゴン数が多いほど良い」。キュビズムはその逆——<em>あえてカクカクにする</em>ことで、形の構造を剥き出しにする。</p></div></div>
+<div class="step-card" id="sc4"><div class="step-hd" onclick="tog(4)"><div class="step-nb">4</div><div class="step-tw"><div class="step-title">平面への圧縮</div><div class="step-sub">奥行きを完全に潰す</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>ルネサンスの遠近法は奥行きを演出した。キュビズムはその逆——<strong>すべてを画面の表面に引きずり出す。</strong>前景も背景もない。トランプの手札を扇形に広げるのではなく、全部テーブルに並べるようなものだ。</p></div></div>
+<div class="step-card" id="sc5"><div class="step-hd" onclick="tog(5)"><div class="step-nb">5</div><div class="step-tw"><div class="step-title">現実の混入</div><div class="step-sub">新聞・壁紙を貼る（総合的キュビズム）</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>1912年、ブラックが壁紙を貼り、ピカソが新聞を貼った。<strong>「新聞を描く」のではなく「本物の新聞を置く」。</strong>料理の写真をメニューに載せるのと、本物の料理をメニューに貼り付けるのとの違い。後者をやったのがキュビズムだ。ここから<span class="tip" onclick="toggleTip(this)">レディメイド<span class="tip-box"><strong>レディメイド（Readymade）</strong><br>既製品をそのまま芸術作品として提示する手法。デュシャンが始めた。</span></span>やコラージュへ繋がっていく。</p></div></div>
+<div class="step-summary"><p>キュビズムは ①多視点を重ね ②内部を可視化し ③曲面を幾何学化し ④奥行きを潰し ⑤現実素材を混入した。5つの操作が重なることで「見えるもの」ではなく「知っているもの」の全体を描こうとした。</p></div>
+</div>
+
+<!-- 歴史 -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">セザンヌの山から第一次世界大戦まで</h2>
+<p class="body-text fade"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#8b1a1a;vertical-align:middle;margin-right:4px;"></span>赤 = キュビズムの核心。<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;vertical-align:middle;margin-right:4px;margin-left:12px;"></span>白 = 関連する動き。</p>
+
+<div class="timeline fade">
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1904–07</p><p class="tl-title">セザンヌの回顧展がパリで相次ぐ</p><p class="tl-desc">サロン・ドートンヌでの連続展示と1907年の死後回顧展。「幾何学で自然を捉える」発想が広まった。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1907</p><p class="tl-title">ピカソ『アヴィニョンの娘たち』完成</p><p class="tl-desc">セザンヌの幾何学、アフリカ彫刻、イベリア美術が融合。公開は1916年まで遅れた。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1908</p><p class="tl-title">ブラック、レスタックの風景画——「キュビズム」の名が誕生</p><p class="tl-desc">批評家ヴォーセルの「小さな立方体」から命名された。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1909–11</p><p class="tl-title">分析的キュビズムの深化</p><p class="tl-desc">2人の絵が区別できないほど似てくる。モノクロに近い色彩、極限の断片化。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1912</p><p class="tl-title">パピエ・コレの発明——総合的キュビズムへ</p><p class="tl-desc">ブラックが壁紙を、ピカソが新聞を貼り始める。コラージュの誕生。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1913</p><p class="tl-title">アーモリーショー（ニューヨーク）</p><p class="tl-desc">キュビズムがアメリカに紹介される。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1914</p><p class="tl-title">第一次世界大戦——共同作業の終焉</p><p class="tl-desc">ブラックは従軍し1915年に重傷。2人の親密な協力関係はここで終わった。</p></div>
+</div>
+
+<!-- つまり -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">壊したのは絵画ではなく、「見る」という前提だった</h2>
+
+<p class="body-text fade">キュビズムが壊したのは遠近法という技法ではない。「絵は現実を窓越しに見せるものだ」という400年間の前提だ。<span class="tip" onclick="toggleTip(this)">アルベルティ<span class="tip-box"><strong>レオン・バッティスタ・アルベルティ（1404–1472）</strong><br>ルネサンスの建築家・理論家。1435年の『絵画論』で絵画を「開かれた窓」と定義した。</span></span>が1435年に絵画を「開かれた窓」と定義して以来、西洋絵画はその窓を精巧にすることに全力を注いできた。印象派は光を描いた。セザンヌは構造を描いた。キュビズムは<em>知識を描いた</em>。</p>
+
+<div class="pull fade">
+<p class="pull-q">"I paint objects as I <em>think</em> them, not as I see them."</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">私は対象を見えるままに描くのではない。考えるままに描く。</p>
+<p class="pull-attr">— パブロ・ピカソ、Marius de Zayasによるインタビュー（1923年）</p>
+</div>
+
+<p class="body-text fade">だが——ピカソとブラックは、ある地点で立ち止まった。分析的キュビズムが抽象の手前まで到達したとき、2人は完全な抽象に踏み込むことを拒んだ。ギターの弦、グラスの縁、新聞の文字——現実の対象への手がかりを、常に残した。「対象が存在すること」が、彼らにとって絵画の条件だった。</p>
+
+<p class="body-text fade"><strong>踏みとどまらなかった人もいる。</strong><span class="tip" onclick="toggleTip(this)">ピエト・モンドリアン<span class="tip-box"><strong>ピエト・モンドリアン（1872–1944）</strong><br>オランダの画家。キュビズムから出発し、直線と原色だけの完全な抽象（ネオ・プラスティシズム）に到達した。デ・スティル運動の中心人物。</span></span>はキュビズムから出発した。初期のモンドリアンは木や建物をキュビズム的に描いていた。だが彼はそこで止まらず、曲線を直線に、具象を抽象に、最終的には直線と原色だけの世界——<span class="tip" onclick="toggleTip(this)">デ・スティル<span class="tip-box"><strong>デ・スティル（De Stijl）</strong><br>1917年にオランダで始まった芸術運動。水平線・垂直線・原色だけで構成される純粋な抽象を追求した。</span></span>——にまで突き抜けた。</p>
+
+<div class="painting-compare fade">
+<div class="painting-wrap">
+<img src="img_mondrian_gray_tree.jpg" alt="モンドリアン『灰色の木』1911年" loading="lazy">
+<p class="painting-caption"><strong>モンドリアン『灰色の木（Gray Tree）』</strong>（1911年）｜<em>ハーグ市立美術館蔵</em>｜キュビズム的段階。木の枝が幾何学的な面に分解されているが、まだ「木」と認識できる。</p>
+</div>
+<div class="painting-wrap">
+<img src="img_mondrian_apple_tree.jpg" alt="モンドリアン『花咲くリンゴの木』1912年" loading="lazy">
+<p class="painting-caption"><strong>モンドリアン『花咲くリンゴの木（Blossoming Apple Tree）』</strong>（1912年）｜<em>ハーグ市立美術館蔵</em>｜さらに抽象化が進む。曲線が直線に近づき、木の輪郭がほとんど消えている。</p>
+</div>
+</div>
+
+<div class="painting-wrap fade">
+<img src="img_mondrian_composition_rby.jpg" alt="モンドリアン『赤・青・黄のコンポジション II』1930年" loading="lazy">
+<p class="painting-caption"><strong>モンドリアン『コンポジション II（赤・青・黄）』</strong>（1930年）｜油彩・カンヴァス、46×46cm｜<em>チューリッヒ美術館蔵</em>｜キュビズムの先にある完全な抽象。直線と原色だけで構成され、現実の対象は一切残っていない。ピカソが「踏みとどまった場所」から、モンドリアンは突き抜けた。</p>
+</div>
+
+<p class="body-text fade">キュビズムは分岐点だった。ピカソとブラックは「現実の対象は手放さない」と決めた。モンドリアンとカンディンスキーは「手放す」と決めた。どちらが正しいかではない。キュビズムが遠近法を壊したことで、その先に複数の道が開けた。完璧な再現が不可能だとわかったとき、画家は抽象へ向かうか、再現の方法を再発明するかを選ぶことになる。キュビズムはその選択を強いた最初の運動だった。</p>
+
+<div class="culture-block fade">
+<div class="culture-label">文化の中に現れる</div>
+<div class="culture-item"><p class="culture-title">ガートルード・スタインの文学的キュビズム</p><p class="culture-desc">パリのスタインのサロンはピカソ・ブラック・グリスの溜まり場だった。スタインは文学で多視点を試みた——同じ語句を反復し、時間軸を崩し、自分を三人称で語る「視点の分解」を実践した。</p></div>
+<div class="culture-item"><p class="culture-title">ストラヴィンスキー『春の祭典』（1913年）</p><p class="culture-desc">音楽における「分解と再構築」。拍子は非対称に変化し、旋律は断片化され、初演は暴動を引き起こした。</p></div>
+<div class="culture-item"><p class="culture-title">建築とデザイン</p><p class="culture-desc">ル・コルビュジエ、ミース・ファン・デル・ローエらのモダニズム建築はキュビズムの幾何学から直接の影響を受けている。アール・デコの幾何学的パターンもキュビズムの子孫だ。</p></div>
+</div>
+
+<hr class="art-rule">
+
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+<div class="ref-list">
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">美術史</span><span class="ref-year">1920</span></div><p class="ref-title"><a href="https://doi.org/10.11588/diglit.36498" target="_blank" rel="noopener">Der Weg zum Kubismus</a></p><p class="ref-author">Daniel-Henry Kahnweiler — Delphin Verlag</p><p class="ref-desc">キュビズムの画商が運動の内側から書いた最初の記録。当事者の証言として比類がない。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">展覧会カタログ</span><span class="ref-year">1989</span></div><p class="ref-title"><a href="https://www.moma.org/calendar/exhibitions/2087" target="_blank" rel="noopener">Picasso and Braque: Pioneering Cubism</a></p><p class="ref-author">William Rubin — Museum of Modern Art, New York</p><p class="ref-desc">MoMAの大規模展の記録。2人の協力関係を作品の並置で跡づける。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">理論書</span><span class="ref-year">1912</span></div><p class="ref-title"><a href="https://doi.org/10.5479/sil.257019.39088005765961" target="_blank" rel="noopener">Du "Cubisme"</a></p><p class="ref-author">Albert Gleizes, Jean Metzinger — Figuière</p><p class="ref-desc">画家たち自身が書いたキュビズム最初の理論書。「なぜ壊す必要があるのか」への当事者の答え。</p></div>
+</div>
+
+<div class="note-box fade"><strong>📌 この記事について</strong><br>キュビズムの歴史的経緯はカーンワイラーの一次資料、MoMA・テート・メトロポリタン美術館の公開エッセイに基づいている。掲載絵画はすべてパブリックドメイン（セザンヌ1906年没、グリス1927年没、モンドリアン1944年没）。ピカソ・ブラックの作品は著作権存続中（2043年・2033年まで）のため掲載していない。体験コンテンツはキュビズムの原理を概念的に示したもの。</p></div>
+
+<div class="tags fade"><span class="tag" style="background:#8b1a1a;color:white;border-color:#8b1a1a;">科学と文化</span><span class="tag">美術史</span><span class="tag">キュビズム</span><span class="tag">知覚</span><span class="tag">多視点</span></div>
+
+</div><!-- /article-main -->
+
+<div class="article-side">
+<div style="position:sticky;top:40px;">
+<div class="sidebar-block fade"><p class="sidebar-label">Key Number</p><p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">7</p><p class="sidebar-text">ピカソとブラックがキュビズムを共同で発展させた年数（1907–1914）。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">1907年のパリは<strong>ベル・エポック</strong>の絶頂期。三国協商が成立し、ヨーロッパは大戦前夜にあった。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">スタインの文学作品群、ストラヴィンスキー『春の祭典』、デュシャン『階段を降りる裸体 No.2』</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— 印象派と筆触分割<br>— 色は存在しない<br>— 遠近法の歴史</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">MoMA・Tate・メトロポリタン美術館の公開資料と標準的な美術史文献に基づく。</p></div>
+</div>
+</div>
+</div><!-- /article -->
+
+<div class="terminal-label-wrap fade"><div class="terminal-label"><span class="terminal-label-text">▼ Internal Dialogue >> Active</span><div class="terminal-label-line"></div></div></div>
+<div class="terminal-wrap"><div class="terminal fade" id="terminalBlock"><div class="terminal-bar"><div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div><span class="terminal-title">after.sh — 読後の対話ログ（架空）</span></div><div class="terminal-body">
+<span class="t-sys" id="ts0">// session started — キュビズムと多視点の革命</span>
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ピカソの絵がよくわからないのは見る側の問題？</span></div>
+<span class="t-output" id="to1">問題じゃない。<em>混乱は設計通り</em>。分析的キュビズムの絵は3分くらい見続けていると断片から元の形が浮かんでくる。その瞬間が面白い。</span><hr class="t-divider">
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ブラックとピカソの絵が区別つかなかったって本当？</span></div>
+<span class="t-output" id="to2">1909〜12年はほぼ本当。署名はキャンバスの裏にだけ書いた。<em>「誰が描いたか」より「何が起きているか」</em>の方が重要だった。</span><hr class="t-divider">
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;モンドリアンとピカソ、どっちが正しかったの？</span></div>
+<span class="t-output" id="to3">どっちも。ピカソは<em>対象を手放さなかった</em>。モンドリアンは手放して直線と原色の世界に行った。キュビズムが扉を開けて、2人は違う方向に歩いた。正しさの問題じゃない。</span><hr class="t-divider">
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;写真がなかったらキュビズムは生まれなかった？</span></div>
+<span class="t-output" id="to4">写真だけが原因じゃない。でも<strong>「見えるままに描く」の意味が変わったのは写真のせい</strong>だ。写真がなければ、遠近法を壊す動機は弱かったかもしれない。セザンヌもアフリカ彫刻も必要だったけど、写真という圧力がなければ、もっと緩やかな変化だったはず。</span><hr class="t-divider">
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 見方が変わった</span></div>
+</div></div></div>
+
+<div class="related fade"><p class="related-label">次に読む</p><div class="related-grid">
+<a class="related-card" href="/impressionism_divisionism"><p class="related-card-tag">科学と文化 × 視覚</p><p class="related-card-title">なぜ絵の具を混ぜないのか</p><p class="related-card-desc">印象派が筆触分割で到達した「混ぜない色」。キュビズムの前史としての色彩革命を体験する。</p><p class="related-card-arrow">読む →</p></a>
+<a class="related-card" href="/color"><p class="related-card-tag">知覚・錯覚 × 視覚</p><p class="related-card-title">色は存在しない</p><p class="related-card-desc">波長380〜700nmの電磁波に、脳が「色」というラベルを貼る。知覚の根底を揺さぶる。</p><p class="related-card-arrow">読む →</p></a>
+</div></div>
+
+<script>
+window.addEventListener('scroll',function(){var h=document.documentElement;var p=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;document.getElementById('prog').style.width=p+'%';});
+var fades=document.querySelectorAll('.fade');var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});},{threshold:0.12});fades.forEach(function(el){obs.observe(el);});
+function toggleTip(el){var w=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(function(t){t.classList.remove('open');});if(!w)el.classList.add('open');}
+document.addEventListener('click',function(e){if(!e.target.closest('.tip'))document.querySelectorAll('.tip.open').forEach(function(t){t.classList.remove('open');});});
+function tog(n){var c=document.getElementById('sc'+n);var was=c.classList.contains('open');document.querySelectorAll('.step-card').forEach(function(x){x.classList.remove('open');});if(!was)c.classList.add('open');}
+tog(1);
+
+(function(){
+var s=document.createElement('script');
+s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+s.onload=initCup;
+s.onerror=function(){document.getElementById('cupMsg').textContent='3Dライブラリの読み込みに失敗しました。ブラウザで直接開いてください。';};
+document.body.appendChild(s);
+
+function initCup(){
+if(typeof THREE==='undefined')return;
+var viewDefs=[
+  {name:'正面',pos:[0,0.2,3.5],look:[0,0,0]},
+  {name:'上から',pos:[0,3.5,0.01],look:[0,0,0]},
+  {name:'横から',pos:[3.5,0.2,0],look:[0,0,0]},
+  {name:'底から',pos:[0,-3.5,0.01],look:[0,0,0]},
+  {name:'断面',pos:[0,0.6,3.2],look:[0,0,0]}
+];
+var viewColors=['#3d3020','#8b1a1a','#2a6a2a','#8a6020','#5040a0'];
+var activeViews=[true,false,false,false,false];
+
+function makeCup(opts){
+  var g=new THREE.Group();
+  var col=opts&&opts.color?parseInt(opts.color.replace('#',''),16):0xd4c9b0;
+  var wire=opts&&opts.wireOnly;
+  var cross=opts&&opts.crossSection;
+  if(!cross){
+    var bMat=wire?new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:0.08,side:THREE.DoubleSide}):new THREE.MeshBasicMaterial({color:0xd4c9b0,transparent:true,opacity:0.3});
+    var body=new THREE.Mesh(new THREE.CylinderGeometry(0.52,0.42,1.0,32,1,false),bMat);
+    g.add(body);
+    g.add(new THREE.LineSegments(new THREE.EdgesGeometry(body.geometry,20),new THREE.LineBasicMaterial({color:wire?col:0x6a5a4a,transparent:true,opacity:wire?0.6:0.5})));
+    var rim=new THREE.Mesh(new THREE.TorusGeometry(0.52,0.025,8,32),new THREE.MeshBasicMaterial({color:wire?col:0x8a7a6a,transparent:true,opacity:wire?0.7:1}));
+    rim.rotation.x=Math.PI/2;rim.position.y=0.5;g.add(rim);
+    var bot=new THREE.Mesh(new THREE.CircleGeometry(0.42,32),new THREE.MeshBasicMaterial({color:wire?col:0xb8a888,side:THREE.DoubleSide,transparent:true,opacity:wire?0.15:0.5}));
+    bot.rotation.x=-Math.PI/2;bot.position.y=-0.5;g.add(bot);
+    var curve=new THREE.CatmullRomCurve3([new THREE.Vector3(0.52,0.25,0),new THREE.Vector3(0.82,0.25,0),new THREE.Vector3(0.82,-0.15,0),new THREE.Vector3(0.52,-0.15,0)]);
+    g.add(new THREE.Mesh(new THREE.TubeGeometry(curve,20,0.04,8,false),new THREE.MeshBasicMaterial({color:wire?col:0x8a7a6a,transparent:true,opacity:wire?0.5:0.7})));
+  } else {
+    var pts=[new THREE.Vector2(0.42,-0.5),new THREE.Vector2(0.52,0.5),new THREE.Vector2(0.48,0.5),new THREE.Vector2(0.38,-0.46),new THREE.Vector2(-0.38,-0.46),new THREE.Vector2(-0.48,0.5),new THREE.Vector2(-0.52,0.5),new THREE.Vector2(-0.42,-0.5)];
+    var shape=new THREE.Shape();shape.moveTo(pts[0].x,pts[0].y);for(var i=1;i<pts.length;i++)shape.lineTo(pts[i].x,pts[i].y);shape.closePath();
+    var cGeo=new THREE.ShapeGeometry(shape);
+    g.add(new THREE.Mesh(cGeo,new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:0.1,side:THREE.DoubleSide})));
+    var edgePts=[];for(var i=0;i<pts.length;i++)edgePts.push(new THREE.Vector3(pts[i].x,pts[i].y,0));edgePts.push(new THREE.Vector3(pts[0].x,pts[0].y,0));
+    var lineGeo=new THREE.BufferGeometry().setFromPoints(edgePts);
+    g.add(new THREE.Line(lineGeo,new THREE.LineBasicMaterial({color:col,transparent:true,opacity:0.6})));
+  }
+  return g;
+}
+
+for(var i=0;i<5;i++){
+  var box=document.getElementById('sm'+i);if(!box)continue;
+  var sz=box.clientWidth||100;
+  var sc=new THREE.Scene();sc.background=new THREE.Color(0xfaf8f3);
+  var cam=new THREE.PerspectiveCamera(30,1,0.1,100);
+  var v=viewDefs[i];cam.position.set(v.pos[0],v.pos[1],v.pos[2]);cam.lookAt(v.look[0],v.look[1],v.look[2]);
+  sc.add(makeCup(i===4?{crossSection:true,color:viewColors[i]}:{}));
+  var r=new THREE.WebGLRenderer({antialias:true});r.setSize(sz,sz);r.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  box.insertBefore(r.domElement,box.firstChild);r.render(sc,cam);
+}
+
+var bigBox=document.getElementById('bigBox');if(!bigBox)return;
+var bigSz=bigBox.clientWidth||420;
+var bigRenderers=[];
+for(var i=0;i<5;i++){
+  var sc=new THREE.Scene();
+  if(i===0)sc.background=new THREE.Color(0xfaf8f3);
+  var cam=new THREE.PerspectiveCamera(30,1,0.1,100);
+  var v=viewDefs[i];cam.position.set(v.pos[0],v.pos[1],v.pos[2]);cam.lookAt(v.look[0],v.look[1],v.look[2]);
+  if(i===0)sc.add(makeCup({}));
+  else if(i<4)sc.add(makeCup({wireOnly:true,color:viewColors[i]}));
+  else sc.add(makeCup({crossSection:true,color:viewColors[i]}));
+  var r=new THREE.WebGLRenderer({antialias:true,alpha:i>0});
+  r.setSize(bigSz,bigSz);r.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  if(i>0)r.setClearColor(0x000000,0);
+  r.domElement.style.position='absolute';r.domElement.style.top='0';r.domElement.style.left='0';
+  if(i>0)r.domElement.style.display='none';
+  bigBox.insertBefore(r.domElement,bigBox.querySelector('.cup-big-lbl'));
+  r.render(sc,cam);
+  bigRenderers.push(r);
+}
+
+var msgs=['正面から見たカップ。取っ手が右に見える。でも上は？ 中は？ 底は？','上から見下ろした。口の円と中の空洞が見える。正面からは絶対にわからない情報。','真横から。取っ手の突き出しとカップの厚みがわかる。','底面。テーブルに触れる円。ひっくり返さないと見えない。','断面。壁の厚みと中の空洞が見える——カップを割らないと見えない構造。これが「内部の可視化」だ。'];
+function updateBig(){for(var i=0;i<5;i++){bigRenderers[i].domElement.style.display=activeViews[i]?'block':'none';}var n=activeViews.filter(Boolean).length;var lbl=document.getElementById('bigLbl');if(n<=1)lbl.textContent='正面のみ';else if(n===5)lbl.textContent='全視点＋断面を重畳';else lbl.textContent=n+'つの視点を重畳';}
+function buildMsg(){var on=[];for(var i=0;i<5;i++)if(activeViews[i])on.push(i);if(on.length===1&&on[0]===0)return msgs[0];if(on.length===5)return 'すべての視点と内部構造が1枚に重なった。現実にはありえない。でもあなたはこのカップの全部を「知っている」。これがキュビズムの出発点だ。';return msgs[on[on.length-1]]+' （'+on.length+'/5視点）';}
+window.toggleV=function(idx){if(idx===0)return;activeViews[idx]=!activeViews[idx];document.getElementById('sm'+idx).classList.toggle('on');updateBig();document.getElementById('cupMsg').textContent=buildMsg();document.getElementById('cupCount').textContent=activeViews.filter(Boolean).length+' / 5 視点';};
+updateBig();
+}
+})();
+
+var tseq=[{id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},{id:'tl2',delay:2400},{id:'to2',delay:3000},{id:'tl3',delay:4000},{id:'to3',delay:4600},{id:'tl4',delay:5600},{id:'to4',delay:6200},{id:'tl5',delay:7200}];
+var tS=false;tseq.forEach(function(s){var el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+new IntersectionObserver(function(entries){if(entries[0].isIntersecting&&!tS){tS=true;tseq.forEach(function(s){setTimeout(function(){var el=document.getElementById(s.id);if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}},s.delay);});}},{threshold:.2}).observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>
