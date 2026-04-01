@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>見た目と説得力——ハロー効果 | Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;}.masthead-name a{color:inherit;text-decoration:none;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;margin-bottom:20px;}.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:6px;}.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}.cover-aside strong{color:#3d3020;font-weight:600;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}.scenario-inner::after{content:'👤';position:absolute;right:20px;top:-10px;font-size:100px;opacity:.12;line-height:1;pointer-events:none;}.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}.meta-item{display:flex;align-items:center;gap:10px;}.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}.difficulty-dots{display:flex;gap:4px;}.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}.dot.on{background:#8b1a1a;}.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;}.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}.article-main{padding:48px 0;}.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;margin-bottom:20px;}.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}.body-text strong{color:#1a1208;font-weight:600;}.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}.pull-q em{color:#8b1a1a;}.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}.tip-box strong{color:#e8c56a;font-weight:600;}.tip.open .tip-box{display:block;}
+.img-block{margin:32px 0;overflow:hidden;border:1px solid #c8bfaa;background:#f3efe6;}.img-block img{width:100%;display:block;object-fit:cover;}.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;overflow:hidden;}.person-block-img img{width:100%;height:100%;object-fit:cover;}.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}.person-block-wiki{margin-bottom:8px;}.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.misconception-header{background:#3d3020;color:white;padding:11px 20px;}.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.misconception-body{background:white;}.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}.misconception-item:last-child{border-bottom:none;}.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}.mis-label.wrong{color:#c4392a;}.mis-label.right{color:#1a5a30;}.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.flow-diagram{margin:24px 0;overflow-x:auto;}.flow-diagram svg{min-width:480px;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}.tl-item{position:relative;margin-bottom:28px;}.tl-item:last-child{margin-bottom:0;}.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.steps-wrap{margin:32px 0;}.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}.step-card.open .step-nb{background:#8b1a1a;color:white;}.step-tw{flex:1;padding:13px 18px;}.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}.step-card.open .step-body{display:block;}.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}.step-body p strong{color:#1a1208;font-weight:600;}.step-body p em{color:#8b1a1a;font-style:normal;}
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}.ref-title a:hover{border-bottom-color:#8b1a1a;}.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}.sidebar-block:last-child{border-bottom:none;}.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}.sidebar-text strong{color:#3d3020;font-weight:600;}.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;display:flex;align-items:center;gap:12px;margin-bottom:16px;}.terminal-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;}.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}.terminal-dots{display:flex;gap:6px;}.terminal-dot{width:12px;height:12px;border-radius:50%;}.terminal-dot.red{background:#ff5f57;}.terminal-dot.yellow{background:#febc2e;}.terminal-dot.green{background:#28c840;}.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;}.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;}.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}.t-input{color:#e8e4de;}.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}.t-output em{color:#e8c56a;font-style:normal;}.t-output strong{color:#ffffff;font-weight:500;}.t-exit .t-prompt{color:#555;}.t-exit .t-input{color:#555;}.t-exit .t-comment{color:#4a9e6a;}.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:8px;}
+.data-table{margin:24px 0;border-collapse:collapse;width:100%;font-family:'Source Sans 3',sans-serif;font-size:13px;}.data-table th{background:#3d3020;color:white;padding:10px 14px;text-align:left;font-weight:600;font-size:11px;letter-spacing:.06em;}.data-table td{padding:10px 14px;border-bottom:1px solid #e0d8c8;color:#3d3020;font-weight:300;line-height:1.6;}.data-table tr:nth-child(even) td{background:#f3efe6;}.data-table td strong{font-weight:600;color:#1a1208;}
+.ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.ix-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.ix-body{padding:24px 20px;background:white;}
+.ix-slider-row{display:flex;align-items:center;gap:16px;margin:16px 0;}.ix-slider-label{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#3d3020;min-width:80px;}.ix-slider{flex:1;-webkit-appearance:none;height:6px;border-radius:3px;background:linear-gradient(90deg,#e0d8c8,#8b1a1a);outline:none;}.ix-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#8b1a1a;cursor:pointer;border:2px solid white;box-shadow:0 1px 3px rgba(0,0,0,.3);}.ix-slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#8b1a1a;cursor:pointer;border:2px solid white;}.ix-slider-val{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#8b1a1a;min-width:28px;text-align:right;}
+.ix-bar-row{display:flex;align-items:center;gap:10px;margin:8px 0;}.ix-bar-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:400;color:#7a6a55;min-width:80px;text-align:right;}.ix-bar-track{flex:1;height:16px;background:#f3efe6;border:1px solid #e0d8c8;border-radius:3px;overflow:hidden;position:relative;}.ix-bar-fill{height:100%;border-radius:2px;transition:width .3s ease;}
+.exp-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.exp-header{background:#1a1208;color:white;padding:11px 20px;}.exp-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.exp-body{padding:24px 20px;background:white;}
+.profile-card{border:1px solid #c8bfaa;padding:18px;margin:12px 0;background:#faf8f3;cursor:pointer;transition:border-color .2s;}.profile-card:hover{border-color:#8b1a1a;}.profile-card.selected{border-color:#8b1a1a;border-width:2px;}.profile-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.profile-role{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}.profile-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;}
+.exp-btn{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;padding:10px 24px;background:#8b1a1a;color:white;border:none;cursor:pointer;transition:background .15s;margin-top:12px;}.exp-btn:hover{background:#6e1515;}.exp-btn:disabled{background:#c8bfaa;cursor:not-allowed;}
+.exp-result{display:none;margin-top:20px;padding:20px;background:#f3efe6;border:1px solid #e0d8c8;}.exp-result p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:10px;}.exp-result p:last-child{margin-bottom:0;}.exp-result strong{font-weight:600;color:#1a1208;}.exp-result em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.painting-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;}.painting-wrap img{width:100%;height:auto;display:block;}.painting-caption{padding:10px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;}.painting-caption strong{color:#1a1208;font-weight:600;}.painting-caption em{color:#8b1a1a;font-style:normal;}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}.fade.on{opacity:1;transform:translateY(0);}
+@media(max-width:720px){.cover{grid-template-columns:1fr;padding:40px 20px 32px;}.cover-right{display:none;}.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.summary-box,.scenario{padding:0 20px;}.article{grid-template-columns:1fr;padding:0 20px;}.article-side{display:none;}.misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}.terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}.related{padding:32px 20px;}.related-grid{grid-template-columns:1fr;}.tip-box{left:0;transform:none;width:200px;}.tip-box::after{left:20px;transform:none;}.person-block{grid-template-columns:1fr;}.person-block-img{padding:16px;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- MASTHEAD -->
+<div class="masthead"><p class="masthead-name"><a href="https://qualiajournal.com/">Qualia Journal</a></p></div>
+
+<!-- COVER -->
+<div class="cover fade">
+<div class="cover-left">
+<p class="cover-kicker">社会心理学</p>
+<h1>見た目と<em>説得力</em></h1>
+<p class="cover-deck">背の高い人は年収が高い。容姿のいい被告は刑が軽い。たった一つの印象が、その人の「すべて」を書き換える。1920年に名前がついたこの認知バイアスは、100年経った今も私たちの判断を支配している。</p>
+<div class="cover-byline"><span>Last updated: Apr. 2026</span></div>
+</div>
+<div class="cover-right">
+<div class="est-card">
+<span class="est-label">Est.</span>
+<span class="est-year">1920</span>
+<p class="est-event">エドワード・ソーンダイクが論文「心理学的評定における恒常的誤差」を発表。「ハロー効果」と名付けた。</p>
+<p class="est-context">同年の世界：アメリカで禁酒法が施行。女性参政権を認める合衆国憲法修正第19条が批准。国際連盟が正式に発足した年でもある。</p>
+</div>
+<p class="cover-aside">「ハロー」とは<strong>聖人の頭上に描かれる光輪（こうりん）</strong>のこと。中世の宗教画で聖人を善き者と判断させる、あの光の輪が語源になっている。</p>
+</div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade"><div class="scenario-inner">
+<p>面接会場のドアが開いて、候補者が入ってくる。背筋が伸びていて、目を見て挨拶する。声にも張りがある。あなたは心の中で、もう少し前向きなことを思い始めている——たぶん、この人は仕事もできるだろう。話を聞く前に。</p>
+<p>逆のことも起きる。初対面の相手が少しだらしない格好をしていると、「この人はきっと時間も守らないだろう」と感じてしまう。見た目と時間管理に論理的な関係はない。それでも、私たちの脳は即座にその推論を走らせる。</p>
+<p>これはたまに起きる癖ではない。人間の評価システムに組み込まれた、構造的な歪みである。</p>
+</div></div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+<div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span class="difficulty-text">初級 — 予備知識は不要</span></div>
+<div class="meta-sep"></div>
+<div class="meta-item"><span class="meta-label">読了時間</span><span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 14 分</span></div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade"><div class="summary-inner"><span class="summary-icon">要点</span><p class="summary-text">架空のプロフィールを評価し、<strong>自分の判断がどれほど「第一印象」に引きずられているか</strong>を数値で確認する。知っていても防げない——その構造を体験する記事。</p></div></div>
+
+<!-- ===== ARTICLE ===== -->
+<div class="article">
+<div class="article-main">
+
+<!-- ======= 背景セクション ======= -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">聖人の光輪と、将校の偏り</h2>
+
+<p class="body-text fade">1920年、<span class="tip" onclick="toggleTip(this)">エドワード・ソーンダイク<span class="tip-box"><strong>エドワード・ソーンダイク（Edward Thorndike, 1874–1949）</strong><br>アメリカの心理学者。動物の学習行動の研究で知られ、「効果の法則」を提唱した。コロンビア大学で長年教鞭をとった。</span></span>はある奇妙なパターンに気づいた。第一次世界大戦後、米軍の上官たちに部下の評価を依頼した研究でのことだ。知性、体格、リーダーシップ、人格——本来は別々に判断すべき項目が、なぜか強く連動していた。体格のよい兵士は「知性も高い」と評価され、容姿の端正な兵士は「人格も優れている」とされた。上官たちは部下と会話すらしていない。</p>
+
+<div class="person-block fade">
+<div class="person-block-img"><img src="thorndike_portrait.jpg" alt="エドワード・ソーンダイクの肖像写真（1920年代）"></div>
+<div class="person-block-body">
+<p class="person-block-name">エドワード・ソーンダイク</p>
+<p class="person-block-role">Edward L. Thorndike（1874–1949）</p>
+<p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%89%E3%83%AF%E3%83%BC%E3%83%89%E3%83%BB%E3%82%BD%E3%83%BC%E3%83%B3%E3%83%80%E3%82%A4%E3%82%AF" target="_blank" rel="noopener">Wikipedia</a></p>
+<p class="person-block-desc">コロンビア大学の心理学者。動物の試行錯誤学習（猫のパズルボックス実験）で知られるが、応用心理学にも大きく貢献した。1920年に「心理学的評定における恒常的誤差」を発表し、ハロー効果に名前を与えた。</p>
+</div>
+</div>
+
+<p class="body-text fade">ソーンダイクは論文にこう記した。<em>「相関が高すぎ、均一すぎる」</em>——体格と知性の<span class="tip" onclick="toggleTip(this)">相関<span class="tip-box"><strong>相関（correlation）</strong><br>2つのものが連動して動く度合い。0なら完全に無関係、1なら完全に連動。0.3は「弱い関連がある」程度で、体格と知性でこの数値が出るのは不自然に高い。</span></span>が .31、体格とリーダーシップの相関が .39。本来なら体格と知性は無関係に近いはずだ。だが評価者は、ある一つの好印象を得ると、そこから他のあらゆる特性を「良い」方向に引き上げてしまっていた。</p>
+
+<div class="quote-block fade">
+<p class="quote-en">"The correlations are too high and too even."</p>
+<p class="quote-ja">相関が高すぎ、そして均一すぎる。</p>
+<p class="quote-attr">— エドワード・ソーンダイク『A Constant Error in Psychological Ratings』（1920年）</p>
+</div>
+
+<p class="body-text fade">ソーンダイクはこの現象を<strong>ハロー効果（halo effect）</strong>と名付けた。「ハロー」とは、中世の宗教画で聖人の頭上に描かれる光輪（こうりん）のことだ。光輪を見た瞬間に「この人は聖なる存在だ」と判断が決まる——そのメタファーである。一つの目立つ特徴が、その人物の全体像に「光」を投げかけ、あらゆる評価を底上げしてしまう。</p>
+
+<!-- 画像: 中世宗教画 -->
+<div class="painting-wrap fade">
+<img src="fra_angelico_annunciation.jpg" alt="フラ・アンジェリコ『受胎告知』（1440年頃）サン・マルコ修道院">
+<p class="painting-caption"><strong>フラ・アンジェリコ『受胎告知』</strong>（1440年頃）｜フレスコ｜<em>サン・マルコ修道院蔵（フィレンツェ）</em>｜大天使ガブリエルと聖母マリアの頭上に金色の光輪（ハロー）が描かれている。この光輪が「ハロー効果」の語源。聖人の光輪を見た瞬間に「この人は善い」と判断する——ソーンダイクはそのメタファーを認知バイアスの名前に使った。</p>
+</div>
+
+<!-- SVG図解: ハロー効果の構造 -->
+<div class="flow-diagram fade" style="overflow-x:auto;">
+<svg viewBox="0 0 560 180" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<rect x="10" y="50" width="100" height="70" rx="4" fill="#8b1a1a"/>
+<text x="60" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="white">容姿が</text>
+<text x="60" y="96" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="white">良い</text>
+<text x="60" y="38" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">観察された特徴</text>
+<text x="140" y="40" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<text x="140" y="76" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<text x="140" y="112" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<text x="140" y="148" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<rect x="170" y="20" width="140" height="30" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="240" y="39" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">知性が高い</text>
+<rect x="170" y="56" width="140" height="30" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="240" y="75" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">誠実である</text>
+<rect x="170" y="92" width="140" height="30" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="240" y="111" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">リーダーシップがある</text>
+<rect x="170" y="128" width="140" height="30" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="240" y="147" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">人生が成功している</text>
+<text x="240" y="12" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">推定される特性（根拠なし）</text>
+<rect x="360" y="60" width="180" height="60" rx="4" fill="none" stroke="#8b1a1a" stroke-dasharray="4,3"/>
+<text x="450" y="85" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="600">1つの印象が</text>
+<text x="450" y="101" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="600">全体を書き換える</text>
+</svg>
+</div>
+<p class="ix-note fade">ソーンダイク（1920）の実験結果をもとにした概念図。矢印の方向は「推論の流れ」を示す。実際の相関係数は .28〜.39と報告されている。</p>
+
+<p class="body-text fade">重要な点がある。これは「頭の悪い人が引っかかる」問題ではない。ソーンダイクの実験で評価者を務めたのは軍の上官——判断力を買われて指揮を任された人々だ。のちの研究でも、学歴や職業を問わず効果が確認されている。自分は合理的だと思っている人ほど、この偏りに気づきにくい。</p>
+
+<!-- テーブル: ソーンダイクの特性間相関 -->
+<table class="data-table fade">
+<thead><tr><th>評価された特性ペア</th><th>相関係数</th><th>本来の予想</th></tr></thead>
+<tbody>
+<tr><td>体格 ↔ 知性</td><td><strong>.31</strong></td><td>ほぼ無関係</td></tr>
+<tr><td>体格 ↔ リーダーシップ</td><td><strong>.39</strong></td><td>弱い相関</td></tr>
+<tr><td>体格 ↔ 人格</td><td><strong>.28</strong></td><td>ほぼ無関係</td></tr>
+<tr><td>知性 ↔ リーダーシップ</td><td><strong>.51</strong></td><td>中程度</td></tr>
+</tbody>
+</table>
+<p class="ix-note fade">ソーンダイクの1920年論文から。137人の航空士官候補生を評価した上官のデータ。体格と知性のように、論理的に無関係な特性のペアでさえ高い相関が見られた。</p>
+
+<hr class="art-rule fade">
+<h2 class="fade">「美しいは善い」——半世紀後の実証</h2>
+
+<p class="body-text fade">ソーンダイクの発見から52年。1972年、ミネソタ大学の<span class="tip" onclick="toggleTip(this)">カレン・ディオン<span class="tip-box"><strong>カレン・ディオン（Karen Dion, 1945–2008）</strong><br>カナダの社会心理学者。「What is beautiful is good」の共著者。のちにトロント大学で長年研究した。</span></span>、エレン・<span class="tip" onclick="toggleTip(this)">バーシャイド<span class="tip-box"><strong>エレン・バーシャイド（Ellen Berscheid, 1936–）</strong><br>アメリカの社会心理学者。対人魅力と親密な関係の研究で知られ、ミネソタ大学で長年教鞭をとった。</span></span>、エレイン・<span class="tip" onclick="toggleTip(this)">ウォルスター<span class="tip-box"><strong>エレイン・ウォルスター（Elaine Walster, 1937–）</strong><br>のちにエレイン・ハットフィールドに改姓。衡平理論や対人魅力の研究で知られるアメリカの社会心理学者。</span></span>の3人が、ハロー効果を鮮やかに実証する実験を発表した。タイトルは<em>「What is beautiful is good」</em>——美しいものは善（よ）い。</p>
+
+<p class="body-text fade">実験はシンプルだ。60人の学生に3枚の写真を見せた。魅力的な人、平均的な人、魅力的でない人。そして「この人はどんな性格だと思うか」「人生は成功していると思うか」と尋ねた。結果は明白だった。<strong>魅力的な人物の写真を見た被験者は、その人物を社交的で、知的で、温かく、有能で、人生が充実している</strong>と判断した。3枚の写真は顔が違うだけだ。性格も経歴も何一つわからない。</p>
+
+<!-- SVG図解: 美→善ステレオタイプの2列比較 -->
+<div class="flow-diagram fade" style="overflow-x:auto;">
+<svg viewBox="0 0 540 200" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<text x="135" y="18" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#8b1a1a">魅力的な写真を見たグループ</text>
+<rect x="20" y="28" width="230" height="155" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="135" y="55" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020">「社交的だろう」</text>
+<text x="135" y="78" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020">「知的だろう」</text>
+<text x="135" y="101" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020">「温かい人だろう」</text>
+<text x="135" y="124" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020">「仕事も成功するだろう」</text>
+<text x="135" y="147" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020">「結婚もうまくいくだろう」</text>
+<text x="135" y="172" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#1a5a30">✓ すべて高評価</text>
+
+<text x="270" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" font-weight="700" fill="#c8bfaa">vs</text>
+<text x="405" y="18" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#7a6a55">魅力的でない写真を見たグループ</text>
+<rect x="290" y="28" width="230" height="155" rx="4" fill="white" stroke="#c8bfaa"/>
+<text x="405" y="55" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">「社交的ではなさそう」</text>
+<text x="405" y="78" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">「知性は普通だろう」</text>
+<text x="405" y="101" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">「冷たそう」</text>
+<text x="405" y="124" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">「仕事はまあまあだろう」</text>
+<text x="405" y="147" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">「結婚もうまくいかなそう」</text>
+<text x="405" y="172" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#c4392a">✗ すべて低評価</text>
+</svg>
+</div>
+<p class="ix-note fade">Dion, Berscheid, & Walster（1972）の実験結果を概念化。同一の性格・経歴情報が与えられていないにもかかわらず、顔写真の魅力度だけで全評価が変動した。</p>
+
+<p class="body-text fade">この研究のインパクトは実験の巧みさだけではない。「美しい人は良い人生を送る」という推定が、<strong>男性被験者でも女性被験者でも同じように現れた</strong>ことだ。性別に関係なく、容姿から性格や能力を推定するという認知の構造は同じだった。ディオンらはこれを<em>「美しいは善い」ステレオタイプ</em>と呼んだ。</p>
+
+<!-- インタラクティブ: 相関データ探索 -->
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">✦ Correlation Explorer</span></div>
+<div class="ix-body" id="corrExpBody" style="padding:28px 24px;">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;line-height:1.8;margin-bottom:12px;">ソーンダイクの実験で、上官たちは部下の<strong>4つの特性</strong>を評価した。下のボタンを順に押してほしい。1つ押すごとにグラフに棒が1本追加される。</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;line-height:1.7;margin-bottom:24px;">グラフの赤い棒が報告された相関係数、薄い灰色の棒が「本来ならこのくらいのはず」という予想値。差が大きいほど、ハロー効果が強く働いていたことを意味する。</p>
+<div id="corrButtons" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;"></div>
+<div id="corrChart" style="margin-bottom:20px;">
+<svg id="corrSvg" viewBox="0 0 560 280" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;background:#faf8f3;border:1px solid #e0d8c8;">
+<line x1="60" y1="20" x2="60" y2="230" stroke="#c8bfaa" stroke-width="1"/>
+<line x1="60" y1="230" x2="550" y2="230" stroke="#c8bfaa" stroke-width="1"/>
+<text x="56" y="230" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">0</text>
+<text x="56" y="164" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">.20</text>
+<line x1="60" y1="164" x2="550" y2="164" stroke="#e0d8c8" stroke-width="0.5" stroke-dasharray="3,3"/>
+<text x="56" y="98" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">.40</text>
+<line x1="60" y1="98" x2="550" y2="98" stroke="#e0d8c8" stroke-width="0.5" stroke-dasharray="3,3"/>
+<text x="56" y="32" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">.60</text>
+<line x1="60" y1="32" x2="550" y2="32" stroke="#e0d8c8" stroke-width="0.5" stroke-dasharray="3,3"/>
+</svg>
+</div>
+<div id="corrDesc2" style="display:none;padding:18px;background:#f3efe6;border:1px solid #e0d8c8;margin-bottom:16px;">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.9;" id="corrDescText"></p>
+</div>
+<div id="corrSummary" style="display:none;padding:20px;background:#3d3020;color:#e8e4de;">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#e8c56a;margin-bottom:8px;">すべてのペアを確認しました</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.8;color:#e8e4de;" id="corrSummaryText"></p>
+</div>
+</div>
+</div>
+<p class="ix-note fade">ソーンダイク（1920）の論文 "A Constant Error in Psychological Ratings" から。137人の航空士官候補生に対する上官の評価データ。相関係数は0（無関係）〜1（完全に連動）の範囲で、0.3を超えると統計的に意味のある関連とされる。</p>
+
+<div class="misconception fade">
+<div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+<div class="misconception-body">
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">ハロー効果は「見た目がいい人が得をする」という話</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">見た目に限らない。声、肩書き、出身校、最初の一言——あらゆる第一印象が他のすべての評価に波及する現象。容姿は最も研究されたトリガーの一つにすぎない</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">自分で気をつければ防げる</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">1981年のウェッツェルらの研究で、ハロー効果の存在を教え「影響されないように」と指示しても効果は消えなかった。知識だけでは防御にならない</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">良い方向にだけ働く</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">負の方向にも同じ構造で働く。ソーンダイク自身が「正のハローと負のハロー」の両方を記述している。負の方向は「ホーン効果（角の効果）」とも呼ばれる</p></div>
+</div>
+</div>
+</div>
+
+<!-- ======= 体験セクション ======= -->
+<div class="sec-rule fade"><span class="sec-label">体験</span><div class="sec-line"></div></div>
+<h2 class="fade">あなたの判断を試す</h2>
+
+<p class="body-text fade">ここからは実際に手を動かしてほしい。4枚の写真が表示される。すべて同一人物だ。顔は同じ。年齢も同じ。変わっているのは服装と身だしなみだけ——それだけで、あなたの判断がどう変わるかを確かめる。</p>
+
+<div class="exp-wrap fade">
+<div class="exp-header"><span class="exp-hl">✦ Same Person, Different Clothes</span></div>
+<div class="exp-body" id="expBody">
+
+<div id="expPhase1">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.7;margin-bottom:8px;">以下の4枚の写真を見てください。直感で答えてください。</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:20px;">※ これらの写真はすべてAIが生成した<strong>架空の人物</strong>です。実在の人物ではありません。</p>
+
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px;">
+<div style="text-align:center;">
+<img src="data:image/jpeg;base64,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" alt="スーツ姿の男性" style="width:100%;border:1px solid #c8bfaa;">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#8b1a1a;margin-top:8px;">A</p>
+</div>
+<div style="text-align:center;">
+<img src="data:image/jpeg;base64,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" alt="白衣姿の男性" style="width:100%;border:1px solid #c8bfaa;">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#8b1a1a;margin-top:8px;">B</p>
+</div>
+<div style="text-align:center;">
+<img src="data:image/jpeg;base64,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" alt="作業着姿の男性" style="width:100%;border:1px solid #c8bfaa;">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#8b1a1a;margin-top:8px;">C</p>
+</div>
+<div style="text-align:center;">
+<img src="data:image/jpeg;base64,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" alt="Tシャツ姿の男性" style="width:100%;border:1px solid #c8bfaa;">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#8b1a1a;margin-top:8px;">D</p>
+</div>
+</div>
+
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:12px;">この人物について、直感で選んでください。</p>
+
+<div style="margin-bottom:16px;">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;margin-bottom:8px;">最も<strong>年収が高そう</strong>なのは？</p>
+<div style="display:flex;gap:8px;" id="q1btns">
+<button class="exp-choice" onclick="pickAnswer(1,this)" data-val="A" style="font-family:'Source Sans 3',sans-serif;font-size:13px;padding:8px 20px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;">A</button>
+<button class="exp-choice" onclick="pickAnswer(1,this)" data-val="B" style="font-family:'Source Sans 3',sans-serif;font-size:13px;padding:8px 20px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;">B</button>
+<button class="exp-choice" onclick="pickAnswer(1,this)" data-val="C" style="font-family:'Source Sans 3',sans-serif;font-size:13px;padding:8px 20px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;">C</button>
+<button class="exp-choice" onclick="pickAnswer(1,this)" data-val="D" style="font-family:'Source Sans 3',sans-serif;font-size:13px;padding:8px 20px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;">D</button>
+</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;margin-bottom:8px;">最も<strong>信頼できそう</strong>なのは？</p>
+<div style="display:flex;gap:8px;" id="q2btns">
+<button class="exp-choice" onclick="pickAnswer(2,this)" data-val="A" style="font-family:'Source Sans 3',sans-serif;font-size:13px;padding:8px 20px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;">A</button>
+<button class="exp-choice" onclick="pickAnswer(2,this)" data-val="B" style="font-family:'Source Sans 3',sans-serif;font-size:13px;padding:8px 20px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;">B</button>
+<button class="exp-choice" onclick="pickAnswer(2,this)" data-val="C" style="font-family:'Source Sans 3',sans-serif;font-size:13px;padding:8px 20px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;">C</button>
+<button class="exp-choice" onclick="pickAnswer(2,this)" data-val="D" style="font-family:'Source Sans 3',sans-serif;font-size:13px;padding:8px 20px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;">D</button>
+</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;margin-bottom:8px;">最も<strong>リーダーシップがありそう</strong>なのは？</p>
+<div style="display:flex;gap:8px;" id="q3btns">
+<button class="exp-choice" onclick="pickAnswer(3,this)" data-val="A" style="font-family:'Source Sans 3',sans-serif;font-size:13px;padding:8px 20px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;">A</button>
+<button class="exp-choice" onclick="pickAnswer(3,this)" data-val="B" style="font-family:'Source Sans 3',sans-serif;font-size:13px;padding:8px 20px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;">B</button>
+<button class="exp-choice" onclick="pickAnswer(3,this)" data-val="C" style="font-family:'Source Sans 3',sans-serif;font-size:13px;padding:8px 20px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;">C</button>
+<button class="exp-choice" onclick="pickAnswer(3,this)" data-val="D" style="font-family:'Source Sans 3',sans-serif;font-size:13px;padding:8px 20px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;">D</button>
+</div>
+</div>
+
+<button class="exp-btn" id="expSubmit" onclick="revealSamePerson()" disabled>3問すべて答えてから確定</button>
+</div>
+
+<div id="expPhase2" style="display:none;">
+<p style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#8b1a1a;margin-bottom:16px;">あなたはすでに知っていたはずです。</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:12px;">4枚が同じ人物であることを。顔も年齢も体格も同じで、変わったのは<strong>服装と身だしなみだけ</strong>だと。それでも、あなたは3つの質問すべてに答えを出せてしまった。</p>
+<div id="expResultDetail" style="padding:16px;background:#f3efe6;border:1px solid #e0d8c8;margin-bottom:16px;"></div>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;">年収の推定には、服装からの推論がある程度の根拠を持つ場合もある。白衣なら医者かもしれないし、スーツならオフィスワーカーかもしれない。だが<strong>「信頼できそう」「リーダーシップがありそう」の推定には、服装は何の証拠にもならない</strong>。にもかかわらず、あなたはその質問にも答えを出せてしまった。一つの視覚情報が、無関係な特性の評価まで書き換える——それがハロー効果だ。</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;margin-top:12px;">1977年のニスベットとウィルソンの研究では、ハロー効果の存在を知らされ、影響されないように指示された被験者でも、やはり同じパターンを示した。知っていても、止められない。</p>
+</div>
+
+</div>
+</div>
+
+<!-- ======= メカニズムセクション ======= -->
+<div class="sec-rule fade"><span class="sec-label">メカニズム</span><div class="sec-line"></div></div>
+<h2 class="fade">なぜ、たった一つの特徴が全体を支配するのか</h2>
+
+<p class="body-text fade">ハロー効果が消えないのは、それが「間違い」ではなく、脳の情報処理の<span class="tip" onclick="toggleTip(this)">ヒューリスティック<span class="tip-box"><strong>ヒューリスティック（heuristic）</strong><br>複雑な問題を素早く判断するための「近道」。正確さを犠牲にして速度を取る脳の処理方式。日常生活のほとんどの判断はこれで動いている。</span></span>として組み込まれているからだ。限られた情報から素早く全体像を作る——それは多くの場面で生存に有利だった。だが、その「近道」が裏目に出る場面がある。</p>
+
+<!-- SVGフロー図: ハロー効果の認知プロセス -->
+<div class="flow-diagram fade" style="overflow-x:auto;">
+<svg viewBox="0 0 580 160" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<text x="65" y="22" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">知覚</text>
+<rect x="10" y="30" width="110" height="50" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="65" y="52" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">第一印象の</text>
+<text x="65" y="68" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">形成</text>
+<text x="145" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<text x="215" y="22" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">推論</text>
+<rect x="160" y="30" width="110" height="50" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="215" y="52" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">全特性への</text>
+<text x="215" y="68" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">波及</text>
+<text x="295" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<text x="365" y="22" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">行動</text>
+<rect x="310" y="30" width="110" height="50" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="365" y="52" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">好意的な</text>
+<text x="365" y="68" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">対応</text>
+<text x="445" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<text x="510" y="22" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">強化</text>
+<rect x="460" y="30" width="110" height="50" rx="4" fill="#8b1a1a" stroke="#8b1a1a"/>
+<text x="515" y="52" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="white" font-weight="600">自己成就</text>
+<text x="515" y="68" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="white" font-weight="600">予言</text>
+<path d="M515 85 L515 130 L65 130 L65 85" fill="none" stroke="#c8bfaa" stroke-dasharray="4,3"/>
+<text x="290" y="145" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#8b1a1a">フィードバックループ: 好待遇が実際の成果を生み、印象が「正しかった」と確認される</text>
+</svg>
+</div>
+<p class="ix-note fade">ハロー効果が維持される認知プロセスの概念図。最終段階の「自己成就予言」は、第一印象に基づく好待遇が実際の成果につながり、最初の印象が「的中した」と見なされる現象。</p>
+
+<div class="steps-wrap fade">
+<p class="steps-head">4つのステップ</p>
+<div class="step-card" id="sc1"><div class="step-hd" onclick="tog(1)"><div class="step-nb">1</div><div class="step-tw"><p class="step-title">第一印象の自動形成</p><p class="step-sub">100ミリ秒で決まる全体評価</p></div><div class="step-arr">▼</div></div><div class="step-body"><p>顔を見て0.1秒。それだけで脳は「信頼できそう」「有能そう」「支配的そう」の判断を下す。心理学者のアレクサンダー・トドロフらの研究によれば、この瞬間的な判断はその後じっくり考えても大きくは変わらない。<strong>日常例:</strong> 就職面接で候補者がドアを開けて歩いてくる最初の数秒で、面接官の中に「良さそうだ」か「微妙だ」の感覚が生まれている。</p></div></div>
+<div class="step-card" id="sc2"><div class="step-hd" onclick="tog(2)"><div class="step-nb">2</div><div class="step-tw"><p class="step-title">全特性への波及</p><p class="step-sub">「光」が広がるように</p></div><div class="step-arr">▼</div></div><div class="step-body"><p>良い第一印象ができると、脳はその人物の未知の特性を「良い」方向で補完する。容姿がいい → 知的だろう → 誠実だろう → リーダーシップもあるだろう。これはいちいち考えているわけではなく、自動的に起きる。<strong>日常例:</strong> 声の良いプレゼンターの提案内容が、声の悪いプレゼンターの同じ内容より「説得力がある」と評価される。</p></div></div>
+<div class="step-card" id="sc3"><div class="step-hd" onclick="tog(3)"><div class="step-nb">3</div><div class="step-tw"><p class="step-title">行動の変化</p><p class="step-sub">好印象は優遇を生む</p></div><div class="step-arr">▼</div></div><div class="step-body"><p>ハロー効果は評価にとどまらず、行動を変える。好印象の相手にはより多くの機会を与え、ミスに対して寛容になり、アドバイスに従いやすくなる。<strong>日常例:</strong> 見た目の良い店員から商品を勧められると購入率が上がる。容姿の良い教師は生徒から高い評価を受けやすく、より良い学校に異動しやすい。</p></div></div>
+<div class="step-card" id="sc4"><div class="step-hd" onclick="tog(4)"><div class="step-nb">4</div><div class="step-tw"><p class="step-title">自己成就予言 <span style="font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;font-weight:400;">※</span></p><p class="step-sub">偏りが「真実」に変わる</p></div><div class="step-arr">▼</div></div><div class="step-body"><p>ここが最も厄介な段階だ。好印象を持たれた人は実際により多くの機会を得て、より良い成果を出す。すると周囲は「やはりあの人は有能だった」と確認する。偏った評価が、結果的に正しかったように見えてしまう。<strong>日常例:</strong> 身長が高い新入社員がリーダーに抜擢される → 経験を積んでさらに成長する → 「やっぱり最初から見込みがあった」と上司が思う。身長と能力に因果関係はないが、機会の不均等が実力差を作り出す。</p></div></div>
+</div>
+
+<p class="body-text fade" style="font-size:14px;color:#7a6a55;border-left-color:#c8bfaa;"><strong style="color:#7a6a55;">※ 自己成就予言（self-fulfilling prophecy）:</strong> 「こうなるだろう」と信じることで、その信念に沿った行動をとり、結果的に本当にそうなってしまう現象。ハロー効果では、好印象の人に機会を多く与えた結果、実際に成果が出て「やっぱりあの人は優秀だった」と確認されるループが生まれる。</p>
+
+<!-- ======= 歴史セクション ======= -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">光輪の系譜——100年の研究史</h2>
+
+<p class="body-text fade">以下の年表で、<span style="color:#8b1a1a;font-weight:600;">●</span> はハロー効果研究の核心となる出来事、<span style="color:#c8bfaa;font-weight:600;">○</span> は関連する研究や社会的出来事を示す。</p>
+
+<div class="timeline fade">
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1907</p><p class="tl-title">フレデリック・ウェルズの先駆的観察</p><p class="tl-desc">文学作品の評価において、一つの項目の評価が他の項目に波及する傾向を記録した。「ハロー効果」の命名には至らなかったが、現象を最初に文書化した研究とされる。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1920</p><p class="tl-title">ソーンダイク「恒常的誤差」を発表</p><p class="tl-desc">137人の航空士官候補生の評価データを分析し、特性間相関の異常な高さを報告。「ハロー効果」と命名した。心理学的評価の信頼性に疑問を投げかけた最初の論文。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1946</p><p class="tl-title">ソロモン・アッシュの印象形成研究</p><p class="tl-desc">「温かい」と「冷たい」の一語を変えるだけで、同一人物に対する全体印象が劇的に変わることを実証。ハロー効果が「中心特性」に依存することを示した。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1972</p><p class="tl-title">ディオンら「What is beautiful is good」</p><p class="tl-desc">容姿の魅力度だけで性格・能力・人生の成功がすべて推定されることを実験で示した。「美しいは善い」ステレオタイプという概念を確立。被引用数は数千にのぼる。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1977</p><p class="tl-title">ニスベットとウィルソンの意識研究</p><p class="tl-desc">同じ講師を「温かい態度」と「冷たい態度」で演じさせた映像を見せたところ、温かい版では外見・アクセントまで好意的に評価された。しかも被験者は、自分が印象に影響されたことを否定した。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1980</p><p class="tl-title">スチュワートの法廷研究</p><p class="tl-desc">実際の裁判を傍聴し、74人の被告の容姿を評定。容姿の良い被告は有意に軽い刑を受けており、収監を免れる確率は2倍だった。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2004</p><p class="tl-title">ジャッジとケーブルの「身長プレミアム」研究</p><p class="tl-desc">約8,500人の追跡データを分析。身長が1インチ（2.5cm）高くなるごとに年収が約789ドル増加。30年のキャリアで約16万6千ドルの差になると試算。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2024</p><p class="tl-title">クレイマーらの動画ベース法廷研究</p><p class="tl-desc">従来の写真ではなく動画クリップを使い、60人の「被告」の容姿と有罪判断の関係を調査。容姿と有罪判断の間に強い関連は見られなかったが、犯罪の種類によって異なる傾向が示された。</p></div>
+</div>
+
+<!-- 画像: ケネディ vs ニクソン -->
+<div class="painting-wrap fade">
+<img src="kennedy_nixon_debate_1960.jpg" alt="1960年9月26日、シカゴでの第1回大統領候補テレビ討論会">
+<p class="painting-caption"><strong>ケネディ対ニクソン 第1回テレビ討論会</strong>（1960年9月26日）｜AP通信撮影｜<em>シカゴ WBBM-TVスタジオ</em>｜テレビで見た視聴者はケネディの勝ち、ラジオで聴いた聴取者はニクソンの勝ちと感じたとされる。ニクソンは退院直後で顔色が悪く、化粧を拒否した。外見の印象が政治判断にまで波及した歴史的な出来事。</p>
+</div>
+
+<!-- ======= つまりセクション ======= -->
+<div class="sec-rule fade"><span class="sec-label">核心</span><div class="sec-line"></div></div>
+<h2 class="fade">光輪は消せない。だが、知ることには意味がある</h2>
+
+<p class="body-text fade">ハロー効果が厄介なのは、「知っていても防げない」という性質だ。1981年のウェッツェルらの追試では、被験者にハロー効果の存在を詳しく説明し、「影響されないように」と動機づけしても、効果はほとんど弱まらなかった。知識だけでは認知の構造は変わらない。</p>
+
+<p class="body-text fade">では、なぜ知る意味があるのか。<em>個人の意志力で偏りを消すのは難しくても、環境を変えることで偏りの影響を減らすことはできる</em>からだ。以下の3つは万能ではないが、構造的な対策として一定の効果がある。</p>
+
+<div class="pull fade">
+<p class="pull-q">"Global evaluations alter evaluations of attributes about which the individual has <em>information fully sufficient</em> to allow for an independent assessment."</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">全体的な評価は、独立に判断するのに十分な情報がある個別の特性の評価すら書き換えてしまう。</p>
+<p class="pull-attr">— リチャード・ニスベット＆ティモシー・ウィルソン『The Halo Effect: Evidence for Unconscious Alteration of Judgments』（1977年）</p>
+</div>
+
+<p class="body-text fade"><strong>対策1: <span class="tip" onclick="toggleTip(this)">構造化面接<span class="tip-box"><strong>構造化面接（structured interview）</strong><br>すべての候補者に同じ質問を同じ順番で行い、評価基準を事前に決めておく面接形式。自由な会話形式（非構造化面接）に比べて、ハロー効果や類似性バイアスの影響を大幅に減らせる。</span></span></strong>——評価の基準を事前に決め、すべての候補者に同じ質問を同じ順番で行う。面接官の「直感」が介入する余地を構造的に減らす。ただし、面接官が基準を無視して直感に頼り始めれば効果は薄れる。</p>
+
+<p class="body-text fade"><strong>対策2: <span class="tip" onclick="toggleTip(this)">ブラインド評価<span class="tip-box"><strong>ブラインド評価（blind evaluation）</strong><br>評価対象の属性（名前、性別、容姿、出身校など）を隠して評価する手法。オーケストラのオーディションでスクリーンの後ろで演奏させる「ブラインドオーディション」が有名。</span></span></strong>——容姿・名前・出身校など、本来評価に無関係な情報を物理的に遮断する。オーケストラのブラインドオーディションが代表例で、導入後に女性奏者の採用率が上がったことが知られている。ただし、すべての場面で使える手法ではない。</p>
+
+<p class="body-text fade"><strong>対策3: <span class="tip" onclick="toggleTip(this)">悪魔の代弁者<span class="tip-box"><strong>悪魔の代弁者（devil's advocate）</strong><br>意思決定の場面で、あえて反対意見を述べる役割を誰かに割り当てる手法。自分の判断への確信が強いときほど有効。もともとはカトリック教会で聖人の候補に対する反論を行う役職名。</span></span></strong>——自分の評価に確信を持ったとき、あえて反対の立場からチェックする。「もしこの人が地味な服を着ていたら、同じ評価をしただろうか」と自問する。完璧には機能しないが、少なくとも立ち止まるきっかけにはなる。</p>
+
+<p class="body-text fade">いずれの対策にも共通するのは、<em>「自分の判断力を過信しない」という前提</em>だ。ソーンダイクの実験から100年以上が経った。私たちは心理学を学び、バイアスの名前を知り、この記事を読んでいる。それでも、次に会う人の第一印象が「すべての評価」を引きずるだろう。知っているだけでは変わらない。だから、環境を変える。判断の構造を変える。それが、光輪を消せない人間にできる、おそらく最も現実的な対処だ。</p>
+
+<div class="culture-block fade">
+<p class="culture-title">映画『マネーボール』（2011年）</p>
+<p class="culture-desc">ブラッド・ピット演じるビリー・ビーンが、スカウトたちの「見た目で選ぶ」評価を統計データで覆す物語。「彼は"いい体格"をしている」「彼女は"良い顔つき"をしている」といったハロー効果的な評価が、データ分析の前に崩れていく過程が描かれている。</p>
+</div>
+
+<div class="culture-block fade">
+<p class="culture-title">ダニエル・カーネマン『ファスト&スロー』（2011年）</p>
+<p class="culture-desc">ノーベル経済学賞受賞者カーネマンは、ハロー効果を「システム1（速い思考）」の代表例として取り上げている。第一印象から全体像を作り上げる脳の自動処理が、いかに日常の判断を歪めているかを平易に解説した一冊。</p>
+</div>
+
+<!-- ======= 参考文献 ======= -->
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+
+<div class="ref-list">
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1920</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1037/h0071663" target="_blank" rel="noopener">A Constant Error in Psychological Ratings</a></p>
+<p class="ref-author">Edward L. Thorndike — Journal of Applied Psychology</p>
+<p class="ref-desc">すべてはここから始まった。わずか数ページの短い論文だが、「相関が高すぎる」という観察から100年の研究が生まれた。原文に触れると、ソーンダイクの冷静な筆致が印象的だ。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1972</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1037/h0033731" target="_blank" rel="noopener">What is beautiful is good</a></p>
+<p class="ref-author">Karen Dion, Ellen Berscheid, Elaine Walster — Journal of Personality and Social Psychology</p>
+<p class="ref-desc">「美しいは善い」——この強烈なタイトルが社会心理学の教科書に刻まれた。写真を3枚見せるだけのシンプルな実験が、容姿と性格判断の根深いつながりを暴いた。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1977</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1037/0022-3514.35.4.250" target="_blank" rel="noopener">The halo effect: Evidence for unconscious alteration of judgments</a></p>
+<p class="ref-author">Richard E. Nisbett, Timothy DeCamp Wilson — Journal of Personality and Social Psychology</p>
+<p class="ref-desc">ハロー効果が無意識に作動すること、そして本人がその影響を自覚できないことを実証した。この論文を読むと「自分だけは大丈夫」という自信が揺らぐはずだ。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">メタ分析</span><span class="ref-year">2004</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1037/0021-9010.89.3.428" target="_blank" rel="noopener">The effect of physical height on workplace success and income</a></p>
+<p class="ref-author">Timothy A. Judge, Daniel M. Cable — Journal of Applied Psychology</p>
+<p class="ref-desc">身長と年収の関係を約8,500人のデータで追跡。2.5cm高いごとに年収が約789ドル上がるという結果は、ハロー効果が金銭に直結することを示す不穏なデータだ。</p>
+</div>
+</div>
+
+<!-- 信頼度ノート -->
+<div class="note-box fade">
+<strong>📌 この記事について</strong><br>
+ハロー効果はソーンダイク（1920）以来、100年以上にわたり繰り返し再現されている。容姿と評価の関連を示すDion et al.（1972）の研究、意識的統制が困難であることを示すNisbett & Wilson（1977）の研究は、いずれも社会心理学の古典として広く引用されている。ただし、近年の研究（Kramer et al., 2024）は実験方法の精緻化により、効果の大きさや条件依存性について再検討が進んでいることも指摘している。法廷での効果については、犯罪の種類や実験デザインによって結果が分かれることに注意が必要。
+</div>
+
+<div class="tags fade">
+<span class="tag">社会心理学</span>
+<span class="tag">認知バイアス</span>
+<span class="tag">ハロー効果</span>
+<span class="tag">第一印象</span>
+<span class="tag">意思決定</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+<div style="position:sticky;top:40px;">
+<div class="sidebar-block fade">
+<p class="sidebar-label">Key Number</p>
+<p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">789</p>
+<p class="sidebar-text"><strong>ドル</strong> — 身長が1インチ（2.5cm）高くなるごとに増える年収の平均額（Judge & Cable, 2004）。30年間で約16万6千ドルの差。</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">歴史的背景</p>
+<p class="sidebar-text">1920年、ソーンダイクが軍の評価データから命名。語源は中世宗教画の<strong>聖人の光輪（halo）</strong>。一つの輝きが人物全体を照らすメタファーに由来する。</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">作品への登場</p>
+<p class="sidebar-text">— 『ファスト&スロー』（カーネマン, 2011）で「システム1の代表例」として詳述<br>— 『影響力の武器』（チャルディーニ, 2001）で容姿の説得力への影響を解説<br>— 映画『マネーボール』（2011）でスカウトの直感的評価をデータが覆す</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">関連トピック</p>
+<p class="sidebar-text">— 確証バイアス<br>— アンカリング効果<br>— バーナム効果<br>— フレーミング効果</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">今日の判断を振り返る</p>
+<p class="sidebar-text">□ 今日会った人を、第一印象だけで「良い人」と判断しなかったか<br>□ メールの返信で、相手の肩書きに引きずられなかったか<br>□ SNSで、写真の印象だけで投稿の信頼性を判断しなかったか</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">信頼度</p>
+<p class="sidebar-text">ハロー効果そのものの存在は100年にわたる研究で堅固。ただし効果の大きさは状況（犯罪の深刻さ、文化、実験手法）で変わる。</p>
+</div>
+</div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL -->
+<div class="terminal-label-wrap fade">
+<span class="terminal-label">▼ Internal Dialogue >> Active</span>
+<span class="terminal-label-line"></span>
+</div>
+
+<div class="terminal-wrap">
+<div class="terminal fade" id="terminalBlock">
+<div class="terminal-bar">
+<div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div>
+<span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+</div>
+<div class="terminal-body">
+<span class="t-sys" id="ts0">// session started — ハロー効果</span>
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;4枚とも同じ顔なのに、スーツの人に年収が高そうって答えちゃった</span></div>
+<span class="t-output" id="to1">ほとんどの人がそうなる。面白いのは、<em>顔が同じだと知っていても</em>止められないところだ。服装が脳に送る信号は、理性より先に届く。</span>
+<hr class="t-divider">
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;でも白衣なら医者だし、年収が高いのは事実じゃない？</span></div>
+<span class="t-output" id="to2">年収の推定はまだ根拠がある。問題は「信頼できそう」「リーダーシップがありそう」まで一緒に動いたことだ。白衣は信頼の証拠じゃない。<em>一つの印象が、無関係な特性まで書き換える</em>——それがハロー効果だ。</span>
+<hr class="t-divider">
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;知ってても防げないなら、どうすればいいの</span></div>
+<span class="t-output" id="to3">個人の意志力じゃ無理だから、構造を変える。面接なら全員に同じ質問をする。評価なら名前と顔を隠す。<em>バイアスを消すんじゃなくて、バイアスが入り込む隙間をなくす。</em></span>
+<hr class="t-divider">
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;それでも日常では構造化できない場面のほうが多いよね</span></div>
+<span class="t-output" id="to4">そう。だから一つだけ覚えておく。誰かを「良い人だ」と感じた瞬間に、<em>「それは何の証拠に基づいているか」</em>と自問する。答えが「見た目」なら、それはハローだ。</span>
+<hr class="t-divider">
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 服が変わっただけだったのか</span></div>
+</div>
+</div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+<p class="related-label">次に読む</p>
+<div class="related-grid">
+<a class="related-card" href="confirmation_bias_v6.html">
+<p class="related-card-tag">認知バイアス × 推論</p>
+<p class="related-card-title">確証バイアス</p>
+<p class="related-card-desc">あなたはもう答えを決めている。2-4-6課題が暴く推論の歪み。</p>
+<p class="related-card-arrow">読む →</p>
+</a>
+<a class="related-card" href="barnum_effect_v2.html">
+<p class="related-card-tag">社会心理学 × 自己認識</p>
+<p class="related-card-title">バーナム効果</p>
+<p class="related-card-desc">全員に同じ文面。85%が「自分のことだ」と感じた。</p>
+<p class="related-card-arrow">読む →</p>
+</a>
+</div>
+</div>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+// ツールチップ
+function toggleTip(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.tip'))document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+});
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+// 相関データ探索（棒グラフ版）
+const corrData=[
+  {a:'体格',b:'知性',r:.31,expect:.05,desc:'体格がよい兵士は知性も高いと評価された。筋肉の量と思考力に因果関係はない。だが上官たちの脳は、好印象を自動的に波及させた。'},
+  {a:'体格',b:'リーダーシップ',r:.39,expect:.12,desc:'体格のよさがリーダーとしての資質を引き上げていた。.39は「体が大きい→威厳がある」という直感だけでは説明できないほど高い。'},
+  {a:'体格',b:'人格',r:.28,expect:.03,desc:'体格と人格の善し悪し。論理的にはまったく無関係だ。それでも体格のよい兵士は「人格も優れている」と評価された。'},
+  {a:'知性',b:'リーダーシップ',r:.51,expect:.25,desc:'知的な人がリーダーにも向いているという推定には多少の合理性がある。だが .51は高すぎる。「頭が良さそうだから」という推測が大部分を占めている。'},
+  {a:'知性',b:'人格',r:.50,expect:.10,desc:'知性が高い人は人格も優れている——直感的にそう思いたくなるが、.50は「知性と人格が半分連動している」ことを意味する。現実にはそうではない。'},
+  {a:'リーダーシップ',b:'人格',r:.57,expect:.20,desc:'すべてのペアで最も高い相関。リーダーとして有能に見える人は人格も優れていると評価された。リーダーシップと道徳性は別の次元だが、上官の脳はそれを分離できなかった。'}
+];
+const corrBtns=document.getElementById('corrButtons');
+const svg=document.getElementById('corrSvg');
+const revealedBars=new Set();
+const barW=36;const gapW=80-barW;const startX=76;const chartBottom=230;const chartTop=32;const chartH=chartBottom-chartTop;
+function valToY(v){return chartBottom-v/0.6*chartH;}
+corrData.forEach((d,i)=>{
+  const btn=document.createElement('button');
+  btn.textContent=d.a+' ↔ '+d.b;
+  btn.dataset.idx=i;
+  btn.style.cssText="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;padding:10px 18px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;transition:all .15s;";
+  btn.addEventListener('mouseenter',()=>{if(!btn.classList.contains('done'))btn.style.borderColor='#8b1a1a';});
+  btn.addEventListener('mouseleave',()=>{if(!btn.classList.contains('done')){btn.style.borderColor='#c8bfaa';}});
+  btn.addEventListener('click',()=>{
+    const idx=parseInt(btn.dataset.idx);
+    if(revealedBars.has(idx))return;
+    revealedBars.add(idx);
+    btn.classList.add('done');btn.style.borderColor='#8b1a1a';btn.style.background='#8b1a1a';btn.style.color='white';btn.style.cursor='default';
+    const x=startX+idx*(barW+gapW);
+    // Expected bar (gray, thin)
+    const expH=d.expect/0.6*chartH;
+    const expRect=document.createElementNS('http://www.w3.org/2000/svg','rect');
+    expRect.setAttribute('x',x+barW/2-6);expRect.setAttribute('width',12);
+    expRect.setAttribute('y',chartBottom);expRect.setAttribute('height',0);
+    expRect.setAttribute('fill','#e0d8c8');expRect.setAttribute('rx','2');
+    svg.appendChild(expRect);
+    setTimeout(()=>{expRect.setAttribute('y',valToY(d.expect));expRect.setAttribute('height',expH);expRect.style.transition='y .4s ease, height .4s ease';},50);
+    // Actual bar (red)
+    const actH=d.r/0.6*chartH;
+    const actRect=document.createElementNS('http://www.w3.org/2000/svg','rect');
+    actRect.setAttribute('x',x);actRect.setAttribute('width',barW);
+    actRect.setAttribute('y',chartBottom);actRect.setAttribute('height',0);
+    actRect.setAttribute('fill','#8b1a1a');actRect.setAttribute('rx','2');actRect.setAttribute('opacity','0.85');
+    svg.appendChild(actRect);
+    setTimeout(()=>{actRect.setAttribute('y',valToY(d.r));actRect.setAttribute('height',actH);actRect.style.transition='y .5s ease .1s, height .5s ease .1s';},50);
+    // Value label
+    const valText=document.createElementNS('http://www.w3.org/2000/svg','text');
+    valText.setAttribute('x',x+barW/2);valText.setAttribute('y',valToY(d.r)-6);
+    valText.setAttribute('text-anchor','middle');valText.setAttribute('font-family',"'Source Sans 3',sans-serif");
+    valText.setAttribute('font-size','12');valText.setAttribute('font-weight','700');valText.setAttribute('fill','#8b1a1a');
+    valText.textContent=d.r.toFixed(2);valText.style.opacity='0';
+    svg.appendChild(valText);
+    setTimeout(()=>{valText.style.transition='opacity .3s ease .5s';valText.style.opacity='1';},50);
+    // X-axis label (short)
+    const shortLabel=d.a.substring(0,2)+'↔'+d.b.substring(0,2);
+    const xLabel=document.createElementNS('http://www.w3.org/2000/svg','text');
+    xLabel.setAttribute('x',x+barW/2);xLabel.setAttribute('y',chartBottom+16);
+    xLabel.setAttribute('text-anchor','middle');xLabel.setAttribute('font-family',"'Source Sans 3',sans-serif");
+    xLabel.setAttribute('font-size','9');xLabel.setAttribute('fill','#7a6a55');
+    xLabel.textContent=shortLabel;
+    svg.appendChild(xLabel);
+    // Show description
+    document.getElementById('corrDesc2').style.display='block';
+    document.getElementById('corrDescText').textContent=d.desc;
+    // Check if all revealed
+    if(revealedBars.size>=corrData.length){
+      const sm=document.getElementById('corrSummary');
+      const vals=corrData.map(d=>d.r);
+      const avg=(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(2);
+      const mn=Math.min(...vals).toFixed(2);
+      const mx=Math.max(...vals).toFixed(2);
+      document.getElementById('corrSummaryText').innerHTML='6つのペアの相関係数: 最低 <strong style="color:#e8c56a;">'+mn+'</strong>、最高 <strong style="color:#e8c56a;">'+mx+'</strong>、平均 <strong style="color:#e8c56a;">'+avg+'</strong>。本来なら無関係に近いはずの体格↔人格でさえ .28 ある。<br><br>ソーンダイクが1920年に指摘した通り——<em style="color:#e8c56a;">相関が高すぎ、そして均一すぎる。</em>上官たちは個別の特性を評価していたつもりで、実際には一つの「全体印象」を繰り返し記入していたにすぎない。';
+      sm.style.display='block';
+    }
+  });
+  corrBtns.appendChild(btn);
+});
+// 体験コンテンツ: 4枚写真評価
+const answers={};
+const labels={A:'スーツ',B:'白衣',C:'作業着',D:'Tシャツ'};
+const qnames={1:'年収',2:'信頼',3:'リーダーシップ'};
+function pickAnswer(q,btn){
+  const parent=btn.parentElement;
+  parent.querySelectorAll('button').forEach(b=>{b.style.borderColor='#c8bfaa';b.style.background='white';b.style.color='#3d3020';});
+  btn.style.borderColor='#8b1a1a';btn.style.background='#8b1a1a';btn.style.color='white';
+  answers[q]=btn.dataset.val;
+  if(Object.keys(answers).length>=3){
+    const sb=document.getElementById('expSubmit');
+    sb.disabled=false;sb.textContent='結果を見る';
+  }
+}
+function revealSamePerson(){
+  let lines=[];
+  for(let q=1;q<=3;q++){
+    const a=answers[q];
+    lines.push('<p style="font-family:\'Source Sans 3\',sans-serif;font-size:13px;color:#3d3020;line-height:1.8;">'+qnames[q]+'が最も高そう → <strong style="color:#8b1a1a;">'+a+'（'+labels[a]+'）</strong></p>');
+  }
+  const allSame=(answers[1]===answers[2]&&answers[2]===answers[3]);
+  const picked=Object.values(answers);
+  const countA=picked.filter(v=>v==='A').length;
+  const countB=picked.filter(v=>v==='B').length;
+  let commentary='';
+  if(allSame){
+    commentary='<p style="font-family:\'Source Sans 3\',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;margin-top:12px;">3問すべてで同じ写真を選んだ。<strong>一つの視覚的印象が、年収・信頼・リーダーシップのすべてを支配した</strong>。これがハロー効果の典型的なパターンだ。</p>';
+  }else{
+    commentary='<p style="font-family:\'Source Sans 3\',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;margin-top:12px;">質問によって選ぶ写真が変わった。だが注目してほしいのは、<strong>どの質問でも「服装」以外に判断材料がなかった</strong>という事実だ。能力も経歴もわからないのに、あなたは答えを出せてしまった。</p>';
+  }
+  document.getElementById('expResultDetail').innerHTML=lines.join('')+commentary;
+  document.getElementById('expPhase1').style.display='none';
+  document.getElementById('expPhase2').style.display='block';
+}
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2400},{id:'to2',delay:3000},
+  {id:'tl3',delay:4000},{id:'to3',delay:4600},
+  {id:'tl4',delay:5600},{id:'to4',delay:6200},
+  {id:'tl5',delay:7400}
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{const el=document.getElementById(s.id);if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}},s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>
