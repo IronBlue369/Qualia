@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>なぜ10進数なのか — Qualia Journal</title>
+<meta name="description" content="私たちが10を基数に数えるのは、数学的に最適だからではない。指が10本あるという解剖学的偶然——それだけだ。12進法のほうが割り算に強く、60進法は今も時計に生き残っている。">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;}.masthead-name a{color:inherit;text-decoration:none;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}.scenario-inner::after{content:'10';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}.meta-item{display:flex;align-items:center;gap:10px;}.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}.difficulty-dots{display:flex;gap:4px;}.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}.dot.on{background:#8b1a1a;}.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}.body-text:last-child{margin-bottom:0;}.body-text strong{color:#1a1208;font-weight:600;}.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}.pull-q em{color:#8b1a1a;}.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}.tip-box strong{color:#e8c56a;font-weight:600;}.tip.open .tip-box{display:block;}
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}.img-ph-area{min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}.img-ph-icon{font-size:28px;opacity:.4;}.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;}.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block-img{background:#ede8dc;padding:0;overflow:hidden;}.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;margin-bottom:8px;}.person-block-wiki a{color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.misconception-header{background:#3d3020;color:white;padding:11px 20px;}.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.misconception-body{background:white;}.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}.misconception-item:last-child{border-bottom:none;}.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}.mis-label.wrong{color:#c4392a;}.mis-label.right{color:#1a5a30;}.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.diagram-wrap{margin:28px 0;text-align:center;overflow-x:auto;}.diagram-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;text-align:center;max-width:520px;margin-left:auto;margin-right:auto;}
+.note-table{width:100%;border-collapse:collapse;margin:24px 0;font-family:'Source Sans 3',sans-serif;font-size:13px;}.note-table th,.note-table td{border:1px solid #e0d8c8;padding:8px 12px;text-align:center;}.note-table th{background:#f3efe6;font-weight:600;color:#7a6a55;font-size:11px;letter-spacing:.08em;text-transform:uppercase;}.note-table td{font-weight:300;color:#3d3020;}.note-table .row-label{text-align:left;font-weight:500;color:#7a6a55;background:#f3efe6;}
+.ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.ix-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.ix-body{padding:24px 20px;background:white;}.ix-desc{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:18px;}.ix-desc strong{font-weight:600;color:#1a1208;}.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:14px;padding-top:12px;border-top:1px solid #e0d8c8;line-height:1.7;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}.tl-item{position:relative;margin-bottom:28px;}.tl-item:last-child{margin-bottom:0;}.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.steps-wrap{margin:32px 0;}.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}.step-n{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#8b1a1a;padding:14px 16px;border-right:1px solid #c8bfaa;min-width:52px;text-align:center;}.step-title{font-family:'Source Serif 4',serif;font-size:15px;font-weight:400;color:#1a1208;padding:14px 16px;flex:1;}.step-arrow{padding:14px 16px;color:#b0a090;font-size:12px;transition:transform .2s;}.step-card.open .step-arrow{transform:rotate(180deg);}.step-body{display:none;padding:16px 20px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;}.step-card.open .step-body{display:block;}.step-body strong{color:#3d3020;font-weight:600;}
+.culture-block{margin:20px 0;border:1px solid #c8bfaa;padding:20px 24px;background:#f3efe6;}.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:4px;}.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}.ref-title a:hover{border-bottom-color:#8b1a1a;}.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}.sidebar-block:last-child{border-bottom:none;}.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}.sidebar-text strong{color:#3d3020;font-weight:600;}
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}.terminal-dots{display:flex;gap:6px;}.terminal-dot{width:12px;height:12px;border-radius:50%;}.terminal-dot.red{background:#ff5f57;}.terminal-dot.yellow{background:#febc2e;}.terminal-dot.green{background:#28c840;}.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;}.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;}.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}.t-prompt{color:#4a9e6a;margin-right:8px;user-select:none;}.t-input{color:#e8e4de;}.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}.t-output em{color:#e8c56a;font-style:normal;}.t-output strong{color:#fff;font-weight:500;}.t-exit .t-prompt{color:#555;}.t-exit .t-input{color:#555;}.t-exit .t-comment{color:#4a9e6a;}.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+.fade{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease;}.fade.on{opacity:1;transform:translateY(0);}
+@media(max-width:760px){.cover{grid-template-columns:1fr;padding:40px 20px 32px;}.article{grid-template-columns:1fr;padding:0 20px;}.article-side{display:none;}.meta-bar,.summary-box,.scenario,.terminal-label-wrap,.terminal-wrap,.related{padding-left:20px;padding-right:20px;}.misconception-item{flex-direction:column;}.misconception-q,.misconception-a{border-right:none;border-bottom:1px solid #e0d8c8;}.person-block{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- ═══ ZONE A ═══ -->
+<div class="masthead"><p class="masthead-name"><a href="https://qualiajournal.com/">Qualia Journal</a></p></div>
+
+<div class="cover">
+<div>
+<p class="cover-kicker">数学・論理</p>
+<h1>なぜ私たちは<em>10</em>で数えるのか</h1>
+<p class="cover-deck">数学的に最適な基数は10ではない。それでも人類はこの数を選んだ——いや、選ばされた。両手の指という、あまりにも素朴な理由で。</p>
+<p class="cover-byline">Last updated: Mar. 2026</p>
+</div>
+<div>
+<div class="est-card">
+<span class="est-label">Est.</span>
+<span class="est-year">1585</span>
+<p class="est-event">シモン・ステヴィンが『De Thiende（十分の一の術）』を出版。10進小数を体系化し、10進法が計算の世界標準として制度化される転換点となった。</p>
+<p class="est-context">同年の世界：英西戦争が勃発。ウォルター・ローリーの植民隊がロアノーク島に上陸——のちに「消えた植民地」として知られることになる。</p>
+</div>
+</div>
+</div>
+
+<div class="scenario"><div class="scenario-inner fade">
+<p>スーパーで買い物をして、レジで「1,280円です」と言われる。あなたは財布から千円札と小銭を出す。1,280。この数字の並び方に違和感を覚えたことは一度もないだろう。1の位、10の位、100の位、1000の位——全部が10の累乗になっている。</p>
+<p>時計を見ると、60分で1時間、60秒で1分。なぜ時間だけ10刻みではないのだろう。通貨も長さも重さも10の倍数で動くのに、時間と角度だけが60に支配されている。たまたまだろうか。それとも、どこかで道が分かれたのだろうか。</p>
+<p>10進法は「自然」ではない。人類がたまたま指を10本持っていたという、進化の偶然の産物だ。</p>
+</div></div>
+
+<div class="meta-bar">
+<div class="meta-item">
+<span class="meta-label">難易度</span>
+<div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+<span class="difficulty-text">初級 — 数学の知識は不要</span>
+</div>
+<div class="meta-sep"></div>
+<div class="meta-item">
+<span class="meta-label">読了時間</span>
+<span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 18 分</span>
+</div>
+</div>
+
+<div class="summary-box fade"><div class="summary-inner">
+<span class="summary-icon">要点</span>
+<p class="summary-text">この記事では、10進法が数学的に「最適」ではないことを体験し、別の基数で世界がどう変わるかを自分の手で試すことができる。</p>
+</div></div>
+
+<!-- ═══ ZONE B ═══ -->
+<div class="article">
+<div class="article-main">
+
+<!-- S1: 背景 -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">10本の指が決めた世界</h2>
+
+<p class="body-text fade">子どもが最初に数を覚えるとき、何を使うだろうか。指だ。片手で5、両手で10。10まで数えたら、指をすべて折って「ひとまとまり」とし、また1から始める。これが<span class="tip" onclick="toggleTip(this)">位取り記数法<span class="tip-box"><strong>位取り記数法（place-value notation）</strong><br>数字の位置によって値が変わる表記方法。「3」が十の位にあれば30、百の位にあれば300になる。ローマ数字のIII（3）やXXX（30）のような加算型とは根本的に異なる。</span></span>の感覚の原点であり、なぜ私たちが<strong>10を基数に選んだのか</strong>という問いの、最も素朴な答えでもある。</p>
+
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<rect x="20" y="10" width="140" height="60" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+<text x="90" y="35" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#7a6a55">片手</text>
+<text x="90" y="55" text-anchor="middle" font-family="'Playfair Display',serif" font-size="22" font-weight="700" fill="#8b1a1a">5</text>
+<text x="195" y="45" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">+</text>
+<rect x="220" y="10" width="140" height="60" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+<text x="290" y="35" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#7a6a55">もう片手</text>
+<text x="290" y="55" text-anchor="middle" font-family="'Playfair Display',serif" font-size="22" font-weight="700" fill="#8b1a1a">5</text>
+<text x="395" y="45" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<rect x="420" y="10" width="120" height="60" rx="4" fill="#1a1208" stroke="#1a1208" stroke-width="1"/>
+<text x="480" y="35" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#e8c56a">基数</text>
+<text x="480" y="57" text-anchor="middle" font-family="'Playfair Display',serif" font-size="24" font-weight="900" fill="white">10</text>
+<text x="280" y="105" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">しかし——</text>
+<rect x="60" y="120" width="200" height="40" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+<text x="160" y="145" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020">指の関節で数えれば → 12</text>
+<rect x="300" y="120" width="200" height="40" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+<text x="400" y="145" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020">指+足指で数えれば → 20</text>
+</svg>
+<p class="diagram-caption">基数は身体のどこを数えるかで変わる。10は「指先」を選んだ結果にすぎない。</p>
+</div>
+
+<p class="body-text fade">だが、10は数学的に見ると、あまり優秀な数ではない。<strong>10の<span class="tip" onclick="toggleTip(this)">約数<span class="tip-box"><strong>約数（divisor）</strong><br>ある数を割り切れる整数のこと。10の約数は1, 2, 5, 10。つまり10を「きれいに」分けられるのは半分か5等分だけ。3等分はできない。</span></span>は1, 2, 5, 10の4つだけだ。</strong>1/3を10進法で書くと0.333…と永遠に続く。ピザを3人で分けるような、ごく日常的な割り算が無限小数になる。</p>
+
+<table class="note-table fade">
+<thead><tr><th>文明</th><th>基数</th><th>身体の起源</th><th>痕跡</th></tr></thead>
+<tbody>
+<tr><td class="row-label">エジプト（前3000年〜）</td><td>10</td><td>両手の指</td><td>ヒエログリフの十進記号</td></tr>
+<tr><td class="row-label">シュメール（前3000年〜）</td><td>60</td><td>指の関節（12）× 片手（5）</td><td>時間・角度（60秒/60分/360°）</td></tr>
+<tr><td class="row-label">マヤ（前1世紀〜）</td><td>20</td><td>手指＋足指</td><td>マヤ暦・ゼロの発明</td></tr>
+<tr><td class="row-label">中国（前300年〜）</td><td>10</td><td>両手の指</td><td>算木・位取り記数法</td></tr>
+<tr><td class="row-label">インド（5世紀〜）</td><td>10</td><td>両手の指</td><td>ゼロの記号・現代の数字体系</td></tr>
+</tbody>
+</table>
+
+<p class="body-text fade">一方、<strong>12の約数は1, 2, 3, 4, 6, 12の6つ。</strong>半分にも、3等分にも、4等分にも割り切れる。実生活の分配で圧倒的に有利だ。実際、今でも「1ダース＝12個」「1フィート＝12インチ」「時計の文字盤＝12」が残っている。これらは12進法の化石である。</p>
+
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 560 180" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<text x="140" y="20" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#7a6a55" letter-spacing=".1em">10の約数</text>
+<text x="420" y="20" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#7a6a55" letter-spacing=".1em">12の約数</text>
+<rect x="40" y="32" width="200" height="36" rx="3" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="140" y="55" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#3d3020">÷2 = <tspan font-weight="600">5</tspan></text>
+<rect x="40" y="72" width="200" height="36" rx="3" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="140" y="95" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#3d3020">÷5 = <tspan font-weight="600">2</tspan></text>
+<rect x="40" y="112" width="200" height="36" rx="3" fill="white" stroke="#c4392a" stroke-dasharray="4,3"/>
+<text x="140" y="135" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#c4392a">÷3 = 3.333… ✗</text>
+<rect x="320" y="32" width="200" height="36" rx="3" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="420" y="55" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#3d3020">÷2 = <tspan font-weight="600">6</tspan></text>
+<rect x="320" y="72" width="200" height="36" rx="3" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="420" y="95" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#3d3020">÷3 = <tspan font-weight="600">4</tspan></text>
+<rect x="320" y="112" width="200" height="36" rx="3" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="420" y="135" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#3d3020">÷4 = <tspan font-weight="600">3</tspan></text>
+<rect x="320" y="152" width="200" height="24" rx="3" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="420" y="169" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020">÷6 = <tspan font-weight="600">2</tspan></text>
+<line x1="275" y1="30" x2="275" y2="175" stroke="#e0d8c8" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="275" y="170" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">vs</text>
+</svg>
+<p class="diagram-caption">10は3で割り切れない。日常で頻出する「3等分」が無限小数になる。12にはこの弱点がない。</p>
+</div>
+
+<hr class="art-rule">
+
+<h2 class="fade">数える方法は一つではなかった</h2>
+
+<p class="body-text fade"><span class="tip" onclick="toggleTip(this)">シュメール<span class="tip-box"><strong>シュメール（Sumer）</strong><br>紀元前4000年頃からメソポタミア南部に栄えた人類最古級の文明。楔形文字、車輪、60進法を生んだ。バビロニアはシュメールを継承した国家。</span></span>人は、指先ではなく<strong>指の関節</strong>を数えた。親指をポインターにして、人差し指から小指までの関節を順に触る。4本の指×3つの関節で、片手だけで12まで数えられる。もう片方の手で「12のセット」を5つまで記録すると——12×5で<strong>60</strong>になる。これが60進法の身体的な起源だとする説がある。</p>
+
+<div class="fade" style="margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;">
+<img src="sumer_finger_counting.jpg" alt="シュメール式の指関節カウント" style="width:100%;display:block;">
+<p style="padding:9px 16px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;border-top:1px solid #e0d8c8;">シュメール式の指関節カウント。親指で人差し指から小指の関節を順に触ると、片手だけで12まで数えられる。</p>
+</div>
+
+<div class="fade" style="margin:24px auto;border:1px solid #c8bfaa;overflow:hidden;background:white;max-width:300px;text-align:center;">
+<img src="ybc7289_tablet.jpg" alt="バビロニアの粘土板 YBC 7289" style="width:100%;display:block;">
+<p style="padding:8px 12px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;border-top:1px solid #e0d8c8;">バビロニアの粘土板 YBC 7289（前1800–1600年頃）。正方形の対角線に沿って√2の60進法近似値「1;24,51,10」が刻まれている。<span style="color:#b0a090;">Yale Babylonian Collection / CC0</span></p>
+</div>
+
+<p class="body-text fade">60という数は一見すると大きすぎるように思える。だが60は2, 3, 4, 5, 6, 10, 12, 15, 20, 30で割り切れる<span class="tip" onclick="toggleTip(this)">高度合成数<span class="tip-box"><strong>高度合成数（highly composite number）</strong><br>それ以下のどの自然数よりも約数が多い数。60の約数は12個で、60未満のどの数よりも多い。市場で物を分配するのに極めて便利。</span></span>だ。市場で穀物を2人にも3人にも5人にも分配できる。4000年前のシュメール人の知恵が、あなたのスマートフォンの時刻表示に、今も生きている。</p>
+
+
+
+<hr class="art-rule">
+
+<h2 class="fade">ゼロを発明した人々——インドから世界へ</h2>
+
+<p class="body-text fade">10進法が「ただの指の数」から「世界標準の記数法」に変わるには、もう一つの発明が必要だった。<strong>ゼロ</strong>だ。ゼロがなければ、10と100と1000を区別する方法がない。「306」と「36」を書き分けられない。ローマ数字にゼロがないのは、位取りという概念がないからだ。CCCVIとXXXVIは別の記号で区別する。位取り記数法は、ゼロなしには成立しない。</p>
+
+<div class="person-block fade">
+<div class="person-block-img"><img src="aryabhata.jpg" alt="アーリヤバタ像" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="person-block-body">
+<p class="person-block-name">アーリヤバタ</p>
+<p class="person-block-role">Aryabhata, 476–550</p>
+<p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%BC%E3%83%AA%E3%83%A4%E3%83%90%E3%82%BF" target="_blank" rel="noopener">Wikipedia</a></p>
+<p class="person-block-desc">インドの天文学者・数学者。499年の著書『アーリヤバティーヤ』で、サンスクリットの子音と母音を使った位取り表記を考案。「空（kha）」という概念でゼロの位置を示した。数十億までの数を短い語句で表現できる仕組みは、のちの数学に決定的な影響を与えた。</p>
+</div>
+</div>
+
+<p class="body-text fade">アーリヤバタが「位置で値が変わる」原理を体系化し、約1世紀後に<span class="tip" onclick="toggleTip(this)">ブラフマグプタ<span class="tip-box"><strong>ブラフマグプタ（Brahmagupta, 598–668）</strong><br>インドの数学者・天文学者。ゼロの演算規則を初めて定式化した。「ゼロから数を引くと負の数になる」と書いた最初の人物。</span></span>がゼロの演算規則——「数からそれ自身を引くとゼロになる」——を初めて書き下した。この2つの発明が組み合わさったとき、<strong>0から9までのたった10個の記号で、任意の大きさの数を表現できる</strong>体系が完成した。</p>
+
+<p class="body-text fade">9世紀、ペルシアの数学者<span class="tip" onclick="toggleTip(this)">アル＝フワーリズミー<span class="tip-box"><strong>アル＝フワーリズミー（al-Khwārizmī, c.780–c.850）</strong><br>ペルシアの数学者。インドの記数法をアラビア語で解説し、イスラム世界に広めた。「algorithm（アルゴリズム）」は彼のラテン語名Algorithmiに由来。</span></span>がこの仕組みをアラビア語で解説した。10進法は数学的真理として広まったのではない。交易ルート沿いに、商人の手を通じて広まった。</p>
+
+<div class="person-block fade">
+<div class="person-block-img"><img src="fibonacci.jpg" alt="フィボナッチ" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="person-block-body">
+<p class="person-block-name">フィボナッチ</p>
+<p class="person-block-role">Leonardo Fibonacci, c.1170–c.1250</p>
+<p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%9C%E3%83%8A%E3%83%83%E3%83%81" target="_blank" rel="noopener">Wikipedia</a></p>
+<p class="person-block-desc">ピサ出身のイタリア人数学者。北アフリカで育ち、アラビア数字の威力を知った。1202年に出版した『算盤の書（Liber Abaci）』でアラビア数字をヨーロッパに本格的に紹介。ローマ数字のCCCLXVII（367）を「367」と3桁で書ける効率は、商人たちを即座に虜にした。</p>
+</div>
+</div>
+
+<p class="body-text fade">フィボナッチの『算盤の書』がイタリアに衝撃を与えたのは1202年のことだ。だが、ヨーロッパの市民がアラビア数字を日常的に使い始めるまでには、さらに300年かかった。15世紀のグーテンベルクの活字印刷が、ようやくローマ数字を駆逐した。ドイツのアダム・リースが1522年に出版した算術書が、商人と職人の世代に「インドの数字」を定着させた決定打だったとされる。</p>
+
+<div class="quote-block fade">
+<p class="quote-en">"The ingenious method of expressing every possible number using a set of ten symbols, each symbol having a place value and an absolute value, emerged in India."</p>
+<p class="quote-ja">「あらゆる数を10個の記号で表現するという独創的な方法は、インドで生まれた。その重要性は、もはや当たり前になりすぎて正当に評価されていない。」</p>
+<p class="quote-attr">— ピエール＝シモン・ラプラス、フランスの数学者（18世紀末）</p>
+</div>
+
+<div class="misconception fade">
+<div class="misconception-header"><span class="misconception-hl">読む前に確認 — よくある誤解</span></div>
+<div class="misconception-body">
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">10進法は数学的に最も優れた記数法である</p></div>
+<div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">12進法のほうが約数が多く、日常の分数計算に有利。10進法は身体の構造に由来する歴史的選択であり、数学的最適解ではない</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">すべての古代文明が10進法を使っていた</p></div>
+<div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">シュメール/バビロニアは60進法、マヤは20進法を使った。10進法は多数派だが「唯一」ではない</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">時間が60進法なのはただの慣習で、合理的な理由はない</p></div>
+<div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">60は2,3,4,5,6で割り切れる「高度合成数」。時間・角度を多様に分割する必要がある場面では10より合理的だ</p></div>
+</div>
+</div>
+</div>
+
+
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">✦ Number Line — きりのいい数の正体</span></div>
+<div class="ix-body">
+<p class="ix-desc"><strong>あなたが「きりがいい」と感じる数は、基数によって変わる。</strong>下の数直線で、10進法と12進法の「きりのいい数」を見比べてみよう。切り替えると、<em>目盛りの間隔自体が変わり、「きりのいい数」の位置がずれる。</em></p>
+<div style="display:flex;gap:8px;margin-bottom:16px;">
+<button id="nlBtn10" onclick="drawNL(10)" style="padding:8px 20px;border:2px solid #8b1a1a;background:#f3efe6;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;cursor:pointer;color:#8b1a1a;">10進法の目盛り</button>
+<button id="nlBtn12" onclick="drawNL(12)" style="padding:8px 20px;border:2px solid #c8bfaa;background:white;font-family:'Source Sans 3',sans-serif;font-size:13px;cursor:pointer;color:#3d3020;">12進法の目盛り</button>
+</div>
+<canvas id="nlCanvas" width="1120" height="300" style="width:100%;height:150px;display:block;"></canvas>
+<div id="nlCaption" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;margin-top:10px;line-height:1.7;"></div>
+<p class="ix-note">10進法で「100」は10²だからきりがいい。12進法では100は84と書く——何の変哲もない数だ。逆に12進法の「100」は144（=12²）であり、10進法の住人にとってはただの端数に見える。「きりのよさ」は数の性質ではなく、基数が作り出す錯覚だ。</p>
+</div>
+</div>
+
+<div class="person-block fade">
+<div class="person-block-img">
+<img src="stevin.jpg" alt="シモン・ステヴィン" style="width:100%;height:100%;object-fit:cover;display:block;">
+</div>
+<div class="person-block-body">
+<p class="person-block-name">シモン・ステヴィン</p>
+<p class="person-block-role">Simon Stevin, 1548–1620</p>
+<p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%B7%E3%83%A2%E3%83%B3%E3%83%BB%E3%82%B9%E3%83%86%E3%83%B4%E3%82%A3%E3%83%B3" target="_blank" rel="noopener">Wikipedia</a></p>
+<p class="person-block-desc">フランドルの数学者・技術者。1585年に出版した29ページの小冊子『De Thiende（十分の一の術）』で、10進小数の実用的な計算法を体系化した。「星見、測量士、絨毯の計量人、酒樽の計量人、造幣局長、商人の皆さんに」という献辞は、この発明が学者ではなく実務者のためだったことを物語っている。</p>
+</div>
+</div>
+
+<div class="fade" style="margin:24px 0;border:1px solid #c8bfaa;overflow:hidden;background:white;max-width:280px;">
+<img src="de_thiende.jpg" alt="De Thiende 表紙" style="width:100%;display:block;">
+<p style="padding:8px 12px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;border-top:1px solid #e0d8c8;">'De Thiende' 表紙（1585年、ライデン刊）。Wikimedia Commons / Public Domain</p>
+</div>
+
+<p class="body-text fade">ステヴィンの貢献は、10進法を「整数の表記法」から「万能の計算道具」に拡張したことにある。3.14、0.25、1.618——私たちが今日使う小数は、すべてステヴィンの仕事に遡る。彼は10進小数の普及が計測と通貨の単位統一につながると確信していた。実際、その予言は200年後に実現する。</p>
+
+<p class="body-text fade">フランス革命だ。1793年、革命政府は「すべてを10進法に」という野心的な計画を立てた。<span class="tip" onclick="toggleTip(this)">メートル法<span class="tip-box"><strong>メートル法（metric system）</strong><br>1799年にフランスで制定された10進法ベースの度量衡体系。1km=1000m、1kg=1000g。現在、世界のほとんどの国で公式に採用。</span></span>はその最大の成功だ。だが同時に、革命政府は時間の10進化にも手を出した。1日を10時間、1時間を100分、1分を100秒とする「革命暦」である。結果は惨憺たるものだった。労働者は6日ごとの休日を9日ごとに変えられ、時計職人は新しい文字盤を作らされた。そして——<strong>12年後に廃止された</strong>。60進法が時間の領域で生き残ったのは、慣習の力だけではない。60のほうが3等分にも4等分にも5等分にもできるからだ。</p>
+
+<div class="fade" style="margin:24px auto;border:1px solid #c8bfaa;overflow:hidden;background:white;max-width:300px;text-align:center;">
+<img src="horloge_republicaine.jpg" alt="革命暦の10進法時計" style="width:100%;display:block;">
+<p style="padding:8px 12px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;border-top:1px solid #e0d8c8;">革命暦の時計。外周に10進法（1日=10時間）、内周に12時間が併記。Wikimedia Commons / Public Domain</p>
+</div>
+
+<!-- S2: 体験セクション -->
+<div class="sec-rule fade"><span class="sec-label">体験</span><div class="sec-line"></div></div>
+<h2 class="fade">10を疑ってみる</h2>
+
+<p class="body-text fade">ここまで読んで、10進法の弱点は理解できただろう。だが「理解する」ことと「感覚として掴む」ことは別だ。次の2つの仕掛けで、10と12の差を自分の目で確かめてほしい。</p>
+
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">✦ Fraction Showdown — 10 vs 12</span></div>
+<div class="ix-body">
+<p class="ix-desc"><strong>10進法と12進法で、同じ分数がどう見えるかを比較する。</strong>表示を切り替えて、数字と図の両方で確かめてみよう。</p>
+<div style="display:flex;gap:6px;margin-bottom:16px;">
+<button id="fsTabNum" onclick="showFSTab('num')" style="padding:6px 16px;border:1px solid #8b1a1a;background:#f3efe6;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;cursor:pointer;color:#8b1a1a;">数値で見る</button>
+<button id="fsTabPizza" onclick="showFSTab('pizza')" style="padding:6px 16px;border:1px solid #c8bfaa;background:white;font-family:'Source Sans 3',sans-serif;font-size:12px;cursor:pointer;color:#3d3020;">タイルで見る</button>
+</div>
+<div id="fsNumPanel"></div>
+<div id="fsPizzaPanel" style="display:none;"></div>
+<p class="ix-note">10進法で割り切れるのは1/2, 1/4, 1/5, 1/8, 1/10。12進法ではそれに加えて1/3, 1/6, 1/9, 1/12も割り切れる。10マスを3人で分けるだけで、10進法では余りが出る。12マスなら余りなし。</p>
+</div>
+</div>
+
+<p class="body-text fade">次に、もう少し大きな問いに踏み込む。「もし人間の指が10本でなかったら、数の世界はどう変わっていたか？」という思考実験だ。これは空想ではない。実際にマヤ人は20本（手足の指）で数え、シュメール人は関節で12を数えた。指の本数が変われば、基数が変わる。基数が変われば、通貨も時計も変わる。</p>
+
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">✦ What If — 指がN本だったら</span></div>
+<div class="ix-body">
+<p class="ix-desc"><strong>あなたの手の指が違う本数だったとしよう。</strong>基数を選ぶと、その世界の数の書き方・分数の性質・時計の仕組みが変わる。</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;" id="whatIfBtns">
+<button onclick="showWhatIf(8)" style="padding:10px 18px;border:2px solid #c8bfaa;background:white;font-family:'Source Sans 3',sans-serif;font-size:13px;cursor:pointer;color:#1a1208;transition:all .15s;" onmouseover="this.style.borderColor='#8b1a1a'" onmouseout="this.style.borderColor=this.classList.contains('active')?'#8b1a1a':'#c8bfaa'">8本（4+4）</button>
+<button onclick="showWhatIf(10)" style="padding:10px 18px;border:2px solid #c8bfaa;background:white;font-family:'Source Sans 3',sans-serif;font-size:13px;cursor:pointer;color:#1a1208;transition:all .15s;" onmouseover="this.style.borderColor='#8b1a1a'" onmouseout="this.style.borderColor=this.classList.contains('active')?'#8b1a1a':'#c8bfaa'">10本（現実）</button>
+<button onclick="showWhatIf(12)" style="padding:10px 18px;border:2px solid #c8bfaa;background:white;font-family:'Source Sans 3',sans-serif;font-size:13px;cursor:pointer;color:#1a1208;transition:all .15s;" onmouseover="this.style.borderColor='#8b1a1a'" onmouseout="this.style.borderColor=this.classList.contains('active')?'#8b1a1a':'#c8bfaa'">12本（6+6）</button>
+<button onclick="showWhatIf(20)" style="padding:10px 18px;border:2px solid #c8bfaa;background:white;font-family:'Source Sans 3',sans-serif;font-size:13px;cursor:pointer;color:#1a1208;transition:all .15s;" onmouseover="this.style.borderColor='#8b1a1a'" onmouseout="this.style.borderColor=this.classList.contains('active')?'#8b1a1a':'#c8bfaa'">20本（手足）</button>
+</div>
+<div id="whatIfResult" style="min-height:80px;"></div>
+<div id="whatIfCaveat" style="display:none;margin-top:14px;padding:12px 16px;background:#f3efe6;border-left:3px solid #8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;line-height:1.8;">
+<strong style="color:#8b1a1a;">ただし</strong>——マヤ人は指が20本あるわけではない。手指10本＋足指10本で20を数えた。シュメール人は指が12本だったわけでもない。関節で12を数え、60進法に至った。<em>指の数だけでは基数は決まらない。</em>それでも10進法が世界の大半を支配したのは、「指先で数える」という最も単純な方法が、最も広く伝播したからだ。
+</div>
+<p class="ix-note">基数が変われば「きりのいい数」が変わる。100が「きりがいい」と感じるのは、10²だから——つまり10進法の中でだけ通用する感覚だ。</p>
+</div>
+</div>
+
+<!-- S3: メカニズム -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">10が「勝った」3つの理由</h2>
+
+<p class="body-text fade">12進法のほうが数学的に優れているなら、なぜ10進法が勝ったのか。答えは数学の外にある。</p>
+
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 560 110" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<rect x="10" y="20" width="150" height="70" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="85" y="45" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#8b1a1a" letter-spacing=".1em">STEP 1</text>
+<text x="85" y="65" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020">指先で数える</text>
+<text x="85" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">最も単純な方法</text>
+<text x="180" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<rect x="200" y="20" width="150" height="70" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="275" y="45" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#8b1a1a" letter-spacing=".1em">STEP 2</text>
+<text x="275" y="65" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020">交易で伝播</text>
+<text x="275" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">インド→アラビア→欧州</text>
+<text x="370" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+<rect x="390" y="20" width="160" height="70" rx="4" fill="#1a1208"/>
+<text x="470" y="45" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#e8c56a" letter-spacing=".1em">STEP 3</text>
+<text x="470" y="65" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="white">印刷で固定</text>
+<text x="470" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#9ab4cc">活字は10種で十分</text>
+</svg>
+<p class="diagram-caption">10進法の勝利は「数学的優位性」ではなく「伝播の容易さ」による。</p>
+</div>
+
+<div class="steps-wrap fade">
+<p class="steps-head">10進法が定着した構造</p>
+<div class="step-card" id="sc1">
+<div class="step-hd" onclick="tog(1)"><div class="step-n">1</div><div class="step-title">身体のアクセシビリティ</div><div class="step-arrow">▼</div></div>
+<div class="step-body"><p>指先で数えるのは、人間が道具なしに行える最も単純なカウント方法だ。関節で12を数えるシュメール式は賢いが、<strong>他人に教えるのが難しい</strong>。交易相手に「親指で関節を触れ」と説明するより、「指を折れ」と言うほうが早い。単純な方法は遠くまで伝わる。言語が違っても、指は10本だ。</p></div>
+</div>
+<div class="step-card" id="sc2">
+<div class="step-hd" onclick="tog(2)"><div class="step-n">2</div><div class="step-title">交易ネットワークによる増幅</div><div class="step-arrow">▼</div></div>
+<div class="step-body"><p>インドで生まれた10進位取り記数法は、9世紀にアル＝フワーリズミーがアラビア語で解説し、シルクロード沿いに拡散した。13世紀にフィボナッチがイタリアに持ち込んだとき、ヨーロッパの商人たちはローマ数字のCCCLXVII（367）を「367」と3桁で書ける効率に飛びついた。<strong>商業が標準を決めた。</strong>最適だったからではなく、すでに広まっていたからだ。</p></div>
+</div>
+<div class="step-card" id="sc3">
+<div class="step-hd" onclick="tog(3)"><div class="step-n">3</div><div class="step-title">印刷技術によるロックイン</div><div class="step-arrow">▼</div></div>
+<div class="step-body"><p>15世紀のグーテンベルク以降、活字印刷が普及すると、0〜9の10種類の活字で任意の数を組めるという利便性が決定的になった。<strong>12進法なら12種類の記号が必要になる</strong>——10と11を表す新しい記号を覚えてもらう社会的コストは、わずかな数学的利点を上回った。メートル法が10進法を前提に設計されたことで、制度的なロックインは完成した。</p></div>
+</div>
+</div>
+
+<!-- S4: 歴史 -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">10進法が世界を覆うまで</h2>
+
+<p class="body-text fade">以下の年表で、<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#8b1a1a;vertical-align:middle;"></span> は10進法の確立に直接関わる出来事、<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;vertical-align:middle;"></span> は関連する周辺の動きを示す。</p>
+
+<div class="timeline fade">
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">前3000年頃</p>
+<p class="tl-title">シュメール人の60進法</p>
+<p class="tl-desc">メソポタミアで60進法が確立。指の関節で12を数え、5セットで60とするカウント法。楔形文字の数字記号が生まれる。時間と角度の60進法はここに起源を持つ。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">前3000年頃</p>
+<p class="tl-title">エジプトの10進法</p>
+<p class="tl-desc">ヒエログリフで10, 100, 1000…の記号を使い分ける加算型10進法。位取りではないが、基数10の選択はこの時点で定着していた。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">499年</p>
+<p class="tl-title">アーリヤバタの位取り記数法</p>
+<p class="tl-desc">インドの数学者アーリヤバタが、サンスクリットの子音と母音を使った位取り表記を考案。数十億までの数を短い語句で表現できる画期的な仕組みだった。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">628年</p>
+<p class="tl-title">ブラフマグプタがゼロを定式化</p>
+<p class="tl-desc">『ブラーマスプタシッダーンタ』でゼロの演算規則を初めて記述。「数からそれ自身を引くとゼロになる」。これにより0〜9の10記号で完全な位取りが可能に。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">825年頃</p>
+<p class="tl-title">アル＝フワーリズミーのアラビア語解説</p>
+<p class="tl-desc">ペルシアの数学者がインドの記数法をアラビア語で紹介。「algorithm（アルゴリズム）」の語源。イスラム世界に10進法が浸透する契機。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">1202年</p>
+<p class="tl-title">フィボナッチ『算盤の書』</p>
+<p class="tl-desc">北アフリカで学んだイタリア人数学者が、ヨーロッパにアラビア数字を本格的に紹介。ローマ数字からの移行が始まる。商業計算の効率が劇的に向上した。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">1585年</p>
+<p class="tl-title">ステヴィン『De Thiende』出版</p>
+<p class="tl-desc">10進小数を体系的に解説した29ページの小冊子。小数点の概念を広め、10進法を「計算の世界標準」として確立する決定打になった。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1799年</p>
+<p class="tl-title">メートル法の制定</p>
+<p class="tl-desc">フランス革命後、10進法を前提とした度量衡システムが法制化。1km=1000m, 1kg=1000g。10進法が制度として不可逆に固定された瞬間。</p>
+</div>
+</div>
+
+<!-- S5: つまり -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">偶然が必然に変わるとき</h2>
+
+<p class="body-text fade">10進法は、数学的に最適な基数ではない。12のほうが約数が多く、60のほうが分割に柔軟で、2のほうがコンピュータに適している。それでも世界の大半が10で数えるのは、<strong>人間の指が10本だった</strong>からだ。いや——正確には、「指先で数える」という最も怠惰な方法が、最も広く伝播したからだ。</p>
+
+<p class="body-text fade">これは3つの力が重なった結果だ。第一に、<strong>身体の制約</strong>——指先は誰にでも見える。関節カウントのような知的な方法は、教えるコストが高い。第二に、<strong>伝播の力学</strong>——一度広まった記号体系は、交易を通じて自己強化する。ローマ数字より効率がいいから乗り換えるが、12進法より効率が悪いからといって戻ることはない。第三に、<strong>制度のロックイン</strong>——メートル法が10進法を前提に制度化された時点で、基数の変更は事実上不可能になった。</p>
+
+<p class="body-text fade">この構造は10進法に限った話ではない。<span class="tip" onclick="toggleTip(this)">VHS<span class="tip-box"><strong>VHS（Video Home System）</strong><br>1976年にJVCが開発した家庭用ビデオ規格。画質ではソニーのBetamaxに劣るとされたが、録画時間の長さと販売戦略で市場を制し、事実上の標準になった。</span></span>が<span class="tip" onclick="toggleTip(this)">Betamax<span class="tip-box"><strong>Betamax（ベータマックス）</strong><br>1975年にソニーが開発した家庭用ビデオ規格。画質・音質ではVHSより優れていたが、録画時間の短さとライセンス戦略の差でVHSに敗れた。「技術的に優れたものが勝つとは限らない」典型例。</span></span>に勝ったのは画質ではなく販売戦略だった。<span class="tip" onclick="toggleTip(this)">経路依存性<span class="tip-box"><strong>経路依存性（path dependence）</strong><br>過去の選択が現在の選択肢を制約すること。最初のたまたまの選択が、時間が経つにつれて変更不可能になっていく現象。10進法も典型的な経路依存だ。</span></span>と呼ばれるこの構造は、一度定着すると覆すコストが指数関数的に増大する。</p>
+
+<div class="pull fade">
+<p class="pull-q">"The decimal system is a <em>biological accident</em>, not a mathematical inevitability."</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">10進法は生物学的な偶然であり、数学的な必然ではない。</p>
+<p class="pull-attr">— しばしば数学教育者のあいだで引用される定型句</p>
+</div>
+
+<p class="body-text fade">だとしたら、こう問わずにはいられない。私たちが「きりがいい」と感じる数——10, 100, 1000——は、宇宙の真実を反映しているのだろうか。それとも、たまたま霊長類の手が五指だったという、進化の偶然を反映しているだけなのか。</p>
+
+<p class="body-text fade">確実に後者だ。しかし、それを知ったところで、明日から12進法で暮らすわけにはいかない。制度はすでに固まっている。Dozenal Society of Americaは1944年から12進法の普及を訴え続けているが、メートル法のロックインを覆すことはできていない。私たちにできるのは、10という数に宇宙的な意味を読み込まないことだ。「10年ひと昔」「トップ10」「10点満点」——これらはすべて、指の本数から来ている。宇宙には10という数に格別の意味はない。</p>
+
+
+
+
+<div class="culture-block fade">
+<p class="culture-title">Schoolhouse Rock!「Little Twelvetoes」（1973）</p>
+<p class="culture-desc">アメリカの教育テレビシリーズで、12本指の宇宙人が12進法を教えるエピソード。10と11を表す数字として「dek」「el」が使われ、のちにDozenal Society（12進法推進団体）がこの呼び名を採用した。</p>
+</div>
+<div class="culture-block fade">
+<p class="culture-title">J.R.R. トールキン『指輪物語』の暦法</p>
+<p class="culture-desc">ホビットの暦は1年を12か月×30日＝360日と定め、残りの5〜6日を「ホビットの祝日」として挿入する。言語学者でもあったトールキンは、12と60の約数の豊かさを意識した世界構築を行っている。</p>
+</div>
+
+<div class="culture-block fade">
+<p class="culture-title">Dozenal Society of America（1944–現在）</p>
+<p class="culture-desc">12進法の普及を目指す実在の団体。会報『The Duodecimal Bulletin』を発行し続けている。2015年にはUnicodeに12進法用の数字記号（↊=10, ↋=11）が収録された。80年以上の活動だが、メートル法のロックインを覆すには至っていない。</p>
+</div>
+
+<div class="culture-block fade">
+<p class="culture-title">フランス革命暦の10進時計（1793–1805）</p>
+<p class="culture-desc">1日を10時間、1時間を100分とする急進的な10進化の試み。新しい文字盤の時計が製造されたが、60進法の実用的優位性の前に12年で廃止された。現存する革命暦時計はパリの美術工芸博物館などで見ることができる。</p>
+</div>
+
+<!-- 参考文献 -->
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+<div class="ref-list">
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">歴史書</span><span class="ref-year">1998</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1093/oso/9780195114850.001.0001" target="_blank" rel="noopener">The Universal History of Numbers</a></p>
+<p class="ref-author">Georges Ifrah — John Wiley &amp; Sons</p>
+<p class="ref-desc">数の歴史を世界中の文明から網羅的に追った大著。なぜ10進法が支配的になったかを、身体・言語・交易の3つの軸で解き明かしている。分厚いが、どこから読んでも面白い。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">原著</span><span class="ref-year">1585</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1080/00033793500200391" target="_blank" rel="noopener">De Thiende (The Art of Tenths)</a></p>
+<p class="ref-author">Simon Stevin — George Sarton による解説論文 (1935, Isis)</p>
+<p class="ref-desc">ステヴィンの原著は29ページしかない。Sartonによる1935年の解説論文「The first explanations of decimal fractions and measures」を経由して読むと、なぜこの薄い冊子が世界を変えたのかがわかる。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2011</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1007/978-0-85729-048-7" target="_blank" rel="noopener">Alex's Adventures in Numberland</a></p>
+<p class="ref-author">Alex Bellos — Bloomsbury</p>
+<p class="ref-desc">数の感覚がどう形成されるかを、アマゾンの先住民からウォール街まで取材して書いたルポ。基数の選択がいかに文化依存的かを肌感覚で理解できる一冊。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">数学史</span><span class="ref-year">2007</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1007/978-0-387-72831-2" target="_blank" rel="noopener">A History of Mathematics: An Introduction</a></p>
+<p class="ref-author">Victor J. Katz — Pearson</p>
+<p class="ref-desc">インド数学の位取り記数法からアラビア経由のヨーロッパ伝播まで、第一級の教科書。フィボナッチの『算盤の書』がなぜヨーロッパを変えたのか、商業計算の具体例付きで理解できる。</p>
+</div>
+</div>
+
+<div class="note-box fade">
+<strong>📌 この記事について</strong><br>
+10進法の歴史的経緯はGeorges Ifrahの数の歴史研究、シュメールの60進法はOtto Neugbauerの楔形文字数学の研究、ステヴィンについてはGeorge Sartonの一次資料解説に基づいている。12進法の数学的性質は約数の定義から演繹的に導かれるもので、議論の余地はない。「指が基数を決めた」という仮説は広く支持されているが、厳密な証明はない。
+</div>
+
+<div class="tags">
+<span class="tag">数学</span>
+<span class="tag">記数法</span>
+<span class="tag">10進法</span>
+<span class="tag">12進法</span>
+<span class="tag">60進法</span>
+<span class="tag">位取り</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+<div style="position:sticky;top:40px;">
+<div class="sidebar-block fade">
+<p class="sidebar-label">Key Number</p>
+<p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">6</p>
+<p class="sidebar-text">12の約数の数。10の約数（4個）より多く、日常の分数計算に有利。</p>
+</div>
+<div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">10進法の位取り記数法はインドで5〜6世紀に成立。アラビアを経て13世紀にヨーロッパへ。1585年にステヴィンが10進小数を体系化し、1799年のメートル法で制度化が完了した。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">Schoolhouse Rock!「Little Twelvetoes」（1973）では12本指の宇宙人が12進法を教える。H.G.ウェルズ『タイムマシン』のモーロック族は8進法を使うという設定が一部のファンフィクションに登場する。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— 誕生日のパラドックス<br>— ラングトンのアリ<br>— マンデルブロ集合<br>— なぜピアノは12音なのか</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">約数の数学的性質は証明済み。10進法の身体起源説は広く支持されるが厳密な証明はない。歴史的事実はIfrah, Sarton, Neugbauerの研究に依拠。</p></div>
+</div>
+</div>
+
+</div><!-- /article -->
+
+<!-- ═══ ZONE C ═══ -->
+<div class="terminal-label-wrap"><div class="terminal-label"><span class="terminal-label-text">▼ Internal Dialogue >> Active</span><div class="terminal-label-line"></div></div></div>
+
+<div class="terminal-wrap">
+<div class="terminal fade" id="terminalBlock">
+<div class="terminal-bar"><div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div><span class="terminal-title">after.sh — 読後の対話ログ（架空）</span></div>
+<div class="terminal-body">
+<span class="t-sys" id="ts0">// 「なぜ10進数なのか」を読み終えた人との対話</span>
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ12進法にすればよかったのに</span></div>
+<span class="t-output" id="to1">理屈ではそう。でも「10と11を表す新しい記号を覚えてくれ」と60億人に言えるかどうかという問題がある。<em>メートル法すら統一に200年かかった</em></span>
+<hr class="t-divider">
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;コンピュータは2進法なのに人間に合わせてるんだ</span></div>
+<span class="t-output" id="to2">内部は2進法で動いているのに、画面には10進法で表示している。<em>人間のための翻訳</em>を常にやっている。コンピュータにとっては余計な仕事だ</span>
+<hr class="t-divider">
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;時計の12と60はシュメールから来てるの？</span></div>
+<span class="t-output" id="to3">直接の因果関係は立証しにくいが、<em>60進法がバビロニアの天文学に使われ、それがギリシャに渡り、ローマに渡り、今の時計になった</em>。4000年前の指関節カウントが、あなたのスマホの時刻表示に残っている</span>
+<hr class="t-divider">
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、指のせいか</span></div>
+<span class="t-output" id="to4">指のせいだ。もし人類の祖先が6本指に進化していたら、12進法が世界標準になっていた可能性は高い。<em>数学の真理は変わらないが、表記法は身体に依存する</em></span>
+<hr class="t-divider">
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 指を見てしまうな</span></div>
+</div>
+</div>
+</div>
+
+<div class="related fade"><p class="related-label">次に読む</p>
+<div class="related-grid">
+<a class="related-card" href="/twelve_tones"><p class="related-card-tag">知覚・錯覚 × 音楽</p><p class="related-card-title">なぜピアノは12音なのか</p><p class="related-card-desc">周波数比という物理法則と、人間の耳の限界が12を選んだ。10進法の物語と驚くほど似た構造がある。</p><p class="related-card-arrow">読む →</p></a>
+<a class="related-card" href="/why_binary"><p class="related-card-tag">数学・論理 × 計算機</p><p class="related-card-title">なぜコンピュータは2進数で動くのか</p><p class="related-card-desc">3進数のほうが効率がいい。それでも2が選ばれた理由は、数学ではなく物理にある。</p><p class="related-card-arrow">読む →</p></a>
+</div></div>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-innerHeight;document.getElementById('prog').style.width=(scrollY/h*100)+'%';});
+
+// フェードイン
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.fade').forEach(function(el){io.observe(el);});
+
+// ツールチップ
+function toggleTip(el){var o=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(function(t){t.classList.remove('open');});if(!o)el.classList.add('open');}
+document.addEventListener('click',function(e){if(!e.target.closest('.tip'))document.querySelectorAll('.tip.open').forEach(function(t){t.classList.remove('open');});});
+
+// ステップアコーディオン
+function tog(n){var c=document.getElementById('sc'+n);var w=c.classList.contains('open');document.querySelectorAll('.step-card').forEach(function(x){x.classList.remove('open');});if(!w)c.classList.add('open');}
+tog(1);
+
+// ═══ NUMBER LINE v3 ═══
+function drawNL(base){
+  var b10=document.getElementById('nlBtn10'),b12=document.getElementById('nlBtn12');
+  if(base===10){b10.style.borderColor='#8b1a1a';b10.style.background='#f3efe6';b10.style.fontWeight='600';b10.style.color='#8b1a1a';b12.style.borderColor='#c8bfaa';b12.style.background='white';b12.style.fontWeight='400';b12.style.color='#3d3020';}
+  else{b12.style.borderColor='#8b1a1a';b12.style.background='#f3efe6';b12.style.fontWeight='600';b12.style.color='#8b1a1a';b10.style.borderColor='#c8bfaa';b10.style.background='white';b10.style.fontWeight='400';b10.style.color='#3d3020';}
+  var cv=document.getElementById('nlCanvas');var ctx=cv.getContext('2d');
+  var dpr=window.devicePixelRatio||1;var rect=cv.getBoundingClientRect();
+  cv.width=rect.width*dpr;cv.height=rect.height*dpr;ctx.scale(dpr,dpr);
+  var W=rect.width,H=rect.height,pad=40,lineY=H*0.48,maxVal=160;
+  ctx.clearRect(0,0,W,H);
+  function xOf(v){return pad+(W-2*pad)*(v/maxVal);}
+  // Main axis
+  ctx.strokeStyle='#c8bfaa';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(pad,lineY);ctx.lineTo(W-pad,lineY);ctx.stroke();
+  // RULER TICKS: evenly spaced by the CURRENT base
+  var step=base;var tick=step;
+  while(tick<=maxVal){
+    var x=xOf(tick);
+    ctx.strokeStyle='#8b1a1a';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x,lineY-10);ctx.lineTo(x,lineY+10);ctx.stroke();
+    // Label only at key multiples
+    var isKey=(base===10&&(tick===10||tick===50||tick===100))||(base===12&&(tick===12||tick===60||tick===144));
+    if(isKey){
+      ctx.fillStyle='#8b1a1a';ctx.font='bold 15px Playfair Display,serif';ctx.textAlign='center';
+      ctx.fillText(String(tick),x,lineY-18);
+    }
+    tick+=step;
+  }
+  // Highlight numbers: show where the OTHER base's key numbers fall
+  var otherKey=base===10?[12,60,144]:[10,50,100];
+  otherKey.forEach(function(v){
+    if(v>maxVal)return;var x=xOf(v);
+    // Draw a triangle pointer below the line
+    ctx.fillStyle='#b0a090';ctx.beginPath();ctx.moveTo(x,lineY+14);ctx.lineTo(x-5,lineY+22);ctx.lineTo(x+5,lineY+22);ctx.closePath();ctx.fill();
+    ctx.fillStyle='#b0a090';ctx.font='12px Source Sans 3,sans-serif';ctx.textAlign='center';
+    ctx.fillText(String(v),x,lineY+35);
+    // Draw dotted vertical line
+    ctx.strokeStyle='#d4cbb5';ctx.lineWidth=1;ctx.setLineDash([2,3]);ctx.beginPath();ctx.moveTo(x,lineY-6);ctx.lineTo(x,lineY+12);ctx.stroke();ctx.setLineDash([]);
+  });
+  // 0
+  ctx.fillStyle='#b0a090';ctx.font='11px Source Sans 3,sans-serif';ctx.textAlign='center';ctx.fillText('0',xOf(0),lineY+14);
+  // Caption
+  var cap=document.getElementById('nlCaption');
+  if(base===10){cap.innerHTML='目盛りは<strong style="color:#8b1a1a">10刻み</strong>。10, 50, 100がぴったり乗る。12進法のきりのいい数（<span style="color:#b0a090">▼12, 60, 144</span>）は目盛りの間に落ちる。';}
+  else{cap.innerHTML='目盛りは<strong style="color:#8b1a1a">12刻み</strong>。12, 60, 144がぴったり乗る。10進法のきりのいい数（<span style="color:#b0a090">▼10, 50, 100</span>）は目盛りの間に落ちる。';}
+}
+function toBase12(n){if(n===0)return'0';var d='0123456789AB';var r='';var v=n;while(v>0){r=d[v%12]+r;v=Math.floor(v/12);}return r;}
+drawNL(10);
+
+// ═══ FRACTION SHOWDOWN ═══
+function showFSTab(tab){
+  var btnN=document.getElementById('fsTabNum'),btnP=document.getElementById('fsTabPizza');
+  var panN=document.getElementById('fsNumPanel'),panP=document.getElementById('fsPizzaPanel');
+  if(tab==='num'){btnN.style.borderColor='#8b1a1a';btnN.style.background='#f3efe6';btnN.style.fontWeight='600';btnN.style.color='#8b1a1a';btnP.style.borderColor='#c8bfaa';btnP.style.background='white';btnP.style.fontWeight='400';btnP.style.color='#3d3020';panN.style.display='block';panP.style.display='none';}
+  else{btnP.style.borderColor='#8b1a1a';btnP.style.background='#f3efe6';btnP.style.fontWeight='600';btnP.style.color='#8b1a1a';btnN.style.borderColor='#c8bfaa';btnN.style.background='white';btnN.style.fontWeight='400';btnN.style.color='#3d3020';panN.style.display='none';panP.style.display='block';}
+}
+// Num table
+(function(){
+var fracs=[{n:1,d:2},{n:1,d:3},{n:1,d:4},{n:1,d:5},{n:1,d:6},{n:1,d:8},{n:1,d:9},{n:1,d:10},{n:1,d:12}];
+function fracStr(n,d,base){var intP=Math.floor(n/d);var rem=n%d;if(rem===0)return{str:intP.toString(),ok:true};var digits=[];var seen={};var idx=0;
+while(rem!==0&&idx<12){if(seen[rem]!==undefined){var rs=seen[rem];return{str:intP+'.'+digits.slice(0,rs).join('')+'('+digits.slice(rs).join('')+')\u2026',ok:false};}seen[rem]=idx;rem*=base;digits.push(Math.floor(rem/d));rem=rem%d;idx++;}
+if(rem===0)return{str:intP+'.'+digits.join(''),ok:true};return{str:intP+'.'+digits.join('')+'\u2026',ok:false};}
+var html='<div style="display:grid;grid-template-columns:60px 1fr 1fr;gap:0;font-family:\'Source Sans 3\',sans-serif;font-size:12px;">';
+html+='<div style="padding:8px;font-weight:600;color:#7a6a55;border-bottom:2px solid #1a1208;">\u5206\u6570</div><div style="padding:8px;font-weight:600;color:#7a6a55;border-bottom:2px solid #1a1208;text-align:center;">10\u9032\u6cd5</div><div style="padding:8px;font-weight:600;color:#7a6a55;border-bottom:2px solid #1a1208;text-align:center;">12\u9032\u6cd5</div>';
+fracs.forEach(function(f){var d10=fracStr(f.n,f.d,10);var d12=fracStr(f.n,f.d,12);
+html+='<div style="padding:6px 8px;border-bottom:1px solid #e0d8c8;font-weight:500;color:#1a1208;">'+f.n+'/'+f.d+'</div>';
+html+='<div style="padding:6px 8px;border-bottom:1px solid #e0d8c8;text-align:center;font-family:\'JetBrains Mono\',monospace;font-size:12px;color:'+(d10.ok?'#1a5a30':'#c4392a')+';">'+d10.str+(d10.ok?' \u2713':' \u2717')+'</div>';
+html+='<div style="padding:6px 8px;border-bottom:1px solid #e0d8c8;text-align:center;font-family:\'JetBrains Mono\',monospace;font-size:12px;color:'+(d12.ok?'#1a5a30':'#c4392a')+';">'+d12.str+(d12.ok?' \u2713':' \u2717')+'</div>';});
+html+='</div>';document.getElementById('fsNumPanel').innerHTML=html;
+})();
+// Tile panel
+(function(){
+var tileHTML='<div style="margin-bottom:14px;"><label style="font-family:\'Source Sans 3\',sans-serif;font-size:13px;color:#7a6a55;">何人で分ける？</label><input type="range" id="tileSlider" min="2" max="12" value="3" style="width:180px;margin-left:12px;vertical-align:middle;"><span id="tileN" style="font-family:\'JetBrains Mono\',monospace;font-size:18px;font-weight:600;color:#1a1208;margin-left:8px;">3</span>人</div>';
+tileHTML+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;"><div><div style="font-family:\'Source Sans 3\',sans-serif;font-size:11px;font-weight:600;color:#7a6a55;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;text-align:center;">10マス</div><div id="tile10" style="display:flex;flex-wrap:wrap;gap:2px;justify-content:center;"></div><div id="tile10Label" style="font-family:\'Source Sans 3\',sans-serif;font-size:13px;margin-top:10px;text-align:center;"></div></div>';
+tileHTML+='<div><div style="font-family:\'Source Sans 3\',sans-serif;font-size:11px;font-weight:600;color:#7a6a55;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;text-align:center;">12マス</div><div id="tile12" style="display:flex;flex-wrap:wrap;gap:2px;justify-content:center;"></div><div id="tile12Label" style="font-family:\'Source Sans 3\',sans-serif;font-size:13px;margin-top:10px;text-align:center;"></div></div></div>';
+document.getElementById('fsPizzaPanel').innerHTML=tileHTML;
+var colors=['#c4816b','#7ba38c','#8b96b8','#c9a96e','#a67b9b','#6b9bb5','#b8866b','#7bb87b','#9b8bb8','#b89b6b','#6bb8a3','#b86b7b'];
+function drawTiles(containerId,total,n){
+  var el=document.getElementById(containerId);
+  var perPerson=Math.floor(total/n);var remainder=total%n;
+  var html='';var idx=0;
+  for(var p=0;p<n;p++){
+    var count=perPerson;
+    for(var t=0;t<count;t++){
+      html+='<div style="width:36px;height:36px;background:'+colors[p%colors.length]+';border-radius:3px;"></div>';
+      idx++;
+    }
+  }
+  // Remainder tiles
+  for(var r=0;r<remainder;r++){
+    html+='<div style="width:36px;height:36px;background:#e0d8c8;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:\'Source Sans 3\',sans-serif;font-size:11px;color:#7a6a55;">?</div>';
+  }
+  el.innerHTML=html;
+  var lbl=document.getElementById(containerId+'Label');
+  if(remainder===0){lbl.innerHTML='<span style="color:#1a5a30;font-weight:600;">\u2713 '+n+'\u4eba\u00d7'+perPerson+'\u30de\u30b9 = \u3074\u3063\u305f\u308a</span>';}
+  else{lbl.innerHTML='<span style="color:#c4392a;font-weight:600;">\u2717 '+remainder+'\u30de\u30b9\u4f59\u308b</span><span style="color:#7a6a55;font-size:12px;">\uff08'+n+'\u4eba\u00d7'+perPerson+'='+perPerson*n+'\u3001\u6b8b\u308a'+remainder+'\uff09</span>';}
+}
+function updateTiles(){
+  var n=parseInt(document.getElementById('tileSlider').value);
+  document.getElementById('tileN').textContent=n;
+  drawTiles('tile10',10,n);drawTiles('tile12',12,n);
+}
+document.getElementById('tileSlider').addEventListener('input',updateTiles);
+updateTiles();
+})();
+
+// ═══ WHAT IF ═══
+function showWhatIf(base){
+var btns=document.getElementById('whatIfBtns').querySelectorAll('button');
+btns.forEach(function(b){b.style.borderColor='#c8bfaa';b.classList.remove('active');});
+event.target.style.borderColor='#8b1a1a';event.target.classList.add('active');
+var divisors=[];for(var i=1;i<=base;i++){if(base%i===0)divisors.push(i);}
+var oneThird='';var rem=1;var digits=[];var s={};var idx=0;
+while(rem!==0&&idx<8){if(s[rem]!==undefined){oneThird=digits.slice(0,s[rem]).join('')+'('+digits.slice(s[rem]).join('')+')…';break;}s[rem]=idx;rem*=base;digits.push(Math.floor(rem/3));rem=rem%3;idx++;}
+if(rem===0)oneThird=digits.join('');
+if(!oneThird)oneThird=digits.join('');
+var termFracs=0;
+for(var d=2;d<=12;d++){var r=1;var found=false;for(var j=0;j<20;j++){r=(r*base)%d;if(r===0){found=true;break;}}if(found)termFracs++;}
+var html='<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-family:\'Source Sans 3\',sans-serif;">';
+html+='<div style="padding:14px 16px;background:#f3efe6;border:1px solid #e0d8c8;"><div style="font-size:10px;font-weight:600;letter-spacing:.1em;color:#b0a090;text-transform:uppercase;margin-bottom:6px;">基数</div><div style="font-family:\'Playfair Display\',serif;font-size:32px;font-weight:700;color:#8b1a1a;">'+base+'</div></div>';
+html+='<div style="padding:14px 16px;background:#f3efe6;border:1px solid #e0d8c8;"><div style="font-size:10px;font-weight:600;letter-spacing:.1em;color:#b0a090;text-transform:uppercase;margin-bottom:6px;">約数の数</div><div style="font-family:\'Playfair Display\',serif;font-size:32px;font-weight:700;color:#1a1208;">'+divisors.length+'</div><div style="font-size:11px;color:#7a6a55;">'+divisors.join(', ')+'</div></div>';
+html+='<div style="padding:14px 16px;background:white;border:1px solid #e0d8c8;"><div style="font-size:10px;font-weight:600;letter-spacing:.1em;color:#b0a090;text-transform:uppercase;margin-bottom:6px;">1/3 の表記</div><div style="font-family:\'JetBrains Mono\',monospace;font-size:18px;color:#1a1208;">0.'+oneThird+'</div></div>';
+html+='<div style="padding:14px 16px;background:white;border:1px solid #e0d8c8;"><div style="font-size:10px;font-weight:600;letter-spacing:.1em;color:#b0a090;text-transform:uppercase;margin-bottom:6px;">割り切れる分数（1/2〜1/12）</div><div style="font-family:\'Playfair Display\',serif;font-size:18px;color:#1a1208;">'+termFracs+' / 11</div></div>';
+html+='</div>';
+document.getElementById('whatIfResult').innerHTML=html;
+document.getElementById('whatIfCaveat').style.display='block';
+}
+
+// ターミナルアニメーション
+var tseq=[{id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},{id:'tl2',delay:2400},{id:'to2',delay:3000},{id:'tl3',delay:4000},{id:'to3',delay:4600},{id:'tl4',delay:5600},{id:'to4',delay:6200},{id:'tl5',delay:7200}];
+var tStarted=false;
+tseq.forEach(function(s){var el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+var tObs=new IntersectionObserver(function(entries){if(entries[0].isIntersecting&&!tStarted){tStarted=true;tseq.forEach(function(s){setTimeout(function(){var el=document.getElementById(s.id);if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}},s.delay);});}},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>
