@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>マンデルブロ集合 — Qualia Journal</title>
+<meta name="description" content="z→z²+cという単純な式の反復から、無限に拡大しても複雑さが尽きない図形が生まれる。複雑さは複雑なルールから生まれない。">
+<link rel="canonical" href="https://qualiajournal.com/mandelbrot_set">
+<meta property="og:title" content="マンデルブロ集合 — Qualia Journal">
+<meta property="og:description" content="z→z²+cという単純な式の反復から、無限に拡大しても複雑さが尽きない図形が生まれる。複雑さは複雑なルールから生まれない。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/mandelbrot_set">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="マンデルブロ集合 — Qualia Journal">
+<meta name="twitter:description" content="z→z²+cという単純な式の反復から、無限に拡大しても複雑さが尽きない図形が生まれる。複雑さは複雑なルールから生まれない。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type='text/javascript' src='https://api.netlify.com/wyE0uXOdYKVPtkBWLy2to5EG3eOSMrgvZtOqIaWbJQkGCLXsT4JYy_mnhD0248NtMCVhCpaRl0F1YsiwhbkmvDg5oeNFNabquSm4iu8PwCIeL8TPKx6eaBCpzjNCBinOcIg4aTMj37q4IdiNV88wvpwLaf1ZZN58ercfv2CSUZ6RD_MRKjqGoABXb6TFy2JbC101ygkfF-bX3YvAa02MuOsqW4yehKP9CFLNacPlrR0gnBjAXhmHmcUIiN4iEJm7GfvStGArzP_dhk93oYnIngrZFUYLmvnZgmFtjoY9MJn4b6fS0qpOiHPhgSrjNxpMI4u1GHxx2acUhl5JMNj2pOkeRmeWjBgXAD6nUuYMN7tVjeb5nHCxKFnj-UOoRyaW2P8mNIPrXL_lI-cHMvV_mbqTKdQ-SCb5-1MHiOgjelzh2BoByP_-EqVyKl8jHK5-TRbCmkoSyYrPAiyr3gm7_MheOdvhXzTSj448-PSZfFdyxR_FKNJHaeImH2jgC2jjBDDvP928XJGKnmhsfa06Q1UaXFQPUioP'></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"マンデルブロ集合","description":"z→z²+cという単純な式の反復から、無限に拡大しても複雑さが尽きない図形が生まれる。複雑さは複雑なルールから生まれない。","author":{"@type":"Organization","name":"Qualia Journal"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/mandelbrot_set","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"数学・論理","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"マンデルブロ集合"}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+
+/* MASTHEAD */
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}
+.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;margin-bottom:6px;}
+.masthead-date{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;letter-spacing:.08em;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* IMAGE PLACEHOLDER */
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* TERMINAL */
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* INTERACTIVE: MANDELBROT EXPLORER */
+.mandelbrot-wrap{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.mandelbrot-header{background:#3d3020;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}
+.mandelbrot-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.mandelbrot-hint{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#b0a090;}
+.mandelbrot-body{padding:20px;display:flex;flex-direction:column;align-items:center;gap:16px;}
+.mandelbrot-canvas-wrap{position:relative;width:100%;max-width:520px;}
+.mandelbrot-canvas-wrap canvas{display:block;width:100%;image-rendering:pixelated;cursor:crosshair;border:1px solid #c8bfaa;}
+.mandelbrot-info{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;}
+.mandelbrot-info span{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.mandelbrot-info span strong{color:#8b1a1a;font-weight:600;}
+.mandelbrot-controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+.mandelbrot-controls button{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.06em;padding:6px 16px;background:#f3efe6;border:1px solid #c8bfaa;color:#3d3020;cursor:pointer;transition:all .15s;}
+.mandelbrot-controls button:hover{background:#8b1a1a;color:white;border-color:#8b1a1a;}
+.mandelbrot-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;text-align:center;max-width:480px;}
+
+/* ITERATION DEMO */
+.iter-demo{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.iter-header{background:#f3efe6;padding:11px 20px;border-bottom:1px solid #c8bfaa;}
+.iter-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#7a6a55;}
+.iter-body{padding:20px;display:flex;flex-direction:column;gap:16px;align-items:center;}
+.iter-controls{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;}
+.iter-controls label{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;}
+.iter-controls input[type="number"]{width:80px;padding:4px 8px;border:1px solid #c8bfaa;font-family:'JetBrains Mono',monospace;font-size:12px;background:#faf8f3;}
+.iter-controls button{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;padding:6px 16px;background:#8b1a1a;color:white;border:none;cursor:pointer;}
+.iter-output{font-family:'JetBrains Mono',monospace;font-size:13px;color:#3d3020;line-height:2;text-align:center;min-height:80px;padding:12px;background:#faf8f3;border:1px solid #e0d8c8;width:100%;max-width:520px;overflow-x:auto;}
+.iter-result{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;text-align:center;}
+.iter-result em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* SVG CONTAINER */
+.svg-container{margin:24px 0;overflow-x:auto;}
+.svg-container svg{display:block;max-width:100%;height:auto;margin:0 auto;}
+
+/* TABLE */
+.info-table{margin:24px 0;width:100%;border-collapse:collapse;font-family:'Source Sans 3',sans-serif;font-size:13px;}
+.info-table th{background:#3d3020;color:white;padding:10px 14px;text-align:left;font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;}
+.info-table td{padding:10px 14px;border-bottom:1px solid #e0d8c8;color:#3d3020;font-weight:300;line-height:1.6;}
+.info-table tr:nth-child(even) td{background:#f3efe6;}
+.info-table .verdict-in{color:#1a5a30;font-weight:600;}
+.info-table .verdict-out{color:#c4392a;font-weight:600;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box{padding:0 20px;}
+  .scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:16px;border-bottom:1px solid #c8bfaa;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <p class="masthead-name"><a href="/" style="color:inherit;text-decoration:none;">Qualia Journal</a></p>
+  <p class="masthead-date"></p>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-left">
+    <p class="cover-kicker">数学・論理</p>
+    <h1>マンデルブロ集合<br><em>z → z² + c</em></h1>
+    <p class="cover-deck">たった1行の式を繰り返すだけで、無限に複雑な図形が生まれる。複雑さは、複雑なルールから生まれるわけではない。</p>
+    <div class="cover-byline"><span>Fractal</span><span>Complexity</span><span>Iteration</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1980</span>
+      <p class="est-event">ブノワ・マンデルブロがIBMのコンピュータで初めてこの集合を可視化した年。</p>
+      <p class="est-context">同年、WHOが天然痘の根絶を宣言。モスクワ五輪が西側諸国のボイコットの中で開催。CNNが世界初の24時間ニュースネットワークとして開局した。</p>
+    </div>
+    <p class="cover-aside"><strong>フラクタル（fractal）</strong>という語は、ラテン語の fractus（砕けた、壊れた）に由来する。マンデルブロ自身が1975年に造った。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario">
+  <div class="scenario-inner">
+    <p>木の枝を見たことがあるだろう。幹から大きな枝が分かれ、そこからまた小さな枝が分かれ、さらにそこから細い枝が伸びる。そのどれもが、不思議と似た形をしている。川の流域を上空から見下ろしても、肺の気管支を医学書で見ても、稲妻の写真を引き伸ばしても、似たような枝分かれのパターンに出会う。</p>
+    <p>この「部分が全体に似ている」という性質は、自然界のいたるところにある。海岸線を拡大しても、衛星写真と同じようなギザギザが続く。ブロッコリーの小房を折っても、元の形と見分けがつかない。自然は滑らかな直線でできてはいない。</p>
+    <p>この繰り返しの構造を、たった1行の数式で生み出す方法がある。それが z → z² + c だ。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">約 15 分</span>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box">
+  <div class="summary-inner">
+    <span class="summary-icon">この記事では</span>
+    <p class="summary-text">ひとつの式が無限の複雑さを生む瞬間を、ブラウザの中で<strong>自分の手で</strong>体験する。拡大するたびに現れる新しい構造を、目で確かめてほしい。</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ARTICLE BODY (2-column grid) -->
+<!-- ============================================================ -->
+<div class="article">
+<div class="article-main">
+
+<!-- ==================== S1: 背景 ==================== -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">そもそも「反復」とは何か。</h2>
+
+<p class="body-text fade">私たちが日常で使う計算は、だいたい一方通行だ。3 × 4 = 12。答えが出たら、それで終わる。だが数学には、<strong>答えを次の計算の入力に戻す</strong>という操作がある。これを<span class="tip" onclick="toggleTip(this)">反復（イテレーション）<span class="tip-box"><strong>反復（iteration）</strong><br>同じ操作を繰り返し適用すること。出力を次の入力として再利用する。フラクタル幾何学・力学系理論の基礎的操作。</span></span>という。たとえば「2倍にする」を反復すると、1 → 2 → 4 → 8 → 16 … と値が爆発的に大きくなる。「半分にする」を反復すると、1 → 0.5 → 0.25 → 0.125 … とゼロに向かって縮んでいく。</p>
+
+<p class="body-text fade">反復のルールが単純でも、結果がどうなるかは一概に言えない。発散する（無限大に飛んでいく）のか、収束する（ある値に落ち着く）のか、それとも同じ値の間を行ったり来たりするのか。ルールは同じでも、<strong>最初の値が少し違うだけで結末が変わる</strong>。これが反復の面白さであり、怖さでもある。</p>
+
+<!-- SVG: 反復フロー図（パターンA） -->
+<div class="svg-container fade">
+<svg viewBox="0 0 560 140" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <rect x="10" y="40" width="100" height="56" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="60" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55">入力</text>
+  <text x="60" y="80" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208">z = 0</text>
+  <polygon points="120,68 134,62 134,74" fill="#8b1a1a"/>
+  <rect x="144" y="40" width="120" height="56" rx="4" fill="#f3efe6" stroke="#8b1a1a" stroke-width="2"/>
+  <text x="204" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#8b1a1a">演算</text>
+  <text x="204" y="80" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208">z² + c</text>
+  <polygon points="274,68 288,62 288,74" fill="#8b1a1a"/>
+  <rect x="298" y="40" width="100" height="56" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="348" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55">出力</text>
+  <text x="348" y="80" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208">新しい z</text>
+  <path d="M348,96 L348,120 L204,120 L204,96" fill="none" stroke="#8b1a1a" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="204,100 198,112 210,112" fill="#8b1a1a"/>
+  <text x="276" y="134" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="300" fill="#7a6a55">出力を入力に戻す（反復）</text>
+  <rect x="430" y="40" width="120" height="56" rx="4" fill="#3d3020"/>
+  <text x="490" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#e8c56a">判定</text>
+  <text x="490" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#e8e4de">発散？収束？</text>
+  <polygon points="408,68 422,62 422,74" fill="#3d3020"/>
+</svg>
+</div>
+
+<p class="body-text fade">マンデルブロ集合の式はこうだ。<strong>z → z² + c</strong>。z の初期値はゼロ。c は<span class="tip" onclick="toggleTip(this)">複素数<span class="tip-box"><strong>複素数（complex number）</strong><br>実数と虚数を組み合わせた数。a + bi の形で表される（i は虚数単位、i² = −1）。複素平面では横軸が実数部、縦軸が虚数部を表す。</span></span>で、複素平面上のどこかの点を表す。</p>
+<p class="body-text fade">ここが大事なところだ。<strong>この式の c は、平面上の「座標」そのものだ。</strong>碁盤の目のように点が並んだ平面を想像してほしい。左上の点、右下の点、真ん中の点——それぞれの点が自分だけの c の値を持っている。座標は「横の位置」と「縦の位置」の2つの数で表される。数学ではこの横を「実数部」、縦を「虚数部」と呼び、縦の数には <strong>i</strong> という記号を付ける。i は「虚数単位」と呼ばれるもので、ここでは深く考えず<strong>「これは縦方向の座標ですよ」という目印</strong>だと思ってほしい。たとえば c = 0.3 + 0.5i なら、「横に0.3、縦に0.5」の位置にある点だ。</p>
+
+<!-- SVG: 座標の読み方の図解 -->
+<div class="svg-container fade">
+<svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <!-- 軸 -->
+  <line x1="60" y1="200" x2="460" y2="200" stroke="#c8bfaa" stroke-width="1.5"/>
+  <line x1="260" y1="30" x2="260" y2="240" stroke="#c8bfaa" stroke-width="1.5"/>
+  <text x="470" y="204" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#7a6a55">横（実数部）</text>
+  <text x="260" y="22" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#7a6a55">縦（虚数部・i）</text>
+  <!-- 原点 -->
+  <circle cx="260" cy="200" r="3" fill="#3d3020"/>
+  <text x="270" y="218" font-family="'JetBrains Mono',monospace" font-size="10" fill="#3d3020">0</text>
+  <!-- 軸の目盛り -->
+  <text x="360" y="218" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#b0a090">0.5</text>
+  <text x="460" y="218" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#b0a090">1</text>
+  <text x="160" y="218" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#b0a090">-0.5</text>
+  <text x="60" y="218" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#b0a090">-1</text>
+  <text x="248" y="104" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="10" fill="#b0a090">0.5i</text>
+  <text x="248" y="204" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="10" fill="#b0a090">0</text>
+  <!-- 点A: c = 0.3 + 0.5i -->
+  <circle cx="320" cy="100" r="7" fill="#8b1a1a"/>
+  <line x1="320" y1="200" x2="320" y2="105" stroke="#8b1a1a" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="260" y1="100" x2="315" y2="100" stroke="#8b1a1a" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="334" y="96" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#8b1a1a">c = 0.3 + 0.5i</text>
+  <text x="334" y="110" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="300" fill="#7a6a55">（横に0.3、縦に0.5）</text>
+  <!-- 点B: c = -1 -->
+  <circle cx="60" cy="200" r="7" fill="#3d3020"/>
+  <text x="60" y="190" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#3d3020">c = −1</text>
+  <text x="60" y="240" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="300" fill="#7a6a55">（横に−1、縦に0）</text>
+  <!-- 点C: c = 1 -->
+  <circle cx="460" cy="200" r="7" fill="#c4392a"/>
+  <text x="460" y="190" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#c4392a">c = 1</text>
+  <text x="460" y="240" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="300" fill="#7a6a55">（横に1、縦に0）</text>
+  <!-- 点D: c = 0 -->
+  <text x="260" y="240" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="300" fill="#7a6a55">c = 0（原点）</text>
+  <!-- 凡例 -->
+  <rect x="60" y="30" width="180" height="42" rx="3" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="70" y="48" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55">読み方:</text>
+  <text x="70" y="64" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="300" fill="#3d3020">0.3 + 0.5i = 横0.3 × 縦0.5</text>
+</svg>
+</div>
+<p class="body-text fade">そして z は「計算の途中経過」だ。最初はゼロから始まって、計算するたびに値が変わっていく。たとえば c = 1 の点では z は 0 → 1 → 2 → 5 → 26 … とどんどん膨れ上がる。c = −1 の点では z は 0 → −1 → 0 → −1 → 0 … と穏やかに行き来する。<strong>式の構造は同じだが、点ごとに足す数（= c = その点の座標）が違うので、結末がまるで変わる。</strong>ある座標の点では3回で暴走し、隣の点では200回粘り、さらに隣の点は永遠に暴走しない。この違いが、最終的にあの複雑な図形を描き出す。永遠に暴走しなかった点を黒く塗り、暴走した点に色を付ける——こうして浮かび上がる「黒い領域」がマンデルブロ集合だ。</p>
+
+<p class="body-text fade">具体的に見てみよう。いくつかの c で式を実際に回すとこうなる。</p>
+
+<!-- テーブル: 具体例（説明強化） -->
+<table class="info-table fade">
+<thead><tr><th>c の値</th><th>z の動き（最初の5回）</th><th>どうなった？</th></tr></thead>
+<tbody>
+<tr><td>c = 0</td><td>0 → 0 → 0 → 0 → 0</td><td class="verdict-in">ずっと 0 のまま。暴走しない → 黒く塗る</td></tr>
+<tr><td>c = −1</td><td>0 → −1 → 0 → −1 → 0</td><td class="verdict-in">0 と −1 を行き来する。暴走しない → 黒く塗る</td></tr>
+<tr><td>c = 1</td><td>0 → 1 → 2 → 5 → 26</td><td class="verdict-out">数回で爆発的に増大。暴走する → 黒く塗らない</td></tr>
+<tr><td>c = i（虚数）</td><td>0 → i → −1+i → −i → −1+i</td><td class="verdict-in">ループに入る。暴走しない → 黒く塗る</td></tr>
+<tr><td>c = 0.3 + 0.5i</td><td>0 → 0.3+0.5i → −0.16+0.8i → …</td><td class="verdict-in">ある範囲に収まる。暴走しない → 黒く塗る</td></tr>
+</tbody>
+</table>
+
+<p class="body-text fade">このように、「暴走しなかった c」を黒く塗り、「暴走した c」は暴走するまでにかかった回数に応じて色を付ける。これを複素平面上のすべての点に対して実行すると、あのカブトムシのような黒い図形——マンデルブロ集合——が浮かび上がる。</p>
+
+<!-- 画像プレースホルダー -->
+<div class="img-placeholder fade">
+  <div class="img-ph-area">
+    <span class="img-ph-icon">🖼</span>
+    <p class="img-ph-title">マンデルブロ集合の全体像</p>
+    <p class="img-ph-desc">複素平面上に描かれたマンデルブロ集合。中央の黒いカーディオイド（心臓形）と、そこに接する円形の「頭部」。境界線は無限に複雑な曲線になっている。</p>
+    <div class="img-ph-prompt">
+      <p class="img-ph-prompt-lbl">画像生成プロンプト</p>
+      <p class="img-ph-prompt-txt">鳥獣戯画タッチで描かれたマンデルブロ集合。カエルたちが墨で複素平面を塗り分けている。カーディオイドの境界を筆で描くウサギ。和紙の質感。余白多め。</p>
+    </div>
+  </div>
+  <p class="img-caption">Fig. 1 — マンデルブロ集合の全体図。黒い領域が「暴走しなかった c」の集まり。</p>
+</div>
+
+<hr class="art-rule">
+<h2 class="fade">複素平面という舞台。</h2>
+
+<p class="body-text fade">ここで一つだけ補足しておく。<strong>複素平面とは、数を2次元で表す地図のようなものだ。</strong>横軸が通常の数（実数部）、縦軸が虚数部にあたる。たとえば c = 0.3 + 0.5i は、横に0.3、縦に0.5の位置にある点だ。虚数と聞くと身構えるかもしれないが、ここでは単に「数を平面上の点として扱える」と理解すれば十分だ。</p>
+
+<!-- SVG: 複素平面の説明（パターンD: 2列比較） -->
+<div class="svg-container fade">
+<svg viewBox="0 0 540 180" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <text x="130" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55">実数（1次元の数直線）</text>
+  <line x1="20" y1="50" x2="250" y2="50" stroke="#c8bfaa" stroke-width="2"/>
+  <circle cx="135" cy="50" r="4" fill="#8b1a1a"/>
+  <text x="135" y="72" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#3d3020">0</text>
+  <circle cx="200" cy="50" r="4" fill="#3d3020"/>
+  <text x="200" y="72" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#3d3020">1</text>
+  <circle cx="65" cy="50" r="4" fill="#3d3020"/>
+  <text x="65" y="72" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#3d3020">-1</text>
+  <text x="135" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">位置は1つの数で決まる</text>
+  <text x="275" y="90" text-anchor="middle" font-family="'Playfair Display',serif" font-size="14" font-style="italic" fill="#8b1a1a">→</text>
+  <text x="415" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55">複素平面（2次元の地図）</text>
+  <line x1="310" y1="95" x2="520" y2="95" stroke="#c8bfaa" stroke-width="1.5"/>
+  <line x1="415" y1="30" x2="415" y2="165" stroke="#c8bfaa" stroke-width="1.5"/>
+  <text x="525" y="99" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">実数</text>
+  <text x="415" y="26" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">虚数</text>
+  <circle cx="445" cy="60" r="5" fill="#8b1a1a"/>
+  <line x1="445" y1="95" x2="445" y2="62" stroke="#8b1a1a" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="415" y1="60" x2="443" y2="60" stroke="#8b1a1a" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="460" y="55" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8b1a1a">0.3+0.5i</text>
+  <text x="445" y="108" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#7a6a55">0.3</text>
+  <text x="404" y="63" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="9" fill="#7a6a55">0.5i</text>
+  <text x="415" y="178" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">位置は2つの数で決まる</text>
+</svg>
+</div>
+
+<p class="body-text fade">マンデルブロ集合を描くとは、この複素平面の「地図」を塗り分ける作業にほかならない。すべての点 c に対して式を回し、暴走しなかった点を黒く塗る。そして境界上——暴走するかしないかの瀬戸際——にある点の周辺が、あの精緻な模様を描き出す。</p>
+
+<hr class="art-rule">
+<h2 class="fade">フラクタルという名前。</h2>
+
+<p class="body-text fade">マンデルブロ集合の境界を拡大すると、全体と似た形が何度でも現れる。この<strong>「部分が全体に似ている」という性質を自己相似性</strong>という。そして、自己相似性をもつ複雑な図形を総称して<span class="tip" onclick="toggleTip(this)">フラクタル<span class="tip-box"><strong>フラクタル（fractal）</strong><br>自己相似性をもつ複雑な図形の総称。ラテン語 fractus（砕けた）に由来し、マンデルブロが1975年に造語した。海岸線、木の枝分かれ、血管のネットワークなど、自然界のいたるところにフラクタル的構造が見られる。</span></span>と呼ぶ。マンデルブロが1975年にラテン語の fractus（砕けた）から造った言葉だ。</p>
+
+<p class="body-text fade">フラクタルの典型的な例が「海岸線の長さ」の問題だ。海岸線を地図で測ると、物差しの長さを短くすればするほど、入り組んだ部分を拾って全長が伸びていく。理論上は「正確な長さ」が存在しない。この不思議な性質はマンデルブロ集合の境界にもそのまま当てはまる。フラクタルと海岸線の関係については別の記事で詳しく扱うが、ここではまず、マンデルブロ集合という「フラクタルの中のフラクタル」を体験することに集中しよう。</p>
+
+<!-- 誤解あるあるブロック -->
+<div class="misconception fade">
+  <div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+  <div class="misconception-body">
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✕ よくある誤解</p><p class="mis-text">マンデルブロ集合の複雑な模様は、複雑なプログラムで描かれている</p></div>
+      <div class="misconception-a"><p class="mis-label right">○ 実際は</p><p class="mis-text">式は z → z² + c の1行だけ。色は「何回で暴走したか」で決まる。複雑さはルールの複雑さからではなく、反復そのものから生まれる</p></div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✕ よくある誤解</p><p class="mis-text">マンデルブロ集合はコンピュータが作り出した人工物だ</p></div>
+      <div class="misconception-a"><p class="mis-label right">○ 実際は</p><p class="mis-text">集合の形状は数学的に決定されており、コンピュータ以前から存在していた。コンピュータは「人間の目に見えるようにした」だけだ</p></div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✕ よくある誤解</p><p class="mis-text">拡大していくと、いつかは同じ模様の繰り返しになる</p></div>
+      <div class="misconception-a"><p class="mis-label right">○ 実際は</p><p class="mis-text">自己相似だが厳密には反復ではない。拡大するたびに「似ているが異なる」新しい構造が無限に現れ続ける</p></div>
+    </div>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ==================== S2: 体験する ==================== -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">反復を自分の手で回してみる。</h2>
+
+<p class="body-text fade">まず、反復が何をしているのかを手で触って確かめてみよう。下のツールに好きな c の値を入れて「反復する」を押すと、z がどう変化していくかがわかる。c = 0 や c = −1 なら穏やかだが、c = 1 を試すと値が一瞬で爆発する。境界付近の値——たとえば c = 0.25 や c = −0.75——を試すと、暴走するかしないかの際どい均衡が見えてくるはずだ。</p>
+
+<!-- 反復デモ -->
+<div class="iter-demo fade" id="iterDemo">
+  <div class="iter-header"><span class="iter-hl">反復シミュレーター — z → z² + c</span></div>
+  <div class="iter-body">
+    <div class="iter-controls">
+      <label>c の実数部</label><input type="number" id="cReal" value="0.25" step="0.05" style="width:70px;">
+      <label>虚数部</label><input type="number" id="cImag" value="0" step="0.05" style="width:70px;">
+      <button onclick="runIter()">反復する</button>
+    </div>
+    <div class="iter-output" id="iterOut">ここに反復の経過が表示されます</div>
+    <div class="iter-result" id="iterResult"></div>
+  </div>
+</div>
+
+<p class="body-text fade">この反復を、複素平面のすべての点に対して実行する。暴走しなかった点を黒く塗り、暴走した点に色を付ける。すると地図が浮かび上がる。それがマンデルブロ集合だ。</p>
+
+<hr class="art-rule">
+<h2 class="fade">無限にズームしてみる。</h2>
+
+<p class="body-text fade">下のキャンバスに描かれているのが、マンデルブロ集合の全体像だ。黒い部分が「暴走しなかった c」の集まり。カラフルな部分は「暴走した c」で、色は暴走するまでにかかった反復回数を表している。<strong>クリックするとその場所を中心に拡大できる。</strong>黒と色の境界線——つまり「暴走するかしないかの際」——の近くをクリックしてみてほしい。拡大するたびに、見たことのない構造が現れるはずだ。</p>
+
+<!-- マンデルブロ・エクスプローラー -->
+<div class="mandelbrot-wrap fade" id="mandelbrotWrap">
+  <div class="mandelbrot-header">
+    <span class="mandelbrot-hl">Mandelbrot Explorer</span>
+    <span class="mandelbrot-hint">クリックで拡大 / ボタンで操作</span>
+  </div>
+  <div class="mandelbrot-body">
+    <div class="mandelbrot-canvas-wrap">
+      <canvas id="mbCanvas" width="520" height="390"></canvas>
+    </div>
+    <div class="mandelbrot-info">
+      <span>中心: <strong id="mbCenter">−0.5 + 0i</strong></span>
+      <span>ズーム: <strong id="mbZoom">×1</strong></span>
+      <span>反復回数: <strong id="mbIter">100</strong></span>
+    </div>
+    <div class="mandelbrot-controls">
+      <button onclick="mbZoomIn()">拡大 ×2</button>
+      <button onclick="mbZoomOut()">縮小 ×0.5</button>
+      <button onclick="mbReset()">リセット</button>
+      <button onclick="mbMoreIter()">反復+100</button>
+      <button onclick="mbGoSeahorse()">シーホースの谷へ</button>
+    </div>
+    <p class="mandelbrot-caption">マンデルブロ集合の境界には、研究者たちが名前を付けた有名な領域がいくつかある。<strong>「シーホースの谷」</strong>（Seahorse Valley）はその一つで、本体の心臓形と円形の接合部付近（座標 −0.75 + 0.1i あたり）に広がる。タツノオトシゴの尾のような渦巻きが無限に連なる、特に美しい領域だ。上のボタンでジャンプできる。</p>
+  </div>
+</div>
+
+<p class="body-text fade">何度か拡大した人は気づくはずだ。<strong>どこまで拡大しても、「そこで終わり」がない。</strong>新しい渦巻き、新しい触角、新しいミニチュアのマンデルブロ集合が、次から次へと姿を現す。同じ形は二度と出てこないが、どこか全体に似ている。これが<span class="tip" onclick="toggleTip(this)">自己相似性<span class="tip-box"><strong>自己相似性（self-similarity）</strong><br>構造の一部を拡大すると、全体と似た形が現れる性質。厳密な自己相似（完全に一致する）と統計的自己相似（傾向が似ている）がある。マンデルブロ集合は後者。</span></span>だ。</p>
+
+<hr class="art-rule">
+
+<!-- ==================== S3: メカニズム ==================== -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">なぜ、こんなに複雑な構造が生まれるのか。</h2>
+
+<p class="body-text fade">マンデルブロ集合の複雑さは、「境界」に集中している。集合の内部（黒い部分）は静かだ。外部（色のついた部分）も、遠くへ行けば行くほど単調に暴走する。だが境界線——集合の内側と外側の「際（きわ）」——は、文字通り無限に複雑だ。</p>
+
+<p class="body-text fade">数学者の<span class="tip" onclick="toggleTip(this)">志々倉光弘<span class="tip-box"><strong>志々倉光弘（Mitsuhiro Shishikura）</strong><br>日本の数学者。京都大学教授。1998年にマンデルブロ集合の境界のハウスドルフ次元が2であることを証明した。複素力学系の世界的研究者。</span></span>は1998年に、マンデルブロ集合の境界の<span class="tip" onclick="toggleTip(this)">ハウスドルフ次元<span class="tip-box"><strong>ハウスドルフ次元</strong><br>図形の「複雑さ」を測る尺度。直線は1次元、平面は2次元。マンデルブロ集合の境界はトポロジー的には「線」（1次元）だが、ハウスドルフ次元は2。これは「線でありながら面と同じくらい複雑」という意味だ。</span></span>がちょうど2であることを証明した。ハウスドルフ次元とはフラクタルの「複雑さ」を数値で表す尺度で、直線は1、平面は2にあたる。マンデルブロ集合の境界は線なのに、この値が2。つまり線でありながら、面のように空間を埋め尽くすほど入り組んでいるということだ。</p>
+
+<!-- SVG: フローチャート — 複雑さの生成メカニズム（パターンA） -->
+<div class="svg-container fade">
+<svg viewBox="0 0 560 150" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+  <text x="65" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" fill="#7a6a55">ルール</text>
+  <rect x="10" y="24" width="110" height="48" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="65" y="45" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#1a1208">z → z² + c</text>
+  <text x="65" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">たった1行</text>
+  <polygon points="130,48 144,42 144,54" fill="#8b1a1a"/>
+  <text x="210" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" fill="#7a6a55">反復</text>
+  <rect x="154" y="24" width="110" height="48" rx="4" fill="#f3efe6" stroke="#8b1a1a" stroke-width="2"/>
+  <text x="209" y="45" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#8b1a1a">数百〜数万回</text>
+  <text x="209" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">繰り返す</text>
+  <polygon points="274,48 288,42 288,54" fill="#8b1a1a"/>
+  <text x="353" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" fill="#7a6a55">境界</text>
+  <rect x="298" y="24" width="110" height="48" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+  <text x="353" y="45" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#1a1208">秩序と混沌の際</text>
+  <text x="353" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">無限の複雑さ</text>
+  <polygon points="418,48 432,42 432,54" fill="#3d3020"/>
+  <text x="497" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" fill="#7a6a55">結果</text>
+  <rect x="442" y="24" width="110" height="48" rx="4" fill="#3d3020"/>
+  <text x="497" y="45" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#e8c56a">フラクタル</text>
+  <text x="497" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#e8e4de">HD = 2</text>
+  <text x="280" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">単純なルール × 反復 → 境界上に無限の構造</text>
+  <text x="280" y="120" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-style="italic" fill="#8b1a1a">「複雑さは複雑なルールから生まれない」</text>
+</svg>
+</div>
+
+<!-- ステップ図解 -->
+<div class="steps-wrap fade">
+  <p class="steps-head">なぜ境界が複雑になるか — 3つの仕組み</p>
+  <div class="step-card" id="sc1" onclick="tog(1)">
+    <div class="step-hd"><div class="step-nb">1</div><div class="step-tw"><p class="step-title">カオス的感受性</p><p class="step-sub">ほんの少しの違いが、まったく異なる結末を生む</p></div><span class="step-arr">▼</span></div>
+    <div class="step-body"><p>c の値がほんのわずか——たとえば 0.00001 だけ——違うだけで、反復の結末が「暴走しない」から「暴走する」に変わることがある。この感受性が、境界をどこまでも細かく入り組ませる。天気予報が長期的に当たらないのと同じ原理（カオス理論）が、ここでも働いている。</p></div>
+  </div>
+  <div class="step-card" id="sc2" onclick="tog(2)">
+    <div class="step-hd"><div class="step-nb">2</div><div class="step-tw"><p class="step-title">ミニ・マンデルブロの出現</p><p class="step-sub">拡大すると全体の縮小コピーが現れる</p></div><span class="step-arr">▼</span></div>
+    <div class="step-body"><p>境界を拡大していくと、本体のマンデルブロ集合にそっくりな小さなコピー——「ミニ・マンデルブロ」——が無数に見つかる。数学者ドゥアディとユバールは1980年代にこれらが「極細のフィラメント（糸）」で本体と繋がっていることを証明した。<strong>マンデルブロ集合は、バラバラに見える「島」も含めてすべてが一つに繋がっている。</strong></p></div>
+  </div>
+  <div class="step-card" id="sc3" onclick="tog(3)">
+    <div class="step-hd"><div class="step-nb">3</div><div class="step-tw"><p class="step-title">ジュリア集合との対応</p><p class="step-sub">マンデルブロ集合はジュリア集合の「地図」である</p></div><span class="step-arr">▼</span></div>
+    <div class="step-body"><p>複素平面上のすべての点 c には、対応する<em>ジュリア集合</em>がある。c がマンデルブロ集合の内部にあれば、そのジュリア集合は一つながりの形になる。外部にあれば、粉々の「塵」になる。つまり<strong>マンデルブロ集合は、あらゆるジュリア集合の性格を一枚の地図にまとめたもの</strong>だ。このことが、境界付近の複雑さをさらに深くしている。</p></div>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ==================== S4: 歴史 ==================== -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">砕けた幾何学の誕生。</h2>
+
+<p class="body-text fade">マンデルブロ集合の背後には、一世紀にわたる数学の物語がある。</p>
+
+<div class="timeline fade">
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1917〜18年</p>
+    <p class="tl-title">ジュリアとファトゥの先駆的研究</p>
+    <p class="tl-desc">第一次大戦中のフランスで、ガストン・ジュリアとピエール・ファトゥが複素力学系の反復を研究。ジュリア集合の基礎を築いた。しかしコンピュータのない時代、その視覚的な複雑さは誰にも見えなかった。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1975年</p>
+    <p class="tl-title">マンデルブロが「フラクタル」を名づける</p>
+    <p class="tl-desc">IBMの研究員ブノワ・マンデルブロが著書『Fractals: Form, Chance and Dimension』で「フラクタル」という語を導入。海岸線の長さ、綿花価格の変動、電話回線のノイズに共通する不規則なパターンの研究をまとめた。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1978年</p>
+    <p class="tl-title">ブルックスとマテルスキが初めて描画</p>
+    <p class="tl-desc">ロバート・ブルックスとピーター・マテルスキがクライン群の研究の一環として、マンデルブロ集合に相当する図を初めて描いた。ただし粗い点描で、その意味は十分に認識されていなかった。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1980年3月1日</p>
+    <p class="tl-title">マンデルブロがIBMで集合を可視化</p>
+    <p class="tl-desc">ニューヨーク州ヨークタウン・ハイツのIBM トーマス・J・ワトソン研究所で、マンデルブロが初めて高品質な画像を生成。古いテクトロニクスのプリンタが紙の上に打った点の集まりを見て、マンデルブロは「自分の想像力では、これほどのものは作れなかった」と語った。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1982年</p>
+    <p class="tl-title">『フラクタル幾何学』出版</p>
+    <p class="tl-desc">マンデルブロの代表作『The Fractal Geometry of Nature』が出版。フラクタルを数学の専門家だけでなく一般の人々にも届けた。「プログラムのアーティファクトだ」と切り捨てていた批判者たちを沈黙させた。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1985年</p>
+    <p class="tl-title">Scientific American の表紙に</p>
+    <p class="tl-desc">ブレーメン大学のペイトゲンとリヒターが生成した画像がScientific Americanの表紙を飾り、マンデルブロ集合は一般社会に爆発的に広まった。パーソナルコンピュータの普及と重なり、フラクタルはポップカルチャーの一部になった。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1995年</p>
+    <p class="tl-title">アーサー・C・クラークがドキュメンタリーを制作</p>
+    <p class="tl-desc">SF作家アーサー・C・クラークがドキュメンタリー『Fractals: The Colours of Infinity』をナレーション。デヴィッド・ギルモア（ピンク・フロイド）がサウンドトラックを担当した。クラークは集合を「数学の歴史全体の中でもっとも驚くべき発見の一つ」と呼んだ。</p>
+  </div>
+</div>
+
+<!-- 人物ブロック -->
+<div class="person-block fade">
+  <div class="person-block-img">
+    <svg width="80" height="90" viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="30" r="18" fill="#c8bfaa"/>
+      <rect x="22" y="50" width="36" height="32" rx="8" fill="#c8bfaa"/>
+      <rect x="16" y="24" width="48" height="6" rx="2" fill="#7a6a55" opacity=".4"/>
+      <circle cx="34" cy="28" r="2" fill="#3d3020"/>
+      <circle cx="46" cy="28" r="2" fill="#3d3020"/>
+    </svg>
+  </div>
+  <div class="person-block-body">
+    <p class="person-block-name">ブノワ・B・マンデルブロ</p>
+    <p class="person-block-role">Benoît B. Mandelbrot · 1924–2010</p>
+    <p class="person-block-desc">ポーランド生まれのフランス系アメリカ人数学者。IBMでフラクタル幾何学を創始。「雲は球ではなく、山は錐ではなく、海岸線は円ではない」と述べ、自然界の「粗さ（roughness）」を数学的に記述する道を切り拓いた。75歳でイェール大学史上最高齢のテニュアを取得。</p>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ==================== S5: つまり ==================== -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">単純なルールは、単純な結果を生むとは限らない。</h2>
+
+<p class="body-text fade">マンデルブロ集合が私たちに見せているのは、ある種の逆説だ。たった1行の式——z → z² + c——を繰り返すだけで、人間の想像力を超える複雑さが立ち現れる。複雑さの源泉は、ルールの複雑さではない。<strong>反復そのものが、秩序と混沌の境界に果てしない構造を編み上げる。</strong></p>
+
+<div class="quote-block fade">
+  <p class="quote-en">"Exploring this set I certainly never had the feeling of invention. I never had the feeling that my imagination was rich enough to invent all those extraordinary things on discovering them. They were there, even though nobody had seen them before."</p>
+  <p class="quote-ja">「この集合を探索しているとき、何かを発明しているという感覚はまったくなかった。あれほど途方もないものを自分の想像力で作り出せたとは、到底思えなかった。それらはもともとそこにあったのだ——ただ、誰もまだ見ていなかっただけだ。」</p>
+  <p class="quote-attr">— ブノワ・マンデルブロ（ドキュメンタリー『Fractals: The Colours of Infinity』1995年でのアーサー・C・クラークとの対話より）</p>
+</div>
+
+<div class="quote-block fade">
+  <p class="quote-en">"Clouds are not spheres, mountains are not cones, coastlines are not circles, and bark is not smooth, nor does lightning travel in a straight line."</p>
+  <p class="quote-ja">「雲は球ではなく、山は錐ではなく、海岸線は円ではなく、樹皮は滑らかではなく、稲妻も直線では走らない。」</p>
+  <p class="quote-attr">— ブノワ・マンデルブロ『The Fractal Geometry of Nature』（1982）</p>
+</div>
+
+<p class="body-text fade">このシリーズで取り上げてきたラングトンのアリも、同じ原理の上にある。2つのルールだけで、混沌のあとに突然秩序が現れた。コンウェイのライフゲームも、わずか4つのルールから自己複製体やコンピュータが出現する。マンデルブロ集合は、この「単純さから複雑さが生まれる」という原理を、もっとも美しく、もっとも純粋な形で示している。</p>
+
+<div class="culture-block fade">
+  <p class="culture-title">文化への浸透</p>
+  <p class="culture-desc">マンデルブロ集合の画像は1980年代後半から大学の寮のポスター、Tシャツ、アルバムジャケットに使われるようになった。映画『スター・トレックII カーンの逆襲』（1982）では、フラクタル技法で生成された惑星の映像がCG映像史に残る先駆的シーンとなった。ジョナサン・コールトンの楽曲「Mandelbrot Set」やPBSのNOVAドキュメンタリー『Hunting the Hidden Dimension』（2008）など、ポップカルチャーでの言及は現在も続いている。</p>
+</div>
+
+<div class="img-placeholder fade">
+  <div class="img-ph-area">
+    <span class="img-ph-icon">🖼</span>
+    <p class="img-ph-title">シーホースの谷の拡大図</p>
+    <p class="img-ph-desc">マンデルブロ集合の「シーホースの谷」と呼ばれる領域（中心 −0.75 + 0.1i 付近）を深くズームした図。タツノオトシゴの尾のような渦巻きが無限に連なる。</p>
+    <div class="img-ph-prompt">
+      <p class="img-ph-prompt-lbl">画像生成プロンプト</p>
+      <p class="img-ph-prompt-txt">鳥獣戯画タッチで描かれたシーホースの谷。渦巻きをタツノオトシゴに見立て、カエルが海中を泳いでいる。墨と朱の二色刷り。余白と渦巻きの対比。</p>
+    </div>
+  </div>
+  <p class="img-caption">Fig. 2 — シーホースの谷。10¹⁰倍に拡大しても新しい構造が現れ続ける。</p>
+</div>
+
+<hr class="art-rule">
+
+<!-- ==================== 参考文献 ==================== -->
+<div class="sec-rule fade"><span class="sec-label">参考文献</span><div class="sec-line"></div></div>
+
+<div class="ref-list">
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1982</span></div>
+    <p class="ref-title"><a href="https://en.wikipedia.org/wiki/The_Fractal_Geometry_of_Nature" target="_blank" rel="noopener">The Fractal Geometry of Nature</a></p>
+    <p class="ref-author">Benoît B. Mandelbrot</p>
+    <p class="ref-desc">フラクタル幾何学の基礎を一般に広めた代表作。マンデルブロ集合を含む多数のフラクタル図形と自然界への応用を論じる。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1998</span></div>
+    <p class="ref-title"><a href="https://arxiv.org/abs/math/9201272" target="_blank" rel="noopener">The Hausdorff Dimension of the Boundary of the Mandelbrot Set and Julia Sets</a></p>
+    <p class="ref-author">Mitsuhiro Shishikura</p>
+    <p class="ref-desc">マンデルブロ集合の境界のハウスドルフ次元が2であることを証明した論文。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">ドキュメンタリー</span><span class="ref-year">1995</span></div>
+    <p class="ref-title"><a href="https://www.imdb.com/title/tt0241317/" target="_blank" rel="noopener">Fractals: The Colours of Infinity</a></p>
+    <p class="ref-author">アーサー・C・クラーク（ナレーション）/ デヴィッド・ギルモア（音楽）</p>
+    <p class="ref-desc">マンデルブロ集合とフラクタルの世界を一般向けに紹介したドキュメンタリー。マンデルブロ本人も出演。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1987</span></div>
+    <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Chaos:_Making_a_New_Science" target="_blank" rel="noopener">Chaos: Making a New Science</a></p>
+    <p class="ref-author">James Gleick</p>
+    <p class="ref-desc">カオス理論とフラクタルの歴史を一般読者に向けて描いたベストセラー。マンデルブロの仕事を広く知らしめた。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">記事</span><span class="ref-year">1985</span></div>
+    <p class="ref-title"><a href="https://www.scientificamerican.com/article/mandelbrot-set-1990-horgan/" target="_blank" rel="noopener">Computer Recreations: マンデルブロ集合の算法</a></p>
+    <p class="ref-author">A. K. Dewdney / Scientific American</p>
+    <p class="ref-desc">Scientific Americanの表紙記事としてマンデルブロ集合の描画アルゴリズムを紹介。一般への爆発的普及のきっかけとなった。</p>
+  </div>
+</div>
+
+<!-- 信頼度ノート -->
+<div class="note-box fade">
+  <strong>📌 この記事について</strong><br>
+  マンデルブロ集合の定義と基本的性質はマンデルブロの原著論文およびドゥアディ＝ユバールの研究に基づく。ハウスドルフ次元の結果は志々倉の査読付き論文による。歴史的経緯はScientific American、Wikipedia、IBM公式の記述を参照した。体験デモの描画アルゴリズムは標準的なエスケープ時間法を使用している。
+</div>
+
+<!-- タグ -->
+<div class="tags fade">
+  <span class="tag">フラクタル</span>
+  <span class="tag">複素力学系</span>
+  <span class="tag">自己相似性</span>
+  <span class="tag">反復</span>
+  <span class="tag">カオス</span>
+  <span class="tag">マンデルブロ</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:40px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">2</p>
+      <p class="sidebar-text">マンデルブロ集合の境界のハウスドルフ次元。「線」でありながら「面」と同じ複雑さを持つ。1998年に志々倉光弘が証明した。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">マンデルブロがIBMで集合を可視化した1980年は、パーソナルコンピュータ時代の幕開けだった。翌年にIBM PCが発売。コンピュータの性能が上がるにつれ、フラクタルは数学者だけのものからポップカルチャーの一部へと変貌した。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">アーサー・C・クラークのドキュメンタリー『Fractals: The Colours of Infinity』（1995）。ジェイムズ・グリック著『Chaos』（1987）。映画『スター・トレックII』のCG惑星（1982）。PBSドキュメンタリー『Hunting the Hidden Dimension』（2008）。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— ラングトンのアリ<br>— コンウェイのライフゲーム<br>— フラクタルと海岸線のパラドックス<br>— ボイドと群れの知能</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">集合の定義と基本性質は数学的に厳密に確立されている。ハウスドルフ次元は査読付き論文で証明済み。歴史的事実は複数の独立した資料で一致している。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// マンデルブロ集合 を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ズームしてたら時間忘れた</span></div>
+      <span class="t-output" id="to1">境界のどのあたり？</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;シーホースの谷ってやつ もう5回くらい拡大した</span></div>
+      <span class="t-output" id="to2">あそこは渦巻きのなかにまた渦巻きがあって、そのなかに小さいマンデルブロがいる。何回やっても終わらないんだ。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;たった一行の式であれが出てくるのが信じられない</span></div>
+      <span class="t-output" id="to3">マンデルブロ本人も同じことを言っていた。<em>「自分の想像力では発明できなかった」</em>って。式は発明だけど、あの形は発見なんだろうね。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;自然のフラクタルもそうなのかな 木の枝とか</span></div>
+      <span class="t-output" id="to4">ルールは違うけど、「単純な反復が複雑な形を生む」という原理は共通してる。自然はコンピュータより先にそれをやっていた。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl5">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# きれいだった</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="/langton_ant">
+      <p class="related-card-tag">数学 × 創発</p>
+      <p class="related-card-title">ラングトンのアリ</p>
+      <p class="related-card-desc">2つのルールだけで混沌から秩序が突然生まれる。創発の最小モデル。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="#">
+      <p class="related-card-tag">数学 × フラクタル</p>
+      <p class="related-card-title">フラクタルと海岸線のパラドックス</p>
+      <p class="related-card-desc">海岸線の長さは測り方で変わる。「正確な長さ」は存在しない。</p>
+      <p class="related-card-arrow">近日公開</p>
+    </a>
+  </div>
+</div>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ
+function toggleTip(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.tip'))
+    document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ============================================================
+// 反復シミュレーター
+// ============================================================
+function runIter(){
+  const cr=parseFloat(document.getElementById('cReal').value)||0;
+  const ci=parseFloat(document.getElementById('cImag').value)||0;
+  let zr=0,zi=0;
+  const maxN=20;
+  let lines=[];
+  let escaped=false;
+  for(let n=0;n<maxN;n++){
+    const mag=Math.sqrt(zr*zr+zi*zi);
+    const zStr=formatC(zr,zi);
+    lines.push('z<sub>'+n+'</sub> = '+zStr+' (|z|='+mag.toFixed(3)+')');
+    if(mag>2){escaped=true;lines[lines.length-1]+=' <span style="color:#c4392a;font-weight:500;">→ 暴走！</span>';break;}
+    const newR=zr*zr-zi*zi+cr;
+    const newI=2*zr*zi+ci;
+    zr=newR;zi=newI;
+  }
+  if(!escaped)lines.push('<span style="color:#1a5a30;font-weight:500;">→ 20回反復しても暴走しなかった（マンデルブロ集合に含まれる候補）</span>');
+  document.getElementById('iterOut').innerHTML=lines.join('<br>');
+  document.getElementById('iterResult').innerHTML=escaped
+    ? 'c = '+formatC(cr,ci)+' → <em>暴走した</em>（集合の外。黒く塗らない）'
+    : 'c = '+formatC(cr,ci)+' → <em>暴走しなかった</em>（集合の中。黒く塗る）';
+}
+function formatC(r,i){
+  if(i===0)return r.toFixed(3);
+  const sign=i>=0?'+':'';
+  return r.toFixed(3)+sign+i.toFixed(3)+'i';
+}
+
+// ============================================================
+// マンデルブロ・エクスプローラー
+// ============================================================
+const canvas=document.getElementById('mbCanvas');
+const ctx=canvas.getContext('2d');
+let mbCx=-0.5,mbCy=0,mbScale=3.2,mbMaxIter=100;
+
+function drawMandelbrot(){
+  const W=canvas.width,H=canvas.height;
+  const imgData=ctx.createImageData(W,H);
+  const d=imgData.data;
+  for(let py=0;py<H;py++){
+    for(let px=0;px<W;px++){
+      const x0=mbCx+(px-W/2)/W*mbScale;
+      const y0=mbCy+(py-H/2)/H*mbScale*(H/W);
+      let x=0,y=0,iter=0;
+      while(x*x+y*y<=4&&iter<mbMaxIter){
+        const xt=x*x-y*y+x0;
+        y=2*x*y+y0;
+        x=xt;
+        iter++;
+      }
+      const idx=(py*W+px)*4;
+      if(iter===mbMaxIter){d[idx]=d[idx+1]=d[idx+2]=0;d[idx+3]=255;}
+      else{
+        const t=iter/mbMaxIter;
+        const hue=360*t;
+        const rgb=hsl2rgb(hue,0.85,0.15+t*0.5);
+        d[idx]=rgb[0];d[idx+1]=rgb[1];d[idx+2]=rgb[2];d[idx+3]=255;
+      }
+    }
+  }
+  ctx.putImageData(imgData,0,0);
+  updateInfo();
+}
+
+function hsl2rgb(h,s,l){
+  h/=360;
+  const a=s*Math.min(l,1-l);
+  const f=n=>{const k=(n+h*12)%12;return l-a*Math.max(Math.min(k-3,9-k,1),-1);};
+  return [Math.round(f(0)*255),Math.round(f(8)*255),Math.round(f(4)*255)];
+}
+
+function updateInfo(){
+  const sign=mbCy>=0?'+':'';
+  document.getElementById('mbCenter').textContent=mbCx.toFixed(6)+' '+sign+mbCy.toFixed(6)+'i';
+  document.getElementById('mbZoom').textContent='×'+(3.2/mbScale).toFixed(1);
+  document.getElementById('mbIter').textContent=mbMaxIter;
+}
+
+canvas.addEventListener('click',function(e){
+  const rect=canvas.getBoundingClientRect();
+  const scaleX=canvas.width/rect.width;
+  const px=(e.clientX-rect.left)*scaleX;
+  const py=(e.clientY-rect.top)*scaleX;
+  mbCx=mbCx+(px-canvas.width/2)/canvas.width*mbScale;
+  mbCy=mbCy+(py-canvas.height/2)/canvas.height*mbScale*(canvas.height/canvas.width);
+  mbScale*=0.5;
+  drawMandelbrot();
+});
+
+function mbZoomIn(){mbScale*=0.5;drawMandelbrot();}
+function mbZoomOut(){mbScale*=2;drawMandelbrot();}
+function mbReset(){mbCx=-0.5;mbCy=0;mbScale=3.2;mbMaxIter=100;drawMandelbrot();}
+function mbMoreIter(){mbMaxIter+=100;drawMandelbrot();}
+function mbGoSeahorse(){mbCx=-0.75;mbCy=0.1;mbScale=0.15;mbMaxIter=300;drawMandelbrot();}
+
+drawMandelbrot();
+
+// ============================================================
+// ターミナルアニメーション
+// ============================================================
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},{id:'to4',delay:6200},
+  {id:'tl5',delay:7200}
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>相関は因果ではない — Qualia Journal</title>
+<meta name="description" content="アイスクリームの売上と溺死者数は相関する。しかし原因ではない。数字が一緒に動くだけでは因果とは言えない。">
+<link rel="canonical" href="https://qualiajournal.com/correlation_causation">
+<meta property="og:title" content="相関は因果ではない — Qualia Journal">
+<meta property="og:description" content="アイスクリームの売上と溺死者数は相関する。しかし原因ではない。数字が一緒に動くだけでは因果とは言えない。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/correlation_causation">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="相関は因果ではない — Qualia Journal">
+<meta name="twitter:description" content="アイスクリームの売上と溺死者数は相関する。しかし原因ではない。数字が一緒に動くだけでは因果とは言えない。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type='text/javascript' src='https://api.netlify.com/lVSOOxGsoYUDXc0MZfv3ILQBca53xmGmxY2Y9WBxyl1jfNsbQX1dZ5oF3KgPOmDG4oLJl6FQj9-qIZihHorciYQ7T9rFkrqKFeleWb3ypUUeVYF5s0UlwrnHV4vJT-8s1toto0sY15AfeoWeAuOi6lEffljb6sSxaaGF59o3JgMhDRDFGLdoYYaH51aZyncBJ5AKzgjEfkKjrt_L_8oa0n9-MFYBi75SvWYBB9C2ifsOLSZfRWh7VzhhVvJFBgXUPGqTmbjtczWV-81ZjFNIbuJD4pcjX4tnw4mFJZC8n-spuTxV3Lopk8_2Pn5Vfn0iM0oxWDjSOx_iRWFnUKdRURPS0QU7Idkg_-poLmv-iNhKtFDxzbSZ9W2qA9bEI0x8Vys8PVVfdwRNQVTNtT8zC9tquGTK34vQyvX3ZHp9Y2TAcxNRlMUJeE-Mr4oapUZnOwZH_l8FgGbaPQNxSOb0ymR5HQzyYsxyMY1pd_ujc5HuHqbMMDcPPoLpDXDIWSVIavgW94TXDq_8LVbZBl6d_ajiF8EIB9CL3Wj_SYObtas'></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"相関は因果ではない","description":"アイスクリームの売上と溺死者数は相関する。しかし原因ではない。数字が一緒に動くだけでは因果とは言えない。","author":{"@type":"Organization","name":"Qualia Journal"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/correlation_causation","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"科学と文化","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"相関は因果ではない"}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}.cover h1 em{font-style:italic;color:#8b1a1a;}.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}.cover-aside strong{color:#3d3020;font-weight:600;}
+.scenario-wrap{max-width:900px;margin:0 auto;padding:40px 48px 0;}.scenario-inner{position:relative;padding:32px 36px;background:linear-gradient(135deg,#f3efe6 0%,#ede8dc 100%);border:1px solid #c8bfaa;overflow:hidden;}.scenario-inner::before{content:'';position:absolute;top:-1px;left:40px;right:40px;height:3px;background:#8b1a1a;}.scenario-num{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:rgba(139,26,26,.06);position:absolute;top:12px;right:24px;line-height:1;user-select:none;}.scenario-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}.scenario-text.closing{font-style:normal;font-weight:400;color:#1a1208;margin-bottom:0;border-top:1px solid #c8bfaa;padding-top:14px;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-top:1px solid #e0d8c8;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}.meta-item{display:flex;align-items:center;gap:10px;}.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}.difficulty-dots{display:flex;gap:4px;}.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}.dot.on{background:#8b1a1a;}.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}.article-main{padding:48px 0;}.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}.body-text strong{color:#1a1208;font-weight:600;}.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}.tip-box strong{color:#e8c56a;font-weight:600;}.tip.open .tip-box{display:block;}
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}.img-ph-icon{font-size:28px;opacity:.4;}.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;}.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}.person-block-wiki{margin-bottom:8px;}.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;border-bottom:1px solid #c8bfaa;text-decoration:none;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.misconception-header{background:#3d3020;color:white;padding:11px 20px;}.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.misconception-body{background:white;}.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}.misconception-item:last-child{border-bottom:none;}.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}.mis-label.wrong{color:#c4392a;}.mis-label.right{color:#1a5a30;}.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}.tl-item{position:relative;margin-bottom:28px;}.tl-item:last-child{margin-bottom:0;}.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.steps-wrap{margin:32px 0;}.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}.step-card.open .step-nb{background:#8b1a1a;color:white;}.step-tw{flex:1;padding:13px 18px;}.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}.step-card.open .step-body{display:block;}.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}.step-body p strong{color:#1a1208;font-weight:600;}.step-body p em{color:#8b1a1a;font-style:normal;}
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}.ref-title a:hover{border-bottom-color:#8b1a1a;}.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}.sidebar-block:last-child{border-bottom:none;}.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}.sidebar-text strong{color:#3d3020;font-weight:600;}.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{list-style:none;padding:0;margin:0;}.sidebar-check li{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;padding:6px 0 6px 24px;border-bottom:1px solid #e0d8c8;position:relative;cursor:pointer;}.sidebar-check li:last-child{border-bottom:none;}.sidebar-check li::before{content:'☐';position:absolute;left:0;top:6px;font-size:14px;color:#c8bfaa;}.sidebar-check li.checked::before{content:'☑';color:#8b1a1a;}
+.quiz-wrap{margin:36px 0;border:1px solid #c8bfaa;overflow:hidden;}.quiz-header{background:#1a1208;color:white;padding:11px 20px;}.quiz-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.quiz-body{padding:28px 24px;background:white;}.quiz-q{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:#1a1208;line-height:1.6;margin-bottom:22px;text-align:center;}
+.quiz-context{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:20px;padding:14px 16px;background:white;border:1px solid #c8bfaa;border-left:3px solid #8b1a1a;}
+.quiz-choices{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}.quiz-btn{padding:14px 20px;font-family:'Source Serif 4',serif;font-size:15px;font-weight:300;color:#1a1208;background:#f3efe6;border:1px solid #c8bfaa;cursor:pointer;text-align:left;line-height:1.5;transition:all .18s;}.quiz-btn:hover{background:#ede8dc;border-color:#8b1a1a;}.quiz-btn.selected{background:#1a1208;color:white;border-color:#1a1208;}.quiz-result{display:none;padding:20px;background:#f3efe6;border-top:1px solid #c8bfaa;}.quiz-result p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:10px;}.quiz-result p:last-child{margin-bottom:0;}.quiz-result strong{color:#1a1208;font-weight:600;}.quiz-result em{color:#8b1a1a;font-style:normal;font-weight:600;}.quiz-next{display:none;margin-top:16px;text-align:center;}.quiz-next-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;background:none;border:1px solid #8b1a1a;padding:8px 20px;cursor:pointer;text-transform:uppercase;transition:all .18s;}.quiz-next-btn:hover{background:#8b1a1a;color:white;}
+.quiz-summary-wrap{display:none;margin:36px 0;border:2px solid #8b1a1a;overflow:hidden;}.quiz-summary-header{background:#8b1a1a;color:white;padding:14px 20px;}.quiz-summary-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.quiz-summary-body{padding:24px;background:white;}.quiz-summary-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:12px;}.quiz-summary-body p:last-child{margin-bottom:0;}.quiz-summary-body strong{color:#1a1208;font-weight:600;}.quiz-summary-body em{color:#8b1a1a;font-style:normal;font-weight:600;}.quiz-pattern{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}.quiz-pattern-item{font-family:'Source Sans 3',sans-serif;font-size:11px;padding:6px 14px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}.quiz-pattern-item span{color:#8b1a1a;font-weight:600;}
+/* SPURIOUS GENERATOR */
+.sg{margin:36px 0;border:1px solid #c8bfaa;overflow:hidden;}.sg-hd{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}.sg-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.sg-count{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#aaa;}.sg-body{padding:28px 24px;background:white;}
+.sg-prompt{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:#1a1208;text-align:center;margin-bottom:20px;line-height:1.6;}
+.sg-canvas-wrap{max-width:460px;margin:0 auto 6px;}.sg-canvas-wrap canvas{width:100%;display:block;border:1px solid #e0d8c8;background:#faf8f3;}
+.sg-legend-hidden{text-align:center;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-bottom:20px;padding:8px 0;}
+.sg-legend-hidden span{display:inline-block;width:20px;height:3px;vertical-align:middle;margin-right:4px;}
+.sg-legend-hidden .lr{background:#8b1a1a;}.sg-legend-hidden .lb{background:#2a6496;}
+.sg-btns{display:flex;gap:12px;justify-content:center;margin-bottom:8px;}
+.sg-yn{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;padding:10px 32px;cursor:pointer;border:1px solid #c8bfaa;background:#f3efe6;color:#1a1208;transition:all .18s;}.sg-yn:hover{border-color:#8b1a1a;}.sg-yn.picked{background:#1a1208;color:white;border-color:#1a1208;}
+.sg-start{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;background:none;border:1px solid #8b1a1a;padding:10px 28px;cursor:pointer;text-transform:uppercase;transition:all .18s;display:block;margin:0 auto;}.sg-start:hover{background:#8b1a1a;color:white;}
+.sg-reveal{display:none;margin-top:16px;padding:20px;background:#f3efe6;border-top:1px solid #c8bfaa;text-align:center;}
+.sg-reveal-pair{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#1a1208;line-height:1.5;margin-bottom:6px;}
+.sg-reveal-r{font-family:'JetBrains Mono',monospace;font-size:12px;color:#8b1a1a;margin-bottom:10px;}
+.sg-reveal-msg{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.sg-next{display:none;margin-top:16px;text-align:center;}.sg-next-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;background:none;border:1px solid #8b1a1a;padding:8px 20px;cursor:pointer;text-transform:uppercase;transition:all .18s;}.sg-next-btn:hover{background:#8b1a1a;color:white;}
+.sg-endnote{display:none;margin-top:20px;padding:14px 16px;background:#faf8f3;border:1px solid #e0d8c8;text-align:left;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.sg-endnote strong{color:#1a1208;font-weight:600;}.sg-endnote em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.terminal-label-wrap{max-width:900px;margin:48px auto 0;padding:0 48px;display:flex;align-items:center;gap:12px;}.terminal-label{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.1em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:16px auto;padding:0 48px 48px;}.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}.terminal-dots{display:flex;gap:6px;}.terminal-dot{width:12px;height:12px;border-radius:50%;}.terminal-dot.red{background:#ff5f57;}.terminal-dot.yellow{background:#febc2e;}.terminal-dot.green{background:#28c840;}.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}.t-input{color:#e8e4de;}.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}.t-output em{color:#e8c56a;font-style:normal;}.t-output strong{color:#fff;font-weight:500;}.t-exit .t-prompt{color:#555;}.t-exit .t-input{color:#555;}.t-exit .t-comment{color:#4a9e6a;}.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px 64px;border-top:1px solid #c8bfaa;}.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;}.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}.related-card{display:block;border:1px solid #c8bfaa;padding:24px 20px;text-decoration:none;transition:border-color .2s,background .2s;}.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.related-card-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;margin-bottom:8px;}.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:12px;}.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#8b1a1a;}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}.fade.on{opacity:1;transform:none;}
+@media(max-width:720px){.cover{grid-template-columns:1fr;padding:40px 20px 32px;gap:24px;}.cover-right{display:none;}.article{grid-template-columns:1fr;padding:0 20px;}.article-side{padding:0 0 48px;}.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:12px;}.summary-box,.scenario-wrap,.terminal-wrap,.terminal-label-wrap,.related{padding-left:20px;padding-right:20px;}.scenario-inner{padding:24px 20px;}.scenario-num{display:none;}.misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}.person-block{grid-template-columns:1fr;}.related-grid{grid-template-columns:1fr;}.tip-box{left:0;transform:none;width:200px;}.tip-box::after{left:20px;transform:none;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="masthead"><p class="masthead-name"><a href="/" style="color:inherit;text-decoration:none;">Qualia Journal</a></p></div>
+<div class="cover"><div class="cover-left"><p class="cover-kicker">科学と文化</p><h1>相関は<em>因果</em>ではない</h1><p class="cover-deck">2つの数字が一緒に動く。それだけで、私たちはつい「原因」を見つけた気になる。だが、数字の背後にある物語は、ほとんどの場合、私たちが勝手に書いたものだ。</p><p class="cover-byline"><span>S-01</span><span>統計 × 認知</span></p></div><div class="cover-right"><div class="est-card"><span class="est-label">Est.</span><span class="est-year">1896</span><p class="est-event">カール・ピアソンが相関係数の一般理論を定式化し、変数間の関係を数値で測る方法を確立した。</p><p class="est-context">同年の世界：第1回近代オリンピックがアテネで開催。ヘンリー・フォードが最初のガソリン自動車「クアドリサイクル」を完成させた。</p></div><div class="cover-aside"><strong>相関係数 r</strong> — ピアソンが定式化した、2つの変数の関係の強さを −1 から +1 で表す指標。r = 0.95 でも「原因」があるとは限らない。</div></div></div>
+<div class="scenario-wrap"><div class="scenario-inner"><span class="scenario-num">≠</span><p class="scenario-text">あるニュースを読んで、「朝食を食べる子どもは成績が良い」と知った。なるほど、と思って翌朝から子どもに朝食を出すようにした。あるいは「運動している人は年収が高い」と聞いて、ジムに通い始めた。グラフを見ると、たしかに2本の線は同じ方向に動いている。</p><p class="scenario-text">こういう場面は日常にあふれている。テレビの健康番組、ビジネス書の成功法則、SNSで流れてくる「〇〇な人は△△しがち」という投稿。数字が2つ並んで同じ方向を指しているとき、私たちの脳は自動的に「原因と結果」の物語を書き始める。</p><p class="scenario-text closing">その物語は、ほぼ間違っている。相関と因果は別物であり、その違いを理解しないまま判断を下すことの危険は、現代においてかつてないほど大きくなっている。</p></div></div>
+<div class="meta-bar"><div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><span class="difficulty-text">入門 — 数学の知識は不要</span></div><div class="meta-sep"></div><div class="meta-item"><span class="meta-label">読了時間</span><span class="read-time"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#7a6a55" stroke-width="1"/><path d="M7 3.5V7.5L9.5 9" stroke="#7a6a55" stroke-width="1" stroke-linecap="round"/></svg>約16分</span></div></div>
+<div class="summary-box"><div class="summary-inner"><span class="summary-icon">要点</span><p class="summary-text">2つの数字が一緒に動いているグラフを見せられたとき、あなたの直感がどんな物語を書くかを体験する。その直感がなぜ生まれるのか、なぜ危険なのかを、130年の統計史を通じて辿る。</p></div></div>
+
+<div class="article"><div class="article-main">
+
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">数字が「一緒に動く」とは何か</h2>
+<p class="body-text fade">この記事は「相関は因果ではない」という有名な格言の話だが、その前にひとつだけ確認しておきたい。<strong>相関とは、2つの数字が一緒に動く傾向のことだ。</strong>気温が上がるとアイスクリームの売上が増える。身長が高い人は体重も重い傾向がある。一方が上がるとき他方も上がる関係を「正の相関」、一方が上がると他方が下がる関係を「負の相関」と呼ぶ。</p>
+<p class="body-text fade">この「一緒に動く度合い」を1つの数字で表現したのが<span class="tip" onclick="toggleTip(this)">相関係数<span class="tip-box"><strong>相関係数（Correlation Coefficient）</strong>2つの変数の直線的な関係の強さと方向を −1 から +1 で表す数値。+1 は完全な正の相関、−1 は完全な負の相関、0 は直線的関係がないことを示す。</span></span>だ。1896年、英国の数学者カール・ピアソンが論文「回帰・遺伝・汎交配」の中で一般理論を定式化した。統計学ではこの数値を <strong>r</strong> という記号で書く。r は −1 から +1 の間を動く。+1 に近ければ「一方が増えると他方も増える」傾向が強く、−1 に近ければ「一方が増えると他方は減る」傾向が強い。0 なら関係はない。</p>
+<div style="margin:32px 0;overflow-x:auto;" class="fade"><svg viewBox="0 0 560 100" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;"><defs><linearGradient id="cG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#2a6496"/><stop offset="50%" stop-color="#c8bfaa"/><stop offset="100%" stop-color="#8b1a1a"/></linearGradient></defs><rect x="30" y="30" width="500" height="14" rx="7" fill="url(#cG)" opacity=".7"/><text x="30" y="68" text-anchor="middle" font-family="'Playfair Display',serif" font-size="14" font-weight="700" fill="#2a6496">−1</text><text x="30" y="82" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">完全な負の相関</text><text x="280" y="68" text-anchor="middle" font-family="'Playfair Display',serif" font-size="14" font-weight="700" fill="#7a6a55">0</text><text x="280" y="82" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">関係なし</text><text x="530" y="68" text-anchor="middle" font-family="'Playfair Display',serif" font-size="14" font-weight="700" fill="#8b1a1a">+1</text><text x="530" y="82" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">完全な正の相関</text><text x="280" y="20" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" letter-spacing=".1em" fill="#7a6a55">相関係数 r のスケール</text><circle cx="405" cy="37" r="5" fill="#faf8f3" stroke="#8b1a1a" stroke-width="1.5"/><text x="405" y="15" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">r = 0.5</text><line x1="405" y1="20" x2="405" y2="30" stroke="#8b1a1a" stroke-width=".5"/></svg></div>
+<p class="body-text fade">ピアソンの貢献は絶大だった。それまで「なんとなく関係がありそうだ」としか言えなかったものを、数字で測れるようにした。しかし同時に、新しい問題が生まれた。<strong>数字が高いと、つい「原因がある」と思ってしまうのだ。</strong>たとえば r = 0.95（ほぼ完全な相関）と聞くと、「因果関係に違いない」と感じる人は多い。だが r は関係の強さを測る指標であって、因果を測る指標ではない。</p>
+<div class="person-block fade"><div class="person-block-img"><svg width="80" height="90" viewBox="0 0 80 90"><circle cx="40" cy="30" r="18" fill="#c8bfaa"/><rect x="20" y="52" width="40" height="35" rx="8" fill="#c8bfaa"/><circle cx="40" cy="28" r="12" fill="#ede8dc"/><rect x="28" y="18" width="24" height="4" rx="2" fill="#7a6a55"/></svg></div><div class="person-block-body"><p class="person-block-name">カール・ピアソン</p><p class="person-block-role">Karl Pearson, 1857–1936</p><p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Karl_Pearson" target="_blank" rel="noopener">Wikipedia</a></p><p class="person-block-desc">英国の数学者・生物統計学者。相関係数、カイ二乗検定、標準偏差を確立。1911年にユニバーシティ・カレッジ・ロンドンに世界初の統計学科を設立。</p></div></div>
+<div style="margin:32px 0;overflow-x:auto;" class="fade"><svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;"><text x="280" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" letter-spacing=".1em" fill="#7a6a55">相関と因果の違い</text><rect x="20" y="35" width="240" height="120" rx="4" fill="white" stroke="#c8bfaa"/><text x="140" y="55" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55">相関 CORRELATION</text><rect x="45" y="70" width="70" height="32" rx="3" fill="#f3efe6" stroke="#c8bfaa"/><text x="80" y="90" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">変数 A</text><rect x="165" y="70" width="70" height="32" rx="3" fill="#f3efe6" stroke="#c8bfaa"/><text x="200" y="90" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">変数 B</text><text x="140" y="90" text-anchor="middle" font-size="16" fill="#c8bfaa">⇄</text><text x="140" y="136" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="11" font-style="italic" fill="#7a6a55">「一緒に動く」</text><rect x="300" y="35" width="240" height="120" rx="4" fill="white" stroke="#8b1a1a"/><text x="420" y="55" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#8b1a1a">因果 CAUSATION</text><rect x="325" y="70" width="70" height="32" rx="3" fill="#f3efe6" stroke="#8b1a1a"/><text x="360" y="90" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">原因 A</text><rect x="445" y="70" width="70" height="32" rx="3" fill="#f3efe6" stroke="#8b1a1a"/><text x="480" y="90" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">結果 B</text><text x="420" y="90" text-anchor="middle" font-size="16" fill="#8b1a1a">→</text><text x="420" y="136" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="11" font-style="italic" fill="#8b1a1a">「Aが変わるとBが変わる」</text></svg></div>
+<div class="quote-block fade"><p class="quote-en">"All causation as we have defined it is correlation, but the converse is not necessarily true, i.e. where we find correlation we cannot always predict causation."</p><p class="quote-ja">「我々が定義した意味での因果はすべて相関であるが、その逆は必ずしも成り立たない。すなわち、相関を見出したところで常に因果を予測できるわけではない。」</p><p class="quote-attr">— Karl Pearson, <em>The Grammar of Science</em>, 2nd edition, 1900</p></div>
+<p class="body-text fade">ピアソン自身がこの警告を発していた。相関という概念を生み出した本人が、その誤用を恐れていた。だがこの警告は、120年以上経った現在も驚くほど無視され続けている。</p>
+<hr class="art-rule">
+<h2 class="fade">なぜ私たちは相関を因果と取り違えるのか</h2>
+<p class="body-text fade">理由は単純で、私たちの脳は「原因と結果」の物語を作るように設計されているからだ。進化の過程で、「あの茂みが揺れた→捕食者がいる→逃げろ」という因果推論ができる個体が生き残った。この推論エンジンは現代でも常に稼働していて、2つの出来事が同時に起きるだけで、原因と結果の物語を自動生成する。</p>
+<div style="margin:32px 0;overflow-x:auto;" class="fade"><svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;"><text x="280" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" letter-spacing=".1em" fill="#7a6a55">相関が因果でない 3つのパターン</text><rect x="10" y="35" width="165" height="155" rx="4" fill="white" stroke="#c8bfaa"/><text x="92" y="55" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#8b1a1a">① 偶然の一致</text><rect x="30" y="70" width="50" height="28" rx="3" fill="#f3efe6" stroke="#c8bfaa"/><text x="55" y="88" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#3d3020">A</text><rect x="105" y="70" width="50" height="28" rx="3" fill="#f3efe6" stroke="#c8bfaa"/><text x="130" y="88" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#3d3020">B</text><text x="92" y="88" text-anchor="middle" font-size="12" fill="#c8bfaa">?</text><text x="92" y="125" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">たまたま同じ方向に</text><text x="92" y="140" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">動いただけ</text><rect x="197" y="35" width="165" height="155" rx="4" fill="white" stroke="#c8bfaa"/><text x="280" y="55" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#8b1a1a">② 逆の因果</text><rect x="217" y="70" width="50" height="28" rx="3" fill="#f3efe6" stroke="#c8bfaa"/><text x="242" y="88" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#3d3020">A</text><rect x="292" y="70" width="50" height="28" rx="3" fill="#f3efe6" stroke="#c8bfaa"/><text x="317" y="88" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#3d3020">B</text><text x="280" y="88" text-anchor="middle" font-size="16" fill="#8b1a1a">←</text><text x="280" y="125" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">A→Bだと思ったら</text><text x="280" y="140" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">実はB→Aだった</text><rect x="385" y="35" width="165" height="155" rx="4" fill="white" stroke="#c8bfaa"/><text x="467" y="55" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#8b1a1a">③ 第三の変数</text><rect x="405" y="100" width="50" height="28" rx="3" fill="#f3efe6" stroke="#c8bfaa"/><text x="430" y="118" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#3d3020">A</text><rect x="480" y="100" width="50" height="28" rx="3" fill="#f3efe6" stroke="#c8bfaa"/><text x="505" y="118" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#3d3020">B</text><rect x="442" y="65" width="50" height="24" rx="3" fill="#8b1a1a"/><text x="467" y="81" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="white" font-weight="600">C</text><text x="443" y="100" text-anchor="middle" font-size="12" fill="#8b1a1a">↓</text><text x="497" y="100" text-anchor="middle" font-size="12" fill="#8b1a1a">↓</text><text x="467" y="155" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">AもBもCが原因</text></svg></div>
+<p class="body-text fade">3つ目の「<span class="tip" onclick="toggleTip(this)">交絡変数<span class="tip-box"><strong>交絡変数（Confounding Variable）</strong>原因と結果の両方に影響する隠れた第三の変数。AとBに因果関係がないのに相関が生じる最も多い原因。</span></span>」が特に厄介だ。朝食を食べる子どもは成績が良い、という相関は実際に観察される。しかし毎朝朝食を出せる家庭は経済的・時間的に余裕がある。<em>朝食そのものが成績を上げているのか、家庭環境が両方に影響しているのか。</em>相関係数をいくら眺めてもこの2つを区別することは不可能だ。</p>
+<div class="misconception fade"><div class="misconception-header"><p class="misconception-hl">よくある誤解</p></div><div class="misconception-body"><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">相関係数が高ければ因果関係がある可能性が高い</p></div><div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">r は関係の「強さ」を測るだけ。r = 0.95 でも偶然の一致はありうる</p></div></div><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">相関関係は意味がないので無視してよい</p></div><div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">相関は因果の「手がかり」として極めて有用。科学はここから始まる</p></div></div><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">実験すれば因果は完全に証明できる</p></div><div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">倫理的に実験ができない場合が多い。ヒルの基準はそのために生まれた</p></div></div></div></div>
+<div class="img-placeholder fade"><div class="img-ph-area"><span class="img-ph-icon">🖼</span><p class="img-ph-title">イラスト①｜「2本のグラフ線が一緒に上がっていく」に飛びつくウサギたち</p><p class="img-ph-desc">鳥獣戯画風のウサギたちが、右肩上がりの2本の折れ線グラフの前で興奮している。</p><div class="img-ph-prompt"><p class="img-ph-prompt-lbl">画像生成プロンプト</p><p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, rabbits and frogs gathered around a large statistical graph showing two rising lines, one rabbit excitedly pointing at the graph, another shaking its head skeptically, Japanese scroll painting aesthetic, no text</p></div></div><p class="img-caption">イメージ図（画像生成AI使用予定）</p></div>
+<hr class="art-rule">
+
+<!-- 体験セクション -->
+<div class="sec-rule fade"><span class="sec-label">体験</span><div class="sec-line"></div></div>
+<h2 class="fade">あなたの直感を試す</h2>
+<p class="body-text fade">これから4つの相関関係を見てもらう。それぞれ「因果関係があるか」を直感で判断してほしい。考えすぎずに選ぶこと。大事なのは正解することではなく、自分の脳がどう反応するかを体験することだ。</p>
+
+<div class="quiz-wrap fade" id="q1wrap"><div class="quiz-header"><span class="quiz-hl">✦ Causation Quiz 1／4</span></div><div class="quiz-body"><p class="quiz-q">「アイスクリームの売上が増えると、水難事故が増える」</p><p class="quiz-context">米国の複数年のデータで、アイスクリームの売上と水難事故の件数の間に強い正の相関（相関係数 r = 約0.85）が確認されている。</p><div class="quiz-choices" id="q1choices"><button class="quiz-btn" onclick="aQ(1,'causal')">因果関係がある — アイスクリームが水難事故を引き起こしている</button><button class="quiz-btn" onclick="aQ(1,'reverse')">逆の因果 — 水難事故がアイスクリームの売上を増やしている</button><button class="quiz-btn" onclick="aQ(1,'confound')">第三の変数 — 何か別のものが両方に影響している</button></div><div class="quiz-result" id="q1result"></div><div class="quiz-next" id="q1next"><button class="quiz-next-btn" onclick="showQ(2)">次の問題へ →</button></div></div></div>
+<div class="quiz-wrap fade" id="q2wrap" style="display:none;"><div class="quiz-header"><span class="quiz-hl">✦ Causation Quiz 2／4</span></div><div class="quiz-body"><p class="quiz-q">「ニコラス・ケイジの映画出演本数が増えると、プールの溺死者数が増える」</p><p class="quiz-context">Tyler Vigenの「Spurious Correlations」プロジェクトより。1999年〜2009年のデータで相関係数 r = 約0.67。</p><div class="quiz-choices" id="q2choices"><button class="quiz-btn" onclick="aQ(2,'causal')">因果関係がある — ケイジの映画を見た人がプールで事故を起こす</button><button class="quiz-btn" onclick="aQ(2,'coincidence')">完全な偶然 — 大量の変数を総当たりで比較すれば、こういう偶然は起きる</button><button class="quiz-btn" onclick="aQ(2,'confound')">第三の変数 — 時代や経済の変化が両方に影響している</button></div><div class="quiz-result" id="q2result"></div><div class="quiz-next" id="q2next"><button class="quiz-next-btn" onclick="showQ(3)">次の問題へ →</button></div></div></div>
+<div class="quiz-wrap fade" id="q3wrap" style="display:none;"><div class="quiz-header"><span class="quiz-hl">✦ Causation Quiz 3／4</span></div><div class="quiz-body"><p class="quiz-q">「喫煙者は非喫煙者より肺がんになりやすい」</p><p class="quiz-context">1950年代のDoll &amp; Hillの研究で、喫煙者の肺がん罹患率は非喫煙者の10〜20倍。</p><div class="quiz-choices" id="q3choices"><button class="quiz-btn" onclick="aQ(3,'causal')">因果関係がある — 喫煙が肺がんを引き起こす</button><button class="quiz-btn" onclick="aQ(3,'confound')">第三の変数 — 喫煙者に共通する他の生活習慣が原因かもしれない</button><button class="quiz-btn" onclick="aQ(3,'coincidence')">偶然か逆の因果 — 肺がんの素因がある人が煙草を欲するのかもしれない</button></div><div class="quiz-result" id="q3result"></div><div class="quiz-next" id="q3next"><button class="quiz-next-btn" onclick="showQ(4)">次の問題へ →</button></div></div></div>
+<div class="quiz-wrap fade" id="q4wrap" style="display:none;"><div class="quiz-header"><span class="quiz-hl">✦ Causation Quiz 4／4</span></div><div class="quiz-body"><p class="quiz-q">「朝食を食べる子どもは学校の成績が良い」</p><p class="quiz-context">複数の教育研究で一貫して観察される相関。朝食習慣のある子どもはテストの点数が高い傾向がある。</p><div class="quiz-choices" id="q4choices"><button class="quiz-btn" onclick="aQ(4,'causal')">因果関係がある — 朝食の栄養が脳のパフォーマンスを上げる</button><button class="quiz-btn" onclick="aQ(4,'partial')">一部は因果、一部は交絡 — 朝食の効果はあるが、家庭環境の影響が大きい</button><button class="quiz-btn" onclick="aQ(4,'confound')">ほぼ交絡 — 朝食を出せる家庭環境こそが成績の主な要因</button></div><div class="quiz-result" id="q4result"></div><div class="quiz-next" id="q4next"><button class="quiz-next-btn" onclick="showSummary()">結果を見る →</button></div></div></div>
+<div class="quiz-summary-wrap fade" id="quizSummary"><div class="quiz-summary-header"><p class="quiz-summary-hl">✦ Summary — あなたの回答パターン</p></div><div class="quiz-summary-body"><div class="quiz-pattern" id="quizPattern"></div><p id="quizMsg"></p></div></div>
+
+<p class="body-text fade">ここまでは、提示された相関に対して「因果かどうか」を判断する体験だった。しかし次はもっと根本的な問いを投げかけたい。<em>そもそもグラフで2本の線が同じ方向に動いているのを見ただけで、あなたの脳は「関係がある」と思ってしまわないだろうか？</em></p>
+
+<!-- SPURIOUS CORRELATION GENERATOR: Graph first → Yes/No → Reveal -->
+<div class="sg fade" id="sgWrap">
+<div class="sg-hd"><span class="sg-hl">✦ Spurious Correlation Generator</span><span class="sg-count" id="sgCount"></span></div>
+<div class="sg-body">
+<!-- Phase 0: intro -->
+<div id="sgPhase0">
+<p class="sg-prompt">これからグラフを1つ見せる。<br>2本の線が描かれている。変数の名前は伏せてある。<br>直感だけで、「この2つのデータには関係がありそうか」を判断してほしい。</p>
+<button class="sg-start" onclick="sgStart()">グラフを見る</button>
+</div>
+<!-- Phase 1: graph shown, ask yes/no -->
+<div id="sgPhase1" style="display:none;">
+<p class="sg-prompt">この2つのデータには、何か関係があると思いますか？</p>
+<div class="sg-canvas-wrap"><canvas id="sgCanvas" width="460" height="180"></canvas></div>
+<div class="sg-legend-hidden"><span class="lr"></span> データA（実線）　<span class="lb"></span> データB（点線）</div>
+<div class="sg-btns"><button class="sg-yn" id="sgYes" onclick="sgAnswer('yes')">ありそう</button><button class="sg-yn" id="sgNo" onclick="sgAnswer('no')">なさそう</button></div>
+</div>
+<!-- Phase 2: reveal -->
+<div id="sgPhase2" style="display:none;">
+<div class="sg-canvas-wrap"><canvas id="sgCanvas2" width="460" height="180"></canvas></div>
+<div class="sg-reveal" id="sgReveal">
+<p class="sg-reveal-pair" id="sgRevealPair"></p>
+<p class="sg-reveal-r" id="sgRevealR"></p>
+<p class="sg-reveal-msg" id="sgRevealMsg"></p>
+</div>
+<div class="sg-next" id="sgNext"><button class="sg-next-btn" onclick="sgStart()">もう1つ試す</button></div>
+</div>
+<!-- Endnote: shows after 3 rounds -->
+<div class="sg-endnote" id="sgEndnote">
+<strong>何が起きているのか：</strong>グラフで2本の線が同じ方向に動いているだけで、「関係がありそうだ」と感じてしまう——それが人間の脳の初期設定だ。Tyler Vigenは25,000以上の変数から6億以上の組み合わせを計算し、まったく無関係なデータ間にも<em>r &gt; 0.9</em>の相関を大量に見つけた。グラフにすると、どれも説得力があるように見える。これが<em>データドレッジング</em>（data dredging）の恐ろしさだ。
+</div>
+</div>
+</div>
+
+<p class="body-text fade">このクイズとジェネレーターには共通する教訓がある。<em>グラフと統計だけでは因果は判断できない。</em>では、相関から因果を導くには何が必要なのか。</p>
+<hr class="art-rule">
+
+<!-- 以下: メカニズム〜ターミナルまで v3と同一。ヒルの9基準は全9項目アコーディオン -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">煙と癌——相関から因果を証明する闘い</h2>
+<p class="body-text fade">1950年、英国の疫学者リチャード・ドールと統計学者オースティン・ブラッドフォード・ヒルは、肺がん患者と非患者の喫煙習慣を比較する論文を発表した。肺がん患者の中で「一度も喫煙したことがない」と答えた人はわずか0.3%。非患者では4.2%。</p>
+<p class="body-text fade">しかしタバコ業界はすかさず反論した。「<em>相関は因果ではない</em>」と。皮肉にも統計学の巨人<span class="tip" onclick="toggleTip(this)">ロナルド・フィッシャー<span class="tip-box"><strong>ロナルド・フィッシャー（Ronald A. Fisher, 1890–1962）</strong>「近代統計学の父」。分散分析やランダム化実験の理論を確立。しかし喫煙と肺がんの因果関係については終生懐疑的で、タバコ業界のコンサルタントを務めた。</span></span>自身がタバコ業界の側に立った。</p>
+<div class="person-block fade"><div class="person-block-img"><svg width="80" height="90" viewBox="0 0 80 90"><circle cx="40" cy="30" r="18" fill="#c8bfaa"/><rect x="20" y="52" width="40" height="35" rx="8" fill="#c8bfaa"/><circle cx="40" cy="28" r="12" fill="#ede8dc"/><rect x="30" y="20" width="20" height="3" rx="1.5" fill="#7a6a55"/></svg></div><div class="person-block-body"><p class="person-block-name">オースティン・ブラッドフォード・ヒル</p><p class="person-block-role">Austin Bradford Hill, 1897–1991</p><p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Austin_Bradford_Hill" target="_blank" rel="noopener">Wikipedia</a></p><p class="person-block-desc">英国の疫学者・統計学者。近代的なランダム化比較試験を開拓し、リチャード・ドールとともに喫煙と肺がんの関連を実証。1965年に提示した9つの観点は今日も広く使われている。</p></div></div>
+<p class="body-text fade">この状況を打開するためにヒルは1965年に9つの「観点」を提示した。ヒル自身は「どれも因果を確実に証明するものではなく、どれも必須条件ではない」と念を押した。だがこの控えめな枠組みが、観察データから因果を推論するための最も影響力のある指針となった。</p>
+
+<div class="steps-wrap fade">
+<p class="steps-head">ブラッドフォード・ヒルの9つの観点</p>
+<div class="step-card open" id="sc1"><div class="step-hd" onclick="tog(1)"><div class="step-nb">1</div><div class="step-tw"><div class="step-title">強さ（Strength）</div><div class="step-sub">効果の大きさは十分か</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>喫煙者の肺がんリスクは非喫煙者の<strong>10〜20倍</strong>。他の交絡では説明しにくいほど大きい。「コーヒーを飲む人は寿命が長い」のように効果量が小さければ交絡の可能性が高い。ただし——<em>小さいからといって因果がないとは言えない。</em></p></div></div>
+<div class="step-card" id="sc2"><div class="step-hd" onclick="tog(2)"><div class="step-nb">2</div><div class="step-tw"><div class="step-title">一貫性（Consistency）</div><div class="step-sub">異なる場所・時期でも同じ結果が出るか</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>英国、米国、日本、ドイツ——どの国でも同じ方向。男女の別も時代も問わず。<strong>何度やっても同じ</strong>なら因果を支持する強い証拠だ。</p></div></div>
+<div class="step-card" id="sc3"><div class="step-hd" onclick="tog(3)"><div class="step-nb">3</div><div class="step-tw"><div class="step-title">特異性（Specificity）</div><div class="step-sub">特定の要因が特定の結果に結びつくか</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>喫煙は肺がんだけでなく心臓病や口腔がんとも関連する。ヒルはこの基準を最も弱いと認めた——<em>1つの原因が複数の結果を持つことはよくある。</em>ただし「肺がんの大半が喫煙者に集中」という逆方向の特異性は因果を示唆する。</p></div></div>
+<div class="step-card" id="sc4"><div class="step-hd" onclick="tog(4)"><div class="step-nb">4</div><div class="step-tw"><div class="step-title">時間的先行性（Temporality）</div><div class="step-sub">原因は結果より先に起きているか</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>ヒルが<strong>「唯一、必須と言ってよい」</strong>と考えた基準。喫煙は肺がんの発症より何十年も前から行われていた。「SNSがうつを引き起こす」なら、SNS使用がうつより前に始まっていたことを示す必要がある。</p></div></div>
+<div class="step-card" id="sc5"><div class="step-hd" onclick="tog(5)"><div class="step-nb">5</div><div class="step-tw"><div class="step-title">量反応関係（Biological Gradient）</div><div class="step-sub">量が増えると効果も増えるか</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>1日10本より20本、20本より30本。用量反応関係は因果を支持する。ただし<em>閾値効果（ある量を超えると一気にリスクが上がる）</em>のように直線的でない関係もある。</p></div></div>
+<div class="step-card" id="sc6"><div class="step-hd" onclick="tog(6)"><div class="step-nb">6</div><div class="step-tw"><div class="step-title">もっともらしさ（Plausibility）</div><div class="step-sub">生物学的に説明がつくか</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>タバコ煙中のベンゾ[α]ピレンがDNAに変異を起こすメカニズムが後に解明された。ただしヒルは「もっともらしさは当時の知識に依存する」と警告。<em>メカニズムがまだ不明でも因果が存在する可能性はある。</em></p></div></div>
+<div class="step-card" id="sc7"><div class="step-hd" onclick="tog(7)"><div class="step-nb">7</div><div class="step-tw"><div class="step-title">整合性（Coherence）</div><div class="step-sub">既知の知識と矛盾しないか</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>動物実験でも煙に曝した個体に腫瘍が発生し、病理学的にも矛盾なし。ただし<em>革命的な発見は既存の知識と矛盾することもある</em>——保守的すぎる基準にもなりうる。</p></div></div>
+<div class="step-card" id="sc8"><div class="step-hd" onclick="tog(8)"><div class="step-nb">8</div><div class="step-tw"><div class="step-title">実験的証拠（Experiment）</div><div class="step-sub">介入実験の結果はあるか</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>禁煙するとリスクが低下することが追跡研究で確認された。「原因を取り除くと結果が減る」は因果を支持する最も直接的な証拠だ。ある食品をやめたらアレルギーが消えた——これは日常版の実験的証拠。</p></div></div>
+<div class="step-card" id="sc9"><div class="step-hd" onclick="tog(9)"><div class="step-nb">9</div><div class="step-tw"><div class="step-title">類似性（Analogy）</div><div class="step-sub">似た構造の因果が既に知られているか</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>アスベストと中皮腫など、吸入物質と癌の因果は他にも確認されている。類似例があれば新しい因果も受け入れやすい。ただし<em>前例がないからといって否定する理由にはならない。</em></p></div></div>
+</div>
+<p class="body-text fade">すべてを満たす必要はなく、1つ満たしたからといって因果が確定するわけでもない。しかし複数が同時に満たされるとき、「相関は因果ではない」という反論は急速に力を失う。喫煙と肺がんは、まさにそのケースだった。</p>
+<hr class="art-rule">
+
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">相関から因果へ——130年の旅</h2>
+<p class="fade" style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;border-left:none;padding-left:0;">● 転換点　○ 関連する出来事</p>
+<div class="timeline fade">
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1896</p><p class="tl-title">ピアソン、相関係数を定式化</p><p class="tl-desc">積率相関係数の一般理論を確立。2変数の関係を数字で測る時代が始まった。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1897</p><p class="tl-title">ピアソン、「擬似相関」を警告</p><p class="tl-desc">比率を使った相関分析では見かけ上の相関が生じることを指摘。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1921</p><p class="tl-title">シューアル・ライト、パス解析を発表</p><p class="tl-desc">観察データから因果を推論する最初の体系的試み。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1950</p><p class="tl-title">ドール＆ヒル、喫煙と肺がんの関連を発表</p><p class="tl-desc">タバコ業界は「相関は因果ではない」を盾に反論。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1965</p><p class="tl-title">ヒル、「環境と疾病」講演</p><p class="tl-desc">9つの観点を提示。観察研究から因果を論じる最も影響力のある枠組みに。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2000年代</p><p class="tl-title">パール、因果推論の数学的枠組みを確立</p><p class="tl-desc">構造的因果モデルとdo-calculus。2011年チューリング賞。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">2014</p><p class="tl-title">Tyler Vigen「擬似相関」サイトが話題に</p><p class="tl-desc">25,000以上の変数を比較し、笑えるほど無意味な相関を可視化。2015年に書籍化。</p></div>
+</div>
+<hr class="art-rule">
+
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">「それ本当に原因？」と問い続ける技術</h2>
+<p class="body-text fade">相関と因果の混同は知識の問題ではない。「相関は因果ではない」を知っている人でさえ日常的にこの罠にはまる。なぜなら脳は因果推論マシンであり、2つの数字が一緒に動いているのを見た瞬間に物語を書き始めるからだ。</p>
+<p class="body-text fade">さらに厄介なのは、この格言が武器として使われることだ。タバコ業界がそうしたように、不都合な科学的知見を退ける万能の盾にもなる。相関は因果ではない——正しい。だが相関は因果の<em>手がかり</em>でもある。</p>
+<div class="pull fade"><p class="pull-q">"No, correlation does not imply causation, but it sure as hell provides a hint."</p><p class="pull-q" style="font-size:clamp(14px,2vw,17px);color:#7a6a55;margin-top:8px;">「相関は因果を意味しない。だが、手がかりであることは間違いない。」</p><p class="pull-attr">— Daniel Engber, <em>Slate</em>, 2012</p></div>
+<p class="body-text fade"><strong>1. 「第三の変数はないか」と自問する。</strong>2つの数字が一緒に動いているとき、「両方に影響する別の何かはないか」を考える。<span class="tip" onclick="toggleTip(this)">交絡変数チェック<span class="tip-box"><strong>交絡変数チェック</strong>「この2つに同時に影響する第三の変数はないか」と自問する習慣。因果の早合点を防ぐ最も手軽な方法。</span></span>だ。これだけで早合点の半分は防げる。</p>
+<div class="culture-block fade"><p class="culture-title">文化への登場</p><p class="culture-desc">『ザ・ウェスト・ウィング』S1E2のタイトルそのものが "Post Hoc, Ergo Propter Hoc"。Tyler Vigen『Spurious Correlations』（2015年）は擬似相関を笑いに変えたベストセラーとなりデータリテラシー教育の定番に。</p></div>
+<p class="body-text fade"><strong>2. 「逆もありうるか」と問う。</strong>A→Bだと思ったら、B→Aも考える。方向を反転させるだけで物語はまったく変わる。</p>
+<p class="body-text fade"><strong>3. 「実験で確かめたか」を探す。</strong>ニュースの「〇〇が△△に効果がある」は観察研究か<span class="tip" onclick="toggleTip(this)">ランダム化比較試験<span class="tip-box"><strong>ランダム化比較試験（RCT）</strong>被験者をランダムに2群に分け、一方にだけ介入して結果を比較する実験。因果推定の最も信頼性の高い方法だが、倫理的に不可能な場合も多い。</span></span>か。観察研究なら「因果とは限らない」と注釈を付ける。</p>
+<div class="img-placeholder fade"><div class="img-ph-area"><span class="img-ph-icon">🖼</span><p class="img-ph-title">イラスト②｜「因果の矢印」を引こうとして手が止まるカエルの学者</p><p class="img-ph-desc">鳥獣戯画風のカエルが黒板の前で2つの変数の間に矢印を引こうとしているが、方向に迷って固まっている。</p><div class="img-ph-prompt"><p class="img-ph-prompt-lbl">画像生成プロンプト</p><p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, a scholarly frog standing before a blackboard hesitating to draw an arrow between two boxes, rabbit students watching curiously, Japanese scroll painting aesthetic, no text</p></div></div><p class="img-caption">イメージ図（画像生成AI使用予定）</p></div>
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">参考文献</span><div class="sec-line"></div></div>
+<div class="ref-list">
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1896</span></div><p class="ref-title"><a href="https://doi.org/10.1098/rsta.1896.0007" target="_blank" rel="noopener">Mathematical Contributions to the Theory of Evolution. III. Regression, Heredity and Panmixia</a></p><p class="ref-author">Karl Pearson</p><p class="ref-desc">相関係数の一般理論を確立した論文。すべてはここから始まった。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">講演論文</span><span class="ref-year">1965</span></div><p class="ref-title"><a href="https://doi.org/10.1177/003591576505800503" target="_blank" rel="noopener">The Environment and Disease: Association or Causation?</a></p><p class="ref-author">Austin Bradford Hill</p><p class="ref-desc">9つの観点は控えめだが、その控えめさが50年以上の耐久性を生んでいる。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2015</span></div><p class="ref-title"><a href="https://www.tylervigen.com/spurious-correlations" target="_blank" rel="noopener">Spurious Correlations</a></p><p class="ref-author">Tyler Vigen</p><p class="ref-desc">グラフの説得力がいかに人を騙すかを、笑いながら学べる。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1950</span></div><p class="ref-title"><a href="https://doi.org/10.1136/bmj.2.4682.739" target="_blank" rel="noopener">Smoking and Carcinoma of the Lung</a></p><p class="ref-author">Richard Doll &amp; A. Bradford Hill</p><p class="ref-desc">「相関は因果ではない」がどう政治的武器として使われるかを知るうえで必読。</p></div>
+</div>
+<div class="note-box fade"><strong>📌 この記事について</strong><br>ピアソンの論文（1896）、ヒルの講演（1965）、Doll &amp; Hillの疫学研究（1950–1964）はいずれも査読済み学術文献に基づく。Vigenの擬似相関データは公開データベースから自動生成されたもの。</div>
+<div class="tags fade"><span class="tag">統計リテラシー</span><span class="tag">認知バイアス</span><span class="tag">疫学</span><span class="tag">因果推論</span><span class="tag">擬似相関</span></div>
+</div>
+
+<div class="article-side"><div style="position:sticky;top:40px;">
+<div class="sidebar-block fade"><p class="sidebar-label">Key Number</p><p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">0.95</p><p class="sidebar-text">r = 0.95 は「ほぼ完全な相関」。だが因果を意味しない。Vigenは無関係なデータ間で r &gt; 0.9 を大量に発見した。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">「相関は因果ではない」は1880年代に遡る格言。データが溢れるほど需要が増えている。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">『ザ・ウェスト・ウィング』S1E2 "Post Hoc, Ergo Propter Hoc"。ベン・ゴールドエイカー『Bad Science』も名著。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <strong>確証バイアス</strong>（E-01）<br>— <strong>ナラティブの誤謬</strong>（E-10）<br>— <strong>基準率の無視</strong>（E-09）</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">今日の判断を振り返る</p><ul class="sidebar-check"><li onclick="this.classList.toggle('checked')">今日読んだ「効果がある」は観察研究か実験か確認したか</li><li onclick="this.classList.toggle('checked')">2つの数字が動いたとき第三の変数を思い浮かべたか</li><li onclick="this.classList.toggle('checked')">「相関は因果ではない」を自分の思考点検に使ったか</li></ul></div>
+<div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">相関と因果の区別は統計学の基礎中の基礎。ヒルの基準の適用範囲については学術的議論が続く。</p></div>
+</div></div>
+</div>
+
+<div class="terminal-label-wrap"><span class="terminal-label">▼ Internal Dialogue &gt;&gt; Active</span><div class="terminal-label-line"></div></div>
+<div class="terminal-wrap"><div class="terminal fade" id="terminalBlock"><div class="terminal-bar"><div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div><span class="terminal-title">after.sh — 読後の対話ログ（架空）</span></div><div class="terminal-body">
+<span class="t-sys" id="ts0">// 相関は因果ではない を読み終えた人との対話</span>
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、相関を見つけても何も言えないってこと？</span></div><span class="t-output" id="to1">言えないんじゃなくて、<em>まだ言えない</em>。相関は「ここ掘れ」の印。金かガラクタかは掘らないとわからない。</span><hr class="t-divider">
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;タバコ業界が「相関は因果ではない」を盾にしたの、卑怯だよな</span></div><span class="t-output" id="to2">論理としては正しい。が、正しい論理を不誠実に使うことはできる。<strong>出発点であって結論ではない</strong>。</span><hr class="t-divider">
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;日常で一番ハマりやすいのってどのパターン？</span></div><span class="t-output" id="to3">たぶん③の交絡。「成功者は朝早い」「運動する人は年収が高い」——でもその2つをつないでいるのは、目に見えない第三の何かだったりする。<em>見えない変数が一番怖い。</em></span><hr class="t-divider">
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;でもさ、全部疑ってたら何も信じられなくない？</span></div><span class="t-output" id="to4">疑うことと信じないことは違う。<strong>もう少し情報を集めてから判断する</strong>ということ。今すぐ答えを出さなくていい。</span><hr class="t-divider">
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# そっか、焦らなくていいんだ</span></div>
+</div></div></div>
+<div class="related fade"><p class="related-label">次に読む</p><div class="related-grid"><a class="related-card" href="/confirmation_bias"><p class="related-card-tag">認知バイアス × 推論</p><p class="related-card-title">確証バイアス</p><p class="related-card-desc">仮説を支持する証拠だけを集め、反する証拠を無視する仕組み。</p><p class="related-card-arrow">読む →</p></a><a class="related-card" href="#"><p class="related-card-tag">認知バイアス × 物語</p><p class="related-card-title">ナラティブの誤謬</p><p class="related-card-desc">ランダムな出来事に「物語」を読み込む脳の癖。</p><p class="related-card-arrow">近日公開</p></a></div></div>
+
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;document.getElementById('prog').style.width=(scrollY/h*100)+'%';});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+function toggleTip(el){const o=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(!o)el.classList.add('open');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip'))document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));});
+function tog(n){const c=document.getElementById('sc'+n);const w=c.classList.contains('open');document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));if(!w)c.classList.add('open');}
+
+/* QUIZ */
+const ans={},cor={1:'confound',2:'coincidence',3:'causal',4:'partial'};
+const exp={
+1:{confound:'<p><strong>正解。</strong>第三の変数は<em>「気温」</em>。暑い日にはアイスが売れ、同時に水遊びをする人が増える。</p>',causal:'<p>アイスを食べた人が溺れるわけではない。<strong>第三の変数「気温」</strong>が正解。</p>',reverse:'<p>水難事故がアイスの売上を増やすことは考えにくい。<strong>「気温」</strong>が正解。</p>'},
+2:{coincidence:'<p><strong>正解。</strong>6億以上の組み合わせを調べれば無関係なデータ間にも高い相関が見つかるのは数学的に当然。<em>データドレッジング</em>と呼ばれる。</p>',causal:'<p>ケイジの映画がプール事故を引き起こすメカニズムは存在しない。<strong>偶然の一致</strong>。</p>',confound:'<p>最も正確な説明は<strong>偶然</strong>。6億以上の相関を計算すれば必然的に起きる。</p>'},
+3:{causal:'<p><strong>正解。</strong>追跡研究、ヒルの9基準、分子生物学的メカニズムの解明により因果関係が確立された。ただし<em>50年以上の研究の蓄積</em>が必要だった。</p>',confound:'<p>合理的な疑いだが、50年以上の研究で<strong>因果関係がある</strong>ことが確立された。</p>',coincidence:'<p>逆の因果はフィッシャーが主張したが、時間的先行性と量反応関係により否定された。<strong>因果あり</strong>が現在のコンセンサス。</p>'},
+4:{partial:'<p><strong>最も妥当。</strong>朝食の栄養効果は存在するが、家庭環境という交絡を除くと効果は大幅に縮小。<em>因果と交絡が混在</em>しているのが現実。</p>',causal:'<p>栄養効果はあるが<strong>家庭環境という交絡</strong>を除くと縮小。最も妥当は「混在」。</p>',confound:'<p>家庭環境は大きな交絡だが朝食効果をゼロとする証拠もない。<strong>最も妥当は「混在」</strong>。</p>'}
+};
+function aQ(n,c){if(ans[n])return;ans[n]=c;document.querySelectorAll('#q'+n+'choices .quiz-btn').forEach(b=>{b.style.pointerEvents='none';if(b.getAttribute('onclick').includes("'"+c+"'"))b.classList.add('selected');});const r=document.getElementById('q'+n+'result');r.innerHTML=exp[n][c];r.style.display='block';document.getElementById('q'+n+'next').style.display='block';}
+function showQ(n){const w=document.getElementById('q'+n+'wrap');w.style.display='block';w.classList.add('on');w.scrollIntoView({behavior:'smooth',block:'center'});}
+function showSummary(){const w=document.getElementById('quizSummary');w.style.display='block';setTimeout(()=>w.classList.add('on'),50);const p=document.getElementById('quizPattern');const l={1:'Q1 アイス',2:'Q2 ケイジ',3:'Q3 喫煙',4:'Q4 朝食'};const t={confound:'交絡',coincidence:'偶然',causal:'因果',reverse:'逆因果',partial:'混在'};let h='';for(let i=1;i<=4;i++)h+='<span class="quiz-pattern-item">'+l[i]+': <span>'+t[ans[i]]+'</span></span>';p.innerHTML=h;let cc=0;for(let i=1;i<=4;i++)if(ans[i]===cor[i])cc++;const m=document.getElementById('quizMsg');if(cc>=3)m.innerHTML='<p>4問中<strong>'+cc+'問</strong>を最も妥当な選択肢で回答した。Q4のように<em>因果と交絡が混在している</em>ケースが最も難しい——現実のほとんどがこのタイプだ。</p>';else if(cc>=1)m.innerHTML='<p>4問中<strong>'+cc+'問</strong>が最も妥当な回答。グラフを見た瞬間に「なぜ」の答えが浮かんでいたなら、<em>その自動反応に気づくこと</em>が体験の意味だ。</p>';else m.innerHTML='<p>Q3の喫煙と肺がんは1950年代には多くの科学者が因果を否定した。<em>正解が事後的にしか分からない問題がある</em>——それ自体が難しさを物語っている。</p>';w.scrollIntoView({behavior:'smooth',block:'center'});}
+
+/* SPURIOUS GENERATOR */
+const sgPool=[
+{a:'日本の年間ラーメン消費量',b:'アイスランドの火山活動回数',r:.91},
+{a:'全米のヨガスタジオ数',b:'スマートフォンのバッテリー容量',r:.94},
+{a:'英国での紅茶の輸入量',b:'宇宙への衛星打ち上げ数',r:.87},
+{a:'Netflixの会員数',b:'世界のハチミツ生産量',r:.89},
+{a:'日本の猫カフェ店舗数',b:'ノーベル賞受賞者の平均年齢',r:.78},
+{a:'フランスのワイン輸出額',b:'NASAの年間予算',r:.83},
+{a:'世界のピザ消費量',b:'博士号取得者数',r:.96},
+{a:'全米の離婚率',b:'マーガリンの1人あたり消費量',r:.93},
+{a:'ドイツの自動車生産台数',b:'南極の氷床面積の変化',r:.81},
+{a:'日本の温泉施設数',b:'火星探査ミッションの累計数',r:.76},
+{a:'世界のコーヒー消費量',b:'特許出願件数',r:.92},
+{a:'豪州のサーフボード販売数',b:'インドの映画製作本数',r:.85},
+{a:'カナダのメープルシロップ生産量',b:'海底ケーブル総延長',r:.88},
+{a:'全米の図書館数',b:'チーズの1人あたり消費量',r:.95},
+{a:'日本のカラオケボックス数',b:'世界の風力発電容量',r:.90},
+{a:'ブラジルのサッカー場数',b:'データセンター電力消費量',r:.86},
+];
+let sgUsed=[], sgRound=0, sgCur=null;
+
+function drawChart(canvasId, seed){
+const cv=document.getElementById(canvasId);
+const ctx=cv.getContext('2d');
+const W=460,H=180; cv.width=W; cv.height=H;
+ctx.clearRect(0,0,W,H);
+ctx.fillStyle='#faf8f3'; ctx.fillRect(0,0,W,H);
+const pad=40, top_=20, bot=25;
+ctx.strokeStyle='#e0d8c8'; ctx.lineWidth=1;
+ctx.strokeRect(pad,top_,W-pad*2,H-top_-bot);
+const n=10, cH=H-top_-bot-10, cW=W-pad*2-20;
+// Seeded random
+let s=seed;
+function rng(){s=(s*9301+49297)%233280;return s/233280;}
+const p1=[],p2=[];
+for(let i=0;i<n;i++){
+  const x=pad+10+i*cW/(n-1);
+  const prog=i/(n-1);
+  const base=top_+5+cH*(1-prog);
+  p1.push({x, y:Math.max(top_+5,Math.min(H-bot-5, base+(rng()-.5)*30))});
+  p2.push({x, y:Math.max(top_+5,Math.min(H-bot-5, base+(rng()-.5)*35+(rng()-.5)*15))});
+}
+ctx.beginPath();ctx.strokeStyle='#8b1a1a';ctx.lineWidth=2.5;ctx.setLineDash([]);
+p1.forEach((p,i)=>{i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);});ctx.stroke();
+ctx.beginPath();ctx.strokeStyle='#2a6496';ctx.lineWidth=2;ctx.setLineDash([8,4]);
+p2.forEach((p,i)=>{i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);});ctx.stroke();ctx.setLineDash([]);
+ctx.fillStyle='#b0a090';ctx.font="9px 'Source Sans 3',sans-serif";ctx.textAlign='center';
+ctx.fillText('時間 →',W/2,H-4);
+}
+
+function sgStart(){
+if(sgUsed.length>=sgPool.length)sgUsed=[];
+let idx;do{idx=Math.floor(Math.random()*sgPool.length);}while(sgUsed.includes(idx));
+sgUsed.push(idx); sgRound++;
+sgCur=sgPool[idx];
+// Show phase 1
+document.getElementById('sgPhase0').style.display='none';
+document.getElementById('sgPhase1').style.display='block';
+document.getElementById('sgPhase2').style.display='none';
+document.getElementById('sgYes').classList.remove('picked');
+document.getElementById('sgNo').classList.remove('picked');
+document.getElementById('sgYes').style.pointerEvents='auto';
+document.getElementById('sgNo').style.pointerEvents='auto';
+document.getElementById('sgCount').textContent=sgRound+'回目';
+drawChart('sgCanvas', idx*1000+sgRound*7);
+}
+
+function sgAnswer(choice){
+document.getElementById('sgYes').style.pointerEvents='none';
+document.getElementById('sgNo').style.pointerEvents='none';
+if(choice==='yes')document.getElementById('sgYes').classList.add('picked');
+else document.getElementById('sgNo').classList.add('picked');
+// Transition to phase 2
+setTimeout(()=>{
+  document.getElementById('sgPhase1').style.display='none';
+  document.getElementById('sgPhase2').style.display='block';
+  drawChart('sgCanvas2', sgCur.r*10000+sgRound*7);
+  document.getElementById('sgReveal').style.display='block';
+  document.getElementById('sgRevealPair').innerHTML='<span style="color:#8b1a1a;">'+sgCur.a+'</span>　×　<span style="color:#2a6496;">'+sgCur.b+'</span>';
+  document.getElementById('sgRevealR').textContent='相関係数 r = '+sgCur.r.toFixed(2)+'（架空のデータ）';
+  if(choice==='yes'){
+    document.getElementById('sgRevealMsg').innerHTML='あなたは「関係がありそう」と答えた。<strong>グラフで2本の線が同じ方向に動いていると、脳は自動的に「関係がある」と判断してしまう。</strong>変数の名前を知った今、同じグラフがまったく違って見えるはずだ。';
+  } else {
+    document.getElementById('sgRevealMsg').innerHTML='あなたは「なさそう」と答えた。正しい直感だ。ただし——<strong>もしこれが「朝食の頻度」と「テストの点数」というラベルだったら、同じグラフでも「関係がありそう」と感じたかもしれない。</strong>グラフの形は同じでも、ラベルが変わると判断が変わる。';
+  }
+  document.getElementById('sgNext').style.display='block';
+  if(sgRound>=3)document.getElementById('sgEndnote').style.display='block';
+},400);
+}
+
+/* TERMINAL */
+const tseq=[{id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},{id:'tl2',delay:2300},{id:'to2',delay:2900},{id:'tl3',delay:3900},{id:'to3',delay:4500},{id:'tl4',delay:5600},{id:'to4',delay:6200},{id:'tl5',delay:7300}];
+let tS=false;tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tO=new IntersectionObserver(entries=>{if(entries[0].isIntersecting&&!tS){tS=true;tseq.forEach(s=>{setTimeout(()=>{const el=document.getElementById(s.id);if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}},s.delay);});}},{threshold:.2});
+tO.observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>
