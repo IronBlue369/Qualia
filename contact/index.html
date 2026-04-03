@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Qualia Journal</title>
+<meta name="description" content="Qualia Journalへの連絡先、プライバシーポリシー。">
+<meta property="og:title" content="Contact — Qualia Journal">
+<meta property="og:description" content="Qualia Journalへの連絡先、プライバシーポリシー。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qualiajournal.com/contact">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://qualiajournal.com/contact">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#3d3020;font-family:'Source Serif 4',serif;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+.fade{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+header.mh{
+  background:#faf8f3;border-bottom:3px double #1a1208;
+  padding:0 32px;height:56px;
+  display:flex;justify-content:space-between;align-items:center;
+  position:sticky;top:0;z-index:200;
+}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-back{
+  font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;
+  color:#7a6a55;letter-spacing:.06em;transition:color .2s;
+  display:flex;align-items:center;gap:6px;
+}
+.mh-back:hover{color:#8b1a1a;}
+.mh-back svg{width:14px;height:14px;}
+.mh-center{text-align:center;margin-right:4%;}
+.mh-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;letter-spacing:.05em;color:#1a1208;display:block;line-height:1.1;}
+.mh-name span{color:#8b1a1a;}
+.mh-right{width:60px;}
+
+.contact-hero{
+  max-width:720px;margin:0 auto;
+  padding:80px 48px 56px;
+  border-bottom:1px solid #c8bfaa;
+}
+.contact-kicker{
+  font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;
+  letter-spacing:.22em;color:#8b1a1a;text-transform:uppercase;
+  margin-bottom:20px;display:flex;align-items:center;gap:10px;
+}
+.contact-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.contact-hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(20px,2.5vw,26px);font-weight:700;
+  line-height:1.3;letter-spacing:-.01em;color:#1a1208;
+  margin-bottom:24px;
+}
+#emailTarget{margin-top:0;}
+.email-reveal-link{
+  font-family:'Source Serif 4',serif;font-size:15px;font-weight:400;
+  color:#8b1a1a;background:none;border:none;
+  border-bottom:1px dotted #8b1a1a;
+  padding:0 0 2px;cursor:pointer;
+  letter-spacing:.01em;
+  transition:color .2s;
+}
+.email-reveal-link:hover{color:#1a1208;border-bottom-color:#1a1208;}
+.email-addr{
+  font-family:'JetBrains Mono',monospace;font-size:15px;
+  color:#1a1208;letter-spacing:.02em;
+}
+.email-addr a{
+  color:#8b1a1a;border-bottom:1px dotted #8b1a1a;
+  transition:color .2s;
+}
+.email-addr a:hover{color:#1a1208;border-bottom-color:#1a1208;}
+
+.contact-body{
+  max-width:720px;margin:0 auto;
+  padding:0 48px 64px;
+}
+.contact-section{padding:48px 0;border-bottom:1px solid #e0d8c8;}
+.contact-section:last-child{border-bottom:none;padding-bottom:0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{
+  font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;
+  letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;
+  white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;
+}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+.contact-section h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(20px,2.5vw,26px);font-weight:700;
+  line-height:1.3;letter-spacing:-.01em;color:#1a1208;
+  margin-bottom:20px;
+}
+.policy-text{
+  font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;
+  color:#7a6a55;line-height:1.85;
+  padding-left:16px;border-left:2px solid #e0d8c8;
+}
+
+footer{
+  background:#1a1208;
+  padding:52px 32px 44px;
+  display:grid;grid-template-columns:1.5fr 1fr 1fr;
+  gap:32px;
+}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:16px;}
+.f-name span{color:#c8785a;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{
+  font-family:'Source Sans 3',sans-serif;font-size:9px;
+  font-weight:600;letter-spacing:.2em;color:#9a8878;
+  text-transform:uppercase;margin-bottom:12px;
+  padding-bottom:8px;border-bottom:1px solid #3a2a1a;
+}
+.fcol a{
+  display:block;font-family:'Source Sans 3',sans-serif;
+  font-size:12px;font-weight:300;
+  color:#c8b8a8;
+  margin-bottom:7px;transition:color .2s;
+}
+.fcol a:hover{color:#f0e8dc;}
+
+@media(max-width:720px){
+  header.mh{padding:0 20px;}
+  .contact-hero{padding:56px 20px 40px;}
+  .contact-body{padding:0 20px 48px;}
+  footer{grid-template-columns:1fr 1fr;gap:24px;padding:36px 20px;}
+}
+@media(max-width:520px){
+  footer{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="mh">
+  <div class="mh-left">
+    <a href="https://qualiajournal.com/" class="mh-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 19l-7-7 7-7"/></svg>
+      トップへ戻る
+    </a>
+  </div>
+  <div class="mh-center">
+    <a href="https://qualiajournal.com/">
+      <span class="mh-name"><span>Qualia</span> Journal</span>
+    </a>
+  </div>
+  <div class="mh-right"></div>
+</header>
+
+<div class="contact-hero fade">
+  <p class="contact-kicker">Contact</p>
+  <h1>何かございましたら、こちらまで。</h1>
+  <div id="emailTarget">
+    <button class="email-reveal-link" id="revealBtn">メールアドレスを表示 →</button>
+  </div>
+</div>
+
+<div class="contact-body">
+
+  <div class="contact-section fade">
+    <div class="sec-rule">
+      <span class="sec-label">Privacy Policy</span>
+      <span class="sec-line"></span>
+    </div>
+    <h2>プライバシーポリシー</h2>
+    <p class="policy-text">
+      当サイトでは現在、Cookieの発行、アクセス解析ツール、広告サービスの導入は行っていません。お問い合わせを通じていただいた情報は、返信・対応の目的にのみ使用します。これらのサービスを導入した場合は、本ページを更新します。
+    </p>
+  </div>
+
+  <div class="contact-section fade">
+    <div class="sec-rule">
+      <span class="sec-label">Disclaimer</span>
+      <span class="sec-line"></span>
+    </div>
+    <h2>免責事項</h2>
+    <p class="policy-text">
+      当サイトの記事は可能な限り信頼できる情報源に基づいていますが、内容の正確さを保証するものではありません。外部リンク先の内容や、当サイトの情報をもとに生じた損害についても責任を負いかねます。
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <div>
+    <p class="f-name"><span>Qualia</span> Journal</p>
+    <p class="f-copy">&copy; 2025 Qualia Journal. All rights reserved.</p>
+  </div>
+  <div class="fcol">
+    <h3>ナビゲーション</h3>
+    <a href="https://qualiajournal.com/">トップ</a>
+    <a href="https://qualiajournal.com/about">About</a>
+    <a href="https://qualiajournal.com/contact">Contact</a>
+  </div>
+  <div class="fcol">
+    <h3>カテゴリ</h3>
+    <a href="https://qualiajournal.com/#articles">認知バイアス</a>
+    <a href="https://qualiajournal.com/#articles">知覚・錯覚</a>
+    <a href="https://qualiajournal.com/#articles">数学・論理</a>
+    <a href="https://qualiajournal.com/#articles">思考実験・哲学</a>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+
+<!-- ★★★ メールアドレスの差し替え ★★★
+     u = '@' の前の部分
+     d = '@' の後の部分
+     例: abc123xyz@icloud.com なら
+         var u = 'abc123xyz';
+         var d = 'icloud.com';
+-->
+<script>
+(function(){
+  var u = 'REPLACE_USER';
+  var d = 'REPLACE_DOMAIN';
+  var btn = document.getElementById('revealBtn');
+  var target = document.getElementById('emailTarget');
+  if(btn && target){
+    btn.addEventListener('click', function(){
+      var addr = u + '@' + d;
+      target.innerHTML = '<p class="email-addr"><a href="mai'+'lto:'+addr+'?subject='+encodeURIComponent('Qualia Journal へのお問い合わせ')+'">'+addr+'</a></p>';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
