@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>なぜ2進数か — Qualia Journal</title>
+<meta name="description" content="コンピュータはなぜ0と1だけで動くのか。ライプニッツの哲学、ブールの論理、シャノンの修士論文——300年の知的系譜をたどり、2進数が選ばれた物理的・歴史的必然を体験する。">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:100;transition:width .1s;}
+.masthead{border-bottom:3px double #1a1208;padding:16px 0 12px;text-align:center;}.masthead-name{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;}.masthead-name a{color:inherit;text-decoration:none;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;margin-bottom:20px;}.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:6px;}.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}.cover-aside strong{color:#3d3020;font-weight:600;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}.scenario-inner::after{content:'01';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}.meta-item{display:flex;align-items:center;gap:10px;}.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}.difficulty-dots{display:flex;gap:4px;}.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}.dot.on{background:#8b1a1a;}.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;}.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}.article-main{padding:48px 0;}.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;margin-bottom:20px;}.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}.body-text strong{color:#1a1208;font-weight:600;}.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}.pull-q em{color:#8b1a1a;}.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;}.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}.tip-box strong{color:#e8c56a;font-weight:600;}.tip.open .tip-box{display:block;}
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}.img-ph-area{min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}.img-ph-icon{font-size:28px;opacity:.4;}.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;}.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}.person-block-wiki{margin-bottom:8px;}.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.misconception-header{background:#3d3020;color:white;padding:11px 20px;}.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.misconception-body{background:white;}.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}.misconception-item:last-child{border-bottom:none;}.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}.mis-label.wrong{color:#c4392a;}.mis-label.right{color:#1a5a30;}.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.diagram-wrap{margin:28px 0;text-align:center;overflow-x:auto;}.diagram-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;text-align:center;max-width:520px;margin-left:auto;margin-right:auto;}
+.note-table{width:100%;border-collapse:collapse;margin:24px 0;font-family:'Source Sans 3',sans-serif;font-size:13px;}.note-table th,.note-table td{border:1px solid #e0d8c8;padding:8px 12px;text-align:center;}.note-table th{background:#f3efe6;font-weight:600;color:#7a6a55;font-size:11px;letter-spacing:.08em;text-transform:uppercase;}.note-table td{font-weight:300;color:#3d3020;}.note-table .hl{background:#8b1a1a;color:white;font-weight:600;}
+.ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.ix-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.ix-body{padding:24px 20px;background:white;}.ix-desc{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:18px;}.ix-desc strong{font-weight:600;color:#1a1208;}.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:14px;padding-top:12px;border-top:1px solid #e0d8c8;line-height:1.7;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}.tl-item{position:relative;margin-bottom:28px;}.tl-item:last-child{margin-bottom:0;}.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.steps-wrap{margin:32px 0;}.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}.step-n{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#8b1a1a;padding:14px 16px;border-right:1px solid #c8bfaa;min-width:52px;text-align:center;}.step-title{font-family:'Source Serif 4',serif;font-size:15px;font-weight:400;color:#1a1208;padding:14px 16px;flex:1;}.step-arrow{padding:14px 16px;color:#b0a090;font-size:12px;transition:transform .2s;}.step-card.open .step-arrow{transform:rotate(180deg);}.step-body{display:none;padding:16px 20px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;}.step-card.open .step-body{display:block;}.step-body strong{color:#3d3020;font-weight:600;}.step-body em{color:#8b1a1a;font-style:normal;}
+.culture-block{margin:32px 0;border:1px solid #c8bfaa;padding:20px 24px;background:#f3efe6;}.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:12px;}.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}.culture-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:4px;}.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}.ref-title a:hover{border-bottom-color:#8b1a1a;}.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}.sidebar-block:last-child{border-bottom:none;}.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}.sidebar-text strong{color:#3d3020;font-weight:600;}.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}.terminal-dots{display:flex;gap:6px;}.terminal-dot{width:12px;height:12px;border-radius:50%;}.terminal-dot.red{background:#ff5f57;}.terminal-dot.yellow{background:#febc2e;}.terminal-dot.green{background:#28c840;}.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;}.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;}.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}.t-prompt{color:#4a9e6a;margin-right:8px;user-select:none;}.t-input{color:#e8e4de;}.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}.t-output em{color:#e8c56a;font-style:normal;}.t-output strong{color:#fff;font-weight:500;}.t-exit .t-prompt{color:#555;}.t-exit .t-input{color:#555;}.t-exit .t-comment{color:#4a9e6a;}.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}.fade.on{opacity:1;transform:translateY(0);}
+/* Interactive: bit lamps */
+.bit-lamps{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin:12px 0;}
+.bit-lamp{width:40px;height:50px;border:1px solid #c8bfaa;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;transition:all .15s;}
+.bit-lamp.on{background:#8b1a1a;color:white;border-color:#8b1a1a;}
+.bit-lamp.off{background:#f3efe6;color:#c8bfaa;}
+.bit-val{font-size:18px;font-weight:500;line-height:1;}
+.bit-weight{font-size:8px;color:#b0a090;margin-top:2px;}
+.bit-lamp.on .bit-weight{color:rgba(255,255,255,.6);}
+.radix-display{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:14px 0;}
+.radix-item{text-align:center;}.radix-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;color:#7a6a55;text-transform:uppercase;margin-bottom:4px;}.radix-val{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:#1a1208;}
+/* Radix economy chart */
+.re-chart-wrap{position:relative;width:100%;height:280px;margin:16px 0;}
+.re-chart-wrap canvas{width:100%;height:100%;}
+.re-labels{display:flex;justify-content:space-between;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#7a6a55;margin-top:4px;}
+/* Logic gate */
+.gate-panel{display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;margin:16px 0;}
+.gate-input{display:flex;flex-direction:column;gap:8px;align-items:center;}
+.gate-toggle{width:48px;height:28px;border-radius:14px;cursor:pointer;position:relative;transition:background .2s;border:none;outline:none;}
+.gate-toggle.off{background:#c8bfaa;}.gate-toggle.on{background:#8b1a1a;}
+.gate-toggle::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:white;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+.gate-toggle.on::after{left:23px;}
+.gate-output{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:500;transition:all .2s;}
+.gate-output.on{background:#8b1a1a;color:white;}.gate-output.off{background:#f3efe6;color:#c8bfaa;border:2px solid #c8bfaa;}
+.gate-sel{display:flex;gap:4px;justify-content:center;margin:12px 0;flex-wrap:wrap;}
+.gate-btn{font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 14px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;transition:all .15s;}.gate-btn:hover,.gate-btn.active{border-color:#8b1a1a;background:#8b1a1a;color:white;}
+.gate-truth{margin:14px auto;max-width:300px;}
+.gate-truth table{width:100%;border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:12px;}.gate-truth th,.gate-truth td{border:1px solid #e0d8c8;padding:6px 10px;text-align:center;}.gate-truth th{background:#f3efe6;color:#7a6a55;font-size:10px;font-weight:600;}
+.sl-wrap{margin:12px 0;}.sl-ends{display:flex;justify-content:space-between;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:4px;}
+.sl-bar{width:100%;-webkit-appearance:none;appearance:none;height:8px;border-radius:4px;outline:none;background:linear-gradient(to right,#e0d8c8,#8b1a1a);cursor:pointer;}.sl-bar::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:white;border:3px solid #1a1208;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2);}.sl-bar::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:white;border:3px solid #1a1208;cursor:pointer;}
+@media(max-width:720px){.cover{grid-template-columns:1fr;padding:40px 20px 32px;}.cover-right{display:none;}.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.summary-box,.scenario{padding:0 20px;}.article{grid-template-columns:1fr;padding:0 20px;}.article-side{display:none;}.misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}.terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}.related{padding:32px 20px;}.related-grid{grid-template-columns:1fr;}.tip-box{left:0;transform:none;width:200px;}.tip-box::after{left:20px;transform:none;}.person-block{grid-template-columns:1fr;}.person-block-img{padding:16px;}.bit-lamp{width:32px;height:42px;}.bit-val{font-size:14px;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- ===== ZONE A: MASTHEAD ===== -->
+<div class="masthead"><p class="masthead-name"><a href="https://qualiajournal.com/">Qualia Journal</a></p></div>
+
+<!-- ===== COVER ===== -->
+<div class="cover fade">
+<div class="cover-left">
+<p class="cover-kicker">数学・論理</p>
+<h1>なぜコンピュータは<em>2進数</em>で動くのか</h1>
+<p class="cover-deck">0と1。たった2つの記号が、いまこの瞬間もあなたの目に届く文字を描き、声を伝え、世界をつないでいる。3進数のほうが数学的には効率がいい。10進数のほうが人間には馴染む。それでも、2が選ばれた。その理由は——数学ではなく、物理と歴史の偶然にある。</p>
+<div class="cover-byline"><span>Last updated: Apr. 2026</span></div>
+</div>
+<div class="cover-right">
+<div class="est-card">
+<span class="est-label">Est.</span>
+<span class="est-year">1703</span>
+<p class="est-event">ライプニッツが「2進数の算術の解説」をパリ王立科学アカデミー紀要に発表。0と1だけで全ての数を表す体系を初めて公式に論じた。</p>
+<p class="est-context">同年の世界：ピョートル大帝がサンクトペテルブルクを建設開始。日本では赤穂浪士の討ち入りが元禄の世を揺るがし、イングランドでは史上最悪の暴風雨「1703年の大嵐」が8,000人以上の命を奪った。</p>
+</div>
+<p class="cover-aside">ライプニッツから320年。彼が哲学と神学のために構想した0と1は、いまや<strong>世界中の情報の基盤</strong>になっている。しかし、2進数がコンピュータの言語になったのは彼の論文から230年以上後のことだ。</p>
+</div>
+</div>
+
+<!-- ===== SCENARIO ===== -->
+<div class="scenario fade">
+<div class="scenario-inner">
+<p>スマートフォンの電源を入れる。画面が灯り、通知が並び、メッセージが届く。スワイプすればニュースが流れ、タップすれば音楽が鳴る。その一切が、たった2つの数字——0と1——の組み合わせで動いている。文字も、色も、音も。</p>
+<p>私たちは10本の指を持っている。だから10で数える。それは自然なことに思える。バビロニア人は60進法を使い、マヤ文明は20進法を使った。数え方は文化の数だけあった。しかしコンピュータは、どの文明が作っても2進法を選ぶ。</p>
+<p>それは数学的な必然ではない。物理と、論理と、歴史的偶然が重なった結果だ。</p>
+</div>
+</div>
+
+<!-- ===== META BAR ===== -->
+<div class="meta-bar fade">
+<div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span class="difficulty-text">初中級 — 数学の予備知識は不要</span></div>
+<div class="meta-sep"></div>
+<div class="meta-item"><span class="meta-label">読了時間</span><span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 18 分</span></div>
+</div>
+
+<!-- ===== SUMMARY ===== -->
+<div class="summary-box fade">
+<div class="summary-inner">
+<span class="summary-icon">要点</span>
+<p class="summary-text">数を指で数え、スイッチで切り替え、ゲートで計算する——その一連を手で触って確かめる。<strong>「なぜ2なのか」に自分の手で答えを出す</strong>記事。</p>
+</div>
+</div>
+
+<!-- ===== ZONE B: ARTICLE ===== -->
+<div class="article">
+<div class="article-main">
+
+<!-- ========== 背景セクション ========== -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">私たちは10本の指で世界を数えている。しかしコンピュータには指がない。</h2>
+
+<p class="body-text fade">数を数えるとき、私たちは無意識に10を区切りにする。9の次は10。99の次は100。桁が増える。<strong><span class="tip" onclick="toggleTip(this)"><ruby>位取り<rp>(</rp><rt>くらいどり</rt><rp>)</rp></ruby>記数法<span class="tip-box"><strong>位取り記数法（positional notation）</strong><br>数字の「位置」によって値が変わる記数法。123は「1×100 + 2×10 + 3×1」。同じ「1」でも、百の位にあれば100、一の位にあれば1を意味する。</span></span>——数字の位置で値が変わるしくみ——は、人類が発明した最も優れた抽象のひとつだ。</strong>ローマ数字のXIIIは13だが、数字の位置に意味はない。アラビア数字の13は「1が十の位にある」から10+3と読める。この違いは革命的だった。</p>
+
+<p class="body-text fade"><ruby>位取り<rp>(</rp><rt>くらいどり</rt><rp>)</rp></ruby>記数法には「底」がある。私たちの10進法では底が10。使える数字は0〜9の10種類。では底を2にしたらどうなるか。使える数字は0と1の2種類だけ。数は0, 1, 10, 11, 100, 101, 110, 111...と増えていく。桁が多くなるかわりに、使う記号はたった2つで済む。</p>
+
+<!-- SVG図解①: 位取り比較 -->
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<rect x="10" y="10" width="170" height="180" rx="4" fill="white" stroke="#c8bfaa"/>
+<text x="95" y="35" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#7a6a55">10進法（底=10）</text>
+<text x="95" y="60" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#b0a090">数字: 0 1 2 3 4 5 6 7 8 9</text>
+<text x="95" y="90" text-anchor="middle" font-family="'Playfair Display',serif" font-size="28" font-weight="900" fill="#1a1208">13</text>
+<text x="95" y="115" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#7a6a55">= 1×10¹ + 3×10⁰</text>
+<text x="95" y="140" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">2桁 × 10種類</text>
+<text x="95" y="170" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="20" fill="#3d3020">🖐🖐</text>
+
+<text x="200" y="105" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+
+<rect x="220" y="10" width="170" height="180" rx="4" fill="white" stroke="#8b1a1a" stroke-width="2"/>
+<text x="305" y="35" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#8b1a1a">2進法（底=2）</text>
+<text x="305" y="60" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#b0a090">数字: 0 1</text>
+<text x="305" y="90" text-anchor="middle" font-family="'Playfair Display',serif" font-size="28" font-weight="900" fill="#8b1a1a">1101</text>
+<text x="305" y="115" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#7a6a55">= 1×2³+1×2²+0×2¹+1×2⁰</text>
+<text x="305" y="140" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">4桁 × 2種類</text>
+<text x="305" y="170" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="20" fill="#3d3020">⬛⬜</text>
+
+<text x="410" y="105" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+
+<rect x="430" y="10" width="120" height="180" rx="4" fill="white" stroke="#c8bfaa"/>
+<text x="490" y="35" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#7a6a55">3進法（底=3）</text>
+<text x="490" y="60" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#b0a090">数字: 0 1 2</text>
+<text x="490" y="90" text-anchor="middle" font-family="'Playfair Display',serif" font-size="28" font-weight="900" fill="#1a1208">111</text>
+<text x="490" y="115" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#7a6a55">= 1×3²+1×3¹+1×3⁰</text>
+<text x="490" y="140" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">3桁 × 3種類</text>
+<text x="490" y="170" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="20" fill="#3d3020">🔴🟡🟢</text>
+</svg>
+<p class="diagram-caption">同じ数「13」を3つの底で表した場合。底が小さいほど桁は増えるが、使う記号の種類は減る。</p>
+</div>
+
+<p class="body-text fade">1703年、<span class="tip" onclick="toggleTip(this)">ゴットフリート・ヴィルヘルム・ライプニッツ<span class="tip-box"><strong>ライプニッツ（1646–1716）</strong><br>ドイツの哲学者・数学者。微積分をニュートンとほぼ同時に独立発見した。普遍的な記号言語の構想でも知られる。</span></span>は、パリ王立科学アカデミーの紀要に一本の論文を発表した。「2進数の算術の解説——0と1のみの記号を用い、その有用性と、中国・伏羲の古代図形に光を投じることについて」。タイトルからして異色だ。数学の論文なのに、中国の古代図形が出てくる。</p>
+
+<!-- Person Block: Leibniz -->
+<div class="person-block fade">
+<div class="person-block-img" style="padding:0;overflow:hidden;">
+<img src="leibniz_portrait.jpg" alt="ゴットフリート・ヴィルヘルム・ライプニッツ（1695年頃）" style="width:100%;height:100%;object-fit:cover;display:block;">
+</div>
+<div class="person-block-body">
+<p class="person-block-name">ゴットフリート・ヴィルヘルム・ライプニッツ</p>
+<p class="person-block-role">Gottfried Wilhelm Leibniz（1646–1716）</p>
+<p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%B4%E3%83%83%E3%83%88%E3%83%95%E3%83%AA%E3%83%BC%E3%83%88%E3%83%BB%E3%83%A9%E3%82%A4%E3%83%97%E3%83%8B%E3%83%83%E3%83%84" target="_blank" rel="noopener">Wikipedia</a></p>
+<p class="person-block-desc">ドイツの哲学者・数学者。ニュートンとは独立に微積分を発明した。現代の2進法の体系的な定式化を最初に公表した人物で、100篇を超える2進法に関する原稿を残した。16進法（彼は「sedecimal」と呼んだ）の最初の公表記録も彼に帰する。</p>
+</div>
+</div>
+
+<!-- テーブル: 0〜15の変換表 -->
+<div class="fade" style="overflow-x:auto;">
+<table class="note-table">
+<tr><th>10進</th><th>2進</th><th>3進</th><th>16進</th><th>ビット数</th></tr>
+<tr><td>0</td><td>0000</td><td>00</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>0001</td><td>01</td><td>1</td><td>1</td></tr>
+<tr><td>2</td><td>0010</td><td>02</td><td>2</td><td>2</td></tr>
+<tr><td>3</td><td>0011</td><td>10</td><td>3</td><td>2</td></tr>
+<tr><td>4</td><td>0100</td><td>11</td><td>4</td><td>3</td></tr>
+<tr><td>7</td><td>0111</td><td>21</td><td>7</td><td>3</td></tr>
+<tr><td>8</td><td>1000</td><td>22</td><td>8</td><td>4</td></tr>
+<tr><td>10</td><td>1010</td><td>101</td><td>A</td><td>4</td></tr>
+<tr><td style="background:#8b1a1a;color:white;font-weight:600;">13</td><td style="background:#8b1a1a;color:white;font-weight:600;">1101</td><td style="background:#8b1a1a;color:white;font-weight:600;">111</td><td style="background:#8b1a1a;color:white;font-weight:600;">D</td><td style="background:#8b1a1a;color:white;font-weight:600;">4</td></tr>
+<tr><td>15</td><td>1111</td><td>120</td><td>F</td><td>4</td></tr>
+<tr><td>255</td><td>11111111</td><td>100110</td><td>FF</td><td>8</td></tr>
+</table>
+<p class="diagram-caption">同じ数をさまざまな底で表すと、桁数と使う記号の種類のトレードオフが見える。2進数は桁数が多いが、記号は0と1だけ。赤の行は先ほどのSVG図解で例に使った「13」。</p>
+</div>
+
+<p class="body-text fade">こうした変換を実際に手で確かめてみよう。スライダーで10進数を動かすと、各進法の表記がリアルタイムに変わる。特に2進数の「ランプ」が点いたり消えたりする様子に注目してほしい——これが、コンピュータの中で起きていることの原型だ。</p>
+
+<!-- インタラクティブ: 進数変換ビジュアライザー -->
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">✦ Base Converter</span></div>
+<div class="ix-body">
+<p class="ix-desc">スライダーを動かして10進数を選ぶと、<strong>2進・3進・16進</strong>がリアルタイムに変換される。2進数のランプ（ビット）のオン/オフが、コンピュータ内部の電気のオン/オフに対応している。</p>
+<div class="sl-wrap">
+<div class="sl-ends"><span>0</span><span>255</span></div>
+<input type="range" class="sl-bar" id="baseSlider" min="0" max="255" value="42" style="background:linear-gradient(to right,#e0d8c8,#8b1a1a);">
+</div>
+<div style="text-align:center;margin:10px 0;">
+<span style="font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:#1a1208;" id="decDisplay">42</span>
+<span style="font-family:'Source Sans 3',sans-serif;font-size:14px;color:#7a6a55;margin-left:4px;">₁₀</span>
+</div>
+<div class="bit-lamps" id="bitLamps"></div>
+<div class="radix-display">
+<div class="radix-item"><p class="radix-label">2進</p><p class="radix-val" id="binDisplay">00101010</p></div>
+<div class="radix-item"><p class="radix-label">3進</p><p class="radix-val" id="triDisplay">1120</p></div>
+<div class="radix-item"><p class="radix-label">16進</p><p class="radix-val" id="hexDisplay">2A</p></div>
+</div>
+<p class="ix-note">8ビット（0〜255）の範囲で表示。1ビットは2進数の1桁に対応する。8ビット = 1バイト = 256通りの状態を表現できる。</p>
+</div>
+</div>
+
+<p class="body-text fade">ライプニッツにとって、2進法は実用的な計算ツールではなかった。彼が魅了されたのは、その<em>哲学的な美しさ</em>だった。0は「無」、1は「神」。すべての数が無と神の組み合わせから生まれる——彼はこれを、キリスト教の「無からの創造（creatio ex nihilo）」の数学的な証明だと考えた。</p>
+
+<p class="body-text fade">1697年、ライプニッツは中国に滞在するイエズス会の宣教師ジョアシャン・ブーヴェに、自分の2進法の原理を書き送った。ブーヴェはそれを読み、ある古代の書物を思い出した。<span class="tip" onclick="toggleTip(this)">易経<span class="tip-box"><strong>易経（I Ching / Book of Changes）</strong><br>古代中国の占いの書。紀元前9世紀頃に体系化されたとされる。陰（破線 ╌）と陽（実線 ─）の2種類の線を3本組み合わせた「八卦」、6本組み合わせた「六十四卦」で占いの結果を表す。</span></span>——古代中国で数千年にわたって使われてきた占いの書だ。易経では、実線（陽）と破線（陰）の2種類の線を3本組み合わせた「八卦」で自然現象を分類し、6本組み合わせた「六十四卦」で占いの結果を体系化している。ブーヴェはこの陰陽の2値が、ライプニッツの0と1に対応することに気づいた。</p>
+
+<!-- SVG図解②: 八卦と2進数 -->
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 560 190" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<text x="280" y="18" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#7a6a55" letter-spacing=".1em">伏羲の八卦と2進数の対応</text>
+<!-- 8 trigrams -->
+<g transform="translate(35,35)">
+<text x="0" y="16" font-family="'Source Sans 3',sans-serif" font-size="22" fill="#1a1208" text-anchor="middle">☰</text>
+<text x="0" y="55" font-family="'JetBrains Mono',monospace" font-size="12" fill="#8b1a1a" text-anchor="middle">111</text>
+<text x="0" y="70" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090" text-anchor="middle">= 7</text>
+<text x="0" y="90" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55" text-anchor="middle">乾（天）</text>
+</g>
+<g transform="translate(105,35)">
+<text x="0" y="16" font-family="'Source Sans 3',sans-serif" font-size="22" fill="#1a1208" text-anchor="middle">☱</text>
+<text x="0" y="55" font-family="'JetBrains Mono',monospace" font-size="12" fill="#8b1a1a" text-anchor="middle">110</text>
+<text x="0" y="70" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090" text-anchor="middle">= 6</text>
+<text x="0" y="90" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55" text-anchor="middle">兌（沢）</text>
+</g>
+<g transform="translate(175,35)">
+<text x="0" y="16" font-family="'Source Sans 3',sans-serif" font-size="22" fill="#1a1208" text-anchor="middle">☲</text>
+<text x="0" y="55" font-family="'JetBrains Mono',monospace" font-size="12" fill="#8b1a1a" text-anchor="middle">101</text>
+<text x="0" y="70" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090" text-anchor="middle">= 5</text>
+<text x="0" y="90" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55" text-anchor="middle">離（火）</text>
+</g>
+<g transform="translate(245,35)">
+<text x="0" y="16" font-family="'Source Sans 3',sans-serif" font-size="22" fill="#1a1208" text-anchor="middle">☳</text>
+<text x="0" y="55" font-family="'JetBrains Mono',monospace" font-size="12" fill="#8b1a1a" text-anchor="middle">100</text>
+<text x="0" y="70" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090" text-anchor="middle">= 4</text>
+<text x="0" y="90" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55" text-anchor="middle">震（雷）</text>
+</g>
+<g transform="translate(315,35)">
+<text x="0" y="16" font-family="'Source Sans 3',sans-serif" font-size="22" fill="#1a1208" text-anchor="middle">☴</text>
+<text x="0" y="55" font-family="'JetBrains Mono',monospace" font-size="12" fill="#8b1a1a" text-anchor="middle">011</text>
+<text x="0" y="70" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090" text-anchor="middle">= 3</text>
+<text x="0" y="90" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55" text-anchor="middle">巽（風）</text>
+</g>
+<g transform="translate(385,35)">
+<text x="0" y="16" font-family="'Source Sans 3',sans-serif" font-size="22" fill="#1a1208" text-anchor="middle">☵</text>
+<text x="0" y="55" font-family="'JetBrains Mono',monospace" font-size="12" fill="#8b1a1a" text-anchor="middle">010</text>
+<text x="0" y="70" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090" text-anchor="middle">= 2</text>
+<text x="0" y="90" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55" text-anchor="middle">坎（水）</text>
+</g>
+<g transform="translate(455,35)">
+<text x="0" y="16" font-family="'Source Sans 3',sans-serif" font-size="22" fill="#1a1208" text-anchor="middle">☶</text>
+<text x="0" y="55" font-family="'JetBrains Mono',monospace" font-size="12" fill="#8b1a1a" text-anchor="middle">001</text>
+<text x="0" y="70" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090" text-anchor="middle">= 1</text>
+<text x="0" y="90" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55" text-anchor="middle">艮（山）</text>
+</g>
+<g transform="translate(525,35)">
+<text x="0" y="16" font-family="'Source Sans 3',sans-serif" font-size="22" fill="#1a1208" text-anchor="middle">☷</text>
+<text x="0" y="55" font-family="'JetBrains Mono',monospace" font-size="12" fill="#8b1a1a" text-anchor="middle">000</text>
+<text x="0" y="70" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090" text-anchor="middle">= 0</text>
+<text x="0" y="90" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55" text-anchor="middle">坤（地）</text>
+</g>
+<text x="280" y="155" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">実線 ─ = 1（陽）　破線 ╌ = 0（陰）</text>
+<text x="280" y="175" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">※ 伏羲先天図の配列順。ライプニッツはブーヴェを通じてこの図を受け取った</text>
+</svg>
+<p class="diagram-caption">古代中国の八卦（三爻の組み合わせ）を2進数として読むと、0〜7に対応する。ライプニッツは1703年にこの対応を論文で示した。ただし、易経の本来の目的は占いであり、数学ではなかった。</p>
+</div>
+
+<div class="fade" style="margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;">
+<img src="leibniz_iching.jpg" alt="ライプニッツの論文に掲載された八卦と2進数の対応図（1703年）" style="width:100%;display:block;">
+<p style="padding:9px 16px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;border-top:1px solid #e0d8c8;">ライプニッツ「2進数の算術の解説」88ページ。上段に八卦（八つの三爻図形）と2進数 0〜7 の対応を示し、本文でブーヴェとの書簡のやり取りを記している。出典: Wikimedia Commons（パブリックドメイン）</p>
+</div>
+
+<div class="quote-block fade">
+<p class="quote-en">"All these operations are so easy that there would never be any need to guess or try out anything."</p>
+<p class="quote-ja">「これらの演算はすべて極めて容易であり、推測や試行錯誤の必要が一切ない。」</p>
+<p class="quote-attr">— ゴットフリート・ヴィルヘルム・ライプニッツ『2進数の算術の解説』（1703）</p>
+</div>
+
+<p class="body-text fade">しかし、ライプニッツの論文は同時代にほとんど反響を得なかった。2進法は美しいが、実用的ではない。10進法の「17」を2進法で書くと「10001」——桁が倍以上になる。日常の計算には不便きわまりない。<em>2進法が真に必要とされるには、電気で動く機械が発明されるまで、230年以上待つ必要があった。</em></p>
+
+<!-- 誤解あるあるブロック -->
+<div class="misconception fade">
+<div class="misconception-header"><p class="misconception-hl">よくある誤解</p></div>
+<div class="misconception-body">
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">「2進数はコンピュータのために発明された」</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">ライプニッツは哲学・神学的な動機から2進法を体系化した。コンピュータが登場する230年以上前のことで、彼の構想に電子機械は含まれていない。</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">「2進数が最も効率的な記数法だから選ばれた」</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">数学的な「記数効率」では3進法のほうが2進法より優れている。2進数が選ばれた理由は数学ではなく、トランジスタの物理的性質にある。</p></div>
+</div>
+<div class="misconception-item">
+<div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">「ライプニッツが2進法の唯一の発明者」</p></div>
+<div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">イギリスの数学者トマス・ハリオットが1600年頃に2進法を含む複数の位取り記数法を研究していた。スペインの聖職者カラムエルも1670年に2進法を出版している。ただし後世に影響を与えたのはライプニッツの論文だった。</p></div>
+</div>
+</div>
+</div>
+
+<!-- ===== 画像プレースホルダー①: ライプニッツの論文図版 ===== -->
+<div class="fade" style="margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;">
+<img src="leibniz_binary_table.jpg" alt="ライプニッツの2進法論文（1703）— 2進数の数表と四則演算の例" style="width:100%;display:block;">
+<p style="padding:9px 16px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;border-top:1px solid #e0d8c8;">ライプニッツ「2進数の算術の解説」（1703）86ページ。左列に2進数の数表、右側に加算・減算・乗算・除算の例が示されている。出典: Wikimedia Commons（パブリックドメイン）</p>
+</div>
+
+<hr class="art-rule">
+
+<!-- ===== 背景セクション後半: ブール → シャノン ===== -->
+<h2 class="fade">150年の眠りを覚ましたのは、リレーのカチカチいう音だった。</h2>
+
+<p class="body-text fade">ライプニッツの2進法は、150年間ほぼ忘れられた。次に動いたのは、独学のイギリス人数学者<span class="tip" onclick="toggleTip(this)">ジョージ・ブール<span class="tip-box"><strong>ジョージ・ブール（1815–1864）</strong><br>イギリスの数学者・論理学者。靴職人の息子として生まれ、ほぼ独学で数学を学んだ。論理を代数で扱う方法を確立し、現代のコンピュータ科学の土台を築いた。</span></span>だった。1854年、ブールは『思考の法則の探究』を出版する。</p>
+
+<p class="body-text fade">ブールの問いは、ライプニッツとは別の方向に向いていた。<strong>「論理的な推論を、代数のように計算できないか？」</strong>——彼は「真」と「偽」を1と0に対応させ、AND（かつ）、OR（または）、NOT（でない）という3つの基本操作で、あらゆる論理を代数式として扱えることを示した。これが<span class="tip" onclick="toggleTip(this)">ブール代数<span class="tip-box"><strong>ブール代数（Boolean algebra）</strong><br>0と1（真と偽）の2つの値だけを扱う代数体系。AND, OR, NOTの3つの基本操作で構成される。コンピュータの論理回路の設計に直結する。</span></span>の始まりだ。</p>
+
+<!-- 画像プレースホルダー②: ブールの肖像 -->
+<div class="person-block fade">
+<div class="person-block-img" style="padding:0;overflow:hidden;">
+<img src="george_boole.jpg" alt="ジョージ・ブール（1847年頃）" style="width:100%;height:100%;object-fit:cover;display:block;">
+</div>
+<div class="person-block-body">
+<p class="person-block-name">ジョージ・ブール</p>
+<p class="person-block-role">George Boole（1815–1864）</p>
+<p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A7%E3%83%BC%E3%82%B8%E3%83%BB%E3%83%96%E3%83%BC%E3%83%AB" target="_blank" rel="noopener">Wikipedia</a></p>
+<p class="person-block-desc">イギリスの数学者・論理学者。靴職人の息子として生まれ、ほぼ独学で数学を学んだ。1854年の『思考の法則の探究』で、論理を代数として扱う方法を確立。「真=1、偽=0」という対応づけは、180年後のデジタル回路設計の基礎となった。</p>
+</div>
+</div>
+
+<p class="body-text fade">ブールの代数もまた、出版当時は「使いどころのない抽象」と見なされた。80年以上が過ぎた1937年、MITの21歳の大学院生が状況を一変させる。<span class="tip" onclick="toggleTip(this)">クロード・シャノン<span class="tip-box"><strong>クロード・シャノン（1916–2001）</strong><br>アメリカの数学者・電気工学者。「情報理論の父」と呼ばれる。1937年の修士論文で、ブール代数と電気回路の対応を証明し、デジタル回路設計の基礎を確立した。</span></span>。ミシガン大学で電気工学と数学の二重学位を取り、MITでヴァネヴァー・ブッシュの微分解析機の保守をしていた若者だ。</p>
+
+<p class="body-text fade">解析機には100個ほどの<span class="tip" onclick="toggleTip(this)">リレー<span class="tip-box"><strong>リレー（電磁継電器）</strong><br>電磁石の力でスイッチを開閉する装置。電流が流れると接点が閉じ（オン）、止まると開く（オフ）。初期のコンピュータの基本部品だった。</span></span>——電磁石で開閉するスイッチ——が並んでいた。シャノンはリレーを眺めながら気づいた。<em>スイッチが閉じている状態を「1」、開いている状態を「0」とすれば、これはブール代数そのものではないか。</em>彼はこの着想を修士論文「リレーおよびスイッチング回路の記号的解析」にまとめた。1937年8月10日提出。「おそらく20世紀で最も重要な修士論文」と後に評されることになる。</p>
+
+<!-- 画像プレースホルダー③: シャノン -->
+<div class="person-block fade">
+<div class="person-block-img" style="padding:0;overflow:hidden;">
+<img src="claude_shannon.jpg" alt="クロード・シャノン" style="width:100%;height:100%;object-fit:cover;display:block;">
+</div>
+<div class="person-block-body">
+<p class="person-block-name">クロード・シャノン</p>
+<p class="person-block-role">Claude E. Shannon（1916–2001）</p>
+<p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%89%E3%83%BB%E3%82%B7%E3%83%A3%E3%83%8E%E3%83%B3" target="_blank" rel="noopener">Wikipedia</a></p>
+<p class="person-block-desc">アメリカの数学者・電気工学者。「情報理論の父」。1937年の修士論文でブール代数と電気回路の等価性を証明し、デジタル回路設計を科学にした。1948年の「通信の数学的理論」で情報理論を創始。</p>
+</div>
+</div>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:-28px;margin-bottom:28px;">写真: Konrad Jacobs / Mathematisches Forschungsinstitut Oberwolfach (MFO), CC-BY-SA 2.0 DE</p>
+
+<!-- ========== 体験セクション ========== -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">3進数のほうが「得」なのに、なぜ2進数が勝ったのか。</h2>
+
+<p class="body-text fade">ここで、ひとつ意外な事実がある。数学的な効率だけで言えば、<strong>3進法は2進法より優れている。</strong>これは「<span class="tip" onclick="toggleTip(this)">記数コスト<span class="tip-box"><strong>記数コスト（radix economy）</strong><br>ある数を表すのに必要な「桁数 × 記号の種類数」の積。底が自然対数の底 e（≈ 2.718）に近いほど、このコストが最小になる。整数では3が最も近い。</span></span>」という指標で測れる。ある数を表すのに必要な「桁数 × 使える記号の種類数」——この積が小さいほど効率がいい。数学的には、底が自然対数の底 <em>e</em>（≈ 2.718）に近いほどコストが最小になる。整数で <em>e</em> に最も近いのは3だ。2ではない。</p>
+
+<p class="body-text fade">下のスライダーで底を変えてみてほしい。数「1000」を表すときの記数コストがリアルタイムで変わる。底3が底2より効率的であることが目で見える。</p>
+
+<!-- Radix Economy ビジュアライザー -->
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">✦ Radix Economy Visualizer</span></div>
+<div class="ix-body">
+<p class="ix-desc">スライダーで底（基数）を変えると、<strong>その底の理論的な記数コスト</strong>がリアルタイムに変化する。コストが低いほど効率的。底=3が最小であることを確かめよう。</p>
+<div class="sl-wrap">
+<div class="sl-ends"><span>底 2</span><span>底 16</span></div>
+<input type="range" class="sl-bar" id="radixSlider" min="2" max="16" value="2" style="background:linear-gradient(to right,#8b1a1a,#c8a878,#3d3020);">
+</div>
+<div style="text-align:center;margin:10px 0;">
+<span style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;">現在の底: </span>
+<span style="font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:#8b1a1a;" id="radixDisplay">2</span>
+</div>
+<div class="re-chart-wrap">
+<canvas id="radixChart" width="620" height="280"></canvas>
+</div>
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:14px;padding:14px 16px;background:#f3efe6;border:1px solid #e0d8c8;">
+<div><span style="font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;color:#b0a090;text-transform:uppercase;">選択中の底</span><br><span style="font-family:'JetBrains Mono',monospace;font-size:16px;color:#1a1208;" id="reSymbols">2</span></div>
+<div><span style="font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;color:#b0a090;text-transform:uppercase;">相対コスト b/ln(b)</span><br><span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#8b1a1a;" id="reCost">2.89</span></div>
+<div><span style="font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;color:#b0a090;text-transform:uppercase;">底3のコスト</span><br><span style="font-family:'JetBrains Mono',monospace;font-size:16px;color:#3d3020;" id="reCostThree">2.73</span></div>
+</div>
+<p class="ix-note">相対コスト = b / ln(b) で計算。この値が小さいほど、桁数と記号数のバランスが良い。数学的に最小となる底は自然対数の底 e ≈ 2.718 で、整数では3が最良（2.73）。実際の桁数は整数に切り上がるため、特定の数では2進や4進がたまたま有利に見えることもある。しかし十分に大きい数を平均すると、底3が最も効率的になる。なお、この「効率」は純粋に数学的なもので、ハードウェア実装のコストは含まない。</p>
+</div>
+</div>
+
+<p class="body-text fade">では、数学的に有利な3進法がなぜ採用されなかったのか。答えは物理にある。<strong><span class="tip" onclick="toggleTip(this)">トランジスタ<span class="tip-box"><strong>トランジスタ（transistor）</strong><br>半導体で作られた電子部品で、電流を増幅したりスイッチしたりする。現代のCPUには数十億個のトランジスタが詰め込まれている。オンかオフの2状態を取るのが基本動作。</span></span>は、オンかオフかの2状態を取るのが最も安定する。</strong>「少しだけオン」という中間状態は、ノイズや温度変化で簡単に揺らぐ。10段階のスイッチを想像してほしい——位置3と位置4の区別は微妙だ。しかしオンとオフなら、間違えようがない。</p>
+
+<p class="body-text fade">1958年、ソ連のモスクワ大学でニコライ・ブルセンツォフが3進コンピュータ「Setun」を開発した。磁気コアとダイオードを使い、3つの状態（−1, 0, +1）を表現する方式だった。約50台が製造されたが、やがて2進コンピュータに置き換えられた。理由はシンプルだ——1トリット（3進数の1桁）を表すのに2つの磁気コアが必要で、同じコアを2進法に使えば2ビット（4状態）を扱えた。物理的なコストで、2進法が勝ったのだ。</p>
+
+<!-- 画像プレースホルダー④: ENIAC -->
+<div class="fade" style="margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;">
+<img src="eniac.jpg" alt="ENIAC — Glen BeckとBetty Snyderがプログラミングしている様子（1947–1955年頃）" style="width:100%;display:block;">
+<p style="padding:9px 16px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;border-top:1px solid #e0d8c8;">ENIAC（Electronic Numerical Integrator And Computer）。弾道研究所328号棟にて。奥がGlen Beck、手前がBetty Snyder（後のHolberton）。壁一面を埋め尽くす真空管とケーブルの山が、現代のスマートフォン1台に劣る計算能力だった。出典: U.S. Army Photo（パブリックドメイン）</p>
+</div>
+
+<!-- ========== メカニズムセクション ========== -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">スイッチが「決める」——論理ゲートという発明</h2>
+
+<p class="body-text fade">シャノンの修士論文が示したのは、単に「スイッチでブール代数ができる」という対応関係だけではなかった。2つのスイッチを<strong>直列につなげばAND</strong>（両方オンのときだけ電流が流れる）、<strong>並列につなげばOR</strong>（どちらかがオンなら電流が流れる）。スイッチの手前に反転器を置けば<strong>NOT</strong>（オンをオフに、オフをオンにする）。ANDとNOTを組み合わせれば<strong>XOR</strong>（2つの入力が違うときだけオンになる——「片方だけがオンのとき」という意味だ）も作れる。この4種の基本操作の組み合わせで、あらゆる論理演算が実行できることをシャノンは証明した。</p>
+
+<p class="body-text fade">現代のコンピュータはこの原理の延長にある。トランジスタを組み合わせて作る<span class="tip" onclick="toggleTip(this)">論理ゲート<span class="tip-box"><strong>論理ゲート（logic gate）</strong><br>1つまたは2つの入力（0か1）を受け取り、ブール演算の結果を1つ出力する回路。AND, OR, NOT, XOR などの種類がある。これらを組み合わせることで、加算や比較など複雑な計算が可能になる。</span></span>——AND、OR、NOT、XOR——が、計算の最小単位だ。下のシミュレーターで、実際にゲートを操作してみてほしい。</p>
+
+<!-- 論理ゲートシミュレーター -->
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">✦ Logic Gate Simulator</span></div>
+<div class="ix-body">
+<p class="ix-desc">ゲートの種類を選び、<strong>入力A・Bのトグルスイッチ</strong>を切り替えると出力がリアルタイムに変わる。AND は「両方1のとき1」、OR は「どちらか1なら1」、XOR は「異なるとき1」、NOT は「入力の反転」。</p>
+<div class="gate-sel" id="gateSel">
+<button class="gate-btn active" onclick="setGate('AND')">AND</button>
+<button class="gate-btn" onclick="setGate('OR')">OR</button>
+<button class="gate-btn" onclick="setGate('XOR')">XOR</button>
+<button class="gate-btn" onclick="setGate('NOT')">NOT</button>
+</div>
+<div class="gate-panel">
+<div class="gate-input">
+<span style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;">入力 A</span>
+<button class="gate-toggle off" id="gateA" onclick="toggleGateInput('gateA')"></button>
+<span style="font-family:'JetBrains Mono',monospace;font-size:16px;color:#1a1208;" id="gateAVal">0</span>
+</div>
+<div class="gate-input" id="gateBWrap">
+<span style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;">入力 B</span>
+<button class="gate-toggle off" id="gateB" onclick="toggleGateInput('gateB')"></button>
+<span style="font-family:'JetBrains Mono',monospace;font-size:16px;color:#1a1208;" id="gateBVal">0</span>
+</div>
+<div style="font-family:'Source Sans 3',sans-serif;font-size:20px;color:#c8bfaa;">→</div>
+<div>
+<span style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:block;text-align:center;">出力</span>
+<div class="gate-output off" id="gateOut"><span id="gateOutVal">0</span></div>
+</div>
+</div>
+<div class="gate-truth" id="gateTruth"></div>
+<p class="ix-note">現代のCPUには数十億個のトランジスタが搭載され、それらが論理ゲートを構成している。このシミュレーターは1つのゲートを手動で操作するもので、実際のCPUでは毎秒数十億回のゲート操作が行われている。</p>
+</div>
+</div>
+
+<!-- SVG: 知的系譜フロー図 -->
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 560 100" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+<rect x="5" y="20" width="100" height="60" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="55" y="42" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#1a1208">ライプニッツ</text>
+<text x="55" y="56" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">2進法の体系化</text>
+<text x="55" y="68" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#b0a090">1703</text>
+
+<text x="125" y="53" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+
+<rect x="145" y="20" width="100" height="60" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="195" y="42" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#1a1208">ブール</text>
+<text x="195" y="56" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">論理の代数化</text>
+<text x="195" y="68" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#b0a090">1854</text>
+
+<text x="265" y="53" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+
+<rect x="285" y="20" width="100" height="60" rx="4" fill="white" stroke="#8b1a1a" stroke-width="2"/>
+<text x="335" y="42" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#8b1a1a">シャノン</text>
+<text x="335" y="56" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">回路＝論理の証明</text>
+<text x="335" y="68" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#b0a090">1937</text>
+
+<text x="405" y="53" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+
+<rect x="425" y="20" width="125" height="60" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="487" y="42" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#1a1208">現代のコンピュータ</text>
+<text x="487" y="56" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">数十億のゲート</text>
+<text x="487" y="68" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#b0a090">1946–</text>
+</svg>
+<p class="diagram-caption">ライプニッツの2進法（1703）→ ブールの論理代数（1854）→ シャノンの回路理論（1937）→ 現代のデジタルコンピュータ。約250年にわたる知的系譜。</p>
+</div>
+
+<!-- ステップ図解: なぜトランジスタは2状態か -->
+<div class="steps-wrap fade">
+<div class="steps-head">なぜトランジスタは2状態なのか</div>
+<div class="step-card open" id="sc1">
+<div class="step-hd" onclick="tog(1)"><div class="step-n">1</div><div class="step-title">トランジスタは電流のスイッチ</div><div class="step-arrow">▼</div></div>
+<div class="step-body"><p>トランジスタには「ゲート」と呼ばれる制御端子がある。ゲートに電圧をかけると電流が流れ（<strong>オン = 1</strong>）、かけないと流れない（<strong>オフ = 0</strong>）。水道の蛇口と同じだ——ひねれば水が出る、閉めれば止まる。日常でもスイッチは2状態だろう。部屋の照明も、蛇口も、ドアも。</p></div>
+</div>
+<div class="step-card" id="sc2">
+<div class="step-hd" onclick="tog(2)"><div class="step-n">2</div><div class="step-title">中間状態はノイズに弱い</div><div class="step-arrow">▼</div></div>
+<div class="step-body"><p>理論的には、電圧を3段階や10段階に分けることもできる。しかし段階が増えると、<strong>隣り合う状態の電圧差が小さくなる</strong>。温度変化やノイズで電圧がわずかにふらつくだけで、「3」なのか「4」なのかわからなくなる。2状態なら電圧のしきい値を1つ設定するだけでよく、間違いが起きにくい。蛇口を「全開」と「全閉」だけで使えば、水漏れの心配はほぼない。</p></div>
+</div>
+<div class="step-card" id="sc3">
+<div class="step-hd" onclick="tog(3)"><div class="step-n">3</div><div class="step-title">小さくなるほど2状態が有利</div><div class="step-arrow">▼</div></div>
+<div class="step-body"><p>ムーアの法則に従い、トランジスタは年々小さくなっている。現在の最先端プロセスは<em>3ナノメートル</em>——DNA2本分の太さだ。この極小サイズでは量子力学的な効果も無視できなくなり、電圧の制御はますます困難になる。2状態ですら区別が難しくなる世界で、3状態以上を安定させるのは現実的ではない。</p></div>
+</div>
+<div class="step-card" id="sc4">
+<div class="step-hd" onclick="tog(4)"><div class="step-n">4</div><div class="step-title">エコシステムのロックイン</div><div class="step-arrow">▼</div></div>
+<div class="step-body"><p>仮に3状態のトランジスタが実用化されても、<strong>プログラミング言語、OS、回路設計ツール、教科書——すべてが2進法を前提に構築されている</strong>。この巨大なエコシステムを作り直すコストは天文学的だ。技術の世界では「より良い方式」が「すでに普及している方式」に勝てないことがよくある。VHSとベータマックス、QWERTYキーボードと同じ構図だ。</p></div>
+</div>
+</div>
+
+<!-- ========== 歴史セクション ========== -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">0と1の旅——紀元前から現代CPUへ</h2>
+
+<p class="body-text fade">2進法のルーツは驚くほど古い。以下の年表では、<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#8b1a1a;vertical-align:middle;"></span> 赤茶の丸が2進法の発展に直接関わる出来事、<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;vertical-align:middle;"></span> 白抜きの丸が周辺の技術的・文化的文脈を示す。</p>
+
+<div class="timeline fade">
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">紀元前9世紀頃</p>
+<p class="tl-title">易経の六十四卦</p>
+<p class="tl-desc">中国の占いの書『易経』で、陰（破線）と陽（実線）の2値で構成される六十四卦が体系化される。数学的な意図はなかったが、結果的に6ビットの全組み合わせ（2⁶ = 64）を網羅していた。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1605</p>
+<p class="tl-title">フランシス・ベーコンの2値暗号</p>
+<p class="tl-desc">ベーコンは、アルファベットの各文字を「a」と「b」の5文字の組み合わせで表す暗号体系を考案。「2値で任意の情報を符号化できる」という発想の初期の例。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">c.1600</p>
+<p class="tl-title">トマス・ハリオットの2進法研究</p>
+<p class="tl-desc">イギリスの数学者ハリオットが、2進・3進・4進・5進を含む複数の位取り記数法を研究。変換や四則演算も記録していたが、生前には未発表。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">1703</p>
+<p class="tl-title">ライプニッツ「2進数の算術の解説」を発表</p>
+<p class="tl-desc">パリ王立科学アカデミー紀要に掲載。0と1のみで全ての数を表す体系を初めて公式に論じ、八卦との対応を示した。2進法の歴史における最重要文献。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">1854</p>
+<p class="tl-title">ジョージ・ブール『思考の法則の探究』</p>
+<p class="tl-desc">論理的推論を代数で扱う方法を確立。真=1、偽=0とし、AND/OR/NOTの3操作で論理を計算する体系を構築。コンピュータ科学の論理的基盤。</p>
+</div>
+<div class="tl-item highlight"><div class="tl-dot"></div>
+<p class="tl-year">1937</p>
+<p class="tl-title">クロード・シャノンの修士論文</p>
+<p class="tl-desc">「リレーおよびスイッチング回路の記号的解析」をMITに提出。ブール代数と電気回路の等価性を証明し、デジタル回路設計を「技」から「科学」に変えた。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1946</p>
+<p class="tl-title">ENIAC 稼働開始</p>
+<p class="tl-desc">ペンシルベニア大学で世界初の汎用電子コンピュータが稼働。17,468本の真空管を使用。内部は10進演算だったが、論理制御は2値のスイッチに基づいていた。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1947</p>
+<p class="tl-title">トランジスタの発明</p>
+<p class="tl-desc">ベル研究所のバーディーン、ブラッテン、ショックレーが点接触型トランジスタを発明。真空管に代わる半導体スイッチの時代が始まる。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">1958</p>
+<p class="tl-title">Setun — 3進コンピュータの挑戦</p>
+<p class="tl-desc">モスクワ大学でブルセンツォフが3進コンピュータを開発。約50台が製造されたが、2進ハードウェアの普及に押され、やがて姿を消した。</p>
+</div>
+<div class="tl-item"><div class="tl-dot"></div>
+<p class="tl-year">2020年代</p>
+<p class="tl-title">数十億トランジスタの時代</p>
+<p class="tl-desc">Apple M2チップのトランジスタ数は約200億個。1つひとつが0か1を記憶し、毎秒数十億回のゲート操作を行っている。ライプニッツの0と1は、今も変わっていない。</p>
+</div>
+</div>
+
+<!-- ========== つまりセクション ========== -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">2進数が選ばれた理由は、数学的な美しさではない。</h2>
+
+<p class="body-text fade">ライプニッツは哲学のために2進法を構想した。ブールは論理を代数にするために0と1を使った。シャノンはリレーのカチカチに論理を見た。そして現代のCPUは、数十億のトランジスタが毎秒数十億回オンとオフを繰り返すことで、この文章をあなたの目に届けている。</p>
+
+<p class="body-text fade">2進数が「正解」だったわけではない。3進数のほうが数学的に効率的だし、10進数のほうが人間には読みやすい。しかし、<em>トランジスタがオンとオフの2状態で最も安定するという物理的事実</em>と、<em>ブール代数が真と偽の2値で論理を扱えるという数学的事実</em>が、偶然にも一致した。そしてその一致の上に、70年分の巨大なエコシステムが積み上がった。</p>
+
+<div class="pull fade">
+<p class="pull-q">"Shannon's thesis became the foundation of <em>practical digital circuit design</em> when it became widely known among the electrical engineering community during and after World War II."</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">「シャノンの論文は、第二次世界大戦中から戦後にかけて電気工学のコミュニティに広く知られるようになり、実用的なデジタル回路設計の基礎となった。」</p>
+<p class="pull-attr">— Wikipedia「A Symbolic Analysis of Relay and Switching Circuits」より、歴史的評価</p>
+</div>
+
+<p class="body-text fade">これは技術の選択に関する、もっと普遍的な教訓でもある。<strong>「最も効率的なもの」が勝つとは限らない。</strong>物理的な制約、歴史的な偶然、エコシステムのロックイン——これらが絡み合って、「なぜこうなっているのか」の答えが決まる。2進数は、数学的必然ではなく、<em>物理と歴史の必然</em>だった。</p>
+
+<p class="body-text fade">この話を知ったからといって、明日からコンピュータの使い方が変わるわけではない。しかし、スマートフォンの画面を見るたびに、そこに流れている信号のひとつひとつが——ライプニッツの哲学と、ブールの論理と、シャノンの修士論文と、トランジスタの物理法則が重なった先にある——0か1かの判断であることを、知っておくのは悪くない。</p>
+
+<!-- 文化ブロック -->
+<div class="culture-block fade">
+<p class="culture-label">文化への登場</p>
+<div class="culture-item">
+<p class="culture-title">映画『マトリックス』（1999）</p>
+<p class="culture-desc">画面を流れる緑色の0と1のカスケードは、「コンピュータが世界を構成している」という比喩として20世紀末を象徴するビジュアルとなった。実際のコードは寿司のレシピを変形したものだという。</p>
+</div>
+<div class="culture-item">
+<p class="culture-title">ライプニッツとI Ching</p>
+<p class="culture-desc">ライプニッツが易経の六十四卦に2進法の「古代の先駆」を見た逸話は、東西の知的交流の象徴として繰り返し語られる。ただし中国側は卦を数学的に読んでおらず、ライプニッツの解釈は誤読とされる。</p>
+</div>
+<div class="culture-item">
+<p class="culture-title">「10種類の人間」ジョーク</p>
+<p class="culture-desc">「世の中には10種類の人間がいる——2進数がわかる人と、わからない人だ」。プログラマー文化で最も有名なジョークの1つ。2進法の「10」は10進法の「2」である。</p>
+</div>
+</div>
+
+<!-- 画像プレースホルダー⑤: 現代CPUダイショット -->
+<div class="fade" style="margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;">
+<img src="intel_486_die.jpg" alt="Intel 80486 マイクロプロセッサのダイ写真（約120万トランジスタ、1989年）" style="width:100%;display:block;">
+<p style="padding:9px 16px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;border-top:1px solid #e0d8c8;">Intel 80486のダイ（1989年）。約120万個のトランジスタが1チップに集積されている。現代のプロセッサはこの1万倍以上——数百億個のトランジスタを搭載するが、ひとつひとつが行っているのは同じ「オンかオフか」の判断だ。出典: Wikimedia Commons（パブリックドメイン）</p>
+</div>
+
+<!-- ========== 参考文献 ========== -->
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+
+<div class="ref-list">
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1703</span></div>
+<p class="ref-title"><a href="https://www.leibniz-translations.com/binary.htm" target="_blank" rel="noopener">Explication de l'Arithmétique Binaire</a></p>
+<p class="ref-author">Gottfried Wilhelm Leibniz — Histoire de l'Académie Royale des Sciences</p>
+<p class="ref-desc">2進法の歴史はここから始まる。英訳も上記リンクで読める。ライプニッツがいかに哲学的動機で2進法に取り組んだかが伝わる、驚くほど読みやすい論文。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2022</span></div>
+<p class="ref-title"><a href="https://doi.org/10.7551/mitpress/13477.001.0001" target="_blank" rel="noopener">Leibniz on Binary: The Invention of Computer Arithmetic</a></p>
+<p class="ref-author">Lloyd Strickland, Harry Lewis — MIT Press</p>
+<p class="ref-desc">ライプニッツの2進法に関する原稿100篇以上を英訳・解説した決定版。2進法が「コンピュータのために作られた」という通説を丁寧に解体する。研究者でなくても楽しめる。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1938</span></div>
+<p class="ref-title"><a href="https://doi.org/10.1109/T-AIEE.1938.5057767" target="_blank" rel="noopener">A Symbolic Analysis of Relay and Switching Circuits</a></p>
+<p class="ref-author">Claude E. Shannon — Transactions of the AIEE, Vol. 57</p>
+<p class="ref-desc">「20世紀で最も重要な修士論文」。ブール代数と電気回路の等価性を証明し、デジタル時代の幕を開けた。現代のコンピュータ科学者にとっての聖典。有料だが大学図書館経由でアクセスできることが多い。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">解説記事</span><span class="ref-year">2025</span></div>
+<p class="ref-title"><a href="https://www.scientificamerican.com/article/this-number-system-beats-binary-but-most-computers-cant-use-it/" target="_blank" rel="noopener">This Number System Beats Binary, But Most Computers Can't Use It</a></p>
+<p class="ref-author">Scientific American</p>
+<p class="ref-desc">「なぜ3進数が勝てなかったのか」を平易に解説した記事。Setunの歴史から現代の3進研究まで網羅している。この記事の体験セクションの背景にある議論が、ここにある。</p>
+</div>
+</div>
+
+<!-- 信頼度ノート -->
+<div class="note-box fade">
+<strong>📌 この記事について</strong><br>
+ライプニッツの論文（1703）、ブールの著作（1854）、シャノンの論文（1938）という一次文献に基づいている。歴史的事実はStrickland & Lewis（2022）の研究を主に参照した。記数コスト（radix economy）の数学的説明は標準的な情報理論に基づく。3進コンピュータSetunに関する記述はScientific American（2025）の解説記事を参照した。
+</div>
+
+<!-- タグ -->
+<div class="tags fade">
+<span class="tag" style="background:#8b1a1a;color:white;border-color:#8b1a1a;">数学・論理</span>
+<span class="tag">2進数</span>
+<span class="tag">ライプニッツ</span>
+<span class="tag">シャノン</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- ===== SIDEBAR ===== -->
+<div class="article-side">
+<div style="position:sticky;top:40px;">
+<div class="sidebar-block fade">
+<p class="sidebar-label">Key Number</p>
+<p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">2</p>
+<p class="sidebar-text">コンピュータが扱う記号の種類。0と1。この数が2である理由は、数学的最適性ではなく、トランジスタの物理に由来する。</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">歴史的背景</p>
+<p class="sidebar-text">ライプニッツは2進法を哲学的な道具と考えていた。0=無、1=神。<strong>キリスト教の「無からの創造」</strong>の数学的表現として構想された。</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">作品への登場</p>
+<p class="sidebar-text">映画『マトリックス』の緑の0と1のカスケード、ドラマ『Mr. Robot』のハッキング画面など、<strong>2進数は「デジタル」の視覚的象徴</strong>として繰り返し使われている。</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">関連トピック</p>
+<p class="sidebar-text">
+— なぜ10進数か<br>
+— ゼロの発明<br>
+— 位取り記数法<br>
+— ブール代数と論理回路<br>
+— 情報理論（シャノン）
+</p>
+</div>
+<div class="sidebar-block fade">
+<p class="sidebar-label">信頼度</p>
+<p class="sidebar-text">ライプニッツ・ブール・シャノンの一次文献と、2022年のMIT Press刊行書に基づく。</p>
+</div>
+</div>
+</div>
+
+</div><!-- /article -->
+
+<!-- ===== ZONE C: TERMINAL ===== -->
+<div class="terminal-label-wrap fade">
+<div class="terminal-label">
+<span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+<span class="terminal-label-line"></span>
+</div>
+</div>
+
+<div class="terminal-wrap">
+<div class="terminal" id="terminalBlock">
+<div class="terminal-bar">
+<div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div>
+<span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+</div>
+<div class="terminal-body">
+<span class="t-sys" id="ts0">// 「なぜ2進数か」を読み終えた人との対話</span>
+
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、3進数のほうがよかったってこと？</span></div>
+<span class="t-output" id="to1">数学的にはね。でも「よい」の定義が違う。数学が見ている「効率」と、物理が見ている「安定性」は別の指標だ。トランジスタにとっては、<em>間違えにくいこと</em>のほうが大事だった。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ライプニッツは自分の発明がこうなると思ってた？</span></div>
+<span class="t-output" id="to2">思っていなかっただろう。彼にとって2進法は<em>神学</em>の道具だった。0が無で、1が神で、その組み合わせから全てが生まれる。コンピュータという概念すらなかった時代の話だ。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;量子コンピュータも2進数なの？</span></div>
+<span class="t-output" id="to3">量子ビット——<strong>qubit</strong>——は0と1の「重ね合わせ」を取れる。測定するまで0でも1でもある状態。ただし最終的な出力は0か1に収束する。2値の呪縛はまだ続いている、とも言える。</span>
+<hr class="t-divider">
+
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;シャノンの論文読んでみたい</span></div>
+<span class="t-output" id="to4">21歳の修士論文で世界を変えたんだから、読む価値はある。論文自体は専門的だけど、「スイッチの開閉が論理と同じ」という核心部分は、この記事のシミュレーターで触ったとおりだ。</span>
+<hr class="t-divider">
+
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# なるほどね</span></div>
+</div>
+</div>
+</div>
+
+<!-- ===== RELATED ===== -->
+<div class="related fade">
+<p class="related-label">次に読む</p>
+<div class="related-grid">
+<a class="related-card" href="#">
+<p class="related-card-tag">数学・論理 × 数の歴史</p>
+<p class="related-card-title">なぜ10進数か</p>
+<p class="related-card-desc">私たちが10で数えるのは「自然」なことだろうか。バビロニアの60進法、マヤの20進法——数え方は指の数だけではない。</p>
+<p class="related-card-arrow">近日公開</p>
+</a>
+<a class="related-card" href="#">
+<p class="related-card-tag">数学・論理 × 数の歴史</p>
+<p class="related-card-title">ゼロの発明</p>
+<p class="related-card-desc">「何もない」を記号にした瞬間、数学は爆発的に進化した。ゼロの不在が文明を制約し、その発明が世界を変えた。</p>
+<p class="related-card-arrow">近日公開</p>
+</a>
+</div>
+</div>
+
+<script>
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+// Fade in
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+// Tooltip
+function toggleTip(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.tip'))document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));
+});
+// Steps accordion
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+
+// ===== Base Converter =====
+const baseSlider=document.getElementById('baseSlider');
+const decDisplay=document.getElementById('decDisplay');
+const binDisplay=document.getElementById('binDisplay');
+const triDisplay=document.getElementById('triDisplay');
+const hexDisplay=document.getElementById('hexDisplay');
+const bitLampsEl=document.getElementById('bitLamps');
+
+function updateBase(){
+  const v=parseInt(baseSlider.value);
+  decDisplay.textContent=v;
+  binDisplay.textContent=v.toString(2).padStart(8,'0');
+  triDisplay.textContent=v.toString(3);
+  hexDisplay.textContent=v.toString(16).toUpperCase();
+  // Bit lamps
+  const bits=v.toString(2).padStart(8,'0');
+  let html='';
+  for(let i=7;i>=0;i--){
+    const on=bits[i]==='1';
+    const weight=Math.pow(2,7-i);
+    html+=`<div class="bit-lamp ${on?'on':'off'}"><span class="bit-val">${bits[i]}</span><span class="bit-weight">${weight}</span></div>`;
+  }
+  bitLampsEl.innerHTML=html;
+}
+baseSlider.addEventListener('input',updateBase);
+updateBase();
+
+// ===== Radix Economy =====
+const radixSlider=document.getElementById('radixSlider');
+const radixDisplay=document.getElementById('radixDisplay');
+const reSymbols=document.getElementById('reSymbols');
+const reCost=document.getElementById('reCost');
+const radixCanvas=document.getElementById('radixChart');
+const rctx=radixCanvas.getContext('2d');
+
+function theoreticalCost(b){
+  return b/Math.log(b);
+}
+
+function drawRadixChart(){
+  const cv=radixCanvas;
+  const W=cv.width, H=cv.height;
+  rctx.clearRect(0,0,W,H);
+  const bases=[];for(let b=2;b<=16;b++)bases.push(b);
+  const costs=bases.map(b=>theoreticalCost(b));
+  const maxC=Math.max(...costs);
+  const minC=Math.min(...costs);
+  const pad={t:30,b:35,l:50,r:25};
+  const cw=W-pad.l-pad.r, ch=H-pad.t-pad.b;
+  const bw=cw/bases.length*0.6;
+  const gap=cw/bases.length;
+  const sel=parseInt(radixSlider.value);
+
+  // axes
+  rctx.strokeStyle='#e0d8c8';rctx.lineWidth=1;
+  rctx.beginPath();rctx.moveTo(pad.l,pad.t);rctx.lineTo(pad.l,H-pad.b);rctx.lineTo(W-pad.r,H-pad.b);rctx.stroke();
+
+  // Y axis label
+  rctx.save();rctx.translate(14,pad.t+ch/2);rctx.rotate(-Math.PI/2);
+  rctx.fillStyle='#b0a090';rctx.font="10px 'Source Sans 3',sans-serif";rctx.textAlign='center';
+  rctx.fillText('相対コスト（低いほど効率的）',0,0);
+  rctx.restore();
+
+  bases.forEach((b,i)=>{
+    const x=pad.l+i*gap+gap/2;
+    const h=((costs[i]-minC*0.85)/(maxC-minC*0.85))*ch*0.88;
+    const y=H-pad.b-h;
+    const isSel=b===sel;
+    const isMin=b===3;
+    rctx.fillStyle=isSel?'#8b1a1a':isMin?'#3d3020':'#d8d0c0';
+    rctx.fillRect(x-bw/2,y,bw,h);
+    // base label
+    rctx.fillStyle=isSel?'#8b1a1a':'#7a6a55';
+    rctx.font="11px 'Source Sans 3',sans-serif";
+    rctx.textAlign='center';
+    rctx.fillText(b,x,H-pad.b+16);
+    // cost label
+    rctx.fillStyle=isSel?'#8b1a1a':'#b0a090';
+    rctx.font="10px 'JetBrains Mono',monospace";
+    rctx.fillText(costs[i].toFixed(2),x,y-5);
+  });
+  // e marker
+  const eIdx=Math.E-2;
+  const eX=pad.l+eIdx*gap+gap/2;
+  rctx.setLineDash([4,4]);rctx.strokeStyle='#8b1a1a';rctx.lineWidth=1;
+  rctx.beginPath();rctx.moveTo(eX,pad.t);rctx.lineTo(eX,H-pad.b);rctx.stroke();
+  rctx.setLineDash([]);
+  rctx.fillStyle='#8b1a1a';rctx.font="italic 11px 'Source Serif 4',serif";
+  rctx.fillText('e ≈ 2.718',eX,pad.t-4);
+
+  // min marker on base 3
+  const minX=pad.l+1*gap+gap/2;
+  const minH=((costs[1]-minC*0.85)/(maxC-minC*0.85))*ch*0.88;
+  const minY=H-pad.b-minH;
+  rctx.fillStyle='#3d3020';rctx.font="bold 10px 'Source Sans 3',sans-serif";
+  rctx.fillText('← 最小',minX+bw/2+28,minY+4);
+
+  // Update displays
+  const selCost=theoreticalCost(sel);
+  const cost3=theoreticalCost(3);
+  radixDisplay.textContent=sel;
+  reSymbols.textContent=sel;
+  reCost.textContent=selCost.toFixed(2);
+  document.getElementById('reCostThree').textContent=cost3.toFixed(2);
+}
+radixSlider.addEventListener('input',drawRadixChart);
+drawRadixChart();
+
+// ===== Logic Gate Simulator =====
+let currentGate='AND';
+let gateAState=false, gateBState=false;
+
+function setGate(g){
+  currentGate=g;
+  document.querySelectorAll('#gateSel .gate-btn').forEach(b=>{
+    b.classList.toggle('active',b.textContent===g);
+  });
+  document.getElementById('gateBWrap').style.display=g==='NOT'?'none':'flex';
+  updateGate();
+  drawTruthTable();
+}
+
+function toggleGateInput(id){
+  const el=document.getElementById(id);
+  if(id==='gateA'){gateAState=!gateAState;}else{gateBState=!gateBState;}
+  el.classList.toggle('on',id==='gateA'?gateAState:gateBState);
+  el.classList.toggle('off',!(id==='gateA'?gateAState:gateBState));
+  document.getElementById(id+'Val').textContent=(id==='gateA'?gateAState:gateBState)?'1':'0';
+  updateGate();
+  drawTruthTable();
+}
+
+function computeGate(a,b,g){
+  switch(g){
+    case'AND':return a&&b?1:0;
+    case'OR':return a||b?1:0;
+    case'XOR':return a!==b?1:0;
+    case'NOT':return a?0:1;
+  }
+}
+
+function updateGate(){
+  const a=gateAState?1:0,b=gateBState?1:0;
+  const out=computeGate(a,b,currentGate);
+  const outEl=document.getElementById('gateOut');
+  const outVal=document.getElementById('gateOutVal');
+  outVal.textContent=out;
+  outEl.classList.toggle('on',out===1);
+  outEl.classList.toggle('off',out===0);
+}
+
+function drawTruthTable(){
+  const el=document.getElementById('gateTruth');
+  const ca=gateAState?1:0, cb=gateBState?1:0;
+  if(currentGate==='NOT'){
+    let rows='';
+    for(let a=0;a<=1;a++){
+      const r=a?0:1;
+      const active=a===ca;
+      const bg=active?'background:#f3efe6;border-left:3px solid #8b1a1a;':'';
+      rows+=`<tr style="${bg}"><td>${a}</td><td style="${r?'color:#8b1a1a;font-weight:700':''}">${r}</td></tr>`;
+    }
+    el.innerHTML=`<table><tr><th>A</th><th>NOT A</th></tr>${rows}</table>`;
+  }else{
+    let rows='';
+    for(let a=0;a<=1;a++)for(let b=0;b<=1;b++){
+      const r=computeGate(a,b,currentGate);
+      const active=(a===ca&&b===cb);
+      const bg=active?'background:#f3efe6;border-left:3px solid #8b1a1a;':'';
+      rows+=`<tr style="${bg}"><td>${a}</td><td>${b}</td><td style="${r?'color:#8b1a1a;font-weight:700':''}">${r}</td></tr>`;
+    }
+    el.innerHTML=`<table><tr><th>A</th><th>B</th><th>${currentGate}</th></tr>${rows}</table>`;
+  }
+}
+drawTruthTable();
+
+// ===== Terminal Animation =====
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2400},{id:'to2',delay:3000},
+  {id:'tl3',delay:4000},{id:'to3',delay:4600},
+  {id:'tl4',delay:5600},{id:'to4',delay:6200},
+  {id:'tl5',delay:7200}
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+</script>
+</body>
+</html>
