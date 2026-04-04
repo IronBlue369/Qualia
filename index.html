@@ -142,8 +142,8 @@ header.mh{
 .mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
 .mh-burger:hover span{background:#8b1a1a;}
 .mh-center{text-align:center;}
-.mh-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:900;letter-spacing:.05em;color:#1a1208;display:block;line-height:1.1;}
-.mh-name em{color:#8b1a1a;font-style:normal;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
 .mh-right{display:flex;align-items:center;gap:14px;}
 .mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
 .mh-search:hover{color:#8b1a1a;}
@@ -325,7 +325,7 @@ header.mh{
 
 /* === FOOTER === */
 footer{background:#1a1208;padding:52px 32px 44px;}
-.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
 .f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
 .f-name em{color:#c8785a;font-style:normal;}
 .f-tag{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#8a7868;margin-bottom:16px;line-height:1.6;}
@@ -333,6 +333,7 @@ footer{background:#1a1208;padding:52px 32px 44px;}
 .fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
 .fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
 .fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
 
 @media(max-width:860px){
   header.mh{padding:0 20px;}
@@ -372,14 +373,12 @@ footer{background:#1a1208;padding:52px 32px 44px;}
         <div class="menu-sec-lbl">記事を読む</div>
         <a href="#articles" onclick="closeMenu()">記事一覧<span class="msub">52 articles</span></a>
         <a href="#articles" onclick="flt('all');closeMenu();">最新記事</a>
-        <a href="javascript:void(0)" onclick="closeMenu()">Editor's Pick</a>
-        <a href="javascript:void(0)" onclick="closeMenu()">Most Read</a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
       </div>
       <div class="menu-sec">
         <div class="menu-sec-lbl">このサイトについて</div>
         <a href="/about">About</a>
-        <a href="https://qualiajournal.com/timeline/">年表</a>
-        <a href="https://qualiajournal.com/topic_map/">トピックマップ</a>
         <a href="https://qualiajournal.com/contact/">Contact</a>
       </div>
     </div>
@@ -415,7 +414,7 @@ footer{background:#1a1208;padding:52px 32px 44px;}
 <!-- MASTHEAD -->
 <header class="mh">
   <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
-  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name"><em>Qualia</em> Journal</a></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
   <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
 </header>
 
@@ -599,9 +598,8 @@ footer{background:#1a1208;padding:52px 32px 44px;}
 <footer>
   <div class="footer-inner">
     <div><p class="f-name"><em>Qualia</em> Journal</p><p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p></div>
-    <div class="fcol"><h3>ナビゲーション</h3><a href="#articles">記事一覧</a><a href="/about">About</a><a href="https://qualiajournal.com/timeline/">年表</a><a href="https://qualiajournal.com/topic_map/">トピックマップ</a><a href="https://qualiajournal.com/contact/">Contact</a></div>
-    <div class="fcol"><h3>カテゴリ</h3><a href="#" onclick="flt('認知バイアス');return false;">認知バイアス</a><a href="#" onclick="flt('知覚・錯覚');return false;">知覚・錯覚</a><a href="#" onclick="flt('数学・論理');return false;">数学・論理</a><a href="#" onclick="flt('思考実験・哲学');return false;">思考実験・哲学</a><a href="#" onclick="flt('脳と意識');return false;">脳と意識</a></div>
-    <div class="fcol"><h3>カテゴリ</h3><a href="#" onclick="flt('行動心理学');return false;">行動心理学</a><a href="#" onclick="flt('社会心理学');return false;">社会心理学</a><a href="#" onclick="flt('物理・宇宙');return false;">物理・宇宙</a><a href="#" onclick="flt('生命・進化');return false;">生命・進化</a><a href="#" onclick="flt('科学と文化');return false;">科学と文化</a></div>
+    <div class="fcol"><h3>ナビゲーション</h3><a href="#articles">記事一覧</a><a href="https://qualiajournal.com/timeline/">知の年表</a><a href="https://qualiajournal.com/topic_map/">つながりの索引</a><a href="/about">About</a><a href="https://qualiajournal.com/contact/">Contact</a></div>
+    <div class="fcol"><h3>カテゴリ</h3><div class="f-cat-grid"><a href="#" onclick="flt('認知バイアス');return false;">認知バイアス</a><a href="#" onclick="flt('行動心理学');return false;">行動心理学</a><a href="#" onclick="flt('社会心理学');return false;">社会心理学</a><a href="#" onclick="flt('知覚・錯覚');return false;">知覚・錯覚</a><a href="#" onclick="flt('脳と意識');return false;">脳と意識</a><a href="#" onclick="flt('数学・論理');return false;">数学・論理</a><a href="#" onclick="flt('思考実験・哲学');return false;">思考実験・哲学</a><a href="#" onclick="flt('物理・宇宙');return false;">物理・宇宙</a><a href="#" onclick="flt('生命・進化');return false;">生命・進化</a><a href="#" onclick="flt('科学と文化');return false;">科学と文化</a></div></div>
   </div>
 </footer>
 
