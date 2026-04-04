@@ -133,6 +133,8 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
 
 /* MISCONCEPTION */
+.person-block-img{overflow:hidden;padding:0;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
 .misconception-header{background:#3d3020;color:white;padding:11px 20px;}
 .misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
@@ -530,13 +532,11 @@ header.mh{padding:0 20px;}
   <p class="body-text fade">1939年、彼はイスタンブール大学の紀要に論文を発表する。タイトルは「配分と占有の確率について」。その中で彼は、n人の集団における誕生日の一致の期待値を計算した。答えは衝撃的だった。<strong>たった23人で、少なくとも1組の誕生日一致がある確率は50%を超える</strong>。365日もあるのに、たったの23人。</p>
 
   <div class="person-block fade">
-    <div class="person-block-img">
-      <svg width="80" height="90" viewBox="0 0 80 90"><rect width="80" height="90" fill="#e0d8c8" rx="3"/><circle cx="40" cy="32" r="16" fill="#c8bfaa"/><ellipse cx="40" cy="72" rx="24" ry="18" fill="#c8bfaa"/><text x="40" y="36" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" fill="#7a6a55">R.v.M.</text></svg>
-    </div>
+    <div class="person-block-img"><img src="img_vonmises.jpg" alt="リヒャルト・フォン・ミーゼス" loading="lazy"></div>
     <div class="person-block-body">
       <p class="person-block-name">リヒャルト・フォン・ミーゼス</p>
       <p class="person-block-role">Richard von Mises, 1883–1953</p>
-      <p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Richard_von_Mises" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%AA%E3%83%92%E3%83%A3%E3%83%AB%E3%83%88%E3%83%BB%E3%83%95%E3%82%A9%E3%83%B3%E3%83%BB%E3%83%9F%E3%83%BC%E3%82%BC%E3%82%B9" target="_blank" rel="noopener">Wikipedia</a></p>
       <p class="person-block-desc">オーストリア生まれの応用数学者。確率論における頻度主義の立場を体系化した。ナチスの台頭によりベルリン大学を追われ、イスタンブール大学を経て1939年にハーバード大学へ移った。亡命先で書いたこの論文が、誕生日のパラドックスの出発点になった。</p>
     </div>
   </div>
@@ -552,16 +552,8 @@ header.mh{padding:0 20px;}
   <p class="body-text fade">こうして、着想はダヴェンポートに遡り、最初の出版はフォン・ミーゼスに帰せられる。その後、確率論の大家<span class="tip" onclick="toggleTip(this)">ウィリアム・フェラー<span class="tip-box"><strong>William Feller（1906–1970）</strong><br>クロアチア出身の数学者。著書『確率論とその応用』は確率論の教科書として20世紀で最も影響力があったとされる。</span></span>が1957年の教科書『確率論とその応用』で取り上げたことで、この問題は世界中の教室に広まった。</p>
 
   <div class="img-placeholder fade">
-    <div class="img-ph-area">
-      <span class="img-ph-icon">🎂</span>
-      <p class="img-ph-title">イラスト①｜1930年代のパーティーで首をかしげる数学者</p>
-      <p class="img-ph-desc">イスタンブールのパーティー会場で、同じ誕生日が見つかって驚く人々と、その傍らで静かに計算を始める数学者の姿。</p>
-      <div class="img-ph-prompt">
-        <p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
-        <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, a 1930s party scene with anthropomorphic animals (frogs and rabbits), one scholarly frog with glasses quietly calculating while others celebrate discovering shared birthdays, Japanese scroll painting aesthetic, no text</p>
-      </div>
-    </div>
-    <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+    <img src="img_birthday_cake.jpg" alt="誕生日ケーキを囲む人々" loading="lazy" style="width:100%;display:block;">
+    <p class="img-caption">何人集まれば、同じ誕生日のペアが見つかるか（イメージ）</p>
   </div>
 
   <!-- 誤解あるある -->
@@ -853,16 +845,8 @@ header.mh{padding:0 20px;}
   </div>
 
   <div class="img-placeholder fade">
-    <div class="img-ph-area">
-      <span class="img-ph-icon">⚽</span>
-      <p class="img-ph-title">イラスト②｜ワールドカップのロッカールームで誕生日を比べる選手たち</p>
-      <p class="img-ph-desc">23人の代表選手がロッカールームに集まり、カレンダーを囲んで誕生日を確認している場面。一致を見つけて喜ぶ2人と、それを信じられない様子の仲間たち。</p>
-      <div class="img-ph-prompt">
-        <p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
-        <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, anthropomorphic frogs in soccer uniforms gathered in a locker room around a large calendar, two frogs discovering they share the same birthday mark on the calendar, teammates looking surprised, Japanese scroll painting aesthetic, no text</p>
-      </div>
-    </div>
-    <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+    <img src="img_birthday_party.jpg" alt="誕生日パーティーに集まった人々" loading="lazy" style="width:100%;display:block;">
+    <p class="img-caption">パーティーに20人以上が集まれば、同じ誕生日のペアがいる確率は50%を超える（イメージ）</p>
   </div>
 
   <hr class="art-rule">

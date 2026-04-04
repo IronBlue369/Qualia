@@ -105,6 +105,12 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
 .person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
 .person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-img{overflow:hidden;padding:0;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-wiki{margin-bottom:6px;}
+.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);letter-spacing:.04em;}
+.person-block-wiki a:hover{border-bottom-color:#8b1a1a;}
+.person-block.no-img{display:block;}.person-block.no-img .person-block-body{border-left:none;}
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
 .misconception-header{background:#3d3020;color:white;padding:11px 20px;}
 .misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
@@ -262,7 +268,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
 .fade.on{opacity:1;transform:translateY(0);}
 @media(max-width:720px){
-.cover{grid-template-columns:1fr;padding:40px 20px 32px;}.cover-right{display:none;}.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.summary-box{padding:0 20px;}.article{grid-template-columns:1fr;padding:0 20px;}.article-side{display:none;}.misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}.terminal-wrap{padding:0 20px 40px;}.related{padding:32px 20px;}.related-grid{grid-template-columns:1fr;}.tip-box{left:0;transform:none;width:200px;}.tip-box::after{left:20px;transform:none;}.scenario{padding:0 20px;}.bayes-row{flex-direction:column;align-items:stretch;gap:8px;}.bayes-label{min-width:auto;}.dot-sim-controls{flex-direction:column;align-items:stretch;}
+.cover{grid-template-columns:1fr;padding:40px 20px 32px;}.cover-right{display:none;}.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.summary-box{padding:0 20px;}.article{grid-template-columns:1fr;padding:0 20px;}.article-side{display:none;}.misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}.person-block{grid-template-columns:1fr;}.person-block-img{height:160px;}.terminal-wrap{padding:0 20px 40px;}.related{padding:32px 20px;}.related-grid{grid-template-columns:1fr;}.tip-box{left:0;transform:none;width:200px;}.tip-box::after{left:20px;transform:none;}.scenario{padding:0 20px;}.bayes-row{flex-direction:column;align-items:stretch;gap:8px;}.bayes-label{min-width:auto;}.dot-sim-controls{flex-direction:column;align-items:stretch;}
 }
 
 /* ── SLIDE MENU ── */
@@ -463,6 +469,10 @@ header.mh{padding:0 20px;}
 </div>
 
 <p class="body-text fade">カーネマンとトヴェルスキーはこれを<span class="tip" onclick="toggleTip(this)">代表性ヒューリスティック<span class="tip-box"><strong>代表性ヒューリスティック（representativeness heuristic）</strong><br>あるものが典型的なカテゴリにどれだけ似ているかで確率を判断する心理的近道。「エンジニアっぽい」→「エンジニアだろう」という推論がこれにあたる。</span></span>で説明した。人は、ある人物や出来事がどれだけ「典型例に似ているか」で確率を判断する。似ていれば確率が高い、似ていなければ低い——と。この近道は日常では便利だが、確率の問題ではしばしば裏目に出る。「似ている」ことと「確率が高い」ことは、まったく別の話だからだ。</p>
+<div class="person-block fade"><div class="person-block-img"><img src="img_kahneman.jpg" alt="ダニエル・カーネマン" loading="lazy"></div><div class="person-block-body"><p class="person-block-name">ダニエル・カーネマン</p><p class="person-block-role">Daniel Kahneman, 1934–2024</p><p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%80%E3%83%8B%E3%82%A8%E3%83%AB%E3%83%BB%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%9E%E3%83%B3" target="_blank" rel="noopener">Wikipedia</a></p><p class="person-block-desc">イスラエル生まれ、アメリカで活躍した心理学者。トヴェルスキーとの共同研究で、人間の判断がいかに体系的に確率を誤るかを明らかにした。2002年ノーベル経済学賞受賞。著書『ファスト&スロー』で基準率の無視を含む認知バイアスの研究を広く一般に伝えた。</p></div></div>
+
+<div class="person-block no-img fade"><div class="person-block-body"><p class="person-block-name">エイモス・トヴェルスキー</p><p class="person-block-role">Amos Tversky, 1937–1996</p><p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%A8%E3%82%A4%E3%83%A2%E3%82%B9%E3%83%BB%E3%83%88%E3%83%99%E3%83%AB%E3%82%B9%E3%82%AD%E3%83%BC" target="_blank" rel="noopener">Wikipedia</a></p><p class="person-block-desc">イスラエルの認知心理学者・数学者。カーネマンとの共同研究で代表性ヒューリスティクスやプロスペクト理論を開拓し、行動経済学の基礎を築いた。1996年、59歳で死去。存命であれば2002年のノーベル賞を共同受賞していたとカーネマン自身が語っている。</p></div></div>
+
 
 <div class="misconception fade"><div class="misconception-header"><span class="misconception-hl">誤解あるある</span></div><div class="misconception-body"><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">よくある誤解</p><p class="mis-text">検査が陽性で、精度が90%なら、自分が病気である確率も90%だ。</p></div><div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">病気の人が人口の1%しかいなければ、陽性でも実際に病気である確率は約8%にすぎない。精度と事後確率はまったく異なる数字だ。</p></div></div><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">よくある誤解</p><p class="mis-text">目撃者が80%の確率で正しいなら、その証言は80%信頼できる。</p></div><div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">対象となる出来事がまれな場合、80%の精度でも誤認が正解を上回ることがある。タクシー問題では41%まで下がる。</p></div></div><div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">よくある誤解</p><p class="mis-text">基準率の無視は「無知」の問題で、統計を学べば解消される。</p></div><div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">医師ですら、マンモグラフィの結果を10倍も過大評価することがある。知識があっても直感のバイアスは消えない。</p></div></div></div></div>
 
@@ -536,7 +546,7 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">1995年にギゲレンツァーが示した「自然頻度」という解法は、希望を与えてくれる。「1%の有病率で感度80%」と言われるとわからない。しかし「1000人のうち10人が病気で、そのうち8人が陽性。残り990人のうち95人も陽性」と言われれば、8÷103という計算は見える。表現を変えるだけで、正答率は大幅に上がる。</p>
 
-<div class="img-placeholder fade"><div class="img-ph-area"><div class="img-ph-icon">🎨</div><p class="img-ph-title">「1000人の広場」</p><p class="img-ph-desc">広場に1000人が立っている。そのうち10人だけが赤い帽子をかぶっている（病気の人）。検査官が旗を振ると、赤い帽子の8人と、帽子をかぶっていない95人が前に出てくる。前に出た103人の中で、実際に赤い帽子をかぶっているのは8人だけ。</p><div class="img-ph-prompt"><p class="img-ph-prompt-lbl">画像生成プロンプト</p><p class="img-ph-prompt-txt">鳥獣戯画タッチ。広場に小さな人物が大勢立っている。ほとんどが白い着物だが、10人だけ赤い帽子をかぶっている。検査官役の蛙が旗を振り、前に出た一群がいる。その中に赤い帽子は数人しかいない。墨線、和紙テクスチャ、余白多め。</p></div></div><p class="img-caption">Fig. — 自然頻度で見る基準率。「1000人中」で考えると、構造が一目でわかる。</p></div>
+<div class="img-placeholder fade"><img src="img_base_rate_plaza.jpg" alt="基準率の可視化：群衆の中で赤い帽子をかぶった少数の人物と、検査で前に出た一群" loading="lazy" style="width:100%;display:block;"><p class="img-caption">自然頻度で見る基準率——大勢のなかに赤い帽子はごくわずか。検査で前に出た一群の中にも、赤い帽子はほんの数人しかいない（イメージ）</p></div>
 
 <p class="body-text fade">日常に戻って考えてみよう。採用面接で「この候補者は優秀そうだ」と感じたとき、そのポジションの応募者全体の中で優秀な人がどのくらいの割合でいるかを考慮しているだろうか。SNSで「この健康法は効く」という体験談を見たとき、そもそもその症状が自然に治る確率を考えているだろうか。私たちは常に、目の前の鮮やかな情報に引っ張られ、背景の確率を忘れている。</p>
 

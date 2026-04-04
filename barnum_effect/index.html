@@ -123,7 +123,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK — スキナー箱に合わせたスタイル */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:center;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -527,9 +527,7 @@ header.mh{padding:0 20px;}
 
     <!-- PERSON BLOCK — スキナー箱と同じスタイル -->
     <div class="person-block fade">
-      <div class="person-block-img">
-        <svg width="80" height="90" viewBox="0 0 80 90"><rect width="80" height="90" fill="#e0d8c8" rx="3"/><circle cx="40" cy="32" r="16" fill="#c8bfaa"/><ellipse cx="40" cy="72" rx="24" ry="18" fill="#c8bfaa"/><text x="40" y="36" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" fill="#7a6a55">B.F.</text></svg>
-      </div>
+
       <div class="person-block-body">
         <p class="person-block-name">バートラム・R・フォーラー</p>
         <p class="person-block-role">Bertram R. Forer, 1914–2000</p>
@@ -542,18 +540,9 @@ header.mh{padding:0 20px;}
 
     <p class="body-text">ここで種明かしがある。39人が受け取った「個人の性格分析」は、<strong>全員まったく同じ文章</strong>だった。フォーラーが街の新聞スタンドで買った星座占いの本から、いくつかのフレーズを寄せ集めて作ったものだ。</p>
 
-    <!-- IMAGE PLACEHOLDER -->
     <div class="img-placeholder fade">
-      <div class="img-ph-area">
-        <span class="img-ph-icon">🖼️</span>
-        <p class="img-ph-title">イラスト①｜フォーラーの教室実験</p>
-        <p class="img-ph-desc">1948年の教室。カエルの教授（フォーラー）が紙の封筒を配っている。ウサギやタヌキの学生たちが封筒を開けて読みふけり、満足げにうなずいている様子。全員の封筒の中身が同じであることを、読者だけが俯瞰で見て取れる構図。</p>
-        <div class="img-ph-prompt">
-          <p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
-          <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, a frog professor handing out paper envelopes to rabbit and raccoon students in a 1940s classroom, students reading with satisfied expressions, overhead view showing all papers are identical, Japanese scroll painting aesthetic, no text</p>
-        </div>
-      </div>
-      <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+      <img src="img_tarot.jpg" alt="タロットカード" loading="lazy" style="width:100%;display:block;">
+      <p class="img-caption">占いと性格診断（イメージ）｜フォーラーが学生に渡した"個人の性格分析"は、街の新聞スタンドで買った星座占いの本から寄せ集めたものだった。</p>
     </div>
 
     <p class="body-text">「自分なら見破れる」と思うかもしれない。だが、この実験はその後50年以上にわたり世界中の大学で繰り返され、結果はほぼ変わらない。文系も理系も関係なく、心理学の授業で認知バイアスについて学んだ直後の学生でさえ、高い的中感を報告する。知性や注意力の問題ではない。人間の認知そのものに埋め込まれた構造の話である。</p>
@@ -817,18 +806,9 @@ header.mh{padding:0 20px;}
 
     <p class="body-text">この仕組みは、占いだけでなく現代のあらゆる場面に埋め込まれている。SNSの性格診断が「あなたは〇〇タイプ」と分類するとき。SpotifyやNetflixが「あなたのために選びました」と表示するとき。採用面接のフィードバックが「あなたにはポテンシャルがある」と伝えるとき。それぞれが正確である可能性はある——だが、「当たっている」と感じた瞬間に、それが本当に正確かどうかを検証する気持ちは急速に薄れる。</p>
 
-    <!-- IMAGE PLACEHOLDER 2 -->
     <div class="img-placeholder fade">
-      <div class="img-ph-area">
-        <span class="img-ph-icon">🖼️</span>
-        <p class="img-ph-title">イラスト②｜現代のバーナム効果</p>
-        <p class="img-ph-desc">スマートフォンを覗き込むウサギ。画面には「あなたは特別です」と表示されている。同じ画面が背景に無数に並び、全員が同じメッセージを見ている構図。</p>
-        <div class="img-ph-prompt">
-          <p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
-          <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, a rabbit looking at a smartphone screen showing a message, behind the rabbit hundreds of identical rabbits all looking at the same message on their own phones, infinite mirror effect, Japanese scroll painting aesthetic, no text</p>
-        </div>
-      </div>
-      <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+      <img src="img_smartphone.jpg" alt="スマートフォンを操作する手元" loading="lazy" style="width:100%;display:block;">
+      <p class="img-caption">現代のバーナム効果（イメージ）｜性格診断アプリ、SNSの心理テスト——媒体は変わっても、"自分だけに当てはまる"と感じる構造は同じだ。</p>
     </div>
 
     <p class="body-text">では、どうすればいいのか。残念ながら「知っていれば防げる」とは言い切れない。バーナム効果は知識ではなく感覚のレベルで作動するため、意識的な警戒だけでは不十分だ。だが、環境を変えることでリスクを下げるアプローチはいくつかある。</p>

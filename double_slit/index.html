@@ -48,6 +48,8 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}.img-ph-icon{font-size:28px;opacity:.4;}.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
 .quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 .person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-img{overflow:hidden;padding:0;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.misconception-header{background:#3d3020;color:white;padding:11px 20px;}.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.misconception-body{background:white;}.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}.misconception-item:last-child{border-bottom:none;}.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}.mis-label.wrong{color:#c4392a;}.mis-label.right{color:#1a5a30;}.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
 .ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.ix-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.ix-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#aaa;}.ix-body{padding:24px 20px;background:white;}.ix-desc{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:18px;}.ix-desc strong{font-weight:600;color:#1a1208;}.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:14px;padding-top:12px;border-top:1px solid #e0d8c8;line-height:1.7;}
 .ix-tabs{display:flex;gap:0;margin-bottom:18px;}.ix-tab{flex:1;padding:10px 16px;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;text-align:center;background:#f3efe6;border:1px solid #c8bfaa;cursor:pointer;color:#7a6a55;transition:all .18s;}.ix-tab:first-child{border-right:none;}.ix-tab.active{background:#1a1208;color:white;border-color:#1a1208;}
@@ -296,7 +298,8 @@ header.mh{padding:0 20px;}
 <p class="body-text fade">しかし同時代のクリスティアーン・ホイヘンスは、光は波だと考えた。水面の波のように空間を伝わる振動——それが光の正体だという<strong>「波動説」</strong>だ。ホイヘンスの主張は正しかったが、100年以上にわたって傍流に留まった。</p>
 
 <div class="person-block fade">
-<div class="person-block-img"><svg width="80" height="96" viewBox="0 0 80 96" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="96" fill="#ede8dc"/><circle cx="40" cy="32" r="16" fill="#c8bfaa"/><path d="M20 80 Q40 56 60 80" fill="#b0a090"/><rect x="30" y="20" width="20" height="4" rx="2" fill="#7a6a55"/><circle cx="35" cy="30" r="2" fill="#3d3020"/><circle cx="45" cy="30" r="2" fill="#3d3020"/></svg></div>
+<!-- Portrait: Henry Perronet Briggs after Thomas Lawrence, 1822, PD -->
+<div class="person-block-img"><img src="img_thomas_young.jpg" alt="トマス・ヤングの肖像画"></div>
 <div class="person-block-body"><p class="person-block-name">トマス・ヤング</p><p class="person-block-role">Thomas Young (1773–1829)</p><p class="person-block-desc">イギリスの博学者。医師、物理学者、エジプト学者。1801年に光の干渉現象を王立協会に報告し、ニュートンの粒子説に挑戦した。ロゼッタ・ストーンの解読にも貢献。「世界で最後の万能人」と呼ばれることがある。</p></div>
 </div>
 
@@ -310,15 +313,7 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">ヤングの発見は当初、ほとんど無視された。エディンバラ・レビュー誌の匿名書評はヤングを「無知で横柄」と切り捨てた。ニュートンに逆らうことは、当時のイギリスでは異端に近かった。しかし、光が干渉するという事実は消えなかった。波でなければ説明がつかないからだ。</p>
 
-<div class="img-placeholder fade">
-<div class="img-ph-area" style="min-height:180px;">
-<span class="img-ph-icon">🌊</span>
-<p class="img-ph-title">概念図: 単スリットの回折と二重スリットの干渉</p>
-<p class="img-ph-desc">左から進む平面波が、単スリットを通ると扇状に広がり（回折）、二重スリットを通ると2つの回折波が重なって干渉縞ができる。下のシミュレーションで実際の動きを確認できる。</p>
-<div class="img-ph-prompt"><p class="img-ph-prompt-lbl">鳥獣戯画タッチ プロンプト</p><p class="img-ph-prompt-txt">Brush-ink illustration in Choju-giga style showing water waves passing through one gap then two gaps in a dam. Frogs observe the ripple patterns from above. Minimal color, black ink on aged paper.</p></div>
-</div>
-<p class="img-caption">画像プレースホルダー — 実際の記事ではイラストが入る</p>
-</div>
+
 
 <div class="misconception fade">
 <div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
@@ -496,11 +491,7 @@ header.mh{padding:0 20px;}
 <div class="culture-block fade"><p class="culture-title">映画『インターステラー』（2014）</p><p class="culture-desc">クリストファー・ノーラン監督。量子力学の謎が物語の核心になる。五次元の本棚から過去に情報を送るシーンは、観測と情報の関係を詩的に表現している。</p></div>
 <div class="culture-block fade"><p class="culture-title">小説『タイムライン』（1999）マイケル・クライトン</p><p class="culture-desc">量子的な多世界解釈をタイムトラベルの理論的基盤に据えたテクノスリラー。二重スリット実験が作中で繰り返し引用される。</p></div>
 
-<div class="img-placeholder fade">
-<div class="img-ph-area"><span class="img-ph-icon">🎨</span><p class="img-ph-title">二重スリット実験と観測者</p><p class="img-ph-desc">実験装置を横から見た構図。左に光源、中央にスリット板、右にスクリーン。スクリーンには縞模様。手前に小さな観測装置が置かれている。</p>
-<div class="img-ph-prompt"><p class="img-ph-prompt-lbl">鳥獣戯画タッチ プロンプト</p><p class="img-ph-prompt-txt">Brush-ink illustration in Choju-giga style. Frogs and rabbits conducting a double-slit experiment. One frog holds a candle, another holds a board with two slits. A rabbit looks at interference fringes on a screen with a surprised expression. Black ink on aged paper.</p></div>
-</div><p class="img-caption">画像プレースホルダー</p>
-</div>
+
 
 <hr class="art-rule">
 

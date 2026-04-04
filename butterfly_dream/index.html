@@ -115,6 +115,11 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
 .person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
 
+.person-block.no-img{display:block;}
+.person-block.no-img .person-block-body{border-left:none;}
+.person-block-wiki{margin-bottom:6px;}
+.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);letter-spacing:.04em;}
+.person-block-wiki a:hover{border-bottom-color:#8b1a1a;}
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
 .misconception-header{background:#3d3020;color:white;padding:11px 20px;}
 .misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
@@ -467,21 +472,11 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">紀元前4世紀。中国はいわゆる<span class="tip" onclick="toggleTip(this)">戦国時代<span class="tip-box"><strong>戦国時代（前403年頃〜前221年）</strong><br>周王朝の権威が失墜し、秦・楚・斉・燕・趙・魏・韓の七国が覇権を争った約200年間。諸子百家と呼ばれる多数の思想家が活躍した時代でもある。</span></span>のまっただなかにあった。七つの国が絶え間なく戦い、下克上が日常で、思想家たちは君主に仕えて名声を得ることに腐心していた。そんな時代に、宋の国の<ruby>蒙<rp>（</rp><rt>もう</rt><rp>）</rp></ruby>（現在の河南省商丘市付近）に、<span class="tip" onclick="toggleTip(this)">漆園<span class="tip-box"><strong>漆園（しつえん）</strong><br>漆（うるし）の木を管理・採取する施設。漆は当時の中国で家具・武器・棺などの塗装に使われる重要な資源だった。荘子はここで下級の管理役人を務めていたとされる。</span></span>の小役人を務める男がいた。<strong>荘周</strong>——のちに「荘子」と呼ばれることになる人物だ。</p>
 
-<div class="person-block fade">
-  <div class="person-block-img">
-    <svg viewBox="0 0 100 120" width="80" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="35" r="22" fill="none" stroke="#7a6a55" stroke-width="1.5"/>
-      <path d="M30 38 Q50 60 70 38" fill="none" stroke="#7a6a55" stroke-width="1"/>
-      <line x1="50" y1="57" x2="50" y2="95" stroke="#7a6a55" stroke-width="1.5"/>
-      <line x1="50" y1="70" x2="30" y2="85" stroke="#7a6a55" stroke-width="1.5"/>
-      <line x1="50" y1="70" x2="70" y2="85" stroke="#7a6a55" stroke-width="1.5"/>
-      <line x1="50" y1="95" x2="35" y2="115" stroke="#7a6a55" stroke-width="1.5"/>
-      <line x1="50" y1="95" x2="65" y2="115" stroke="#7a6a55" stroke-width="1.5"/>
-    </svg>
-  </div>
+<div class="person-block no-img fade">
   <div class="person-block-body">
     <p class="person-block-name">荘子（荘周）</p>
     <p class="person-block-role">紀元前369年頃〜前286年頃</p>
+    <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E8%8D%98%E5%AD%90" target="_blank" rel="noopener">Wikipedia</a></p>
     <p class="person-block-desc">中国戦国時代の思想家。老子とともに道家の祖とされ、「老荘」と併称される。楚の威王から宰相の地位を提示されたが辞退し、泥の中で尾を振る亀のほうが幸福だと応じたという逸話が残る。寓話と比喩を駆使した独自の文体で、中国文学史においても高い評価を受ける。</p>
   </div>
 </div>
@@ -566,16 +561,8 @@ header.mh{padding:0 20px;}
 </div>
 
 <div class="img-placeholder fade">
-  <div class="img-ph-area">
-    <span class="img-ph-icon">🖼</span>
-    <p class="img-ph-title">荘周が蝶になる場面</p>
-    <p class="img-ph-desc">明代の画家・陸治（16世紀）による「荘周夢蝶図」の構図を参考に。眠る老人の周囲を蝶が舞い、夢と覚醒の境界が曖昧になる様子。</p>
-    <div class="img-ph-prompt">
-      <p class="img-ph-prompt-lbl">画像生成プロンプト</p>
-      <p class="img-ph-prompt-txt">鳥獣戯画タッチで描かれた胡蝶の夢。木の下で居眠りする蛙（荘子に見立て）の周囲を、墨の蝶が3匹ひらひらと舞う。蛙の輪郭線は蝶の翅の模様とシームレスに繋がっている。墨一色、余白を活かした構図。</p>
-    </div>
-  </div>
-  <p class="img-caption">Fig. 1 — 荘周夢蝶（イメージ）</p>
+  <img src="img_zhuangzi_dream.jpg" alt="荘周夢蝶図" loading="lazy" style="width:100%;display:block;">
+  <p class="img-caption">荘周夢蝶図——岩に寄りかかって眠る荘子のそばを蝶が舞う。18世紀の水墨画</p>
 </div>
 
 <hr class="art-rule">
@@ -745,16 +732,8 @@ header.mh{padding:0 20px;}
 </div>
 
 <div class="img-placeholder fade">
-  <div class="img-ph-area">
-    <span class="img-ph-icon">🖼</span>
-    <p class="img-ph-title">「蝶と哲学者」の構造比較図</p>
-    <p class="img-ph-desc">左に荘子（蝶→受容）、中央にデカルト（夢→懐疑→確実性）、右にボストロム（シミュレーション→確率計算）を配置し、同じ問いに対する3つの応答を視覚化。</p>
-    <div class="img-ph-prompt">
-      <p class="img-ph-prompt-lbl">画像生成プロンプト</p>
-      <p class="img-ph-prompt-txt">鳥獣戯画タッチのトリプティック（三連画）。左:蛙が蝶とともに微笑む（荘子）。中央:蛙が鏡に向かって考え込む（デカルト）。右:蛙がコンピュータの画面を覗き込む（ボストロム）。墨と朱の二色刷り。</p>
-    </div>
-  </div>
-  <p class="img-caption">Fig. 2 — 同じ問いへの3つの応答（イメージ）</p>
+  <img src="img_reflection.jpg" alt="水面に映る木々の反射" loading="lazy" style="width:100%;display:block;">
+  <p class="img-caption">どちらが本物で、どちらが映像か——荘子が問うたのは、この境界そのものだった（イメージ）</p>
 </div>
 
 <p class="body-text fade">21世紀の私たちは、ニック・ボストロムの<span class="tip" onclick="toggleTip(this)">シミュレーション仮説<span class="tip-box"><strong>シミュレーション仮説</strong><br>哲学者ニック・ボストロムが2003年に提唱。十分に発達した文明がコンピュータ上に意識をシミュレートできるなら、私たちがシミュレーションの中にいる確率は極めて高い、という議論。</span></span>や映画『マトリックス』を通じて、同じ問いに再び出会っている。だが荘子の寓話が2300年後の今でも色褪せないのは、それが「私たちの現実は偽物かもしれない」という不安の物語ではないからだ。それは「どちらであっても構わない」という自由の物語なのだ。</p>

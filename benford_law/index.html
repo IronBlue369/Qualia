@@ -118,6 +118,11 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
 .person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
 
+.person-block-img{overflow:hidden;padding:0;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-wiki{margin-bottom:6px;}
+.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);letter-spacing:.04em;}
+.person-block-wiki a:hover{border-bottom-color:#8b1a1a;}
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
 .misconception-header{background:#3d3020;color:white;padding:11px 20px;}
 .misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
@@ -558,12 +563,11 @@ header.mh{padding:0 20px;}
 </div>
 
 <div class="person-block fade">
-  <div class="person-block-img">
-    <svg width="80" height="90" viewBox="0 0 80 90"><circle cx="40" cy="28" r="18" fill="#c8bfaa"/><rect x="22" y="44" width="36" height="28" rx="4" fill="#c8bfaa"/><circle cx="34" cy="25" r="2" fill="#7a6a55"/><circle cx="46" cy="25" r="2" fill="#7a6a55"/><rect x="32" y="33" width="16" height="3" rx="1.5" fill="#7a6a55"/><rect x="26" y="72" width="12" height="16" rx="2" fill="#c8bfaa"/><rect x="42" y="72" width="12" height="16" rx="2" fill="#c8bfaa"/></svg>
-  </div>
+  <div class="person-block-img"><img src="img_benford.jpg" alt="フランク・ベンフォード" loading="lazy"></div>
   <div class="person-block-body">
     <p class="person-block-name">Frank Benford</p>
     <p class="person-block-role">物理学者 / ゼネラル・エレクトリック研究所</p>
+    <p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Frank_Benford" target="_blank" rel="noopener">Wikipedia</a></p>
     <p class="person-block-desc">1883年ペンシルベニア州ジョンズタウン生まれ。6歳のときにジョンズタウン大洪水で自宅を失う。ミシガン大学卒業後、GEの照明工学研究所で18年、研究所で20年勤務。光学測定の専門家として109の論文と20の特許を残した。対数表の汚れに気づいた「ただの好奇心」が、彼の名を最も広く知らしめることになった。</p>
   </div>
 </div>
@@ -769,30 +773,11 @@ header.mh{padding:0 20px;}
 </div>
 
 <div class="img-placeholder fade">
-  <div class="img-ph-area">
-    <span class="img-ph-icon">📊</span>
-    <p class="img-ph-title">イラスト①｜対数表を前にした天文学者ニューカム</p>
-    <p class="img-ph-desc">19世紀の書斎で、分厚い対数表の前半ページの汚れに首をかしげるニューカムの姿。後半ページはきれいなまま。</p>
-    <div class="img-ph-prompt">
-      <p class="img-ph-prompt-lbl">鳥獣戯画タッチ画像プロンプト</p>
-      <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, an anthropomorphic frog scholar in 19th century study examining a large open book of logarithm tables, the early pages visibly worn and darkened while later pages remain clean, the frog tilts its head curiously, Japanese scroll painting aesthetic, no text</p>
-    </div>
-  </div>
-  <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+  <img src="img_newcomb.jpg" alt="サイモン・ニューカム" loading="lazy" style="width:100%;display:block;">
+  <p class="img-caption">サイモン・ニューカム（1835–1909）。対数表の汚れに最初に気づいた天文学者</p>
 </div>
 
-<div class="img-placeholder fade">
-  <div class="img-ph-area">
-    <span class="img-ph-icon">🔍</span>
-    <p class="img-ph-title">イラスト②｜数字のパレードと対数のものさし</p>
-    <p class="img-ph-desc">1から9までの数字が行進している。先頭の1が大きく堂々と歩き、後ろに行くほど小さくなる。対数スケールの不均等な目盛りの上を歩いている構図。</p>
-    <div class="img-ph-prompt">
-      <p class="img-ph-prompt-lbl">鳥獣戯画タッチ画像プロンプト</p>
-      <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, a parade of anthropomorphic digits 1 through 9 as frogs and rabbits marching on a logarithmic ruler, digit 1 is the tallest and most confident, each subsequent digit progressively smaller, Japanese scroll painting aesthetic, no text</p>
-    </div>
-  </div>
-  <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
-</div>
+
 
 <div class="sec-rule fade"><span class="sec-label">参考文献</span><div class="sec-line"></div></div>
 <div class="ref-list">

@@ -104,6 +104,8 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
 .person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
 
+.person-block.no-img{display:block;}
+.person-block.no-img .person-block-body{border-left:none;}
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
 .misconception-header{background:#3d3020;color:white;padding:11px 20px;}
 .misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
@@ -506,10 +508,7 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">答えは、まったく逆の方向にあった。群れの秩序は上から降りてくるのではなく、下から立ち上がる。各個体が<strong>自分のすぐ隣の仲間だけ</strong>を見て、ごく単純なルールに従って動く。その結果として——誰も設計していないのに——全体に美しい秩序が現れる。これを<span class="tip" onclick="toggleTip(this)">創発<span class="tip-box"><strong>創発（emergence）</strong><br>個々の要素の振る舞いからは予測できない性質が、全体のレベルで新しく出現すること。蟻の巣、脳の意識、交通渋滞なども創発の例とされる。</span></span>と呼ぶ。</p>
 
-<div class="person-block fade">
-<div class="person-block-img">
-<svg width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="22" r="14" fill="#c8bfaa"/><ellipse cx="30" cy="55" rx="22" ry="16" fill="#c8bfaa"/></svg>
-</div>
+<div class="person-block no-img fade">
 <div class="person-block-body">
 <p class="person-block-name">クレイグ・レイノルズ</p>
 <p class="person-block-role">Craig W. Reynolds — コンピュータ科学者</p>
@@ -767,16 +766,8 @@ header.mh{padding:0 20px;}
 <p class="body-text fade">これは鳥の話だけではない。蟻の巣を考えてほしい。女王蟻は兵隊蟻に命令を出していない。各個体が<span class="tip" onclick="toggleTip(this)">フェロモン<span class="tip-box"><strong>フェロモン</strong><br>昆虫などが体外に分泌する化学物質。蟻の場合、餌を見つけた個体がフェロモンの道を残し、他の蟻がそれを辿ることで効率的な餌探しが実現する。誰かが全体を設計したわけではない。</span></span>という化学物質の痕跡に反応して行動しているだけだ。それでも蟻の巣は、最短経路の発見、温度調節、死体の運搬といった高度な「問題解決」を実現している。交通渋滞の波もそうだ。ドライバーの一人ひとりは前の車の速度に反応しているだけで、渋滞を「作ろう」としている人は誰もいない。</p>
 
 <div class="img-placeholder fade">
-<div class="img-ph-area">
-<span class="img-ph-icon">🖼️</span>
-<p class="img-ph-title">イラスト①｜ムクドリの群れと蟻の列が重なるシーン</p>
-<p class="img-ph-desc">上半分に夕暮れの空を舞うムクドリの大群（ミュアミュレーション）、下半分に地面を行進する蟻の隊列。中央で二つの群れが鏡像のように交差する構図。「上も下も、同じ原理で動いている」ことを示唆する。</p>
-<div class="img-ph-prompt">
-<p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
-<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, upper half: murmuration of hundreds of birds swirling in evening sky, lower half: procession of ants marching along a branch, mirror composition where bird flock and ant trail echo each other's shape, Japanese scroll painting aesthetic, no text</p>
-</div>
-</div>
-<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+<img src="img_murmuration.jpg" alt="都市の上空を舞う鳥の大群" loading="lazy" style="width:100%;display:block;">
+<p class="img-caption">街の上空を覆う鳥の群れ。数千羽が一糸乱れぬ飛行を見せるが、指揮者はどこにもいない</p>
 </div>
 
 <p class="body-text fade">私たちは「秩序があるなら設計者がいるはずだ」と考えがちだ。これは人間の認知に深く埋め込まれた傾向で、心理学では<span class="tip" onclick="toggleTip(this)">目的論的思考<span class="tip-box"><strong>目的論的思考（teleological thinking）</strong><br>物事に目的や意図があると考える思考の傾向。「雲は雨を降らすためにある」のような考え方。人間は幼少期からこの傾向を持ち、秩序のある現象を見ると「誰かがそう設計した」と直感的に判断しやすい。</span></span>と呼ばれる。川の流れを見て「水が海に行こうとしている」と感じるのと同じ構造だ。</p>

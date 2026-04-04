@@ -466,18 +466,8 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">警察が写真を見せると、ウィーラーは心底驚いた顔でこう言ったという。<strong>「でも俺はレモン汁を塗ったんだ」</strong>（"But I wore the juice."）。レモン汁は透明インクに使える。だからレモン汁を顔に塗ればカメラに映らないはずだ——それが彼の論理だった。実行前にポラロイドカメラで「テスト」までしていた。おそらくカメラの向きが悪かったか、フィルムの不具合で、写真に顔は映らなかった。彼はそれを成功の証拠だと解釈した。</p>
 
-<div class="img-placeholder fade">
-<div class="img-ph-area">
-<span class="img-ph-icon">🖼️</span>
-<p class="img-ph-title">イラスト①｜レモン汁を顔に塗り、カメラに向かう男</p>
-<p class="img-ph-desc">銀行の窓口カウンター。背の低いがっしりした男が、レモン汁で顔をてからせながら防犯カメラに堂々と向き合っている。カメラのレンズは男の顔をはっきりと捉えている。</p>
-<div class="img-ph-prompt">
-<p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
-<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, a stout frog character standing at a bank counter confidently smiling at a surveillance camera, lemon juice dripping from his face, the camera clearly capturing his face, Japanese scroll painting aesthetic, no text</p>
-</div>
-</div>
-<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
-</div>
+<!-- Photo: Possessed Photography, Pexels License -->
+<div class="img-placeholder fade" style="border-style:solid;"><img src="img_cctv.jpg" alt="壁面に設置された防犯カメラ" loading="lazy" style="width:100%;display:block;"><p class="img-caption">ウィーラーはこのカメラに堂々と微笑みかけた。レモン汁が自分を透明にすると信じて。</p></div>
 
 <p class="body-text fade">この話がコーネル大学の社会心理学者<span class="tip" onclick="toggleTip(this)">デイヴィッド・ダニング<span class="tip-box"><strong>David Dunning（1961–）</strong><br>コーネル大学、現在はミシガン大学の社会心理学者。自己認識と判断の歪みを専門とする。</span></span>の目に留まった。彼は思った——ウィーラーが銀行強盗として無能なら、おそらく<em>自分が無能であることを知る能力においても無能</em>なのだ。大学院生の<span class="tip" onclick="toggleTip(this)">ジャスティン・クルーガー<span class="tip-box"><strong>Justin Kruger</strong><br>当時コーネル大学大学院生、現在はニューヨーク大学の心理学者。</span></span>とともに、その直感を科学にする研究が始まった。</p>
 
@@ -786,17 +776,72 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade"><strong>第二の層：あの有名なグラフが示していた「劇的な差」は、かなりの部分が統計的な見せかけである可能性がある。</strong>平均への回帰と平均以上効果を組み合わせるだけで、実際にメタ認知の欠如がなくてもグラフは同じ形になる。Gignac &amp; Zajenkowski（2024）の分析では、ダニング＝クルーガー効果と呼べる過大評価が顕著に現れるのはIQ換算で55程度——人口の0.14%という極めて限られた集団に限られると推定されている。</p>
 
-<div class="img-placeholder fade">
-<div class="img-ph-area">
-<span class="img-ph-icon">🖼️</span>
-<p class="img-ph-title">イラスト②｜「ネットで広まったグラフ」と「原論文のグラフ」の比較</p>
-<p class="img-ph-desc">左：ネットで流布するU字型のグラフ（出典不明、「Mt. Stupid」のラベル付き）。右：原論文の実際のグラフ（4つの四分位群の棒グラフ）。2つがまったく違う形であることが一目でわかる構図。</p>
-<div class="img-ph-prompt">
-<p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
-<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, two frog scholars in traditional Japanese robes standing before two different scrolls showing contrasting graph shapes, one scroll shows a dramatic mountain curve the other shows modest bar chart, Japanese scroll painting aesthetic, no text</p>
+<div class="dk-graph-compare fade" style="margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:white;">
+<div style="padding:12px 20px;background:#f3efe6;border-bottom:1px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;">図｜ネットで広まったグラフ vs 原論文の実際のデータ</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+
+<!-- 左: ネットで広まったグラフ（出典不明） -->
+<div style="padding:20px 24px;border-right:1px solid #e0d8c8;">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#c4392a;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;">✗ ネットで広まったグラフ</p>
+<svg viewBox="0 0 260 160" style="width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
+<line x1="30" y1="140" x2="250" y2="140" stroke="#c8bfaa" stroke-width="1"/>
+<line x1="30" y1="140" x2="30" y2="10" stroke="#c8bfaa" stroke-width="1"/>
+<text x="140" y="156" font-family="Source Sans 3,sans-serif" font-size="9" fill="#b0a090" text-anchor="middle">知識・経験 →</text>
+<text x="12" y="80" font-family="Source Sans 3,sans-serif" font-size="9" fill="#b0a090" text-anchor="middle" transform="rotate(-90,12,80)">自信 →</text>
+<path d="M35,130 Q60,130 80,25 Q95,25 110,120 Q140,140 180,100 Q220,60 245,50" fill="none" stroke="#8b1a1a" stroke-width="2.5" stroke-linecap="round"/>
+<text x="80" y="18" font-family="Source Sans 3,sans-serif" font-size="8" fill="#8b1a1a" text-anchor="middle" font-weight="600">Mt. Stupid</text>
+<circle cx="80" cy="25" r="2.5" fill="#8b1a1a"/>
+</svg>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;line-height:1.6;margin-top:8px;">出典不明。クルーガーもダニングも描いていない。「Mt. Stupid」という用語も原論文にはない。</p>
+</div>
+
+<!-- 右: 原論文の実際のデータ（Study 2: 論理的推論） -->
+<div style="padding:20px 24px;">
+<p style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#1a5a30;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;">✓ 原論文のデータ（Study 2）</p>
+<svg viewBox="0 0 260 170" style="width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
+<line x1="40" y1="140" x2="250" y2="140" stroke="#c8bfaa" stroke-width="1"/>
+<line x1="40" y1="140" x2="40" y2="36" stroke="#c8bfaa" stroke-width="1"/>
+<line x1="40" y1="114" x2="250" y2="114" stroke="#e0d8c8" stroke-width="0.5" stroke-dasharray="3,3"/>
+<line x1="40" y1="88" x2="250" y2="88" stroke="#e0d8c8" stroke-width="0.5" stroke-dasharray="3,3"/>
+<line x1="40" y1="62" x2="250" y2="62" stroke="#e0d8c8" stroke-width="0.5" stroke-dasharray="3,3"/>
+<line x1="40" y1="36" x2="250" y2="36" stroke="#e0d8c8" stroke-width="0.5" stroke-dasharray="3,3"/>
+<text x="36" y="143" font-family="Source Sans 3,sans-serif" font-size="8" fill="#b0a090" text-anchor="end">0</text>
+<text x="36" y="117" font-family="Source Sans 3,sans-serif" font-size="8" fill="#b0a090" text-anchor="end">25</text>
+<text x="36" y="91" font-family="Source Sans 3,sans-serif" font-size="8" fill="#b0a090" text-anchor="end">50</text>
+<text x="36" y="65" font-family="Source Sans 3,sans-serif" font-size="8" fill="#b0a090" text-anchor="end">75</text>
+<text x="36" y="39" font-family="Source Sans 3,sans-serif" font-size="8" fill="#b0a090" text-anchor="end">100</text>
+<text x="10" y="88" font-family="Source Sans 3,sans-serif" font-size="8" fill="#b0a090" text-anchor="middle" transform="rotate(-90,10,88)">パーセンタイル</text>
+
+<!-- 下位Q: 実際12, 自己評価68 -->
+<rect x="55" y="127.5" width="16" height="12.5" fill="#c8bfaa" rx="1"/>
+<rect x="75" y="69.3" width="16" height="70.7" fill="#8b1a1a" rx="1"/>
+<text x="73" y="155" font-family="Source Sans 3,sans-serif" font-size="7.5" fill="#7a6a55" text-anchor="middle">下位</text>
+
+<!-- 第2Q: 実際37, 自己評価54 -->
+<rect x="105" y="101.5" width="16" height="38.5" fill="#c8bfaa" rx="1"/>
+<rect x="125" y="83.8" width="16" height="56.2" fill="#8b1a1a" rx="1"/>
+<text x="123" y="155" font-family="Source Sans 3,sans-serif" font-size="7.5" fill="#7a6a55" text-anchor="middle">第2</text>
+
+<!-- 第3Q: 実際62, 自己評価63 -->
+<rect x="155" y="75.5" width="16" height="64.5" fill="#c8bfaa" rx="1"/>
+<rect x="175" y="74.5" width="16" height="65.5" fill="#8b1a1a" rx="1"/>
+<text x="173" y="155" font-family="Source Sans 3,sans-serif" font-size="7.5" fill="#7a6a55" text-anchor="middle">第3</text>
+
+<!-- 上位Q: 実際86, 自己評価72 -->
+<rect x="205" y="50.6" width="16" height="89.4" fill="#c8bfaa" rx="1"/>
+<rect x="225" y="65.1" width="16" height="74.9" fill="#8b1a1a" rx="1"/>
+<text x="223" y="155" font-family="Source Sans 3,sans-serif" font-size="7.5" fill="#7a6a55" text-anchor="middle">上位</text>
+
+<!-- 凡例 -->
+<rect x="60" y="18" width="8" height="8" fill="#c8bfaa" rx="1"/>
+<text x="72" y="25" font-family="Source Sans 3,sans-serif" font-size="7.5" fill="#7a6a55">実際の成績</text>
+<rect x="130" y="18" width="8" height="8" fill="#8b1a1a" rx="1"/>
+<text x="142" y="25" font-family="Source Sans 3,sans-serif" font-size="7.5" fill="#7a6a55">自己評価</text>
+</svg>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;line-height:1.6;margin-top:8px;">Kruger & Dunning (1999) Study 2（論理的推論テスト）の概数値に基づく再構成。原論文のグラフは折れ線グラフ。</p>
 </div>
 </div>
-<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+<p style="padding:10px 20px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;background:#f3efe6;">左のU字カーブはインターネット上で数百万回シェアされたが、原論文にこのグラフは存在しない。右が原論文の実際の形式に近いデータ。両者がまったく異なることに注目。なお、このグラフの解釈自体にも統計的な批判がある（本文参照）。</p>
 </div>
 
 <p class="body-text fade"><strong>第三の層：インターネット上で広まった「Mt. Stupid（愚かの山）」のグラフは、原論文とは完全に別物だ。</strong>「Mt. Stupid」とは、知識がほんの少しある段階で自信がピークに達するとされる地点のことで、「自信」がまず急上昇し、やがて落ち込み、再び緩やかに上がるU字型のグラフが添えられる。このグラフの出典は不明で、クルーガーもダニングも描いていない。にもかかわらず、これが「ダニング＝クルーガー効果のグラフ」として数百万回シェアされている。<em>効果を説明するために使われているグラフ自体が、効果の誤解を広めている</em>。</p>
