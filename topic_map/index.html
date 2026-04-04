@@ -331,84 +331,178 @@ const categories=[
 const catMap={};categories.forEach(c=>catMap[c.id]=c);
 
 const articles=[
-  {id:'confirmation',cat:'cog',title:'確証バイアス',desc:'自分の信念を支持する情報ばかり集め、矛盾する情報を無視してしまう傾向。',url:'confirmation_bias_v3.html'},
-  {id:'anchoring',cat:'cog',title:'アンカリング効果',desc:'最初に提示された数値が、その後の判断を引きずる。',url:null},
-  {id:'loss_aversion',cat:'cog',title:'損失回避',desc:'得る喜びより失う苦痛の方が大きい。',url:null},
-  {id:'framing',cat:'cog',title:'フレーミング効果',desc:'同じ情報でも提示の仕方で判断が変わる。',url:null},
-  {id:'dunning_kruger',cat:'cog',title:'ダニング＝クルーガー効果',desc:'能力が低いほど自分を過大評価してしまう。',url:null},
-  {id:'sunk_cost',cat:'cog',title:'サンクコスト錯誤',desc:'すでに投じたコストに引きずられて合理的判断ができなくなる。',url:null},
-  {id:'base_rate',cat:'cog',title:'基準率の無視',desc:'鮮やかな個別事例に引きずられ、統計的な確率を忘れる。',url:null},
-  {id:'skinner',cat:'behav',title:'スキナー箱',desc:'ランダム報酬が最も強い依存を生む。ガチャの源流。',url:'skinner_box_v6.html'},
-  {id:'reward_error',cat:'behav',title:'報酬予測誤差',desc:'期待と現実のズレがドーパミンを放出させる。',url:null},
-  {id:'marshmallow',cat:'behav',title:'マシュマロ実験',desc:'「我慢できる子は成功する」——再検証で揺らいだ結論。',url:null},
-  {id:'barnum',cat:'social',title:'バーナム効果',desc:'誰にでも当てはまる記述を「自分だけに当てはまる」と感じる。',url:null},
-  {id:'asch',cat:'social',title:'アッシュの同調実験',desc:'明らかに間違った答えでも、周囲に合わせてしまう。',url:null},
+  // === 認知バイアス (cog) ===
+  {id:'confirmation',cat:'cog',title:'確証バイアス',desc:'自分の信念を支持する情報ばかり集め、矛盾する情報を無視してしまう傾向。',url:'confirmation_bias'},
+  {id:'anchoring',cat:'cog',title:'アンカリング効果',desc:'最初に提示された数値が、その後の判断を引きずる。',url:'anchoring_effect'},
+  {id:'loss_aversion',cat:'cog',title:'損失回避',desc:'得る喜びより失う苦痛の方が大きい。',url:'loss_aversion'},
+  {id:'framing',cat:'cog',title:'フレーミング効果',desc:'同じ情報でも提示の仕方で判断が変わる。',url:'framing_effect'},
+  {id:'dunning_kruger',cat:'cog',title:'ダニング＝クルーガー効果',desc:'能力が低いほど自分を過大評価してしまう。',url:'dunning_kruger'},
+  {id:'sunk_cost',cat:'cog',title:'サンクコスト錯誤',desc:'すでに投じたコストに引きずられて合理的判断ができなくなる。',url:'sunk_cost_fallacy'},
+  {id:'base_rate',cat:'cog',title:'基準率の無視',desc:'鮮やかな個別事例に引きずられ、統計的な確率を忘れる。',url:'base_rate_neglect'},
+  {id:'survivorship_bias',cat:'cog',title:'生存者バイアス',desc:'成功例だけを見て判断を歪める。沈んだ船は語らない。',url:'survivorship_bias'},
+  // === 行動心理学 (behav) ===
+  {id:'skinner',cat:'behav',title:'スキナー箱',desc:'ランダム報酬が最も強い依存を生む。ガチャの源流。',url:'skinner_box'},
+  {id:'reward_error',cat:'behav',title:'報酬予測誤差',desc:'期待と現実のズレがドーパミンを放出させる。',url:'reward_prediction_error'},
+  {id:'marshmallow',cat:'behav',title:'マシュマロ実験',desc:'「我慢できる子は成功する」——再検証で揺らいだ結論。',url:'marshmallow_test'},
+  {id:'dopamine_starvation',cat:'behav',title:'ネズミはドーパミンを選んで餓死した',desc:'1954年、脳の快楽中枢に電極を刺されたネズミは食事も睡眠も放棄した。',url:'dopamine_starvation'},
+  {id:'prisoners_dilemma',cat:'behav',title:'囚人のジレンマ',desc:'互いに裏切るのが合理的。しかし協力した方が得になる。',url:'prisoners_dilemma'},
+  {id:'happiness_chemicals',cat:'behav',title:'幸福を作る4つの物質',desc:'ドーパミン・セロトニン・オキシトシン・エンドルフィン。幸福感の化学。',url:'happiness_chemicals'},
+  // === 社会心理学 (social) ===
+  {id:'barnum',cat:'social',title:'バーナム効果',desc:'誰にでも当てはまる記述を「自分だけに当てはまる」と感じる。',url:'barnum_effect'},
+  {id:'asch',cat:'social',title:'アッシュの同調実験',desc:'明らかに間違った答えでも、周囲に合わせてしまう。',url:'asch_conformity'},
   {id:'milgram',cat:'social',title:'ミルグラム実験',desc:'権威に服従して、他人に致死的な電気ショックを与えてしまう。',url:null},
   {id:'bystander',cat:'social',title:'傍観者効果',desc:'人が多いほど助けない。責任の分散。',url:null},
-  {id:'color',cat:'percep',title:'色は存在しない',desc:'色は外界にはない。脳が電磁波に「色」を与えている。',url:'color_v7.html'},
-  {id:'checker',cat:'percep',title:'チェッカーシャドウ錯視',desc:'同じ色が違う色に見える。脳が照明を補正している。',url:'checker_shadow.html'},
-  {id:'sound',cat:'percep',title:'音は存在しない',desc:'空気の振動に「音」はない。鼓膜と脳が音を作る。',url:'sound_does_not_exist.html'},
-  {id:'twelve_tones',cat:'percep',title:'なぜ12音か',desc:'鍵盤が12なのは偶然ではない。周波数比の数学が決めた。',url:'c01_twelve_tones_v6.html'},
-  {id:'mary',cat:'phil',title:'メアリーの部屋',desc:'すべてを知る科学者が初めて赤を見たとき、知識は増えるか。',url:'mary_room_v5.html'},
-  {id:'theseus',cat:'phil',title:'テセウスの船',desc:'部品をすべて入れ替えた船は、まだ同じ船か。',url:null},
+  {id:'foot_in_door',cat:'social',title:'フット・イン・ザ・ドア',desc:'小さな要求を通してから大きな要求を通す。承諾の連鎖。',url:'foot_in_the_door'},
+  {id:'halo_effect',cat:'social',title:'ハロー効果',desc:'ひとつの良い特徴が、他のすべてを良く見せてしまう。',url:'hallo_effect'},
+  // === 知覚・錯覚 (percep) ===
+  {id:'color',cat:'percep',title:'色は存在しない',desc:'色は外界にはない。脳が電磁波に「色」を与えている。',url:'color'},
+  {id:'checker',cat:'percep',title:'チェッカーシャドウ錯視',desc:'同じ色が違う色に見える。脳が照明を補正している。',url:'checker_shadow'},
+  {id:'sound',cat:'percep',title:'音は存在しない',desc:'空気の振動に「音」はない。鼓膜と脳が音を作る。',url:'sound_does_not_exist'},
+  {id:'twelve_tones',cat:'percep',title:'なぜ12音か',desc:'鍵盤が12なのは偶然ではない。周波数比の数学が決めた。',url:'twelve_tones'},
+  {id:'color_primaries',cat:'percep',title:'色の三原色 vs 光の三原色',desc:'絵具を混ぜると暗くなり、光を混ぜると白くなる。正反対の理由。',url:'color_primaries'},
+  {id:'flavor_nose',cat:'percep',title:'味は鼻で感じている',desc:'味覚の大半は嗅覚。鼻をつまむとリンゴもジャガイモも区別できない。',url:'flavor_nose'},
+  {id:'thermal_grill',cat:'percep',title:'サーマルグリル錯覚',desc:'温かいものと冷たいものを交互に触ると、痛みを感じる。',url:'thermal_grill'},
+  // === 脳と意識 (brain) ===
+  {id:'memory',cat:'brain',title:'記憶は再構築される',desc:'想起するたびに神経が再接続され、記憶は少しずつ書き換わる。',url:'memory_reconsolidation'},
+  {id:'libet',cat:'brain',title:'リベット実験',desc:'意識的「決断」の0.3秒前に脳が動いている。自由意志への疑問。',url:'libet_free_will'},
+  // === 数学・論理 (math) ===
+  {id:'monty',cat:'math',title:'モンティ・ホール問題',desc:'ドアを変えた方が確率2倍。直感は確率を裏切る。',url:'monty_hall'},
+  {id:'birthday',cat:'math',title:'誕生日のパラドックス',desc:'23人で同じ誕生日のペアがいる確率は50%を超える。',url:'birthday_paradox'},
+  {id:'mandelbrot',cat:'math',title:'マンデルブロ集合',desc:'z = z² + c。単純な式が無限の複雑さを生む。',url:'mandelbrot_set'},
+  {id:'langton',cat:'math',title:'ラングトンのアリ',desc:'2つのルールだけ。混沌から突然、秩序が現れる。',url:'langton_ant'},
+  {id:'life_game',cat:'math',title:'ライフゲーム',desc:'生死4ルールから自己複製体が出現する。',url:'life_game'},
+  {id:'fibonacci',cat:'math',title:'フィボナッチ数列',desc:'ひまわりの種、松ぼっくりの螺旋。自然のパターンの正体。',url:'fibonacci'},
+  {id:'benford',cat:'math',title:'ベンフォードの法則',desc:'自然データの先頭数字は1が最多。会計不正の検出にも使われる。',url:'benford_law'},
+  {id:'why_base_ten',cat:'math',title:'なぜ10進数なのか',desc:'指が10本だったから。バビロニアは60進、マヤは20進だった。',url:'why_base'},
+  {id:'why_binary',cat:'math',title:'なぜ2進数か',desc:'ライプニッツからシャノンへ。スイッチのON/OFFが計算になった。',url:'why_binary'},
+  {id:'boids',cat:'math',title:'群れに指揮者はいない',desc:'3つのルールだけで鳥の群れが再現できる。指揮者は不要。',url:'boids'},
+  // === 思考実験・哲学 (phil) ===
+  {id:'mary',cat:'phil',title:'メアリーの部屋',desc:'すべてを知る科学者が初めて赤を見たとき、知識は増えるか。',url:'mary_room'},
+  {id:'theseus',cat:'phil',title:'テセウスの船',desc:'部品をすべて入れ替えた船は、まだ同じ船か。',url:'ship_of_theseus'},
   {id:'trolley',cat:'phil',title:'トロッコ問題',desc:'5人を救うために1人を犠牲にするか。功利主義の岐路。',url:null},
   {id:'cave',cat:'phil',title:'洞窟の比喩',desc:'影しか見たことのない囚人。知覚しているのは「影」かもしれない。',url:null},
-  {id:'double_slit',cat:'phys',title:'二重スリット実験',desc:'粒子を1つずつ飛ばしても干渉が起きる。観測すると消える。',url:'double_slit_v3.html'},
+  {id:'butterfly_dream',cat:'phil',title:'胡蝶の夢',desc:'蝶の夢を見たのか、蝶が人間の夢を見ているのか。2300年前の問い。',url:'butterfly_dream'},
+  {id:'structuralism',cat:'phil',title:'構造主義',desc:'選択は構造に規定されている。「自由」の檻。',url:'structuralism'},
+  {id:'existentialism',cat:'phil',title:'実存主義',desc:'人間には生まれつきの目的がない。自由の刑に処せられている。',url:'existentialism'},
+  // === 物理・宇宙 (phys) ===
+  {id:'double_slit',cat:'phys',title:'二重スリット実験',desc:'粒子を1つずつ飛ばしても干渉が起きる。観測すると消える。',url:'double_slit'},
   {id:'entanglement',cat:'phys',title:'量子もつれ',desc:'離れた2粒子の状態が瞬時に相関する。',url:null},
   {id:'entropy',cat:'phys',title:'エントロピー',desc:'秩序は放っておけば崩れる。時間の矢の正体。',url:null},
-  {id:'monty',cat:'math',title:'モンティ・ホール問題',desc:'ドアを変えた方が確率2倍。直感は確率を裏切る。',url:'monty_hall_v12.html'},
-  {id:'birthday',cat:'math',title:'誕生日のパラドックス',desc:'23人で同じ誕生日のペアがいる確率は50%を超える。',url:'birthday_paradox.html'},
-  {id:'mandelbrot',cat:'math',title:'マンデルブロ集合',desc:'z = z² + c。単純な式が無限の複雑さを生む。',url:'mandelbrot_set.html'},
-  {id:'langton',cat:'math',title:'ラングトンのアリ',desc:'2つのルールだけ。混沌から突然、秩序が現れる。',url:'langton_ant.html'},
-  {id:'life_game',cat:'math',title:'ライフゲーム',desc:'生死4ルールから自己複製体が出現する。',url:null},
+  {id:'quantum_computer',cat:'phys',title:'量子コンピューター',desc:'「速い」のではない。古典コンピューターとは計算の仕方が根本的に違う。',url:'quantum_computer'},
+  {id:'piezoelectric',cat:'phys',title:'圧電効果',desc:'石を押すと電気が生まれる。ライター、クオーツ時計、タッチスクリーン。',url:'piezoelectric_quartz'},
+  // === 生命・進化 (life) ===
   {id:'cell_replace',cat:'life',title:'細胞の入れ替わり',desc:'体の細胞は数年でほぼ入れ替わる。物質的にはもう別人。',url:null},
   {id:'mitochondria',cat:'life',title:'ミトコンドリア',desc:'かつて別の生物だった。20億年前の共生が今も続く。',url:null},
   {id:'crispr',cat:'life',title:'CRISPR',desc:'細菌の防御機構が遺伝子編集のハサミになった。',url:null},
-  {id:'correlation',cat:'culture',title:'相関≠因果',desc:'アイスクリームの売上と溺死者数。相関するが原因ではない。',url:null},
+  {id:'naked_mole_rat',cat:'life',title:'ハダカデバネズミ',desc:'30年以上生き、がんにほぼならない。老化の法則の例外。',url:'naked_mole_rat'},
+  {id:'plant_communication',cat:'life',title:'植物は会話しているかもしれない',desc:'揮発性化合物で隣の植物に害虫を警告する。「会話」と呼ぶかは解釈の問題。',url:'plant_communication'},
+  // === 科学と文化 (culture) ===
+  {id:'correlation',cat:'culture',title:'相関≠因果',desc:'アイスクリームの売上と溺死者数。相関するが原因ではない。',url:'correlation_causation'},
   {id:'reproducibility',cat:'culture',title:'再現性の危機',desc:'有名な心理学実験の多くが、追試で再現できない。',url:null},
+  {id:'skeuomorphism',cat:'culture',title:'スキューモーフィズム',desc:'デジカメのシャッター音、ゴミ箱アイコン。存在しない体験の模倣。',url:'skeuomorphism'},
+  {id:'cubism',cat:'culture',title:'なぜ絵画を壊したのか',desc:'ピカソとブラック。写真の登場が、知覚そのものを描く方向へ導いた。',url:'cubism'},
+  {id:'impressionism',cat:'culture',title:'なぜ絵の具を混ぜないのか',desc:'モネ、スーラ。網膜の上で色を混ぜることを狙った。',url:'impressionism_divisionism'},
+  {id:'perspective',cat:'culture',title:'「正しく見える」は発明だった',desc:'ブルネレスキ1415年。遠近法は自然ではなく技術だった。',url:'perspective'},
 ];
 const artMap={};articles.forEach(a=>artMap[a.id]=a);
 
 const connections=[
+  // --- 認知バイアス内 ---
   {source:'confirmation',target:'framing',label:'判断を歪める'},
   {source:'confirmation',target:'anchoring',label:'初期情報への固着'},
   {source:'confirmation',target:'base_rate',label:'情報の偏った収集'},
   {source:'loss_aversion',target:'sunk_cost',label:'損失への過敏'},
   {source:'loss_aversion',target:'framing',label:'提示で判断が変わる'},
+  {source:'dunning_kruger',target:'confirmation',label:'自己認識の歪み'},
+  {source:'survivorship_bias',target:'confirmation',label:'偏ったサンプル'},
+  {source:'survivorship_bias',target:'base_rate',label:'見えないデータ'},
+  // --- 行動心理学内 ---
   {source:'skinner',target:'reward_error',label:'報酬と行動'},
   {source:'skinner',target:'marshmallow',label:'自制と報酬'},
+  {source:'dopamine_starvation',target:'skinner',label:'快楽中枢と依存'},
+  {source:'dopamine_starvation',target:'reward_error',label:'ドーパミンの暴走'},
+  {source:'happiness_chemicals',target:'reward_error',label:'報酬系の化学'},
+  {source:'happiness_chemicals',target:'dopamine_starvation',label:'幸福とドーパミン'},
+  {source:'prisoners_dilemma',target:'loss_aversion',label:'裏切りの合理性'},
+  // --- 行動 × 社会 ---
   {source:'skinner',target:'milgram',label:'行動の制御'},
+  {source:'skinner',target:'confirmation',label:'行動主義 vs 認知'},
+  // --- 社会心理学内 ---
   {source:'barnum',target:'confirmation',label:'信じたいものを信じる'},
   {source:'asch',target:'milgram',label:'社会的圧力'},
   {source:'asch',target:'bystander',label:'集団の中の個人'},
+  {source:'foot_in_door',target:'asch',label:'承諾と同調'},
+  {source:'foot_in_door',target:'framing',label:'段階的な説得'},
+  {source:'halo_effect',target:'barnum',label:'印象の歪み'},
+  {source:'halo_effect',target:'confirmation',label:'第一印象の固着'},
+  // --- 知覚クラスター ---
   {source:'color',target:'checker',label:'脳が現実を構築する'},
   {source:'color',target:'sound',label:'感覚は構成される'},
   {source:'color',target:'mary',label:'クオリアの問題'},
   {source:'color',target:'cave',label:'知覚の限界'},
+  {source:'color',target:'color_primaries',label:'色の物理と知覚'},
   {source:'sound',target:'twelve_tones',label:'聴覚と物理'},
+  {source:'flavor_nose',target:'color',label:'感覚は脳が作る'},
+  {source:'flavor_nose',target:'sound',label:'五感の構成'},
+  {source:'thermal_grill',target:'flavor_nose',label:'感覚の統合と錯覚'},
+  {source:'color_primaries',target:'impressionism',label:'色の科学と芸術'},
+  {source:'color_primaries',target:'checker',label:'色の知覚'},
+  // --- 脳と意識 ---
+  {source:'memory',target:'confirmation',label:'記憶と確証の歪み'},
+  {source:'memory',target:'marshmallow',label:'再検証と記憶'},
+  {source:'libet',target:'trolley',label:'道徳的判断と自由意志'},
+  {source:'libet',target:'existentialism',label:'自由意志の問い'},
+  {source:'libet',target:'structuralism',label:'選択は自由か'},
+  // --- 哲学クラスター ---
   {source:'mary',target:'cave',label:'知識と経験の断絶'},
   {source:'theseus',target:'cell_replace',label:'同一性の問い'},
   {source:'trolley',target:'loss_aversion',label:'価値の比較'},
+  {source:'trolley',target:'milgram',label:'道徳的判断'},
+  {source:'butterfly_dream',target:'cave',label:'現実とは何か'},
+  {source:'butterfly_dream',target:'double_slit',label:'観測と夢'},
+  {source:'structuralism',target:'asch',label:'構造と同調'},
+  {source:'existentialism',target:'structuralism',label:'自由 vs 構造'},
+  {source:'existentialism',target:'trolley',label:'選択の重み'},
+  // --- 物理クラスター ---
   {source:'double_slit',target:'mary',label:'観測者の問題'},
   {source:'double_slit',target:'entanglement',label:'量子力学の基礎'},
   {source:'double_slit',target:'cave',label:'現実とは何か'},
+  {source:'quantum_computer',target:'double_slit',label:'量子力学の応用'},
+  {source:'quantum_computer',target:'entanglement',label:'量子の実用'},
+  {source:'entanglement',target:'entropy',label:'物理法則の根底'},
   {source:'entropy',target:'life_game',label:'秩序と無秩序'},
+  // --- 数学クラスター ---
   {source:'monty',target:'birthday',label:'直感が確率を裏切る'},
   {source:'monty',target:'base_rate',label:'確率の誤認'},
   {source:'birthday',target:'base_rate',label:'確率の直感的誤り'},
   {source:'mandelbrot',target:'langton',label:'単純から複雑へ'},
   {source:'mandelbrot',target:'life_game',label:'創発'},
   {source:'langton',target:'life_game',label:'セルオートマトン'},
+  {source:'langton',target:'boids',label:'単純ルールの創発'},
+  {source:'boids',target:'life_game',label:'創発と群知能'},
+  {source:'fibonacci',target:'mandelbrot',label:'自然のパターン'},
+  {source:'fibonacci',target:'benford',label:'数の法則'},
+  {source:'benford',target:'correlation',label:'データの読み方'},
+  {source:'why_base_ten',target:'why_binary',label:'記数法の歴史'},
+  {source:'why_binary',target:'life_game',label:'0と1の世界'},
+  // --- 生命クラスター ---
+  {source:'mitochondria',target:'cell_replace',label:'自己の生物学'},
+  {source:'crispr',target:'mitochondria',label:'遺伝子の物語'},
+  {source:'naked_mole_rat',target:'cell_replace',label:'老化と細胞'},
+  {source:'plant_communication',target:'boids',label:'脳なき知性'},
+  // --- 科学と文化クラスター ---
   {source:'correlation',target:'confirmation',label:'誤った推論'},
   {source:'correlation',target:'reproducibility',label:'科学の作法'},
   {source:'reproducibility',target:'marshmallow',label:'再検証'},
-  {source:'dunning_kruger',target:'confirmation',label:'自己認識の歪み'},
-  {source:'mitochondria',target:'cell_replace',label:'自己の生物学'},
-  {source:'crispr',target:'mitochondria',label:'遺伝子の物語'},
-  {source:'entanglement',target:'entropy',label:'物理法則の根底'},
-  {source:'skinner',target:'confirmation',label:'行動主義 vs 認知'},
-  {source:'trolley',target:'milgram',label:'道徳的判断'},
+  {source:'cubism',target:'perspective',label:'遠近法の解体'},
+  {source:'cubism',target:'color',label:'知覚と芸術'},
+  {source:'impressionism',target:'color',label:'色の科学を実践'},
+  {source:'impressionism',target:'cubism',label:'近代絵画の流れ'},
+  {source:'perspective',target:'cave',label:'「見える」の発明'},
+  {source:'skeuomorphism',target:'memory',label:'馴染みの模倣'},
+  {source:'piezoelectric',target:'sound',label:'振動と物理'},
 ];
+
 
 function calcFS(t,h){const a=h-48;const m=a/(t.length*1.25);return Math.max(9,Math.min(16,Math.floor(m)))}
 
@@ -541,7 +635,7 @@ function openCard(id){
   document.querySelectorAll('.card-conn-item').forEach(el=>el.addEventListener('click',()=>{closeCard();const tid=el.dataset.id;const bEl=bookEls[tid];if(bEl){bEl.scrollIntoView({behavior:'smooth',block:'center'});const row=bEl.closest('.shelf-books');if(row){const off=bEl.offsetLeft-row.offsetWidth/2+bEl.offsetWidth/2;row.scrollTo({left:off,behavior:'smooth'})}}setTimeout(()=>select(tid),500)}));
   // Update read link
   const readLink=document.getElementById('card-read');
-  if(a.url){readLink.href=a.url;readLink.style.display='block';}
+  if(a.url){readLink.href='https://qualiajournal.com/'+a.url;readLink.style.display='block';}
   else{readLink.style.display='none';}
   document.getElementById('card-overlay').classList.add('show');document.getElementById('catalog-card').classList.add('show');
 }
