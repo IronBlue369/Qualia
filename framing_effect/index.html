@@ -105,6 +105,8 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
 .person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
 .person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block.no-img{display:block;}
+.person-block.no-img .person-block-body{border-left:none;}
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
 .misconception-header{background:#3d3020;color:white;padding:11px 20px;}
 .misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
@@ -526,10 +528,7 @@ header.mh{padding:0 20px;}
 <p class="quote-attr">— Amos Tversky & Daniel Kahneman, Science (1981)</p>
 </div>
 
-<div class="person-block fade">
-<div class="person-block-img">
-<svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg" width="80"><circle cx="40" cy="30" r="18" fill="#c8bfaa"/><rect x="18" y="52" width="44" height="32" rx="8" fill="#c8bfaa"/><circle cx="32" cy="26" r="2" fill="#7a6a55"/><circle cx="48" cy="26" r="2" fill="#7a6a55"/><path d="M35 34 Q40 38 45 34" stroke="#7a6a55" fill="none" stroke-width="1.5"/></svg>
-</div>
+<div class="person-block no-img fade">
 <div class="person-block-body">
 <p class="person-block-name">Amos Tversky & Daniel Kahneman</p>
 <p class="person-block-role">認知心理学者 / 行動経済学の創始者</p>
@@ -569,17 +568,9 @@ header.mh{padding:0 20px;}
 </div>
 </div>
 
-<div class="img-placeholder fade">
-<div class="img-ph-area">
-<span class="img-ph-icon">🎨</span>
-<p class="img-ph-title">イラスト①｜同じ絵、違う額縁</p>
-<p class="img-ph-desc">同じ一枚の絵が2つの異なる額縁に入っている。左の額縁は金色で華やか、右の額縁は黒くて重苦しい。絵を覗き込む2匹の蛙が、まったく違う表情をしている。</p>
-<div class="img-ph-prompt">
-<p class="img-ph-prompt-lbl">画像生成プロンプト</p>
-<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, two identical landscape paintings in different frames, left frame ornate and bright, right frame dark and heavy, two anthropomorphic frogs viewing them with contrasting expressions, one smiling one frowning, Japanese scroll painting aesthetic, no text</p>
-</div>
-</div>
-<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+<div class="img-placeholder fade" style="border-style:solid;">
+<img src="img_frames.jpg" alt="2つの異なる額縁に入った同じ風景画" loading="lazy" style="width:100%;display:block;">
+<p class="img-caption">同じ絵でも、額縁が変われば受け取る印象は変わる。フレーミング効果は、この当たり前の視覚体験を、意思決定の場面で追体験している。</p>
 </div>
 
 <hr class="art-rule">
@@ -764,17 +755,9 @@ header.mh{padding:0 20px;}
 <p class="culture-desc">セイラーは公共政策におけるフレーミングの応用を「ナッジ」という概念で発展させた。臓器提供のオプトアウト方式（デフォルトを「提供する」に設定）は、フレーミング効果を制度設計に組み込んだ代表例である。</p>
 </div>
 
-<div class="img-placeholder fade">
-<div class="img-ph-area">
-<span class="img-ph-icon">🎨</span>
-<p class="img-ph-title">イラスト②｜二重フレームで見る</p>
-<p class="img-ph-desc">一つの風景を左右に分割した構図。左半分は晴天の額縁、右半分は曇天の額縁で同じ風景を見ている。中央に立つ蛙が、左右を交互に見比べながら考え込んでいる。</p>
-<div class="img-ph-prompt">
-<p class="img-ph-prompt-lbl">画像生成プロンプト</p>
-<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, split composition showing same landscape through two different window frames, left window bright and ornate right window dark and plain, anthropomorphic frog standing between them looking back and forth thoughtfully, Japanese scroll painting aesthetic, no text</p>
-</div>
-</div>
-<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+<div class="img-placeholder fade" style="border-style:solid;">
+<img src="img_window.jpg" alt="窓枠越しに見える丘陵地帯の風景" loading="lazy" style="width:100%;display:block;">
+<p class="img-caption">窓という物理的なフレームが風景を切り取るように、言葉のフレームも現実を切り取る。フレームを外して見ることはできない——違うフレームを重ねて見ることだけができる。</p>
 </div>
 
 <hr class="art-rule">

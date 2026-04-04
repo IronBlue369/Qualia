@@ -106,6 +106,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
 .person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
 .person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-img{overflow:hidden;padding:0;}.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}.person-block.no-img{display:block;}.person-block.no-img .person-block-body{border-left:none;}
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
 .misconception-header{background:#3d3020;color:white;padding:11px 20px;}
 .misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
@@ -531,10 +532,7 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">結果は違った。売り手の希望価格の中央値は<strong>5.25ドル</strong>。買い手が出してもいいと答えた価格の中央値は<strong>2.25〜2.75ドル</strong>。持っている人は、持っていない人のおよそ2倍の値段をつけた。ほんの数分前にたまたまもらっただけのマグに。</p>
 
-<div class="person-block fade">
-<div class="person-block-img">
-<svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="30" r="16" fill="#c8bfaa"/><ellipse cx="40" cy="68" rx="24" ry="18" fill="#c8bfaa"/><circle cx="34" cy="28" r="2" fill="#7a6a55"/><circle cx="46" cy="28" r="2" fill="#7a6a55"/><path d="M36 34c2 2 6 2 8 0" stroke="#7a6a55" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
-</div>
+<div class="person-block no-img fade">
 <div class="person-block-body">
 <p class="person-block-name">エイモス・トヴェルスキー</p>
 <p class="person-block-role">Amos Tversky, 1937–1996</p>
@@ -552,18 +550,7 @@ header.mh{padding:0 20px;}
 <p class="quote-attr">— Daniel Kahneman, ノーベル賞受賞講演 (2002)</p>
 </div>
 
-<div class="img-placeholder fade">
-<div class="img-ph-area">
-<span class="img-ph-icon">🎨</span>
-<p class="img-ph-title">イラスト①｜コーヒーマグを抱きしめるウサギ</p>
-<p class="img-ph-desc">マグカップをしっかり抱え込む擬人化されたウサギ。その隣で、別のウサギがコインを差し出しているが、マグのウサギは首を振っている。</p>
-<div class="img-ph-prompt">
-<p class="img-ph-prompt-lbl">画像生成プロンプト</p>
-<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, anthropomorphic rabbit clutching a coffee mug protectively, another rabbit offering coins with outstretched paw, first rabbit shaking head, Japanese scroll painting aesthetic, no text, warm parchment background</p>
-</div>
-</div>
-<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
-</div>
+<div class="img-placeholder fade" style="border-style:solid;"><img src="img_mug.jpg" alt="ストライプ柄のマグカップ" loading="lazy" style="width:100%;display:block;"><p class="img-caption">たまたま配られたマグカップに、人はわずか数分で「手放したくないもの」という価値を与える。</p></div>
 
 <div class="misconception fade">
 <div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
@@ -781,18 +768,7 @@ header.mh{padding:0 20px;}
 <p class="culture-desc">プロスペクト理論を一般読者向けに解説した代表的な著作。損失回避については第25章〜第26章で詳しく扱われている。行動経済学に興味を持った人の最初の一冊として広く読まれている。</p>
 </div>
 
-<div class="img-placeholder fade">
-<div class="img-ph-area">
-<span class="img-ph-icon">🎨</span>
-<p class="img-ph-title">イラスト②｜S字型の価値関数</p>
-<p class="img-ph-desc">擬人化されたカエルが巻物に描かれたS字カーブを眺めている。カーブの左側（損失側）は急勾配で、右側（利得側）は緩やかな傾き。カエルが「こっちのほうが急だ」と指差している。</p>
-<div class="img-ph-prompt">
-<p class="img-ph-prompt-lbl">画像生成プロンプト</p>
-<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, anthropomorphic frog examining a scroll with an S-shaped curve drawn on it, the left side of the curve is steep, the right side gentle, frog pointing at the steep side with a surprised expression, Japanese scroll painting aesthetic, no text, warm parchment background</p>
-</div>
-</div>
-<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
-</div>
+<!-- Graph: Pharexia, CC BY-SA 4.0, via Wikimedia Commons. Modified: colors and labels changed. Modified version licensed under CC BY-SA 4.0. Source: https://commons.wikimedia.org/wiki/File:Prospect_Theory_Graph.svg --><div class="diagram-wrap fade"><svg viewBox="0 0 900 563" style="max-width:720px;width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg"><rect x="26.366" y="56.026" width="692.124" height="225.474" fill="#f3efe6"/><rect x="26.366" y="283.501" width="692.124" height="225.474" fill="#ede8dc"/><path d="M374.559,281.906l0,-197.289" fill="none" stroke="#1a1208" stroke-width="2"/><path d="M374.56,56.026l11.589,28.591l-23.18,0l11.591,-28.591Z" fill="#1a1208"/><path d="M26.366,281.906l677.83,0" fill="none" stroke="#1a1208" stroke-width="2" stroke-linecap="butt"/><path d="M732.785,281.907l-28.59,11.589l0,-23.18l28.59,11.591Z" fill="#1a1208"/><path d="M374.56,281.906l0,227.069" fill="none" stroke="#1a1208" stroke-width="2" stroke-linecap="butt"/><path d="M718.489,176.732c0,0 -342.871,-26.961 -343.93,105.174c-1.058,132.135 -171.384,208.873 -335.051,227.069" fill="none" stroke="#8b1a1a" stroke-width="3.5" stroke-linecap="round"/><circle cx="374.56" cy="281.906" r="4" fill="#8b1a1a"/><text x="375" y="40" font-family="Source Sans 3,sans-serif" font-size="20" font-weight="600" fill="#1a1208" text-anchor="middle">価値</text><text x="745" y="275" font-family="Source Sans 3,sans-serif" font-size="20" font-weight="600" fill="#1a1208">結果</text><text x="390" y="305" font-family="Source Sans 3,sans-serif" font-size="18" font-weight="400" fill="#7a6a55">参照点</text><text x="150" y="180" font-family="Source Sans 3,sans-serif" font-size="32" font-weight="600" fill="#1a1208">利得</text><text x="150" y="410" font-family="Source Sans 3,sans-serif" font-size="32" font-weight="600" fill="#8b1a1a">損失</text><text x="560" y="155" font-family="Source Sans 3,sans-serif" font-size="20" font-weight="400" fill="#7a6a55" font-style="italic">緩やか</text><text x="60" y="490" font-family="Source Sans 3,sans-serif" font-size="20" font-weight="400" fill="#8b1a1a" font-style="italic">急勾配</text></svg><p class="diagram-caption">損失側の傾きは利得側より約2倍急になる。数字にすると違和感があるが、日常の感覚には馴染む。（原図: Pharexia, CC BY-SA 4.0 / 改変）</p></div>
 
 <hr class="art-rule">
 

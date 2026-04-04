@@ -118,7 +118,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
 .person-block-wiki{margin-bottom:8px;}
 .person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
-.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.person-block.no-img{display:block;}.person-block.no-img .person-block-body{border-left:none;}
 
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
 .misconception-header{background:#3d3020;color:white;padding:11px 20px;}
@@ -510,21 +510,7 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">リベットが知りたかったのは、単純だが大胆な問いだった。<strong>人が「動こう」と意識する瞬間と、脳が動く準備を始める瞬間は、どちらが先なのか。</strong></p>
 
-<div class="person-block fade">
-  <div class="person-block-img">
-    <svg width="88" height="120" viewBox="0 0 88 120" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="44" cy="28" rx="16" ry="20" fill="#b0a090"/>
-      <ellipse cx="44" cy="15" rx="17" ry="11" fill="#c8bfaa"/>
-      <rect x="39" y="46" width="10" height="8" fill="#c8bfaa"/>
-      <path d="M16 110 L22 54 Q44 64 66 54 L72 110 Z" fill="#3d3020"/>
-      <rect x="56" y="62" width="12" height="8" rx="1" fill="#e0d8c8"/>
-      <rect x="57" y="63" width="10" height="6" rx="1" fill="#faf8f3"/>
-      <circle cx="39" cy="26" r="2" fill="#3d3020"/>
-      <circle cx="49" cy="26" r="2" fill="#3d3020"/>
-      <path d="M38 34 Q44 38 50 34" stroke="#7a6a55" stroke-width="1" fill="none"/>
-      <text x="44" y="118" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55" font-weight="600" letter-spacing="1">LIBET</text>
-    </svg>
-  </div>
+<div class="person-block no-img fade">
   <div class="person-block-body">
     <p class="person-block-name">ベンジャミン・リベット</p>
     <p class="person-block-role">Benjamin Libet, 1916–2007</p>
@@ -633,19 +619,6 @@ header.mh{padding:0 20px;}
 <p class="body-text fade">被験者に与えられた指示は三つだけ。一つ、好きなタイミングで手首をすばやく曲げること。二つ、事前に「いつ動こう」と計画しないこと——衝動的に、思いつくままに動くこと。三つ、「動こうと思った瞬間」に光の点がどの位置にあったかを覚えておき、後で報告すること。同時に、脳波計が準備電位を、<span class="tip" onclick="toggleTip(this)">筋電図<span class="tip-box"><strong>筋電図（EMG: Electromyography）</strong><br>筋肉の電気活動を記録する装置。皮膚の上に電極を貼り、筋肉が収縮する正確なタイミングを測定できる。リベットの実験では、手首の動作の「実際の開始時刻」を特定するために使われた。</span></span>が実際の動作のタイミングをそれぞれ記録する。この三つのデータ——脳の準備、意識の報告、筋肉の動き——を突き合わせることで、意志と行動の時間関係が浮かび上がる。</p>
 
 <p class="body-text fade">5名の被験者が、それぞれ6回以上のセッションを行い、各セッションで約40回の動作を繰り返した。合計数百回のデータが集められた。</p>
-
-<div class="img-placeholder fade">
-  <div class="img-ph-area">
-    <span class="img-ph-icon">🧠</span>
-    <p class="img-ph-title">イラスト①｜リベットの実験風景</p>
-    <p class="img-ph-desc">頭に電極をつけた被験者が椅子に座り、目の前の光る時計盤を見つめている。横にはオシロスコープと脳波計。白衣の研究者がメモを取っている。1980年代の質素な大学の実験室。</p>
-    <div class="img-ph-prompt">
-      <p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
-      <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, an anthropomorphic frog sitting in a chair with electrodes on its head, staring at a glowing clock face with a moving dot, next to an old oscilloscope and EEG machine, a scholarly crane in a lab coat taking notes, 1980s university lab atmosphere, Japanese scroll painting aesthetic, no text</p>
-    </div>
-  </div>
-  <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
-</div>
 
 <h2 class="fade">結果——私たちが思うフローと、実際のフロー。</h2>
 
@@ -990,17 +963,9 @@ header.mh{padding:0 20px;}
   <p class="culture-desc">HBOのテレビシリーズ『ウエストワールド』（2016–2022）は、AIホストたちの「意識の芽生え」を描く中で、リベットの実験と同じ構造の問いを繰り返している。ホストたちは自分の行動がプログラムなのか意志なのかを区別できない。人間も同じではないか——というのが、このドラマの不穏な問いかけだ。神経科学者サム・ハリスの著書『Free Will』（2012年）はリベットの実験を中心的な証拠として自由意志は幻想だと論じた。哲学者ダニエル・デネットは『Freedom Evolves』（2003年）で、リベットのデータを認めつつも、自由意志は「進化した能力」として存在すると反論している。</p>
 </div>
 
-<div class="img-placeholder fade">
-  <div class="img-ph-area">
-    <span class="img-ph-icon">⚖️</span>
-    <p class="img-ph-title">イラスト②｜自由意志の天秤</p>
-    <p class="img-ph-desc">天秤の左に「脳」（歯車と電気信号で描かれた脳のシルエット）、右に「意識」（目を閉じた人物の横顔）。どちらが重いか、まだ定まらずに揺れ続けている。</p>
-    <div class="img-ph-prompt">
-      <p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
-      <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, an anthropomorphic rabbit holding a balance scale, on one side a brain with gears and lightning, on the other side a meditating frog with closed eyes, the scale is tilting back and forth unsettled, contemplative atmosphere, Japanese scroll painting aesthetic, no text</p>
-    </div>
-  </div>
-  <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+<div class="img-placeholder fade" style="border-style:solid;text-align:center;">
+<img src="img_scale.jpg" alt="装飾的な金属製の古い天秤" loading="lazy" style="width:100%;max-width:500px;display:inline-block;">
+<p class="img-caption" style="text-align:left;">脳と意識、どちらが重いのか。天秤はまだ、わずかに揺れ続けている。</p>
 </div>
 
 <!-- 参考文献 -->
