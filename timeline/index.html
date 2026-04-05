@@ -280,10 +280,10 @@ const eras=[
   entries:[
     {year:-530,cat:'percep',title:'ピタゴラスの弦の実験',desc:'弦の長さの整数比が協和音を決める。音楽と数学の最初の接点。',published:false},
     {year:-300,cat:'phil',title:'洞窟の比喩（プラトン）',desc:'影しか見たことのない囚人。知覚の限界と「本当の現実」。',published:false},
-    {year:-300,cat:'phil',title:'胡蝶の夢（荘子）',desc:'私は蝶の夢を見た人か、人の夢を見ている蝶か。',url:'butterfly_dream_v3.html',published:true},
-    {year:75,cat:'phil',title:'テセウスの船',desc:'すべての部品を取り替えた後も、同じ船か。',url:'ship_of_theseus.html',published:true},
-    {year:1202,cat:'math',title:'フィボナッチ数列と自然のパターン',desc:'ひまわりの種、貝の螺旋。自然は数列を知っていた。',url:'fibonacci.html',published:true},
-    {year:1415,cat:'culture',title:'「正しく見える」は発明だった',desc:'ブルネレスキの透視図法。「正しく見える」は技術だった。',url:'perspective.html',published:true},
+    {year:-300,cat:'phil',title:'胡蝶の夢（荘子）',desc:'私は蝶の夢を見た人か、人の夢を見ている蝶か。',url:'/butterfly_dream',published:true},
+    {year:75,cat:'phil',title:'テセウスの船',desc:'すべての部品を取り替えた後も、同じ船か。',url:'/ship_of_theseus',published:true},
+    {year:1202,cat:'math',title:'フィボナッチ数列と自然のパターン',desc:'ひまわりの種、貝の螺旋。自然は数列を知っていた。',url:'/fibonacci',published:true},
+    {year:1415,cat:'culture',title:'「正しく見える」は発明だった',desc:'ブルネレスキの透視図法。「正しく見える」は技術だった。',url:'/perspective',published:true},
   ]
 },
 /* ── ERA 2: 近世 ── */
@@ -292,29 +292,31 @@ const eras=[
   title:'光と確率と記数法の世紀',
   narrative:'1585年、シモン・ステヴィンが小数の体系を整え、1666年にニュートンがプリズムで白色光を七色に分解した。光はスペクトルだった——つまり「赤いリンゴ」の赤は、リンゴの性質ではなく光の性質だった。1703年、ライプニッツが二進法を論文にした。ベイズは条件付き確率の定理を遺稿として残し、トーマス・ヤングは二重スリット実験で光の波動性を示した。記数法、光、確率、干渉——この時代の発見が、今の記事の驚くほど多くの土台になっている。',
   entries:[
-    {year:1585,cat:'math',title:'なぜ10進数なのか',desc:'指が10本だから——ではない。位取り記数法の革命。',url:'why_base.html',published:true},
-    {year:1666,cat:'percep',title:'色は存在しない',desc:'色は外界にはない。脳が電磁波に「色」を与えている。',url:'color_v7.html',published:true},
-    {year:1666,cat:'percep',title:'色の三原色 vs 光の三原色',desc:'減法混色と加法混色。正反対になる理由。',url:'color_primaries.html',published:true},
-    {year:1703,cat:'math',title:'なぜ2進数か',desc:'ライプニッツから始まり、シャノンのスイッチ回路へ。',url:'why_binary.html',published:true},
-    {year:1763,cat:'math',title:'基準率の無視（ベイズの定理）',desc:'99%正確な検査で陽性でも、実際の確率は低いかもしれない。',url:'base_rate_neglect.html',published:true},
-    {year:1801,cat:'phys',title:'二重スリット実験',desc:'粒子を1つずつ飛ばしても干渉が起きる。観測すると消える。',url:'double_slit_v3.html',published:true},
+    {year:1585,cat:'math',title:'なぜ10進数なのか',desc:'指が10本だから——ではない。位取り記数法の革命。',url:'/why_base',published:true},
+    {year:1666,cat:'percep',title:'色は存在しない',desc:'色は外界にはない。脳が電磁波に「色」を与えている。',url:'/color',published:true},
+    {year:1666,cat:'percep',title:'色の三原色 vs 光の三原色',desc:'減法混色と加法混色。正反対になる理由。',url:'/color_primaries',published:true},
+    {year:1703,cat:'math',title:'なぜ2進数か',desc:'ライプニッツから始まり、シャノンのスイッチ回路へ。',url:'/why_binary',published:true},
+    {year:1763,cat:'math',title:'基準率の無視（ベイズの定理）',desc:'99%正確な検査で陽性でも、実際の確率は低いかもしれない。',url:'/base_rate_neglect',published:true},
+    {year:1801,cat:'phys',title:'二重スリット実験',desc:'粒子を1つずつ飛ばしても干渉が起きる。観測すると消える。',url:'/double_slit',published:true},
   ]
 },
 /* ── ERA 3: 19世紀–1939 ── */
 {
-  yearLabel:'1874–\n1939',
+  yearLabel:'1863–\n1939',
   title:'測る時代',
-  narrative:'19世紀後半、科学は「知覚」と「行動」を測定可能なものとして扱い始めた。1874年、印象派の画家たちは筆触分割で網膜上の色の混合を狙い、1880年にキュリー兄弟は石を押すと電気が生まれることを発見した。ピアソンが相関係数を体系化し、ピカソが遠近法を壊し、ソーンダイクがハロー効果を命名した。スキナーはネズミの行動をレバーで制御し、ベンフォードは数字の先頭桁に法則を見つけた。1939年、A=440Hzが国際標準となり、誕生日のパラドックスが初めて論文に現れた——同じ年に第二次世界大戦が始まっている。',
+  narrative:'19世紀後半、科学は「知覚」と「行動」を測定可能なものとして扱い始めた。1863年、ヘルムホルツは空気の振動を分解して「音」を数学的に記述した。色も音も、世界の側ではなく脳の側にある——この発想が測定の時代の扉を開いた。1874年、印象派の画家たちは筆触分割で網膜上の色の混合を狙い、1880年にキュリー兄弟は石を押すと電気が生まれることを発見した。ピアソンが相関係数を体系化し、ピカソが遠近法を壊し、ソーンダイクがハロー効果を命名した。スキナーはネズミの行動をレバーで制御し、ベンフォードは数字の先頭桁に法則を見つけた。1939年、A=440Hzが国際標準となり、誕生日のパラドックスが初めて論文に現れた——同じ年に第二次世界大戦が始まっている。',
   entries:[
-    {year:1874,cat:'culture',title:'なぜ絵の具を混ぜないのか',desc:'印象派の筆触分割。網膜の上で色を混ぜることを狙った。',url:'impressionism_divisionism.html',published:true},
-    {year:1880,cat:'phys',title:'石を押すと、電気が生まれる',desc:'圧電効果。クオーツ時計もタッチスクリーンもこの原理。',url:'piezoelectric_quartz.html',published:true},
-    {year:1896,cat:'culture',title:'相関は因果ではない',desc:'ピアソンの相関係数。アイスと溺死者数は相関するが因果ではない。',url:'correlation_causation.html',published:true},
-    {year:1907,cat:'culture',title:'なぜ絵画を壊したのか',desc:'ピカソとキュビズム。写真の登場が「見る」の意味を変えた。',url:'cubism.html',published:true},
-    {year:1920,cat:'social',title:'ハロー効果',desc:'容姿が良い人は性格も良いと推測する。ひとつの特徴が全体を引っ張る。',url:'hallo_effect.html',published:true},
-    {year:1938,cat:'behav',title:'スキナー箱',desc:'ランダム報酬が最も強い依存を生む。ガチャの源流。',url:'skinner_box_v6.html',published:true},
-    {year:1938,cat:'math',title:'ベンフォードの法則',desc:'自然界の数値の先頭桁は「1」が最も多い。不正検出にも。',url:'benford_law.html',published:true},
-    {year:1939,cat:'math',title:'誕生日のパラドックス',desc:'23人集まれば、同じ誕生日のペアがいる確率は50%を超える。',url:'birthday_paradox.html',published:true},
-    {year:1939,cat:'percep',title:'なぜピアノは12音なのか',desc:'A=440Hzが国際標準に。周波数比の数学的妥協の歴史。',url:'c01_twelve_tones_v6.html',published:true},
+    {year:1863,cat:'percep',title:'音は存在しない',desc:'空気の振動が存在するだけ。「音」は脳の解釈。',url:'/sound_does_not_exist',published:true},
+    {year:1874,cat:'culture',title:'なぜ絵の具を混ぜないのか',desc:'印象派の筆触分割。網膜の上で色を混ぜることを狙った。',url:'/impressionism_divisionism',published:true},
+    {year:1880,cat:'phys',title:'石を押すと、電気が生まれる',desc:'圧電効果。クオーツ時計もタッチスクリーンもこの原理。',url:'/piezoelectric_quartz',published:true},
+    {year:1896,cat:'culture',title:'相関は因果ではない',desc:'ピアソンの相関係数。アイスと溺死者数は相関するが因果ではない。',url:'/correlation_causation',published:true},
+    {year:1896,cat:'percep',title:'サーマルグリル錯覚',desc:'温かいものと冷たいものを交互に触ると「熱い痛み」を感じる。',url:'/thermal_grill',published:true},
+    {year:1907,cat:'culture',title:'なぜ絵画を壊したのか',desc:'ピカソとキュビズム。写真の登場が「見る」の意味を変えた。',url:'/cubism',published:true},
+    {year:1920,cat:'social',title:'ハロー効果',desc:'容姿が良い人は性格も良いと推測する。ひとつの特徴が全体を引っ張る。',url:'/hallo_effect',published:true},
+    {year:1938,cat:'behav',title:'スキナー箱',desc:'ランダム報酬が最も強い依存を生む。ガチャの源流。',url:'/skinner_box',published:true},
+    {year:1938,cat:'math',title:'ベンフォードの法則',desc:'自然界の数値の先頭桁は「1」が最も多い。不正検出にも。',url:'/benford_law',published:true},
+    {year:1939,cat:'math',title:'誕生日のパラドックス',desc:'23人集まれば、同じ誕生日のペアがいる確率は50%を超える。',url:'/birthday_paradox',published:true},
+    {year:1939,cat:'percep',title:'なぜピアノは12音なのか',desc:'A=440Hzが国際標準に。周波数比の数学的妥協の歴史。',url:'/twelve_tones',published:true},
   ]
 },
 /* ── ERA 4: 1940–1966 ── */
@@ -323,16 +325,16 @@ const eras=[
   title:'認知の目覚め',
   narrative:'戦後の心理学は「行動を測る」段階から「思考の癖を測る」段階に入った。1943年、ウォルドは帰還した爆撃機の弾痕だけを見て装甲を語る軍の誤りを正し、サルトルは「人間は自由の刑に処せられている」と宣言した。バーナムは「誰にでも当てはまる文」が個人的に感じられることを示し、アッシュは集団の圧力で明らかな正解を曲げる人間を実験室に連れてきた。冷戦のさなかに囚人のジレンマが定式化され、ネズミは快楽中枢への電極を選んで餓死した。フリードマンのフット・イン・ザ・ドア実験が、小さな承諾から大きな服従への道を示したのもこの時代だ。',
   entries:[
-    {year:1943,cat:'cog',title:'生存者バイアス',desc:'帰還した機体の弾痕だけを見て判断する誤り。見えないデータが鍵。',url:'survivorship_bias.html',published:true},
-    {year:1943,cat:'phil',title:'自由の刑に処せられている',desc:'サルトルの実存主義。人間には生まれつきの目的がない。',url:'existentialism.html',published:true},
-    {year:1948,cat:'social',title:'バーナム効果',desc:'誰にでも当てはまる記述を「自分だけに当てはまる」と感じる。',url:'barnum_effect.html',published:true},
-    {year:1949,cat:'phil',title:'構造主義——「自由」の檻',desc:'レヴィ＝ストロース。選択は構造に規定されている。',url:'structuralism.html',published:true},
-    {year:1950,cat:'behav',title:'囚人のジレンマ',desc:'個人の合理的選択が全体の最悪結果を生む構造。',url:'prisoners_dilemma_v3.html',published:true},
-    {year:1951,cat:'social',title:'同調圧力（アッシュの実験）',desc:'明らかに間違った答えでも、周囲に合わせてしまう。',url:'asch_conformity.html',published:true},
-    {year:1954,cat:'behav',title:'ネズミはドーパミンを選んで餓死した',desc:'快楽中枢への電極。食事も睡眠も放棄した。',url:'dopamine_starvation_v7.html',published:true},
-    {year:1957,cat:'behav',title:'幸福を作る4つの物質',desc:'ドーパミン、セロトニン、オキシトシン、エンドルフィン。',url:'happiness_chemicals.html',published:true},
-    {year:1960,cat:'cog',title:'確証バイアス',desc:'自分の信念を支持する情報ばかり集めてしまう。',url:'confirmation_bias_v3.html',published:true},
-    {year:1966,cat:'social',title:'フット・イン・ザ・ドア',desc:'小さな承諾から大きな服従へ。一貫性の原理。',url:'foot_in_the_door.html',published:true},
+    {year:1943,cat:'cog',title:'生存者バイアス',desc:'帰還した機体の弾痕だけを見て判断する誤り。見えないデータが鍵。',url:'/survivorship_bias',published:true},
+    {year:1943,cat:'phil',title:'自由の刑に処せられている',desc:'サルトルの実存主義。人間には生まれつきの目的がない。',url:'/existentialism',published:true},
+    {year:1948,cat:'social',title:'バーナム効果',desc:'誰にでも当てはまる記述を「自分だけに当てはまる」と感じる。',url:'/barnum_effect',published:true},
+    {year:1949,cat:'phil',title:'構造主義——「自由」の檻',desc:'レヴィ＝ストロース。選択は構造に規定されている。',url:'/structuralism',published:true},
+    {year:1950,cat:'behav',title:'囚人のジレンマ',desc:'個人の合理的選択が全体の最悪結果を生む構造。',url:'/prisoners_dilemma',published:true},
+    {year:1951,cat:'social',title:'同調圧力（アッシュの実験）',desc:'明らかに間違った答えでも、周囲に合わせてしまう。',url:'/asch_conformity',published:true},
+    {year:1954,cat:'behav',title:'ネズミはドーパミンを選んで餓死した',desc:'快楽中枢への電極。食事も睡眠も放棄した。',url:'/dopamine_starvation',published:true},
+    {year:1957,cat:'behav',title:'幸福を作る4つの物質',desc:'ドーパミン、セロトニン、オキシトシン、エンドルフィン。',url:'/happiness_chemicals',published:true},
+    {year:1960,cat:'cog',title:'確証バイアス',desc:'自分の信念を支持する情報ばかり集めてしまう。',url:'/confirmation_bias',published:true},
+    {year:1966,cat:'social',title:'フット・イン・ザ・ドア',desc:'小さな承諾から大きな服従へ。一貫性の原理。',url:'/foot_in_the_door',published:true},
   ]
 },
 /* ── ERA 5: 1970–1987 ── */
@@ -341,21 +343,22 @@ const eras=[
   title:'バイアスとフラクタル',
   narrative:'1970年代、カーネマンとトヴェルスキーが人間の判断の系統的な歪みを次々と暴いた。アンカリング、損失回避、フレーミング——私たちの意思決定は思ったほど合理的ではなかった。奇妙なことに、ほぼ同じ時期に数学者たちは「単純な規則から複雑な形が生まれる」ことに夢中になっていた。マンデルブロは z=z²+c から無限の複雑さを引き出し、ラングトンのアリとボイドが「指揮者なしの秩序」を示した。リベットは脳波計で自由意志に最初の亀裂を入れ、ジャクソンは「知識と体験は同じか」という問いを思考実験に仕立てた。そして植物が化学物質で隣の木に警告を送っていることが初めて報告された。',
   entries:[
-    {year:1970,cat:'math',title:'ライフゲーム——4つのルールが宇宙を作る',desc:'生死4ルールから自己複製体が出現する。',url:'life_game.html',published:true},
-    {year:1972,cat:'behav',title:'マシュマロ実験の再解釈',desc:'我慢できる子は成功する——再検証で揺らいだ結論。',url:'marshmallow_test.html',published:true},
-    {year:1974,cat:'cog',title:'アンカリング効果',desc:'最初に見た数字がその後の判断を引きずる。',url:'anchoring_effect.html',published:true},
-    {year:1979,cat:'cog',title:'損失回避',desc:'得る喜びより失う苦痛の方が約2倍大きい。',url:'loss_aversion.html',published:true},
-    {year:1980,cat:'math',title:'マンデルブロ集合',desc:'z=z²+c。単純な式が無限の複雑さを生む。',url:'mandelbrot_set.html',published:true},
-    {year:1980,cat:'culture',title:'スキューモーフィズム',desc:'デジカメのシャッター音。存在しないものを模倣して安心させる。',url:'skeuomorphism.html',published:true},
-    {year:1981,cat:'cog',title:'フレーミング効果',desc:'「200人が助かる」と「400人が死ぬ」は同じなのに選択が変わる。',url:'framing_effect.html',published:true},
-    {year:1981,cat:'life',title:'ハダカデバネズミと老化の謎',desc:'30年以上生存、がんにほぼならない。老化の常識を覆す。',url:'naked_mole_rat.html',published:true},
-    {year:1982,cat:'phil',title:'マリーの部屋',desc:'すべてを知る科学者が初めて赤を見たとき、知識は増えるか。',url:'mary_room_v5.html',published:true},
-    {year:1982,cat:'phys',title:'量子コンピューターは「速い」のではない',desc:'重ね合わせと干渉で「間違った答えを打ち消す」仕組み。',url:'quantum_computer.html',published:true},
-    {year:1983,cat:'brain',title:'自由意志への疑問（リベット実験）',desc:'意識的「決断」の0.3秒前に脳が動いている。',url:'libet_free_will_v3.html',published:true},
-    {year:1983,cat:'life',title:'植物は会話しているかもしれない',desc:'揮発性有機化合物で隣の植物に害虫を警告する。',url:'plant_communication.html',published:true},
-    {year:1985,cat:'cog',title:'サンクコスト錯誤',desc:'すでに投じたコストに引きずられて判断できなくなる。',url:'sunk_cost_fallacy.html',published:true},
-    {year:1986,cat:'math',title:'ラングトンのアリ',desc:'2つのルールだけ。混沌から突然、秩序が現れる。',url:'langton_ant.html',published:true},
-    {year:1987,cat:'math',title:'群れに指揮者はいない',desc:'ボイド——3つのルールだけで鳥の群れの美しい隊形を再現。',url:'boids.html',published:true},
+    {year:1970,cat:'math',title:'ライフゲーム——4つのルールが宇宙を作る',desc:'生死4ルールから自己複製体が出現する。',url:'/life_game',published:true},
+    {year:1972,cat:'behav',title:'マシュマロ実験の再解釈',desc:'我慢できる子は成功する——再検証で揺らいだ結論。',url:'/marshmallow_test',published:true},
+    {year:1974,cat:'cog',title:'アンカリング効果',desc:'最初に見た数字がその後の判断を引きずる。',url:'/anchoring_effect',published:true},
+    {year:1979,cat:'cog',title:'損失回避',desc:'得る喜びより失う苦痛の方が約2倍大きい。',url:'/loss_aversion',published:true},
+    {year:1980,cat:'math',title:'マンデルブロ集合',desc:'z=z²+c。単純な式が無限の複雑さを生む。',url:'/mandelbrot_set',published:true},
+    {year:1980,cat:'culture',title:'スキューモーフィズム',desc:'デジカメのシャッター音。存在しないものを模倣して安心させる。',url:'/skeuomorphism',published:true},
+    {year:1981,cat:'cog',title:'フレーミング効果',desc:'「200人が助かる」と「400人が死ぬ」は同じなのに選択が変わる。',url:'/framing_effect',published:true},
+    {year:1981,cat:'life',title:'ハダカデバネズミと老化の謎',desc:'30年以上生存、がんにほぼならない。老化の常識を覆す。',url:'/naked_mole_rat',published:true},
+    {year:1982,cat:'phil',title:'マリーの部屋',desc:'すべてを知る科学者が初めて赤を見たとき、知識は増えるか。',url:'/mary_room',published:true},
+    {year:1982,cat:'phys',title:'量子コンピューターは「速い」のではない',desc:'重ね合わせと干渉で「間違った答えを打ち消す」仕組み。',url:'/quantum_computer',published:true},
+    {year:1982,cat:'percep',title:'味は鼻で感じている',desc:'舌で分かるのは5種類だけ。「味」の大部分は嗅覚が担う。',url:'/flavor_nose',published:true},
+    {year:1983,cat:'brain',title:'自由意志への疑問（リベット実験）',desc:'意識的「決断」の0.3秒前に脳が動いている。',url:'/libet_free_will',published:true},
+    {year:1983,cat:'life',title:'植物は会話しているかもしれない',desc:'揮発性有機化合物で隣の植物に害虫を警告する。',url:'/plant_communication',published:true},
+    {year:1985,cat:'cog',title:'サンクコスト錯誤',desc:'すでに投じたコストに引きずられて判断できなくなる。',url:'/sunk_cost_fallacy',published:true},
+    {year:1986,cat:'math',title:'ラングトンのアリ',desc:'2つのルールだけ。混沌から突然、秩序が現れる。',url:'/langton_ant',published:true},
+    {year:1987,cat:'math',title:'群れに指揮者はいない',desc:'ボイド——3つのルールだけで鳥の群れの美しい隊形を再現。',url:'/boids',published:true},
   ]
 },
 /* ── ERA 6: 1990–2000 ── */
@@ -364,11 +367,11 @@ const eras=[
   title:'ネットワークと再検証',
   narrative:'インターネットの爆発とともに、科学そのものが自らを問い直し始めた。モンティ・ホール問題がマリリン・ヴォス・サヴァントの回答で再び世界を騒がせ、報酬予測誤差のドーパミンコードが発見された。ダニング＝クルーガー効果が命名され、記憶が再構築されるという知見が蓄積された。チェッカーシャドウ錯視は「脳が照明を補正する」ことを一枚の画像で突きつけた。そして——かつて盤石だった実験結果の多くが追試で揺らぎ始めた。再現性の危機が静かに進行していた。',
   entries:[
-    {year:1990,cat:'math',title:'モンティ・ホール問題',desc:'ドアを変えた方が確率2倍。直感は確率を裏切る。',url:'monty_hall_v12.html',published:true},
-    {year:1995,cat:'percep',title:'チェッカーシャドウ錯視',desc:'同じ色なのに違って見える。脳の補正が見せる嘘。',url:'checker_shadow.html',published:true},
-    {year:1997,cat:'behav',title:'報酬予測誤差とドーパミン',desc:'期待と現実のズレがドーパミンを放出させる。',url:'reward_prediction_error.html',published:true},
-    {year:1999,cat:'cog',title:'ダニング＝クルーガー効果',desc:'能力が低いほど自分を過大評価する——再解釈が進行中。',url:'dunning_kruger.html',published:true},
-    {year:2000,cat:'brain',title:'記憶は毎回「再構築」される',desc:'思い出すたびに書き換わる。ビデオ的保存ではない。',url:'memory_reconsolidation.html',published:true},
+    {year:1990,cat:'math',title:'モンティ・ホール問題',desc:'ドアを変えた方が確率2倍。直感は確率を裏切る。',url:'/monty_hall',published:true},
+    {year:1995,cat:'percep',title:'チェッカーシャドウ錯視',desc:'同じ色なのに違って見える。脳の補正が見せる嘘。',url:'/checker_shadow',published:true},
+    {year:1997,cat:'behav',title:'報酬予測誤差とドーパミン',desc:'期待と現実のズレがドーパミンを放出させる。',url:'/reward_prediction_error',published:true},
+    {year:1999,cat:'cog',title:'ダニング＝クルーガー効果',desc:'能力が低いほど自分を過大評価する——再解釈が進行中。',url:'/dunning_kruger',published:true},
+    {year:2000,cat:'brain',title:'記憶は毎回「再構築」される',desc:'思い出すたびに書き換わる。ビデオ的保存ではない。',url:'/memory_reconsolidation',published:true},
     {year:2000,cat:'culture',title:'再現性の危機',desc:'有名な心理学実験の多くが、追試で再現できない。',published:false},
   ]
 }
@@ -376,11 +379,12 @@ const eras=[
 
 const simulNotes={
   '1666':'同じ1666年。ニュートンのプリズム実験が「色とは何か」の問いを二つに分岐させた。',
+  '1896':'同じ1896年。ピアソンが相関を数式にした年に、ソーンダイクがサーマルグリル錯覚を報告した——統計と知覚の科学が同時に芽吹いた。',
   '1938':'同じ1938年。スキナーのネズミとベンフォードの数字——行動と数学がすれ違う。',
   '1939':'同じ1939年。A=440Hzの国際標準化、誕生日のパラドックスの論文発表、そして第二次世界大戦の開戦。',
   '1943':'同じ1943年。ウォルドの生存者バイアスとサルトルの実存主義——統計と哲学がそれぞれの「見えないもの」を指した。',
   '1980':'1980年前後。フラクタルの無限とスキューモーフィズムの模倣——複雑さと単純化が同居した時代。',
-  '1982':'同じ1982年。マリーの部屋と量子コンピューターの着想——「知識の限界」と「計算の限界」が同時に問われた。',
+  '1982':'同じ1982年。マリーの部屋と量子コンピューターの着想、そして嗅覚が味覚の大半を担うという発見——「知ること」の境界が三方向から問い直された。',
   '1983':'同じ1983年。リベットが自由意志に亀裂を入れた年に、植物が化学物質で会話していることが初めて報告された。',
   '-300':'紀元前300年頃。プラトンと荘子が、互いの存在を知らないまま、同じ問いを立てた。',
   '2000':'2000年前後。記憶の再構築理論が確立し、心理学そのものの再現性が揺らぎ始めた。',
@@ -399,44 +403,32 @@ function buildControls(){
 }
 
 function toggleCat(btn){
-  const cat=btn.dataset.cat;
-  if(activeCats.has(cat)){activeCats.delete(cat);btn.classList.remove('active')}
-  else{activeCats.add(cat);btn.classList.add('active')}
-  applyFilters();
+  const c=btn.dataset.cat;
+  if(activeCats.has(c)){activeCats.delete(c);btn.classList.remove('active')}
+  else{activeCats.add(c);btn.classList.add('active')}
+  render();
 }
 
-function applyFilters(){
-  document.querySelectorAll('.entry').forEach(el=>{
-    const cat=el.dataset.cat;
-    el.style.display=activeCats.has(cat)?'':'none';
-  });
-  document.querySelectorAll('.simul-note').forEach(el=>{
-    const cluster=el.closest('.cluster');
-    if(!cluster)return;
-    let count=0;
-    cluster.querySelectorAll('.entry').forEach(e=>{if(e.style.display!=='none')count++});
-    el.style.display=count>1?'':'none';
-  });
-}
+buildControls();
 
 function render(){
-  buildControls();
   const tl=document.getElementById('tl');
   let html='';
-
   eras.forEach(era=>{
+    const visible=era.entries.filter(e=>activeCats.has(e.cat));
+    if(visible.length===0) return;
+
     html+=`<div class="era fade">`;
     html+=`<div class="era-head">`;
-    html+=`<div class="era-year-range">${era.yearLabel.replace('\n','<br>')}</div>`;
+    html+=`<div class="era-year-range">${era.yearLabel.replace(/\n/g,'<br>')}</div>`;
     html+=`<div class="era-title">${era.title}</div>`;
     html+=`</div>`;
     html+=`<div class="era-narrative">${era.narrative}</div>`;
 
     const groups={};
-    era.entries.forEach(e=>{
-      const k=e.year;
-      if(!groups[k])groups[k]=[];
-      groups[k].push(e);
+    visible.forEach(e=>{
+      if(!groups[e.year])groups[e.year]=[];
+      groups[e.year].push(e);
     });
     const sortedYears=Object.keys(groups).map(Number).sort((a,b)=>a-b);
 
