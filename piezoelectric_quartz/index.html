@@ -95,7 +95,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 
 /* PERSON BLOCK */
 .person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
-.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
+.person-block-img{background:#ede8dc;padding:0;overflow:hidden;}.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
 .person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
@@ -406,6 +406,9 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">水晶と聞くと、占いに使われる透明な球体を思い浮かべる人がいるかもしれない。だが水晶——化学式SiO₂——は地球上で最もありふれた鉱物のひとつだ。花崗岩の主成分であり、砂浜の砂粒の大半も水晶（石英）だ。道端の石ころの中にもある。特別な石ではない。<em>あまりにもありふれた石に、極めて特殊な性質が隠れていた</em>——それが圧電効果の発見を際立たせている。</p>
 
+<!-- Photo: JJ Harrison, CC BY-SA 2.5 -->
+<div class="img-placeholder fade" style="border-style:solid;background:#f3efe6;text-align:center;"><img src="img_quartz.jpg" alt="チベット産の水晶（石英）結晶" loading="lazy" style="max-width:100%;display:block;margin:0 auto;"><p class="img-caption">チベット産の水晶結晶（SiO₂）。ありふれた鉱物でありながら、原子配列の非対称性が圧電効果を生む。（原図: JJ Harrison, CC BY-SA 2.5）</p></div>
+
 
 
 <p class="body-text fade"><strong>結晶を押すと、電気が生まれる。</strong>これが<span class="tip" onclick="toggleTip(this)">圧電効果<span class="tip-box"><strong>圧電効果（piezoelectric effect）</strong><br>ギリシャ語の「piezein（押す）」に由来。特定の結晶に力を加えると電圧が生じる現象。逆に電圧をかけると結晶が変形する。ライターの着火がわかりやすい例。</span></span>だ。力を加えると結晶内部で正と負の電荷の中心がずれ、表面に電圧が発生する。1cm³の水晶に約2kNの力を正しい方向からかけると、12,500Vもの電圧が生じる。家庭用コンセントの100倍以上だ。ただし電荷量は極めて小さいので感電はしない。ライターの火花が痛くないのと同じだ。</p>
@@ -432,7 +435,7 @@ header.mh{padding:0 20px;}
 </table>
 
 
-<div class="person-block fade"><div class="person-block-img"><svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="30" r="16" fill="#c8bfaa"/><ellipse cx="40" cy="70" rx="24" ry="18" fill="#c8bfaa"/><circle cx="40" cy="30" r="14" fill="#e0d8c8"/><circle cx="35" cy="28" r="2" fill="#7a6a55"/><circle cx="45" cy="28" r="2" fill="#7a6a55"/><path d="M36 34 Q40 38 44 34" stroke="#7a6a55" fill="none" stroke-width="1.5"/></svg></div><div class="person-block-body"><p class="person-block-name">ピエール・キュリー</p><p class="person-block-role">Pierre Curie（1859–1906）</p><p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%94%E3%82%A8%E3%83%BC%E3%83%AB%E3%83%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%BC" target="_blank" rel="noopener">Wikipedia</a></p><p class="person-block-desc">21歳で兄ジャックとともに圧電効果を発見。磁性の研究（キュリー温度）を経て、妻マリーとの放射能研究へ。圧電効果で開発した電気計はラジウム発見にも使われた。46歳で馬車事故により死去。</p></div></div>
+<div class="person-block fade"><div class="person-block-img"><img src="img_curie.jpg" alt="ピエール・キュリー"></div><div class="person-block-body"><p class="person-block-name">ピエール・キュリー</p><p class="person-block-role">Pierre Curie（1859–1906）</p><p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%94%E3%82%A8%E3%83%BC%E3%83%AB%E3%83%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%BC" target="_blank" rel="noopener">Wikipedia</a></p><p class="person-block-desc">21歳で兄ジャックとともに圧電効果を発見。磁性の研究（キュリー温度）を経て、妻マリーとの放射能研究へ。圧電効果で開発した電気計はラジウム発見にも使われた。46歳で馬車事故により死去。</p></div></div>
 
 <div class="quote-block fade"><p class="quote-en">"These results were a credit to the Curies' imagination and perseverance, considering that they were obtained with nothing more than tinfoil, glue, wire, magnets and a jeweler's saw."</p><p class="quote-ja">これらの成果は、錫箔と接着剤と針金と磁石と糸鋸だけで得られたことを考えれば、キュリー兄弟の想像力と忍耐力の賜物だった。</p><p class="quote-attr">— PIEZO.COM "History of Piezoelectricity"、1880年の実験についての記述</p></div>
 
@@ -441,7 +444,8 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">発見から40年近く、圧電効果は「研究室の珍品」だった。ピエール自身はこの効果を放射能の測定に転用した——マリー・キュリーとともにラジウムを発見する過程で、圧電電気計が微弱な電荷を測る装置として活躍した。だが圧電効果そのものの応用は進まなかった。</p>
 
-<div class="img-placeholder fade"><div class="img-ph-area"><span class="img-ph-icon">🖼️</span><p class="img-ph-title">イラスト①｜キュリー兄弟の実験室</p><p class="img-ph-desc">兄弟が錫箔を貼った水晶片を万力で挟み、検電器の針が振れるのを見つめる場面。</p><div class="img-ph-prompt"><p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p><p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, two rabbit scholars in 19th century lab coats examining a crystal in a vise with tinfoil electrodes, one watching a galvanometer needle, lab bench with saw glue wire, Japanese scroll painting aesthetic, no text</p></div></div><p class="img-caption">イメージ図（画像生成AI使用予定）</p></div>
+<!-- Photo: Wellcome Collection, CC BY 4.0 -->
+<div class="img-placeholder fade" style="border-style:solid;background:#f3efe6;text-align:center;"><img src="img_electrometer.jpg" alt="ピエール・キュリーが自作した象限型電気計" loading="lazy" style="max-height:600px;width:auto;max-width:100%;display:block;margin:0 auto;"><p class="img-caption">キュリー兄弟が自作した象限型電気計。錫箔と接着剤と糸鋸で組み立てられた素朴な装置が、やがて放射能研究でラジウム発見の決め手となる。（原図: Wellcome Collection, CC BY 4.0）</p></div>
 
 <p class="body-text fade">転機は第一次世界大戦だった。1917年、フランスの物理学者<span class="tip" onclick="toggleTip(this)">ポール・ランジュバン<span class="tip-box"><strong>ポール・ランジュバン（Paul Langevin, 1872–1946）</strong><br>フランスの物理学者。水晶の圧電効果で超音波ソナーを開発。近代的ソナー技術の祖。</span></span>が、薄い水晶板を2枚の鋼板で挟んだ装置で超音波を海中に発射し、潜水艦からの反射を検出するソナーを開発した。圧電効果の初の実用的応用だ。</p>
 
@@ -519,7 +523,7 @@ header.mh{padding:0 20px;}
 
 <div class="culture-block fade"><p class="culture-title">MIT Media Lab『32,768 Times Per Second』</p><p class="culture-desc">クオーツ腕時計内部の電子機械的プロセスを人間が知覚できるスケールに拡大した機能する彫刻。1秒間に32,768回の振動が何を意味するかを目に見える形で体験させる。</p></div>
 
-<div class="img-placeholder fade"><div class="img-ph-area"><span class="img-ph-icon">🖼️</span><p class="img-ph-title">イラスト②｜1969年のクリスマス、東京</p><p class="img-ph-desc">セイコーの店頭に飾られたクオーツアストロン。金色のケース。価格札「450,000円」。隣にトヨタ・カローラのミニチュア。</p><div class="img-ph-prompt"><p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p><p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, 1969 Tokyo shop window display with gold wristwatch on velvet next to small car model with price tags, rabbit shoppers amazed, Japanese scroll painting aesthetic, no text</p></div></div><p class="img-caption">イメージ図（画像生成AI使用予定）</p></div>
+<div class="img-placeholder fade" style="border-style:solid;background:#f3efe6;text-align:center;"><img src="img_tuningfork.jpg" alt="音叉型水晶振動子のケースを外した状態" loading="lazy" style="max-width:100%;display:block;margin:0 auto;"><p class="img-caption">ケースを外した音叉型水晶振動子。実物は約3mm×1mm、米粒より小さい。この金属の音叉が1秒間に32,768回震えることで、スマートフォンもGPSも動いている。</p></div>
 
 <hr class="art-rule">
 <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>

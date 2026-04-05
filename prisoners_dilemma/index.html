@@ -106,6 +106,8 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
 .person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
 .person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block.no-img{display:block;}
+.person-block.no-img .person-block-body{border-left:none;}
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
 .misconception-header{background:#3d3020;color:white;padding:11px 20px;}
 .misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
@@ -508,8 +510,7 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">このゲームの名前が「囚人のジレンマ」になったのは、プリンストン大学の数学者<span class="tip" onclick="toggleTip(this)">アルバート・タッカー<span class="tip-box"><strong>Albert W. Tucker（1905–1995）</strong>カナダ生まれの数学者。プリンストン大学でナッシュの指導教官も務めた。囚人の物語を使って利得構造を説明し、「囚人のジレンマ」の名付け親となった。</span></span>がスタンフォード大学の心理学者たちにこのゲームを説明した際に、2人の囚人が検察の取引に直面する物語を即興で作ったことによる。抽象的な利得行列が、一瞬で人間の物語になった。</p>
 
-<div class="person-block fade">
-<div class="person-block-img">🎲</div>
+<div class="person-block no-img fade">
 <div class="person-block-body">
 <p class="person-block-name">ロバート・アクセルロッド</p>
 <p class="person-block-role">Political Scientist</p>
@@ -530,7 +531,7 @@ header.mh{padding:0 20px;}
 <div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">ゲーム理論は「人間の善悪」を論じるものだ。</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">善悪を問わない。特定の構造のもとで合理的行動がどんな結果を生むかを分析する数学的枠組み。</p></div></div>
 </div></div>
 
-<div class="img-placeholder fade"><div class="img-ph-area"><span class="img-ph-icon">🎨</span><p class="img-ph-title">イラスト①｜二匹の狐と取引</p><p class="img-ph-desc">格子越しに向かい合う二匹の狐。一方は相手に手を差し出し（協力）、もう一方は背後に何かを隠している（裏切り）。間に巻物が散らばっている。</p><div class="img-ph-prompt"><p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p><p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, two anthropomorphic foxes facing each other through a lattice barrier, one extending a paw in cooperation while the other hides something behind its back, scattered scrolls between them, Japanese scroll painting aesthetic, no text</p></div></div><p class="img-caption">イメージ図（画像生成AI使用予定）</p></div>
+<div class="img-placeholder fade" style="border-style:solid;"><img src="img_chess_knights.jpg" alt="向かい合う白と黒のチェスのナイト" loading="lazy" style="width:100%;display:block;"><p class="img-caption">2人プレイヤーの戦略的選択。協力か、裏切りか——囚人のジレンマの構造は、無数のゲームに埋め込まれている。</p></div>
 
 <hr class="art-rule">
 
@@ -651,7 +652,7 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">囚人のジレンマは教室のパズルではない。冷戦期の核軍拡競争——米ソ両国は「軍縮した方が双方にとって良い」と知っていながら、相手が軍縮しない可能性に怯えて軍拡を続けた。気候変動——どの国も排出削減が全体の利益になると知りつつ、自国だけが削減すれば経済的に不利になることを恐れて動けない。<span class="tip" onclick="toggleTip(this)">共有地の悲劇<span class="tip-box"><strong>共有地の悲劇（Tragedy of the Commons）</strong>1968年にギャレット・ハーディンが提唱。共有資源を個人が合理的に利用すると資源が枯渇する構造。多人数の囚人のジレンマとして理解できる。</span></span>——漁場の乱獲も大気汚染も、同じ構造が作動している。</p>
 
-<div class="img-placeholder fade"><div class="img-ph-area"><span class="img-ph-icon">🎨</span><p class="img-ph-title">イラスト②｜共有地を囲む動物たち</p><p class="img-ph-desc">池を囲む蛙、兎、猿、鹿。それぞれ魚を釣ろうとしているが池の水位が下がっている。蛙だけがその異変に気づいて水面を見つめている。</p><div class="img-ph-prompt"><p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p><p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, four anthropomorphic animals (frog rabbit monkey deer) sitting around a small pond each fishing, the water level is visibly low, the frog looks concerned at the shrinking water, Japanese scroll painting aesthetic, no text</p></div></div><p class="img-caption">イメージ図（画像生成AI使用予定）</p></div>
+<div class="img-placeholder fade" style="border-style:solid;"><img src="img_fishing_boat.jpg" alt="夕暮れの海で漁をする漁船のシルエット" loading="lazy" style="width:100%;display:block;"><p class="img-caption">漁場、大気、気候——誰のものでもない資源の上で、各人の合理的選択が積み重なると、資源は枯渇する。</p></div>
 
 <p class="body-text fade">しかし悲観だけが結論ではない。アクセルロッドのトーナメントが示したのは、<em>関係が繰り返される限り、協力は合理的に成立しうる</em>ということだった。鍵は「未来の影」——次にまた会う可能性が十分にあるとき、裏切りの短期的利益よりも協力の長期的利益を選ぶようになる。エリノア・オストロムの研究は、現実の共同体が国家の介入や市場原理に頼らずとも共有資源を持続可能に管理できることを実証した。</p>
 

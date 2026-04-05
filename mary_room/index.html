@@ -115,6 +115,8 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 .person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block.no-img{display:block;}
+.person-block.no-img .person-block-body{border-left:none;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -537,34 +539,12 @@ header.mh{padding:0 20px;}
 <p class="body-text fade">そしてある日、部屋のドアが開く。マリーは初めて、赤いトマトを見る。</p>
 <p class="body-text fade"><strong>そのとき、マリーは何かを「新しく学んだ」のだろうか。</strong></p>
 
-<div class="img-placeholder fade">
-  <div class="img-ph-area">
-    <span class="img-ph-icon">🚪</span>
-    <p class="img-ph-title">イラスト①｜モノクロの部屋とマリー</p>
-    <p class="img-ph-desc">白黒のモニターと書棚に囲まれた部屋の中で本を読む女性。すべてがグレースケール。扉の向こうから色のある光が差し込んでいる。</p>
-    <div class="img-ph-prompt">
-      <p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
-      <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, an anthropomorphic owl surrounded by black and white books and monitors in a monochrome room, a crack of colorful light coming through a door, contemplative atmosphere, Japanese scroll painting aesthetic, no text</p>
-    </div>
-  </div>
-  <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+<div class="img-placeholder fade" style="border-style:solid;">
+  <img src="img_mary_room.jpg" alt="モノクロの部屋と、扉から差す色のある光" loading="lazy" style="width:100%;display:block;">
+  <p class="img-caption">書棚と地球儀に囲まれた部屋。扉の向こうから、見たことのない色の光が差し込んでいる。</p>
 </div>
 
-<div class="person-block fade">
-  <div class="person-block-img">
-    <svg width="88" height="120" viewBox="0 0 88 120" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="44" cy="30" rx="18" ry="22" fill="#b0a090"/>
-      <ellipse cx="44" cy="18" rx="18" ry="12" fill="#7a6a55"/>
-      <rect x="38" y="50" width="8" height="10" fill="#c8bfaa"/>
-      <path d="M14 110 L20 58 Q44 68 68 58 L74 110 Z" fill="#3d3020"/>
-      <path d="M44 58 L34 70 L38 110 L44 78 Z" fill="#faf8f3"/>
-      <path d="M44 58 L54 70 L50 110 L44 78 Z" fill="#faf8f3"/>
-      <rect x="18" y="88" width="14" height="18" rx="1" fill="#c8bfaa"/>
-      <rect x="19" y="89" width="12" height="16" rx="1" fill="#ede8dc"/>
-      <line x1="25" y1="89" x2="25" y2="105" stroke="#c8bfaa" stroke-width="0.5"/>
-      <text x="44" y="118" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55" font-weight="600" letter-spacing="1">JACKSON</text>
-    </svg>
-  </div>
+<div class="person-block no-img fade">
   <div class="person-block-body">
     <p class="person-block-name">フランク・ジャクソン</p>
     <p class="person-block-role">Frank Jackson, 1943–</p>
@@ -898,17 +878,10 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">だが私が面白いと思うのは、多くの人が直感的に「はい、マリーは何かを学んだ」と感じることだ。その直感は、自分自身の経験から来ている。<strong>「分かっているのに、実感できない」という感覚</strong>を、誰もが持っているからだと思う。</p>
 
-<div class="img-placeholder fade">
-  <div class="img-ph-area">
-    <span class="img-ph-icon">🎨</span>
-    <p class="img-ph-title">イラスト②｜赤いトマトを手にするマリー</p>
-    <p class="img-ph-desc">モノクロの世界から一歩外に出た女性が、初めて赤いトマトを手に持ち、驚きと静けさの入り混じった表情で見つめている。</p>
-    <div class="img-ph-prompt">
-      <p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
-      <p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia with one vivid red accent, an anthropomorphic owl stepping out of a grey doorway holding a red tomato, looking at it with wonder, Japanese scroll painting aesthetic, no text</p>
-    </div>
-  </div>
-  <p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+<!-- Photo: Juan Vidas, Pexels License -->
+<div class="img-placeholder fade" style="border-style:solid;">
+  <img src="img_red_tomato.jpg" alt="灰色の背景に置かれた一つの赤いトマト" loading="lazy" style="width:100%;display:block;">
+  <p class="img-caption">この赤を、言葉だけで伝えることはできるだろうか。</p>
 </div>
 
 <p class="body-text fade">悲しみを経験したことのない人に、悲しみを説明できるだろうか。言葉を尽くせば伝わるだろうか。もしその人が世界中の論文を読み、脳スキャンの結果をすべて暗記していたら。それでも、「悲しい」と「悲しみを知っている」のあいだには、何かが残るような気がする。</p>

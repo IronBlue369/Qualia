@@ -125,9 +125,14 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
 .person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:400;margin-bottom:8px;}
+.person-block-wiki a{color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}
+.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
 .person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
 
 /* MISCONCEPTION */
+.person-block-img{overflow:hidden;padding:0;display:block;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
 .misconception-header{background:#3d3020;color:white;padding:11px 20px;}
 .misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
@@ -584,18 +589,10 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">このように、「暴走しなかった c」を黒く塗り、「暴走した c」は暴走するまでにかかった回数に応じて色を付ける。これを複素平面上のすべての点に対して実行すると、あのカブトムシのような黒い図形——マンデルブロ集合——が浮かび上がる。</p>
 
-<!-- 画像プレースホルダー -->
-<div class="img-placeholder fade">
-  <div class="img-ph-area">
-    <span class="img-ph-icon">🖼</span>
-    <p class="img-ph-title">マンデルブロ集合の全体像</p>
-    <p class="img-ph-desc">複素平面上に描かれたマンデルブロ集合。中央の黒いカーディオイド（心臓形）と、そこに接する円形の「頭部」。境界線は無限に複雑な曲線になっている。</p>
-    <div class="img-ph-prompt">
-      <p class="img-ph-prompt-lbl">画像生成プロンプト</p>
-      <p class="img-ph-prompt-txt">鳥獣戯画タッチで描かれたマンデルブロ集合。カエルたちが墨で複素平面を塗り分けている。カーディオイドの境界を筆で描くウサギ。和紙の質感。余白多め。</p>
-    </div>
-  </div>
-  <p class="img-caption">Fig. 1 — マンデルブロ集合の全体図。黒い領域が「暴走しなかった c」の集まり。</p>
+<!-- Image: Wolfgang Beyer, Ultra Fractal 3, CC BY-SA 3.0, via Wikimedia Commons -->
+<div class="img-placeholder fade" style="border-style:solid;">
+  <img src="img_mandelbrot_set.jpg" alt="マンデルブロ集合の全体図" loading="lazy" style="width:100%;display:block;">
+  <p class="img-caption">Fig. 1 — マンデルブロ集合の全体図。中央の心臓形（カーディオイド）が本体、左に接する円が「頭部」。黒い領域が暴走しなかった c の集まり（原図: Wolfgang Beyer, Ultra Fractal 3, CC BY-SA 3.0）。</p>
 </div>
 
 <hr class="art-rule">
@@ -824,19 +821,15 @@ header.mh{padding:0 20px;}
 </div>
 
 <!-- 人物ブロック -->
+<!-- Photo: Rama, CC BY-SA 2.0 FR, via Wikimedia Commons -->
 <div class="person-block fade">
   <div class="person-block-img">
-    <svg width="80" height="90" viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="30" r="18" fill="#c8bfaa"/>
-      <rect x="22" y="50" width="36" height="32" rx="8" fill="#c8bfaa"/>
-      <rect x="16" y="24" width="48" height="6" rx="2" fill="#7a6a55" opacity=".4"/>
-      <circle cx="34" cy="28" r="2" fill="#3d3020"/>
-      <circle cx="46" cy="28" r="2" fill="#3d3020"/>
-    </svg>
+    <img src="img_mandelbrot_portrait.jpg" alt="ブノワ・マンデルブロ（2007年、EPFLにて）">
   </div>
   <div class="person-block-body">
     <p class="person-block-name">ブノワ・B・マンデルブロ</p>
     <p class="person-block-role">Benoît B. Mandelbrot · 1924–2010</p>
+    <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%8E%E3%83%AF%E3%83%BB%E3%83%9E%E3%83%B3%E3%83%87%E3%83%AB%E3%83%96%E3%83%AD" target="_blank" rel="noopener">Wikipedia</a></p>
     <p class="person-block-desc">ポーランド生まれのフランス系アメリカ人数学者。IBMでフラクタル幾何学を創始。「雲は球ではなく、山は錐ではなく、海岸線は円ではない」と述べ、自然界の「粗さ（roughness）」を数学的に記述する道を切り拓いた。75歳でイェール大学史上最高齢のテニュアを取得。</p>
   </div>
 </div>
@@ -868,17 +861,10 @@ header.mh{padding:0 20px;}
   <p class="culture-desc">マンデルブロ集合の画像は1980年代後半から大学の寮のポスター、Tシャツ、アルバムジャケットに使われるようになった。映画『スター・トレックII カーンの逆襲』（1982）では、フラクタル技法で生成された惑星の映像がCG映像史に残る先駆的シーンとなった。ジョナサン・コールトンの楽曲「Mandelbrot Set」やPBSのNOVAドキュメンタリー『Hunting the Hidden Dimension』（2008）など、ポップカルチャーでの言及は現在も続いている。</p>
 </div>
 
-<div class="img-placeholder fade">
-  <div class="img-ph-area">
-    <span class="img-ph-icon">🖼</span>
-    <p class="img-ph-title">シーホースの谷の拡大図</p>
-    <p class="img-ph-desc">マンデルブロ集合の「シーホースの谷」と呼ばれる領域（中心 −0.75 + 0.1i 付近）を深くズームした図。タツノオトシゴの尾のような渦巻きが無限に連なる。</p>
-    <div class="img-ph-prompt">
-      <p class="img-ph-prompt-lbl">画像生成プロンプト</p>
-      <p class="img-ph-prompt-txt">鳥獣戯画タッチで描かれたシーホースの谷。渦巻きをタツノオトシゴに見立て、カエルが海中を泳いでいる。墨と朱の二色刷り。余白と渦巻きの対比。</p>
-    </div>
-  </div>
-  <p class="img-caption">Fig. 2 — シーホースの谷。10¹⁰倍に拡大しても新しい構造が現れ続ける。</p>
+<!-- Photo: L Lum, Pexels License -->
+<div class="img-placeholder fade" style="border-style:solid;">
+  <img src="img_romanesco.jpg" alt="ロマネスコ・ブロッコリー" loading="lazy" style="width:100%;display:block;">
+  <p class="img-caption">Fig. 2 — ロマネスコ・ブロッコリー。蕾が対数螺旋を描きながら入れ子状に連なる。自然界の近似フラクタルのもっとも分かりやすい例。</p>
 </div>
 
 <hr class="art-rule">

@@ -30,6 +30,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}.img-ph-area{min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}.img-ph-icon{font-size:28px;opacity:.4;}.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;}.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
 .quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
 .person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;margin-bottom:8px;}.person-block-wiki a{color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-img{overflow:hidden;padding:0;}.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.misconception-header{background:#3d3020;color:white;padding:11px 20px;}.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.misconception-body{background:white;}.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}.misconception-item:last-child{border-bottom:none;}.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}.mis-label.wrong{color:#c4392a;}.mis-label.right{color:#1a5a30;}.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
 .diagram-wrap{margin:28px 0;text-align:center;overflow-x:auto;}.diagram-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;text-align:center;max-width:520px;margin-left:auto;margin-right:auto;}
 .ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.ix-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.ix-body{padding:24px 20px;background:white;}.ix-desc{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:18px;}.ix-desc strong{font-weight:600;color:#1a1208;}.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:14px;padding-top:12px;border-top:1px solid #e0d8c8;line-height:1.7;}
@@ -294,11 +295,11 @@ header.mh{padding:0 20px;}
 <p class="body-text fade">軍は帰還した爆撃機を調べ、弾痕の分布を記録した。胴体と翼に被弾が集中していた。結論は明快に思えた——弾痕の多い場所に装甲を貼ればいい。しかしウォルドは、その結論をひっくり返した。<em>装甲を貼るべきは、弾痕の少ない場所だ。</em></p>
 
 <div class="person-block fade">
-<div class="person-block-img"><svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="30" r="18" fill="#c8bfaa"/><ellipse cx="40" cy="72" rx="28" ry="20" fill="#c8bfaa"/></svg></div>
+<!-- Photo: Konrad Jacobs / Mathematisches Forschungsinstitut Oberwolfach, CC BY-SA 2.0 DE --><div class="person-block-img"><img src="img_wald.jpg" alt="エイブラハム・ウォルド"></div>
 <div class="person-block-body">
 <p class="person-block-name">エイブラハム・ウォルド</p>
 <p class="person-block-role">Abraham Wald, 1902–1950</p>
-<p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Abraham_Wald" target="_blank" rel="noopener">Wikipedia</a></p>
+<p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%A8%E3%82%A4%E3%83%96%E3%83%A9%E3%83%8F%E3%83%A0%E3%83%BB%E3%82%A6%E3%82%A9%E3%83%BC%E3%83%AB%E3%83%89" target="_blank" rel="noopener">Wikipedia</a></p>
 <p class="person-block-desc">ハンガリー（現ルーマニア・クルージュ＝ナポカ）生まれの数学者。正統派ユダヤ教徒の家庭で育ち、安息日の制約から初等・中等教育を家庭で受けた。ウィーン大学で博士号を取得したが、反ユダヤ主義のため大学職を得られず、1938年にナチスの併合を逃れて渡米。コロンビア大学で統計研究に没頭し、逐次分析という新分野を創設した。1950年、インド政府の招待講演中に飛行機事故で妻とともに死去。48歳だった。</p>
 </div>
 </div>
@@ -590,18 +591,7 @@ header.mh{padding:0 20px;}
 <div class="culture-item"><p class="culture-title">ナシーム・タレブ『ブラック・スワン』『まぐれ』</p><p class="culture-desc">タレブは生存者バイアスを「沈黙の証拠（silent evidence）」と呼び、私たちが見ている成功談がいかに偏ったサンプルであるかを繰り返し論じた。「倒産したレストランの墓場」の比喩はこの分野で最も有名な一節。</p></div>
 </div>
 
-<div class="img-placeholder fade">
-<div class="img-ph-area">
-<span class="img-ph-icon">✈</span>
-<p class="img-ph-title">イラスト①｜弾痕だらけの爆撃機と、無傷のエンジン周辺</p>
-<p class="img-ph-desc">帰還した爆撃機の胴体・翼に弾痕が密集している一方、エンジン付近はほぼ無傷。地上整備員が困惑した表情で機体を見上げている場面。</p>
-<div class="img-ph-prompt">
-<p class="img-ph-prompt-lbl">画像生成プロンプト</p>
-<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, a WWII bomber covered in bullet holes on fuselage and wings but engine area is clean, ground crew frogs and rabbits looking puzzled at the plane, Japanese scroll painting aesthetic, no text</p>
-</div>
-</div>
-<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
-</div>
+<!-- Photo: U.S. Air Force (Lt. Charles 'Cliff' Cutforth), public domain --><div class="img-placeholder fade" style="border-style:solid;"><img src="img_bomber.jpg" alt="帰還したB-17爆撃機「オール・アメリカン」" loading="lazy" style="width:100%;display:block;"><p class="img-caption">「オール・アメリカン」──Me-109との空中衝突で尾部がほぼ切断されたB-17F。1943年2月、北アフリカ上空。この機体はアルジェリアのビスクラ基地まで飛び、無事に着陸した。ウォルドが見ていたのは、こうして帰ってきた機体の損傷だった。帰ってこなかった機体の損傷ではなく。</p></div>
 
 <!-- ===== 参考文献 ===== -->
 <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>

@@ -106,6 +106,8 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
 .person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
 .person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block.no-img{display:block;}
+.person-block.no-img .person-block-body{border-left:none;}
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
 .misconception-header{background:#3d3020;color:white;padding:11px 20px;}
 .misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
@@ -510,10 +512,7 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">ところが、人間はこの「無視せよ」がどうしてもできない。そして「無視できずに非合理的な判断をしてしまうこと」を、心理学では<span class="tip" onclick="toggleTip(this)">錯誤<span class="tip-box"><strong>錯誤（fallacy）</strong><br>論理的・認知的な誤り。サンクコスト錯誤の場合、「回収不能なコストを判断材料に含めてしまう」という体系的な推論の誤りを指す。知識で防げるとは限らない点が単なる「間違い」とは異なる。</span></span>と呼ぶ。<span class="tip" onclick="toggleTip(this)">Hal R. Arkes<span class="tip-box"><strong>ハル・アーケス（Hal R. Arkes）</strong><br>アメリカの心理学者。オハイオ大学教授を経てオハイオ州立大学。意思決定の非合理性を実験的に研究。</span></span>と<span class="tip" onclick="toggleTip(this)">Catherine Blumer<span class="tip-box"><strong>キャサリン・ブルーマー（Catherine Blumer）</strong><br>心理学者。Arkesとともにサンクコスト効果の実験的研究を行い、1985年の論文の共著者。</span></span>が1985年に発表した論文は、このことを美しいほど明快に証明した。</p>
 
-<div class="person-block fade">
-<div class="person-block-img">
-<svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="28" r="18" fill="#c8bfaa"/><ellipse cx="40" cy="70" rx="28" ry="20" fill="#c8bfaa"/><circle cx="40" cy="28" r="14" fill="#ede8dc"/><circle cx="34" cy="26" r="2" fill="#7a6a55"/><circle cx="46" cy="26" r="2" fill="#7a6a55"/><path d="M36 33 Q40 37 44 33" stroke="#7a6a55" fill="none" stroke-width="1.5"/></svg>
-</div>
+<div class="person-block no-img fade">
 <div class="person-block-body">
 <p class="person-block-name">Hal R. Arkes</p>
 <p class="person-block-role">Psychologist</p>
@@ -749,17 +748,10 @@ header.mh{padding:0 20px;}
 </div>
 </div>
 
-<div class="img-placeholder fade">
-<div class="img-ph-area">
-<span class="img-ph-icon">🖼️</span>
-<p class="img-ph-title">イラスト①｜コンコルドと沈むコイン</p>
-<p class="img-ph-desc">コンコルドが空を飛ぶ姿と、その下でコインが海に沈んでいく様子を対比させた構図。「飛び続ければ飛び続けるほど、沈んだコインは増えていく」というメタファー。</p>
-<div class="img-ph-prompt">
-<p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
-<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, a sleek supersonic aircraft (Concorde) flying above clouds while gold coins rain down from it into a dark ocean below, Japanese scroll painting aesthetic, no text</p>
-</div>
-</div>
-<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+<!-- Photo: Eduard Marmet, CC BY-SA 3.0, via Wikimedia Commons -->
+<div class="img-placeholder fade" style="border-style:solid;">
+<img src="img_concorde.jpg" alt="1986年、離陸中のブリティッシュ・エアウェイズのコンコルド" loading="lazy" style="width:100%;display:block;">
+<p class="img-caption">飛ばすたびに赤字を積み上げたコンコルド。それでも英仏政府は、やめる判断を何十年も先送りし続けた(原図: Eduard Marmet, CC BY-SA 3.0)</p>
 </div>
 
 <hr class="art-rule">
@@ -841,17 +833,9 @@ header.mh{padding:0 20px;}
 <p class="culture-desc">行動経済学者アリエリーが、食べ放題ビュッフェで「元を取ろう」として食べ過ぎる現象など、日常に潜むサンクコスト錯誤を平易に解説。</p>
 </div>
 
-<div class="img-placeholder fade">
-<div class="img-ph-area">
-<span class="img-ph-icon">🖼️</span>
-<p class="img-ph-title">イラスト②｜天秤にかけられた過去と未来</p>
-<p class="img-ph-desc">天秤の左側に重い石（＝過去の投資）が山積みになり、右側に軽い羽根（＝未来の可能性）が浮いている。人物が過去の石ばかり見つめて、右側の羽根に気づいていない構図。</p>
-<div class="img-ph-prompt">
-<p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
-<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, a balance scale with heavy stones piled on left side and a light feather floating on right side, a small figure gazing at the stones ignoring the feather, Japanese scroll painting aesthetic, no text</p>
-</div>
-</div>
-<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
+<div class="img-placeholder fade" style="border-style:solid;">
+<img src="img_scale.jpg" alt="アンティークな真鍮の天秤" loading="lazy" style="width:100%;display:block;">
+<p class="img-caption">過去の重みと未来の軽さ。天秤はいつだって過去のほうに傾きやすい</p>
 </div>
 
 <hr class="art-rule">

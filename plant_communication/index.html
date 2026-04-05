@@ -90,11 +90,11 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block.no-img{display:block;}.person-block.no-img .person-block-body{border-left:none;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
-.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.person-block-wiki{margin-bottom:8px;}.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
 .person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
 
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
@@ -472,6 +472,8 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">芝刈り機が通り過ぎたあと、あの鮮やかな緑の匂いが立ちのぼる。多くの人が「自然の匂い」として好む、あの香り。その正体は<strong><span class="tip" onclick="toggleTip(this)">グリーンリーフボラタイル<span class="tip-box"><strong>グリーンリーフボラタイル（GLV）</strong><br>植物の葉が傷つくと放出される揮発性の有機分子群。炭素数6のアルデヒドやアルコールが中心。あの「草の匂い」の正体で、隣の植物への警報シグナルとしても機能する。</span></span></strong>（GLV）と呼ばれる<span class="tip" onclick="toggleTip(this)">揮発性有機化合物<span class="tip-box"><strong>揮発性有機化合物（VOC）</strong><br>常温で空気中に気化しやすい有機分子の総称。植物が放つVOCは数百種に及び、匂いの元になるだけでなく、他の植物や昆虫への情報伝達に使われている。</span></span>だ。植物の組織が壊れたとき——葉がちぎれたとき、虫に食われたとき——1〜2秒以内にこの化合物は空気中に放出される。</p>
 
+<div class="img-placeholder fade" style="border-style:solid;background:#f3efe6;text-align:center;"><img src="img_grass.jpg" alt="若い稲の葉" loading="lazy" style="max-width:100%;display:block;margin:0 auto;"><p class="img-caption">私たちが「自然の香り」として好む緑の匂いは、葉が放つ警報シグナルだ。</p></div>
+
 <div class="diagram-wrap fade">
 <svg viewBox="0 0 560 180" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
 <rect x="10" y="30" width="120" height="60" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
@@ -532,19 +534,11 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">1983年7月、ダートマス大学の<span class="tip" onclick="toggleTip(this)">イアン・ボールドウィン<span class="tip-box"><strong>イアン・ボールドウィン</strong><br>植物の化学的防御を研究する生物学者。1983年にジャック・シュルツとの共同研究で「植物間コミュニケーション」の仮説を発表。後にマックス・プランク化学生態学研究所の所長に。</span></span>とジャック・シュルツがScience誌に短い論文を出した。ポプラの若木を密閉容器に入れ、一部の葉を手で引き裂く。すると52時間以内に、<strong>傷つけた木だけでなく、同じ容器内の無傷の木まで</strong><span class="tip" onclick="toggleTip(this)">フェノール類化合物<span class="tip-box"><strong>フェノール類化合物</strong><br>植物が作る防御物質の一群。タンニンもこの仲間。虫に食われにくくする苦み・渋みの成分で、植物がストレスを受けると生産量が増える。</span></span>の濃度を上昇させた。別の密閉容器に入れた無傷の木には、そのような変化は起きなかった。</p>
 
-<div class="person-block fade">
-<div class="person-block-img">
-<svg width="80" height="90" viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
-<circle cx="40" cy="28" r="18" fill="#c8bfaa"/>
-<rect x="20" y="50" width="40" height="35" rx="8" fill="#c8bfaa"/>
-<circle cx="34" cy="25" r="2" fill="#7a6a55"/>
-<circle cx="46" cy="25" r="2" fill="#7a6a55"/>
-<path d="M35 33 Q40 37 45 33" stroke="#7a6a55" fill="none" stroke-width="1.5"/>
-</svg>
-</div>
+<div class="person-block no-img fade">
 <div class="person-block-body">
 <p class="person-block-name">Ian T. Baldwin & Jack C. Schultz</p>
 <p class="person-block-role">Dartmouth College, 1983</p>
+<p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Ian_T._Baldwin" target="_blank" rel="noopener">Wikipedia (Baldwin)</a></p>
 <p class="person-block-desc">ポプラとカエデの実験で「植物間の空気を介した化学的コミュニケーション」の証拠を初めて報告。メディアには「トーキング・ツリー」として紹介されたが、科学者からは激しい批判を受けた。統計手法の不備を指摘する反論論文が翌年Nature系列誌に出された。</p>
 </div>
 </div>
@@ -748,20 +742,11 @@ header.mh{padding:0 20px;}
 
 <p class="body-text fade">2019年のカルスケらの研究は、この問いに興味深い手がかりを与えた。セイタカアワダチソウで実験した結果、害虫の攻撃を受けているときに限り、植物は遺伝的に近いかどうかにかかわらず<strong>VOCの組成を近づけ合う</strong>ことがわかった。つまり「暗号を共通化する」ような振る舞いを見せる。攻撃がないときは、血縁関係のない植物に対してはシグナルの「暗号」を変え、情報を共有しない。これは偶然の副産物というより、文脈に応じた情報制御に見える。</p>
 
-<div class="img-placeholder fade">
-<div class="img-ph-area">
-<span class="img-ph-icon">🖼️</span>
-<p class="img-ph-title">イラスト①｜植物のVOC「言語」が統一されていく場面</p>
-<p class="img-ph-desc">害虫の攻撃を受けた植物群が、種を超えてVOCの組成を近づけ合い「共通の警報」を出している概念図。平時の個別の匂いプロファイルが、攻撃時に収斂する。</p>
-<div class="img-ph-prompt">
-<p class="img-ph-prompt-lbl">画像生成AIへのプロンプト</p>
-<p class="img-ph-prompt-txt">Chojugiga-style ink wash illustration, monochrome sepia, several plants of different species standing in a row, with wavy lines emanating from each plant converging into similar patterns when a caterpillar approaches from one side, Japanese scroll painting aesthetic, no text</p>
-</div>
-</div>
-<p class="img-caption">イメージ図（画像生成AI使用予定）</p>
-</div>
+<div class="img-placeholder fade" style="border-style:solid;background:#f3efe6;text-align:center;"><img src="img_caterpillar.jpg" alt="葉を食べる青虫と食害痕のある葉" loading="lazy" style="max-width:100%;display:block;margin:0 auto;"><p class="img-caption">青虫に食われた葉は、瞬時にVOCを放出する。空気中に漂う分子が、まだ無傷の隣の植物に「先手の備え」を促す。</p></div>
 
 <p class="body-text fade">一方で、地下のネットワーク——いわゆる「Wood Wide Web」——については、話が大きく変わってきた。2023年、カーストらがNature Ecology & Evolutionに発表したレビューは、菌根ネットワークを介した「木と木の意図的な助け合い」を支持する証拠が、これまで考えられていたほど強くないことを示した。2022年に出版された査読付き論文のうち、元の研究を正確に引用していたのは<strong>半数未満</strong>だったという。引用が繰り返されるうちに、「養分が移動した」が「養分を意図的に送った」に変わり、「菌糸がつながっていた」が「木が助け合っている」に書き換わる。伝言ゲームのように、科学の内部で物語が膨張していた。</p>
+
+<div class="img-placeholder fade" style="border-style:solid;background:#f3efe6;text-align:center;"><img src="img_forest.jpg" alt="松林の森" loading="lazy" style="max-width:100%;display:block;margin:0 auto;"><p class="img-caption">森の地下で木々がつながっている——その感動的な物語が、いつの間にか事実を超えていた。</p></div>
 
 <p class="body-text fade">これは、事実と解釈の区別を怠ったときに何が起こるかを示す好例だと思う。いや——好例というのは冷たすぎるかもしれない。シマードの研究を読んで森を見る目が変わった人は多いだろう。その感動自体を否定する理由はない。だが科学は感動の維持装置ではない。「データが示すこと」と「そこから私たちが読み取りたいこと」は、常に別のものだ。</p>
 
