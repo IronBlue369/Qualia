@@ -203,6 +203,8 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 /* NOTE / TAGS */
 .note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
 .note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
 .tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
 .tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
 
@@ -886,6 +888,8 @@ header.mh{padding:0 20px;}
     <strong>📌 この記事について</strong><br>
     誕生日のパラドックスは数学的に証明された結果であり、論争の余地はない。本記事の数値（23人で約50.7%、57人で99%）はフォン・ミーゼス（1939年）以来の標準的な計算に基づいている。歴史的経緯についてはダヴェンポート周辺の口承に依存する部分があるが、デイヴィッド・シングマスターの考証に沿って記述した。暗号学への応用については、2004年のMD5衝突実証を含め、広く確認されている事実を記載している。
   </div>
+
+  <div class="signature fade">e. Tamaki</div>
 
   <div class="tags fade">
     <span class="tag">確率論</span>
