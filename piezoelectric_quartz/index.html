@@ -27,7 +27,7 @@ body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
 .cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
 .cover h1 em{font-style:italic;color:#8b1a1a;}
 .cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
-.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;align-items:center;gap:14px;}.cover-byline span+span::before{content:"·";margin-right:14px;color:#c8bfaa;}
 .cover-stat{border:1px solid #c8bfaa;padding:28px 24px;background:#f3efe6;text-align:center;margin-bottom:20px;}
 .cover-stat-n{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:8px;}
 .cover-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.6;}
@@ -35,7 +35,7 @@ body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
 .cover-aside strong{color:#3d3020;font-weight:600;}
 
 /* META BAR（難易度・読了時間のみ） */
-.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
 .meta-item{display:flex;align-items:center;gap:10px;}
 .meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
 .difficulty-dots{display:flex;gap:4px;}
@@ -43,7 +43,7 @@ body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
 .dot.on{background:#8b1a1a;}
 .difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
 .read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
-.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}.date-item{display:flex;align-items:center;gap:8px;}.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
 
 /* SUMMARY（内容説明ではなく「何を体験するか」を抽象的に） */
 .summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
@@ -391,11 +391,11 @@ header.mh{padding:0 20px;}
 </header>
 
 <div id="prog"></div>
-<div class="cover fade"><div class="cover-left"><p class="cover-kicker">物理学 × 日常のテクノロジー</p><h1>石を押すと、<em>電気が生まれる</em></h1><p class="cover-deck">1880年、パリの研究室でキュリー兄弟は水晶を押して電気を取り出した。その双方向の不思議——圧電効果——が、いまあなたの腕時計とスマートフォンの心臓を動かしている。</p><div class="cover-byline"><span>Last updated: Mar. 2026</span></div></div><div class="cover-right"><div class="est-card"><span class="est-label">Est.</span><span class="est-year">1880</span><p class="est-event">ピエール・キュリーとジャック・キュリーが圧電効果を発見。錫箔と接着剤と糸鋸だけで、結晶を圧縮すると電荷が生じることを実証した。</p><p class="est-context">同年の世界：エジソンが白熱電球の特許を取得（1月）。ケルン大聖堂が着工から632年を経て完成（9月）。</p></div><p class="cover-aside">キュリー兄弟の発見から145年。水晶振動子は年間<strong>数十億個</strong>が生産され、スマートフォン、GPS、医療機器、自動車——あらゆるデジタル機器の時間の基準になっている。</p></div></div>
+<div class="cover fade"><div class="cover-left"><p class="cover-kicker">物理学 × 日常のテクノロジー</p><h1>石を押すと、<em>電気が生まれる</em></h1><p class="cover-deck">1880年、パリの研究室でキュリー兄弟は水晶を押して電気を取り出した。その双方向の不思議——圧電効果——が、いまあなたの腕時計とスマートフォンの心臓を動かしている。</p><div class="cover-byline"><span>QUALIA JOURNAL</span><span>PHENOMENON</span></div></div><div class="cover-right"><div class="est-card"><span class="est-label">Est.</span><span class="est-year">1880</span><p class="est-event">ピエール・キュリーとジャック・キュリーが圧電効果を発見。錫箔と接着剤と糸鋸だけで、結晶を圧縮すると電荷が生じることを実証した。</p><p class="est-context">同年の世界：エジソンが白熱電球の特許を取得（1月）。ケルン大聖堂が着工から632年を経て完成（9月）。</p></div><p class="cover-aside">キュリー兄弟の発見から145年。水晶振動子は年間<strong>数十億個</strong>が生産され、スマートフォン、GPS、医療機器、自動車——あらゆるデジタル機器の時間の基準になっている。</p></div></div>
 
 <div class="scenario fade"><div class="scenario-inner"><p>腕時計を見る。壁に掛かった時計を見る。スマートフォンの画面右上を見る。時刻が表示されている。表示が1秒ごとに変わる。私たちはそれを当たり前だと思っている。「1秒」がどこから来ているのか、考えたことすらない。</p><p>機械式の時計はゼンマイとテンプで時を刻む。あれは人間の手が作った精密な機械だ。しかし、あなたのスマートフォンの中にある「1秒」は、機械ではない。鉱物の振動だ。地球上で最もありふれた鉱物のひとつ——水晶が、1秒間に32,768回震えている。</p><p>押すと電気を出し、電気をかけると震える。石がそんなことをする理由は、結晶の原子配列にある。</p></div></div>
 
-<div class="meta-bar fade"><div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span class="difficulty-text">初中級 — 数学の知識は不要</span></div><div class="meta-sep"></div><div class="meta-item"><span class="meta-label">読了時間</span><span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 18 分</span></div></div>
+<div class="meta-bar fade"><div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span class="difficulty-text">初中級 — 数学の知識は不要</span></div><div class="meta-sep"></div><div class="meta-item"><span class="meta-label">読了時間</span><span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 18 分</span></div><div class="meta-dates"><div class="date-item"><span class="meta-label">Published</span><span class="date-value">2026-03-25</span></div><div class="date-item"><span class="meta-label">Updated</span><span class="date-value">2026-04-04</span></div></div></div>
 
 <div class="summary-box fade"><div class="summary-inner"><span class="summary-icon">要点</span><p class="summary-text">結晶を押して電気を生み出し、電気で結晶を震わせる。その<strong>双方向性</strong>を手で触って確かめながら、鉱物の振動がどのように「1秒」を作り出しているかを体験する。</p></div></div>
 

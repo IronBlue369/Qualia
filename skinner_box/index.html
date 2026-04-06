@@ -38,7 +38,7 @@ a{color:inherit;text-decoration:none;}
 .cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
 .cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}.cover h1 em{font-style:italic;color:#8b1a1a;}
 .cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
-.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;align-items:center;gap:14px;}.cover-byline span+span::before{content:"·";margin-right:14px;color:#c8bfaa;}
 .cover-stat{border:1px solid #c8bfaa;padding:28px 24px;background:#f3efe6;text-align:center;margin-bottom:20px;}
 .cover-stat-n{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:8px;}
 .cover-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;}
@@ -49,13 +49,13 @@ a{color:inherit;text-decoration:none;}
 .scenario-num{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:rgba(139,26,26,.06);position:absolute;top:12px;right:24px;line-height:1;user-select:none;}
 .scenario-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
 .scenario-text.closing{font-style:normal;font-weight:400;color:#1a1208;margin-bottom:0;border-top:1px solid #c8bfaa;padding-top:14px;}
-.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-top:1px solid #e0d8c8;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:32px;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
 .meta-item{display:flex;align-items:center;gap:10px;}
 .meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
 .difficulty-dots{display:flex;gap:4px;}.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}.dot.on{background:#8b1a1a;}
 .difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
 .read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
-.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}.date-item{display:flex;align-items:center;gap:8px;}.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
 .summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
 .summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
 .summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
@@ -348,7 +348,7 @@ header.mh{padding:0 20px;}
 <p class="cover-kicker">行動心理学</p>
 <h1>なぜ「もう1回」を<br><em>やめられない</em>のか</h1>
 <p class="cover-deck">1930年代、ハーバードの大学院生が小さな箱の中にネズミを入れた。レバーを押せば餌が出る。ただし、いつ出るかは決まっていない。——この単純な仕掛けが、スロットマシンからSNSの通知まで、現代の「やめられない」を設計する原理になった。</p>
-<p class="cover-byline">Last updated: Mar. 2026</p>
+<div class="cover-byline"><span>QUALIA JOURNAL</span><span>PROFILE</span></div>
 </div><div>
 <div class="cover-stat"><span class="cover-stat-n">Est. 1938</span><span class="cover-stat-lbl">B.F.スキナーが『生体の行動』を出版。<span class="tip" onclick="toggleTip(this)">オペラント条件づけ<span class="tip-box"><strong>オペラント条件づけ（Operant Conditioning）</strong>行動の直後に与えられる結果（報酬や罰）によって、その行動の頻度が変化する学習のメカニズム。パブロフの「古典的条件づけ」が刺激→反射を扱うのに対し、こちらは自発的行動→結果の関係を扱う。</span></span>の実験的基盤が確立された年。</span></div>
 <div class="cover-aside"><strong>同年の世界：</strong>オーソン・ウェルズの『宇宙戦争』ラジオ放送がアメリカ中にパニックを引き起こし、ドイツはオーストリアを併合（アンシュルス）。「水晶の夜」事件が起きた年でもある。アクション・コミックス第1号でスーパーマンが初登場。</div>
@@ -360,7 +360,7 @@ header.mh{padding:0 20px;}
 <p class="scenario-text closing">「いつ来るかわからない報酬」が人間の行動に与える力は、1930年代に発見された。そしてその力は、今この瞬間も、あなたの手の中で動いている。</p>
 </div></div>
 
-<div class="meta-bar"><div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><span class="difficulty-text">初級 — 数学の知識は不要</span></div><div class="meta-sep"></div><div class="meta-item"><span class="read-time">⏱ 約14分</span></div></div>
+<div class="meta-bar"><div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><span class="difficulty-text">初級 — 数学の知識は不要</span></div><div class="meta-sep"></div><div class="meta-item"><span class="read-time">⏱ 約14分</span></div><div class="meta-dates"><div class="date-item"><span class="meta-label">Published</span><span class="date-value">2026-03-25</span></div><div class="date-item"><span class="meta-label">Updated</span><span class="date-value">2026-03-29</span></div></div></div>
 
 <div class="summary-box fade"><div class="summary-inner"><span class="summary-icon">要点</span><p class="summary-text">この記事にはちょっとした仕掛けがある。<strong>知りたい気持ちが自分の行動をどう変えるか</strong>を、読みながら体験する。</p></div></div>
 
