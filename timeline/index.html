@@ -153,6 +153,21 @@ header.mh{padding:0 20px;}
 .footer-inner{grid-template-columns:1fr;}
 }
 
+
+/* ── NOSCRIPT FALLBACK ── */
+.noscript-fallback{max-width:840px;margin:0 auto;padding:40px 24px 80px;font-family:'Source Serif 4',serif;color:#3d3020}
+.noscript-note{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;background:#f3efe6;border-left:3px solid #c8bfaa;padding:10px 14px;margin-bottom:32px;font-style:italic}
+.noscript-era,.noscript-cat{margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid #e0d8c8}
+.noscript-era:last-child,.noscript-cat:last-child{border-bottom:none}
+.noscript-fallback h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1a1208;margin-bottom:10px;line-height:1.3}
+.noscript-narrative{font-size:13.5px;color:#5a4a36;line-height:1.85;margin-bottom:18px;padding:12px 16px;border-left:3px solid #e0d8c8;background:rgba(243,239,230,.5)}
+.noscript-cat-desc{font-size:13px;color:#5a4a36;line-height:1.7;margin-bottom:14px;font-style:italic}
+.noscript-list{list-style:none;padding:0;margin:0}
+.noscript-list li{font-size:13px;line-height:1.7;padding:6px 0 6px 14px;border-left:2px solid #e0d8c8;margin-bottom:4px;color:#5a4a36}
+.noscript-list li strong{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8b1a1a;font-weight:500;margin-right:6px}
+.noscript-list li a{color:#1a1208;font-weight:600;border-bottom:1px solid #c8bfaa}
+.noscript-list li a:hover{color:#8b1a1a}
+
 </style>
 <script src="https://qualiajournal.com/articles.js" defer></script>
 </head>
@@ -218,6 +233,100 @@ header.mh{padding:0 20px;}
 <div class="controls-wrap fade" id="controls"></div>
 
 <div class="tl" id="tl"></div>
+<noscript>
+<div class="noscript-fallback">
+<p class="noscript-note">※ JavaScriptが無効な環境向けの静的な記事一覧です。通常の閲覧環境では動的な年表が表示されます。</p>
+<section class="noscript-era">
+<h2>BC530– 1415 — 問いの始まり</h2>
+<p class="noscript-narrative">紀元前6世紀、ピタゴラスは弦を弾いて「長さの比が美しい和音を決める」ことに気づいた。音楽と数学が交差した最初の瞬間だ。ほぼ同じ頃、プラトンは洞窟の壁に映る影だけを見て育った囚人の話を語り、荘子は蝶の夢から目覚めて「どちらが本物か」と問うた。知覚を疑うこの問いは、2300年後の量子力学まで一直線に繋がっている。</p>
+<ul class="noscript-list">
+<li><strong>BC300</strong> [思考実験・哲学] <a href="/butterfly_dream">胡蝶の夢（荘子）</a> — 私は蝶の夢を見た人か、人の夢を見ている蝶か。</li>
+<li><strong>75</strong> [思考実験・哲学] <a href="/ship_of_theseus">テセウスの船</a> — すべての部品を取り替えた後も、同じ船か。</li>
+<li><strong>1202</strong> [数学・論理] <a href="/fibonacci">フィボナッチ数列と自然のパターン</a> — ひまわりの種、貝の螺旋。自然は数列を知っていた。</li>
+<li><strong>1415</strong> [科学と文化] <a href="/perspective">「正しく見える」は発明だった</a> — ブルネレスキの透視図法。「正しく見える」は技術だった。</li>
+</ul>
+</section>
+<section class="noscript-era">
+<h2>1585– 1801 — 光と確率と記数法の世紀</h2>
+<p class="noscript-narrative">1585年、シモン・ステヴィンが小数の体系を整え、1666年にニュートンがプリズムで白色光を七色に分解した。光はスペクトルだった——つまり「赤いリンゴ」の赤は、リンゴの性質ではなく光の性質だった。1703年、ライプニッツが二進法を論文にした。ベイズは条件付き確率の定理を遺稿として残し、トーマス・ヤングは二重スリット実験で光の波動性を示した。記数法、光、確率、干渉——この時代の発見が、今の記事の驚くほど多くの土台になっている。</p>
+<ul class="noscript-list">
+<li><strong>1585</strong> [数学・論理] <a href="/why_base">なぜ10進数なのか</a> — 指が10本だから——ではない。位取り記数法の革命。</li>
+<li><strong>1666</strong> [知覚・錯覚] <a href="/color">色は存在しない</a> — 色は外界にはない。脳が電磁波に「色」を与えている。</li>
+<li><strong>1666</strong> [知覚・錯覚] <a href="/color_primaries">色の三原色 vs 光の三原色</a> — 減法混色と加法混色。正反対になる理由。</li>
+<li><strong>1703</strong> [数学・論理] <a href="/why_binary">なぜ2進数か</a> — ライプニッツから始まり、シャノンのスイッチ回路へ。</li>
+<li><strong>1763</strong> [数学・論理] <a href="/base_rate_neglect">基準率の無視（ベイズの定理）</a> — 99%正確な検査で陽性でも、実際の確率は低いかもしれない。</li>
+<li><strong>1801</strong> [物理・宇宙] <a href="/double_slit">二重スリット実験</a> — 粒子を1つずつ飛ばしても干渉が起きる。観測すると消える。</li>
+</ul>
+</section>
+<section class="noscript-era">
+<h2>1863– 1939 — 測る時代</h2>
+<p class="noscript-narrative">19世紀後半、科学は「知覚」と「行動」を測定可能なものとして扱い始めた。1863年、ヘルムホルツは空気の振動を分解して「音」を数学的に記述した。色も音も、世界の側ではなく脳の側にある——この発想が測定の時代の扉を開いた。1874年、印象派の画家たちは筆触分割で網膜上の色の混合を狙い、1880年にキュリー兄弟は石を押すと電気が生まれることを発見した。ピアソンが相関係数を体系化し、ピカソが遠近法を壊し、ソーンダイクがハロー効果を命名した。スキナーはネズミの行動をレバーで制御し、ベンフォードは数字の先頭桁に法則を見つけた。1939年、A=440Hzが国際標準となり、誕生日のパラドックスが初めて論文に現れた——同じ年に第二次世界大戦が始まっている。</p>
+<ul class="noscript-list">
+<li><strong>1863</strong> [知覚・錯覚] <a href="/sound_does_not_exist">音は存在しない</a> — 空気の振動が存在するだけ。「音」は脳の解釈。</li>
+<li><strong>1874</strong> [科学と文化] <a href="/impressionism_divisionism">なぜ絵の具を混ぜないのか</a> — 印象派の筆触分割。網膜の上で色を混ぜることを狙った。</li>
+<li><strong>1880</strong> [物理・宇宙] <a href="/piezoelectric_quartz">石を押すと、電気が生まれる</a> — 圧電効果。クオーツ時計もタッチスクリーンもこの原理。</li>
+<li><strong>1896</strong> [科学と文化] <a href="/correlation_causation">相関は因果ではない</a> — ピアソンの相関係数。アイスと溺死者数は相関するが因果ではない。</li>
+<li><strong>1896</strong> [知覚・錯覚] <a href="/thermal_grill">サーマルグリル錯覚</a> — 温かいものと冷たいものを交互に触ると「熱い痛み」を感じる。</li>
+<li><strong>1907</strong> [科学と文化] <a href="/cubism">なぜ絵画を壊したのか</a> — ピカソとキュビズム。写真の登場が「見る」の意味を変えた。</li>
+<li><strong>1920</strong> [社会心理学] <a href="/hallo_effect">ハロー効果</a> — 容姿が良い人は性格も良いと推測する。ひとつの特徴が全体を引っ張る。</li>
+<li><strong>1938</strong> [行動心理学] <a href="/skinner_box">スキナー箱</a> — ランダム報酬が最も強い依存を生む。ガチャの源流。</li>
+<li><strong>1938</strong> [数学・論理] <a href="/benford_law">ベンフォードの法則</a> — 自然界の数値の先頭桁は「1」が最も多い。不正検出にも。</li>
+<li><strong>1939</strong> [数学・論理] <a href="/birthday_paradox">誕生日のパラドックス</a> — 23人集まれば、同じ誕生日のペアがいる確率は50%を超える。</li>
+<li><strong>1939</strong> [知覚・錯覚] <a href="/twelve_tones">なぜピアノは12音なのか</a> — A=440Hzが国際標準に。周波数比の数学的妥協の歴史。</li>
+</ul>
+</section>
+<section class="noscript-era">
+<h2>1943– 1966 — 認知の目覚め</h2>
+<p class="noscript-narrative">戦後の心理学は「行動を測る」段階から「思考の癖を測る」段階に入った。1943年、ウォルドは帰還した爆撃機の弾痕だけを見て装甲を語る軍の誤りを正し、サルトルは「人間は自由の刑に処せられている」と宣言した。バーナムは「誰にでも当てはまる文」が個人的に感じられることを示し、アッシュは集団の圧力で明らかな正解を曲げる人間を実験室に連れてきた。冷戦のさなかに囚人のジレンマが定式化され、ネズミは快楽中枢への電極を選んで餓死した。フリードマンのフット・イン・ザ・ドア実験が、小さな承諾から大きな服従への道を示したのもこの時代だ。</p>
+<ul class="noscript-list">
+<li><strong>1943</strong> [認知バイアス] <a href="/survivorship_bias">生存者バイアス</a> — 帰還した機体の弾痕だけを見て判断する誤り。見えないデータが鍵。</li>
+<li><strong>1943</strong> [思考実験・哲学] <a href="/existentialism">自由の刑に処せられている</a> — サルトルの実存主義。人間には生まれつきの目的がない。</li>
+<li><strong>1948</strong> [社会心理学] <a href="/barnum_effect">バーナム効果</a> — 誰にでも当てはまる記述を「自分だけに当てはまる」と感じる。</li>
+<li><strong>1949</strong> [思考実験・哲学] <a href="/structuralism">構造主義——「自由」の檻</a> — レヴィ＝ストロース。選択は構造に規定されている。</li>
+<li><strong>1950</strong> [行動心理学] <a href="/prisoners_dilemma">囚人のジレンマ</a> — 個人の合理的選択が全体の最悪結果を生む構造。</li>
+<li><strong>1951</strong> [社会心理学] <a href="/asch_conformity">同調圧力（アッシュの実験）</a> — 明らかに間違った答えでも、周囲に合わせてしまう。</li>
+<li><strong>1954</strong> [行動心理学] <a href="/dopamine_starvation">ネズミはドーパミンを選んで餓死した</a> — 快楽中枢への電極。食事も睡眠も放棄した。</li>
+<li><strong>1957</strong> [行動心理学] <a href="/happiness_chemicals">幸福を作る4つの物質</a> — ドーパミン、セロトニン、オキシトシン、エンドルフィン。</li>
+<li><strong>1960</strong> [認知バイアス] <a href="/confirmation_bias">確証バイアス</a> — 自分の信念を支持する情報ばかり集めてしまう。</li>
+<li><strong>1966</strong> [社会心理学] <a href="/foot_in_the_door">フット・イン・ザ・ドア</a> — 小さな承諾から大きな服従へ。一貫性の原理。</li>
+</ul>
+</section>
+<section class="noscript-era">
+<h2>1970– 1987 — バイアスとフラクタル</h2>
+<p class="noscript-narrative">1970年代、カーネマンとトヴェルスキーが人間の判断の系統的な歪みを次々と暴いた。アンカリング、損失回避、フレーミング——私たちの意思決定は思ったほど合理的ではなかった。奇妙なことに、ほぼ同じ時期に数学者たちは「単純な規則から複雑な形が生まれる」ことに夢中になっていた。マンデルブロは z=z²+c から無限の複雑さを引き出し、ラングトンのアリとボイドが「指揮者なしの秩序」を示した。リベットは脳波計で自由意志に最初の亀裂を入れ、ジャクソンは「知識と体験は同じか」という問いを思考実験に仕立てた。そして植物が化学物質で隣の木に警告を送っていることが初めて報告された。</p>
+<ul class="noscript-list">
+<li><strong>1970</strong> [数学・論理] <a href="/life_game">ライフゲーム——4つのルールが宇宙を作る</a> — 生死4ルールから自己複製体が出現する。</li>
+<li><strong>1972</strong> [行動心理学] <a href="/marshmallow_test">マシュマロ実験の再解釈</a> — 我慢できる子は成功する——再検証で揺らいだ結論。</li>
+<li><strong>1974</strong> [認知バイアス] <a href="/anchoring_effect">アンカリング効果</a> — 最初に見た数字がその後の判断を引きずる。</li>
+<li><strong>1979</strong> [認知バイアス] <a href="/loss_aversion">損失回避</a> — 得る喜びより失う苦痛の方が約2倍大きい。</li>
+<li><strong>1980</strong> [数学・論理] <a href="/mandelbrot_set">マンデルブロ集合</a> — z=z²+c。単純な式が無限の複雑さを生む。</li>
+<li><strong>1980</strong> [科学と文化] <a href="/skeuomorphism">スキューモーフィズム</a> — デジカメのシャッター音。存在しないものを模倣して安心させる。</li>
+<li><strong>1981</strong> [認知バイアス] <a href="/framing_effect">フレーミング効果</a> — 「200人が助かる」と「400人が死ぬ」は同じなのに選択が変わる。</li>
+<li><strong>1981</strong> [生命・進化] <a href="/naked_mole_rat">ハダカデバネズミと老化の謎</a> — 30年以上生存、がんにほぼならない。老化の常識を覆す。</li>
+<li><strong>1982</strong> [思考実験・哲学] <a href="/mary_room">マリーの部屋</a> — すべてを知る科学者が初めて赤を見たとき、知識は増えるか。</li>
+<li><strong>1982</strong> [物理・宇宙] <a href="/quantum_computer">量子コンピューターは「速い」のではない</a> — 重ね合わせと干渉で「間違った答えを打ち消す」仕組み。</li>
+<li><strong>1982</strong> [知覚・錯覚] <a href="/flavor_nose">味は鼻で感じている</a> — 舌で分かるのは5種類だけ。「味」の大部分は嗅覚が担う。</li>
+<li><strong>1983</strong> [脳と意識] <a href="/libet_free_will">自由意志への疑問（リベット実験）</a> — 意識的「決断」の0.3秒前に脳が動いている。</li>
+<li><strong>1983</strong> [生命・進化] <a href="/plant_communication">植物は会話しているかもしれない</a> — 揮発性有機化合物で隣の植物に害虫を警告する。</li>
+<li><strong>1985</strong> [認知バイアス] <a href="/sunk_cost_fallacy">サンクコスト錯誤</a> — すでに投じたコストに引きずられて判断できなくなる。</li>
+<li><strong>1986</strong> [数学・論理] <a href="/langton_ant">ラングトンのアリ</a> — 2つのルールだけ。混沌から突然、秩序が現れる。</li>
+<li><strong>1987</strong> [数学・論理] <a href="/boids">群れに指揮者はいない</a> — ボイド——3つのルールだけで鳥の群れの美しい隊形を再現。</li>
+</ul>
+</section>
+<section class="noscript-era">
+<h2>1990– 2000 — ネットワークと再検証</h2>
+<p class="noscript-narrative">インターネットの爆発とともに、科学そのものが自らを問い直し始めた。モンティ・ホール問題がマリリン・ヴォス・サヴァントの回答で再び世界を騒がせ、報酬予測誤差のドーパミンコードが発見された。ダニング＝クルーガー効果が命名され、記憶が再構築されるという知見が蓄積された。チェッカーシャドウ錯視は「脳が照明を補正する」ことを一枚の画像で突きつけた。そして——かつて盤石だった実験結果の多くが追試で揺らぎ始めた。再現性の危機が静かに進行していた。</p>
+<ul class="noscript-list">
+<li><strong>1990</strong> [数学・論理] <a href="/monty_hall">モンティ・ホール問題</a> — ドアを変えた方が確率2倍。直感は確率を裏切る。</li>
+<li><strong>1995</strong> [知覚・錯覚] <a href="/checker_shadow">チェッカーシャドウ錯視</a> — 同じ色なのに違って見える。脳の補正が見せる嘘。</li>
+<li><strong>1997</strong> [行動心理学] <a href="/reward_prediction_error">報酬予測誤差とドーパミン</a> — 期待と現実のズレがドーパミンを放出させる。</li>
+<li><strong>1999</strong> [認知バイアス] <a href="/dunning_kruger">ダニング＝クルーガー効果</a> — 能力が低いほど自分を過大評価する——再解釈が進行中。</li>
+<li><strong>2000</strong> [脳と意識] <a href="/memory_reconsolidation">記憶は毎回「再構築」される</a> — 思い出すたびに書き換わる。ビデオ的保存ではない。</li>
+</ul>
+</section>
+</div>
+</noscript>
+
 
 <div class="legend fade">
   <div class="legend-item"><div class="legend-dot" style="background:#8b1a1a"></div>記事あり</div>

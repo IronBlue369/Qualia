@@ -54,5 +54,6 @@ const ARTICLES=[
   {slug:'https://qualiajournal.com/boids',cat:'数学・論理',tt:'群れに指揮者はいない',dk:'3つの単純なルールで数千の個体が一糸乱れぬ動きを見せる。'},
   {slug:'https://qualiajournal.com/life_game',cat:'数学・論理',tt:'ライフゲーム——4つのルールが宇宙を作る',dk:'設計者なしに移動体・自己複製・コンピュータが出現する。'},
   {slug:'https://qualiajournal.com/plant_communication',cat:'生命・進化',tt:'植物は会話しているかもしれない',dk:'傷ついた植物が放つ分子が隣の植物の防御遺伝子を起動する。'},
+  {slug:'https://qualiajournal.com/slime_mold_intelligence',cat:'生命・進化',tt:'脳がなくても、考えられる——粘菌の知性',dk:'脳も神経も持たない単細胞生物が、迷路を解き、鉄道網を設計する。'},
   {slug:'https://qualiajournal.com/happiness_chemicals',cat:'行動心理学',tt:'幸福を作る4つの物質',dk:'「幸せ」は4つのまったく異なる化学物質の状態。単数形ではない。'},
 ];
