@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知る前の自分には、もう会えない — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER (独立記事用・1カラム) */
+.cover{max-width:760px;margin:0 auto;padding:72px 48px 44px;border-bottom:1px solid #c8bfaa;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(30px,4.2vw,48px);font-weight:900;line-height:1.2;letter-spacing:-.01em;margin-bottom:24px;color:#1a1208;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.8;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:28px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.14em;padding-top:16px;border-top:1px solid #e0d8c8;text-transform:uppercase;}
+
+/* DOORPLATE (扉画像1枚目 — 全幅落とし) */
+.doorplate{max-width:720px;margin:48px auto 0;padding:0 48px;}
+.doorplate-inner{border-top:1px solid #e0d8c8;border-bottom:1px solid #e0d8c8;padding:18px 0;}
+.doorplate img{display:block;width:100%;height:auto;filter:saturate(.88) contrast(.96);}
+
+/* BODY (独立記事用・段落だけ) */
+.prose{max-width:720px;margin:0 auto;padding:48px 48px 20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:22px;padding-left:18px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+
+/* PROSE BREAK — 本文中のクライマックス前の一拍(中央60px罫) */
+.prose-break{border:none;border-top:1px solid #e0d8c8;width:60px;margin:36px auto;}
+
+/* INLINE IMAGE (本文中・左縦罫を本文borderの延長として置く) */
+.inline-img{max-width:720px;margin:28px auto;padding:0 48px;}
+.inline-img-inner{width:70%;margin-left:0;margin-right:auto;padding-left:18px;border-left:2px solid #e0d8c8;}
+.inline-img img{display:block;width:100%;height:auto;filter:saturate(.85) contrast(.96);}
+
+/* SHELF (3枚目 縦長 本棚 — 余韻) */
+.shelf{max-width:720px;margin:56px auto 24px;padding:0 48px;text-align:center;}
+.shelf-rule{border:none;border-top:1px solid #e0d8c8;width:60px;margin:0 auto 40px;}
+.shelf-img-wrap{max-width:460px;margin:0 auto;}
+.shelf-img-wrap img{display:block;width:100%;height:auto;filter:saturate(.88) contrast(.96);}
+.shelf-rule-bottom{border:none;border-top:1px solid #e0d8c8;width:60px;margin:40px auto 0;}
+
+/* SIGNATURE (右寄せ・名前→ペン横並び・罫は名前の幅だけ) */
+.signature{max-width:720px;margin:0 auto;padding:24px 48px 96px;text-align:right;}
+.signature-inline{display:inline-block;text-align:left;}
+.signature-row{display:flex;align-items:baseline;gap:12px;}
+.signature-name{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;font-weight:400;color:#7a6a55;letter-spacing:.02em;}
+.signature-nib{color:#7a6a55;flex-shrink:0;position:relative;top:4px;}
+.signature-rule{border:none;border-top:1px solid #c8bfaa;width:86px;margin:8px 0 0 0;}
+
+/* ── FOOTER ── */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* TOOLTIP (本文中で使わないが、テンプレ必須コードとして保持) */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{padding:48px 22px 32px;}
+  .doorplate{padding:0 22px;margin-top:36px;}
+  .prose{padding:36px 22px 16px;}
+  .inline-img{padding:0 22px;margin:24px auto;}
+  .inline-img-inner{width:88%;padding-left:18px;}
+  .shelf{padding:0 22px;margin:44px auto 20px;}
+  .shelf-img-wrap{max-width:320px;}
+  .shelf-rule,.shelf-rule-bottom{margin-top:32px;margin-bottom:32px;}
+  .prose-break{margin:28px auto;}
+  .signature{padding:20px 22px 72px;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+
+/* 横スクロール対策 + ツールチップ トースト方式 (テンプレ必須) */
+html,body{overflow-x:hidden;max-width:100%;}
+img,canvas,svg,video{max-width:100%;height:auto;}
+.body-text{overflow-wrap:anywhere;}
+.tip-box{display:none!important;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}
+.tip.open{background:#fdf3d8;}
+.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}
+.tip-toast.show{bottom:16px;}
+.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}
+.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}
+.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}
+.tip-toast-close:hover{color:#e8c56a;}
+.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}
+.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">52 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <p class="cover-kicker">Foreword</p>
+  <h1>知る前の自分には、<em>もう会えない</em></h1>
+  <p class="cover-deck">どういう場所で、どうして始まったのか</p>
+  <div class="cover-byline">Qualia Journal / Foreword</div>
+</div>
+
+<!-- DOORPLATE (扉画像 1: 白紙 16:9) -->
+<div class="doorplate fade">
+  <div class="doorplate-inner">
+    <img src="prologue-01-blank-page.jpg" alt="" loading="lazy">
+  </div>
+</div>
+
+<!-- PROSE 前半 -->
+<div class="prose">
+
+  <p class="body-text fade">子供の頃、紙の辞書を使えと言われて育った。電子辞書はだめなんだそうだ。いま同じことを言う人がいたら、尖った思想の持ち主だと思われる。</p>
+
+  <p class="body-text fade">大人になって、紙の辞書の良さもわかるようになった。ページをめくる感触、目的の単語の隣にある別の単語に目が滑る瞬間、引き終わったあとに本を閉じる動作。それらには、たしかに意味があった。ただ、いまや二百グラムに満たない端末から、あらゆる辞書の中身どころか、地球の裏側で誰かが今朝何を食べたかまでわかる時代に、あの重さをカバンに背負わせようとは、もう思えない。</p>
+
+  <p class="body-text fade">字を書くのも鉛筆じゃないとだめらしかった。シャープペンシルもそのうち許されるようになって、いつからか消せるボールペンまで普通になった。いまはほとんどの文字を指先で叩いて済ませている。かつて紙の辞書と同じように厚みを競っていた電話帳も、地図も、その端末の中に静かにおさまっている。</p>
+
+  <p class="body-text fade">ただ、道具の中に預けられないものもある。知りたい、確かめたいという欲求そのものだ。これだけは、誰かに頼むことも、機械に任せることもできない。</p>
+
+  <p class="body-text fade">昔から、授業の内容より、そこで横道にそれた話や、ふと自分の頭に浮かんだ疑問のほうに気を取られていた。教えられていることはたいがい覚えていないのに、そういう余白だけはいまも覚えている。気になったことは、忘れたくなくて書き留める癖があった。紙だったものが Windows のメモ帳になり、Evernote になり、いまは Notion に変わった。媒体だけが移ろって、やっていることはずっと同じだ。</p>
+
+</div>
+
+<!-- INLINE IMAGE (画像 2: 手書きメモ+ラップトップ・左縦罫延長・70%幅) -->
+<div class="inline-img fade">
+  <div class="inline-img-inner">
+    <img src="prologue-02-notebook-laptop.jpg" alt="" loading="lazy">
+  </div>
+</div>
+
+<!-- PROSE 後半(前半) -->
+<div class="prose">
+
+  <p class="body-text fade">そうしたメモは、自分のためだけのもので、公開するつもりもなかった。メモアプリを乗り換えることになり、過去のページを整理するなかで、どこで拾ったのか記憶のない話も、いまでは見方が少し変わっているかもしれない話も、あちこちに雑多に残っていることに気づいた。いっそ、根拠を拾い直して並べ直してみたい。そう思ったのが、このサイトの始まりだ。</p>
+
+  <p class="body-text fade">たどり直すときに、自分なりのルールをいくつか決めた。記事を書く前に、できるだけ元の論文や書籍に当たること。記事ごとの形式を揃えること。専門の深いところには踏み込まず、手前にある「面白さの核」だけを取り出すこと。自分の感想や解釈を、必要以上に挟まないこと。書いたあとも、何を参考にして書いたか、どのくらい確かな話かを、記事のなかにちゃんと残しておくこと。どれも地味なことだが、過去の人たちが残してくれたものへの姿勢としても、読んでくれる人への伝え方としても、これらを守ることにした。</p>
+
+  <p class="body-text fade">並べ直してみると、ここに集まっていたのは、どれも誰かが夢中になって追いかけてきたものだった。途中でやめることができなかった人たちだ。一つの問いから離れられなくなって、何年も、ときには何十年もそれを追いかけ続けた。その結果が、いま論文や本の形で残っている。私がすることは、それを集めて読み解き、読者がたどれる順番に置き直すことだ。</p>
+
+  <p class="body-text fade">このサイトは、答えを渡す場所ではない。読み終えたあとに、むしろ分からないことが増えているような、そういう書き方をしている。読者がそこから先に進みたくなったときのために、参考文献を残してある。</p>
+
+  <p class="body-text fade">読み終えたとき、ものの見え方が、読み始めた頃より少しだけ奥行きを持ちはじめている。そこに戻り道はない。</p>
+
+  <!-- クライマックス前の一拍 -->
+  <hr class="prose-break fade">
+
+  <p class="body-text fade">知る前の自分には、もう会えない。</p>
+
+  <p class="body-text fade">大げさに聞こえるかもしれない。実際は、世界は何も変わらない。こちら側の目が、少しだけ変わっただけだ。その目には、前は見えなかった輪郭が立ち上がっている。</p>
+
+  <p class="body-text fade">ここから先の道は、もう並べてある。</p>
+
+</div>
+
+<!-- SHELF (画像 3: 本棚 縦長・余韻) -->
+<div class="shelf fade">
+  <hr class="shelf-rule">
+  <div class="shelf-img-wrap">
+    <img src="prologue-03-bookshelf.jpg" alt="" loading="lazy">
+  </div>
+  <hr class="shelf-rule-bottom">
+</div>
+
+<!-- SIGNATURE (右寄せ・名前→ペン横並び、罫は名前の幅だけ) -->
+<div class="signature fade">
+  <div class="signature-inline">
+    <div class="signature-row">
+      <span class="signature-name">e. Tamaki</span>
+      <svg class="signature-nib" width="22" height="22" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7 33 L17 10 L28 7 L33 12 L30 23 L7 33 Z"/>
+        <path d="M28 7 L30 5 L34.5 9.5 L33 12"/>
+        <circle cx="19.5" cy="20.5" r="2.4"/>
+        <line x1="7" y1="33" x2="17.5" y2="22.5"/>
+      </svg>
+    </div>
+    <hr class="signature-rule">
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="fcol">
+      <p class="f-name"><em>Qualia</em> Journal</p>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- TOOLTIP TOAST (本文中で未使用だが、テンプレ必須コードとして保持) -->
+<div class="tip-backdrop" id="tipBackdrop"></div>
+<div class="tip-toast" id="tipToast">
+  <button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button>
+  <span class="tip-toast-title" id="tipToastTitle"></span>
+  <div class="tip-toast-body" id="tipToastBody"></div>
+</div>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト方式) — 本文中で未使用でもテンプレ必須コードとして保持
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">検索データを読み込み中です…</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+</body>
+</html>

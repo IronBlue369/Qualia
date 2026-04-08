@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>通読する — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#3d3020;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* ================================
+   TOC HEADER
+   ================================ */
+.toc-header{max-width:860px;margin:0 auto;padding:88px 48px 24px;text-align:center;}
+.toc-kicker{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.28em;color:#8b1a1a;text-transform:uppercase;margin-bottom:28px;display:inline-flex;align-items:center;gap:14px;}
+.toc-kicker::before,.toc-kicker::after{content:'';display:block;width:36px;height:1px;background:#c8bfaa;}
+.toc-h1{font-family:'Playfair Display',serif;font-size:clamp(30px,4.2vw,46px);font-weight:900;line-height:1.2;letter-spacing:-.015em;color:#1a1208;margin-bottom:22px;}
+.toc-h1 em{font-style:italic;color:#8b1a1a;font-weight:700;}
+.toc-lede{font-family:'Source Serif 4',serif;font-size:15px;font-weight:300;color:#7a6a55;line-height:1.8;max-width:560px;margin:0 auto;}
+
+/* epigraph */
+.epigraph{max-width:720px;margin:56px auto 48px;padding:0 48px;text-align:center;}
+.epigraph-rule{border:none;border-top:1px solid #c8bfaa;width:60px;margin:0 auto 28px;}
+.epigraph p{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;font-style:italic;color:#3d3020;line-height:2;letter-spacing:.005em;}
+.epigraph p + p{margin-top:6px;}
+.epigraph-rule-bottom{border:none;border-top:1px solid #c8bfaa;width:60px;margin:28px auto 0;}
+
+/* prologue card link */
+.prologue-card-wrap{max-width:720px;margin:0 auto 96px;padding:0 48px;}
+.prologue-card{display:block;border:1px solid #c8bfaa;background:#fff;padding:26px 30px;position:relative;transition:border-color .25s,box-shadow .3s,transform .3s;border-left:3px solid #8b1a1a;}
+.prologue-card:hover{border-color:#8b1a1a;box-shadow:0 8px 22px rgba(26,18,8,.08);}
+.prologue-card-kicker{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;}
+.prologue-card-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:900;color:#1a1208;line-height:1.25;margin-bottom:8px;letter-spacing:-.01em;}
+.prologue-card-lede{font-family:'Source Serif 4',serif;font-size:13.5px;font-style:italic;color:#7a6a55;line-height:1.65;margin-bottom:14px;}
+.prologue-card-foot{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#8b1a1a;letter-spacing:.08em;display:flex;align-items:center;gap:8px;}
+.prologue-card-foot::before{content:'';display:block;width:20px;height:1px;background:#8b1a1a;}
+
+/* ================================
+   CHAPTERS
+   ================================ */
+.chapter{max-width:1080px;margin:0 auto 72px;padding:0 48px;}
+.chapter-header{margin-bottom:40px;padding-bottom:0;}
+.chapter-num{font-family:'Playfair Display',serif;font-size:12px;font-weight:400;letter-spacing:.24em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;display:block;}
+.chapter-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3.6vw,40px);font-weight:900;line-height:1.2;letter-spacing:-.015em;color:#1a1208;margin-bottom:14px;}
+.chapter-title em{font-style:italic;color:#8b1a1a;font-weight:700;}
+.chapter-title ruby rt{font-family:'Source Sans 3',sans-serif;font-size:.42em;font-weight:400;color:#7a6a55;letter-spacing:.05em;}
+.chapter-sub{font-family:'Source Serif 4',serif;font-size:17px;font-style:italic;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:22px;max-width:640px;}
+.chapter-meta{display:flex;align-items:baseline;gap:14px;margin-bottom:10px;flex-wrap:wrap;}
+.chapter-meta-count{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#3d3020;letter-spacing:.05em;}
+.chapter-meta-count strong{color:#8b1a1a;font-weight:700;}
+.chapter-meta-sep{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.chapter-meta-status{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:500;color:#b0a090;letter-spacing:.14em;text-transform:uppercase;}
+.chapter-progress{height:3px;background:#e8e0cc;position:relative;margin-bottom:4px;}
+.chapter-progress-fill{position:absolute;top:0;left:0;height:100%;background:#8b1a1a;}
+
+/* ================================
+   SECTION (§1.1 etc.)
+   ================================ */
+.section{margin-bottom:44px;}
+.section:last-child{margin-bottom:0;}
+.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid #e0d8c8;}
+.section-num{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;font-style:italic;color:#8b1a1a;letter-spacing:.02em;flex-shrink:0;}
+.section-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;letter-spacing:-.005em;}
+
+/* article cards grid (done) */
+.cg{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.card{
+  border:1px solid #c8bfaa;border-left:3px solid #c8bfaa;
+  background:#fff;padding:20px 20px 18px;
+  display:flex;flex-direction:column;
+  transition:border-color .25s,box-shadow .3s,transform .3s;
+}
+.card:hover{border-left-color:#8b1a1a;border-color:#8b1a1a;box-shadow:0 8px 22px rgba(26,18,8,.08);}
+.card-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:6px;}
+.card-tt{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;letter-spacing:-.005em;}
+.card-dk{font-family:'Source Sans 3',sans-serif;font-size:11.5px;font-weight:300;color:#7a6a55;line-height:1.65;flex:1;}
+.card-xref{display:block;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:400;font-style:italic;color:#b0a090;margin-top:10px;padding-top:8px;border-top:1px solid #f0ebe0;}
+
+/* coming soon row list */
+.cs-list{margin-top:18px;border-top:1px dashed #c8bfaa;border-bottom:1px dashed #c8bfaa;padding:12px 4px;}
+.cs-list-head{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:500;letter-spacing:.22em;color:#b8a890;text-transform:uppercase;margin-bottom:10px;padding:0 4px;display:flex;align-items:baseline;gap:8px;}
+.cs-list-head-count{font-weight:400;color:#c8bfaa;letter-spacing:.1em;}
+.cs-row{display:flex;align-items:baseline;gap:12px;padding:5px 4px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;font-style:italic;color:#a89880;line-height:1.6;}
+.cs-row-dot{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#d4c8b0;flex-shrink:0;min-width:10px;}
+.cs-row-name{flex:1;}
+
+/* section with only coming soon (no done cards) — used for Ch.5 potential sections */
+.section-cs-only .cs-list{margin-top:0;}
+
+/* Ch.5 tentative section (visible title only, no cards) */
+.section-tentative .section-head{opacity:.7;}
+.section-tentative .section-num{color:#b8a890;}
+.section-tentative .section-name{color:#7a6a55;font-weight:400;font-style:italic;}
+.section-tentative-note{font-family:'Source Serif 4',serif;font-size:12.5px;font-weight:300;font-style:italic;color:#b8a890;padding:4px 4px 0;letter-spacing:.01em;}
+
+/* xref hint on a card (for §5.4 相関は因果ではない) */
+.card-xref-note{display:block;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:400;font-style:italic;color:#b8a890;margin-top:10px;padding-top:8px;border-top:1px solid #f0ebe0;letter-spacing:.02em;}
+
+/* ================================
+   EPILOGUE epigraph + coming soon card
+   ================================ */
+.epilogue-wrap{max-width:720px;margin:64px auto 24px;padding:0 48px;}
+.epilogue-card-wrap{max-width:720px;margin:24px auto 72px;padding:0 48px;}
+.cs-card-big{border:2px dashed #c8bfaa;background:transparent;padding:40px 40px;text-align:center;}
+.cs-card-big-kicker{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b8a890;text-transform:uppercase;margin-bottom:16px;}
+.cs-card-big-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;letter-spacing:.22em;color:#a89880;text-transform:uppercase;padding:6px 14px;border:1px solid #c8bfaa;display:inline-block;}
+
+/* ================================
+   APPENDIX
+   ================================ */
+.appendix-intro{max-width:860px;margin:36px auto 36px;padding:0 48px;text-align:center;}
+.appendix-intro-rule{border:none;border-top:1px solid #c8bfaa;width:60px;margin:0 auto 28px;}
+.appendix-intro-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.28em;color:#8b1a1a;text-transform:uppercase;margin-bottom:14px;}
+.appendix-intro-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;font-style:italic;color:#7a6a55;line-height:1.8;max-width:500px;margin:0 auto;}
+
+.appendix{max-width:1080px;margin:0 auto 64px;padding:0 48px;}
+.appendix-header{margin-bottom:32px;}
+.appendix-label{font-family:'Playfair Display',serif;font-size:12px;font-weight:400;letter-spacing:.24em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;display:block;}
+.appendix-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.8vw,30px);font-weight:900;line-height:1.25;letter-spacing:-.01em;color:#1a1208;margin-bottom:14px;}
+.appendix-title em{font-style:italic;color:#8b1a1a;font-weight:700;}
+.appendix-meta{display:flex;align-items:baseline;gap:14px;margin-bottom:10px;flex-wrap:wrap;}
+.appendix-meta-count{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#3d3020;}
+.appendix-meta-count strong{color:#8b1a1a;font-weight:700;}
+
+/* ================================
+   FOOTER
+   ================================ */
+footer{background:#1a1208;padding:52px 32px 44px;margin-top:80px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+  .cg{grid-template-columns:1fr;}
+}
+@media(max-width:720px){
+  .toc-header{padding:56px 22px 20px;}
+  .toc-kicker::before,.toc-kicker::after{width:22px;}
+  .epigraph{padding:0 22px;margin:40px auto 32px;}
+  .epigraph p{font-size:15px;}
+  .prologue-card-wrap{padding:0 22px;margin-bottom:64px;}
+  .prologue-card{padding:22px 22px;}
+  .prologue-card-title{font-size:19px;}
+  .chapter{padding:0 22px;margin-bottom:56px;}
+  .appendix{padding:0 22px;margin-bottom:48px;}
+  .appendix-intro{padding:0 22px;}
+  .epilogue-wrap,.epilogue-card-wrap{padding:0 22px;}
+  .cs-card-big{padding:30px 24px;}
+  .section-name{font-size:16px;}
+  .card{padding:18px 18px 16px;}
+  .card-tt{font-size:15px;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+
+/* 横スクロール対策 + ツールチップ周りの必須コード */
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.t-line{min-width:0;}.card-tt,.card-dk,.cs-row-name,.prologue-card-title,.prologue-card-lede,.chapter-sub,.chapter-title,.appendix-title{overflow-wrap:anywhere;}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- ======================================== TOC HEADER ======================================== -->
+<div class="toc-header fade">
+  <div class="toc-kicker">Reading Path</div>
+  <h1 class="toc-h1">Qualia Journal を、<br><em>いちばん面白く読むために</em></h1>
+  <p class="toc-lede">52本の記事を、一冊の本として読むための道筋。<br>五感を疑うことから始まり、最後に言葉そのものを疑う場所に着く。</p>
+</div>
+
+<!-- ======================================== PROLOGUE epigraph ======================================== -->
+<div class="epigraph fade">
+  <hr class="epigraph-rule">
+  <p>五感を疑い、判断を疑い、自分を疑い、最後に言葉そのものを疑う。</p>
+  <p>道は並べてある。歩くのは、あなただ。</p>
+  <hr class="epigraph-rule-bottom">
+</div>
+
+<!-- ======================================== PROLOGUE card link ======================================== -->
+<div class="prologue-card-wrap fade">
+  <a class="prologue-card" href="https://qualiajournal.com/prologue">
+    <div class="prologue-card-kicker">Qualia Journal / Foreword</div>
+    <div class="prologue-card-title">知る前の自分には、もう会えない</div>
+    <div class="prologue-card-lede">どういう場所で、どうして始まったのか</div>
+    <div class="prologue-card-foot">Prologue を読む</div>
+  </a>
+</div>
+
+<!-- ========================================
+     CHAPTER 1 — 五感のからくり
+     ======================================== -->
+<section class="chapter fade" id="ch1">
+  <div class="chapter-header">
+    <span class="chapter-num">Chapter 1</span>
+    <h2 class="chapter-title">五感のからくり</h2>
+    <p class="chapter-sub">— 私の見ているものは、本当に世界だろうか</p>
+    <div class="chapter-meta">
+      <span class="chapter-meta-count"><strong>10</strong> / 21 articles</span>
+      <span class="chapter-meta-sep">・</span>
+      <span class="chapter-meta-status">制作中 48%</span>
+    </div>
+    <div class="chapter-progress"><div class="chapter-progress-fill" style="width:47.6%;"></div></div>
+  </div>
+
+  <!-- §1.1 見えるということ -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§1.1</span>
+      <span class="section-name">見えるということ</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/color">
+        <div class="card-cat">知覚・錯覚</div>
+        <div class="card-tt">色は存在しない</div>
+        <div class="card-dk">波長はあるが「赤さ」は脳の産物。世界に色はない。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/checker_shadow">
+        <div class="card-cat">知覚・錯覚</div>
+        <div class="card-tt">チェッカーシャドウ錯視</div>
+        <div class="card-dk">同じ色なのに、なぜ違って見えるのか。脳の補正が見せる嘘。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/color_primaries">
+        <div class="card-cat">知覚・錯覚</div>
+        <div class="card-tt">色の三原色 vs 光の三原色</div>
+        <div class="card-dk">絵の具と光では混ぜ方が逆になる。なぜか。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/perspective">
+        <div class="card-cat">科学と文化</div>
+        <div class="card-tt">「正しく見える」は発明だった</div>
+        <div class="card-dk">三次元を二次元に移す数学的方法の発明。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">4 articles</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">テトラクロマシー(4色型色覚)</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">なぜ空は青いのか</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">変化の見落とし(チェンジ・ブラインドネス)</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">盲点は脳が補完している</span></div>
+    </div>
+  </div>
+
+  <!-- §1.2 聞こえるということ -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§1.2</span>
+      <span class="section-name">聞こえるということ</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/sound_does_not_exist">
+        <div class="card-cat">知覚・錯覚</div>
+        <div class="card-tt">音は存在しない</div>
+        <div class="card-dk">空気の振動が存在するだけ。「音」は脳の解釈。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/twelve_tones">
+        <div class="card-cat">数学・論理</div>
+        <div class="card-tt">なぜピアノは12音なのか</div>
+        <div class="card-dk">ピタゴラスの音律から平均律まで。数学的妥協の歴史。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">6 articles</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">不協和音はなぜ不快か</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">シェパードトーン</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">マクガーク効果</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">イヤーワーム</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">絶対音感は才能か訓練か</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ASMR</span></div>
+    </div>
+  </div>
+
+  <!-- §1.3 触れる、味わう -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§1.3</span>
+      <span class="section-name">触れる、味わう</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/flavor_nose">
+        <div class="card-cat">知覚・錯覚</div>
+        <div class="card-tt">味は鼻で感じている</div>
+        <div class="card-dk">舌で分かるのは5種類だけ。「味」の大部分は嗅覚が担う。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/thermal_grill">
+        <div class="card-cat">知覚・錯覚</div>
+        <div class="card-tt">サーマルグリル錯覚</div>
+        <div class="card-dk">温かいものと冷たいものを交互に触ると「熱い痛み」を感じる。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">1 article</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">触覚のホムンクルス</span></div>
+    </div>
+  </div>
+
+  <!-- §1.4 世界を描こうとした人たち -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§1.4</span>
+      <span class="section-name">世界を描こうとした人たち</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/impressionism_divisionism">
+        <div class="card-cat">科学と文化</div>
+        <div class="card-tt">なぜ絵の具を混ぜないのか</div>
+        <div class="card-dk">網膜の上で色を混ぜる。筆触分割の科学と直感。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/cubism">
+        <div class="card-cat">科学と文化</div>
+        <div class="card-tt">なぜ絵画を壊したのか</div>
+        <div class="card-dk">500年続いた遠近法を破壊した2人の画家。多視点から再構築する実験。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">1 article</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">モンドリアンと還元主義</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     CHAPTER 2 — 思考の轍(わだち)
+     ======================================== -->
+<section class="chapter fade" id="ch2">
+  <div class="chapter-header">
+    <span class="chapter-num">Chapter 2</span>
+    <h2 class="chapter-title">思考の<ruby>轍<rt>わだち</rt></ruby></h2>
+    <p class="chapter-sub">— 自分の決断が、自分のものでないとしたら</p>
+    <div class="chapter-meta">
+      <span class="chapter-meta-count"><strong>17</strong> / 31 articles</span>
+      <span class="chapter-meta-sep">・</span>
+      <span class="chapter-meta-status">制作中 55%</span>
+    </div>
+    <div class="chapter-progress"><div class="chapter-progress-fill" style="width:54.8%;"></div></div>
+  </div>
+
+  <!-- §2.1 物語をほしがる -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§2.1</span>
+      <span class="section-name">物語をほしがる</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/confirmation_bias">
+        <div class="card-cat">認知バイアス</div>
+        <div class="card-tt">確証バイアス</div>
+        <div class="card-dk">あなたはもう答えを決めている。2-4-6課題が暴く推論の歪み。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/barnum_effect">
+        <div class="card-cat">社会心理学</div>
+        <div class="card-tt">バーナム効果</div>
+        <div class="card-dk">全員に同じ文面。85%が「自分のことだ」と感じた。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/survivorship_bias">
+        <div class="card-cat">認知バイアス</div>
+        <div class="card-tt">生存者バイアス</div>
+        <div class="card-dk">見えているデータだけで判断している。帰ってこなかった飛行機の話。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">5 articles</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ナラティブの誤謬</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">共時性と確率の錯覚</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">黒い白鳥(帰納の限界)</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">テスラ──天才と神話の境界</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">黄金比の神話と現実</span></div>
+    </div>
+  </div>
+
+  <!-- §2.2 失うことを恐れすぎる -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§2.2</span>
+      <span class="section-name">失うことを恐れすぎる</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/loss_aversion">
+        <div class="card-cat">認知バイアス</div>
+        <div class="card-tt">損失回避</div>
+        <div class="card-dk">得る喜びと失う痛み。同じ金額なのに非対称。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/sunk_cost_fallacy">
+        <div class="card-cat">認知バイアス</div>
+        <div class="card-tt">サンクコスト錯誤</div>
+        <div class="card-dk">もう戻らない投資が、未来の判断を歪める。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/framing_effect">
+        <div class="card-cat">認知バイアス</div>
+        <div class="card-tt">フレーミング効果</div>
+        <div class="card-dk">同じ内容でも、表現の仕方で選択が変わる。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">2 articles</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">正常性バイアス</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ピーク・エンドの法則</span></div>
+    </div>
+  </div>
+
+  <!-- §2.3 自分を見誤る -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§2.3</span>
+      <span class="section-name">自分を見誤る</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/dunning_kruger">
+        <div class="card-cat">認知バイアス</div>
+        <div class="card-tt">ダニング＝クルーガー効果</div>
+        <div class="card-dk">能力の低い人ほど自分を過大評価する。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/hallo_effect">
+        <div class="card-cat">社会心理学</div>
+        <div class="card-tt">ハロー効果</div>
+        <div class="card-dk">たった一つの印象が、その人の「すべて」を書き換える。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">2 articles</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">後知恵バイアス</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">スポットライト効果</span></div>
+    </div>
+  </div>
+
+  <!-- §2.4 数字に裏切られる -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§2.4</span>
+      <span class="section-name">数字に裏切られる</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/monty_hall">
+        <div class="card-cat">数学・論理</div>
+        <div class="card-tt">モンティ・ホール問題</div>
+        <div class="card-dk">選び直した方が確率2倍。直感に反するこの答え。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/birthday_paradox">
+        <div class="card-cat">数学・論理</div>
+        <div class="card-tt">誕生日のパラドックス</div>
+        <div class="card-dk">23人集まれば50%の確率で同じ誕生日が。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/benford_law">
+        <div class="card-cat">数学・論理</div>
+        <div class="card-tt">ベンフォードの法則</div>
+        <div class="card-dk">自然のデータで先頭の「1」は30%以上出現する。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/base_rate_neglect">
+        <div class="card-cat">認知バイアス</div>
+        <div class="card-tt">基準率の無視(ベイズの定理)</div>
+        <div class="card-dk">検査陽性でも、病気とは限らない。確率の罠。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/correlation_causation">
+        <div class="card-cat">科学と文化</div>
+        <div class="card-tt">相関は因果ではない</div>
+        <div class="card-dk">数字が一緒に動くだけでは、原因とは言えない。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/anchoring_effect">
+        <div class="card-cat">認知バイアス</div>
+        <div class="card-tt">アンカリング効果</div>
+        <div class="card-dk">最初に見た数字が判断を書き換える。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">2 articles</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ギャンブラーの誤謬</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">正規分布と「平均的な人間」</span></div>
+    </div>
+  </div>
+
+  <!-- §2.5 他人がいるだけで変わる -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§2.5</span>
+      <span class="section-name">他人がいるだけで変わる</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/asch_conformity">
+        <div class="card-cat">社会心理学</div>
+        <div class="card-tt">同調圧力(アッシュの実験)</div>
+        <div class="card-dk">明らかに間違った答えに、人は合わせてしまう。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/foot_in_the_door">
+        <div class="card-cat">社会心理学</div>
+        <div class="card-tt">フット・イン・ザ・ドア</div>
+        <div class="card-dk">小さな要請を受け入れると、大きな要請も断れなくなる。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/prisoners_dilemma">
+        <div class="card-cat">行動心理学</div>
+        <div class="card-tt">囚人のジレンマ</div>
+        <div class="card-dk">協力と裏切り。最適戦略は存在するか。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">5 articles</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ミルグラム実験</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">返報性の原理</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">社会的証明(バンドワゴン効果)</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">傍観者効果</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">権威のシンボルと服従</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     CHAPTER 3 — 報酬という重力
+     ======================================== -->
+<section class="chapter fade" id="ch3">
+  <div class="chapter-header">
+    <span class="chapter-num">Chapter 3</span>
+    <h2 class="chapter-title">報酬という<em>重力</em></h2>
+    <p class="chapter-sub">— 何が私を動かしているのか</p>
+    <div class="chapter-meta">
+      <span class="chapter-meta-count"><strong>5</strong> / 8 articles</span>
+      <span class="chapter-meta-sep">・</span>
+      <span class="chapter-meta-status">制作中 63%</span>
+    </div>
+    <div class="chapter-progress"><div class="chapter-progress-fill" style="width:62.5%;"></div></div>
+  </div>
+
+  <!-- §3.1 ランダムが人を動かす -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§3.1</span>
+      <span class="section-name">ランダムが人を動かす</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/skinner_box">
+        <div class="card-cat">行動心理学</div>
+        <div class="card-tt">スキナー箱</div>
+        <div class="card-dk">ランダムな報酬にもっとも強く反応する脳の構造。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/reward_prediction_error">
+        <div class="card-cat">行動心理学</div>
+        <div class="card-tt">報酬予測誤差とドーパミン</div>
+        <div class="card-dk">ドーパミンは快楽ではなく「予測との差」を伝える。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">1 article</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ダークパターンと報酬系ハック</span></div>
+    </div>
+  </div>
+
+  <!-- §3.2 幸せのありか -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§3.2</span>
+      <span class="section-name">幸せのありか</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/dopamine_starvation">
+        <div class="card-cat">脳と意識</div>
+        <div class="card-tt">ネズミはドーパミンを選んで餓死した</div>
+        <div class="card-dk">1954年、快楽中枢への電極。食事も睡眠も放棄した。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/happiness_chemicals">
+        <div class="card-cat">行動心理学</div>
+        <div class="card-tt">幸福を作る4つの物質</div>
+        <div class="card-dk">「幸せ」は4つのまったく異なる化学物質の状態。単数形ではない。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">1 article</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ランナーズハイの正体</span></div>
+    </div>
+  </div>
+
+  <!-- §3.3 環境が行動を決める -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§3.3</span>
+      <span class="section-name">環境が行動を決める</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/marshmallow_test">
+        <div class="card-cat">行動心理学</div>
+        <div class="card-tt">マシュマロ実験の再解釈</div>
+        <div class="card-dk">自制心ではなく、信頼と環境の問題だった。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">1 article</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">選択のパラドックス(ジャムの実験)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     CHAPTER 4 — 自己の縫い目
+     ======================================== -->
+<section class="chapter fade" id="ch4">
+  <div class="chapter-header">
+    <span class="chapter-num">Chapter 4</span>
+    <h2 class="chapter-title">自己の<em>縫い目</em></h2>
+    <p class="chapter-sub">— 私はどこから始まり、どこで終わるのか</p>
+    <div class="chapter-meta">
+      <span class="chapter-meta-count"><strong>8</strong> / 41 articles</span>
+      <span class="chapter-meta-sep">・</span>
+      <span class="chapter-meta-status">制作中 20%</span>
+    </div>
+    <div class="chapter-progress"><div class="chapter-progress-fill" style="width:19.5%;"></div></div>
+  </div>
+
+  <!-- §4.1 脳が作る「今」 -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§4.1</span>
+      <span class="section-name">脳が作る「今」</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/memory_reconsolidation">
+        <div class="card-cat">脳と意識</div>
+        <div class="card-tt">記憶は毎回「再構築」される</div>
+        <div class="card-dk">想起するたびに書き換わる。記憶はビデオではない。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">5 articles</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">「今」は常に過去</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">脳は予測機械</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">睡眠中の記憶整理</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">デフォルトモードネットワーク</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">感情は後付けの解釈</span></div>
+    </div>
+  </div>
+
+  <!-- §4.2 自由意志の影 -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§4.2</span>
+      <span class="section-name">自由意志の影</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/libet_free_will">
+        <div class="card-cat">脳と意識</div>
+        <div class="card-tt">自由意志への疑問(リベット実験)</div>
+        <div class="card-dk">意識的「決断」の0.3秒前に脳が動いている。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/structuralism">
+        <div class="card-cat">思考実験・哲学</div>
+        <div class="card-tt">構造主義──「自由」の檻</div>
+        <div class="card-dk">「私」はどこから来たのか。1960年代パリの思想が問いかけた。</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- POTENTIAL SECTION
+       §4.3 身体という境界
+       立ち上げ条件: 以下のいずれか1本が完成
+       - A-12 ラバーハンド錯覚
+       - A-11 ファントム・バイブレーション
+       - A-14 ゲートコントロール理論(痛みは脳が作る)
+       - U-01 腸脳相関(第二の脳)
+       - U-02 プロプリオセプション(固有感覚)
+       - U-03 利き手はなぜ存在するか
+       設計意図: 身体所有感、痛みの構築性、内臓と「私」の境界
+  -->
+
+  <!-- §4.4 「私」は続いているのか -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§4.4</span>
+      <span class="section-name">「私」は続いているのか</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/ship_of_theseus">
+        <div class="card-cat">思考実験・哲学</div>
+        <div class="card-tt">テセウスの船</div>
+        <div class="card-dk">すべての部品を取り替えた後も、同じ船か。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">3 articles</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">分離脳と二つの意識</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">鏡像自己認知</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">水槽の脳</span></div>
+    </div>
+  </div>
+
+  <!-- §4.5 体験という壁 -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§4.5</span>
+      <span class="section-name">体験という壁</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/mary_room">
+        <div class="card-cat">思考実験・哲学</div>
+        <div class="card-tt">マリーの部屋</div>
+        <div class="card-dk">すべてを知っていた彼女が、何も知らなかった可能性。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">7 articles</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">意識のハードプロブレム</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">哲学的ゾンビ</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">クオリア反転問題</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">中国語の部屋</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">汎心論(パンプシキズム)</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">統合情報理論(トノーニ)</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">経験機械(ノージック)</span></div>
+    </div>
+  </div>
+
+  <!-- §4.6 観測する私 -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§4.6</span>
+      <span class="section-name">観測する私</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/double_slit">
+        <div class="card-cat">物理・宇宙</div>
+        <div class="card-tt">二重スリット実験</div>
+        <div class="card-dk">観測するだけで、粒子の振る舞いが変わる。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">3 articles</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">多世界解釈</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">シュレーディンガーの猫</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">観察者のパラドックス(ラボフ)</span></div>
+    </div>
+  </div>
+
+  <!-- §4.7 哲学が触れた「私」 -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§4.7</span>
+      <span class="section-name">哲学が触れた「私」</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/butterfly_dream">
+        <div class="card-cat">思考実験・哲学</div>
+        <div class="card-tt">胡蝶の夢(荘子)</div>
+        <div class="card-dk">私は蝶の夢を見た人か、人の夢を見ている蝶か。</div>
+      </a>
+      <a class="card" href="https://qualiajournal.com/existentialism">
+        <div class="card-cat">思考実験・哲学</div>
+        <div class="card-tt">自由の刑に処せられている</div>
+        <div class="card-dk">誰にも命じられず選んでいる。それがサルトルの言う「刑」。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">5 articles</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">色即是空と物理学</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">プラトンの洞窟の比喩</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">無常と進化論</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ストア哲学とコントロールの二分法</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">トロッコ問題</span></div>
+    </div>
+  </div>
+
+  <!-- POTENTIAL SECTION
+       §4.8 時間のなかの私
+       立ち上げ条件: 以下のいずれか1本が完成
+       - M-01 危険な場面で時間がスローモーションになる
+       - M-02 なぜ歳を取ると時間が速く感じるか
+       設計意図: 主観時間の歪み、体験時間と物理時間の乖離
+  -->
+
+  <!-- POTENTIAL SECTION
+       §4.9 分類されたい私
+       立ち上げ条件: 以下のいずれか1本が完成
+       - G-01 ビッグファイブ
+       - G-02 MBTIはなぜ科学者に嫌われるのか
+       設計意図: 人が性格を「型」に押し込もうとする衝動と、その科学的限界
+  -->
+</section>
+
+<!-- ========================================
+     CHAPTER 5 — 世界のほつれ
+     ======================================== -->
+<section class="chapter fade" id="ch5">
+  <div class="chapter-header">
+    <span class="chapter-num">Chapter 5</span>
+    <h2 class="chapter-title">世界の<em>ほつれ</em></h2>
+    <p class="chapter-sub">— 言葉にしなかった世界は、どこにあるのか</p>
+    <div class="chapter-meta">
+      <span class="chapter-meta-count"><strong>2</strong> / 21 articles</span>
+      <span class="chapter-meta-sep">・</span>
+      <span class="chapter-meta-status">制作中 10%</span>
+    </div>
+    <div class="chapter-progress"><div class="chapter-progress-fill" style="width:9.5%;"></div></div>
+  </div>
+
+  <!-- §5.1 言葉の切れ目 ※潜在小節(タイトルのみ表示) -->
+  <!-- POTENTIAL SECTION
+       §5.1 言葉の切れ目
+       完成0、Ch.5 特別ルールでタイトルのみ表示
+       立ち上げ条件(最優先執筆候補: L-03 が起点):
+       - L-03 言語が世界を切り分ける(ソシュール)
+       - L-01 言語が思考を制約するか(サピア=ウォーフ仮説)
+       - L-02 ピダハン語
+       - L-06 時制のない言語と時間感覚
+       - L-04 手話は完全な言語
+       - L-05 絵文字は言語か
+  -->
+  <div class="section section-tentative">
+    <div class="section-head">
+      <span class="section-num">§5.1</span>
+      <span class="section-name">言葉の切れ目</span>
+    </div>
+    <p class="section-tentative-note">この小節はまだ準備中です。</p>
+  </div>
+
+  <!-- §5.2 論理の届かぬ場所 ※潜在小節(タイトルのみ表示) -->
+  <!-- POTENTIAL SECTION
+       §5.2 論理の届かぬ場所
+       完成0、Ch.5 特別ルールでタイトルのみ表示
+       立ち上げ条件:
+       - J-02 ゲーデルの不完全性定理
+       - P-01 チューリングテストの限界
+       - J-21 数学は発見か発明か
+       - N-04 地図は領土ではない(コージブスキー)
+  -->
+  <div class="section section-tentative">
+    <div class="section-head">
+      <span class="section-num">§5.2</span>
+      <span class="section-name">論理の届かぬ場所</span>
+    </div>
+    <p class="section-tentative-note">この小節はまだ準備中です。</p>
+  </div>
+
+  <!-- §5.3 情報の網のなか -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§5.3</span>
+      <span class="section-name">情報の網のなか</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/skeuomorphism">
+        <div class="card-cat">科学と文化</div>
+        <div class="card-tt">スキューモーフィズム</div>
+        <div class="card-dk">カメラのシャッター音。存在しないはずの音が必要な理由。</div>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">2 articles</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">アテンション・エコノミー</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">フィルターバブルとエコーチェンバー</span></div>
+    </div>
+  </div>
+
+  <!-- §5.4 科学の足元 -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">§5.4</span>
+      <span class="section-name">科学の足元</span>
+    </div>
+    <div class="cg">
+      <a class="card" href="https://qualiajournal.com/correlation_causation">
+        <div class="card-cat">科学と文化</div>
+        <div class="card-tt">相関は因果ではない</div>
+        <div class="card-dk">数字が一緒に動くだけでは、原因とは言えない。</div>
+        <span class="card-xref-note">※ Chapter 2 §2.4「数字に裏切られる」でも触れた</span>
+      </a>
+    </div>
+    <div class="cs-list">
+      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">3 articles</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">再現性の危機</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">二重盲検法はなぜ必要か</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">水の結晶実験はなぜ科学ではないか</span></div>
+    </div>
+  </div>
+
+  <!-- §5.5 世界の縁(ふち) ※潜在小節(タイトルのみ表示) -->
+  <!-- POTENTIAL SECTION
+       §5.5 世界の縁(ふち)
+       完成0、Ch.5 特別ルールでタイトルのみ表示
+       立ち上げ条件:
+       - P-03 宇宙はシミュレーションかもしれない
+       - H-09 なぜ何もないのではないか
+       - O-11 ニュートンのバケツ
+       - O-09 無限ホテル(ヒルベルト)
+  -->
+  <div class="section section-tentative">
+    <div class="section-head">
+      <span class="section-num">§5.5</span>
+      <span class="section-name">世界の<ruby>縁<rt>ふち</rt></ruby></span>
+    </div>
+    <p class="section-tentative-note">この小節はまだ準備中です。</p>
+  </div>
+</section>
+
+<!-- ======================================== EPILOGUE epigraph ======================================== -->
+<div class="epilogue-wrap fade">
+  <div class="epigraph" style="margin:0 auto;padding:0;">
+    <hr class="epigraph-rule">
+    <p>どれも、誰かが夢中になって追いかけてきたものだ。</p>
+    <p>同じ世界を見ていたはずなのに、見えていたものは、ひとりひとり違っていた。</p>
+    <p>いまあなたは、ひとり、その先にいる。</p>
+    <hr class="epigraph-rule-bottom">
+  </div>
+</div>
+
+<!-- ======================================== EPILOGUE card (Coming Soon) ======================================== -->
+<div class="epilogue-card-wrap fade">
+  <div class="cs-card-big">
+    <div class="cs-card-big-kicker">Qualia Journal / Afterword</div>
+    <div class="cs-card-big-label">Coming Soon</div>
+  </div>
+</div>
+
+<!-- ======================================== APPENDIX intro ======================================== -->
+<div class="appendix-intro fade">
+  <hr class="appendix-intro-rule">
+  <div class="appendix-intro-label">Appendix</div>
+  <p class="appendix-intro-text">本編の外側に置かれた、博物館のような四つの部屋。数、生命、物質、そして答えのない問い。</p>
+</div>
+
+<!-- ========================================
+     APPENDIX I — 数の風景
+     ======================================== -->
+<section class="appendix fade" id="app1">
+  <div class="appendix-header">
+    <span class="appendix-label">Appendix I</span>
+    <h3 class="appendix-title">数の風景</h3>
+    <div class="appendix-meta">
+      <span class="appendix-meta-count"><strong>7</strong> / 21 articles</span>
+      <span class="chapter-meta-sep">・</span>
+      <span class="chapter-meta-status">制作中 33%</span>
+    </div>
+    <div class="chapter-progress"><div class="chapter-progress-fill" style="width:33.3%;"></div></div>
+  </div>
+  <div class="cg">
+    <a class="card" href="https://qualiajournal.com/fibonacci">
+      <div class="card-cat">数学・論理</div>
+      <div class="card-tt">フィボナッチ数列と自然のパターン</div>
+      <div class="card-dk">ひまわりの種、貝の螺旋。自然は数列を知っていた。</div>
+    </a>
+    <a class="card" href="https://qualiajournal.com/mandelbrot_set">
+      <div class="card-cat">数学・論理</div>
+      <div class="card-tt">マンデルブロ集合</div>
+      <div class="card-dk">単純な式から生まれる無限の複雑さ。</div>
+    </a>
+    <a class="card" href="https://qualiajournal.com/langton_ant">
+      <div class="card-cat">数学・論理</div>
+      <div class="card-tt">ラングトンのアリ</div>
+      <div class="card-dk">単純な規則から突然の秩序が生まれる瞬間。</div>
+    </a>
+    <a class="card" href="https://qualiajournal.com/life_game">
+      <div class="card-cat">数学・論理</div>
+      <div class="card-tt">ライフゲーム</div>
+      <div class="card-dk">設計者なしに移動体・自己複製・コンピュータが出現する。</div>
+    </a>
+    <a class="card" href="https://qualiajournal.com/why_base">
+      <div class="card-cat">数学・論理</div>
+      <div class="card-tt">なぜ10進数なのか</div>
+      <div class="card-dk">数学的に最適な基数は10ではない。指が10本あるという偶然。</div>
+    </a>
+    <a class="card" href="https://qualiajournal.com/why_binary">
+      <div class="card-cat">数学・論理</div>
+      <div class="card-tt">なぜ2進数か</div>
+      <div class="card-dk">ライプニッツからシャノンまで。2進数が選ばれた300年の必然。</div>
+    </a>
+    <a class="card" href="https://qualiajournal.com/boids">
+      <div class="card-cat">数学・論理</div>
+      <div class="card-tt">群れに指揮者はいない</div>
+      <div class="card-dk">3つの単純なルールで数千の個体が一糸乱れぬ動きを見せる。</div>
+    </a>
+  </div>
+  <div class="cs-list">
+    <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">14 articles</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">無限にも大きさがある(カントール)</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">バナッハ=タルスキーの逆説</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">オイラーの等式</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">コラッツ予想</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ラムジー理論</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">黄金比は本当に美しいか</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ゼロの発明</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">フラクタルと海岸線のパラドックス</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">位取り記数法の革命</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">虚数はなぜ実在するか</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">べき乗則とスケールフリーネットワーク</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">自己組織化臨界現象(砂山モデル)</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">六次の隔たり</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">弱い紐帯の強さ</span></div>
+  </div>
+</section>
+
+<!-- ========================================
+     APPENDIX II — 生命の風景
+     ======================================== -->
+<section class="appendix fade" id="app2">
+  <div class="appendix-header">
+    <span class="appendix-label">Appendix II</span>
+    <h3 class="appendix-title">生命の風景</h3>
+    <div class="appendix-meta">
+      <span class="appendix-meta-count"><strong>3</strong> / 23 articles</span>
+      <span class="chapter-meta-sep">・</span>
+      <span class="chapter-meta-status">制作中 13%</span>
+    </div>
+    <div class="chapter-progress"><div class="chapter-progress-fill" style="width:13%;"></div></div>
+  </div>
+  <div class="cg">
+    <a class="card" href="https://qualiajournal.com/plant_communication">
+      <div class="card-cat">生命・進化</div>
+      <div class="card-tt">植物は会話しているかもしれない</div>
+      <div class="card-dk">傷ついた植物が放つ分子が隣の植物の防御遺伝子を起動する。</div>
+    </a>
+    <a class="card" href="https://qualiajournal.com/slime_mold_intelligence">
+      <div class="card-cat">生命・進化</div>
+      <div class="card-tt">脳がなくても、考えられる——粘菌の知性</div>
+      <div class="card-dk">脳も神経も持たない単細胞生物が、迷路を解き、鉄道網を設計する。</div>
+    </a>
+    <a class="card" href="https://qualiajournal.com/naked_mole_rat">
+      <div class="card-cat">生命・進化</div>
+      <div class="card-tt">ハダカデバネズミと老化の謎</div>
+      <div class="card-dk">哺乳類で唯一「死の法則」を破った生き物。</div>
+    </a>
+  </div>
+  <div class="cs-list">
+    <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">20 articles</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">体の細胞は数年で入れ替わる</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">細菌の方が多い</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ミトコンドリアはもと別の生物</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ジャンクDNA</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">神経細胞は一生交換されない</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">タコの色覚</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">進化に目的はない</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ウイルスは生物か</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ヒトゲノムの8%はウイルス由来</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">老化はプログラムか偶然か</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">鳥のさえずりと方言</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">イルカの名前呼び</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">テロメアと老化時計</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">クマムシの不死性</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">不老不死のクラゲ</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">CRISPR</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">収斂進化</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">赤の女王仮説</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">カンブリア爆発</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">硬さにも種類がある</span></div>
+  </div>
+</section>
+
+<!-- ========================================
+     APPENDIX III — 物質と物理の風景
+     ======================================== -->
+<section class="appendix fade" id="app3">
+  <div class="appendix-header">
+    <span class="appendix-label">Appendix III</span>
+    <h3 class="appendix-title">物質と物理の風景</h3>
+    <div class="appendix-meta">
+      <span class="appendix-meta-count"><strong>2</strong> / 19 articles</span>
+      <span class="chapter-meta-sep">・</span>
+      <span class="chapter-meta-status">制作中 11%</span>
+    </div>
+    <div class="chapter-progress"><div class="chapter-progress-fill" style="width:10.5%;"></div></div>
+  </div>
+  <div class="cg">
+    <a class="card" href="https://qualiajournal.com/quantum_computer">
+      <div class="card-cat">物理・宇宙</div>
+      <div class="card-tt">量子コンピューターは「速い」のではない</div>
+      <div class="card-dk">「間違った答えを打ち消す」装置。速さではなく問いの立て方が違う。</div>
+    </a>
+    <a class="card" href="https://qualiajournal.com/piezoelectric_quartz">
+      <div class="card-cat">物理・宇宙</div>
+      <div class="card-tt">石を押すと、電気が生まれる</div>
+      <div class="card-dk">圧電効果がデジタル機器の心臓を動かしている。</div>
+    </a>
+  </div>
+  <div class="cs-list">
+    <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">17 articles</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">原子はほぼ空っぽ</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">光速は上限</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">時間は場所によって速さが違う</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">宇宙の95%は正体不明</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">エントロピーと時間の矢</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">あなたは星のかけら</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">量子もつれ</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">プランクスケール</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">トンネル効果</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ホログラフィック原理</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">液晶は固体でも液体でもない</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">メートルの定義は7回変わった</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">1秒はセシウム原子が決めている</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">キログラムの再定義</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">蒸気機関は改良の連鎖</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">印刷革命</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">標準時の発明</span></div>
+  </div>
+</section>
+
+<!-- ========================================
+     APPENDIX IV — 答えのない問い
+     ======================================== -->
+<section class="appendix fade" id="app4">
+  <div class="appendix-header">
+    <span class="appendix-label">Appendix IV</span>
+    <h3 class="appendix-title">答えのない問い</h3>
+    <div class="appendix-meta">
+      <span class="appendix-meta-count"><strong>0</strong> / 6 articles</span>
+      <span class="chapter-meta-sep">・</span>
+      <span class="chapter-meta-status">準備中</span>
+    </div>
+    <div class="chapter-progress"><div class="chapter-progress-fill" style="width:0%;"></div></div>
+  </div>
+  <div class="cs-list">
+    <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">6 articles</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">情報はエネルギーと等価(ランダウアー原理)</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">フェルミのパラドックス</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ムーアの法則の終焉</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">P≠NP問題</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">無知のヴェール(ロールズ)</span></div>
+    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">功利主義の計算は本当にできるか</span></div>
+  </div>
+</section>
+
+<!-- ======================================== FOOTER ======================================== -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- tooltip dom -->
+<div class="tip-backdrop" id="tipBackdrop"></div>
+<div class="tip-toast" id="tipToast">
+  <button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button>
+  <span class="tip-toast-title" id="tipToastTitle"></span>
+  <div class="tip-toast-body" id="tipToastBody"></div>
+</div>
+
+<script>
+// scroll progress
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// fade in
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// tooltip (reserved for future use)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// shared header js
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">記事データを読み込み中…</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+</body>
+</html>
