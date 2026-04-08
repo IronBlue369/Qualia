@@ -224,6 +224,13 @@ header.mh{padding:0 20px;}
 .footer-inner{grid-template-columns:1fr;}
 }
 
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){.toc-back{padding:22px 20px;}}
 </style>
 <script src="https://qualiajournal.com/articles.js" defer></script>
 </head>
@@ -240,6 +247,7 @@ header.mh{padding:0 20px;}
     <div class="menu-cols">
       <div class="menu-sec">
         <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
         <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">52 articles</span></a>
         <a href="https://qualiajournal.com/timeline/">知の年表</a>
         <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
@@ -375,11 +383,12 @@ header.mh{padding:0 20px;}
 <footer>
   <div class="footer-inner">
     <div>
-      <p class="f-name"><em>Qualia</em> Journal</p>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
       <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
     </div>
     <div class="fcol">
       <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
       <a href="https://qualiajournal.com/#articles">記事一覧</a>
       <a href="https://qualiajournal.com/timeline/">知の年表</a>
       <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>

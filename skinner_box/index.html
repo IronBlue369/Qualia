@@ -284,7 +284,15 @@ header.mh{padding:0 20px;}
 .footer-inner{grid-template-columns:1fr;}
 }
 
-html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.img-ph-desc,.img-ph-prompt-txt{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}</style>
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.img-ph-desc,.img-ph-prompt-txt{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){.toc-back{padding:22px 20px;}}
+</style>
 <script src="https://qualiajournal.com/articles.js" defer></script>
 </head>
 <body>
@@ -299,6 +307,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <div class="menu-cols">
       <div class="menu-sec">
         <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
         <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">52 articles</span></a>
         <a href="https://qualiajournal.com/timeline/">知の年表</a>
         <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
@@ -520,6 +529,15 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <a class="related-card" href="#TODO"><p class="related-card-tag">行動 × デザイン</p><p class="related-card-title">ダークパターンと報酬系ハック</p><p class="related-card-desc">無限スクロール、通知バッジ、ストリーク。スキナーの原理がUI設計に組み込まれるとき。</p><p class="related-card-arrow">近日公開</p></a>
 </div></div>
 
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+
 <script>
 window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;document.getElementById('prog').style.width=(scrollY/h*100)+'%';});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.08});
@@ -691,11 +709,12 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverla
 <footer>
   <div class="footer-inner">
     <div>
-      <p class="f-name"><em>Qualia</em> Journal</p>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
       <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
     </div>
     <div class="fcol">
       <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
       <a href="https://qualiajournal.com/#articles">記事一覧</a>
       <a href="https://qualiajournal.com/timeline/">知の年表</a>
       <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
