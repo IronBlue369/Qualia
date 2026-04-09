@@ -564,9 +564,9 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <!-- 死亡リスクビジュアライザー -->
 <div class="ix-wrap fade">
-<div class="ix-header"><span class="ix-hl">✦ Mortality Curve Visualizer</span></div>
+<div class="ix-header"><span class="ix-hl">✦ Mortality Hazard Comparison</span></div>
 <div class="ix-body">
-<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;margin-bottom:14px;line-height:1.7;">年齢スライダーを動かして、3種の死亡リスク曲線を比べてみてほしい。ヒトとマウスはゴンペルツ則に従って急上昇する。ハダカデバネズミだけが、水平線のままだ。</p>
+<p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;margin-bottom:14px;line-height:1.7;">年齢スライダーを動かして、3種の死亡リスクを比べてみてほしい。ヒトとマウスはゴンペルツ則に従って急上昇する。ハダカデバネズミだけが、水平線のままだ。</p>
 <div class="ix-controls">
 <span class="ix-slider-label">年齢（ヒト換算）:</span>
 <input type="range" class="ix-slider" id="ageSlider" min="30" max="90" value="30">
@@ -582,7 +582,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 </div>
 </div>
 </div>
-<p class="ix-note fade">死亡リスクの倍増ペースはゴンペルツ則に基づく概念的な可視化。ヒトは約8年で倍増、マウスは寿命比率で換算。ハダカデバネズミのデータはRuby et al.（2018）に基づき、ハザード率が年齢によらずほぼ一定であることを反映している。</p>
+<p class="ix-note fade">ここでの「死亡リスク」は、学術的には mortality hazard（死亡ハザード）と呼ばれる指標のこと。倍増ペースはゴンペルツ則に基づく概念的な可視化で、ヒトは約8年で倍増、マウスは寿命比率で換算している。ハダカデバネズミのデータはRuby et al.（2018）に基づき、ハザード率が年齢によらずほぼ一定であることを反映している。</p>
 
 <!-- 誤解あるあるブロック -->
 <div class="misconception fade">
