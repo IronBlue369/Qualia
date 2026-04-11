@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>なぜ歳を取ると時間が速く感じるか — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* SLIDE MENU */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* SEARCH OVERLAY */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* MASTHEAD */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-stat{border:1px solid #c8bfaa;padding:28px 24px;background:#f3efe6;text-align:center;margin-bottom:20px;}
+.cover-stat-n{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:8px;}
+.cover-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.6;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;display:block;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'1/n';position:absolute;right:32px;top:4px;font-family:'Playfair Display',serif;font-size:110px;font-weight:900;font-style:italic;color:#e0d8c8;opacity:.5;line-height:1;pointer-events:none;letter-spacing:-.04em;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* IMAGE PLACEHOLDER */
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:160px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block-img{background:#ede8dc;display:block;padding:0;overflow:hidden;position:relative;min-height:100%;}
+.person-block-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;margin-bottom:8px;}
+.person-block-wiki a{color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;transition:all .2s;}
+.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;background:white;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.misc-lbl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;margin-bottom:8px;}
+.misc-q .misc-lbl{color:#c4392a;}
+.misc-a .misc-lbl{color:#1a5a30;}
+.misc-txt{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.75;}
+
+/* TABLE */
+.compare-table{margin:28px 0;border:1px solid #c8bfaa;background:white;overflow-x:auto;}
+.compare-table table{width:100%;border-collapse:collapse;font-family:'Source Sans 3',sans-serif;}
+.compare-table th{background:#3d3020;color:#faf8f3;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:11px 14px;text-align:left;}
+.compare-table td{font-size:13px;font-weight:300;color:#3d3020;padding:12px 14px;border-top:1px solid #e0d8c8;line-height:1.65;}
+.compare-table td:first-child{font-weight:600;color:#1a1208;white-space:nowrap;background:#f3efe6;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;padding-left:24px;border-left:2px solid #c8bfaa;}
+.tl-item{position:relative;margin-bottom:24px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-32px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.85;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / SIGNATURE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+
+/* INTERACTIVE ── LIFE MAP */
+.ix-wrap{margin:32px 0;padding:24px;background:#f3efe6;border:1px solid #c8bfaa;}
+.ix-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#faf8f3;background:#1a1208;padding:8px 14px;text-transform:uppercase;display:inline-block;margin-bottom:16px;}
+.ix-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;margin-bottom:8px;}
+.ix-lead{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;margin-bottom:16px;}
+.ix-controls{display:flex;flex-direction:column;gap:14px;margin-bottom:18px;}
+.ix-slider-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.ix-slider-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#3d3020;min-width:90px;}
+.ix-slider{flex:1;min-width:160px;-webkit-appearance:none;appearance:none;height:4px;background:#c8bfaa;border-radius:2px;outline:none;}
+.ix-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;background:#8b1a1a;border-radius:50%;cursor:pointer;border:2px solid #faf8f3;box-shadow:0 0 0 1px #8b1a1a;}
+.ix-slider::-moz-range-thumb{width:18px;height:18px;background:#8b1a1a;border-radius:50%;cursor:pointer;border:2px solid #faf8f3;box-shadow:0 0 0 1px #8b1a1a;}
+.ix-value{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#8b1a1a;min-width:56px;text-align:right;}
+
+/* Life bar */
+.life-bar-wrap{margin-top:6px;}
+.life-bar{position:relative;height:56px;background:white;border:1px solid #c8bfaa;overflow:hidden;}
+.life-seg{position:absolute;top:0;bottom:0;border-right:1px solid rgba(139,26,26,.22);transition:all .2s;}
+.life-seg.lived{background:linear-gradient(180deg,#8b1a1a,#6e1414);}
+.life-seg.future{background:#ede8dc;}
+.life-seg.current{background:#c8392a;}
+.life-axis{display:flex;justify-content:space-between;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:6px;letter-spacing:.04em;}
+.ix-readout{margin-top:14px;padding:12px 14px;background:white;border-left:3px solid #8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;line-height:1.75;}
+.ix-readout strong{color:#8b1a1a;font-weight:700;font-size:15px;}
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:14px;line-height:1.7;}
+
+/* INTERACTIVE ── TWO CLOCKS */
+.clocks-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;}
+.clock-box{background:white;border:1px solid #c8bfaa;padding:14px;text-align:center;}
+.clock-box svg{max-width:100%;height:auto;}
+.clock-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;margin-bottom:8px;}
+.clock-label strong{color:#8b1a1a;font-weight:700;}
+.clock-elapsed{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#1a1208;margin-top:6px;line-height:1.1;}
+.clock-elapsed span{color:#8b1a1a;}
+.clock-unit{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;letter-spacing:.1em;margin-top:2px;text-transform:uppercase;}
+.ix-btns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.ix-btn{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:#1a1208;color:#faf8f3;border:none;padding:9px 16px;cursor:pointer;transition:background .2s;}
+.ix-btn:hover{background:#8b1a1a;}
+.ix-btn.secondary{background:transparent;color:#7a6a55;border:1px solid #c8bfaa;}
+.ix-btn.secondary:hover{color:#8b1a1a;border-color:#8b1a1a;}
+.sound-warn{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#8b1a1a;background:#ede8dc;border:1px dashed #c8bfaa;padding:5px 12px;margin-bottom:14px;letter-spacing:.04em;}
+
+.final-readout{margin-top:18px;padding:16px 18px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:13px;line-height:1.8;display:none;}
+.final-readout.show{display:block;}
+.final-readout strong{color:#e8c56a;font-weight:700;}
+.final-readout em{color:#c8785a;font-style:normal;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+  .toc-back{padding:22px 20px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:0;justify-content:center;}
+  .person-block-img img{max-width:160px;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .clocks-wrap{grid-template-columns:1fr;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.img-ph-desc,.img-ph-prompt-txt{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">時間知覚</p>
+    <h1>なぜ歳を取ると<br>時間は<em>速く</em>流れるのか</h1>
+    <p class="cover-deck">
+      子どもの頃の夏は長かった。今年の夏は指の間をすり抜けていく。<br>
+      150年前、一人のフランスの哲学者がこの非対称を数式にした。
+    </p>
+    <div class="cover-byline">
+      <span>QUALIA JOURNAL</span>
+      <span>DEEP DIVE</span>
+    </div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1877</span>
+      <p class="est-event">ポール・ジャネが論文『内的な錯視』で、主観的時間は年齢に反比例するという仮説を提唱。</p>
+      <p class="est-context">同年、エジソンが蓄音機を発明し「声の記録」が初めて可能に。露土戦争勃発。エイサフ・ホールが火星の衛星フォボスとダイモスを発見した年でもある。</p>
+    </div>
+    <p class="cover-aside"><strong>体験</strong>: 2つのスライダーと2つの時計で、自分の「心時間」がどれだけ速くなっているかを可視化する。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>小学生の頃の夏休みは、終わりが来ないように思えた。7月の終わりと8月の終わりのあいだには、どう考えても半年分くらいの距離があった。プールに行き、セミを追い、宿題のことは9月になるまで忘れていた。</p>
+    <p>大人になった今年の夏は、気がついたら終わっていた。「そういえば今年の夏、何をしたっけ」と思い返しても、数枚のスナップ写真のような記憶しか残っていない。時計は同じ速さで動いているはずだ。カレンダーのマス目の大きさも変わっていない。それなのに、夏の厚みだけが薄くなっている。</p>
+    <p>これは錯覚ではない。少なくとも、単なる気のせいとして片付けていい現象ではない。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 数学の知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-10</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-10</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">時計の針は一定の速さで進む。しかし「1年」という単位そのものの重さは、生きてきた長さと引き換えに軽くなっていく。この記事では、150年かけて少しずつ形になってきた時間知覚の仮説をたどりながら、自分自身の<strong>心時間</strong>がどれだけ速くなっているかを目と耳で確かめる。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- === 背景セクション === -->
+  <div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+  <h2 class="fade">ある夏の終わりに</h2>
+
+  <p class="body-text fade">冒頭のあの感覚——「子どもの頃の夏は長かったのに、今年の夏は一瞬だった」——は、誰かの気分の問題ではない。年齢を重ねるとともに時間の流れが速くなる、という感覚は、文化も時代も越えてくり返し記録されてきた。そして、この現象を最初に数式めいた形で言語化したのは、ウィリアム・ジェームズでもフロイトでもなく、19世紀のパリの一人の哲学者だった。</p>
+
+  <p class="body-text fade"><strong>ポール・ジャネは1877年、『哲学評論』誌に短い論文を寄せた。</strong>タイトルは「Une illusion d'optique interne」——直訳すれば、内的な錯視。ジャネはそこで、一見しただけでは当たり前に見える観察をした。誰でも、自分の学校時代の最後の8年か10年を思い出せる。あれは一世紀分の厚みがあった。ところが、つい最近の8年か10年はどうか。それは一時間のように縮んでいる。同じ長さのはずなのに、なぜか。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"Que l'on se rappelle ses dernières années de collège : ce fut un siècle. Comparez-y les huit ou dix dernières années de la vie : c'est l'espace d'une heure."</p>
+    <p class="quote-ja">自分の学校時代の最後の数年を思い出してみなさい——それは一世紀分の長さがあった。これを人生の最後の8年か10年と比べてみなさい。それは一時間にすぎない。</p>
+    <p class="quote-attr">— ポール・ジャネ『内的な錯視』、『哲学評論』第3巻（1877年）</p>
+  </div>
+
+  <p class="body-text fade">ジャネが提案した仮説はとてもシンプルだ。ある年齢において感じられる一定期間の長さは、その人の「それまでに生きてきた人生の総量」に反比例する。10歳の子どもにとって1年は人生全体の1/10だが、50歳の大人にとっては1/50でしかない。だから後者は前者の5倍速く流れる。この素朴な式は、のちに「<span class="tip" onclick="toggleTip(this)">ジャネの法則<span class="tip-box"><strong>ジャネの法則 (Janet's law)</strong>主観的な1年の長さは、そのときまでに生きた年数に反比例する、という仮説。13歳の1年は生涯の1/13、52歳の1年は1/52なので、52歳のほうが4倍速く感じる、という単純な算数になる。</span></span>」あるいは「対数時間（log time）」と呼ばれるようになる。</p>
+
+  <h2 class="fade">物理時間と心時間はズレている</h2>
+
+  <p class="body-text fade">ジャネの法則に入る前に、ひとつだけ前提を共有したい。この記事を通じて、私は「時計が示す時間」と「私たちが感じる時間」を別物として扱う。前者を<em>物理時間</em>、後者を<em>心時間</em>と呼ぶ。これはデューク大学のエイドリアン・ベジャンが2019年の論文で使った言い方で、両者がズレることこそが、時間知覚のすべての不思議の入口になる。</p>
+
+  <!-- SVG図解①: 物理時間 vs 心時間 -->
+  <div class="img-placeholder fade" style="border:1px solid #c8bfaa;background:white;">
+    <div style="padding:20px 18px 14px;background:#f3efe6;border-bottom:1px solid #c8bfaa;">
+      <span style="font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;">Figure 1</span>
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;margin-top:4px;">物理時間と心時間——同じ1分でも、中に流れる「画像」の数はまったく違う。</p>
+    </div>
+    <div style="padding:20px 18px;">
+      <svg viewBox="0 0 560 190" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;display:block;margin:0 auto;">
+        <!-- 左: 物理時間 -->
+        <text x="130" y="22" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#3d3020">物理時間</text>
+        <text x="130" y="38" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">(physical time) 時計が刻む時間</text>
+        <rect x="20" y="60" width="220" height="30" fill="#ede8dc" stroke="#c8bfaa"/>
+        <line x1="20" y1="60" x2="20" y2="90" stroke="#3d3020" stroke-width="1.5"/>
+        <line x1="75" y1="60" x2="75" y2="90" stroke="#3d3020" stroke-width="1.5"/>
+        <line x1="130" y1="60" x2="130" y2="90" stroke="#3d3020" stroke-width="1.5"/>
+        <line x1="185" y1="60" x2="185" y2="90" stroke="#3d3020" stroke-width="1.5"/>
+        <line x1="240" y1="60" x2="240" y2="90" stroke="#3d3020" stroke-width="1.5"/>
+        <text x="130" y="110" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">均等な目盛り</text>
+        <text x="130" y="140" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">0 ──── 15s ──── 30s ──── 45s ──── 60s</text>
+        <text x="130" y="168" text-anchor="middle" font-family="'Playfair Display',serif" font-size="13" font-style="italic" fill="#1a1208">一定の速度で進む</text>
+
+        <!-- 中央の矢印 -->
+        <text x="280" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="20" fill="#8b1a1a">⇄</text>
+
+        <!-- 右: 心時間 -->
+        <text x="430" y="22" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#3d3020">心時間</text>
+        <text x="430" y="38" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">(mind time) 脳が感じる時間</text>
+        <rect x="320" y="60" width="220" height="30" fill="#f3efe6" stroke="#c8bfaa"/>
+        <circle cx="332" cy="75" r="3" fill="#8b1a1a"/>
+        <circle cx="348" cy="75" r="3" fill="#8b1a1a"/>
+        <circle cx="370" cy="75" r="3" fill="#8b1a1a"/>
+        <circle cx="400" cy="75" r="3" fill="#8b1a1a"/>
+        <circle cx="440" cy="75" r="3" fill="#8b1a1a"/>
+        <circle cx="490" cy="75" r="3" fill="#8b1a1a"/>
+        <circle cx="528" cy="75" r="3" fill="#8b1a1a"/>
+        <text x="430" y="110" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">心的画像の密度で決まる</text>
+        <text x="430" y="140" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">濃い ──── 薄い</text>
+        <text x="430" y="168" text-anchor="middle" font-family="'Playfair Display',serif" font-size="13" font-style="italic" fill="#1a1208">加速していく</text>
+      </svg>
+    </div>
+  </div>
+
+  <p class="body-text fade">物理時間は、水晶振動子や原子時計が刻む、揺るぎない時間のことだ。これは誰にとっても同じ速度で進む。一方の<strong>心時間とは、脳が「いま何かが起きた」「いま別のことが起きた」と区切りを入れながら積み上げていく、主観的な時間</strong>のことだ。脳の区切りの密度が濃い時間は、あとから振り返ると長く感じられる。薄い時間は、実際は長くても、短かったように感じられる。</p>
+
+  <p class="body-text fade">この区別を入れた瞬間に、「時間は客観的に一定の速度で進んでいる」という素朴な感覚はいったん脇に置かれる。時計の秒針は確かに1秒ずつ進んでいる。だが、その1秒のあいだに脳が経験する<span class="tip" onclick="toggleTip(this)">心的画像<span class="tip-box"><strong>心的画像 (mental image)</strong>脳が外界の情報を受け取って、そこから作り出す内的な「場面」のこと。写真そのものではなく、あとから思い出せる形に整理されたイメージ。ベジャンの論文では、これが心時間の基本単位として使われる。</span></span>の数は、人によっても年齢によっても違う。同じ物理時間を流れても、心時間の「厚み」は一定ではない。</p>
+
+  <h2 class="fade">ジャネの法則——1年の相対的な重さ</h2>
+
+  <p class="body-text fade">さて、ジャネの式に戻ろう。式そのものはこう読める。<em>感じられる1年の長さ ∝ 1 ÷ 年齢</em>。5歳にとって1年は人生の5分の1、つまり20%。50歳にとって1年は50分の1で、わずか2%だ。単純に割り算すれば、5歳の1年の感覚は50歳の10倍ということになる。下の図は、ジャネの式に従って「各年齢で感じる1年の相対的な長さ」を縦バーで並べたものだ。5歳のバーが飛び抜けて高く、20歳以降は似たような低さに張り付いていく。</p>
+
+  <!-- SVG図解②: 各年齢での1年の相対的長さ -->
+  <div class="img-placeholder fade" style="border:1px solid #c8bfaa;background:white;">
+    <div style="padding:20px 18px 14px;background:#f3efe6;border-bottom:1px solid #c8bfaa;">
+      <span style="font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;">Figure 2</span>
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;margin-top:4px;">年齢ごとの「1年の重さ」（5歳の1年=100%として正規化）</p>
+    </div>
+    <div style="padding:20px 18px;">
+      <svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;display:block;margin:0 auto;">
+        <!-- ベースライン -->
+        <line x1="60" y1="180" x2="540" y2="180" stroke="#3d3020" stroke-width="1.2"/>
+        <!-- 縦軸ラベル -->
+        <text x="50" y="40" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">100%</text>
+        <text x="50" y="80" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">75%</text>
+        <text x="50" y="120" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">50%</text>
+        <text x="50" y="160" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">25%</text>
+
+        <!-- バー: 5,10,20,30,40,50,60,70,80歳 -->
+        <!-- 5歳: 100% -->
+        <rect x="75" y="40" width="42" height="140" fill="#8b1a1a"/>
+        <text x="96" y="198" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">5</text>
+        <text x="96" y="32" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">100</text>
+        <!-- 10歳: 50% -->
+        <rect x="128" y="110" width="42" height="70" fill="#8b1a1a"/>
+        <text x="149" y="198" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">10</text>
+        <text x="149" y="102" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">50</text>
+        <!-- 20歳: 25% -->
+        <rect x="181" y="145" width="42" height="35" fill="#8b1a1a"/>
+        <text x="202" y="198" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">20</text>
+        <text x="202" y="137" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">25</text>
+        <!-- 30歳: 16.7% -->
+        <rect x="234" y="157" width="42" height="23" fill="#8b1a1a"/>
+        <text x="255" y="198" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">30</text>
+        <text x="255" y="149" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">17</text>
+        <!-- 40歳: 12.5% -->
+        <rect x="287" y="163" width="42" height="17" fill="#8b1a1a"/>
+        <text x="308" y="198" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">40</text>
+        <text x="308" y="155" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">13</text>
+        <!-- 50歳: 10% -->
+        <rect x="340" y="166" width="42" height="14" fill="#8b1a1a"/>
+        <text x="361" y="198" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">50</text>
+        <text x="361" y="158" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">10</text>
+        <!-- 60歳: 8.3% -->
+        <rect x="393" y="168" width="42" height="12" fill="#8b1a1a"/>
+        <text x="414" y="198" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">60</text>
+        <text x="414" y="160" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">8</text>
+        <!-- 70歳: 7.1% -->
+        <rect x="446" y="170" width="42" height="10" fill="#8b1a1a"/>
+        <text x="467" y="198" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">70</text>
+        <text x="467" y="162" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">7</text>
+        <!-- 80歳: 6.25% -->
+        <rect x="499" y="171" width="42" height="9" fill="#8b1a1a"/>
+        <text x="520" y="198" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">80</text>
+        <text x="520" y="163" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">6</text>
+
+        <text x="300" y="215" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090">年齢（歳）</text>
+      </svg>
+    </div>
+  </div>
+
+  <p class="body-text fade">このバーには、一度聞くと頭から離れなくなる含意がある。ジャネの式が正しいとすると、<strong>あなたの「主観的な人生」の半分は、7歳までに過ぎている</strong>。なぜなら、0歳から7歳までの7年間の主観的な総量は、7歳から到達しうる人生の終わりまでの残りの年数の主観的な総量と、数学的には同じオーダーになるからだ。体感される残りの人生は、カレンダー上の残り年数よりずっと短い。これが単なる気分の問題ではないと、ジャネは言いたかった。</p>
+
+  <!-- ★ インタラクティブ①: 生涯の時間地図 ★ -->
+  <div class="ix-wrap fade">
+    <span class="ix-head">✦ Life Map · Interactive</span>
+    <p class="ix-title">生涯の時間地図</p>
+    <p class="ix-lead">スライダーで「現在の年齢」と「寿命の見込み」を動かすと、横バーが塗り替わる。赤色があなたの<strong>主観的に</strong>すでに生きた割合、ベージュ色がこれから先。ジャネの法則 (主観的時間 ∝ 1/年齢) に従って、各年齢の1年が占める面積を対数的に計算している。</p>
+    <div class="ix-controls">
+      <div class="ix-slider-row">
+        <span class="ix-slider-label">現在の年齢</span>
+        <input type="range" class="ix-slider" id="lmAge" min="1" max="90" value="35">
+        <span class="ix-value" id="lmAgeVal">35歳</span>
+      </div>
+      <div class="ix-slider-row">
+        <span class="ix-slider-label">寿命の見込み</span>
+        <input type="range" class="ix-slider" id="lmSpan" min="60" max="100" value="85">
+        <span class="ix-value" id="lmSpanVal">85歳</span>
+      </div>
+    </div>
+    <div class="life-bar-wrap">
+      <div class="life-bar" id="lmBar"></div>
+      <div class="life-axis"><span>誕生</span><span>寿命</span></div>
+    </div>
+    <div class="ix-readout" id="lmReadout">—</div>
+    <p class="ix-note">各年齢 n での「1年の重み」を 1/n として合計し、誕生から寿命までの積分のうち、どこまで進んだかを赤色で表示している。ジャネの法則は厳密な物理法則ではなく、主観的時間の粗いモデルにすぎない点に注意してほしい。</p>
+  </div>
+
+  <p class="body-text fade">この数式が本当に正しいと言いたいわけではない。ジャネ自身も、これが最終的な答えだとは考えていなかった。ただ、彼が示したかったのは——主観的な時間は年齢に対して完全には中立ではない、その歪みは比例ではなく割合で効いてくる、ということだった。のちに「ジャネの法則」と呼ばれる仮説は、この直感を粗いままで公式にしたものだ。</p>
+
+  <!-- 人物ブロック -->
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="paul_janet.jpg" alt="ポール・ジャネの肖像">
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">ポール・ジャネ</p>
+      <p class="person-block-role">PAUL JANET (1823–1899)</p>
+      <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%9D%E3%83%BC%E3%83%AB%E3%83%BB%E3%82%B8%E3%83%A3%E3%83%8D" target="_blank" rel="noopener">Wikipedia →</a></p>
+      <p class="person-block-desc">ソルボンヌの哲学教授。スピノザ研究や道徳哲学で知られるが、時間知覚に関しても短い論文を残した。1877年の『哲学評論』に寄せた「内的な錯視」は、ウィリアム・ジェームズが1890年の『心理学原理』で引用して広く知られることになる。ジェームズは式そのものには距離を置いたが、ジャネの提起した問い——「なぜ過去は年齢とともに圧縮されるのか」——を自身の議論の出発点にした。</p>
+    </div>
+  </div>
+
+  <h2 class="fade">ウェーバー・フェヒナーとの接続</h2>
+
+  <p class="body-text fade">ジャネの法則の「1/年齢」という形は、じつは19世紀の心理物理学とよく似た顔をしている。エルンスト・ウェーバーとグスタフ・フェヒナーが定式化した<span class="tip" onclick="toggleTip(this)">ウェーバー・フェヒナーの法則<span class="tip-box"><strong>ウェーバー・フェヒナーの法則</strong>刺激の強さが増すほど、それを「同じだけ増えた」と感じるのに必要な量も増える、という心理物理学の法則。たとえば50gの重りに10gを足すと気づくが、500gに10gを足しても気づかない。感覚は刺激の対数に比例する、という形でよく表される。</span></span>は、もともと重さや明るさや音の大きさといった感覚に対するものだった。「同じだけ増えた」と感じるために必要な刺激の量は、すでにある刺激の強さに比例する——つまり、感覚は刺激の対数に比例する。</p>
+
+  <!-- テーブル -->
+  <div class="compare-table fade">
+    <table>
+      <thead>
+        <tr>
+          <th>感覚の種類</th>
+          <th>物理的な刺激</th>
+          <th>主観的に感じる量</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>重さ</td>
+          <td>50g → 100g（+50g）</td>
+          <td>明らかに重くなった</td>
+        </tr>
+        <tr>
+          <td>重さ</td>
+          <td>1kg → 1.05kg（+50g）</td>
+          <td>ほぼ気づかない</td>
+        </tr>
+        <tr>
+          <td>音の大きさ</td>
+          <td>静かな部屋+ささやき声</td>
+          <td>明瞭に聞こえる</td>
+        </tr>
+        <tr>
+          <td>音の大きさ</td>
+          <td>繁華街+ささやき声</td>
+          <td>完全に埋もれる</td>
+        </tr>
+        <tr>
+          <td>時間（ジャネ説）</td>
+          <td>5歳にとっての1年</td>
+          <td>人生の20%ぶんの重み</td>
+        </tr>
+        <tr>
+          <td>時間（ジャネ説）</td>
+          <td>50歳にとっての1年</td>
+          <td>人生の2%ぶんの重み</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="body-text fade">ジャネの仮説は、この「感覚は刺激の<span class="tip" onclick="toggleTip(this)">対数<span class="tip-box"><strong>対数 (logarithm)</strong>簡単に言うと、「何倍になったか」を「何段階増えたか」に読み替える数のものさし。1, 10, 100, 1000 を 0, 1, 2, 3 に押し込めるイメージ。感覚の法則でよく登場するのは、人間の脳が絶対的な量よりも「何倍か」で物事を捉えるのが得意だから。</span></span>に比例する」という一般則を、時間という奇妙な感覚に当てはめたものとも読める。ジャネ自身がウェーバーを明示的に引用したわけではないが、後世の研究者はこの対応関係に繰り返し注目してきた。感覚一般が相対的であるなら、時間の感覚だけが例外である理由はない。</p>
+
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q misc-q">
+          <p class="misc-lbl">✗ よくある誤解</p>
+          <p class="misc-txt">「歳を取って時間が速く感じるのは、単に忙しいからだ。スケジュールが詰まっていると時間が飛ぶ。」</p>
+        </div>
+        <div class="misconception-a misc-a">
+          <p class="misc-lbl">✓ 実際は</p>
+          <p class="misc-txt">忙しさは加速に効いているかもしれないが、それだけでは夏休みの厚みの差を説明できない。暇で退屈な老人も同じように「10年前がつい昨日」と言う。忙しさよりもっと深いところに歪みがある。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q misc-q">
+          <p class="misc-lbl">✗ よくある誤解</p>
+          <p class="misc-txt">「本人の性格や気分の問題。気にしなければ感じない。」</p>
+        </div>
+        <div class="misconception-a misc-a">
+          <p class="misc-lbl">✓ 実際は</p>
+          <p class="misc-txt">20歳から90歳まで幅広い年齢で調査しても、「過去10年が速く感じるか」という質問への答えは、年齢とともに一貫して強くなる。性格傾向や文化圏を問わずこの方向性は崩れにくい。個人差はもちろんあるが、傾向そのものは頑健だ。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- === 体験セクション === -->
+  <div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+  <h2 class="fade">2つの時計</h2>
+
+  <p class="body-text fade">ここまでで、ジャネの法則の形と気分は伝わったと思う。ただ、バーや数式を眺めるのと、自分の心時間が実際に何倍速くなっているかを「目と耳で」感じるのは、別のことだ。次の仕掛けでは、2つの円時計を並べて同時に動かす。左は「あなたが5歳だったときの心時計」、右は「現在のあなたの心時計」。物理時間の1分のあいだに、左の時計が一周するとき、右の時計はいったいどこまで進むか。</p>
+
+  <!-- ★ インタラクティブ②: 2つの時計 ★ -->
+  <div class="ix-wrap fade">
+    <span class="ix-head">✦ Two Clocks · Simulator</span>
+    <p class="ix-title">5歳の時計 vs いまのあなたの時計</p>
+    <span class="sound-warn">🔊 音が鳴ります</span>
+    <p class="ix-lead">スライダーであなたの現在の年齢を入れ、START を押すと、物理時間の60秒が進むあいだに、2つの「心時計」がそれぞれの速度で動く。メトロノーム音も同じ速度比で鳴る。ジャネ式では、現在年齢 A の1秒は、5歳の1秒にくらべて 5/A 倍しか進まない。</p>
+    <div class="ix-controls">
+      <div class="ix-slider-row">
+        <span class="ix-slider-label">あなたの年齢</span>
+        <input type="range" class="ix-slider" id="tcAge" min="6" max="85" value="35">
+        <span class="ix-value" id="tcAgeVal">35歳</span>
+      </div>
+    </div>
+    <div class="clocks-wrap">
+      <div class="clock-box">
+        <div class="clock-label">左: <strong>5歳</strong>の心時計</div>
+        <svg id="clockLeft" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" style="width:130px;height:130px;">
+          <circle cx="70" cy="70" r="62" fill="#faf8f3" stroke="#1a1208" stroke-width="2"/>
+          <g stroke="#3d3020" stroke-width="1.2" stroke-linecap="round">
+            <line x1="70" y1="12" x2="70" y2="20"/>
+            <line x1="70" y1="120" x2="70" y2="128"/>
+            <line x1="12" y1="70" x2="20" y2="70"/>
+            <line x1="120" y1="70" x2="128" y2="70"/>
+          </g>
+          <line id="handL" x1="70" y1="70" x2="70" y2="20" stroke="#8b1a1a" stroke-width="3" stroke-linecap="round" transform="rotate(0 70 70)"/>
+          <circle cx="70" cy="70" r="4" fill="#1a1208"/>
+        </svg>
+        <p class="clock-elapsed"><span id="leftSec">0</span></p>
+        <p class="clock-unit">心時間 (秒)</p>
+      </div>
+      <div class="clock-box">
+        <div class="clock-label">右: <strong id="tcAgeLabel">35歳</strong>の心時計</div>
+        <svg id="clockRight" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" style="width:130px;height:130px;">
+          <circle cx="70" cy="70" r="62" fill="#faf8f3" stroke="#1a1208" stroke-width="2"/>
+          <g stroke="#3d3020" stroke-width="1.2" stroke-linecap="round">
+            <line x1="70" y1="12" x2="70" y2="20"/>
+            <line x1="70" y1="120" x2="70" y2="128"/>
+            <line x1="12" y1="70" x2="20" y2="70"/>
+            <line x1="120" y1="70" x2="128" y2="70"/>
+          </g>
+          <line id="handR" x1="70" y1="70" x2="70" y2="20" stroke="#8b1a1a" stroke-width="3" stroke-linecap="round" transform="rotate(0 70 70)"/>
+          <circle cx="70" cy="70" r="4" fill="#1a1208"/>
+        </svg>
+        <p class="clock-elapsed"><span id="rightSec">0</span></p>
+        <p class="clock-unit">心時間 (秒)</p>
+      </div>
+    </div>
+    <div class="ix-btns">
+      <button class="ix-btn" id="tcStart">▶ START (60秒)</button>
+      <button class="ix-btn secondary" id="tcStop">■ STOP</button>
+      <button class="ix-btn secondary" id="tcReset">⟲ RESET</button>
+    </div>
+    <div class="final-readout" id="tcFinal"></div>
+    <p class="ix-note">左の時計は5歳基準の心時間で動き、右はジャネ式 (相対速度 = 5 / 現在年齢) で減速する。メトロノーム音はWeb Audio APIで発生させる純音。物理的な60秒のあいだに実際に起きる神経活動の差を再現しているわけではなく、ジャネの式が予言する「主観的速度比」を可聴化した概念的な可視化にあたる。</p>
+  </div>
+
+  <p class="body-text fade">60秒が経ったとき、左の時計は当然60の目盛を指している。一方、右の時計の数字はあなたが何歳かによって変わる。35歳なら、右の時計は9秒分しか進まない。つまり、60秒の物理時間は、35歳のあなたの主観には9秒分しか当たらない。あるいは裏返せば、<strong>いまのあなたの1分は、5歳のときの約7倍の速さで流れている</strong>。これが心時間の非対称の正体だ——ということに、ジャネの式はなっている。</p>
+
+  <!-- === メカニズムセクション === -->
+  <div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+  <h2 class="fade">加速する3つの仮説</h2>
+
+  <p class="body-text fade">ジャネの式は現象を粗く記述したものにすぎない。では、その背後で何が起きているのか。現代の心理学と神経科学は、少なくとも3つの異なる説明を用意している。どれも単独では不十分で、どれも互いに排他的ではない。時間知覚は、これら複数のメカニズムの合流点で歪む。</p>
+
+  <div class="steps-wrap fade">
+    <div class="steps-head">メカニズム</div>
+
+    <div class="step-card" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">01</div>
+        <div class="step-tw">
+          <p class="step-title">仮説A: 比率仮説（ジャネ）</p>
+          <p class="step-sub">1年は生涯に対する割合として感じられる</p>
+        </div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p><strong>「1年」は絶対量ではなく相対量として扱われる</strong>という発想。5歳児にとっての1年は自分の全人生の20%ぶんの出来事を含む。50歳にとっての1年は2%ぶんだ。脳がこの「割合」を感覚の単位にしているなら、加齢にともなう加速はほぼ自動的に出てくる。</p>
+        <p><em>日常の例:</em> 同じ「1万円」でも、月収10万の学生には重く、月収100万の社長には軽い。金額は同じでも、それが「すでにある量」に対してどれだけ増やすかで重みが変わる。時間もこれと同じことが起きているかもしれない、という仮説。</p>
+        <p>ただし、比率仮説にはひとつ弱点がある。これは「いま流れている時間」よりも「振り返ったときの時間」の説明として強い。現在進行形で夏休みが速く過ぎているとき、その瞬間には「割合」は意識されていない。比率仮説はおそらく、記憶の側の操作を説明している。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">02</div>
+        <div class="step-tw">
+          <p class="step-title">仮説B: 新奇性仮説（ジェームズ以降）</p>
+          <p class="step-sub">新しい経験の密度が時間の厚みを作る</p>
+        </div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p><strong>ウィリアム・ジェームズは1890年の『心理学原理』でジャネを紹介したあと、すぐに別の説明を足した</strong>——若いころは毎日が新しい経験で埋まっていて、記憶の内容が複雑で多面的になる。だからあとから振り返ると、充実した長い旅行を思い出すときのように、長く感じられる。歳を取ると日常は単調になり、記憶は単純化される。だから短く感じられる。</p>
+        <p><em>日常の例:</em> 初めて行った海外旅行の1週間は異常に長く感じた。一方、毎日同じ通勤ルートで過ぎる1週間は記憶にほとんど残らない。新奇性の密度が違うと、あとから測った時間の長さも違ってくる。</p>
+        <p>2020年代の研究はこの仮説をさらに精密にしている。120人を対象にした2020年代の研究では、自伝的記憶の「量」そのものよりも、<em>新しい記憶を形成する能力</em>が「過去10年が速かったか」という感覚とよく対応することが示された。つまり、年を取ると記憶が減るというより、新しい記憶が積み上がりにくくなっていることの方が、加速の本体に近い。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">03</div>
+        <div class="step-tw">
+          <p class="step-title">仮説C: 物理仮説（ベジャン）</p>
+          <p class="step-sub">神経処理そのものが遅くなる</p>
+        </div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>デューク大学の機械工学者エイドリアン・ベジャンが2019年に『European Review』誌で提案した物理学寄りの説明。<strong>加齢にともなって、脳が心的画像を1つ生成するのにかかる時間がじわじわ伸びる</strong>、というもの。神経の経路が長く複雑になり、信号が通る道が劣化する。視覚情報を処理する基本単位である<span class="tip" onclick="toggleTip(this)">サッカード<span class="tip-box"><strong>サッカード (saccade)</strong>目を動かすときに起きる、高速でカクッとした飛躍的な動き。人間は景色を「なめらかに見ている」つもりでも、実際には1秒に3〜5回サッカードを打ちながら、離散的な画像を繋ぎ合わせて見ている。</span></span>の頻度も加齢とともに落ち、精度も下がる。</p>
+        <p>結果として、同じ物理時間のあいだに脳が登録できる心的画像の枚数が減る。ベジャンのフレーズでは「mind time」と「clock time」がズレる。若いころは1秒に多くの画像を処理していたから、あとから振り返ると、その1秒の中身が濃く、長く感じる。歳を取ると中身が薄くなる。</p>
+        <p><em>日常の例:</em> 古いパソコンでスローモーション動画を撮ろうとして、カクカクになる状況を想像してほしい。実時間は同じなのに、記録される「コマ数」が減るので、あとから再生すると内容が痩せて見える。ベジャンの説はこの比喩に近い。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SVG: Bejan フロー図 -->
+  <div class="img-placeholder fade" style="border:1px solid #c8bfaa;background:white;">
+    <div style="padding:20px 18px 14px;background:#f3efe6;border-bottom:1px solid #c8bfaa;">
+      <span style="font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;">Figure 3</span>
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;margin-top:4px;">ベジャンの仮説 (2019)——物理時間と心時間のズレがどこで生じるか</p>
+    </div>
+    <div style="padding:20px 18px;overflow-x:auto;">
+      <svg viewBox="0 0 580 180" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;display:block;margin:0 auto;min-width:500px;">
+        <!-- ゾーンラベル -->
+        <text x="75" y="18" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" fill="#b0a090" letter-spacing="1.2">外界</text>
+        <text x="225" y="18" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" fill="#b0a090" letter-spacing="1.2">目</text>
+        <text x="375" y="18" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" fill="#b0a090" letter-spacing="1.2">神経経路</text>
+        <text x="525" y="18" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" fill="#b0a090" letter-spacing="1.2">脳・心時間</text>
+
+        <!-- 4つの箱 -->
+        <rect x="20" y="32" width="110" height="80" fill="#faf8f3" stroke="#c8bfaa" stroke-width="1.2"/>
+        <text x="75" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#1a1208">光・景色</text>
+        <text x="75" y="82" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">一定の情報量</text>
+        <text x="75" y="98" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">(物理)</text>
+
+        <rect x="170" y="32" width="110" height="80" fill="#faf8f3" stroke="#c8bfaa" stroke-width="1.2"/>
+        <text x="225" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#1a1208">サッカード</text>
+        <text x="225" y="76" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">若: 高頻度</text>
+        <text x="225" y="92" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">老: 低頻度</text>
+
+        <rect x="320" y="32" width="110" height="80" fill="#faf8f3" stroke="#c8bfaa" stroke-width="1.2"/>
+        <text x="375" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#1a1208">信号伝達</text>
+        <text x="375" y="76" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">若: 短く速い</text>
+        <text x="375" y="92" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">老: 長く劣化</text>
+
+        <rect x="470" y="32" width="110" height="80" fill="#f3efe6" stroke="#8b1a1a" stroke-width="1.5"/>
+        <text x="525" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#8b1a1a">心的画像の数</text>
+        <text x="525" y="76" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">若: 多い ⇒ 長い</text>
+        <text x="525" y="92" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">老: 少ない ⇒ 短い</text>
+
+        <!-- テキスト矢印 -->
+        <text x="150" y="76" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+        <text x="300" y="76" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+        <text x="450" y="76" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+
+        <text x="300" y="150" text-anchor="middle" font-family="'Playfair Display',serif" font-size="12" font-style="italic" fill="#1a1208">物理時間は一定でも、処理される「心的画像の枚数」が年齢で変わる。</text>
+        <text x="300" y="168" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">Bejan (2019), European Review</text>
+      </svg>
+    </div>
+  </div>
+
+  <p class="body-text fade">注意したいのは、この3つの仮説は競合しているように見えて、じつは部分的に重なっているということだ。ジャネの比率は現象の記述、ジェームズの新奇性は記憶側のメカニズム、ベジャンの物理は知覚側のメカニズム——階層が違う。どれか一つが正しいというより、3つが足し算されたものが、私たちの実感する加速になっている可能性が高い。</p>
+
+  <!-- === 歴史セクション === -->
+  <div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+  <h2 class="fade">1877年から2022年まで</h2>
+
+  <p class="body-text fade">下の年表は、時間知覚と加齢についての主要な議論を整理したものだ。赤い丸はジャネの法則そのものに直接関わる出来事、白い丸は周辺の重要な寄り道を示している。150年かけて、粗い観察が少しずつ精密な仮説と測定に置き換わっていった流れが見える。</p>
+
+  <div class="timeline fade">
+    <div class="tl-item highlight"><div class="tl-dot"></div>
+      <p class="tl-year">1877</p>
+      <p class="tl-title">ジャネ『内的な錯視』</p>
+      <p class="tl-desc">ソルボンヌの哲学者ポール・ジャネが『哲学評論』に短い論文を発表。主観的な時間は年齢に反比例する、という仮説を、簡単な言葉で述べた。のちに「ジャネの法則」と呼ばれるこの主張は、同じ年、エジソンが蓄音機を発明したのと同じ時代の空気のなかで生まれた。</p>
+    </div>
+    <div class="tl-item highlight"><div class="tl-dot"></div>
+      <p class="tl-year">1890</p>
+      <p class="tl-title">ジェームズ『心理学原理』第15章</p>
+      <p class="tl-desc">ハーバードの心理学者ウィリアム・ジェームズが、著書のなかでジャネの観察を紹介。「これは現象を記述しているが、根本的な心理法則とは言えない」と距離を取りつつ、若いころの記憶の「多様さ」と加齢後の「単調さ」の差を、自前の説明として追加した。ジャネの法則が英語圏に伝わった瞬間。</p>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">1860</p>
+      <p class="tl-title">フェヒナー『心理物理学原論』</p>
+      <p class="tl-desc">ウェーバー・フェヒナーの法則の原典。感覚は刺激の対数に比例するという一般則が、ジャネ以前にすでに確立されていた。時間知覚を対数的に見るという発想は、この心理物理学の流れと無関係ではない。</p>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">1960s</p>
+      <p class="tl-title">「ログタイム」の再発見</p>
+      <p class="tl-desc">計算尺の対数スケールに着想を得て、何人かの研究者が独立に「時間は対数的に感じられる」という仮説を再提案する。ジャネの1877年の論文はこの時点ではほぼ忘れられており、後年になって再発見される。</p>
+    </div>
+    <div class="tl-item highlight"><div class="tl-dot"></div>
+      <p class="tl-year">2019</p>
+      <p class="tl-title">ベジャン「Why the Days Seem Shorter as We Get Older」</p>
+      <p class="tl-desc">デューク大学のエイドリアン・ベジャンが『European Review』に発表。サッカード頻度、神経経路の長さ、信号劣化といった物理的な変化を根拠に、「mind time」と「clock time」のズレを工学的に説明しようとした。哲学の仮説だった時間知覚の問題が、機械工学の言葉で再定式化された論文として話題になった。</p>
+    </div>
+    <div class="tl-item highlight"><div class="tl-dot"></div>
+      <p class="tl-year">2022</p>
+      <p class="tl-title">ウィアーデン、ジャネ1877論文の英訳</p>
+      <p class="tl-desc">英キール大学のジョン・ウィアーデンが『Timing & Time Perception』誌にジャネの原論文の英訳と解説を発表。145年間、ジャネの原典は哲学史と心理学史の隙間で半ば忘れ去られていた。この翻訳によって、現代の時間知覚研究は自分たちのルーツと対話し直せるようになった。</p>
+    </div>
+  </div>
+
+  <!-- === つまりセクション === -->
+  <div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+  <h2 class="fade">時間は短くなるのではなく、軽くなる</h2>
+
+  <p class="body-text fade">ここまでを整理すると、こう言える。私たちが「歳を取ると時間が速い」と感じるとき、実際に時計が速く回っているわけではない。1年という単位の物理的な長さは変わらない。変わるのは、その1年のなかに<strong>どれだけの出来事を詰め込めるか</strong>、そして<strong>その1年が人生全体のどれだけの割合を占めるか</strong>だ。前者は知覚と神経の問題で、後者は記憶と構造の問題だ。時間そのものが縮むのではなく、1年という容器の重みが相対的に軽くなっていく。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">"The rate of passage of subjective time is proportional to the <em>age</em> of the person making the judgement."</p>
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">主観的時間の流れる速度は、その判断をする人の年齢に比例する。</p>
+    <p class="pull-attr">— ジョン・ウィアーデン、ジャネ1877論文の英訳解題『Timing & Time Perception』第10巻 (2022年)</p>
+  </div>
+
+  <p class="body-text fade">この非対称は、ただの不思議な錯覚として片付けるには重たい含意を持っている。20歳を過ぎたあたりから、1年の主観的な重みは急速に減っていく。残りの人生をカレンダーで数えれば60年あっても、主観的にはその半分にも満たない——これがジャネの式が粗い形で示していることだ。だとすると、残りの心時間をどう伸ばすか、という問いが自然に出てくる。新奇性仮説と物理仮説は、幸いなことに、その問いに少しだけ実用的な手がかりをくれる。</p>
+
+  <p class="body-text fade">加速を<em>止める</em>方法はない。だが、遅らせる方向の手がかりはいくつかある。ただしどれも万能ではない。</p>
+
+  <p class="body-text fade">一つ目は、<span class="tip" onclick="toggleTip(this)">新奇性を計画的に入れる<span class="tip-box"><strong>新奇性の計画的導入</strong>ジェームズ以降の仮説に従えば、新しい経験は記憶を「濃く」する。通勤ルートを変える、普段読まないジャンルの本を読む、知らない街を歩く、といった小さな新奇性が、あとから振り返ったときの時間の厚みを少しだけ取り戻すかもしれない。</span></span>こと。通勤ルートを変える、初めての料理を作る、知らない街を歩く。単調さを壊すことで、記憶側の仮説が予言する「1年の密度」を少しだけ上げられる。ただし、新奇性だけで加速全体を止められるわけではない。ベジャンの物理的説明が正しいなら、新奇性を入れても処理速度そのものは若返らない。</p>
+
+  <p class="body-text fade">二つ目は、<span class="tip" onclick="toggleTip(this)">身体と感覚の解像度を保つ<span class="tip-box"><strong>感覚解像度の維持</strong>ベジャンの仮説では、加齢による時間加速の一部は神経経路と知覚系の劣化から来る。睡眠、運動、視覚と聴覚のケアによって、心的画像の処理速度を若いころに近い水準に保つことができれば、主観的に単位時間の「厚み」を維持できる可能性がある。</span></span>こと。睡眠、運動、視覚のケア。ベジャンが触れていたのは、若いアスリート時代の彼自身が、体調が良い日は時間が遅く感じられたという経験だった。身体の処理速度が心時間の単位を決めているなら、そこをメンテナンスすることには意味がある。これも同じく、完全な解決ではない。</p>
+
+  <p class="body-text fade">三つ目は、もう少し哲学的な提案だ——<em>1年の主観的な重さが減っていくなら、その重みの減りを自分の内側で打ち消すかわりに、1年を物理的により多く使う</em>という戦略。カレンダーの外では勝てないが、カレンダーの中で勝負はできる。これはジャネもジェームズもベジャンも言わなかったことだが、彼らの記述から素直に引き出せる帰結だと思う。</p>
+
+  <!-- 文化への登場 -->
+  <div class="culture-block fade">
+    <p class="culture-label">▸ 作品への登場</p>
+    <div class="culture-item">
+      <p class="culture-title">マルセル・プルースト『失われた時を求めて』（1913–1927）</p>
+      <p class="culture-desc">フランスの長大な小説。紅茶に浸したマドレーヌの一口から幼少期の記憶が溢れ出す有名な場面は、新奇性仮説が言う「濃い記憶」の逆再生のような現象として読める。プルーストの関心は、過ぎ去った時間をどうやって主観のなかで取り戻すかだった。ジャネの論文から36年後に書き始められた作品。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">マキシミリアン・キーナー「A life in weeks」（2015）</p>
+      <p class="culture-desc">オーストリアのデザイナーが作った、ジャネの法則を視覚化したインタラクティブ作品。スクロールするたびに年齢が進み、1年が指の下を「だんだん速く」流れていく。「これを最後まで体験するには忍耐がいるが、終わったときには、思っていたより速く終わってしまう」と作者が書いている。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">子どもの頃の夏は長かった。今年の夏は短かった。この非対称は、150年前に一人の哲学者が指摘した1/nの形で粗く記述でき、1世紀以上たっても、心理学と工学はまだその式の厚みを埋めきれていない。ただ、問いが消えたわけではない——いま流れている夏を、少しだけ長く感じる方法を、私たちはまだ探している。</p>
+
+  <!-- === 参考文献 === -->
+  <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta">
+        <span class="ref-type">一次文献</span>
+        <span class="ref-year">1877 / 2022</span>
+      </div>
+      <p class="ref-title"><a href="https://doi.org/10.1163/22134468-bja10054" target="_blank" rel="noopener">Paul Janet and Changes in the Apparent Speed of Passage of Time with Aging</a></p>
+      <p class="ref-author">John H. Wearden — Timing & Time Perception, Vol. 10 (2022)</p>
+      <p class="ref-desc">ジャネの1877年論文『Une illusion d'optique interne』の英訳と解題。ジャネの原典は長らく埋もれていたので、この記事を先に読んでおくと、後世の引用がどれだけ孫引きだったかが見えてくる。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta">
+        <span class="ref-type">理論論文</span>
+        <span class="ref-year">2019</span>
+      </div>
+      <p class="ref-title"><a href="https://doi.org/10.1017/S1062798718000741" target="_blank" rel="noopener">Why the Days Seem Shorter as We Get Older</a></p>
+      <p class="ref-author">Adrian Bejan — European Review, Vol. 27, No. 2 (2019)</p>
+      <p class="ref-desc">哲学の仮説として扱われてきた時間加速を、サッカード頻度・神経経路・信号劣化という物理量で説明しようとした論文。機械工学者が書いているので、視点が心理学の教科書とはずいぶん違う。読みものとしてもおもしろい。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta">
+        <span class="ref-type">古典</span>
+        <span class="ref-year">1890</span>
+      </div>
+      <p class="ref-title"><a href="https://doi.org/10.1037/10538-000" target="_blank" rel="noopener">The Principles of Psychology (Chapter XV: The Perception of Time)</a></p>
+      <p class="ref-author">William James — Henry Holt and Company</p>
+      <p class="ref-desc">ジャネの観察を英語圏に紹介した章。ジェームズ自身は比率仮説に懐疑的で、「記憶の単調さ」という別の説明を提案している。時間知覚について考える人にとっては、ここがすべての出発点になる。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta">
+        <span class="ref-type">実証研究</span>
+        <span class="ref-year">2021</span>
+      </div>
+      <p class="ref-title"><a href="https://doi.org/10.1163/22134468-bja10024" target="_blank" rel="noopener">Age, personal characteristics, and the speed of psychological time</a></p>
+      <p class="ref-author">Gagnon-Harvey, A.-A., McArthur, J., Tétreault, E., Fortin-Guichard, D., & Grondin, S. — Timing & Time Perception, Vol. 9 (2021)</p>
+      <p class="ref-desc">「過去10年が速く感じるか」という感覚と、年齢・性格・認知機能との関係を大規模に調べたもの。自伝的記憶の量より、新しい記憶を作る能力の方が加速の予測因子として強い、という結果が示されている。</p>
+    </div>
+  </div>
+
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    ジャネの法則の原典情報はウィアーデン (2022) の英訳・解題を、現代の実証研究はガニオン=ハーヴェイら (2021) を、物理的説明はベジャン (2019) を基にしている。ジャネの式そのものは厳密な実証科学ではなく、現代心理学ではより複雑なメカニズム（自伝的記憶・神経可塑性・注意配分）の合流点として理解される傾向にある。この記事はそれらを単純化したうえで、読者自身の感覚と照らし合わせる形で構成している。
+  </div>
+
+  <div class="signature fade">e. Tamaki</div>
+
+  <div class="tags fade">
+    <span class="tag">時間知覚</span>
+    <span class="tag">ジャネの法則</span>
+    <span class="tag">心時間</span>
+    <span class="tag">加齢</span>
+    <span class="tag">ベジャン</span>
+    <span class="tag">心理物理学</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">7歳</p>
+      <p class="sidebar-text">ジャネの式が正しいとすると、あなたの<em>主観的な人生の半分</em>はおよそ7歳までに過ぎている。残りの70年は、前半7年と同じ重みしかない。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1877年パリ。ジャネが論文を書いた同じ年、アメリカではエジソンが蓄音機を完成させ、バルカン半島では露土戦争が始まっていた。「記録」と「時間」が同時に問い直された年代。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">プルースト『失われた時を求めて』、キーナー「A life in weeks」。時間の非対称は、文学でもデザインでも繰り返しモチーフにされてきた。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">
+        — ウェーバー・フェヒナーの法則<br>
+        — エピソード記憶<br>
+        — 心理物理学<br>
+        — 自伝的記憶
+      </p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">今日の1分を振り返る</p>
+      <ul class="sidebar-check">
+        <li>今日、初めての経験は1つあったか</li>
+        <li>昨日と違う景色を見たか</li>
+        <li>通勤・昼食・帰宅ルートのどれかを変えたか</li>
+        <li>この記事を読むあいだ、時間は速かったか遅かったか</li>
+      </ul>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">ジャネの式そのものは粗いモデル。ただし「加齢で主観時間が加速する」という傾向は繰り返し観測されており、原因の候補も複数特定されている。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// session started — 歳を取ると時間が速く感じる話を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ジャネの式って、本当に「割り算」でそんなに単純に出せるもの?</span></div>
+      <span class="t-output" id="to1">ジャネ本人も、これを最終的な答えにしたいわけではなかった。彼は現象を<strong>粗く記述</strong>するための式として提案した。現代の実証研究は、自伝的記憶の量・新しい記憶を作る能力・神経処理速度など、もっと複雑な変数の合流点として時間加速を捉えている。1/n はそこへの<em>最初の手がかり</em>として読むのがちょうどいい。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ、本当に7歳で人生の半分が終わってるの?</span></div>
+      <span class="t-output" id="to2">「主観的な人生の半分」という言い方の限りで、そうなる。カレンダーの上での半分ではなく、振り返ったときの厚みとしての半分。ただし、これはあくまでジャネ式が仮定する対数モデルの結論。モデルが別なら結論も変わる。たとえば新奇性仮説なら、後年に新しい経験を意識的に入れることで、その「半分」はずらせる可能性がある。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;新しいことを始めれば、時間が長く感じられるって話、どこまで本当?</span></div>
+      <span class="t-output" id="to3">「いま流れている時間」を長くする効果は限定的。むしろ効くのは、<strong>あとから振り返ったとき</strong>の時間の厚みの方。旅行後の1週間が異様に長かった記憶として残るのは、新奇性仮説と相性がよい。ただしベジャン説が正しい分だけは、新奇性でも埋められない領域が残る。処理速度そのものは若返らないから。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、加速は止められない?</span></div>
+      <span class="t-output" id="to4">止められない。ただし、傾きを少し緩めることはできるかもしれない。新奇性の計画的な導入、睡眠と運動、視覚のケア、それから「1年をより多く使う」という物理側の戦略。どれも部分的で、どれも万能ではない。ただ、150年かけて少しずつわかってきたことを使って、自分の残りの心時間をどう扱うかを<em>自分で決める</em>材料にはなる。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl5">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 夏、もう少し長くしてみる</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/articles/sound_does_not_exist">
+      <p class="related-card-tag">知覚・錯覚 × 心理物理学</p>
+      <p class="related-card-title">音は存在しない</p>
+      <p class="related-card-desc">空気の振動だけがあり、音そのものは脳の中にしかない。ジャネの「内的な錯視」と同じく、主観と物理のズレから始まる話。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="#">
+      <p class="related-card-tag">脳と意識 × 時間</p>
+      <p class="related-card-title">リベット実験</p>
+      <p class="related-card-desc">意識が決定する0.5秒前に、脳はすでに動き始めている。時間と意識の「順序」が壊れる有名な実験。</p>
+      <p class="related-card-arrow">近日公開</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// プログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト方式)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ===== LIFE MAP INTERACTIVE =====
+(function(){
+  const age=document.getElementById('lmAge');
+  const span=document.getElementById('lmSpan');
+  const ageVal=document.getElementById('lmAgeVal');
+  const spanVal=document.getElementById('lmSpanVal');
+  const bar=document.getElementById('lmBar');
+  const readout=document.getElementById('lmReadout');
+
+  // ジャネの重み: 各年n における1年の「心時間の重み」 = 1/n (n>=1)
+  // 積分的に、誕生から年齢Aまでの重み総量 = sum(1/n, n=1..A) ≈ log(A)+γ
+  function logSum(A){let s=0;for(let n=1;n<=A;n++)s+=1/n;return s;}
+
+  function update(){
+    const A=parseInt(age.value);
+    const L=Math.max(parseInt(span.value),A+1);
+    ageVal.textContent=A+'歳';
+    spanVal.textContent=L+'歳';
+    const total=logSum(L);
+    const lived=logSum(A);
+    const pct=lived/total;
+    // バーを構築
+    bar.innerHTML='';
+    const livedSeg=document.createElement('div');
+    livedSeg.className='life-seg lived';
+    livedSeg.style.left='0%';
+    livedSeg.style.width=(pct*100)+'%';
+    bar.appendChild(livedSeg);
+    const futureSeg=document.createElement('div');
+    futureSeg.className='life-seg future';
+    futureSeg.style.left=(pct*100)+'%';
+    futureSeg.style.width=((1-pct)*100)+'%';
+    bar.appendChild(futureSeg);
+    // カーソル
+    const cursor=document.createElement('div');
+    cursor.style.position='absolute';
+    cursor.style.top='-2px';
+    cursor.style.bottom='-2px';
+    cursor.style.left='calc('+(pct*100)+'% - 1px)';
+    cursor.style.width='2px';
+    cursor.style.background='#1a1208';
+    bar.appendChild(cursor);
+
+    // 物理的割合
+    const physPct=A/L;
+    // readout
+    const pctStr=(pct*100).toFixed(1);
+    const physStr=(physPct*100).toFixed(1);
+    readout.innerHTML='<strong>'+pctStr+'%</strong> の心時間がすでに過ぎている。<br>'+
+      '<span style="color:#7a6a55;">物理的には '+A+'/'+L+' = '+physStr+'% が過ぎただけ。</span><br>'+
+      '<span style="color:#7a6a55;font-size:11px;">差の '+(pctStr-physStr).toFixed(1)+' ポイントが、ジャネ式の予言する「主観的な先食い」。</span>';
+  }
+  age.addEventListener('input',update);
+  span.addEventListener('input',update);
+  update();
+})();
+
+// ===== TWO CLOCKS SIMULATOR =====
+(function(){
+  const ageSl=document.getElementById('tcAge');
+  const ageVal=document.getElementById('tcAgeVal');
+  const ageLabel=document.getElementById('tcAgeLabel');
+  const handL=document.getElementById('handL');
+  const handR=document.getElementById('handR');
+  const leftSec=document.getElementById('leftSec');
+  const rightSec=document.getElementById('rightSec');
+  const startBtn=document.getElementById('tcStart');
+  const stopBtn=document.getElementById('tcStop');
+  const resetBtn=document.getElementById('tcReset');
+  const finalOut=document.getElementById('tcFinal');
+
+  let running=false;
+  let startT=0;
+  let raf=null;
+  let audioCtx=null;
+  let nextBeatL=0,nextBeatR=0;
+
+  function updateAgeLabels(){
+    const a=parseInt(ageSl.value);
+    ageVal.textContent=a+'歳';
+    ageLabel.textContent=a+'歳';
+  }
+  ageSl.addEventListener('input',updateAgeLabels);
+  updateAgeLabels();
+
+  function setHand(el,sec){
+    // 60秒で一周(360度)
+    const deg=(sec/60)*360;
+    el.setAttribute('transform','rotate('+deg+' 70 70)');
+  }
+
+  function beep(freq){
+    if(!audioCtx)return;
+    const osc=audioCtx.createOscillator();
+    const gain=audioCtx.createGain();
+    osc.frequency.value=freq;
+    osc.type='sine';
+    gain.gain.setValueAtTime(0.0001,audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.15,audioCtx.currentTime+0.005);
+    gain.gain.exponentialRampToValueAtTime(0.0001,audioCtx.currentTime+0.08);
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime+0.1);
+  }
+
+  function tick(ts){
+    if(!running)return;
+    const elapsed=(ts-startT)/1000; // 物理時間(秒)
+    if(elapsed>=60){
+      // 終了
+      running=false;
+      const A=parseInt(ageSl.value);
+      const rSec=60*(5/A);
+      setHand(handL,60);
+      setHand(handR,rSec);
+      leftSec.textContent='60';
+      rightSec.textContent=rSec.toFixed(1);
+      const ratio=(60/rSec).toFixed(1);
+      finalOut.innerHTML='<strong>物理時間 60秒</strong>のあいだに、<br>'+
+        '左 (5歳) の心時計: <em>60秒</em>ぶん進んだ<br>'+
+        '右 ('+A+'歳) の心時計: <em>'+rSec.toFixed(1)+'秒</em>ぶんしか進まなかった<br>'+
+        '<br>つまり、いまのあなたの1分は、5歳のあなたにとっての<strong>'+ratio+'倍</strong>の速さで流れている。';
+      finalOut.classList.add('show');
+      return;
+    }
+    const A=parseInt(ageSl.value);
+    const lSec=elapsed; // 5歳基準: 1:1
+    const rSec=elapsed*(5/A); // 相対速度
+    setHand(handL,lSec);
+    setHand(handR,rSec);
+    leftSec.textContent=lSec.toFixed(1);
+    rightSec.textContent=rSec.toFixed(1);
+
+    // メトロノーム音: 1秒ごとに鳴らす
+    if(audioCtx){
+      // 左: 1秒ごとに高い音
+      if(lSec>=nextBeatL){
+        beep(880);
+        nextBeatL+=1;
+      }
+      // 右: 現在年齢換算で1心時間秒ごとに低い音
+      // つまり物理時間で A/5 秒ごと
+      if(rSec>=nextBeatR){
+        beep(440);
+        nextBeatR+=1;
+      }
+    }
+    raf=requestAnimationFrame(tick);
+  }
+
+  startBtn.addEventListener('click',()=>{
+    if(running)return;
+    finalOut.classList.remove('show');
+    if(!audioCtx){
+      try{audioCtx=new (window.AudioContext||window.webkitAudioContext)();}catch(e){audioCtx=null;}
+    }
+    if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();
+    running=true;
+    startT=performance.now();
+    nextBeatL=0;nextBeatR=0;
+    raf=requestAnimationFrame(tick);
+  });
+  stopBtn.addEventListener('click',()=>{
+    running=false;
+    if(raf)cancelAnimationFrame(raf);
+  });
+  resetBtn.addEventListener('click',()=>{
+    running=false;
+    if(raf)cancelAnimationFrame(raf);
+    setHand(handL,0);
+    setHand(handR,0);
+    leftSec.textContent='0';
+    rightSec.textContent='0';
+    finalOut.classList.remove('show');
+  });
+})();
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2400},{id:'to2',delay:3000},
+  {id:'tl3',delay:4000},{id:'to3',delay:4600},
+  {id:'tl4',delay:5600},{id:'to4',delay:6200},
+  {id:'tl5',delay:7300},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// SHARED HEADER JS
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">記事データを読み込めませんでした。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>

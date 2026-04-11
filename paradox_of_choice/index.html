@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>選択のパラドックス — 24種のジャムと、消えなかった疑い — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* PHOTO BLOCK (real images) */
+.photo-block{margin:32px 0;border:1px solid #c8bfaa;background:#f3efe6;overflow:hidden;}
+.photo-block img{display:block;width:100%;height:auto;}
+.photo-caption{padding:12px 18px;border-top:1px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;background:#f3efe6;}
+.photo-caption strong{color:#3d3020;font-weight:600;}
+.photo-caption a{color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.25);}
+
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+.person-block{margin:32px 0;display:grid;grid-template-columns:160px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:stretch;justify-content:center;padding:0;overflow:hidden;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-wiki-btn{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#8b1a1a;margin:4px 0 10px;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.3);transition:border-color .18s;}
+.person-wiki-btn:hover{border-bottom-color:#8b1a1a;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:9px;color:#b0a090;margin-top:8px;letter-spacing:.04em;}
+.person-block-credit a{color:#b0a090;border-bottom:1px solid #e0d8c8;}
+
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* combo explosion interactive */
+.combo-wrap{margin:28px 0;border:1px solid #c8bfaa;background:white;padding:22px 22px 26px;}
+.combo-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.combo-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.combo-row{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap;}
+.combo-row label{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;font-weight:500;}
+.combo-row input[type=range]{flex:1;min-width:160px;-webkit-appearance:none;height:4px;background:#e0d8c8;border-radius:2px;outline:none;}
+.combo-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#8b1a1a;cursor:pointer;border:none;}
+.combo-row input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#8b1a1a;cursor:pointer;border:none;}
+.combo-readout{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:#8b1a1a;line-height:1;min-width:90px;text-align:right;font-variant-numeric:tabular-nums;}
+.combo-unit{font-family:'Source Sans 3',sans-serif;font-size:16px;font-weight:400;color:#7a6a55;margin-left:4px;}
+.combo-canvas-wrap{margin-top:8px;border:1px solid #e0d8c8;background:#faf8f3;padding:12px;}
+.combo-canvas-wrap canvas{display:block;width:100%;height:auto;}
+.combo-foot{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-top:10px;line-height:1.7;}
+.combo-foot strong{color:#1a1208;}
+
+.data-table{margin:28px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.data-table-cap{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;padding:12px 18px;background:#f3efe6;border-bottom:1px solid #c8bfaa;}
+.data-table table{width:100%;border-collapse:collapse;}
+.data-table th,.data-table td{padding:11px 18px;text-align:left;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;border-bottom:1px solid #e0d8c8;}
+.data-table th{font-weight:600;color:#1a1208;background:#faf8f3;font-size:11px;letter-spacing:.06em;text-transform:uppercase;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table .num{font-variant-numeric:tabular-nums;text-align:right;}
+.data-table .hi{color:#8b1a1a;font-weight:600;}
+
+.svg-frame{margin:28px 0;border:1px solid #c8bfaa;background:white;padding:18px;}
+.svg-frame svg{display:block;width:100%;height:auto;}
+.svg-cap{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;margin-top:12px;line-height:1.75;}
+
+/* CHOICE LAB */
+.choice-lab{margin:32px 0 28px;border:2px solid #1a1208;background:white;padding:0;overflow:hidden;}
+.lab-head{background:#1a1208;color:#faf8f3;padding:14px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.lab-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;letter-spacing:.02em;}
+.lab-title em{color:#e8c56a;font-style:italic;}
+.lab-phase{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#b0a090;}
+
+/* Lab start screen */
+.lab-start{padding:0;}
+.lab-start-hero{background:linear-gradient(180deg,#f3efe6,#ede8dc);padding:36px 22px 18px;border-bottom:1px solid #c8bfaa;}
+.lab-start-svg{display:block;width:100%;max-width:540px;margin:0 auto;height:auto;}
+.lab-start-body{padding:28px 26px 32px;}
+.lab-start-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#1a1208;margin-bottom:14px;text-align:center;}
+.lab-start-title em{color:#8b1a1a;font-style:italic;}
+.lab-start-desc{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.85;margin-bottom:8px;text-align:center;max-width:540px;margin-left:auto;margin-right:auto;}
+.lab-start-meta{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;margin:16px 0 24px;letter-spacing:.04em;}
+.lab-start-meta strong{color:#7a6a55;font-weight:600;}
+.lab-start-btn-wrap{text-align:center;}
+.lab-start-btn{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:14px 40px;background:#8b1a1a;color:white;border:none;cursor:pointer;transition:all .2s;}
+.lab-start-btn:hover{background:#1a1208;}
+
+.lab-body{padding:22px;}
+.lab-instr{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.75;margin-bottom:16px;padding:12px 16px;background:#f3efe6;border-left:3px solid #8b1a1a;transition:all .2s;}
+.lab-instr.urgent{background:#fdeee8;border-left-color:#c4392a;}
+.lab-instr-badge{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:white;background:#c4392a;padding:4px 10px;margin-right:10px;margin-bottom:4px;}
+.lab-instr strong{color:#1a1208;font-weight:600;}
+.lab-shelf{display:grid;gap:8px;margin-bottom:14px;}
+.lab-shelf.s6{grid-template-columns:repeat(3,1fr);}
+.lab-shelf.s24{grid-template-columns:repeat(6,1fr);gap:6px;}
+.jam{aspect-ratio:1/1.4;border:1px solid #c8bfaa;background:#f3efe6;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;padding:6px 4px 8px;text-align:center;transition:all .15s;position:relative;overflow:hidden;}
+.jam:hover{border-color:#8b1a1a;background:#fdf3d8;transform:translateY(-2px);}
+.jam.picked{border-color:#1a5a30;background:#d8e9d8;}
+.jam-jar{width:60%;max-width:48px;height:60%;max-height:48px;display:block;}
+.lab-shelf.s24 .jam-jar{max-width:32px;max-height:32px;}
+.jam-name{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:500;color:#3d3020;line-height:1.25;margin-top:4px;}
+.lab-shelf.s24 .jam-name{font-size:8px;}
+.lab-actions{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding-top:14px;border-top:1px solid #e0d8c8;}
+.lab-timer{font-family:'JetBrains Mono',monospace;font-size:13px;color:#7a6a55;transition:all .2s;}
+.lab-timer.countdown{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#c4392a;padding:6px 16px;background:#fdeee8;border:2px solid #c4392a;letter-spacing:-.01em;}
+.lab-timer.countdown strong{color:#c4392a;font-weight:900;font-size:32px;}
+.lab-timer strong{color:#8b1a1a;font-weight:500;font-variant-numeric:tabular-nums;}
+.lab-btn{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:9px 18px;border:1px solid #c8bfaa;background:white;color:#7a6a55;cursor:pointer;transition:all .15s;}
+.lab-btn:hover{border-color:#8b1a1a;color:#8b1a1a;}
+.lab-btn.primary{background:#1a1208;color:#faf8f3;border-color:#1a1208;}
+.lab-btn.primary:hover{background:#8b1a1a;border-color:#8b1a1a;color:white;}
+.lab-result{padding:22px;background:#f3efe6;border-top:2px solid #1a1208;}
+.lab-result h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;margin-bottom:14px;}
+.result-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.result-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;}
+.result-row3 .result-card.hi{border-color:#8b1a1a;background:#fdf3d8;}
+.result-row3 .result-card-lbl{line-height:1.4;}
+
+@media(max-width:720px){.result-row3{grid-template-columns:1fr;}}
+.result-card{background:white;border:1px solid #c8bfaa;padding:14px 16px;}
+.result-card-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.14em;color:#b0a090;text-transform:uppercase;margin-bottom:6px;}
+.result-card-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#8b1a1a;line-height:1;}
+.result-card-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-top:4px;}
+.result-narr{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.85;margin-bottom:14px;padding-left:14px;border-left:2px solid #c8bfaa;}
+.result-narr strong{color:#1a1208;font-weight:600;}
+.result-meta{margin:14px 0;background:white;border:1px solid #c8bfaa;padding:14px 16px;}
+.result-meta-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;margin-bottom:10px;}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#3d3020;}
+.bar-label{width:120px;font-weight:500;}
+.bar-track{flex:1;height:14px;background:#ede8dc;position:relative;}
+.bar-fill{position:absolute;left:0;top:0;bottom:0;background:#8b1a1a;}
+.bar-fill.alt{background:#7a6a55;}
+.bar-val{width:50px;text-align:right;font-variant-numeric:tabular-nums;color:#8b1a1a;font-weight:600;}
+.bar-val.alt{color:#7a6a55;}
+.lab-reset{margin-top:16px;text-align:center;}
+
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+  .toc-back{padding:22px 20px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .meta-dates{margin-left:0;width:100%;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:0;justify-content:center;flex-direction:row;max-height:280px;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .lab-shelf.s6{grid-template-columns:repeat(2,1fr);}
+  .lab-shelf.s24{grid-template-columns:repeat(4,1fr);}
+  .result-row{grid-template-columns:1fr;}
+  .bar-label{width:90px;font-size:10px;}
+  .data-table th,.data-table td{padding:9px 12px;font-size:11px;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.photo-caption{overflow-wrap:anywhere;}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+    </div>
+  </div>
+</div>
+
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる ✕</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">行動心理学・実験社会心理学</p>
+    <h1>選択のパラドックス<br>24種のジャムと、<em>消えなかった疑い</em></h1>
+    <p class="cover-deck">2000年、カリフォルニアの高級スーパーに6種のジャムと24種のジャムが交互に置かれた。10倍の差が生まれ、心理学の教科書はまだその差の話を続けている。だが10年後、50本の追試がそろえた答えはこうだった——平均効果はほぼゼロ。</p>
+    <div class="cover-byline"><span>意思決定</span><span>消費者心理</span><span>再現性</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">2000</span>
+      <p class="est-event">Iyengar &amp; Lepper『When Choice is Demotivating』が <em>Journal of Personality and Social Psychology</em> 79巻6号に掲載される。</p>
+      <p class="est-context">同年、初の南北朝鮮首脳会談、ロシア大統領にプーチンが当選、AOLとタイム・ワーナーが合併合意。Y2K問題の年明けは静かに過ぎた。</p>
+    </div>
+    <p class="cover-aside">本記事では、有名な単一実験と、その後の論争の両方を扱う。<strong>「全員が間違える話」ではない。「全員が前提を確かめずに引用してきた話」である。</strong></p>
+  </div>
+</div>
+
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>休日のスーパー。オリーブオイルを買おうとして陳列棚の前に立つ。エキストラバージン、コールドプレス、シングルオリジン、ブレンド、緑色の瓶、茶色の瓶、イタリア産、スペイン産、チュニジア産。値段はどれも近い。</p>
+    <p>気がつくと5分が経っている。説明を読むほど、選ぶ理由が増えるのではなく、選ばない理由が増えていく。最後にカゴに入れたのは、いつも買っているやつか、隣の棚のパスタソースだった。誰にでも覚えのある、あの止まる感じ。</p>
+    <p>その「止まる感じ」を最初に実験室の外に持ち出したのが、24種のジャムと6種のジャムを並べたあの実験だった。</p>
+  </div>
+</div>
+
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 統計や心理実験の基礎知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 12 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-10</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-10</span>
+    </div>
+  </div>
+</div>
+
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">有名な「ジャムの実験」は、その結論よりも、結論の<strong>その後</strong>の方が面白い。本記事では、選択肢の多さがなぜ手を止めるのかを実験室のジャム棚で追体験したあと、追試の山がどう答えを揺らしたかを並べて見る。</p>
+  </div>
+</div>
+
+<div class="article">
+<div class="article-main">
+
+  <div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+  <h2 class="fade">メンロパークの土曜日、Draeger's の試食台</h2>
+
+  <p class="body-text fade">2000年6月のある土曜日、サンフランシスコ湾岸の小さな町メンロパークにある高級スーパー <span class="tip" onclick="toggleTip(this)">Draeger's<span class="tip-box"><strong>Draeger's Market</strong><br>1925年創業、サンフランシスコ湾岸の高級食料品店。300種類以上のジャムや250種類のマスタードを並べることで知られた品揃え自慢の店で、心理学の現場実験の舞台になった。今もメンロパーク本店ほか数店舗を運営している。</span></span> で、若い心理学者シーナ・アイエンガーと、彼女の指導教官マーク・レッパーは、店の入口近くにイギリスの老舗 <span class="tip" onclick="toggleTip(this)">Wilkin &amp; Sons<span class="tip-box"><strong>Wilkin &amp; Sons (Tiptree)</strong><br>1885年創業、エセックス州ティップツリーで設立されたイギリスの老舗ジャムメーカー。エリザベス女王の御用達(Royal Warrant)を授かっていたブランドで、実験で使われたジャムはストロベリー、キウイ、ピーチ、ブラックチェリー、レモンカードなど。</span></span> のジャムを並べた試食台を出させてもらっていた。Draeger's はもともと300種類以上のジャムを置いている店で、試食台は珍しい光景ではない。客は普通の買い物のついでに、いつも通りに通り過ぎていく。</p>
+
+  <p class="body-text fade">仕掛けはひとつだけだった。土曜日の数時間ごとに、試食台に並ぶジャムの数を入れ替える。あるときは <em>6種類</em>、あるときは <em>24種類</em>。それ以外の条件——同じブランド、同じ値段、試食は自由、立ち寄った客全員に1ドル割引クーポンを渡す——は変わらない。離れたところから観察者が、立ち寄った客の数と、試食した数と、レジで実際にジャムを買った客の数を、ただ静かに記録していた。</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="sheena_iyengar.jpg" alt="Sheena Iyengar portrait" loading="lazy">
+    </div>
+    <div class="person-block-body">
+      <div class="person-block-name"><span class="tip" onclick="toggleTip(this)">シーナ・アイエンガー<span class="tip-box"><strong>Sheena Iyengar (1969–)</strong><br>カナダ・トロント生まれ、インド系アメリカ人の心理学者。幼少期に網膜色素変性症と診断され、9歳で読書ができなくなり、16歳で完全に視力を失う。コロンビア・ビジネススクール教授で、選択行動研究の第一人者。邦訳『選択の科学』、NHK Eテレ白熱教室(2011年)で日本でも知られる。</span></span></div>
+      <div class="person-block-role">Columbia Business School · 1969–</div>
+      <a class="person-wiki-btn" href="https://ja.wikipedia.org/wiki/%E3%82%B7%E3%83%BC%E3%83%8A%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%AC%E3%83%BC" target="_blank" rel="noopener">Wikipedia</a>
+      <div class="person-block-desc">スタンフォードでマーク・レッパーに師事し、博士論文の一部としてDraeger's の試食台実験を行った。著書 <em>The Art of Choosing</em>(2010)。本人は自身の失明体験を「選択肢を持てないことの肌感覚」として語っている。</div>
+      <div class="person-block-credit">Photo: Sheena Iyengar / <a href="https://commons.wikimedia.org/wiki/File:SheenaPhoto.jpg" target="_blank" rel="noopener">Wikimedia Commons</a> (CC BY 3.0)</div>
+    </div>
+  </div>
+
+  <p class="body-text fade">2人が知りたかったのは、当時の心理学・経済学の常識を裏返す問いだった。それまで何十年もの研究は、人に <span class="tip" onclick="toggleTip(this)">自己決定<span class="tip-box"><strong>自己決定理論</strong><br>1980年代にデシ&amp;ライアンが提唱した動機づけ理論。人の内発的動機は、自律性・有能感・関係性が満たされたときに最大化する。「選択肢を与えられること」は自律性の中核と考えられてきた。</span></span> の余地を与えるほど、動機づけも満足度も上がるという結論をそろえてきていた。だとすれば、品揃えは多ければ多いほどいいはずだ。アイエンガーとレッパーは、ここに疑いの目を向けた。「選択肢が多すぎる」状況は、人にとっては逆に重荷になるのではないか。</p>
+
+  <!-- 売り場再現図 (文字大きめ) -->
+  <div class="svg-frame fade">
+    <svg viewBox="0 0 560 280" xmlns="http://www.w3.org/2000/svg" aria-label="6種類の試食台と24種類の試食台の比較">
+      <rect x="0" y="0" width="700" height="300" fill="white"/>
+      <text x="140" y="32" font-family="Source Sans 3,sans-serif" font-size="20" font-weight="700" fill="#7a6a55" text-anchor="middle" letter-spacing="2">6 JAMS — 限られた選択</text>
+      <text x="420" y="32" font-family="Source Sans 3,sans-serif" font-size="20" font-weight="700" fill="#7a6a55" text-anchor="middle" letter-spacing="2">24 JAMS — 豊富な選択</text>
+      <line x1="30" y1="170" x2="250" y2="170" stroke="#3d3020" stroke-width="2.5"/>
+      <g>
+        <g transform="translate(50,125)"><rect x="0" y="0" width="22" height="45" fill="#8b1a1a" stroke="#5a1010" stroke-width="1"/><rect x="-2" y="-5" width="26" height="6" fill="#3d3020"/></g>
+        <g transform="translate(82,125)"><rect x="0" y="0" width="22" height="45" fill="#c87a3a" stroke="#7a4520" stroke-width="1"/><rect x="-2" y="-5" width="26" height="6" fill="#3d3020"/></g>
+        <g transform="translate(114,125)"><rect x="0" y="0" width="22" height="45" fill="#b8a040" stroke="#7a6020" stroke-width="1"/><rect x="-2" y="-5" width="26" height="6" fill="#3d3020"/></g>
+        <g transform="translate(146,125)"><rect x="0" y="0" width="22" height="45" fill="#5a8030" stroke="#3a5018" stroke-width="1"/><rect x="-2" y="-5" width="26" height="6" fill="#3d3020"/></g>
+        <g transform="translate(178,125)"><rect x="0" y="0" width="22" height="45" fill="#4a3060" stroke="#2a1a40" stroke-width="1"/><rect x="-2" y="-5" width="26" height="6" fill="#3d3020"/></g>
+        <g transform="translate(210,125)"><rect x="0" y="0" width="22" height="45" fill="#a83040" stroke="#681020" stroke-width="1"/><rect x="-2" y="-5" width="26" height="6" fill="#3d3020"/></g>
+      </g>
+      <text x="140" y="200" font-family="Source Sans 3,sans-serif" font-size="20" font-weight="600" fill="#3d3020" text-anchor="middle">立寄 40%</text>
+      <text x="140" y="226" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="500" fill="#7a6a55" text-anchor="middle">うち購入</text>
+      <text x="140" y="262" font-family="Playfair Display,serif" font-size="38" font-weight="900" fill="#8b1a1a" text-anchor="middle">30%</text>
+      <line x1="290" y1="170" x2="540" y2="170" stroke="#3d3020" stroke-width="2.5"/>
+      <g>
+        <g transform="translate(298,108)"><rect x="0" y="0" width="14" height="32" fill="#8b1a1a" stroke="#5a1010" stroke-width="0.6"/></g>
+        <g transform="translate(320,108)"><rect x="0" y="0" width="14" height="32" fill="#c87a3a" stroke="#7a4520" stroke-width="0.6"/></g>
+        <g transform="translate(342,108)"><rect x="0" y="0" width="14" height="32" fill="#b8a040" stroke="#7a6020" stroke-width="0.6"/></g>
+        <g transform="translate(364,108)"><rect x="0" y="0" width="14" height="32" fill="#5a8030" stroke="#3a5018" stroke-width="0.6"/></g>
+        <g transform="translate(386,108)"><rect x="0" y="0" width="14" height="32" fill="#4a3060" stroke="#2a1a40" stroke-width="0.6"/></g>
+        <g transform="translate(408,108)"><rect x="0" y="0" width="14" height="32" fill="#a83040" stroke="#681020" stroke-width="0.6"/></g>
+        <g transform="translate(430,108)"><rect x="0" y="0" width="14" height="32" fill="#7a4030" stroke="#4a2010" stroke-width="0.6"/></g>
+        <g transform="translate(452,108)"><rect x="0" y="0" width="14" height="32" fill="#a86030" stroke="#6a3010" stroke-width="0.6"/></g>
+        <g transform="translate(298,138)"><rect x="0" y="0" width="14" height="32" fill="#5a3070" stroke="#3a1850" stroke-width="0.6"/></g>
+        <g transform="translate(320,138)"><rect x="0" y="0" width="14" height="32" fill="#9a3040" stroke="#581020" stroke-width="0.6"/></g>
+        <g transform="translate(342,138)"><rect x="0" y="0" width="14" height="32" fill="#c89040" stroke="#7a5020" stroke-width="0.6"/></g>
+        <g transform="translate(364,138)"><rect x="0" y="0" width="14" height="32" fill="#608040" stroke="#385018" stroke-width="0.6"/></g>
+        <g transform="translate(386,138)"><rect x="0" y="0" width="14" height="32" fill="#a05030" stroke="#682810" stroke-width="0.6"/></g>
+        <g transform="translate(408,138)"><rect x="0" y="0" width="14" height="32" fill="#403060" stroke="#201840" stroke-width="0.6"/></g>
+        <g transform="translate(430,138)"><rect x="0" y="0" width="14" height="32" fill="#8a3060" stroke="#5a1840" stroke-width="0.6"/></g>
+        <g transform="translate(452,138)"><rect x="0" y="0" width="14" height="32" fill="#b86040" stroke="#7a3820" stroke-width="0.6"/></g>
+        <g transform="translate(474,108)"><rect x="0" y="0" width="14" height="32" fill="#90a040" stroke="#586018" stroke-width="0.6"/></g>
+        <g transform="translate(496,108)"><rect x="0" y="0" width="14" height="32" fill="#a04050" stroke="#682030" stroke-width="0.6"/></g>
+        <g transform="translate(518,108)"><rect x="0" y="0" width="14" height="32" fill="#603060" stroke="#381838" stroke-width="0.6"/></g>
+        <g transform="translate(540,108)"><rect x="0" y="0" width="14" height="32" fill="#a87a30" stroke="#684a10" stroke-width="0.6"/></g>
+        <g transform="translate(474,138)"><rect x="0" y="0" width="14" height="32" fill="#702040" stroke="#481020" stroke-width="0.6"/></g>
+        <g transform="translate(496,138)"><rect x="0" y="0" width="14" height="32" fill="#308050" stroke="#185028" stroke-width="0.6"/></g>
+        <g transform="translate(518,138)"><rect x="0" y="0" width="14" height="32" fill="#806030" stroke="#503810" stroke-width="0.6"/></g>
+        <g transform="translate(540,138)"><rect x="0" y="0" width="14" height="32" fill="#403040" stroke="#201828" stroke-width="0.6"/></g>
+      </g>
+      <text x="420" y="200" font-family="Source Sans 3,sans-serif" font-size="20" font-weight="600" fill="#3d3020" text-anchor="middle">立寄 60%</text>
+      <text x="420" y="226" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="500" fill="#7a6a55" text-anchor="middle">うち購入</text>
+      <text x="420" y="262" font-family="Playfair Display,serif" font-size="38" font-weight="900" fill="#8b1a1a" text-anchor="middle">3%</text>
+    </svg>
+    <div class="svg-cap">Draeger's 試食台のスケッチ。立ち寄った率は24種の方が高かった。だが、立ち寄った人がジャムを買った率は1桁の差がついた。出典: Iyengar &amp; Lepper (2000) Study 1。</div>
+  </div>
+
+  <p class="body-text fade">記録された数字は、それまでの常識をきれいに裏切っていた。24種類の方が立ち寄った客は多い。だが、立ち寄った客のうちレジに進んだのはわずかひと握りで、6種類の試食台に立ち寄った客の方が、結果としてはるかに多くジャムを買って帰った。具体的な数字をならべると、こうなる。</p>
+
+  <div class="data-table fade">
+    <div class="data-table-cap">Draeger's 試食台 — 立寄率 vs 購入率</div>
+    <table>
+      <thead><tr><th>条件</th><th class="num">通行人</th><th class="num">立寄率</th><th class="num">試食数(平均)</th><th class="num">購入率</th></tr></thead>
+      <tbody>
+        <tr><td>6種類の試食台</td><td class="num">104</td><td class="num">40%</td><td class="num">1.38</td><td class="num hi">30%</td></tr>
+        <tr><td>24種類の試食台</td><td class="num">145</td><td class="num">60%</td><td class="num">1.50</td><td class="num hi">3%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="body-text fade">立ち寄った客のうち買った人の割合は、24種類で <strong>3パーセント</strong>、6種類で <strong>30パーセント</strong>。10倍の差。試食した品数はほぼ変わらない(1.50 と 1.38)のに、購入の段になって24種類側だけが選びきれずに離脱していった。アイエンガーとレッパーは、同じ現象を実験室の中でもう2回確かめてみせた。1回目は高級チョコレートで、2回目はスタンフォード大学の心理学入門講義で「6つのテーマから1つ選んで小論文を書けば追加点」と「30のテーマから1つ選んで小論文を書けば追加点」を比較した。どちらでも、選択肢が少ない方が、選び終えたあとの満足度も、提出率も、書かれた小論文の質さえも高かった。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"Ne quid nimis. — In all things moderation."</p>
+    <p class="quote-ja">何ごとも度を越すべからず。</p>
+    <p class="quote-attr">— アイエンガー &amp; レッパー(2000年)論文冒頭のエピグラム</p>
+  </div>
+
+  <p class="body-text fade">発表された論文は、まず学界を、それから一般読者を強く動かした。バリー・シュワルツは2004年に <em>The Paradox of Choice</em> という一般書を出版し、ジャムの実験はその主役になった。「選択肢が多すぎる現代社会は人を不幸にする」という診断は、TEDトークやハーバード・ビジネス・レビュー、マーケティングの教科書、UXデザインの講義、行動経済学の入門書を経由して、2010年代の常識として定着していった。少なすぎる選択肢は窮屈だが、多すぎる選択肢もまた人を麻痺させる。これは「直感に反するけれど美しい結論」の典型として、誰もが引用したくなる話だった。</p>
+
+  <div class="combo-wrap fade">
+    <div class="combo-head">なぜ多いほど止まるのか — 比較ペアの数を見る</div>
+    <div class="combo-row">
+      <label for="comboSlider">選択肢の数</label>
+      <input type="range" id="comboSlider" min="2" max="30" value="6" step="1">
+      <div class="combo-readout"><span id="comboN">6</span><span class="combo-unit">個</span></div>
+    </div>
+    <div class="combo-canvas-wrap"><canvas id="comboCanvas" width="640" height="180"></canvas></div>
+    <p class="combo-foot">選択肢が <strong>n 個</strong> あるとき、ペアごとに比べる「組合せ」は <strong>n(n−1)/2</strong> 通り。6個なら15通り、24個なら276通り、30個なら435通り。選択肢が4倍になっても、頭の中で行う比較は18倍を超える。スライダーを動かして、ペアの線が一気に増えるところを見てほしい。</p>
+  </div>
+
+  <p class="body-text fade">この計算は、ジャムの実験を「あ、なるほど」と腑に落ちさせる説明だ。選択肢が増えると、人が頭の中でやらなければならない比較の数は、その何倍ものスピードで増える。脳の <span class="tip" onclick="toggleTip(this)">ワーキングメモリ<span class="tip-box"><strong>ワーキングメモリの容量</strong><br>1956年のミラーの「マジカルナンバー7±2」、現代の研究ではより小さい4±1とされる(Cowan 2001)。同時に保持できる情報の塊の数。</span></span> は数チャンクしか同時に保持できないので、20を超える瓶が並んだ時点で、もう脳の中で並べきれない。並べきれなければ、選べない。選べなければ、後悔の予感だけが残って、手は動かない。少なくとも、それがこの実験から導かれた素直な解釈だった。</p>
+
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q"><div class="mis-label wrong">よくある誤解</div><div class="mis-text">選択肢が多すぎると、人は<strong>必ず</strong>選択を回避する。これは普遍的な認知バイアスだ。</div></div>
+        <div class="misconception-a"><div class="mis-label right">実際は</div><div class="mis-text">2010年のメタ分析では、50本の追試をならべると平均効果はほぼゼロだった。条件によって効くこともあれば、消えることも、逆になることもある。</div></div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q"><div class="mis-label wrong">よくある誤解</div><div class="mis-text">アイエンガーらの結論は、その後の研究によって完全に否定された。</div></div>
+        <div class="misconception-a"><div class="mis-label right">実際は</div><div class="mis-text">Chernev らの2015年の再メタ分析は、特定の条件(時間の余裕がない / 商品が複雑 / 自分の好みがはっきりしない)では効果が再現することを示した。「いつ起きるか」が論点になっている。</div></div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q"><div class="mis-label wrong">よくある誤解</div><div class="mis-text">この実験は、選択肢を減らせば売上が増えることを証明した。だから商品を絞るほどよい。</div></div>
+        <div class="misconception-a"><div class="mis-label right">実際は</div><div class="mis-text">原実験は1ブランドの試食台での購入率の話で、店全体の品揃え戦略の話ではない。実際には Draeger's の店は300種類のジャムを置き続けている。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="photo-block fade">
+    <img src="jam_jars_shelf.jpg" alt="ジャムが並ぶ棚のイメージ写真" loading="lazy">
+    <div class="photo-caption"><strong>棚の風景(イメージ)</strong>。Draeger's の店には当時、348種類のジャムが常時並んでいたとアイエンガー本人が後年語っている。試食台の24種は、その中から選ばれた小さな抜粋にすぎない。客はこういう棚の前を毎週通り過ぎていた。<br>Photo: <a href="https://www.pexels.com/photo/assorted-jars-on-wooden-shelves-8441091/" target="_blank" rel="noopener">mlkbnl / Pexels</a>(画像はイメージで、Draeger's の店内写真ではない)</div>
+  </div>
+
+  <div class="sec-rule fade"><span class="sec-label">体験</span><div class="sec-line"></div></div>
+  <h2 class="fade">Choice Lab — 6種と24種、自分の手で選んでみる</h2>
+
+  <p class="body-text fade">これからやってもらうのは、簡単な3ステップの体験だ。仕掛けは単純で、ジャムの並ぶ画面が出る。気に入った1本を選ぶ。それだけ。ただし最初の画面と次の画面では、瓶の数が違う。それぞれの画面で、決定までに何秒かかったかを裏で記録している。決まらなければ「選ばずに離れる」ボタンを押してもいい(離れた回数も記録する)。最後に、あなたの数字と、2000年の Draeger's の客たちの数字を、並べて見る。</p>
+
+  <p class="body-text fade">これは「正解を当てる」ゲームではない。あなた個人の中で、6種と24種のあいだに何が起きるかを、自分の手元で確かめる装置だ。</p>
+
+  <div class="choice-lab fade" id="choiceLab">
+    <div class="lab-head">
+      <div class="lab-title"><em>Choice</em> Lab</div>
+      <div class="lab-phase" id="labPhaseLabel">準備中</div>
+    </div>
+
+    <div class="lab-start" id="labStart">
+      <div class="lab-start-hero">
+        <svg class="lab-start-svg" viewBox="0 0 540 220" xmlns="http://www.w3.org/2000/svg" aria-label="カラフルなジャム瓶のイラスト">
+          <line x1="20" y1="190" x2="520" y2="190" stroke="#3d3020" stroke-width="3"/>
+          <line x1="20" y1="190" x2="20" y2="200" stroke="#3d3020" stroke-width="3"/>
+          <line x1="520" y1="190" x2="520" y2="200" stroke="#3d3020" stroke-width="3"/>
+          <g transform="translate(40,90)"><rect x="-3" y="-12" width="38" height="10" rx="1" fill="#3d3020"/><rect x="0" y="-2" width="32" height="92" rx="3" fill="#8b1a1a" stroke="#1a1208" stroke-width="1.5"/><rect x="3" y="22" width="26" height="22" fill="#faf8f3" opacity="0.92"/><text x="16" y="38" font-family="Source Sans 3,sans-serif" font-size="7" fill="#3d3020" text-anchor="middle" font-weight="600">JAM</text></g>
+          <g transform="translate(82,90)"><rect x="-3" y="-12" width="38" height="10" rx="1" fill="#3d3020"/><rect x="0" y="-2" width="32" height="92" rx="3" fill="#c87a3a" stroke="#1a1208" stroke-width="1.5"/><rect x="3" y="22" width="26" height="22" fill="#faf8f3" opacity="0.92"/><text x="16" y="38" font-family="Source Sans 3,sans-serif" font-size="7" fill="#3d3020" text-anchor="middle" font-weight="600">JAM</text></g>
+          <g transform="translate(124,90)"><rect x="-3" y="-12" width="38" height="10" rx="1" fill="#3d3020"/><rect x="0" y="-2" width="32" height="92" rx="3" fill="#b8a040" stroke="#1a1208" stroke-width="1.5"/><rect x="3" y="22" width="26" height="22" fill="#faf8f3" opacity="0.92"/><text x="16" y="38" font-family="Source Sans 3,sans-serif" font-size="7" fill="#3d3020" text-anchor="middle" font-weight="600">JAM</text></g>
+          <g transform="translate(166,90)"><rect x="-3" y="-12" width="38" height="10" rx="1" fill="#3d3020"/><rect x="0" y="-2" width="32" height="92" rx="3" fill="#5a8030" stroke="#1a1208" stroke-width="1.5"/><rect x="3" y="22" width="26" height="22" fill="#faf8f3" opacity="0.92"/><text x="16" y="38" font-family="Source Sans 3,sans-serif" font-size="7" fill="#3d3020" text-anchor="middle" font-weight="600">JAM</text></g>
+          <g transform="translate(208,90)"><rect x="-3" y="-12" width="38" height="10" rx="1" fill="#3d3020"/><rect x="0" y="-2" width="32" height="92" rx="3" fill="#4a3060" stroke="#1a1208" stroke-width="1.5"/><rect x="3" y="22" width="26" height="22" fill="#faf8f3" opacity="0.92"/><text x="16" y="38" font-family="Source Sans 3,sans-serif" font-size="7" fill="#3d3020" text-anchor="middle" font-weight="600">JAM</text></g>
+          <g transform="translate(250,90)"><rect x="-3" y="-12" width="38" height="10" rx="1" fill="#3d3020"/><rect x="0" y="-2" width="32" height="92" rx="3" fill="#a83040" stroke="#1a1208" stroke-width="1.5"/><rect x="3" y="22" width="26" height="22" fill="#faf8f3" opacity="0.92"/><text x="16" y="38" font-family="Source Sans 3,sans-serif" font-size="7" fill="#3d3020" text-anchor="middle" font-weight="600">JAM</text></g>
+          <g transform="translate(292,90)"><rect x="-3" y="-12" width="38" height="10" rx="1" fill="#3d3020"/><rect x="0" y="-2" width="32" height="92" rx="3" fill="#7a4030" stroke="#1a1208" stroke-width="1.5"/><rect x="3" y="22" width="26" height="22" fill="#faf8f3" opacity="0.92"/><text x="16" y="38" font-family="Source Sans 3,sans-serif" font-size="7" fill="#3d3020" text-anchor="middle" font-weight="600">JAM</text></g>
+          <g transform="translate(334,90)"><rect x="-3" y="-12" width="38" height="10" rx="1" fill="#3d3020"/><rect x="0" y="-2" width="32" height="92" rx="3" fill="#5a3070" stroke="#1a1208" stroke-width="1.5"/><rect x="3" y="22" width="26" height="22" fill="#faf8f3" opacity="0.92"/><text x="16" y="38" font-family="Source Sans 3,sans-serif" font-size="7" fill="#3d3020" text-anchor="middle" font-weight="600">JAM</text></g>
+          <g transform="translate(376,90)"><rect x="-3" y="-12" width="38" height="10" rx="1" fill="#3d3020"/><rect x="0" y="-2" width="32" height="92" rx="3" fill="#9a3040" stroke="#1a1208" stroke-width="1.5"/><rect x="3" y="22" width="26" height="22" fill="#faf8f3" opacity="0.92"/><text x="16" y="38" font-family="Source Sans 3,sans-serif" font-size="7" fill="#3d3020" text-anchor="middle" font-weight="600">JAM</text></g>
+          <g transform="translate(418,90)"><rect x="-3" y="-12" width="38" height="10" rx="1" fill="#3d3020"/><rect x="0" y="-2" width="32" height="92" rx="3" fill="#608040" stroke="#1a1208" stroke-width="1.5"/><rect x="3" y="22" width="26" height="22" fill="#faf8f3" opacity="0.92"/><text x="16" y="38" font-family="Source Sans 3,sans-serif" font-size="7" fill="#3d3020" text-anchor="middle" font-weight="600">JAM</text></g>
+          <g transform="translate(460,90)"><rect x="-3" y="-12" width="38" height="10" rx="1" fill="#3d3020"/><rect x="0" y="-2" width="32" height="92" rx="3" fill="#a86030" stroke="#1a1208" stroke-width="1.5"/><rect x="3" y="22" width="26" height="22" fill="#faf8f3" opacity="0.92"/><text x="16" y="38" font-family="Source Sans 3,sans-serif" font-size="7" fill="#3d3020" text-anchor="middle" font-weight="600">JAM</text></g>
+        </svg>
+      </div>
+      <div class="lab-start-body">
+        <div class="lab-start-title"><em>Choice Lab</em> へようこそ</div>
+        <p class="lab-start-desc">これから3つのフェーズで、あなたが選ぶときに何が起きているかを記録する。Phase 1 は6種・時間無制限、<strong style="color:#c4392a;">Phase 2 は24種・制限時間10秒</strong>、Phase 3 は24種・時間無制限。同じ「多い選択肢」でも、時間があるかないかで何が変わるかを、自分の手で確かめる。</p>
+        <div class="lab-start-meta">所要時間 <strong>約 1 分</strong> ・ 結果は <strong>あなたのブラウザの中だけ</strong> に残る</div>
+        <div class="lab-start-btn-wrap">
+          <button class="lab-start-btn" id="labStartBtn">はじめる</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="lab-body" id="labBody" style="display:none;">
+      <div class="lab-instr" id="labInstr">
+        <strong>Phase 1.</strong> 6種類のジャムが並んでいる。気に入ったものをひとつだけ選んでクリックしてほしい。<em>急がなくていい。</em>決まらなければ「選ばずに離れる」を押す。
+      </div>
+      <div class="lab-shelf s6" id="labShelf"></div>
+      <div class="lab-actions">
+        <div class="lab-timer">経過: <strong id="labTimer">0.0s</strong></div>
+        <button class="lab-btn" id="labLeave">選ばずに離れる</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">数字が出た。ここからの読み方は2段階ある。1段階目は素直な確認。2段階目は、その確認のあとに起きる小さな揺れ戻し。それを次のセクションで丁寧に追っていく。</p>
+
+  <div class="sec-rule fade"><span class="sec-label">メカニズム</span><div class="sec-line"></div></div>
+  <h2 class="fade">あの結論は10年もたなかった、しかし完全には消えなかった</h2>
+
+  <p class="body-text fade">2009年から2010年にかけて、ベンジャミン・シャイベヘンネを中心とするチームが、ジャムの実験以後10年間に出された「選択過多」関連の実験論文をすべて集めて、メタ分析にかけた。集まったのは50本の論文、63条件、被験者数の合計は <strong>5036人</strong>。1人の被験者の声が消えても、5000人の声が一斉に同じ方向を向けば、効果は実在すると言えるはずだ。彼らはそれを確かめにいった。</p>
+
+  <p class="body-text fade">出てきた答えは、研究者たちが半ば予想していたよりも、ずっと冷たかった。50本ぜんぶを平らにならすと、選択肢が多いことによる「選びにくさ」「満足度の低下」の効果量は、<em>事実上ゼロ</em>。0でないにしても、ゼロのまわりで揺れている。同じ方向を向いて並んでいる効果は、見つからなかった。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"Across the 50 experiments, which depict the choices of 5,036 individual participants, the authors found that the overall effect of choice overload was virtually zero."</p>
+    <p class="quote-ja">5036人の選択を扱う50件の実験全体を通して、選択過多の総合効果はほぼゼロだった、と著者たちは結論づけた。</p>
+    <p class="quote-attr">— シャイベヘンネら『Journal of Consumer Research』(2010年)</p>
+  </div>
+
+  <p class="body-text fade">これは、原実験の発見を否定する種類の発見ではない。Draeger's の試食台で6月のあの土曜日に何が起きたか、その記録自体は変わらない。そうではなくて、「あの効果は、世界のいろいろな場所で、ジャム以外のものでも、起きているのか?」という別の問いに対して、答えが <strong>「いつもは起きない」</strong> だった、ということだ。10年分の追試の山は、原実験の結論を否定したのではなく、原実験の結論が <em>普遍的なものではない</em> ことを示した。</p>
+
+  <p class="body-text fade">話はここで終わらない。2015年、ノースウェスタン大学ケロッグ経営大学院のアレクサンダー・チェルネフらが、99本の論文を集めて再びメタ分析をやり直す。今回は「効果があるかどうか」ではなく、「効果が出るのはどういう条件か」を調べた。答えは4つの条件にまとまった。</p>
+
+  <div class="svg-frame fade">
+    <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" aria-label="Chernev 2015 の4つのモデレータ図">
+      <rect x="0" y="0" width="600" height="250" fill="white"/>
+      <text x="300" y="32" font-family="Source Sans 3,sans-serif" font-size="18" font-weight="700" fill="#7a6a55" text-anchor="middle" letter-spacing="2">CHERNEV 2015 — 効果が現れる4つの条件</text>
+      <line x1="300" y1="50" x2="300" y2="240" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="2 4"/>
+      <line x1="40" y1="143" x2="560" y2="143" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="2 4"/>
+      <g transform="translate(40,55)">
+        <rect x="0" y="0" width="250" height="80" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.2"/>
+        <text x="14" y="26" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="700" fill="#8b1a1a">① 決定の難しさ</text>
+        <text x="14" y="48" font-family="Source Sans 3,sans-serif" font-size="13" fill="#3d3020">時間が足りない、認知負荷が高い</text>
+        <text x="14" y="68" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55">→ 選択過多は起きやすくなる</text>
+      </g>
+      <g transform="translate(310,55)">
+        <rect x="0" y="0" width="250" height="80" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.2"/>
+        <text x="14" y="26" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="700" fill="#8b1a1a">② 選択肢の複雑さ</text>
+        <text x="14" y="48" font-family="Source Sans 3,sans-serif" font-size="13" fill="#3d3020">属性が多い、比較しにくい商品</text>
+        <text x="14" y="68" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55">→ 選択過多は起きやすくなる</text>
+      </g>
+      <g transform="translate(40,155)">
+        <rect x="0" y="0" width="250" height="80" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.2"/>
+        <text x="14" y="26" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="700" fill="#8b1a1a">③ 選好の不確かさ</text>
+        <text x="14" y="48" font-family="Source Sans 3,sans-serif" font-size="13" fill="#3d3020">自分が何を好きか分かっていない</text>
+        <text x="14" y="68" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55">→ 選択過多は起きやすくなる</text>
+      </g>
+      <g transform="translate(310,155)">
+        <rect x="0" y="0" width="250" height="80" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.2"/>
+        <text x="14" y="26" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="700" fill="#8b1a1a">④ 努力最小化の目標</text>
+        <text x="14" y="48" font-family="Source Sans 3,sans-serif" font-size="13" fill="#3d3020">早く決めたい、考えたくない</text>
+        <text x="14" y="68" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55">→ 選択過多は起きやすくなる</text>
+      </g>
+    </svg>
+    <div class="svg-cap">Chernev, Böckenholt &amp; Goodman (2015) によるメタ分析。99本の論文を再分析して見つけた、選択過多が現れる4つの条件。逆に言えば、これらが揃わなければ効果は現れない。</div>
+  </div>
+
+  <p class="body-text fade">この4つを並べてみると、Draeger's の試食台が「効いた」理由がぼんやり見えてくる。試食台に立ち寄った客は、ジャム選びに大した時間をかけたくない(④努力最小化)。並んでいるのは外国製の高級ジャム、つまり多くの客にとって自分の好みがはっきりしない領域(③選好の不確か)。土曜の買い物の途中で、他にもやることがある(①時間の制約)。条件はそろっていた。一方で、ワインの目利きにとってのワインや、自分の好きな本のジャンルがはっきりしている人にとっての書店では、これらの条件は揃わない。条件が揃わなければ、選択肢は多い方がむしろうれしい。</p>
+
+  <div class="steps-wrap fade">
+    <div class="steps-head">なぜ選択肢の多さが手を止めるのか — 認知の段階を追う</div>
+    <div class="step-card open" id="sc1"><div class="step-hd" onclick="tog(1)"><div class="step-nb">1</div><div class="step-tw"><div class="step-title">注意を引く</div><div class="step-sub">入口の段階では、選択肢が多い方が魅力的に見える</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>24種類のジャムの試食台は、6種類より <strong>多くの客を立ち寄らせた</strong> (60% vs 40%)。<em>豊かさそのものが誘引になる</em>。陳列の段階では「多い方が良さそう」という直感は正しく機能している。問題はその次に起きる。</p></div></div>
+    <div class="step-card" id="sc2"><div class="step-hd" onclick="tog(2)"><div class="step-nb">2</div><div class="step-tw"><div class="step-title">比較が始まる</div><div class="step-sub">頭の中でペアごとに「こっちかあっちか」が立ち上がる</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>選択肢が n 個あれば、ペア比較は n(n−1)/2 通り。6個で15通り、24個で276通り。実際にはすべてのペアを総当たりするわけではないが、「これとあれを比べて、それから別のと比べて」と巡回するうちに、<strong>同じ瓶を何度も見直す</strong> ことになる。</p></div></div>
+    <div class="step-card" id="sc3"><div class="step-hd" onclick="tog(3)"><div class="step-nb">3</div><div class="step-tw"><div class="step-title">トレードオフが見えてしまう</div><div class="step-sub">どれを選んでも、選ばなかったものの良さが目に入る</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>選択肢が増えるほど、ある瓶を選ぶことで <em>諦めなければならない他の瓶</em> が増える。これは「機会費用」が知覚として迫ってくる現象で、<strong>後悔の予感</strong> として頭に残る。後悔の予感が強い決定は、先送りされやすい。</p></div></div>
+    <div class="step-card" id="sc4"><div class="step-hd" onclick="tog(4)"><div class="step-nb">4</div><div class="step-tw"><div class="step-title">手が止まる</div><div class="step-sub">買わない / 後で考える / いつものに戻る</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>選び終える前に、エネルギーが底をつく。脳は <em>決定そのものを諦める</em> という選択肢を取る。これが <span class="tip" onclick="toggleTip(this)">決定回避<span class="tip-box"><strong>決定回避(decision avoidance)</strong><br>選択を先送りする、何もしないことを選ぶ、デフォルト選択肢に流れる、といった行動の総称。Anderson 2003 のレビューが代表的。</span></span> として現れる。Draeger's の3パーセントは、たぶんこれだ。</p></div></div>
+  </div>
+
+  <p class="body-text fade">面白いのは、ここまで丁寧に追ってきた4段階のメカニズムが、「選択過多が起きるとしたら、こういう経路で起きるはずだ」という説明だという点である。10年分の追試がこの経路をいつも辿るとは限らないと示した。経路自体は理に適っているのに、経路をたどる人と、たどらない人がいる。だから論争は今も続いている。</p>
+
+  <div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+  <h2 class="fade">論争の年表</h2>
+
+  <div class="timeline fade">
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2000</div>
+      <div class="tl-title">原実験 — Iyengar &amp; Lepper</div>
+      <div class="tl-desc">Draeger's の試食台で6種 vs 24種を比較。立ち寄り率は24種の方が高かったが、購入率は6種で30%、24種で3%という10倍差。Journal of Personality and Social Psychology 79巻6号に掲載される。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2004</div>
+      <div class="tl-title">『The Paradox of Choice』が出版される</div>
+      <div class="tl-desc">バリー・シュワルツの一般書がベストセラーになる。ジャムの実験は本書の象徴的なエピソードとして広く知られるようになり、TEDトークも視聴回数1500万回を超えた。「選択過多」は2000年代後半の知的常識のひとつになっていく。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2009</div>
+      <div class="tl-title">最初の追試の波 — Scheibehenne らの再現失敗</div>
+      <div class="tl-desc">スイスとドイツのチームが Iyengar &amp; Lepper の手続きを丁寧に追試するが、効果が再現しない実験がいくつも積み重なる。「強い効果が出る場合と、まったく出ない場合がある」という現象が、研究コミュニティの中で疑問として共有されはじめる。</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2010</div>
+      <div class="tl-title">最初のメタ分析 — 効果量はほぼゼロ</div>
+      <div class="tl-desc">Scheibehenne, Greifeneder &amp; Todd が50本の実験(被験者数 5036人)をメタ分析にかけ、平均効果量がゼロ近傍であることを報告。同年の Chernev らの反論を呼ぶ。「選択過多は実在するか」という公開論争が始まる。</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2015</div>
+      <div class="tl-title">条件付きの肯定 — Chernev らの再メタ分析</div>
+      <div class="tl-desc">Chernev, Böckenholt &amp; Goodman が99本の論文を再分析し、決定の難しさ・選択肢の複雑さ・選好の不確かさ・努力最小化目標、という4つの条件が揃ったときに選択過多は再現する、という条件付きモデルを提示。論争はここで一旦の落ち着きどころを見つける。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2020s</div>
+      <div class="tl-title">原実験の地位の整理</div>
+      <div class="tl-desc">「ジャムの実験」は教科書から完全には消えなかったが、紹介の仕方は変わった。「選択肢が多すぎると人は選べなくなる」と単純に書く代わりに、「特定の条件下で起きる現象として、論争を経て条件付きで支持されている」と添え書きされるようになっていく。</div>
+    </div>
+  </div>
+
+  <div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+  <h2 class="fade">ひとつの実験と、ひとつの実験のその後</h2>
+
+  <p class="body-text fade">ジャムの実験を一言で説明しろと言われたら、こう言うのがいちばん近い。<em>あれは「選択肢が多すぎると人は選べなくなる」という教訓ではなく、「ある条件が揃ったとき、人は選べなくなる」という条件付きの観察である</em>。Draeger's の客たちは、たまたまその条件をぴたりと満たしていた。土曜日の買い物の途中、外国製の高級ジャム、好みは決まっていない、急いでいる。だから10倍の差が出た。</p>
+
+  <p class="body-text fade">ここから引き出すべき結論は、たぶん2つある。1つ目は実用的な結論で、自分が何かを選ぼうとして手が止まったとき、それは性格や意志の弱さの問題ではなく、4つの条件のうちいくつかが揃っているせいだということだ。条件を1つ崩せばいい。決める時間を増やす(①を崩す)、属性を絞ってシンプルにする(②を崩す)、自分の好みを先に1つ決める(③を崩す)、急がない(④を崩す)。条件のうち1つでも崩れれば、選択肢の数はもう敵ではなくなる。</p>
+
+  <p class="body-text fade">2つ目はもう少し冷たい結論で、こちらの方が大事かもしれない。<strong>ひとつの鮮やかな実験を、その後10年の追試の山と切り離して引用してはいけない</strong>。これは「選択のパラドックス」という話の教訓ではなく、心理学という分野そのものの教訓だ。2000年代に有名になった心理学の発見の多くが、2010年代の <span class="tip" onclick="toggleTip(this)">再現性危機<span class="tip-box"><strong>再現性危機(replication crisis)</strong><br>2010年代以降、心理学・医学・経済学などの分野で、過去の有名な実験結果が追試で再現しないケースが多発し、研究方法そのものが問い直された一連の出来事。</span></span> の中で揺らいだ。揺らがなかった発見も、揺らいだ発見も、両方ある。揺らいだ発見の中にも、完全に消えたものと、条件付きで生き残ったものがある。「ジャムの実験」は、その3つ目のパターン、つまり条件付きで生き残った発見の代表例だった。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">あの実験は<em>外れた</em>のではない。あの実験を、世界の<em>どこでも起きる話</em>として引用してきた読み手のほうが、外れていたのだ。</p>
+    <p class="pull-attr">— from this article</p>
+  </div>
+
+  <div class="culture-block fade">
+    <div class="culture-label">作品・文化への登場</div>
+    <div class="culture-item">
+      <div class="culture-title">バリー・シュワルツ『The Paradox of Choice』(2004)</div>
+      <div class="culture-desc">アメリカの心理学者バリー・シュワルツの一般向け書籍。ジャムの実験を象徴的なエピソードとして使い、現代社会の選択肢の多さが幸福を損なっているという議論を展開した。同名のTEDトークは2005年に行われ、視聴回数1500万回以上。</div>
+    </div>
+    <div class="culture-item">
+      <div class="culture-title">Netflix &amp; サブスクリプションUI</div>
+      <div class="culture-desc">2010年代以降、配信サービスのUI設計で「選択肢を絞って提示する」設計思想が広がった。Netflix の「あなたへのおすすめ」やSpotifyの「Discover Weekly」は、24種を一度に見せるのではなく6種に絞って見せる発想の延長線上にある。</div>
+    </div>
+    <div class="culture-item">
+      <div class="culture-title">アイエンガー『The Art of Choosing』(2010)</div>
+      <div class="culture-desc">アイエンガー本人の一般向け書籍。原実験だけでなく、文化による選択観の違い、自由意志と選択の関係、選択を諦めることの意味など、より広いテーマを扱う。Draeger's の試食台の話は、彼女自身の言葉では「もっと大きな物語の入口」として位置づけられている。</div>
+    </div>
+  </div>
+
+  <div class="photo-block fade">
+    <img src="jam_jar_single.jpg" alt="テーブルに置かれたジャム瓶ひとつのイメージ写真" loading="lazy">
+    <div class="photo-caption"><strong>24種のうち、結局選んだのはこの1本(イメージ)</strong>。条件の1つでも崩せば、24は1になる。記事の結びの代わりに、ここに置いておく。<br>Photo: <a href="https://www.pexels.com/photo/clear-glass-jar-with-red-liquid-inside-3943188/" target="_blank" rel="noopener">cottonbro studio / Pexels</a></div>
+  </div>
+
+  <div class="sec-rule fade"><span class="sec-label">参考文献</span><div class="sec-line"></div></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2000</span></div>
+      <div class="ref-title"><a href="https://faculty.washington.edu/jdb/345/345%20Articles/Iyengar%20%26%20Lepper%20(2000).pdf" target="_blank" rel="noopener">When Choice is Demotivating: Can One Desire Too Much of a Good Thing?</a></div>
+      <div class="ref-author">Sheena S. Iyengar &amp; Mark R. Lepper / Journal of Personality and Social Psychology 79(6), 995–1006</div>
+      <div class="ref-desc">「ジャムの実験」の原典。Draeger's の試食台、高級チョコレート、スタンフォードの心理学講義の小論文という3つの実験を通じて、選択肢の多さが意思決定と満足度を下げる場合があることを報告した。</div>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論文 / メタ分析</span><span class="ref-year">2010</span></div>
+      <div class="ref-title"><a href="https://academic.oup.com/jcr/article-abstract/37/3/409/1827647" target="_blank" rel="noopener">Can There Ever Be Too Many Options? A Meta-Analytic Review of Choice Overload</a></div>
+      <div class="ref-author">Benjamin Scheibehenne, Rainer Greifeneder &amp; Peter M. Todd / Journal of Consumer Research 37(3), 409–425</div>
+      <div class="ref-desc">50本の実験論文(被験者数 5036人)を集めたメタ分析。総合効果量がほぼゼロであることを報告し、原実験の発見の普遍性に強い疑問を投げかけた。論争のきっかけとなった重要文献。</div>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論文 / メタ分析</span><span class="ref-year">2015</span></div>
+      <div class="ref-title"><a href="https://www.sciencedirect.com/science/article/abs/pii/S1057740814000916" target="_blank" rel="noopener">Choice Overload: A Conceptual Review and Meta-Analysis</a></div>
+      <div class="ref-author">Alexander Chernev, Ulf Böckenholt &amp; Joseph Goodman / Journal of Consumer Psychology 25(2), 333–358</div>
+      <div class="ref-desc">99本の論文を再メタ分析し、選択過多が現れる条件を4つに整理した。決定の難しさ・選択肢の複雑さ・選好の不確かさ・努力最小化目標。論争に「条件付きの肯定」という落とし所を与えた。</div>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2010</span></div>
+      <div class="ref-title">The Art of Choosing</div>
+      <div class="ref-author">Sheena Iyengar / Twelve Publishing</div>
+      <div class="ref-desc">原実験の著者本人による一般向け書籍。Draeger's の試食台の話を、彼女自身の研究歴と人生(失明した心理学者として「選択を持てないことの意味」を考え続けてきた)の文脈の中に置きなおしている。</div>
+    </div>
+  </div>
+
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    本記事は、Iyengar &amp; Lepper (2000) の原論文と、Scheibehenne ら (2010) ・Chernev ら (2015) の2本のメタ分析を一次資料として参照している。具体的な数字(立寄率・購入率・被験者数・効果量)はこれらの論文から直接引いた。「論争の年表」のうち2009年の追試の流れは、Scheibehenne 2010 の文献レビューと、それに対する Chernev らの反論論文(2010)に基づく。原実験そのものは存在し再現性もある一実験だが、その結論の一般化に関しては論争があり、現在は条件付きで支持されている、というのが2026年時点での研究コミュニティのおおよその共通認識だと理解している。
+  </div>
+
+  <div class="tags fade">
+    <span class="tag">行動心理学</span>
+    <span class="tag">意思決定</span>
+    <span class="tag">消費者行動</span>
+    <span class="tag">再現性</span>
+    <span class="tag">メタ分析</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">10×</p>
+      <p class="sidebar-text">Draeger's の試食台で、6種類側の購入率(30%)が、24種類側の購入率(3%)の<em>10倍</em>だった。だがこの差は、その後の50本の追試を平均すると消えた。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">2000年は、自己決定理論が動機づけ研究の中心にあり、「選択肢を与えれば与えるほどよい」が常識だった時代。原論文の発表は、その常識への小さな反論として始まった。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">バリー・シュワルツ『The Paradox of Choice』(2004)、TEDトーク(2005、視聴1500万回超)、Netflix・Spotify などのレコメンドUIの設計思想。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— 損失回避<br>— 決定回避<br>— マシュマロ実験の再解釈<br>— 再現性危機</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">原実験は再現される。一般化には条件がある。Chernev 2015 の4条件モデルが現在の落ち着きどころ。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 「選択のパラドックス」を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;つまり、ジャムの実験は嘘だったってこと?</span></div>
+      <span class="t-output" id="to1">嘘ではない。Draeger's での記録は実際にあった出来事で、数字も改ざんされていない。ただ <em>「あの一回起きたこと」</em> と <strong>「世界のどこでもいつも起きること」</strong> は別の話だ。50本の追試が平均してゼロを返したのは、後者の方の答え。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ自分が選び疲れするのは気のせい?</span></div>
+      <span class="t-output" id="to2">気のせいではない。Chernev 2015 の4条件のうちいくつかが揃っていれば、選び疲れはちゃんと起きる。<em>急いでいる</em>、<em>商品が複雑</em>、<em>自分の好みがはっきりしない</em>、<em>早く決めたい</em>。スーパーのオリーブオイル売り場は、たぶんこの4つを全部満たしている。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;対策は?</span></div>
+      <span class="t-output" id="to3">条件を1つ崩せばいい。<em>事前に1つだけルールを決めておく</em>(国産だけ、一番安いやつ、いつものブランド)。<strong>条件を崩した瞬間に、24種は24種ではなくなる</strong>。フィルタを通った後の3種になる。これは選択を諦めるのではなく、選択の前段で選択している。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 棚の前で5分止まったの、自分のせいじゃなかったんだな</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/marshmallow_test">
+      <p class="related-card-tag">行動心理学</p>
+      <p class="related-card-title">マシュマロ実験の再解釈</p>
+      <p class="related-card-desc">自制心の話と語られていたあの実験は、追試によって「信頼と環境の話」に書き換えられた。鮮やかな結論の、その後の話。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/skinner_box">
+      <p class="related-card-tag">行動心理学</p>
+      <p class="related-card-title">スキナー箱とスロットマシン</p>
+      <p class="related-card-desc">人を動かす報酬の構造。「選べないこと」と「やめられないこと」は、別の現象だが同じ脳の上で起きている。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+
+(function(){
+  const canvas=document.getElementById('comboCanvas');
+  if(!canvas)return;
+  const slider=document.getElementById('comboSlider');
+  const readout=document.getElementById('comboN');
+  function draw(){
+    const dpr=window.devicePixelRatio||1;
+    const cssW=canvas.clientWidth||640;
+    const cssH=180;
+    canvas.width=cssW*dpr;
+    canvas.height=cssH*dpr;
+    canvas.style.height=cssH+'px';
+    const ctx=canvas.getContext('2d');
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.clearRect(0,0,cssW,cssH);
+    const n=parseInt(slider.value,10);
+    const cx=cssW/2, cy=cssH/2, r=Math.min(cssW,cssH)*0.38;
+    const pts=[];
+    for(let i=0;i<n;i++){
+      const a=(-Math.PI/2)+(i*2*Math.PI/n);
+      pts.push({x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)});
+    }
+    ctx.strokeStyle='rgba(139,26,26,0.18)';
+    ctx.lineWidth=0.8;
+    for(let i=0;i<n;i++){
+      for(let j=i+1;j<n;j++){
+        ctx.beginPath();
+        ctx.moveTo(pts[i].x,pts[i].y);
+        ctx.lineTo(pts[j].x,pts[j].y);
+        ctx.stroke();
+      }
+    }
+    ctx.fillStyle='#8b1a1a';
+    pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fill();});
+    const pairs=n*(n-1)/2;
+    ctx.fillStyle='#1a1208';
+    ctx.font="600 13px 'Source Sans 3',sans-serif";
+    ctx.textAlign='left';
+    ctx.fillText(n+' 個 → '+pairs+' ペア',16,24);
+    readout.textContent=n;
+  }
+  slider.addEventListener('input',draw);
+  window.addEventListener('resize',draw);
+  draw();
+})();
+
+(function(){
+  const lab=document.getElementById('choiceLab');
+  if(!lab)return;
+  const labStart=document.getElementById('labStart');
+  const labStartBtn=document.getElementById('labStartBtn');
+  const labBody=document.getElementById('labBody');
+  const shelf=document.getElementById('labShelf');
+  const phaseLbl=document.getElementById('labPhaseLabel');
+  const instr=document.getElementById('labInstr');
+  const timerEl=document.getElementById('labTimer');
+  const leaveBtn=document.getElementById('labLeave');
+
+  const jamData6=[
+    {n:'ストロベリー',c:'#8b1a1a'},
+    {n:'オレンジ',c:'#c87a3a'},
+    {n:'アプリコット',c:'#b8a040'},
+    {n:'グリーンゲージ',c:'#5a8030'},
+    {n:'ブルーベリー',c:'#4a3060'},
+    {n:'ラズベリー',c:'#a83040'}
+  ];
+  const jamData24=[
+    ...jamData6,
+    {n:'マーマレード',c:'#c89040'},
+    {n:'チェリー',c:'#7a1020'},
+    {n:'ブラックベリー',c:'#3a1840'},
+    {n:'クランベリー',c:'#9a2030'},
+    {n:'プラム',c:'#5a2050'},
+    {n:'ピーチ',c:'#d89060'},
+    {n:'フィグ',c:'#7a4030'},
+    {n:'ルバーブ',c:'#a05030'},
+    {n:'ダムソン',c:'#403060'},
+    {n:'クインス',c:'#c87030'},
+    {n:'エルダーベリー',c:'#3a2050'},
+    {n:'スロー',c:'#1a1840'},
+    {n:'ローズヒップ',c:'#a83040'},
+    {n:'ガーゼリー',c:'#608040'},
+    {n:'ミラベル',c:'#c8a040'},
+    {n:'バーベリー',c:'#882030'},
+    {n:'リンゴンベリー',c:'#a02830'},
+    {n:'シーバックソーン',c:'#d8a030'}
+  ];
+
+  // 3 phases:
+  //  Phase 1: 6種, ゆっくり (no time pressure)
+  //  Phase 2: 24種, 10秒のカウントダウン (time pressure = Chernev条件①)
+  //  Phase 3: 24種, ゆっくり (no time pressure, control)
+  const PHASE_CONFIG = {
+    1: {data: jamData6, limit: null, instr: '<strong>Phase 1.</strong> 6種類のジャムが並んでいる。気に入ったものをひとつだけ選んでクリックしてほしい。<em>急がなくていい。</em>決まらなければ「選ばずに離れる」を押す。'},
+    2: {data: jamData24, limit: 10, instr: '<strong>Phase 2.</strong> 今度は24種類が並んでいる。<em>ただし、制限時間は10秒だけ</em>。Chernev 2015 の「①決定の難しさ」を再現する条件だ。決まらなければ「選ばずに離れる」を押していい。'},
+    3: {data: jamData24, limit: null, instr: '<strong>Phase 3.</strong> 同じ24種類だが、今回は<em>時間制限なし</em>。条件を1つ崩すと、24種類はもう敵ではなくなる、という Chernev の主張を確かめる。'}
+  };
+
+  let phase=0;
+  let startTime=0;
+  let timerId=null;
+  let countdownEndsAt=0;
+  const records={p1:{time:0,picked:null,left:false,timedOut:false},p2:{time:0,picked:null,left:false,timedOut:false},p3:{time:0,picked:null,left:false,timedOut:false}};
+
+  function jarSVG(color){
+    return '<svg class="jam-jar" viewBox="0 0 40 56" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="2" width="20" height="6" fill="#3d3020"/><rect x="6" y="8" width="28" height="44" rx="3" fill="'+color+'" stroke="#1a1208" stroke-width="1.2"/><rect x="9" y="22" width="22" height="14" fill="#faf8f3" opacity="0.9"/></svg>';
+  }
+
+  function startTimer(limit){
+    startTime=performance.now();
+    if(timerId)clearInterval(timerId);
+    if(limit){
+      countdownEndsAt = startTime + limit*1000;
+      timerEl.parentElement.classList.add('countdown');
+      timerId=setInterval(()=>{
+        const remaining = (countdownEndsAt - performance.now())/1000;
+        if(remaining <= 0){
+          clearInterval(timerId);timerId=null;
+          timerEl.textContent='0.0s';
+          handleTimeout();
+          return;
+        }
+        timerEl.textContent=remaining.toFixed(1)+'s';
+      },50);
+    } else {
+      timerEl.parentElement.classList.remove('countdown');
+      timerId=setInterval(()=>{
+        const t=(performance.now()-startTime)/1000;
+        timerEl.textContent=t.toFixed(1)+'s';
+      },100);
+    }
+  }
+  function stopTimer(){
+    if(timerId){clearInterval(timerId);timerId=null;}
+    return (performance.now()-startTime)/1000;
+  }
+
+  function handleTimeout(){
+    const t=10;
+    const key='p'+phase;
+    records[key]={time:t,picked:null,left:false,timedOut:true};
+    nextPhase();
+  }
+
+  function renderPhase(p){
+    const cfg = PHASE_CONFIG[p];
+    shelf.className = 'lab-shelf '+(p===1?'s6':'s24');
+    shelf.innerHTML='';
+    cfg.data.forEach((j,i)=>{
+      const el=document.createElement('div');
+      el.className='jam';
+      el.innerHTML=jarSVG(j.c)+'<div class="jam-name">'+j.n+'</div>';
+      el.addEventListener('click',()=>pick(i,j));
+      shelf.appendChild(el);
+    });
+    phaseLbl.textContent='Phase '+p+' / 3';
+    if(cfg.limit){
+      instr.className='lab-instr urgent';
+      instr.innerHTML='<span class="lab-instr-badge">⏱ 制限時間 '+cfg.limit+'秒</span>'+cfg.instr;
+    } else {
+      instr.className='lab-instr';
+      instr.innerHTML=cfg.instr;
+    }
+    timerEl.textContent = cfg.limit ? cfg.limit.toFixed(1)+'s' : '0.0s';
+    startTimer(cfg.limit);
+  }
+
+  function pick(i,j){
+    const t=stopTimer();
+    const key='p'+phase;
+    records[key]={time:t,picked:j.n,left:false,timedOut:false};
+    document.querySelectorAll('.jam').forEach(x=>x.classList.remove('picked'));
+    shelf.children[i].classList.add('picked');
+    setTimeout(nextPhase,400);
+  }
+  leaveBtn.addEventListener('click',()=>{
+    if(phase<1||phase>3)return;
+    const t=stopTimer();
+    const key='p'+phase;
+    records[key]={time:t,picked:null,left:true,timedOut:false};
+    nextPhase();
+  });
+
+  function nextPhase(){
+    phase++;
+    if(phase>=2 && phase<=3){
+      renderPhase(phase);
+    } else if(phase===4){
+      showResult();
+    }
+  }
+
+  function outcomeLabel(r){
+    if(r.timedOut)return '時間切れ';
+    if(r.left)return '選ばずに離脱';
+    return '1本選択';
+  }
+
+  function showResult(){
+    const r1=records.p1, r2=records.p2, r3=records.p3;
+    // 「24種・時間制約あり」(P2)で離脱/時間切れになった人 vs「24種・時間制約なし」(P3)で選び切れた人
+    const p2Failed = r2.left || r2.timedOut;
+    const p3Picked = !r3.left && !r3.timedOut;
+    let narr;
+    if(p2Failed && p3Picked){
+      narr = '<strong>同じ24種類なのに、時間制約があった Phase 2 では選びきれず、なくなった Phase 3 では選びきれた。</strong>これが Chernev 2015 の言う「条件を1つ崩せば選択過多は消える」の体験版だ。「24種類が多すぎる」のではなかった。「24種類 + 時間がない」が多すぎたのだ。';
+    } else if(!p2Failed && p3Picked){
+      narr = 'Phase 2 でも Phase 3 でもあなたは24種類を選びきれた。Chernev 2015 の4条件のうちあなたの中では「①決定の難しさ」が支配的でなかった、ということになる。あなたはおそらく決断が速いタイプか、ジャムにそれほど思い入れがないタイプだ。';
+    } else if(p2Failed && !p3Picked){
+      narr = '24種類が並んだ Phase 2・3 のどちらでも選びきれなかった。これは Chernev 2015 の言う「④努力最小化の目標」と「③選好の不確かさ」が同時に効いている状態かもしれない。時間を増やしても、4条件のうち他の3つが残っていれば効果は消えない。';
+    } else {
+      narr = 'Phase 2 では選びきれたが Phase 3 では離脱した。これはやや珍しい順序で、もしかすると「もう一回やる必要があるかどうかの飽き」が混じったかもしれない。';
+    }
+    const labResult=document.createElement('div');
+    labResult.className='lab-result';
+    labResult.innerHTML=
+      '<h3>Phase 4 — 結果</h3>'+
+      '<div class="result-row3">'+
+        '<div class="result-card"><div class="result-card-lbl">Phase 1<br>6種・時間なし</div><div class="result-card-val">'+r1.time.toFixed(1)+'s</div><div class="result-card-sub">'+outcomeLabel(r1)+'</div></div>'+
+        '<div class="result-card hi"><div class="result-card-lbl">Phase 2<br>24種・10秒制限</div><div class="result-card-val">'+r2.time.toFixed(1)+'s</div><div class="result-card-sub">'+outcomeLabel(r2)+'</div></div>'+
+        '<div class="result-card"><div class="result-card-lbl">Phase 3<br>24種・時間なし</div><div class="result-card-val">'+r3.time.toFixed(1)+'s</div><div class="result-card-sub">'+outcomeLabel(r3)+'</div></div>'+
+      '</div>'+
+      '<p class="result-narr">'+narr+'</p>'+
+      '<div class="result-meta">'+
+        '<div class="result-meta-lbl">参考: 2000年 Draeger\'s 試食台 — 購入率(原実験)</div>'+
+        '<div class="bar-row"><span class="bar-label">6種</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">30%</span></div>'+
+        '<div class="bar-row"><span class="bar-label">24種</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="bar-val">3%</span></div>'+
+      '</div>'+
+      '<p class="result-narr">原実験の Draeger\'s でも、2000年の客たちは「土曜の買い物の途中で急いでいた」。Chernev の4条件のうち「①決定の難しさ」が効いていた。あなたが Phase 2 と Phase 3 で見たのは、その条件が効くか効かないかの差そのものだ。</p>'+
+      '<div class="lab-reset"><button class="lab-btn primary" id="labReset">もう一度やる</button></div>';
+    labBody.style.display='none';
+    lab.appendChild(labResult);
+    document.getElementById('labReset').addEventListener('click',resetLab);
+  }
+
+  function resetLab(){
+    const r=lab.querySelector('.lab-result');
+    if(r)r.remove();
+    labBody.style.display='block';
+    phase=1;
+    records.p1={time:0,picked:null,left:false,timedOut:false};
+    records.p2={time:0,picked:null,left:false,timedOut:false};
+    records.p3={time:0,picked:null,left:false,timedOut:false};
+    renderPhase(1);
+  }
+
+  labStartBtn.addEventListener('click',()=>{
+    labStart.style.display='none';
+    labBody.style.display='block';
+    phase=1;
+    renderPhase(1);
+  });
+})();
+
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+const tBlock=document.getElementById('terminalBlock');
+if(tBlock)tObs.observe(tBlock);
+
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">検索インデックスを読込中…</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>

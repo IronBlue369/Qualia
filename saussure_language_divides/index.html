@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>言語が世界を切り分ける — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;display:block;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'青/緑';position:absolute;right:20px;top:-6px;font-family:'Playfair Display',serif;font-size:90px;font-weight:900;color:#e0d8c8;opacity:.38;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* IMAGE PLACEHOLDER */
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc 30% top/cover no-repeat;background-image:url('saussure.jpg');padding:0;}
+.person-block-img .mobile-img{display:none;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:400;margin-bottom:10px;}
+.person-block-wiki a{color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;transition:all .2s;}
+.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* INTERACTIVE BASE */
+.ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.ix-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}
+.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.ix-body{padding:24px 20px;background:white;}
+.ix-desc{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:18px;}
+.ix-desc strong{font-weight:600;color:#1a1208;}
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:14px;padding-top:12px;border-top:1px solid #e0d8c8;line-height:1.7;}
+
+/* Language switcher buttons */
+.lang-switch{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.lang-btn{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;padding:7px 14px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;transition:all .15s;letter-spacing:.04em;}
+.lang-btn:hover{border-color:#8b1a1a;color:#8b1a1a;}
+.lang-btn.on{background:#8b1a1a;border-color:#8b1a1a;color:white;}
+
+/* Spectrum visualizer */
+.spec-wrap{position:relative;margin:6px 0 12px;}
+.spec-bar{height:52px;width:100%;background:linear-gradient(to right,#6a1aa0 0%,#4a1a9a 10.9%,#2a30b0 21.9%,#1a5ad8 29.7%,#2a9ad8 35.9%,#2ab098 46.9%,#3aaa40 56.2%,#c8c820 62.5%,#f09020 68.8%,#d83020 81.2%,#a01818 100%);border:1px solid #c8bfaa;position:relative;}
+.spec-labels{display:flex;justify-content:space-between;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:6px;}
+.spec-boundaries{position:absolute;inset:0;pointer-events:none;}
+.sp-b{position:absolute;top:-4px;bottom:-4px;width:2px;background:#1a1208;transition:left .3s ease,opacity .3s ease;opacity:0;}
+.sp-b.on{opacity:1;}
+.sp-name{position:absolute;top:calc(100% + 22px);transform:translateX(-50%);font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;color:#1a1208;white-space:nowrap;background:#faf8f3;padding:1px 5px;border:1px solid #c8bfaa;transition:all .3s ease;opacity:0;}
+.sp-name.lower{top:calc(100% + 42px);}
+.sp-name.on{opacity:1;}
+.lang-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;margin-top:74px;line-height:1.7;min-height:42px;}
+.lang-caption strong{color:#1a1208;font-weight:600;}
+
+/* Butterfly game */
+.bfly-wrap{background:#faf8f3;border:1px solid #e0d8c8;padding:18px;margin-top:8px;}
+.bfly-q{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;margin-bottom:14px;line-height:1.7;}
+.bfly-creature{display:flex;justify-content:center;align-items:center;gap:36px;margin:16px 0 20px;}
+.bfly-card{text-align:center;}
+.bfly-svg{margin-bottom:6px;}
+.bfly-opts{display:flex;flex-direction:column;gap:6px;}
+.bfly-opt{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;padding:9px 14px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;transition:all .15s;text-align:center;}
+.bfly-opt:hover{border-color:#8b1a1a;background:#f3efe6;}
+.bfly-opt.selected{border-color:#8b1a1a;background:#8b1a1a;color:white;}
+.bfly-result{display:none;margin-top:12px;padding:12px 14px;background:#f3efe6;border:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;line-height:1.7;}
+.bfly-result strong{color:#1a1208;font-weight:600;}
+
+/* Russian blues quiz */
+.rbq-wrap{background:#faf8f3;border:1px solid #e0d8c8;padding:18px;margin-top:8px;}
+.rbq-stage{display:flex;flex-direction:column;align-items:center;gap:14px;margin:16px 0;}
+.rbq-target{width:80px;height:80px;border:2px solid #1a1208;}
+.rbq-choices{display:flex;gap:16px;}
+.rbq-choice{width:80px;height:80px;border:1px solid #c8bfaa;cursor:pointer;transition:all .15s;}
+.rbq-choice:hover{border-color:#8b1a1a;transform:scale(1.04);}
+.rbq-label{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.rbq-result{display:none;margin-top:14px;padding:12px 14px;background:#f3efe6;border:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;line-height:1.75;}
+.rbq-result strong{color:#1a1208;font-weight:600;}
+.rbq-reset{margin-top:10px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;padding:6px 14px;border:1px solid #c8bfaa;background:white;color:#7a6a55;cursor:pointer;}
+.rbq-reset:hover{border-color:#8b1a1a;color:#8b1a1a;}
+
+/* Phase indicator */
+.phase-ind{display:flex;gap:4px;margin-bottom:14px;}
+.phase-dot{flex:1;height:3px;background:#e0d8c8;}
+.phase-dot.on{background:#8b1a1a;}
+
+/* Comparison table */
+.ltable{width:100%;border-collapse:collapse;margin:24px 0;font-family:'Source Sans 3',sans-serif;font-size:13px;}
+.ltable th{background:#1a1208;color:#e8e4de;padding:10px 12px;text-align:left;font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid #1a1208;}
+.ltable td{padding:10px 12px;border:1px solid #c8bfaa;background:white;color:#3d3020;font-weight:300;line-height:1.6;vertical-align:top;}
+.ltable td strong{color:#1a1208;font-weight:600;}
+.ltable tr:nth-child(even) td{background:#f3efe6;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:12px;display:flex;justify-content:flex-start;flex-direction:row;background-image:none!important;background-color:#ede8dc;}
+  .person-block-img .mobile-img{display:block;width:72px;height:72px;object-fit:cover;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .bfly-creature{gap:20px;}
+  .rbq-choices{gap:10px;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.img-ph-desc,.img-ph-prompt-txt{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){
+  .toc-back{padding:22px 20px;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">言語と思考</p>
+    <h1>言語が<em>世界を切り分ける</em></h1>
+    <p class="cover-deck">青信号はなぜ青なのか。フランス語には蛾がないのか。ロシア語話者は青を速く見分けるのか。ソシュールが100年前に残した主張から始めて、現代の実験室までたどる。</p>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>DEEP DIVE</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1916</span>
+      <p class="est-event">『一般言語学講義』がソシュールの死後3年、教え子の手で刊行される</p>
+      <p class="est-context">同年の世界：ヴェルダンの戦いとソンムの戦い。前年アインシュタインが一般相対性理論を発表。</p>
+    </div>
+    <p class="cover-aside"><strong>関連記事：</strong>色は存在しない（D-01）／ 言葉で世界は変わるのか：サピア=ウォーフ仮説（L-01・近日公開）</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>冷蔵庫を開けて、中にあるものを「野菜」「肉」「飲み物」と無意識に分けている。きゅうりは野菜で、ベーコンは肉。トマトは、たぶん野菜。だが本当は果物だと言われたことがあるかもしれない。</p>
+    <p>この線引きは誰かに教わったわけではない。それなのに、ほぼすべての日本語話者がきゅうりを野菜と呼ぶ。線は、あなたの中にあって、あなたの中だけにあるのではない。</p>
+    <p>言葉は、ものに貼られたラベルではない。言葉が先に境界を引き、そのあとで世界が「そういう形」に見えてくる。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 予備知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-10</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-10</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">ソシュールが遺した一つの本から、言語が世界に切れ目を入れているという主張をたどる。同じ現実を別の言語で覗くと、境界の位置が動く。読者は自分の母語が引いている線を、自分の目で確かめることになる。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ========== 背景セクション ========== -->
+  <div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+  <h2 class="fade">死後に現れた一冊の本</h2>
+
+  <p class="body-text fade">少し回り道から始めたい。<strong>言語学</strong>という学問がある。言葉を研究する学問、と言ってしまえばそれまでだが、その中身は意外と広い。ある言語の文法を細かく記述する仕事もあれば、世界中の言語を比べて共通点を探す仕事もある。子どもがどうやって母語を身につけるかを追う人もいれば、脳のどの部分が言葉を処理しているかを調べる人もいる。どの言葉がどの言葉から枝分かれしてきたかを、化石のように復元していく人もいる。</p>
+
+  <p class="body-text fade">この記事の主人公、フェルディナン・ド・ソシュールはそのうちの一人だ。ただし彼がやったのは、個別の言語を記述する仕事でも、系統を辿る仕事でもなかった。<strong>言語というもの自体の仕組みを考える</strong>——彼はその仕事を始めた人で、後に「近代言語学の父」と呼ばれることになる。彼以前の言語学は、ギリシャ語とサンスクリット語とラテン語を比べて祖先の言葉を復元する、そういう歴史寄りの学問だった。ソシュールはそこに、もう一本別の軸を引いた。言葉は、今この瞬間にどういう仕組みで動いているのか——という軸だ。</p>
+
+  <p class="body-text fade">1916年、ジュネーヴの小さな出版社から一冊の本が出た。タイトルは<em>Cours de linguistique générale</em>——『一般言語学講義』。著者の欄には<span class="tip" onclick="toggleTip(this)">フェルディナン・ド・ソシュール<span class="tip-box"><strong>フェルディナン・ド・ソシュール（1857–1913）</strong><br>スイスの言語学者。21歳で古代インド=ヨーロッパ語の母音体系についての画期的な論文を書いた天才だが、生前は慎重すぎて講義ノート以外をほとんど出版しなかった。</span></span>の名前が印刷されていたが、ソシュール本人はこの本を書いていない。彼は3年前、1913年にすでに亡くなっていた。</p>
+
+  <p class="body-text fade">本の中身は、彼がジュネーヴ大学で1907年から1911年にかけて3度行った「一般言語学」の講義を、出席していた学生のノートから二人の教え子が再構成したものだった。ソシュール自身の原稿はほとんど残っていない。それでもこの本は、20世紀の思想を静かに、しかし根こそぎ作り変えることになる。記号論、構造主義、ポスト構造主義、文化人類学、文学理論——すべてはこの一冊を出発点として広がっていった。</p>
+
+  <p class="body-text fade">だが同じ年、世界は別のことに注目していた。2月、ドイツ軍がフランス軍の要塞都市ヴェルダンを砲撃し、その後10か月続く塹壕戦が始まっていた。7月にはソンムで100万人近くが死傷する攻勢が開始される。前年、アインシュタインが一般相対性理論を発表したばかりで、物理学は空間と時間の固さを失いつつあった。言語学の古い本が一つ静かに出たことなど、当時は誰の話題にもならなかった。</p>
+
+  <!-- 人物ブロック -->
+  <div class="person-block fade">
+    <div class="person-block-img" role="img" aria-label="フェルディナン・ド・ソシュール（1857-1913）の肖像写真">
+      <img class="mobile-img" src="saussure.jpg" alt="フェルディナン・ド・ソシュール（1857-1913）の肖像写真">
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">フェルディナン・ド・ソシュール</p>
+      <p class="person-block-role">LINGUIST · 1857–1913</p>
+      <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A7%E3%83%AB%E3%83%87%E3%82%A3%E3%83%8A%E3%83%B3%E3%83%BB%E3%83%89%E3%83%BB%E3%82%BD%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%AB" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p class="person-block-desc">ジュネーヴ生まれ。21歳でインド=ヨーロッパ祖語の母音体系を論理的に再構成する論文を発表し、世界中の言語学者を驚かせた。だがその後は慎重になり、完成した著作をほとんど残さないまま56歳で亡くなった。没後、講義ノートから編まれた『一般言語学講義』が彼の名前を歴史に刻むことになる。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">講義の中でソシュールは、言語を「物の名前リスト」と見る古い発想から離れようとしていた。犬という動物が先にいて、そこに「犬」というラベルが貼られる——そういう素朴な見方を、彼は拒否した。言葉は先にものを指すのではなく、<strong>音のかたまりと意味のかたまりが結びついた一つの記号</strong>として、言語の体系の中だけで存在している、と彼は言う。</p>
+
+  <!-- SVG図解①：音と概念の恣意性（パターンA） -->
+  <div class="fade" style="margin:24px 0;">
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;margin-bottom:10px;">図1 — 同じ生き物、三つの音</p>
+    <div style="overflow-x:auto;">
+    <svg viewBox="0 0 560 252" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;display:block;background:#f3efe6;border:1px solid #c8bfaa;">
+      <!-- concept zone label -->
+      <text x="280" y="18" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" letter-spacing="2">CONCEPT — シニフィエ（概念）</text>
+      <!-- concept box with custom cow SVG -->
+      <rect x="220" y="28" width="120" height="70" fill="white" stroke="#c8bfaa"/>
+      <!-- CC0 cow silhouette (SVG Repo) -->
+      <g transform="translate(240.1,34) scale(0.1436) translate(0,-76.6)">
+        <path fill="#1a1208" d="M9.469,226.129c0.992,5.573,2.358,11.102,2.999,16.712c1.428,12.501,3.949,25.108,3.362,37.543 c-0.75,15.896-4.121,31.665-6.361,47.487c0.833-0.347,1.665-0.698,2.501-1.045c3.285,4.998,6.569,9.996,10.127,15.415 c-1.437,4.622-3.129,10.064-5.104,16.409c2.432-1.946,4.268-3.415,4.811-3.848c1.265,7.385,2.636,15.378,4.215,24.599 c2.57-2.117,3.37-2.778,3.949-3.26c0.673,3.578,1.351,7.168,2.028,10.759c0.445-0.024,0.889-0.049,1.334-0.073 c0.698-2.815,1.396-5.635,2.093-8.45c0.665,0.024,1.33,0.05,1.995,0.074c10.18,30.791,22.595,59.535,25.063,90.584 c0,0-1.787,5.594,2.191,8.127c3.978,2.53,44.847,2.893,48.462,0c3.615-2.893-8.604-17.14-17.683-21.049 c-2.848-11.803-6.185-22.097-8.054-34.063c-1.897-12.143-2.746-24.509-3.166-36.806c-0.424-12.379,4.063-23.301,10.897-33.758 c5.161-7.899,8.886-16.883,12.273-25.757c3.566-9.344,5.479-19.319,9.041-28.662c3.007-7.887,6.846-8.025,13.472-2.596 c6.756,5.541,13.337,12.146,21.196,15.271c9.649,3.84,20.518,4.688,30.906,6.577c6.075,1.106,12.26,2.57,18.356,2.407 c18.601-0.497,37.173-1.941,55.773-2.542c8.364-0.269,14.093,4.194,15.602,12.433c2.272,12.402,2.848,25.141,5.528,37.438 c2.677,12.272,2.203,24.99,8.417,36.903c6.691,12.828,9.295,27.394,4.762,41.951c-1.049,3.37-3.721,6.772-6.605,8.771 c0,0-3.383,16.961,0.478,20.82c3.859,3.855,24.112,2.411,35.202,1.448c0,0,27.968,5.786,39.058,2.412 c11.094-3.375,5.304-10.127,4.341-13.982c-0.967-3.855-8.494-4.794-8.494-4.794c-1.469-2.856-6.59-4.125-7.169-7.152 c-2.692-14.125-1.832-28.091,1.832-42.085c4.554-17.381,7.85-35.101,12.677-52.4c1.673-6.001,5.585-11.799,9.739-16.593 c7.747-8.939,21.399-10.972,27.242-22.452c0.085-0.167,0.412-0.225,0.636-0.302c11.29-3.986,16.124-13.081,19.295-23.771 c1.656-5.585,4.06-10.959,6.287-16.36c6.585-15.981,19.185-27.262,31.31-38.695c3.664-3.452,10.024-6.748,14.55-6.079 c13.929,2.057,27.564,5.569,41.302-0.518c0.637-0.281,1.444-0.767,1.991-0.591c9.837,3.174,18.339-0.192,26.487-5.3 c2.366-1.485,6.638-3.162,6.605-4.675c-0.147-6.752-0.204-14.056-2.791-20.082c-3.803-8.845-10.245-16.52-14.586-25.182 c-2.982-5.949-3.064-12.709-0.6-19.56c2.081,0.718,3.427,1.167,4.757,1.648c9.172,3.301,15.745-1.979,14.827-11.473 c-0.245-2.534,0.607-5.757,2.13-7.785c8.282-11.012,6.564-17.997-6.422-23.105c-2.546-1-5.61-1.167-8.385-0.975 c-5.198,0.359-10.354,1.261-14.586,1.812c-2.791-3.929-4.325-8.278-7.303-9.796c-4.99-2.538-8.075-5.112-6.517-10.2 c-8.637-3.207-16.695-6.202-25.561-9.494c2.011-1.057,3.043-1.595,4.076-2.138c-0.245-0.669-0.49-1.338-0.734-2.008 c-7.487,2.277-14.974,4.558-22.697,6.908c0.171,4.602-0.094,9.298-7.308,8.817c-1.15-0.078-2.611,1.212-3.574,2.211 c-4.182,4.333-8.404,6.609-14.517,3.043c-1.828-1.065-5.287-0.245-7.638,0.657c-7.144,2.742-13.293,7.165-22.064,6.096 c-6.116-0.743-12.705,2.844-19.144,4.186c-14.822,3.093-29.376,3.623-42.979-4.818c-1.963-1.22-4.524-1.995-6.83-2.052 c-9.649-0.229-19.318,0.171-28.964-0.2c-6.487-0.249-12.938-1.383-19.4-2.154c-3.239-0.388-6.454-1.012-9.702-1.253 c-7.74-0.571-15.888,0.327-23.113-1.86c-5.985-1.812-12.228-1.318-16.634,0.11c-10.016,3.248-19.56,2.468-28.69-0.286 c-29.192-8.809-59.185-13.072-89.254-16.797c-6.348-0.759-11.358-3.089-16.369-6.181c-3.75-2.318-7.177-5.235-11.383-2.126 c-4.851-1.249-10.392-2.974-14.521-1.273c-5.757,2.371-13.386-0.779-17.572,5.908c-0.171,0.269-1.347-0.008-2.032-0.151 c-7.928-1.648-14.305,2.656-19.854,6.769c-6.393,4.741-12.632,7.229-20.126,5.5c-3.321,4.133-2.644,11.122-9.861,11.42 c-0.604,0.024-1.428,1.367-1.677,2.232C7.764,115.366,6.572,122,4.132,128.144c-4.757,11.991-2.607,24.57-3.941,36.834 c-0.4,3.664-0.139,7.507,0.473,11.159C3.476,192.82,6.503,209.471,9.469,226.129z M317.652,411.418 c0.641-0.032,1.285-0.061,1.926-0.094c1.028,7.426,2.627,14.831,2.93,22.285c0.306,7.613,1.767,15.626-2.689,23.896 C314.625,441.394,312.307,426.494,317.652,411.418z"/>
+      </g>
+
+      <!-- divider -->
+      <line x1="40" y1="110" x2="520" y2="110" stroke="#c8bfaa" stroke-dasharray="3,3"/>
+
+      <!-- sign zone label (clearly below divider) -->
+      <text x="280" y="126" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" letter-spacing="2">SOUND — シニフィアン（音声イメージ）</text>
+
+      <!-- arrows pointing UP from sign boxes to concept box (below label) -->
+      <g stroke="#8b1a1a" stroke-width="1.5" fill="none" stroke-linecap="round">
+        <line x1="110" y1="152" x2="110" y2="138"/>
+        <polyline points="105,143 110,138 115,143"/>
+        <line x1="280" y1="152" x2="280" y2="138"/>
+        <polyline points="275,143 280,138 285,143"/>
+        <line x1="450" y1="152" x2="450" y2="138"/>
+        <polyline points="445,143 450,138 455,143"/>
+      </g>
+
+      <!-- 3 sign boxes -->
+      <rect x="40" y="156" width="140" height="60" fill="white" stroke="#c8bfaa"/>
+      <text x="110" y="184" text-anchor="middle" font-family="'Playfair Display',serif" font-size="22" font-weight="700" fill="#1a1208">cow</text>
+      <text x="110" y="204" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">英語</text>
+
+      <rect x="210" y="156" width="140" height="60" fill="white" stroke="#c8bfaa"/>
+      <text x="280" y="184" text-anchor="middle" font-family="'Playfair Display',serif" font-size="22" font-weight="700" fill="#1a1208">vache</text>
+      <text x="280" y="204" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">フランス語</text>
+
+      <rect x="380" y="156" width="140" height="60" fill="white" stroke="#c8bfaa"/>
+      <text x="450" y="184" text-anchor="middle" font-family="'Playfair Display',serif" font-size="22" font-weight="700" fill="#1a1208">牛</text>
+      <text x="450" y="204" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">日本語</text>
+
+      <!-- caption -->
+      <text x="280" y="238" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">同じ概念（牛）と結びつく音は言語ごとに全く違う。<tspan font-weight="600" fill="#8b1a1a">必然の結びつきはない。</tspan></text>
+    </svg>
+    </div>
+  </div>
+
+  <p class="body-text fade">ソシュールはこれを<span class="tip" onclick="toggleTip(this)">恣意性<span class="tip-box"><strong>恣意性（Arbitrariness）</strong><br>音と意味の結びつきに必然的な理由がない、ということ。「犬」という音にも「dog」という音にも、犬という動物を指す必然性はない。言語の外から決まっているのではなく、その言語の中だけで決まっている。</span></span>と呼んだ。音と概念の結びつきは、自然や必然によって決まっているのではない。<strong>どの音とどの概念を結びつけてもよかった</strong>のに、たまたまその言語ではそう結びついた——ただそれだけだ。</p>
+
+  <p class="body-text fade">ここまでなら、言われてみれば当たり前に聞こえるかもしれない。「言語によって単語が違うのは当然だ」と。だがソシュールは、恣意性を足場にしてもう一歩踏み込んだ。そしてそこに、この本が100年読み継がれた理由がある。</p>
+
+  <!-- 引用ブロック（冒頭） -->
+  <div class="quote-block fade">
+    <p class="quote-en">"Dans la langue il n'y a que des différences. […] la langue n'a ni des idées ni des sons qui préexisteraient au système linguistique."</p>
+    <p class="quote-ja">言語にあるのは差異のみである。[…] 言語は、言語体系に先立って存在するような観念も音も持たない。</p>
+    <p class="quote-attr">— フェルディナン・ド・ソシュール『一般言語学講義』（1916年）</p>
+  </div>
+
+  <h2 class="fade">蝶と蛾を区別しない言語</h2>
+
+  <p class="body-text fade">具体的な例から入ろう。フランス語には <em>papillon</em>（パピヨン）という単語がある。辞書を引くと「蝶」と書いてある。だが<strong>フランス語話者にとっての papillon は、日本語話者が「蝶」と呼ぶものだけを指すわけではない</strong>。蛾もまた papillon だ。区別したいときには <em>papillon de nuit</em>——「夜の papillon」と言う。</p>
+
+  <p class="body-text fade">これは単なる語彙の不足ではない。学術用語としての <em>phalène</em>（蛾の一種を指す専門語）は存在するが、日常会話ではほぼ使われない。つまりフランス語の日常語の世界では、<strong>昼に飛ぶ色鮮やかなあれと、夜の電灯に群がるあれは、同じカテゴリーに属している</strong>。日本語話者の私たちから見ると、それらを同じ名前で呼ぶことは奇妙に感じる。生き物として明らかに違うではないか、と。</p>
+
+  <!-- 比較テーブル -->
+  <table class="ltable fade">
+    <thead>
+      <tr><th>現実の対象</th><th>日本語</th><th>英語</th><th>フランス語</th><th>ロシア語</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>昼の<span class="tip" onclick="toggleTip(this)">鱗翅目<span class="tip-box"><strong>鱗翅目（りんしもく / Lepidoptera）</strong><br>蝶と蛾を含む昆虫のグループ。翅（はね）に鱗粉という細かい粉が付いているのが特徴で、名前の「鱗」はそこから来ている。世界に約18万種いて、昆虫の中では二番目に大きなグループ。蝶と蛾を生物学的にきれいに分ける基準は実はなく、昼に飛ぶ色鮮やかなものを慣習的に「蝶」、それ以外を「蛾」と呼んでいるだけ。</span></span>／夜の鱗翅目</td><td>蝶 / 蛾</td><td>butterfly / moth</td><td><strong>papillon</strong>（1語）</td><td>бабочка / мотылёк</td></tr>
+      <tr><td>明るい青 / 暗い青</td><td>水色 / 青</td><td><strong>blue</strong>（1語）</td><td>bleu clair / bleu</td><td><strong>голубой / синий</strong>（2語）</td></tr>
+      <tr><td>濃い青緑</td><td>青 or 緑</td><td>green or blue</td><td>vert</td><td>зелёный</td></tr>
+      <tr><td>虹の色数</td><td>7色</td><td>7色</td><td>7色</td><td>7色（但し青が2つ）</td></tr>
+    </tbody>
+  </table>
+
+  <p class="body-text fade">表を眺めてほしい。同じ一つの対象が、言語によって1語で括られたり、2語に分けられたりする。<strong>何を「同じ」と見なし、何を「違う」と見なすか——その境界線は、現実の側にあらかじめ引かれていない</strong>。言語ごとに、違う場所に引かれている。</p>
+
+  <p class="body-text fade">日本語の中にも同じ構造がある。<strong>「青信号」「青りんご」「青葉」——これらは英語話者から見るとどう考えても緑だ</strong>。日本語話者がこれらを「青」と呼ぶのは色覚異常だからではない。古代日本語には赤・黒・白・青の4色しかなく、<span class="tip" onclick="toggleTip(this)">青<span class="tip-box"><strong>古代日本語の「青」</strong><br>奈良時代以前の日本語では、青は緑・青・灰色を含む広い範囲を指していた。「みどり」という単語は平安時代以降に登場する。緑信号を「青信号」と呼ぶのは、その古い境界線が今も生き残っているから。</span></span>が寒色全般を指していた。「みどり」という単語が登場するのは平安時代以降で、比較的新しい。今でも信号やリンゴのような身近な物に、古い境界線が生きている。</p>
+
+  <!-- SVG図解②：スペクトルに入る違う切れ目（パターンC） -->
+  <div class="fade" style="margin:24px 0;">
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;margin-bottom:10px;">図2 — 同じ色の連続、違う切れ目</p>
+    <div style="overflow-x:auto;">
+    <svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;display:block;background:#f3efe6;border:1px solid #c8bfaa;">
+      <defs>
+        <linearGradient id="sg1" x1="0" x2="1">
+          <stop offset="0" stop-color="#6a1aa0"/>
+          <stop offset="0.109" stop-color="#4a1a9a"/>
+          <stop offset="0.219" stop-color="#2a30b0"/>
+          <stop offset="0.297" stop-color="#1a5ad8"/>
+          <stop offset="0.359" stop-color="#2a9ad8"/>
+          <stop offset="0.469" stop-color="#2ab098"/>
+          <stop offset="0.562" stop-color="#3aaa40"/>
+          <stop offset="0.625" stop-color="#c8c820"/>
+          <stop offset="0.688" stop-color="#f09020"/>
+          <stop offset="0.812" stop-color="#d83020"/>
+          <stop offset="1" stop-color="#a01818"/>
+        </linearGradient>
+      </defs>
+
+      <!-- English row -->
+      <text x="8" y="40" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#3d3020">英語</text>
+      <rect x="80" y="22" width="460" height="24" fill="url(#sg1)" stroke="#c8bfaa"/>
+      <line x1="180.6" y1="18" x2="180.6" y2="50" stroke="#1a1208" stroke-width="1.5"/>
+      <line x1="245.3" y1="18" x2="245.3" y2="50" stroke="#1a1208" stroke-width="1.5"/>
+      <line x1="353.1" y1="18" x2="353.1" y2="50" stroke="#1a1208" stroke-width="1.5"/>
+      <line x1="381.9" y1="18" x2="381.9" y2="50" stroke="#1a1208" stroke-width="1.5"/>
+      <line x1="425.0" y1="18" x2="425.0" y2="50" stroke="#1a1208" stroke-width="1.5"/>
+      <text x="130.3" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">purple</text>
+      <text x="213.0" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">blue</text>
+      <text x="299.2" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">green</text>
+      <text x="367.5" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#7a6a55">yellow</text>
+      <text x="403.4" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">orange</text>
+      <text x="482.5" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#7a6a55">red</text>
+
+      <!-- Russian row -->
+      <text x="8" y="100" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#3d3020">ロシア語</text>
+      <rect x="80" y="82" width="460" height="24" fill="url(#sg1)" stroke="#c8bfaa"/>
+      <line x1="180.6" y1="78" x2="180.6" y2="110" stroke="#1a1208" stroke-width="1.5"/>
+      <line x1="216.6" y1="78" x2="216.6" y2="110" stroke="#8b1a1a" stroke-width="2"/>
+      <line x1="245.3" y1="78" x2="245.3" y2="110" stroke="#1a1208" stroke-width="1.5"/>
+      <line x1="353.1" y1="78" x2="353.1" y2="110" stroke="#1a1208" stroke-width="1.5"/>
+      <line x1="381.9" y1="78" x2="381.9" y2="110" stroke="#1a1208" stroke-width="1.5"/>
+      <line x1="425.0" y1="78" x2="425.0" y2="110" stroke="#1a1208" stroke-width="1.5"/>
+      <text x="130.3" y="122" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#7a6a55">фиолет.</text>
+      <text x="198.6" y="122" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#8b1a1a" font-weight="600">синий</text>
+      <text x="230.9" y="122" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#8b1a1a" font-weight="600">голубой</text>
+      <text x="299.2" y="122" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#7a6a55">зелён.</text>
+      <text x="367.5" y="122" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#7a6a55">жёлт.</text>
+      <text x="403.4" y="122" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#7a6a55">оранж.</text>
+      <text x="482.5" y="122" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="8" fill="#7a6a55">красн.</text>
+
+      <!-- Japanese (classical) row -->
+      <text x="8" y="160" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" fill="#3d3020">古代日本語</text>
+      <rect x="80" y="142" width="460" height="24" fill="url(#sg1)" stroke="#c8bfaa"/>
+      <line x1="360.3" y1="138" x2="360.3" y2="170" stroke="#8b1a1a" stroke-width="2"/>
+      <text x="220.2" y="182" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a" font-weight="600">青（寒色ぜんぶ）</text>
+      <text x="450.2" y="182" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a" font-weight="600">赤</text>
+
+      <!-- Berinmo row -->
+      <text x="8" y="220" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#3d3020">ベリンモ語</text>
+      <rect x="80" y="202" width="460" height="24" fill="url(#sg1)" stroke="#c8bfaa"/>
+      <line x1="338.8" y1="198" x2="338.8" y2="230" stroke="#8b1a1a" stroke-width="2"/>
+      <text x="209.4" y="242" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a" font-weight="600">nol（寒色側）</text>
+      <text x="439.4" y="242" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a" font-weight="600">wor（暖色側）</text>
+    </svg>
+    </div>
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:8px;line-height:1.6;">同じ色の連続帯に、4つの言語がそれぞれ違う場所で境界線を引く。赤い線は、隣の言語と比べて「ここにもう一本境界がある」場所を示す。</p>
+  </div>
+
+  <p class="body-text fade">パプアニューギニアのセピック川流域に住む<strong>ベリンモ語話者は、色を5つの語で区別する</strong>。そのうちの <em>nol</em> は英語の「緑＋青＋紫」をほぼカバーし、<em>wor</em> は「黄＋緑＋橙＋茶」をカバーする。英語話者にとって緑は単一のカテゴリーだが、ベリンモ語話者にとっては緑の一部が nol 側に、別の一部が wor 側に割り振られている。<strong>英語話者にとって一続きの緑が、彼らにとっては2つの別々のカテゴリーをまたぐ色なのだ。</strong></p>
+
+  <h2 class="fade">線は世界のどこに引かれているか</h2>
+
+  <p class="body-text fade">「でも文化が違うから当然だろう」と思うかもしれない。「実際に目に見えている色は同じはずだ」と。ここで足を止めたい。ソシュールの主張が本当に過激なのは、この直感を疑うところから始まるからだ。</p>
+
+  <p class="body-text fade">彼はこう言った。<strong>言語には差異しかない</strong>。「緑」という意味が先にあって、そこに英語の green という音がくっついているのではない。英語の green は、blue と yellow<strong>ではない</strong>ことによって、はじめて green になる。別の言語で隣接する語が違えば、切り分けられる空間そのものが違う。意味は単語の内部に宿っているのではなく、<strong>隣の単語との境界線として存在している</strong>。</p>
+
+  <!-- インタラクティブ①：Words Draw Lines（理解補助） -->
+  <div class="ix-wrap fade" id="wdl-wrap">
+    <div class="ix-header"><span class="ix-hl">✦ Words Draw Lines</span></div>
+    <div class="ix-body">
+      <p class="ix-desc">言語を切り替えると、同じ色の連続帯の上で<strong>境界線の位置と単語の数</strong>が変わる。「色そのもの」は一切変わっていないことに注目してほしい。</p>
+      <div class="lang-switch">
+        <button class="lang-btn on" onclick="setWDL('en')">英語（11色）</button>
+        <button class="lang-btn" onclick="setWDL('ja')">日本語（古代4色）</button>
+        <button class="lang-btn" onclick="setWDL('ru')">ロシア語</button>
+        <button class="lang-btn" onclick="setWDL('br')">ベリンモ語（5色）</button>
+      </div>
+      <div class="spec-wrap">
+        <div class="spec-bar"></div>
+        <div class="spec-boundaries" id="specBounds"></div>
+      </div>
+      <p class="lang-caption" id="wdlCap"><strong>英語：</strong>紫・青・緑・黄・橙・赤など、虹の連続帯を細かく11の基本語で区切っている。</p>
+      <p class="ix-note">境界線の位置は Roberson et al. (2000)、Winawer et al. (2007)、Berlin & Kay (1969) の研究をもとに単純化してある。実際の境界は話者ごとにゆらぎがあり、完全に一致する固定点ではない。</p>
+    </div>
+  </div>
+
+  <!-- 誤解あるある -->
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解 vs 実際は</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">✗ よくある誤解</p>
+          <p class="mis-text">「言語が違っても見える色は同じ。単に名前が違うだけだ。」</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">✓ 実際は</p>
+          <p class="mis-text">網膜のセンサーは同じでも、「どこからどこまでを一つの色として扱うか」は言語ごとに違う。名前がある境界は、実験室で測ると反応が速くなる。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">✗ よくある誤解</p>
+          <p class="mis-text">「語彙が少ない言語は、話者の認識が未発達なだけ。」</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">✓ 実際は</p>
+          <p class="mis-text">ベリンモ語話者は、自分の言語の境界（nol/wor）をまたぐ色を、英語話者の blue/green 境界をまたぐ色より速く見分ける。英語の線が「正解」というわけではない。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">✗ よくある誤解</p>
+          <p class="mis-text">「名前は先に存在するもの（犬、青、愛）に後から貼られたラベルだ。」</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">✓ 実際は</p>
+          <p class="mis-text">ソシュールの主張はその逆。言語の側が「これは一つのもの」「これは別のもの」と決めることで、カテゴリーが生まれる。境界が先、中身は後。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">ここまでが導入だ。恣意性——音と概念の結びつきに必然性がない——は、理解のとっかかりにすぎない。ソシュールが本当に言いたかったのはその先、<span class="tip" onclick="toggleTip(this)">分節<span class="tip-box"><strong>分節（Articulation / Découpage）</strong><br>連続的な現実に「ここで切る」という境界線を入れる働きのこと。言語は音も概念も、もともと連続したものを切り分けて単位にする装置だ、とソシュールは考えた。骨と骨のつなぎ目（関節）と同じ語源。</span></span>の話だった。<strong>言語は、連続した現実に切れ目を入れる装置だ。</strong>そしてその切れ目の位置は、言語ごとに違う。</p>
+
+  <!-- ========== 体験セクション ========== -->
+  <div class="sec-rule fade"><span class="sec-label">体験</span><div class="sec-line"></div></div>
+  <h2 class="fade">あなたの母語が引いている線</h2>
+
+  <p class="body-text fade">ここまでは外から眺めた話だ。次は自分の言語が引いている線を、自分の手で触ってみることになる。3つの小さな仕掛けを用意した。1つ目は蝶と蛾の話の逆をやる。2つ目はロシア語話者になって色を見分けるゲーム。最後はシンプルな問いで締める。正解を見つけるゲームではない。自分がどこに線を引いているかに気づくゲームだ。</p>
+
+  <!-- 体験1：Butterfly Switch -->
+  <div class="ix-wrap fade" id="bfly-wrap">
+    <div class="ix-header"><span class="ix-hl">✦ Experience 1 — Butterfly Switch</span></div>
+    <div class="ix-body">
+      <p class="ix-desc">下に2種類の生き物がいる。あなたが日本語話者なら、左は「蝶」、右は「蛾」と迷わず呼ぶだろう。だが<strong>フランス語話者に同じ絵を見せたら</strong>？</p>
+      <div class="lang-switch">
+        <button class="lang-btn on" onclick="setBfly('ja')">日本語モード</button>
+        <button class="lang-btn" onclick="setBfly('fr')">フランス語モード</button>
+      </div>
+      <div class="bfly-wrap">
+        <p class="bfly-q" id="bflyQ">下の2匹を、あなたの言語で分類してください。</p>
+        <div class="bfly-creature">
+          <div class="bfly-card">
+            <svg class="bfly-svg bfly-butterfly" width="96" height="96" viewBox="0 0 511.829 511.829" xmlns="http://www.w3.org/2000/svg" style="color:#d06830;">
+              <path fill="currentColor" d="M494.929,105.625c17.135-18.765,18.27-38.494,16.06-52.011c-2.799-17.195-18.918-29.107-36.531-27.051 c-54.665,6.246-105.31,38.622-146.449,93.628c-22.161,29.619-35.866,57.941-42.035,72.09c-3.558-9.156-7.851-16.7-12.894-21.973 c5.862-32.333,25.609-95.241,50.475-93.722c4.813,0.393,8.764-3.268,9.062-7.97c0.299-4.702-3.268-8.755-7.97-9.062 c-42.445-2.551-62.131,76.834-67.371,102.562c-0.486-0.034-0.947-0.179-1.442-0.179s-0.947,0.145-1.434,0.179 c-5.231-25.762-24.858-105.31-67.379-102.562c-4.702,0.307-8.269,4.361-7.97,9.062c0.307,4.702,4.343,8.363,9.062,7.97 c24.235-1.544,43.674,55.962,50.475,93.722c-5.001,5.24-9.276,12.715-12.826,21.786c-6.204-14.217-19.883-42.419-41.941-71.902 C142.673,65.186,92.036,32.81,37.371,26.564C19.656,24.507,3.639,36.42,0.84,53.615c-2.21,13.508-1.075,33.246,16.06,52.011 l0.026,115.396c-0.077,1.033-1.758,25.6,14.626,43.281c10.513,11.349,25.685,17.101,45.082,17.101h64.606l-41.464,8.892 c-1.024,0.307-25.071,7.774-30.694,29.559c-4.335,16.777,3.652,36.233,23.731,57.899L76.855,441.6 c-2.406,10.342-0.776,32.222,22.622,41.02c5.146,1.937,10.598,2.876,16.111,2.876c11.409,0,23.049-4.062,32.657-11.776 c14.618-11.733,34.97-31.889,48.905-61.252c4.215-8.892,18.799-43.785,26.914-63.292c7.159,20.745,17.801,34.628,31.77,34.628 c14.012,0,24.687-13.969,31.846-34.825c8.098,19.456,22.767,54.562,27,63.488c13.935,29.363,34.287,49.519,48.905,61.252 c9.609,7.714,21.248,11.776,32.657,11.776c5.504,0,10.957-0.939,16.111-2.876c23.398-8.798,25.028-30.677,22.588-41.156 l-15.932-63.71c20.087-21.666,28.075-41.122,23.74-57.899c-5.632-21.786-29.679-29.252-31.368-29.73l-40.695-8.721h64.512 c19.396,0,34.56-5.751,45.082-17.101c16.375-17.681,14.703-42.249,14.652-42.633V105.625z M110.767,247.27 c-32.939,0-59.733-26.795-59.733-59.733c0-4.71,3.823-8.533,8.533-8.533s8.533,3.823,8.533,8.533 c0,23.526,19.14,42.667,42.667,42.667c4.71,0,8.533,3.823,8.533,8.533S115.477,247.27,110.767,247.27z M255.833,366.737 c-8.687,0-25.6-33.135-25.6-93.867s16.913-93.867,25.6-93.867c8.687,0,25.6,33.135,25.6,93.867S264.52,366.737,255.833,366.737z M400.9,247.27c-4.71,0-8.533-3.823-8.533-8.533s3.823-8.533,8.533-8.533c23.526,0,42.667-19.14,42.667-42.667 c0-4.71,3.823-8.533,8.533-8.533c4.71,0,8.533,3.823,8.533,8.533C460.633,220.475,433.839,247.27,400.9,247.27z"/>
+            </svg>
+            <p style="font-family:'Source Sans 3',sans-serif;font-size:10px;color:#7a6a55;">昼に花にとまる、色鮮やか</p>
+          </div>
+          <div class="bfly-card">
+            <svg class="bfly-svg bfly-moth" width="96" height="96" viewBox="0 0 512.009 512.009" xmlns="http://www.w3.org/2000/svg" style="color:#6a5a44;">
+              <path fill="currentColor" d="M512.001,302.96c0-29.679-38.281-48.777-41.446-50.304c-41.634-21.53-133.359-25.89-187.238-26.505 c-2.296-5.222-4.83-9.788-7.629-13.568c13.585-7.142,22.98-21.24,22.98-37.623c0-13.85-6.741-26.061-16.998-33.86 c1.28-7.561,11.639-62.003,42.052-60.015c4.796,0.299,8.764-3.277,9.062-7.979c0.299-4.702-3.268-8.755-7.97-9.062 c-41.591-2.534-55.552,50.97-59.136,69.453c-3.123-0.725-6.34-1.203-9.677-1.203s-6.545,0.478-9.66,1.203 c-3.541-18.509-17.391-72.098-59.153-69.453c-4.702,0.307-8.269,4.361-7.97,9.062c0.299,4.702,4.079,8.26,9.062,7.979 c30.157-2.031,40.738,52.463,42.052,60.015c-10.257,7.799-16.998,20.011-16.998,33.86c0,16.384,9.395,30.481,22.98,37.623 c-2.799,3.78-5.333,8.346-7.629,13.568c-53.931,0.614-145.783,4.983-187.085,26.436c-1.698,0.802-41.6,20.079-41.591,50.022 c-0.162,3.951,1.323,23.339,42.658,39.33v-13.38c0-21.239,29.022-42.667,93.867-42.667c4.719,0,8.533,3.823,8.533,8.533 c0,4.71-3.814,8.533-8.533,8.533c-57.455,0-76.8,17.579-76.8,25.6v19.106l42.667,13.193v-6.699 c0-22.272,39.646-34.133,68.267-34.133c4.719,0,8.533,3.823,8.533,8.533s-3.814,8.533-8.533,8.533 c-29.585,0-51.2,11.972-51.2,17.067v16.034c6.451,4.659,15.113,11.742,25.6,22.161v-4.062c0-22.963,13.961-34.133,42.667-34.133 c4.719,0,8.533,3.823,8.533,8.533s-3.814,8.533-8.533,8.533c-25.6,0-25.6,9.463-25.6,17.067v22.349 c4.497,5.163,9.199,10.803,14.123,17.058l1.399,1.408c1.365,1.075,24.243,18.953,48.555,18.953c8.943,0,18.082-2.449,26.411-9.028 c1.109,0.205,2.219,0.461,3.379,0.461s2.27-0.256,3.379-0.461c8.329,6.588,17.459,9.037,26.411,9.028 c24.303,0,47.189-17.877,48.555-18.953l1.399-1.408c4.924-6.255,9.626-11.895,14.123-17.067v-22.34c0-7.603,0-17.067-25.6-17.067 c-4.719,0-8.533-3.823-8.533-8.533s3.814-8.533,8.533-8.533c28.706,0,42.667,11.17,42.667,34.133v4.053 c10.547-10.479,19.209-17.579,25.6-22.204V354.16c0-5.094-21.615-17.067-51.2-17.067c-4.719,0-8.533-3.823-8.533-8.533 s3.814-8.533,8.533-8.533c28.621,0,68.267,11.861,68.267,34.133v6.724l42.667-13.218V328.56c0-8.021-19.345-25.6-76.8-25.6 c-4.719,0-8.533-3.823-8.533-8.533c0-4.71,3.814-8.533,8.533-8.533c64.845,0,93.867,21.427,93.867,42.667v13.397 C510.67,325.991,512.154,306.586,512.001,302.96z M260.131,420.148c-0.811,0.674-1.63,1.22-2.44,1.604l-1.067,0.512 c-0.205,0.043-0.427,0.162-0.623,0.162s-0.418-0.12-0.623-0.162l-1.067-0.512c-0.811-0.384-1.63-0.93-2.441-1.604 c-9.182-9.054-21.47-45.406-21.47-100.122c0-63.522,16.572-102.4,25.6-102.4s25.6,38.878,25.6,102.4 C281.601,374.751,269.304,411.103,260.131,420.148z"/>
+            </svg>
+            <p style="font-family:'Source Sans 3',sans-serif;font-size:10px;color:#7a6a55;">夜に電灯に集まる、地味</p>
+          </div>
+        </div>
+        <div class="bfly-opts" id="bflyOpts"></div>
+        <div class="bfly-result" id="bflyResult"></div>
+      </div>
+      <p class="ix-note">フランス語の日常語では <em>papillon</em> が昼夜の鱗翅目をひっくるめて指す。区別したいときは <em>papillon de jour</em>（昼）/ <em>papillon de nuit</em>（夜）という修飾を足す。学術用語の <em>phalène</em> は存在するが、日常会話ではほぼ使われない。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">モードを切り替えたとき、選択肢の数が変わったことに気づいただろうか。日本語モードでは「蝶」「蛾」「わからない」の3択。フランス語モードでは「papillon」「わからない」の2択しかない。選択肢を減らしたのではない。フランス語話者の日常語には、最初からそれしかない。「区別すべき2つ」が「区別しない1つ」になった瞬間、<strong>生き物の側で何かが変わったのか。それとも変わったのはあなたの側か。</strong></p>
+
+  <!-- 体験2：Russian Blues Quiz -->
+  <div class="ix-wrap fade" id="rbq-wrap">
+    <div class="ix-header"><span class="ix-hl">✦ Experience 2 — Russian Blues</span></div>
+    <div class="ix-body">
+      <p class="ix-desc">Winawer et al.（2007）の実験を簡略化したもの。上に見本の色がある。下の2つから<strong>見本と同じ色</strong>を選んでほしい。できるだけ速く、直感で。</p>
+      <div class="rbq-wrap">
+        <div class="phase-ind"><div class="phase-dot on" id="phd1"></div><div class="phase-dot" id="phd2"></div><div class="phase-dot" id="phd3"></div></div>
+        <p class="rbq-label" id="rbqLbl" style="text-align:center;margin-bottom:6px;">問題 1 / 3</p>
+        <div class="rbq-stage">
+          <p class="rbq-label">見本</p>
+          <div class="rbq-target" id="rbqTarget"></div>
+          <p class="rbq-label">どちらが同じ色？</p>
+          <div class="rbq-choices">
+            <div class="rbq-choice" id="rbqA" onclick="rbqPick(0)"></div>
+            <div class="rbq-choice" id="rbqB" onclick="rbqPick(1)"></div>
+          </div>
+        </div>
+        <div class="rbq-result" id="rbqResult"></div>
+        <div style="text-align:center;"><button class="rbq-reset" onclick="rbqReset()" style="display:none;" id="rbqResetBtn">もう一度</button></div>
+      </div>
+      <p class="ix-note">Winawer et al. (2007) は20段階の青色サンプルを使い、ロシア語話者はカテゴリー境界（синий / голубой）をまたぐ色を速く見分けることを示した。さらに言語的な干渉課題を同時に与えると、その有利さは消える。「境界は網膜ではなく頭の中の言語が作っている」ことを示唆する結果だ。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">この実験のオリジナルでは、ロシア語話者はカテゴリー境界をまたぐ色を、またがない色より速く見分けた。英語話者は同じ青の中で同じ課題をしても、そのような速度差が出なかった。<strong>同じ目で、同じ光を見ているはずなのに、反応速度に差が出る</strong>。言語が「同じ」と呼ぶ範囲の内側では、色の差は心の中でなめらかになり、境界をまたぐと段差になる。</p>
+
+  <p class="body-text fade">さらに重要なのは、この優位が<strong>同時に別の言語タスクをやらせると消える</strong>ことだ。数を声に出して数えながら同じ課題をやると、ロシア語話者の境界感度は失われた。<strong>言葉のカテゴリーが知覚を速くしていた</strong>のであって、網膜や視神経が生まれつき違ったわけではない。</p>
+
+  <!-- ========== メカニズムセクション ========== -->
+  <div class="sec-rule fade"><span class="sec-label">メカニズム</span><div class="sec-line"></div></div>
+  <h2 class="fade">言葉は、どうやって世界を切るのか</h2>
+
+  <p class="body-text fade">ここまで来ると、自然な疑問が湧いてくる。言葉は具体的にどうやって知覚に食い込んでいるのか。赤ちゃんのころは言葉を知らないのに、色は見えているはずだ。言葉を覚える過程で、網膜が書き換わるわけでもない。ではどこで何が起きているのか。</p>
+
+  <!-- ステップ図解 -->
+  <div class="steps-wrap fade">
+    <p class="steps-head">分節の3ステップ</p>
+
+    <div class="step-card open" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">1</div>
+        <div class="step-tw">
+          <p class="step-title">連続した現実</p>
+          <p class="step-sub">境界も、単位も、まだない</p>
+        </div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>光の波長は380nmから780nmまでなだらかに変化する。どこかで急に「赤から橙になる」物理的な切れ目は存在しない。蝶と蛾も同じだ。鱗翅目という一つの生物群の中で、昼行性か夜行性か、触角の形、体の太さなど、さまざまな特徴がゆるやかに変化している。<strong>現実の側には「ここから別物」という印はない。</strong></p>
+        <p>日常の例：スーパーで「野菜」と「果物」を分けている棚。トマトは植物学的には果物だが、日本の料理文化では野菜として扱われる。どちらが正しいかではなく、どの切り方を採用するかの問題だ。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">2</div>
+        <div class="step-tw">
+          <p class="step-title">言語が切れ目を入れる</p>
+          <p class="step-sub">どの言語で育ったかで線の位置が決まる</p>
+        </div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>子どもは生後半年ごろまで、世界中のあらゆる音を聞き分ける能力を持っている。だが母語に触れ続けるうちに、母語で「同じ音」として扱われる音を区別する能力は失われていく。日本語を浴び続けた子は、英語の L と R を聞き分けにくくなる。<strong>能力が増えたのではなく、不要な区別を捨てた結果だ。</strong></p>
+        <p>色のカテゴリーも同じ構造を持つ。英語圏で育った子は「blue」と「green」の境界を学び、ロシア語圏で育った子は「синий」と「голубой」の境界を学ぶ。どちらも「正解」を覚えるのではなく、<em>その言語が用意した切れ目</em>を身につける。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">3</div>
+        <div class="step-tw">
+          <p class="step-title">切れ目が知覚に影響する</p>
+          <p class="step-sub">反応速度・記憶・見分けの速さに染み出す</p>
+        </div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>Winawerの実験では、ロシア語話者は синий と голубой の境界をまたぐ色を速く見分けた。英語話者は同じ範囲で差が出なかった。ベリンモ語話者は自分の言語の nol / wor 境界で似た優位を示した。<strong>言語が引いた線は、反応時間のレベルで検出できる。</strong></p>
+        <p>ただし注意が必要だ。<em>別の言語タスクで頭を占拠すると、この優位は消える</em>。つまり言葉は色を見る回路を書き換えたのではなく、色を見ている最中にこっそり呼び出されて判断を手伝っている。言語は知覚の外に立つ審判ではなく、知覚の内側に入り込んでいる。</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">このメカニズムには、素朴な期待を一つ潰しておきたい。「もっと注意深く見れば、言葉の影響を外せるのではないか」という期待だ。残念ながらそうはいかない。<strong>あなたが意識的に色を区別しようとする瞬間に、あなたの言語のカテゴリーが呼び出される</strong>。意識して見ることは、言語の網の外に出ることではない。むしろ網の目を強く手繰り寄せることだ。</p>
+
+  <!-- 引用ブロック（中盤） -->
+  <div class="quote-block fade">
+    <p class="quote-en">"Language is not complete in any speaker; it exists perfectly only within a collectivity."</p>
+    <p class="quote-ja">言語はどの話者の中にも完全な形では存在しない。集団の中でのみ完全に存在する。</p>
+    <p class="quote-attr">— ソシュール『一般言語学講義』序論（1916年）</p>
+  </div>
+
+  <p class="body-text fade">だからこれは個人の問題ではない。あなたが日本語話者として「青信号」と言うとき、それは<strong>あなたの祖先が数千年かけて練り上げた境界線</strong>を踏み直している。その線はあなたが生まれる前からそこにあり、あなたが死んだ後もそこに残る。言語共同体の中でだけ完全に存在する、共有財産としての切り分け方。</p>
+
+  <!-- ========== 歴史セクション ========== -->
+  <div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+  <h2 class="fade">講義ノートから実験室まで</h2>
+
+  <p class="body-text fade">ソシュールの主張はすぐに広まったわけではない。本が出たのは第一次世界大戦の最中で、誰もそれどころではなかった。だが戦後、この本はゆっくりと、そして確実に、20世紀の知的な風景を塗り替えていく。下の年表は、ソシュール本人の生涯から現代の心理実験までの流れをたどったものだ。赤いドットが<strong>この話の核心</strong>、白いドットが<strong>関連する出来事</strong>を示している。</p>
+
+  <div class="timeline fade">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1857</p>
+      <p class="tl-title">ソシュール、ジュネーヴに生まれる</p>
+      <p class="tl-desc">スイスの学術一家に生まれ、21歳でインド=ヨーロッパ祖語の母音体系についての論文を発表。その後ジュネーヴ大学でサンスクリット語やインド=ヨーロッパ語を教える。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1907–1911</p>
+      <p class="tl-title">「一般言語学」講義</p>
+      <p class="tl-desc">ジュネーヴ大学で3度にわたり講義。学生の一人、アルベール・リードランジェらが詳細なノートを取っていた。ソシュール自身はこの内容を書物にまとめていない。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1913</p>
+      <p class="tl-title">ソシュール死去（享年55）</p>
+      <p class="tl-desc">講義録は未発表のまま残る。教え子のシャルル・バイイとアルベール・セシュエが「この講義を失うのは人類の損失だ」と考え、学生ノートの編集作業に取りかかる。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1916</p>
+      <p class="tl-title">『一般言語学講義』出版</p>
+      <p class="tl-desc">ソシュール没後3年、ヴェルダンの戦いの真っ只中、スイスのパイヨ書店から刊行。編者たちは学生6人のノートを突き合わせて再構成したが、内容の全てがソシュール本人の主張と一致するかは後の議論を呼ぶことになる。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1940s–1960s</p>
+      <p class="tl-title">構造主義の広がり</p>
+      <p class="tl-desc">レヴィ=ストロースが神話研究に、ラカンが精神分析に、ロラン・バルトが文学批評に応用。「意味は関係の中にしかない」というソシュールの発想が、言語学の外へ波及していった。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1956</p>
+      <p class="tl-title">サピア=ウォーフ仮説の定式化</p>
+      <p class="tl-desc">ソシュールの流れとは別にアメリカで、ベンジャミン・ウォーフが「言語が思考を形作る」という仮説を打ち出す。後に強すぎるとして批判されるが、言語と認知の関係を問う研究の出発点になる。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1999</p>
+      <p class="tl-title">ベリンモ語の研究（Davidoff et al.）</p>
+      <p class="tl-desc">ロンドン大学のチームがパプアニューギニアでベリンモ語話者に色分類テストを実施。彼らの色カテゴリー（nol/wor）が、記憶・識別の成績に影響することを示した。『Nature』に掲載。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2007</p>
+      <p class="tl-title">ロシアン・ブルーズ研究（Winawer et al.）</p>
+      <p class="tl-desc">MITのチームが、ロシア語話者は青のカテゴリー境界をまたぐ色を英語話者より速く見分けることを示した論文を『PNAS』に発表。ソシュールの抽象的な主張が、反応時間という形で定量的に確認された瞬間。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">ジュネーヴの講義室から、パプアニューギニアの村と MIT の実験室まで、100年の線が引かれている。ソシュール本人は実験心理学的な検証をしたわけではない。彼の主張はあくまで理論だった。だが100年後、彼の理論は反応時間の差——ミリ秒単位の実測値——として姿を現すことになった。</p>
+
+  <!-- ========== つまりセクション ========== -->
+  <div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+  <h2 class="fade">世界を見ているのは、目ではない</h2>
+
+  <p class="body-text fade">ここまでの話を結び直す。光は波長の連続だ。鱗翅目は生物学的な連続だ。味も、音も、感情も、人間の関係も、すべては連続している。そこに<strong>「これは一つのもの」「これは別のもの」と切れ目を入れる装置</strong>が言語だ。ソシュールが残したのは、この装置が「世界の真の姿を写し取っている」のではなく、「世界に線を引いている」という見方だった。</p>
+
+  <p class="body-text fade">その線は、恣意的に引かれている。だが一度引かれてしまえば、もうあなたの認知の一部になる。ロシア語話者が水色と青を速く区別し、日本語話者が緑を「青」と呼び、フランス語話者が夜の papillon と昼の papillon を一つの語で括る。どれも「間違っている」のではない。<strong>それぞれが、自分の言語が引いた線をなぞっているだけだ</strong>。</p>
+
+  <!-- プルクォート（終盤） -->
+  <div class="pull fade">
+    <p class="pull-q">"Sameness is always <em>difference</em>—that's how we know it is the same."</p>
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">同じであるということは、常に差異なのだ——だからこそ、それが同じだとわかる。</p>
+    <p class="pull-attr">— フェルディナン・ド・ソシュール『一般言語学講義』の核心を要約した一節（Jonathan Culler による編集者注, Columbia UP版, 2011年）</p>
+  </div>
+
+  <p class="body-text fade">これは色や蝶の話で終わらない。<strong>感情の語彙が少ない人は、感情の区別が粗くなる</strong>。自分の気持ちが「苛立ち」なのか「悲しみ」なのか「疲労」なのか、それを区別する語を持たない人は、全部まとめて「なんかイライラする」として経験する。カウンセリングや感情教育の現場では、感情に細かい名前をつけていく作業が、それ自体で症状を和らげることが知られている。これもまた、名前が切れ目を作るという話の延長にある。</p>
+
+  <p class="body-text fade">政治の場面では、もっと露骨になる。「テロリスト」と「自由の戦士」は、物理的には同じ人間を指すことがある。だが呼び方を変えるだけで、読み手の反応は変わる。<strong>名前は中立な標識ではない</strong>。名前を付け替えれば、世界は違って見える。オーウェルが『1984』のニュースピークで描いたのは、この構造を権力側から悪用した姿だった。</p>
+
+  <!-- 文化への登場 -->
+  <div class="culture-block fade">
+    <p class="culture-label">作品への登場</p>
+    <div class="culture-item">
+      <p class="culture-title">ジョージ・オーウェル『1984』（1949年）</p>
+      <p class="culture-desc">全体主義国家がニュースピーク（新語法）を作り、語彙を減らすことで思考そのものを不可能にしようとする。「自由」という単語を消せば、自由を求める思考は生まれない——オーウェルはソシュール本人を読んでいたわけではないが、言語が思考の限界を決めるという発想はここに色濃く表れている。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">映画『メッセージ（Arrival）』（2016年）</p>
+      <p class="culture-desc">テッド・チャンの短編「あなたの人生の物語」を原作とするSF。地球に来たエイリアンの言語を学ぶことで、主人公の時間認識そのものが変化する。サピア=ウォーフ仮説の強い版を物語化した作品で、ソシュール以降の「言語が世界を切る」という発想が現代SFに流れ込んだ例。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">ロラン・バルト『神話作用』（1957年）</p>
+      <p class="culture-desc">洗剤の広告、プロレス、ワイン——日常の記号をソシュールの枠組みで読み解く。「自然に見えるもの」の背後にある恣意的な切り分けを暴くバルトの手つきは、20世紀後半の文化批評の出発点になった。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">では私たちはどうすればいいのか。言語の外に出ることはできない。だが<strong>複数の線を知ることはできる</strong>。別の言語を学ぶこと、別の文化の分類を知ること、翻訳の際に消えてしまうものを意識すること——これらはすべて、自分の線を絶対化せずに済むための小さな抵抗だ。ソシュールが100年前の講義室で始めた仕事は、今もその形で続いている。</p>
+
+  <p class="body-text fade">冷蔵庫を開けて「野菜」を取り出すとき、あなたは日本語が引いた線を踏んでいる。それ自体は何も悪くない。<strong>線があることに気づいていれば、違う線を引く誰かと出会ったとき、少しだけ耳を傾けられる</strong>。ソシュールが残した贈り物は、この小さな気づきのための足場だ。死後に編まれた一冊の本から、100年経って、そのことだけは確かに届いている。</p>
+
+  <!-- ========== 参考文献 ========== -->
+  <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一次文献</span><span class="ref-year">1916</span></div>
+      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Course_in_General_Linguistics" target="_blank" rel="noopener">Cours de linguistique générale</a></p>
+      <p class="ref-author">Ferdinand de Saussure — Payot, Lausanne & Paris</p>
+      <p class="ref-desc">ソシュール本人が書いた本ではなく、教え子のバイイとセシュエが学生ノートから再構成したもの。第一部「一般原則」までなら比較的読みやすい。言語の恣意性と分節の話はこの前半に集中している。英訳は Wade Baskin 訳（1959年）と Roy Harris 訳（1983年）がある。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2007</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1073/pnas.0701644104" target="_blank" rel="noopener">Russian blues reveal effects of language on color discrimination</a></p>
+      <p class="ref-author">Winawer, J., Witthoft, N., Frank, M. C., Wu, L., Wade, A. R., & Boroditsky, L. — PNAS 104(19): 7780–7785</p>
+      <p class="ref-desc">ロシア語話者が синий / голубой の境界をまたぐ青を速く見分けることを実験で示した論文。言語的干渉課題を同時にやらせると優位が消えるという結果が決定的で、「言葉が見ている最中に呼び出されている」という理解を決定づけた。この一本から先の話を知りたいなら、まずここを読むといい。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2000</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1037/0096-3445.129.3.369" target="_blank" rel="noopener">Color categories are not universal: Replications and new evidence from a stone-age culture</a></p>
+      <p class="ref-author">Roberson, D., Davies, I., & Davidoff, J. — Journal of Experimental Psychology: General 129(3): 369–398</p>
+      <p class="ref-desc">パプアニューギニアのベリンモ語話者を対象に、色のカテゴリーと記憶・識別の関係を調べた長編論文。有料だが、大学図書館経由でアクセスできることが多い。ロッシュ=ハイダーの古典的実験（1972年）への反論として、言語相対性の立場を再評価する転機になった。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">短報</span><span class="ref-year">1999</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1038/18335" target="_blank" rel="noopener">Colour categories in a stone-age tribe</a></p>
+      <p class="ref-author">Davidoff, J., Davies, I., & Roberson, D. — Nature 398: 203–204</p>
+      <p class="ref-desc">上の長編の先行研究にあたる Nature 短報。2ページしかないが、ベリンモ語の色カテゴリー分布を英語話者と並べた図が衝撃的で、「言語の境界が違うと本当に違うように見えるのか」という問いを決定的に復活させた論文。まずこれを読んでから長編に進むと入りやすい。</p>
+    </div>
+  </div>
+
+  <!-- 信頼度ノート -->
+  <div class="note-box fade">
+    <strong>📌 この記事について。</strong>記事の前半はソシュール『一般言語学講義』（1916年、バリー&セシュエ編）とその解説文献に基づく。ただし編者の再構成がどこまでソシュール本人の意図と一致するかについては1990年代以降に議論があり、記事中の「ソシュールはこう言った」は厳密には「『講義』のテキストがこう述べている」と読み替えてもらえればありがたい。後半の色知覚の実験結果は Winawer et al. (2007)、Roberson et al. (2000)、Davidoff et al. (1999) の査読済み論文に基づく。古代日本語の色名体系については複数の国語学・言語学の解説を参照した。言語相対性仮説については現在も立場が分かれる論点なので、強い断定は避けてある。
+  </div>
+
+  <div class="signature fade">e. Tamaki</div>
+
+  <div class="tags fade">
+    <span class="tag">言語学</span>
+    <span class="tag">ソシュール</span>
+    <span class="tag">構造主義</span>
+    <span class="tag">色知覚</span>
+    <span class="tag">認知心理学</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">2</p>
+      <p class="sidebar-text">ロシア語が「青」を指すのに持っている基本語の数。<em>синий</em>（濃い青）と <em>голубой</em>（明るい青）は、英語の <em>dark blue / light blue</em> のような修飾語付きではなく、独立した基本色語として扱われる。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">『一般言語学講義』は1916年刊行。ソシュール本人は1913年に没していた。バリーとセシュエが学生ノート6人分を突き合わせて再構成した、いわば <em>ゴーストライター付き</em> の古典である。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">オーウェル『1984』のニュースピーク。SF映画『メッセージ（Arrival）』。ロラン・バルト『神話作用』。いずれも「言葉が世界を切る」という発想の影響下にある。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— 色は存在しない（D-01）<br>— サピア=ウォーフ仮説（L-01）<br>— 音は存在しない<br>— 中国語の部屋</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">自分の線を見つける</p>
+      <p class="sidebar-text">
+        ☐ 今日あなたが使った形容詞を3つ書き出してみる<br>
+        ☐ その言葉が英訳で1語に収まるか確認する<br>
+        ☐ 収まらない語があれば、そこに母語の切れ目がある
+      </p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">色知覚の実験は査読済み。ソシュールの主張の解釈は、複数の読み方がある。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 言語が世界を切り分ける を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;つまり日本語話者とロシア語話者は違う色を見てるってこと？</span></div>
+      <span class="t-output" id="to1">網膜は同じだよ。入ってくる光は物理的に同じ。変わるのは<em>そのあと</em>。脳が「これは一つ、これは別」と分ける段階で、言語が手伝ってる。だから見ているものは同じだけど、<strong>切り分け方が違う</strong>って言い方が近い。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;言葉を増やせばいいの？感情語とか覚えたら心が豊かになる？</span></div>
+      <span class="t-output" id="to2">実はそういう効果は報告されてる。感情に細かい名前をつけられる人は、自分の状態を扱うのが上手い傾向がある。ただ機械的に覚えても意味はなくて、自分の経験と結びつけて使い分けられるようになって初めて効く。<em>言葉は使ってる間しか働かない</em>ってのはロシアン・ブルーズの実験でも示されてた通り。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ翻訳って本当はできないってこと？</span></div>
+      <span class="t-output" id="to3">できないって言い切るのは強すぎる。でも<em>完全な等価交換はできない</em>のは確か。papillon を「蝶」と訳すと蛾が抜け落ちる。「蝶・蛾」と書くと今度はフランス語話者の「一つのもの」という感覚が消える。翻訳は常に何かを選んで何かを捨てる作業で、そこに翻訳者の仕事が生まれる。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ソシュール本人の本、読めそう？</span></div>
+      <span class="t-output" id="to4">前半の100ページくらいは意外と読める。後半は専門的になってしんどいかも。図書館で邦訳を借りて、序論と第一部だけ読むのがいい入口。あと本人が書いた本じゃない、ってことを頭の隅に置いておくと、「ここは編者の整理かもしれない」と距離を取りながら読める。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl5">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# そっか、じゃあ言葉ってすごいな</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/color/">
+      <p class="related-card-tag">知覚・錯覚 × 色</p>
+      <p class="related-card-title">色は存在しない</p>
+      <p class="related-card-desc">同じ波長の光を見ても、脳が「色」を作っている。ソシュールの「言語が切る」話と、知覚の側から同じ問題に入るとこうなる。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="#">
+      <p class="related-card-tag">言語学 × 思考</p>
+      <p class="related-card-title">言葉が思考を作るのか：サピア=ウォーフ仮説</p>
+      <p class="related-card-desc">ソシュールの「分節」から生まれた仮説。強い版は否定されたが、弱い版は実験で今も生き続けている。</p>
+      <p class="related-card-arrow">近日公開</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ（トースト方式）
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+
+// ============ Words Draw Lines ============
+// スペクトル帯上に言語ごとの境界線と色名を配置
+// x座標は0-100(%)で指定、スペクトル帯の長さに対応
+const wdlData={
+  en:{
+    cap:'<strong>英語：</strong>虹の連続帯を <em>purple / blue / green / yellow / orange / red</em> の6語（基本色語はさらに細かく11語まで）で区切っている。',
+    bounds:[
+      {x:21.88,name:'purple'},
+      {x:35.94,name:'blue'},
+      {x:59.38,name:'green'},
+      {x:65.62,name:'yellow'},
+      {x:75.0,name:'orange'},
+      {x:100,name:'red'}
+    ]
+  },
+  ja:{
+    cap:'<strong>古代日本語：</strong>赤・黒・白・青の4語しかなく、青が寒色全般（紫・青・緑・青緑）をまとめて引き受けていた。「みどり」は平安時代以降に登場する新しい語。',
+    bounds:[
+      {x:60.94,name:'青（寒色）'},
+      {x:100,name:'赤'}
+    ]
+  },
+  ru:{
+    cap:'<strong>ロシア語：</strong>英語とほぼ同じ位置で切れるが、<strong>青の内側に синий / голубой の境界が追加される</strong>。この一本多い線が、Winawer実験の反応時間差を生む。',
+    bounds:[
+      {x:21.88,name:'фиол.'},
+      {x:29.69,name:'синий'},
+      {x:35.94,name:'голубой'},
+      {x:59.38,name:'зелён.'},
+      {x:65.62,name:'жёлт.'},
+      {x:75.0,name:'оранж.'},
+      {x:100,name:'красн.'}
+    ]
+  },
+  br:{
+    cap:'<strong>ベリンモ語（パプアニューギニア）：</strong>基本色語は5つ。境界の主役は <em>nol</em>（寒色側）と <em>wor</em>（暖色側）の分け目で、英語の「緑」はこの境界の上で割れる。',
+    bounds:[
+      {x:56.25,name:'nol'},
+      {x:100,name:'wor'}
+    ]
+  }
+};
+let wdlCur='en';
+function setWDL(lang){
+  wdlCur=lang;
+  document.querySelectorAll('#wdl-wrap .lang-btn').forEach((b,i)=>{
+    const map=['en','ja','ru','br'];
+    b.classList.toggle('on',map[i]===lang);
+  });
+  const data=wdlData[lang];
+  const cont=document.getElementById('specBounds');
+  const cap=document.getElementById('wdlCap');
+  cap.innerHTML=data.cap;
+  cont.innerHTML='';
+  // 境界線を配置（各色区間の右端）
+  let prevX=0;
+  // 先にラベル中心の位置を計算し、隣接ラベルとの距離が近い場合は下段に
+  const centers=[];
+  data.bounds.forEach((b,i)=>{
+    centers.push({mid:(prevX+b.x)/2,name:b.name,boundary:b.x});
+    prevX=b.x;
+  });
+  // Determine tier: if a label's neighbor is within ~8%, alternate
+  const tiers=centers.map(()=>0);
+  for(let i=1;i<centers.length;i++){
+    // if too close to previous, and previous is tier 0, put this one to tier 1
+    if(centers[i].mid-centers[i-1].mid<9 && tiers[i-1]===0){
+      tiers[i]=1;
+    }
+  }
+  centers.forEach((c,i)=>{
+    const line=document.createElement('div');
+    line.className='sp-b on';
+    line.style.left=c.boundary+'%';
+    cont.appendChild(line);
+    const nameEl=document.createElement('div');
+    nameEl.className='sp-name on'+(tiers[i]===1?' lower':'');
+    nameEl.style.left=c.mid+'%';
+    nameEl.textContent=c.name;
+    cont.appendChild(nameEl);
+  });
+}
+setTimeout(()=>setWDL('en'),100);
+
+// ============ Butterfly Switch ============
+const bflyData={
+  ja:{
+    q:'下の2匹を、日本語で分類してください。',
+    opts:[
+      {label:'左=蝶、右=蛾',correct:true,msg:'日本語では左右ではっきり別の語。昼の papillon と夜の papillon は、日本語話者にとって「別の生き物」として立ち上がる。'},
+      {label:'どちらも同じ生き物',correct:false,msg:'日本語話者のあなたにとっては、たぶん違和感があっただろう。そう、日本語の線は2匹の間を切っている。'},
+      {label:'わからない',correct:null,msg:'日本語の日常語では「蝶」と「蛾」が別々の語として用意されている。迷うとしたら、それは語彙の問題ではなく、生物学的な判断の問題だ。'}
+    ]
+  },
+  fr:{
+    q:'下の2匹を、フランス語で分類してください。',
+    opts:[
+      {label:'どちらも papillon',correct:true,msg:'正解。フランス語の日常語では、昼のものも夜のものも papillon。区別したい時だけ papillon de jour / papillon de nuit と修飾する。英語の butterfly / moth、日本語の蝶/蛾のような独立した2語は、日常会話にはない。'},
+      {label:'左=papillon、右=phalène',correct:false,msg:'phalène は学術用語で、日常のフランス語話者はまず使わない。辞書には載っているが、街で出会うフランス語話者の多くは両方を papillon と呼ぶ。'},
+      {label:'わからない',correct:null,msg:'フランス語話者にとって、この2匹は「同じ papillon の昼バージョンと夜バージョン」として立ち上がる。区別が必要な場面では修飾語を足す。'}
+    ]
+  }
+};
+let bflyCur='ja';
+function setBfly(lang){
+  bflyCur=lang;
+  document.querySelectorAll('#bfly-wrap .lang-btn').forEach((b,i)=>{
+    const map=['ja','fr'];
+    b.classList.toggle('on',map[i]===lang);
+  });
+  const d=bflyData[lang];
+  document.getElementById('bflyQ').textContent=d.q;
+  const opts=document.getElementById('bflyOpts');
+  opts.innerHTML='';
+  d.opts.forEach((o,i)=>{
+    const b=document.createElement('button');
+    b.className='bfly-opt';
+    b.textContent=o.label;
+    b.onclick=()=>bflyAns(i);
+    opts.appendChild(b);
+  });
+  document.getElementById('bflyResult').style.display='none';
+}
+function bflyAns(idx){
+  const d=bflyData[bflyCur];
+  // 選択状態は毎回リセットしてから今押したボタンだけに付ける
+  document.querySelectorAll('#bfly-wrap .bfly-opt').forEach((b,i)=>{
+    b.classList.toggle('selected',i===idx);
+  });
+  const r=document.getElementById('bflyResult');
+  r.innerHTML='<strong>'+(d.opts[idx].correct===true?'その通り。':d.opts[idx].correct===false?'もう一度考えてみよう。':'')+'</strong> '+d.opts[idx].msg;
+  r.style.display='block';
+}
+setTimeout(()=>setBfly('ja'),150);
+
+// ============ Russian Blues Quiz ============
+// 3問：それぞれ「見本」と「選択肢A/B」の色を提示
+// 選択肢のうち一方は完全一致（正解）、もう一方は境界の内側か外側にいる別の青
+const rbqQuestions=[
+  {
+    target:'#3a62a8',
+    optA:'#3a62a8',        // 正解（完全一致）
+    optB:'#4a7ac8',        // 同じ синий カテゴリー内の別の青（within-category）
+    correct:0,
+    type:'within-siniy',
+    msg:'両方とも синий（濃い青）の範囲内。英語話者にとっても「どっちも dark blue」の範囲。<strong>境界をまたいでいない</strong>ので、ロシア語話者にも英語話者にも差がつきにくいタイプ。'
+  },
+  {
+    target:'#5d9edb',
+    optA:'#5d9edb',        // 正解
+    optB:'#3a62a8',        // 境界をまたぐ別の青（cross-category）
+    correct:0,
+    type:'cross',
+    msg:'上は голубой（明るい青）、間違いの方は синий（濃い青）。Winawerの実験で<strong>ロシア語話者が速く正解した</strong>のがこのタイプ。言語の境界が視覚の判断を助けている。英語話者は両方 blue なので、この優位が出ない。'
+  },
+  {
+    target:'#7db8e8',
+    optA:'#7db8e8',        // 正解
+    optB:'#8fc8f0',        // 同じ голубой カテゴリー内（within-category）
+    correct:0,
+    type:'within-goluboy',
+    msg:'両方とも голубой（明るい青）の範囲内。境界をまたいでいないので、ロシア語話者の優位は発揮されない。カテゴリーの内側では、言語の線は働いていないように見える。'
+  }
+];
+let rbqIdx=0;
+let rbqHistory=[];
+function rbqShow(){
+  const q=rbqQuestions[rbqIdx];
+  document.getElementById('rbqTarget').style.background=q.target;
+  document.getElementById('rbqA').style.background=q.optA;
+  document.getElementById('rbqB').style.background=q.optB;
+  document.getElementById('rbqLbl').textContent='問題 '+(rbqIdx+1)+' / 3';
+  document.getElementById('rbqResult').style.display='none';
+  for(let i=1;i<=3;i++){
+    document.getElementById('phd'+i).classList.toggle('on',i<=rbqIdx+1);
+  }
+}
+function rbqPick(idx){
+  const q=rbqQuestions[rbqIdx];
+  const correct=idx===q.correct;
+  rbqHistory.push({correct,type:q.type});
+  const r=document.getElementById('rbqResult');
+  r.innerHTML='<strong>'+(correct?'✓ 正解':'✗ もう一度見てみよう')+'</strong>（'+(q.type==='cross'?'境界をまたぐ問題':'同じカテゴリー内の問題')+'）<br>'+q.msg;
+  r.style.display='block';
+  // 次へ
+  setTimeout(()=>{
+    rbqIdx++;
+    if(rbqIdx<rbqQuestions.length){
+      rbqShow();
+    }else{
+      rbqSummary();
+    }
+  },3200);
+}
+function rbqSummary(){
+  const correctCount=rbqHistory.filter(h=>h.correct).length;
+  const r=document.getElementById('rbqResult');
+  r.innerHTML='<strong>3問おつかれさま（正解 '+correctCount+'/3）。</strong><br>この課題は「正解できるかどうか」ではなく、「どの問題で迷うか」がポイントだ。実験室では回答時間を測ることで、同じ「全問正解」でも<strong>境界をまたぐ問題で反応が速くなる</strong>パターンが見えてくる。ロシア語話者はそこで優位を示した。あなたが日本語話者なら、水色と青の境界でも同じことが起きているかもしれない。日本語は「みず色/あお」を区別する数少ない言語の一つだから。';
+  r.style.display='block';
+  document.getElementById('rbqResetBtn').style.display='inline-block';
+}
+function rbqReset(){
+  rbqIdx=0;
+  rbqHistory=[];
+  document.getElementById('rbqResetBtn').style.display='none';
+  rbqShow();
+}
+setTimeout(rbqShow,200);
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2400},{id:'to2',delay:3000},
+  {id:'tl3',delay:4100},{id:'to3',delay:4700},
+  {id:'tl4',delay:5800},{id:'to4',delay:6400},
+  {id:'tl5',delay:7500},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+const tBlock=document.getElementById('terminalBlock');
+if(tBlock)tObs.observe(tBlock);
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">記事データを読み込み中…</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>

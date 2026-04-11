@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三体問題と決定論的カオス — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block-img{background:#ede8dc;overflow:hidden;position:relative;min-height:200px;}
+.person-block-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}
+.person-block-link{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:400;margin-bottom:10px;}
+.person-block-link a{color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.35);transition:border-bottom-color .2s;}
+.person-block-link a:hover{border-bottom-color:#8b1a1a;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#b0a090;line-height:1.5;margin-top:10px;padding-top:8px;border-top:1px solid #e0d8c8;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* COMPARE TABLE */
+.comp-table{margin:28px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.comp-table table{width:100%;border-collapse:collapse;font-family:'Source Sans 3',sans-serif;}
+.comp-table th{background:#1a1208;color:#f3efe6;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:12px 14px;text-align:left;border-right:1px solid #3d3020;}
+.comp-table th:last-child{border-right:none;}
+.comp-table td{padding:13px 14px;font-size:13px;font-weight:300;color:#3d3020;line-height:1.7;border-bottom:1px solid #e0d8c8;border-right:1px solid #e0d8c8;vertical-align:top;}
+.comp-table td:last-child{border-right:none;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table td strong{color:#1a1208;font-weight:600;}
+.comp-table .col-label{background:#f3efe6;font-weight:600;color:#1a1208;width:30%;}
+
+/* INTERACTIVE WRAP */
+.ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.ix-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}
+.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.ix-hl-sub{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#b0a090;letter-spacing:.08em;}
+.ix-body{padding:24px 20px;background:white;}
+.ix-desc{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:18px;}
+.ix-desc strong{font-weight:600;color:#1a1208;}
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:14px;padding-top:12px;border-top:1px solid #e0d8c8;line-height:1.7;}
+
+/* SIMULATOR CANVAS */
+.sim-canvas-wrap{max-width:100%;background:#0a0a14;border:1px solid #c8bfaa;}
+.sim-canvas-wrap canvas{display:block;width:100%;height:auto;max-width:100%;}
+.sim-ctrl{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center;}
+.sim-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;color:#1a1208;background:#f3efe6;border:1px solid #c8bfaa;padding:8px 16px;cursor:pointer;letter-spacing:.04em;transition:all .15s;}
+.sim-btn:hover{background:#8b1a1a;color:white;border-color:#8b1a1a;}
+.sim-btn.active{background:#8b1a1a;color:white;border-color:#8b1a1a;}
+.sim-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.sim-legend-item{display:flex;align-items:center;gap:6px;}
+.sim-legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.sim-readout{font-family:'JetBrains Mono',monospace;font-size:11px;color:#7a6a55;margin-top:10px;padding:8px 12px;background:#f3efe6;border-left:2px solid #8b1a1a;}
+.sim-readout span{color:#8b1a1a;font-weight:500;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SVG FIG */
+.svg-fig{max-width:680px;margin:28px auto;display:block;}
+.svg-fig.wide{max-width:100%;}
+.fig-cap{max-width:680px;margin:28px auto 36px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;line-height:1.7;}
+@media (max-width:700px){.svg-fig{max-width:100%;}}
+
+/* TWO-COL FIG (SVG + GIF) */
+.twocol-fig{max-width:680px;margin:28px auto 0;display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch;}
+.twocol-left,.twocol-right{min-width:0;display:flex;}
+.twocol-arrow{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;white-space:nowrap;padding:0 4px;align-self:center;}
+.gif-frame{border:1px solid #c8bfaa;background:#f3efe6;overflow:hidden;display:flex;flex-direction:column;width:100%;}
+.gif-header{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;text-align:center;padding:10px 6px 6px;background:#f3efe6;line-height:1.3;flex-shrink:0;}
+.gif-header strong{color:#8b1a1a;font-weight:700;display:block;font-size:11px;margin-top:3px;letter-spacing:.04em;}
+.gif-frame img{display:block;width:100%;height:auto;background:#ffffff;flex-shrink:0;}
+.gif-caption{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#7a6a55;line-height:1.6;padding:8px 10px;background:#f3efe6;border-top:1px solid #e0d8c8;flex:1;overflow-wrap:anywhere;word-break:break-word;}
+.gif-credit{color:#b0a090;font-size:9px;overflow-wrap:anywhere;}
+@media (max-width:700px){
+  .twocol-fig{grid-template-columns:1fr;gap:12px;}
+  .twocol-arrow{text-align:center;padding:4px 0;}
+}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* ── FOOTER ── */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* TOC BACK */
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{max-height:260px;min-height:180px;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .toc-back{padding:22px 20px;}
+  .comp-table table,.comp-table thead,.comp-table tbody,.comp-table tr,.comp-table th,.comp-table td{display:block;}
+  .comp-table thead{display:none;}
+  .comp-table td{border-right:none;}
+  .comp-table .col-label{width:100%;padding-top:12px;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">54 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Physics &middot; Chaos Theory</p>
+    <h1>三体問題と<em>決定論的カオス</em></h1>
+    <p class="cover-deck">ニュートンは正しかった。それでも、未来は読めなかった。天体をひとつ増やしただけで、方程式は沈黙した。</p>
+    <div class="cover-byline"><span>物理・宇宙</span><span>天体力学</span><span>非線形</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1887</span>
+      <p class="est-event">スウェーデン=ノルウェー王オスカル2世が、太陽系の安定性を問う数学賞を公告した年。3年後にポアンカレが受賞する。</p>
+      <p class="est-context">同年1月、パリではエッフェル塔の建設が始まった。同年、コナン・ドイルが『緋色の研究』でシャーロック・ホームズを世に送り出した。</p>
+    </div>
+    <p class="cover-aside">「決定論」という言葉は、長いあいだ「予測可能」とほぼ同じ意味で使われていた。<strong>この記事は、その等号が静かに崩れた瞬間の話だ。</strong></p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>明日の天気は、たいてい当たる。三日後もまあまあ当たる。だが十日先になると、予報はもうほとんど占いに近づく。スーパーコンピューターが何百万本の計算を走らせても、この「一週間の壁」はなかなか越えられない。</p>
+    <p>これが計算能力の問題なら、あと少し性能を上げれば解決するはずだ。だが何十年も経っても、壁は動かない。いくつもの気象モデルが並行して走り、巨大なデータが集まっても、二週間先を当てる予報はまだ現れていない。壁は技術の限界ではなく、大気という系そのものが持っている性質らしい。</p>
+    <p>同じ性質は、たった三つの天体にも潜んでいる。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot on"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中〜上級 — 数式は読まなくて済む</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 16 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-11</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-11</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">物体が二つなら、未来は式で書ける。三つになった瞬間、それは原理的に不可能になる。計算機の性能の話ではない。<strong>系そのものが、長期の未来を自分の内側に畳み込んでいない</strong>。この記事は、自分の目でその境界を見るための体験だ。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ═══════════ 背景セクション ═══════════ -->
+  <div class="sec-rule fade"><span class="sec-label">Background</span><span class="sec-line"></span></div>
+
+  <h2 class="fade">二体問題は解けた。三体で、すべてが止まった</h2>
+
+  <p class="body-text fade">1687年、ニュートンは『プリンキピア』で万有引力の法則を書き下ろした。質量を持つ二つの物体が互いに引き合うとき、その軌道は円か楕円か、放物線か双曲線になる——どれも綺麗な円錐曲線だ。月と地球、地球と太陽、二体なら未来の任意の時刻の位置を、一本の式から取り出せる。これは人類が初めて手にした、世界の未来を数学で読む道具だった。</p>
+
+  <!-- 背景図: 左=二体GIF / 右=三体GIF -->
+  <div class="twocol-fig fade">
+    <div class="twocol-left">
+      <div class="gif-frame">
+        <div class="gif-header">二体問題<strong>解析解が存在する</strong></div>
+        <img src="./fig_two_body.gif" alt="Two-body problem animation: two equal-mass bodies orbiting their common barycenter in elliptic orbits" loading="lazy">
+        <div class="gif-caption">等質量の2天体が共通重心（赤十字）のまわりを楕円軌道で回る。軌道は閉じていて永遠に繰り返す。<br><span class="gif-credit">Animation: Zhatt / Wikimedia Commons (Public Domain)</span></div>
+      </div>
+    </div>
+    <div class="twocol-arrow">+1体 →</div>
+    <div class="twocol-right">
+      <div class="gif-frame">
+        <div class="gif-header">三体問題<strong>一般解は存在しない</strong></div>
+        <img src="./fig_three_body.gif" alt="Three-body problem animation showing chaotic motion of three equal masses" loading="lazy">
+        <div class="gif-caption">等質量の3天体を初速ゼロから解き放った軌跡。中央の点が重心（動かない）。<br><span class="gif-credit">Animation: Dnttllthmmnm / Wikimedia Commons (CC BY-SA 4.0)</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="fig-cap fade">二体（左）は閉じた楕円——円錐曲線のどれか。三体（右）は、初期条件次第で軌道そのものが閉じた式で書けない領域に入る。両方とも等質量で、重心は動かない。</p>
+
+  <p class="body-text fade">ところが、太陽と地球に月を加えて三つにした瞬間、同じ方法が通用しなくなる。月は地球に引かれながら太陽にも引かれ、その月の重力は太陽にも地球にも返っていく。相互作用が三方向同時に起き、しかも距離の変化で力の強さも変わる。オイラーもラグランジュもラプラスも、特殊な配置では解を見つけた。だが「任意の初期配置」に対する一般解だけは、誰が挑んでも見つからなかった。</p>
+
+  <!-- 比較テーブル -->
+  <div class="comp-table fade">
+    <table>
+      <thead>
+        <tr><th>観点</th><th>二体問題</th><th>三体問題</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="col-label"><span class="tip" onclick="toggleTip(this)">自由度<span class="tip-box"><strong>自由度</strong><br>系の状態を完全に記述するために必要な独立した数値の数。3次元空間の1天体は、位置（x, y, z）と速度（vx, vy, vz）で6つの数値を必要とする。n個の天体なら6n個。</span></span></td><td>2体 × 6 = <strong>12</strong><br>保存則で消すと実質2</td><td>3体 × 6 = <strong>18</strong><br>保存則で消しても残8</td></tr>
+        <tr><td class="col-label">一般解</td><td><strong>存在する</strong><br>円錐曲線の式</td><td><strong>存在しない</strong><br>1887年以来の定説</td></tr>
+        <tr><td class="col-label">長期予測</td><td>原理的に無限先まで可能</td><td>有限時間しか当てられない</td></tr>
+        <tr><td class="col-label">具体例</td><td>地球と月（単独近似）<br>水星と太陽</td><td>太陽・地球・月の同時<br>連星系＋惑星</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="body-text fade">これから見せるのは、計算機の性能の話ではない。系そのものが持つ性質の話だ。だがそれを説明する前に、まず自分の目で見てほしい。議論はそのあとでいい。</p>
+
+  <h2 class="fade">二体と三体を、並べて走らせる</h2>
+
+  <p class="body-text fade">下のシミュレーターでは、左に二体、右に三体が、まったく同じニュートンの方程式で動いている。違うのは天体の数だけだ。だが見比べてみれば、二つの系の振る舞いがどれほど違うかは、ほんの数秒で分かるはずだ。</p>
+
+  <!-- 理解補助インタラクティブ: 二体 vs 三体 -->
+  <div class="ix-wrap fade">
+    <div class="ix-header">
+      <span class="ix-hl">Interactive 01 — 二体 vs 三体</span>
+      <span class="ix-hl-sub">理解補助</span>
+    </div>
+    <div class="ix-body">
+      <p class="ix-desc">左は二体、右は三体。どちらもニュートンの運動方程式で動く。二体は綺麗な楕円を永遠に描き、三体は毎回違う絡まった軌跡を描く。<strong>物理法則は同じ</strong>。違うのは天体の数だけだ。</p>
+      <div class="sim-canvas-wrap">
+        <canvas id="simSideBySide" width="720" height="460"></canvas>
+      </div>
+      <div class="sim-ctrl">
+        <button class="sim-btn" id="sbsStart">▶ 開始</button>
+        <button class="sim-btn" id="sbsReset">↻ リセット</button>
+      </div>
+      <div class="sim-legend">
+        <div class="sim-legend-item"><span class="sim-legend-dot" style="background:#e8c56a"></span>星A（二体・三体どちらにも）</div>
+        <div class="sim-legend-item"><span class="sim-legend-dot" style="background:#3d7aa8"></span>星B（二体・三体どちらにも）</div>
+        <div class="sim-legend-item"><span class="sim-legend-dot" style="background:#c87030"></span>星C（三体のみ）</div>
+      </div>
+      <p class="ix-note">三体のシミュレーションは毎回違う軌跡を描く。だが重要なのは「ランダム」ではない点だ。同じ初期値から始めれば、同じ軌跡を必ずなぞる。にもかかわらず、初期値をほんの少し変えると、数十秒後には完全に別の未来が現れる。これが<span class="tip" onclick="toggleTip(this)">決定論的カオス<span class="tip-box"><strong>決定論的カオス</strong><br>ランダム性を含まない方程式で動いているのに、長期的な振る舞いが予測不可能になる系のこと。初期値に対する感度が指数関数的に大きくなる点が本質。</span></span>と呼ばれる性質だ。<br><br>三体をしばらく眺めていると、よく2つが近距離で連星化し、3つ目が周りを回るような形——「階層的三重星系」と呼ばれる構造——が現れる。これは三体問題の最も典型的な振る舞いで、実際の宇宙でもよく観察される。3つが綺麗な距離感を保って踊り続ける安定配置は、数学的にはごく特殊な初期条件でしか成立しない。<br><br>※ このシミュレーションでは、近接時の計算を安定させるために重力を「ソフト化」している（研究機関のNボディ計算でも使われる標準的な手法）。そのため、極端に近づいた天体は衝突ではなくすり抜ける。定性的なカオスの振る舞いは保たれている。長く回し続けると、まれに天体が画面端に近づくことがあり、その場合は自動的に初期状態にリセットされる。</p>
+    </div>
+  </div>
+
+  <!-- SVG図解: 決定論 vs 予測可能性 -->
+  <svg class="svg-fig fade" viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg" aria-label="決定論と予測可能性は同じではない">
+    <rect width="720" height="400" fill="#faf8f3"/>
+    <text x="360" y="44" text-anchor="middle" font-family="Playfair Display,serif" font-size="19" font-weight="700" fill="#1a1208">「決定論」と「予測可能」は同じではない</text>
+
+    <!-- 従来の同一視 -->
+    <g>
+      <rect x="40" y="90" width="300" height="120" fill="#ede8dc" stroke="#c8bfaa"/>
+      <text x="190" y="122" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#7a6a55">かつての等式</text>
+      <text x="190" y="160" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="17" fill="#3d3020">決定論的</text>
+      <text x="190" y="190" text-anchor="middle" font-family="Playfair Display,serif" font-size="26" font-weight="700" fill="#3d3020">＝ 予測可能</text>
+    </g>
+
+    <!-- 現実 -->
+    <g>
+      <rect x="380" y="90" width="300" height="120" fill="#f3efe6" stroke="#8b1a1a" stroke-width="1.8"/>
+      <text x="530" y="122" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#8b1a1a">実際は</text>
+      <text x="530" y="160" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="17" fill="#3d3020">決定論的</text>
+      <text x="530" y="190" text-anchor="middle" font-family="Playfair Display,serif" font-size="26" font-weight="700" fill="#8b1a1a">≠ 予測可能</text>
+    </g>
+
+    <!-- 下段説明 -->
+    <g>
+      <text x="190" y="244" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020">初期値が決まれば未来が一意に決まる</text>
+      <text x="190" y="268" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020">→ だから未来は計算で分かる、と考えた</text>
+
+      <text x="530" y="244" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020">未来は一意に決まっている</text>
+      <text x="530" y="268" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#8b1a1a" font-weight="600">しかし、有限の精度では追い切れない</text>
+    </g>
+
+    <!-- 下部メッセージ -->
+    <g>
+      <line x1="80" y1="320" x2="640" y2="320" stroke="#c8bfaa" stroke-width="1"/>
+      <text x="360" y="354" text-anchor="middle" font-family="Source Serif 4,serif" font-size="16" font-style="italic" fill="#1a1208">三体問題が示したのは、この二つの概念の間に存在する</text>
+      <text x="360" y="378" text-anchor="middle" font-family="Source Serif 4,serif" font-size="16" font-style="italic" fill="#1a1208">深い溝だった。</text>
+    </g>
+  </svg>
+
+  <!-- 誤解あるあるブロック -->
+  <div class="misconception fade">
+    <div class="misconception-header">
+      <span class="misconception-hl">◆ よくある誤解</span>
+    </div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <div class="mis-label wrong">誤解</div>
+          <p class="mis-text">三体問題は難しいだけで、スーパーコンピューターを使えばいずれ解ける。</p>
+        </div>
+        <div class="misconception-a">
+          <div class="mis-label right">実際は</div>
+          <p class="mis-text">計算機の性能の問題ではない。有限精度で初期条件を与える限り、ある時点から先の予測は原理的に崩れる。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <div class="mis-label wrong">誤解</div>
+          <p class="mis-text">カオスとはランダムのことだ。</p>
+        </div>
+        <div class="misconception-a">
+          <div class="mis-label right">実際は</div>
+          <p class="mis-text">カオス系には乱数が入っていない。同じ入力を与えれば毎回同じ軌道を描く。それでも長期予測ができない——それがカオスだ。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <div class="mis-label wrong">誤解</div>
+          <p class="mis-text">バタフライ効果とは「小さな行動が大きな結果を生む」ことだ。</p>
+        </div>
+        <div class="misconception-a">
+          <div class="mis-label right">実際は</div>
+          <p class="mis-text">元々の意味は、初期値の微小な差が時間とともに指数関数的に拡大する、という数理的性質。日常の「小さな親切の連鎖」とは別物だ。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 人物ブロック: ポアンカレ -->
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="./person_poincare.jpg" alt="Portrait of Henri Poincaré (1854-1912)">
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">アンリ・ポアンカレ</p>
+      <p class="person-block-role">French Mathematician · 1854–1912</p>
+      <p class="person-block-link"><a href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%AA%E3%83%BB%E3%83%9D%E3%82%A2%E3%83%B3%E3%82%AB%E3%83%AC" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p class="person-block-desc">19世紀最後の「万能数学者」。位相幾何学から天体力学、特殊相対性理論の先駆的研究、科学哲学まで、触れた分野のほとんどに足跡を残した。オスカル2世の数学賞に応募した論文は一度受賞したのち、本人が致命的な誤りを発見し、訂正する過程で「カオス」の最初の数学的記述を残した。後に『科学と方法』で、予測の限界を哲学として書いた。</p>
+      <p class="person-block-credit">Photo: Smithsonian Institution Libraries / Wikimedia Commons (Public Domain)</p>
+    </div>
+  </div>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"It may happen that small differences in the initial conditions produce very great ones in the final phenomena. A small error in the former will produce an enormous error in the latter. Prediction becomes impossible."</p>
+    <p class="quote-ja">初期条件のわずかな差が、最終的な現象の大きな差を生むことがある。前者における小さな誤差は、後者において巨大な誤差を生むだろう。予測は不可能になる。</p>
+    <p class="quote-attr">— アンリ・ポアンカレ『科学と方法』(1908)</p>
+  </div>
+
+
+  <!-- ═══════════ 体験セクション ═══════════ -->
+  <div class="sec-rule fade"><span class="sec-label">Experience</span><span class="sec-line"></span></div>
+
+  <h2 class="fade">初期値を、ほんの少しだけずらしてみる</h2>
+
+  <p class="body-text fade">ここからが記事の核心だ。下のシミュレーターには、三体の系が<strong>二組</strong>同時に走る。色の違うペアA（白系）とペアB（赤系）は、<em>ほぼ</em>同じ初期位置から始まる。差は、画面の座標でおよそ 0.001 程度——肉眼ではほぼ重なって見える。</p>
+
+  <p class="body-text fade">最初の数秒、2組の軌跡は完全に重なる。やがて少しだけほつれ、ある瞬間からそれは急速に広がる。広がり方は一定ではない。<strong>指数関数的</strong>に、つまり時間が経つごとにその差が倍、倍、と膨らんでいく。下のグラフはその「ペア間の距離」を対数軸でプロットしたものだ。直線に見えるなら、それは指数関数の証拠だ。</p>
+
+  <!-- メイン体験: 初期値鋭敏性シミュレーター -->
+  <div class="ix-wrap fade">
+    <div class="ix-header">
+      <span class="ix-hl">Interactive 02 — 初期値鋭敏性</span>
+      <span class="ix-hl-sub">メイン体験</span>
+    </div>
+    <div class="ix-body">
+      <p class="ix-desc">ここでは三体系を<strong>2組同時に</strong>走らせる。2組は<strong>ほぼ</strong>完全に同じ初期条件から出発する——ただし<strong>1点だけ</strong>違う。ペアAの「星A」の初期位置と、ペアBの「星A」の初期位置が、画面座標でおよそ<strong>0.001</strong>だけずれている。それ以外（星B・星Cの位置、すべての星の質量・速度・重力法則）は両ペアで完全に同じだ。乱数も一切使っていない。<br><br>この「肉眼では絶対に見えない 0.001 の差」が、やがて2組の未来を完全に引き裂く——それを見るのがこの体験だ。</p>
+      <div class="sim-canvas-wrap">
+        <canvas id="simSensitivity" width="720" height="800"></canvas>
+      </div>
+      <div class="sim-ctrl">
+        <button class="sim-btn" id="snsStart">▶ 開始</button>
+        <button class="sim-btn" id="snsReset">↻ リセット</button>
+        <button class="sim-btn" id="snsSmaller">初期差を ×0.1 にする</button>
+      </div>
+      <div class="sim-legend">
+        <div class="sim-legend-item"><span class="sim-legend-dot" style="background:#e8e4de"></span>ペアA</div>
+        <div class="sim-legend-item"><span class="sim-legend-dot" style="background:#e85050"></span>ペアB</div>
+      </div>
+      <div class="sim-readout" id="snsReadout">t = 0.00 &nbsp; 初期差 = <span>1.0e-3</span> &nbsp; 現在の差 = 1.0e-3</div>
+      <p class="ix-note">「初期差を ×0.1 にする」ボタンを押してみてほしい。差を10倍小さくしても、発散が始まる時刻はほんの少し遅れるだけだ。ログスケールで見ると、発散曲線の<span class="tip" onclick="toggleTip(this)">傾き<span class="tip-box"><strong>リアプノフ指数</strong><br>カオス系で、初期値の差が時間とともにどれくらい速く発散するかを示す量。正の値を持てばその系はカオス。三体問題の典型例では、差が倍になる時間は系の固有の時間スケールで決まる。</span></span>は変わらない。初期条件の精度をどれだけ上げても、予測可能な時間窓はわずかしか伸びない。これが「計算機を速くしても追い付かない」ことの意味だ。<br><br>下のグラフは2組の三体系のあいだの「位相空間での距離」を対数軸でプロットしたもの。直線的に伸びる区間は、実際の差が指数関数で倍々に増えていることを意味する。やがて系のサイズに到達するとそれ以上は広がれず、横ばいになる——そこが「予測地平」だ。グラフが時間窓いっぱいまで伸びると自動的に停止するので、「再開」で続きを観察できる。<br><br>※ このシミュレーションでも、近接時の重力計算を安定させるためのソフト化を使っている。そのため、ごく近づいた天体はすり抜けるように見える。定性的な初期値鋭敏性と指数関数的発散は、この近似のもとでも忠実に再現される。</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════ メカニズムセクション ═══════════ -->
+  <div class="sec-rule fade"><span class="sec-label">Mechanism</span><span class="sec-line"></span></div>
+
+  <h2 class="fade">なぜ三体で、すべてが崩れるのか</h2>
+
+  <p class="body-text fade">二体なら解けて、三体なら解けない。この境界は偶然ではない。ポアンカレが訂正論文のなかで発見したのは、三体系の内部に生じる「絡まり」の構造だった。それは四段階で理解できる。</p>
+
+  <p class="body-text fade">本題に入る前に、ひとつだけ言葉を入れておく。<strong>リアプノフ指数</strong>——これは19世紀末ロシアの数学者アレクサンドル・リアプノフ（1857–1918）にちなむ量で、カオス系で「初期値のずれが時間とともにどれだけ速く拡大するか」を測る数だ。正の値を持つとき、系はカオスである。三体問題の発散の速さも、この一個の数で記述される。次の図はそれをいちばん単純な形で描いたものだ。</p>
+
+  <!-- SVG: リアプノフ指数の概念図 -->
+  <svg class="svg-fig fade" viewBox="0 0 760 440" xmlns="http://www.w3.org/2000/svg" aria-label="リアプノフ指数と予測地平">
+    <rect width="760" height="440" fill="#faf8f3"/>
+    <text x="380" y="36" text-anchor="middle" font-family="Playfair Display,serif" font-size="19" font-weight="700" fill="#1a1208">初期誤差は、指数関数で拡大する</text>
+
+    <!-- Plot area: left=140, right=700, top=90, bottom=340 -->
+    <!-- axes -->
+    <line x1="140" y1="340" x2="700" y2="340" stroke="#7a6a55" stroke-width="1.4"/>
+    <line x1="140" y1="90" x2="140" y2="340" stroke="#7a6a55" stroke-width="1.4"/>
+
+    <!-- grid dashed lines at log positions -->
+    <g stroke="#e0d8c8" stroke-width="1" stroke-dasharray="3,4">
+      <line x1="140" y1="290" x2="700" y2="290"/>
+      <line x1="140" y1="240" x2="700" y2="240"/>
+      <line x1="140" y1="190" x2="700" y2="190"/>
+      <line x1="140" y1="140" x2="700" y2="140"/>
+    </g>
+
+    <!-- Y-axis labels (10^x notation) -->
+    <g font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="end">
+      <text x="128" y="346">10<tspan font-size="11" dy="-6">-6</tspan></text>
+      <text x="128" y="296">10<tspan font-size="11" dy="-6">-4</tspan></text>
+      <text x="128" y="246">10<tspan font-size="11" dy="-6">-2</tspan></text>
+      <text x="128" y="196">1</text>
+      <text x="128" y="146">10<tspan font-size="11" dy="-6">2</tspan></text>
+    </g>
+
+    <!-- Y-axis title (outside the plot area, rotated) -->
+    <text x="60" y="215" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#3d3020" transform="rotate(-90 60 215)">初期値の差（対数スケール）</text>
+
+    <!-- X-axis title -->
+    <text x="420" y="400" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#3d3020">時間の経過 →</text>
+
+    <!-- the curve: linear in log space = exponential in real -->
+    <path d="M 160 340 L 540 140" stroke="#8b1a1a" stroke-width="2.6" fill="none"/>
+    <!-- saturation -->
+    <path d="M 540 140 L 700 135" stroke="#8b1a1a" stroke-width="2.6" fill="none"/>
+
+    <!-- data points -->
+    <circle cx="160" cy="340" r="5" fill="#8b1a1a"/>
+    <circle cx="350" cy="240" r="5" fill="#8b1a1a"/>
+    <circle cx="540" cy="140" r="5" fill="#8b1a1a"/>
+
+    <!-- "わずかな初期差" label — put outside the plot, below bottom axis, pointing to start -->
+    <line x1="160" y1="345" x2="160" y2="365" stroke="#7a6a55" stroke-width="1" stroke-dasharray="2,2"/>
+    <text x="160" y="382" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020">わずかな初期差</text>
+
+    <!-- "予測地平" vertical dashed line and label — put above the top of the plot -->
+    <line x1="350" y1="240" x2="350" y2="80" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+    <text x="350" y="70" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" font-weight="600">予測地平</text>
+
+    <!-- "傾き = リアプノフ指数" — place to the right of the curve, clearly separated -->
+    <text x="580" y="230" font-family="Source Sans 3,sans-serif" font-size="14" fill="#8b1a1a" font-weight="600">傾き = リアプノフ指数</text>
+    <line x1="575" y1="225" x2="490" y2="185" stroke="#8b1a1a" stroke-width="1" stroke-dasharray="2,2"/>
+  </svg>
+  <p class="fig-cap fade">縦軸は対数スケール。直線的に伸びる＝実際の差は指数関数で倍々に増えている。ある時点で系のサイズに達すると、もう2組の軌道は無関係になる——そこが「予測地平」だ。</p>
+
+  <div class="steps-wrap fade">
+    <div class="steps-head">なぜ三体で一般解が存在しないか — 4つのステップ</div>
+
+    <div class="step-card" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">1</div>
+        <div class="step-tw">
+          <div class="step-title">自由度が爆発する</div>
+          <div class="step-sub">未知数が、保存則で消せる量を上回る</div>
+        </div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>n体の運動には 6n 個の変数がいる。位置3つと速度3つ。二体なら12個、三体なら18個だ。ニュートン力学で「永遠に変わらない」<span class="tip" onclick="toggleTip(this)">保存量<span class="tip-box"><strong>保存量（保存則）</strong><br>時間が経っても値が変わらない物理量のこと。エネルギー・運動量・角運動量などが代表例。独立な保存量が多いほど、系の可能な状態は狭く絞り込まれ、解析的に扱いやすくなる。ブルンスとポアンカレは19世紀末、三体問題にこれ以上の代数的保存量は存在しないことを証明した。</span></span>は、エネルギー1つ、運動量3つ、角運動量3つ、重心の等速運動6つ——合計10個。二体では12から10を引いて自由度2、これは解析的に扱える。<strong>三体は18から10を引いて8</strong>。この8という自由度の中に、系は複雑な振る舞いを隠し持てる。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">2</div>
+        <div class="step-tw">
+          <div class="step-title">保存則が足りない</div>
+          <div class="step-sub">軌道を一本の式に閉じ込める道具が不足する</div>
+        </div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>系を閉じた式で解くには、自由度と同じ数の「独立した保存量」が必要だ。二体ではそれが揃っている。三体では揃わない。19世紀末、ブルンスとポアンカレはそれぞれ独立に、三体問題には代数的な保存量がもう見つからないことを証明した。<em>新しい保存則が存在しない</em>——これは「まだ見つかっていない」ではなく「原理的に存在しない」という定理だ。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">3</div>
+        <div class="step-tw">
+          <div class="step-title">ホモクリニック絡まりが現れる</div>
+          <div class="step-sub">位相空間の中で、軌道が自分自身と無限に交わる</div>
+        </div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>ポアンカレが受賞論文を訂正する過程で発見したのが、これだ。<span class="tip" onclick="toggleTip(this)">位相空間<span class="tip-box"><strong>位相空間（phase space）</strong><br>力学系の状態を、位置と速度をすべて軸に取った抽象空間として表したもの。ある瞬間の系の全情報が1点に対応し、時間の進行とともにその点が空間内を動く。軌道の絡まり方を視覚的に議論するための数学的な土俵。</span></span>（系の状態をすべての変数で表す空間）の中で、ある種の軌道が自分自身の別の部分と交差点を作り、その交差点がさらに新しい交差点を無限に生む構造。<strong>ホモクリニック絡まり</strong>と呼ばれる。ポアンカレ自身が「これほど複雑な図形を描こうとは試みない」と書き残したほどの構造だ。この絡まりこそが、長期の軌道を事実上ランダムにしか見えない形へと撹拌する。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc4">
+      <div class="step-hd" onclick="tog(4)">
+        <div class="step-nb">4</div>
+        <div class="step-tw">
+          <div class="step-title">解析解は原理的に存在しない</div>
+          <div class="step-sub">閉じた式で書けるものは、一般配置には対応しない</div>
+        </div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>1912年、フィンランドのスンドマンが「ほぼすべての初期条件について」収束する級数解を見つけた。数学的には大発見だが、実用には遠い——収束が遅すぎて、意味のある予測に使うには何十億項も計算する必要があった。<em>解がある</em>ことと<em>未来を予測できる</em>ことは別問題だ、とスンドマンの仕事は逆説的に示した。20世紀後半の計算機時代に入ると、数値積分は一般的になるが、それでも初期誤差の指数関数的な増幅という本質は消えない。</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">四つのステップが重なったとき、三体という系は、ある一点から別の一点へと確実に進みながら、同時に<strong>長期的な未来を自分の内側に畳み込まない</strong>。未来はその場その場で作られていく。過去の状態から「読み取れる」ものではない。</p>
+
+
+  <!-- ═══════════ 歴史セクション ═══════════ -->
+  <div class="sec-rule fade"><span class="sec-label">History</span><span class="sec-line"></span></div>
+
+  <div class="timeline fade">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1687</p>
+      <p class="tl-title">ニュートン『プリンキピア』</p>
+      <p class="tl-desc">万有引力の法則を書き下ろす。二体問題の解析解が得られ、世界の運動は方程式で書けるという楽観が生まれた。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1772</p>
+      <p class="tl-title">ラグランジュの特殊解</p>
+      <p class="tl-desc">三体問題の特殊配置（L4・L5点など）では周期解が存在することを発見。太陽–木星–トロヤ群小惑星として実在することが後に確認される。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1887</p>
+      <p class="tl-title">オスカル2世の数学賞</p>
+      <p class="tl-desc">スウェーデン=ノルウェー王オスカル2世の60歳記念として、ミッタク=レフラーが主催する数学賞が公告された。課題の一つは「n体系の運動の一般解を求めよ」——太陽系の安定性という古典的問題だった。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1889</p>
+      <p class="tl-title">ポアンカレが受賞、そして誤りの発見</p>
+      <p class="tl-desc">ポアンカレの論文が受賞を決定。しかし印刷途中で編集者フラグメンから指摘を受け、ポアンカレ自身が致命的な誤りを発見する。彼は賞金以上の費用を自費で支払って配布済みの印刷物を回収した。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1890</p>
+      <p class="tl-title">訂正論文、カオスの誕生</p>
+      <p class="tl-desc">訂正版では、当初「収束する」と書いていた無限級数が実は収束しないことが示され、代わりにホモクリニック点の存在が記述された。人類が初めて「決定論的でありながら予測不可能」という概念を数学として記したのはこの瞬間だ。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1892–1899</p>
+      <p class="tl-title">『天体力学の新しい方法』</p>
+      <p class="tl-desc">ポアンカレは訂正論文の内容を全3巻の大著に発展させる。定性的方法・位相空間・ポアンカレ切断面など、後の力学系理論の基礎がここで確立した。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1963</p>
+      <p class="tl-title">ローレンツの発見</p>
+      <p class="tl-desc">気象学者エドワード・ローレンツは、対流モデルの数値計算中に小数点以下の丸め誤差が全く別の天気予報を生むことに気づく。論文「決定論的非周期流」で、三変数の単純な系が示すカオス的軌道——後のローレンツ・アトラクター——を発表した。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1972</p>
+      <p class="tl-title">バタフライ効果という比喩</p>
+      <p class="tl-desc">ローレンツがAAASでの講演に「ブラジルの一匹の蝶の羽ばたきがテキサスに竜巻を引き起こすか」という題を与えた。原題はフィリップ・メリリースが付けたもので、ローレンツ本人は当初「カモメ」を使っていた。後年、この比喩は意図を超えて独り歩きすることになる。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1987</p>
+      <p class="tl-title">グリックの『カオス』</p>
+      <p class="tl-desc">ジェイムズ・グリックのノンフィクション『カオス: 新しい科学をつくる』がベストセラーとなり、「カオス理論」と「バタフライ効果」という言葉が一般社会に広まる。ローレンツは科学的セレブリティになった。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2006</p>
+      <p class="tl-title">劉慈欣『三体』</p>
+      <p class="tl-desc">中国のSF作家劉慈欣が、アルファ・ケンタウリ系を舞台に「三体問題の予測不可能性に翻弄される文明」を描いた長編を刊行。科学概念が文学の中心装置になった稀有な例となった。</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════ つまりセクション ═══════════ -->
+  <div class="sec-rule fade"><span class="sec-label">Implication</span><span class="sec-line"></span></div>
+
+  <h2 class="fade">ラプラスの悪魔と、ポアンカレの手</h2>
+
+  <p class="body-text fade">三体問題が示したのは、ひとつの哲学的概念の終焉だった。1814年、フランスの数学者ラプラスは次のように書いた——もしある知性が、ある瞬間の宇宙のすべての原子の位置と運動を知っていたら、その知性にとっては「未来も過去も現在と同じく、目の前に広がる一枚の絵のようになるだろう」。後に<span class="tip" onclick="toggleTip(this)">ラプラスの悪魔<span class="tip-box"><strong>ラプラスの悪魔</strong><br>1814年にラプラスが『確率の哲学的試論』で提示した思考実験上の知性。宇宙の全粒子の位置と速度を知れば、過去も未来もすべて計算できるとされた。決定論的な古典物理の世界観を象徴する存在だが、三体問題とカオス理論によってその力が奪われた。</span></span>と呼ばれるこの想像上の知性は、古典物理の世界観そのものだった。決定論的な法則は、ある瞬間から未来をすべて読み出せる——それが古典の信念だった。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">"Two states differing by imperceptible amounts may eventually evolve into two considerably <em>different states</em>."</p>
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">知覚できないほどわずかに異なる二つの状態が、最終的に著しく異なる状態へ進化することがある。</p>
+    <p class="pull-attr">— Edward N. Lorenz, 'Deterministic Nonperiodic Flow', Journal of the Atmospheric Sciences (1963)</p>
+  </div>
+
+  <p class="body-text fade">ポアンカレの発見は、ラプラスの悪魔から力を奪った——ただし論理的に「否定した」のではない。悪魔の前提（完璧な精度で初期条件を知る）と、現実の予測がどう食い違うかを示したのだ。カオス系では、初期値の誤差が指数関数的に拡大する。逆に言えば、初期値の精度を上げても、予測できる時間は<strong>誤差の対数</strong>でしか伸びない。精度を10倍にしても、100倍にしても、予測時間はわずかにしか伸びない。1兆倍の精度があっても、ほんの数倍だ。指数関数の暴力に対して、対数の前進では太刀打ちできない。</p>
+
+  <p class="body-text fade">スーパーコンピュータをいくら速くしても、この壁は越えられない。コンピュータの仕事は「初期値を入れて方程式を解く」ことだから、入力の精度を上げない限り出力の精度も上がらない。さらに1927年、ハイゼンベルクの不確定性原理が、測定精度そのものに物理法則の上限を課した。位置と運動量を同時に完璧に知ることは、原理的に不可能だ。カオスと量子力学の合わせ技で、「<strong>有限の時間より先は計算できない</strong>」が宇宙の構造に書き込まれた事実になった。決定論の終わりは、量子力学よりずっと早く、古典物理の内側から静かに始まっていた——三体問題というたった一つの古典的な問題のなかから。</p>
+
+  <p class="body-text fade">日常のスケールでこの事実と向き合うのは難しくない。振り子の先に振り子をつけた<span class="tip" onclick="toggleTip(this)">二重振り子<span class="tip-box"><strong>二重振り子</strong><br>一本の振り子の先にもう一本の振り子をぶら下げた装置。見た目は単純だが、運動方程式はカオス的になる。同じ初期状態からスタートしても、わずかな揺れの差で全く別の動きを描く。</span></span>は、家のコーヒーテーブル上で作れるカオス装置だ。水流が乱流に変わる瞬間、心拍の不整脈、生態系の個体数変動、金融市場の短期変動——どれも内部に三体問題と同じ「初期値に対する指数関数的感度」を抱えている。</p>
+
+  <p class="body-text fade">そして、冒頭で触れた天気予報。気象もまた、ナビエ・ストークス方程式というれっきとした決定論的法則に従う。それでも一週間先の予報が外れるのは、観測機器の精度が足りないからでも、計算機が遅いからでもない。地球の気象システムでは、わずかな初期誤差が「e 倍」に膨れ上がるまでの時間（リアプノフ指数の逆数で、リアプノフ時間と呼ばれる）が、たまたま<strong>一週間程度</strong>だからだ。スーパーコンピュータを千倍速くしても、観測点を百倍に増やしても、予測可能な期間はわずかしか伸びない。三体問題で起きていることと、空の上で起きていることは、本質的に同じ一つの現象である。</p>
+
+  <div class="culture-block fade">
+    <div class="culture-label">◆ 文化への登場</div>
+    <div class="culture-item">
+      <p class="culture-title">劉慈欣『三体』（2006）</p>
+      <p class="culture-desc">アルファ・ケンタウリ系に三つの太陽を抱えた惑星の文明を描く。三体問題を主題にした長編SFは他に例を見ず、2015年のヒューゴー賞受賞を経てNetflix版（2024）でさらに広く知られた。文明の運命が一つの数学的性質に縛られている、という構造はこの小説の核心だ。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">映画『バタフライ・エフェクト』（2004）</p>
+      <p class="culture-desc">主人公が過去に介入するたびに現在の世界が完全に変わる。題名は明らかにローレンツの比喩から取られているが、作中の因果関係は科学的なカオスとはほぼ別物だ。「小さな原因が大きな結果を生む」という通俗的な理解が映画を通じて広まった代表例。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">映画『ジュラシック・パーク』（1993）</p>
+      <p class="culture-desc">数学者イアン・マルコム博士がカオス理論を引用しながら、公園の運営は必ず制御不能になると警告する場面がある。原作（マイクル・クライトン 1990）でもカオス理論は構造上の要として何度も登場する。カオスが大衆文化に入った最初期の作品のひとつ。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">三体問題は、宇宙が閉じた本ではないことを教えた。方程式は世界を支配するが、その方程式の解を人間が「読む」ことには、系が自ら設ける限界がある。ラプラスが夢見た悪魔は、わずかな初期値の不確かさが指数関数で膨らむ前では、有限の時間先までしか視界を持てない。それでも私たちは明日の予報を見て傘を持つ。<strong>完全な予測を諦めた上で、有限の先まで見通す</strong>——それが、ポアンカレ以降の科学が受け取った新しい態度だった。</p>
+
+
+  <!-- ═══════════ 参考文献セクション ═══════════ -->
+  <div class="sec-rule fade"><span class="sec-label">References</span><span class="sec-line"></span></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1890</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1007/BF02392506" target="_blank" rel="noopener">Sur le problème des trois corps et les équations de la dynamique</a></p>
+      <p class="ref-author">Henri Poincaré, Acta Mathematica, Vol. 13, pp. 1–270</p>
+      <p class="ref-desc">オスカル2世賞の訂正版論文。ホモクリニック点の概念が初めて数学として記述された、決定論的カオスの起点となる論文。後に『天体力学の新しい方法』3巻へと発展する。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1963</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1175/1520-0469(1963)020%3C0130:DNF%3E2.0.CO;2" target="_blank" rel="noopener">Deterministic Nonperiodic Flow</a></p>
+      <p class="ref-author">Edward N. Lorenz, Journal of the Atmospheric Sciences, Vol. 20, Issue 2, pp. 130–141</p>
+      <p class="ref-desc">3変数の対流モデルがカオス的軌道を描くことを示した論文。後の「ローレンツ・アトラクター」の形がここで初めて現れる。気象予報の有限地平の理論的根拠となった。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">1997</span></div>
+      <p class="ref-title"><a href="https://bookstore.ams.org/hmath-11" target="_blank" rel="noopener">Poincaré and the Three Body Problem</a></p>
+      <p class="ref-author">June Barrow-Green, History of Mathematics Vol. 11, American Mathematical Society</p>
+      <p class="ref-desc">オスカル賞の経緯から、ポアンカレが自分の誤りを発見するまでの劇的な過程を一次資料（ミッタク=レフラー研究所の手書き草稿）から追った決定版。訂正前後の差分を詳細に比較している。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1987</span></div>
+      <p class="ref-title">Chaos: Making a New Science</p>
+      <p class="ref-author">James Gleick, Viking Press</p>
+      <p class="ref-desc">カオス理論の成立史を描いたノンフィクションの古典。ローレンツ、マンデルブロ、フェイゲンバウム、スメイルなどの人物像を中心に科学史として読める。「バタフライ効果」を一般社会に広めた決定的な一冊。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1908</span></div>
+      <p class="ref-title">Science et méthode</p>
+      <p class="ref-author">Henri Poincaré, Ernest Flammarion</p>
+      <p class="ref-desc">ポアンカレ自身による科学哲学のエッセイ集。本記事で引用した「初期条件のわずかな差が最終的な現象の大きな差を生む」という一節はこの本の第1部第4章に収められており、カオスについての最も早い哲学的定式化とされる。</p>
+    </div>
+  </div>
+
+  <!-- 信頼度ノート -->
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    三体問題の一般解が存在しないことは数学的定理として確立しており、ブルンスとポアンカレによる19世紀末の証明、スンドマンの収束級数、KAM理論など後続の仕事を通じて裏付けられている。本記事の歴史部分はバロー=グリーンによる原典研究と、アクタ・マテマティカ編集部の公式記録に基づく。ローレンツの1972年講演のタイトルがフィリップ・メリリースによるものだという経緯は、ローレンツ本人の証言として複数の二次文献が一致して記している。バタフライ効果の通俗的解釈と原典の意味のずれについては、ローレンツ自身が晩年に何度も注釈を加えている。
+  </div>
+
+  <!-- タグ -->
+  <div class="tags fade">
+    <span class="tag">#物理・宇宙</span>
+    <span class="tag">#天体力学</span>
+    <span class="tag">#カオス理論</span>
+    <span class="tag">#決定論</span>
+    <span class="tag">#ポアンカレ</span>
+    <span class="tag">#ローレンツ</span>
+    <span class="tag">#非線形</span>
+    <span class="tag">#H-16</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">18</p>
+      <p class="sidebar-text">三体問題の自由度（3体 × 位置3＋速度3）。保存則で消せるのは10個だけ。残る<strong>8</strong>が、カオスを隠す空間の広さだ。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1887年のオスカル2世賞は、数学史上最も有名な「受賞後の誤り発見」の舞台になった。<em>ポアンカレは賞金を超える費用を自費で払い</em>、印刷済みの論文を回収した。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">劉慈欣『三体』（2006）、『ジュラシック・パーク』（1993）、『バタフライ・エフェクト』（2004）、『カオス理論』を冠する学術書は数百冊。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">
+        — ラングトンのアリ<br>
+        — マンデルブロ集合<br>
+        — ライフゲーム<br>
+        — 二重スリット実験
+      </p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">一般解の非存在は数学的定理。歴史的経緯は一次資料から裏付けあり。バタフライ効果の通俗化された意味と原典の意味のずれに注意。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 三体問題と決定論的カオス を読み終えた人との対話</span>
+
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、三体問題は「解けない」のか、それとも「解いても使えない」のか</span></div>
+      <span class="t-output" id="to1">両方。代数的な閉じた式での一般解は存在しない——これは<em>原理的に</em>の話。スンドマンの級数解は数学的には存在するが、実用的な予測には使えないほど収束が遅い。現代は数値積分で「有限時間だけ」高精度に追うのが現実解だ。</span>
+
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;でも太陽系は何十億年も安定してるじゃないか</span></div>
+      <span class="t-output" id="to2">長期安定性は別の話で、KAM理論（1950-60年代）がある条件下での準安定を示した。ただし数値実験では<strong>50億年スケール</strong>で水星の軌道が不安定化する可能性が報告されている（Laskar 2009）。安定に見えるのは、私たちの観測窓が短いからかもしれない。</span>
+
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ天気予報が2週間先まで当たらないのも、これと同じ理由？</span></div>
+      <span class="t-output" id="to3">まさに。ローレンツが1963年の論文で示したのは、3変数という極限まで単純化した対流モデルでも同じ数理が現れるということだった。気象の実世界は数百万変数の問題だが、<em>初期値誤差が指数関数で拡大する</em>性質は同じ。だから予測地平は2週間前後にある、と今のところ推定されている。</span>
+
+      <hr class="t-divider">
+
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# そういうことだったのか</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/mandelbrot_set.html">
+      <p class="related-card-tag">数学・論理</p>
+      <p class="related-card-title">マンデルブロ集合</p>
+      <p class="related-card-desc">単純な反復式 z = z² + c から無限の複雑さが現れる。カオスの姉妹概念であるフラクタルの視覚的な原典。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/langton_ant.html">
+      <p class="related-card-tag">数学・論理</p>
+      <p class="related-card-title">ラングトンのアリ</p>
+      <p class="related-card-desc">たった2つのルールから混沌が生まれ、1万ステップ後に突然秩序が現れる。単純から複雑への反対側の物語。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==== Progress bar ====
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// ==== Fade in ====
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ==== Tooltip (toast) ====
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ==== Step accordion ====
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ==== Terminal animation ====
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// ==== Header / Search ====
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">検索データを読み込み中…</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+
+
+/* ═══════════════════════════════════════════════════════════
+   SIMULATOR 01 — Two-body vs Three-body side by side
+   ═══════════════════════════════════════════════════════════ */
+(function(){
+  const canvas=document.getElementById('simSideBySide');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width, H=canvas.height;
+  const midX=W/2;
+
+  // two-body bodies (left half) — star is fixed
+  let two, three;
+  const trailsL=[[],[]];
+  const trailsR=[[],[],[]];
+  const MAX_TRAIL=500;
+  let threeStepCount=0;
+  const THREE_MAX_STEPS=6000; // fallback timer (~20s real time at 60fps); escape usually triggers first
+
+  function reset(){
+    // 2-body: binary system - two equal masses orbiting their common barycenter
+    // For a circular orbit with m1=m2=m, barycenter = midpoint
+    // Each body at distance d from barycenter, circular velocity v = sqrt(G*m/(4*d))
+    const cxL=midX/2, cyL=H/2;
+    const d=40; // half-separation
+    const m=500;
+    const vOrbit=Math.sqrt(G*m/(4*d));
+    two=[
+      {x:cxL-d, y:cyL, vx:0, vy:-vOrbit, m:m, r:7, color:'#e8c56a'},
+      {x:cxL+d, y:cyL, vx:0, vy:vOrbit, m:m, r:7, color:'#3d7aa8'},
+    ];
+    // 3-body: same half-velocity stable config as sim2
+    const cx=midX+midX/2, cy=H/2;
+    three=[
+      {x:cx+30, y:cy-18, vx:-0.037, vy: 0.057, m:500, r:6, color:'#e8c56a'},
+      {x:cx-26, y:cy-22, vx: 0.033, vy: 0.053, m:500, r:6, color:'#3d7aa8'},
+      {x:cx- 4, y:cy+36, vx: 0.003, vy:-0.110, m:500, r:6, color:'#c87030'},
+    ];
+    trailsL[0].length=0; trailsL[1].length=0;
+    trailsR[0].length=0; trailsR[1].length=0; trailsR[2].length=0;
+    threeStepCount=0;
+    draw();
+  }
+
+  const G=0.6;
+  function step(bodies, dt){
+    const n=bodies.length;
+    const ax=new Array(n).fill(0);
+    const ay=new Array(n).fill(0);
+    for(let i=0;i<n;i++){
+      for(let j=0;j<n;j++){
+        if(i===j)continue;
+        const dx=bodies[j].x-bodies[i].x;
+        const dy=bodies[j].y-bodies[i].y;
+        const r2=dx*dx+dy*dy+100;
+        const r=Math.sqrt(r2);
+        const f=G*bodies[j].m/(r2*r);
+        ax[i]+=f*dx;
+        ay[i]+=f*dy;
+      }
+    }
+    for(let i=0;i<n;i++){
+      if(bodies[i].fixed)continue; // keep fixed bodies stationary
+      bodies[i].vx+=ax[i]*dt;
+      bodies[i].vy+=ay[i]*dt;
+      bodies[i].x+=bodies[i].vx*dt;
+      bodies[i].y+=bodies[i].vy*dt;
+    }
+  }
+
+  function draw(){
+    ctx.fillStyle='#0a0a14';
+    ctx.fillRect(0,0,W,H);
+
+    ctx.strokeStyle='#2a2a44';
+    ctx.lineWidth=1;
+    ctx.beginPath();
+    ctx.moveTo(midX,0);
+    ctx.lineTo(midX,H);
+    ctx.stroke();
+
+    ctx.fillStyle='#9a9ab4';
+    ctx.font='700 22px "Playfair Display", serif';
+    ctx.textAlign='center';
+    ctx.fillText('二体', midX/2, 38);
+    ctx.fillText('三体', midX+midX/2, 38);
+    ctx.textAlign='left';
+
+    // Left half: two-body trails + bodies (no clip needed, left half)
+    for(let i=0;i<trailsL.length;i++){
+      const t=trailsL[i];
+      if(t.length<2)continue;
+      ctx.strokeStyle=two[i].color;
+      ctx.globalAlpha=0.55;
+      ctx.lineWidth=1.2;
+      ctx.beginPath();
+      ctx.moveTo(t[0].x, t[0].y);
+      for(let k=1;k<t.length;k++)ctx.lineTo(t[k].x, t[k].y);
+      ctx.stroke();
+    }
+    ctx.globalAlpha=1;
+    for(const b of two){
+      ctx.fillStyle=b.color;
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    // Right half: three-body — clip to right half so any numerical escape never bleeds left
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(midX, 0, W-midX, H);
+    ctx.clip();
+    for(let i=0;i<trailsR.length;i++){
+      const t=trailsR[i];
+      if(t.length<2)continue;
+      ctx.strokeStyle=three[i].color;
+      ctx.globalAlpha=0.55;
+      ctx.lineWidth=1.2;
+      ctx.beginPath();
+      ctx.moveTo(t[0].x, t[0].y);
+      for(let k=1;k<t.length;k++)ctx.lineTo(t[k].x, t[k].y);
+      ctx.stroke();
+    }
+    ctx.globalAlpha=1;
+    for(const b of three){
+      ctx.fillStyle=b.color;
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function threeEscaped(){
+    // check if any body is far outside the right half
+    const pad=40;
+    for(const b of three){
+      if(b.x<midX-pad||b.x>W+pad||b.y<-pad||b.y>H+pad)return true;
+    }
+    return false;
+  }
+
+  let running=false;
+  function loop(){
+    if(!running)return;
+    for(let k=0;k<3;k++){
+      step(two, 0.1);
+      step(three, 0.1);
+      threeStepCount++;
+    }
+    two.forEach((b,i)=>{
+      trailsL[i].push({x:b.x, y:b.y});
+      if(trailsL[i].length>MAX_TRAIL)trailsL[i].shift();
+    });
+    three.forEach((b,i)=>{
+      trailsR[i].push({x:b.x, y:b.y});
+      if(trailsR[i].length>MAX_TRAIL)trailsR[i].shift();
+    });
+    // no wall bounce — strict escape detection keeps three-body confined to its right-half area
+    const escPad=15;
+    let threeEscaped=false;
+    for(const b of three){
+      if(b.x<midX+escPad||b.x>W-escPad||b.y<escPad||b.y>H-escPad){threeEscaped=true;break;}
+    }
+    // auto-reset if escaped or if the periodic timer ran out (prevents boring static states)
+    if(threeEscaped||threeStepCount>THREE_MAX_STEPS){
+      const cx=midX+midX/2, cy=H/2;
+      three[0].x=cx+30;three[0].y=cy-18;three[0].vx=-0.037;three[0].vy= 0.057;
+      three[1].x=cx-26;three[1].y=cy-22;three[1].vx= 0.033;three[1].vy= 0.053;
+      three[2].x=cx- 4;three[2].y=cy+36;three[2].vx= 0.003;three[2].vy=-0.110;
+      trailsR[0].length=0;trailsR[1].length=0;trailsR[2].length=0;
+      threeStepCount=0;
+    }
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  document.getElementById('sbsStart').addEventListener('click',function(){
+    running=!running;
+    this.textContent=running?'⏸ 停止':'▶ 開始';
+    if(running)requestAnimationFrame(loop);
+  });
+  document.getElementById('sbsReset').addEventListener('click',()=>{
+    running=false;
+    document.getElementById('sbsStart').textContent='▶ 開始';
+    reset();
+  });
+
+  reset();
+})();
+
+
+/* ═══════════════════════════════════════════════════════════
+   SIMULATOR 02 — Sensitivity to initial conditions
+   Two copies of a 3-body system with tiny initial difference
+   ═══════════════════════════════════════════════════════════ */
+(function(){
+  const canvas=document.getElementById('simSensitivity');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width, H=canvas.height;
+
+  // Split: top area for bodies, bottom area for log-distance graph
+  const topH=560;
+  const bottomH=H-topH;
+
+  let sysA, sysB;
+  let distHistory=[];
+  let initialDiff=1e-3;
+  let simTime=0;
+  const G=0.6;
+  const MAX_HIST=2000;
+  const trailsA=[[],[],[]];
+  const trailsB=[[],[],[]];
+  const MAX_TRAIL=300;
+
+  function makeSystem(offset){
+    const cx=W/2, cy=topH/2;
+    return [
+      {x:cx+30+offset, y:cy-18, vx:-0.037, vy: 0.057, m:500},
+      {x:cx-26,        y:cy-22, vx: 0.033, vy: 0.053, m:500},
+      {x:cx- 4,        y:cy+36, vx: 0.003, vy:-0.110, m:500},
+    ];
+  }
+
+  function reset(){
+    sysA=makeSystem(0);
+    sysB=makeSystem(initialDiff);
+    distHistory=[];
+    simTime=0;
+    trailsA.forEach(t=>t.length=0);
+    trailsB.forEach(t=>t.length=0);
+    updateReadout();
+    draw();
+  }
+
+  function stepBodies(bodies, dt){
+    const n=bodies.length;
+    const ax=new Array(n).fill(0);
+    const ay=new Array(n).fill(0);
+    for(let i=0;i<n;i++){
+      for(let j=0;j<n;j++){
+        if(i===j)continue;
+        const dx=bodies[j].x-bodies[i].x;
+        const dy=bodies[j].y-bodies[i].y;
+        const r2=dx*dx+dy*dy+100;
+        const r=Math.sqrt(r2);
+        const f=G*bodies[j].m/(r2*r);
+        ax[i]+=f*dx;
+        ay[i]+=f*dy;
+      }
+    }
+    for(let i=0;i<n;i++){
+      bodies[i].vx+=ax[i]*dt;
+      bodies[i].vy+=ay[i]*dt;
+      bodies[i].x+=bodies[i].vx*dt;
+      bodies[i].y+=bodies[i].vy*dt;
+    }
+  }
+
+  function anyEscaped(bodies){
+    // detect if any body is clearly outside the top area
+    const pad=100;
+    for(const b of bodies){
+      if(b.x<-pad||b.x>W+pad||b.y<-pad||b.y>topH+pad)return true;
+    }
+    return false;
+  }
+
+  function currentDistance(){
+    let s=0;
+    for(let i=0;i<3;i++){
+      const dx=sysA[i].x-sysB[i].x;
+      const dy=sysA[i].y-sysB[i].y;
+      s+=dx*dx+dy*dy;
+    }
+    return Math.sqrt(s);
+  }
+
+  function formatSci(v){
+    // convert to "10⁻ⁿ" style display using unicode superscripts
+    const sup={'0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹','-':'⁻','.':'·'};
+    if(v===0)return '0';
+    const lg=Math.log10(Math.abs(v));
+    const lgRound=Math.round(lg*10)/10;
+    const intLg=Math.round(lg);
+    // if v is close to 10^n
+    if(Math.abs(lg-intLg)<0.05){
+      const s=String(intLg).split('').map(c=>sup[c]||c).join('');
+      return '10'+s;
+    }
+    // otherwise, a × 10^n
+    const mant=v/Math.pow(10,intLg);
+    const mantStr=mant.toFixed(1);
+    const s=String(intLg).split('').map(c=>sup[c]||c).join('');
+    return mantStr+' × 10'+s;
+  }
+
+  function updateReadout(){
+    const d=currentDistance();
+    const readout=document.getElementById('snsReadout');
+    if(!readout)return;
+    readout.innerHTML=
+      't = '+simTime.toFixed(2)+
+      ' &nbsp; 初期差 = <span>'+formatSci(initialDiff)+'</span>'+
+      ' &nbsp; 現在の差 = '+formatSci(d);
+  }
+
+  function draw(){
+    // background
+    ctx.fillStyle='#0a0a14';
+    ctx.fillRect(0,0,W,H);
+
+    // top / bottom divider
+    ctx.strokeStyle='#2a2a44';
+    ctx.lineWidth=1;
+    ctx.beginPath();
+    ctx.moveTo(0,topH);
+    ctx.lineTo(W,topH);
+    ctx.stroke();
+
+    // clip drawing of trails and bodies to the top area only
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(0,0,W,topH);
+    ctx.clip();
+
+    // draw trails A (white-ish)
+    for(let i=0;i<3;i++){
+      const t=trailsA[i];
+      if(t.length<2)continue;
+      ctx.strokeStyle='#e8e4de';
+      ctx.globalAlpha=0.45;
+      ctx.lineWidth=1.1;
+      ctx.beginPath();
+      ctx.moveTo(t[0].x, t[0].y);
+      for(let k=1;k<t.length;k++)ctx.lineTo(t[k].x, t[k].y);
+      ctx.stroke();
+    }
+    // draw trails B (red-ish)
+    for(let i=0;i<3;i++){
+      const t=trailsB[i];
+      if(t.length<2)continue;
+      ctx.strokeStyle='#e85050';
+      ctx.globalAlpha=0.45;
+      ctx.lineWidth=1.1;
+      ctx.beginPath();
+      ctx.moveTo(t[0].x, t[0].y);
+      for(let k=1;k<t.length;k++)ctx.lineTo(t[k].x, t[k].y);
+      ctx.stroke();
+    }
+    ctx.globalAlpha=1;
+
+    // draw bodies A (white outlined)
+    for(const b of sysA){
+      ctx.fillStyle='#e8e4de';
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, 6, 0, Math.PI*2);
+      ctx.fill();
+    }
+    // draw bodies B (red outlined)
+    for(const b of sysB){
+      ctx.fillStyle='#e85050';
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, 6, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    ctx.restore(); // end clip
+
+    // label top (drawn after clip so it stays in place)
+    ctx.fillStyle='#9a9ab4';
+    ctx.font='700 18px "Playfair Display", serif';
+    ctx.textAlign='left';
+    ctx.fillText('三体系（2組同時、初期差 '+formatSci(initialDiff)+'）', 16, 28);
+
+    // draw graph area
+    const gTop=topH+24;
+    const gBot=H-32;
+    const gLeft=72;
+    const gRight=W-18;
+    // frame
+    ctx.strokeStyle='#2a2a44';
+    ctx.lineWidth=1;
+    ctx.strokeRect(gLeft, gTop, gRight-gLeft, gBot-gTop);
+
+    // log scale: y = log10(dist), range from -4 to 3
+    const logMin=-4, logMax=3;
+    function yForLog(lg){
+      const t=(lg-logMin)/(logMax-logMin);
+      return gBot - t*(gBot-gTop);
+    }
+    // grid lines at integer log
+    ctx.strokeStyle='#1a1a2e';
+    ctx.lineWidth=1;
+    for(let lg=logMin;lg<=logMax;lg++){
+      const y=yForLog(lg);
+      ctx.beginPath();
+      ctx.moveTo(gLeft,y);
+      ctx.lineTo(gRight,y);
+      ctx.stroke();
+    }
+    // y labels (10^n notation, right-aligned at gLeft-6)
+    ctx.fillStyle='#7a7a94';
+    ctx.textAlign='left';
+    const rightEdge=gLeft-6;
+    for(let lg=logMin;lg<=logMax;lg+=1){
+      const y=yForLog(lg);
+      if(lg===0){
+        ctx.font='13px "JetBrains Mono", monospace';
+        ctx.textAlign='right';
+        ctx.fillText('1', rightEdge, y+5);
+        ctx.textAlign='left';
+      } else {
+        const expStr=String(lg);
+        ctx.font='10px "JetBrains Mono", monospace';
+        const expW=ctx.measureText(expStr).width;
+        ctx.font='13px "JetBrains Mono", monospace';
+        const baseW=ctx.measureText('10').width;
+        const totalW=baseW+expW+1;
+        const baseX=rightEdge-totalW;
+        const expX=baseX+baseW+1;
+        ctx.font='13px "JetBrains Mono", monospace';
+        ctx.fillText('10', baseX, y+5);
+        ctx.font='10px "JetBrains Mono", monospace';
+        ctx.fillText(expStr, expX, y-2);
+      }
+    }
+    ctx.font='13px "JetBrains Mono", monospace';
+    ctx.textAlign='left';
+    // axis titles
+    ctx.fillStyle='#9a9ab4';
+    ctx.font='600 13px "Source Sans 3", sans-serif';
+    ctx.fillText('距離（対数スケール）', gLeft, gTop-6);
+    ctx.textAlign='right';
+    ctx.fillText('時間 →', gRight, gBot+22);
+
+    // plot history
+    if(distHistory.length>1){
+      ctx.strokeStyle='#e8c56a';
+      ctx.lineWidth=1.6;
+      ctx.beginPath();
+      for(let i=0;i<distHistory.length;i++){
+        const t=i/(MAX_HIST-1);
+        const x=gLeft + t*(gRight-gLeft);
+        const d=distHistory[i];
+        const lg=Math.log10(Math.max(d,1e-8));
+        const y=yForLog(Math.max(logMin,Math.min(logMax,lg)));
+        if(i===0)ctx.moveTo(x,y);
+        else ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+    }
+  }
+
+  let running=false;
+  function loop(){
+    if(!running)return;
+    for(let k=0;k<3;k++){
+      stepBodies(sysA, 0.1);
+      stepBodies(sysB, 0.1);
+      simTime+=0.1;
+    }
+    // no wall bounce — let escapes happen naturally
+    // trails
+    sysA.forEach((b,i)=>{trailsA[i].push({x:b.x,y:b.y});if(trailsA[i].length>MAX_TRAIL)trailsA[i].shift();});
+    sysB.forEach((b,i)=>{trailsB[i].push({x:b.x,y:b.y});if(trailsB[i].length>MAX_TRAIL)trailsB[i].shift();});
+    // record distance
+    distHistory.push(currentDistance());
+    if(distHistory.length>MAX_HIST)distHistory.shift();
+    // stop only when time window is full (this simulator is about observing the graph,
+    // so we let bodies fly off-screen and keep recording until time runs out)
+    if(distHistory.length>=MAX_HIST){
+      running=false;
+      const btn=document.getElementById('snsStart');
+      if(btn)btn.textContent='▶ 再開';
+    }
+    updateReadout();
+    draw();
+    if(running)requestAnimationFrame(loop);
+  }
+
+  document.getElementById('snsStart').addEventListener('click',function(){
+    running=!running;
+    this.textContent=running?'⏸ 停止':'▶ 開始';
+    if(running)requestAnimationFrame(loop);
+  });
+  document.getElementById('snsReset').addEventListener('click',()=>{
+    running=false;
+    document.getElementById('snsStart').textContent='▶ 開始';
+    reset();
+  });
+  document.getElementById('snsSmaller').addEventListener('click',()=>{
+    initialDiff=initialDiff*0.1;
+    if(initialDiff<1e-10)initialDiff=1e-3;
+    running=false;
+    document.getElementById('snsStart').textContent='▶ 開始';
+    reset();
+  });
+
+  reset();
+})();
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>

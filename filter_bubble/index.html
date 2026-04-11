@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>フィルターバブルとエコーチェンバー — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* SLIDE MENU */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* SEARCH */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* MASTHEAD */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+
+/* TOOLTIP (base) */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* IMAGE PH */
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* === ARTICLE-SPECIFIC === */
+
+/* Compare table (FB vs EC) */
+.cmp-tbl{margin:28px 0;border:1px solid #c8bfaa;background:white;font-family:'Source Sans 3',sans-serif;}
+.cmp-tbl table{width:100%;border-collapse:collapse;}
+.cmp-tbl th,.cmp-tbl td{padding:12px 14px;text-align:left;border-bottom:1px solid #e0d8c8;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;vertical-align:top;}
+.cmp-tbl th{background:#3d3020;color:#e8ddd0;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-bottom:none;}
+.cmp-tbl tr:last-child td{border-bottom:none;}
+.cmp-tbl td:first-child{font-weight:600;color:#1a1208;width:30%;background:#f3efe6;}
+.cmp-tbl .fb-col{color:#e89a9a;}
+.cmp-tbl .ec-col{color:#a8cc9a;}
+
+/* Search-result diagram */
+.diag-wrap{margin:32px 0;border:1px solid #c8bfaa;background:white;padding:24px 20px;}
+.diag-title{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:14px;text-align:center;}
+.diag-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;margin-top:10px;line-height:1.6;}
+
+/* Algo strength slider */
+.ix-wrap{margin:32px 0;border:1px solid #c8bfaa;background:white;padding:22px 22px 24px;}
+.ix-head{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:6px;}
+.ix-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:16px;}
+.ix-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.ix-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#3d3020;min-width:100px;}
+.ix-slider{flex:1;-webkit-appearance:none;appearance:none;height:4px;background:#e0d8c8;outline:none;border-radius:2px;}
+.ix-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:#8b1a1a;cursor:pointer;border:2px solid #faf8f3;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+.ix-slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#8b1a1a;cursor:pointer;border:2px solid #faf8f3;}
+.ix-val{font-family:'JetBrains Mono',monospace;font-size:12px;color:#8b1a1a;min-width:44px;text-align:right;font-weight:500;}
+.ix-canvas-wrap{margin-top:8px;background:#f3efe6;padding:14px;border:1px solid #e0d8c8;}
+.ix-canvas-wrap canvas{display:block;width:100%;height:auto;max-width:100%;}
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;margin-top:10px;line-height:1.6;}
+.ix-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:400;color:#8b1a1a;background:#fdf3e8;border:1px solid #e8c5a0;padding:8px 12px;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.ix-context::before{content:'◆';color:#8b1a1a;font-size:9px;}
+.ix-extremes{display:flex;justify-content:space-between;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:-6px;margin-bottom:10px;padding:0 4px;}
+.ix-counts{display:flex;justify-content:space-around;margin-top:10px;padding:10px;background:#f3efe6;border:1px solid #e0d8c8;font-family:'JetBrains Mono',monospace;font-size:12px;}
+.ix-count-cell{text-align:center;}
+.ix-count-lbl{display:block;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#7a6a55;text-transform:uppercase;margin-bottom:4px;}
+.ix-count-val{font-weight:500;color:#1a1208;font-size:16px;}
+.ix-count-cell.L .ix-count-val{color:#3c64aa;}
+.ix-count-cell.C .ix-count-val{color:#666;}
+.ix-count-cell.R .ix-count-val{color:#aa3c3c;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:160px 1fr;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;}
+.person-block-img img{width:100%;height:auto;display:block;object-fit:cover;}
+.person-block-body{padding:18px 20px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.8;}
+.person-block-desc a{color:#8b1a1a;}
+@media(max-width:720px){
+  .person-block{grid-template-columns:1fr;}
+  .person-block-body{border-left:none;border-top:1px solid #c8bfaa;}
+  .person-block-img{max-height:360px;}
+}
+.photo-figure{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;}
+.photo-figure img{width:100%;height:auto;display:block;}
+.photo-caption{padding:11px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.6;}
+.photo-caption em{font-style:italic;color:#3d3020;}
+.photo-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;}
+.photo-credit a{color:#b0a090;border-bottom:1px dotted #c8bfaa;}
+.photo-credit a:hover{color:#8b1a1a;}
+
+/* Widget window header (shared by ix-wrap and sim-wrap) */
+.widget-header{background:#3d3020;color:#e8ddd0;padding:11px 16px 11px 19px;margin:-22px -22px 18px -22px;border-left:3px solid #8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:10px;}
+.widget-header-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#8b1a1a;flex-shrink:0;}
+.widget-header-title{flex:1;color:#e8ddd0;}
+.widget-header-meta{font-size:9px;font-weight:400;letter-spacing:.12em;color:#a89888;text-transform:uppercase;}
+
+/* Main simulator */
+.sim-wrap{margin:32px 0;border:1px solid #c8bfaa;background:white;padding:22px 22px 24px;}
+.sim-head{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.sim-sub{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:16px;}
+.sim-rules{background:#f3efe6;border-left:3px solid #8b1a1a;padding:11px 14px;margin-bottom:16px;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.75;}
+.sim-rules strong{font-weight:600;color:#1a1208;}
+.sim-stage{background:#f8f5ec;border:1px solid #e0d8c8;padding:14px;min-height:280px;position:relative;}
+.sim-feed{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+
+/* Simulator card (news-article style, v3 redesign) */
+.sim-card{background:white;border:1px solid #d8cfb8;padding:11px 12px 9px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:130px;}
+.sim-card:hover{border-color:#8b1a1a;transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.08);}
+.sim-card.clicked{border-color:#8b1a1a;background:#fdf3e8;}
+.sim-card-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-family:'Source Sans 3',sans-serif;font-size:9px;color:#b0a090;letter-spacing:.02em;}
+.sim-card-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:1px;line-height:1.6;}
+.sim-card-cat.L{background:rgba(60,100,170,.13);color:#3c64aa;}
+.sim-card-cat.C{background:rgba(120,110,95,.13);color:#6a5a48;}
+.sim-card-cat.R{background:rgba(170,60,60,.13);color:#aa3c3c;}
+.sim-card-time{color:#b0a090;}
+.sim-card-time::before{content:'·';margin-right:6px;color:#d8cfb8;}
+.sim-card-title{font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;color:#1a1208;line-height:1.45;flex:1;margin-bottom:9px;letter-spacing:-.005em;}
+.sim-card-actions{display:flex;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;padding-top:7px;border-top:1px solid #f0ebe0;}
+.sim-card-actions span{display:inline-flex;align-items:center;gap:3px;}
+.sim-meter-wrap{margin-top:16px;background:#f3efe6;padding:14px 16px;border:1px solid #e0d8c8;}
+.sim-meter-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;margin-bottom:10px;display:flex;justify-content:space-between;}
+.sim-meter-label span:last-child{font-family:'JetBrains Mono',monospace;color:#8b1a1a;letter-spacing:.02em;}
+.sim-bars{display:flex;height:22px;gap:2px;background:#e0d8c8;}
+.sim-bar{transition:flex .4s ease;}
+.sim-bar.L{background:#3c64aa;}
+.sim-bar.C{background:#999;}
+.sim-bar.R{background:#aa3c3c;}
+.sim-legend{display:flex;gap:16px;margin-top:8px;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#7a6a55;}
+.sim-legend-sq{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:middle;}
+.sim-legend-sq.L{background:#3c64aa;}
+.sim-legend-sq.C{background:#999;}
+.sim-legend-sq.R{background:#aa3c3c;}
+.sim-ctrl{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap;}
+.sim-round{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.sim-round strong{color:#1a1208;font-weight:600;}
+.sim-btn{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#8b1a1a;background:white;border:1px solid #8b1a1a;padding:7px 14px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:all .18s;}
+.sim-btn:hover{background:#8b1a1a;color:white;}
+.sim-btn.secondary{color:#7a6a55;border-color:#c8bfaa;}
+.sim-btn.secondary:hover{background:#c8bfaa;color:#1a1208;}
+.sim-status{margin-top:12px;padding:10px 14px;background:#fdf3e8;border-left:3px solid #8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;line-height:1.6;display:none;}
+.sim-status.show{display:block;}
+.sim-status strong{color:#1a1208;font-weight:600;}
+
+/* Number card (Bakshy) */
+.numcard{margin:32px 0;border:1px solid #c8bfaa;background:white;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.numcard-cell{padding:24px 22px;border-right:1px solid #e0d8c8;}
+.numcard-cell:last-child{border-right:none;background:#f3efe6;}
+.numcard-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;color:#7a6a55;text-transform:uppercase;margin-bottom:10px;}
+.numcard-val{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;margin-bottom:8px;}
+.numcard-val .pct{font-size:28px;color:#8b1a1a;}
+.numcard-desc{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#3d3020;line-height:1.65;}
+
+/* Flow figure */
+.flow-wrap{margin:32px 0;border:1px solid #c8bfaa;background:white;padding:24px 20px;}
+.flow-title{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:14px;text-align:center;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .sim-feed{grid-template-columns:1fr 1fr;}
+  .numcard{grid-template-columns:1fr;}
+  .numcard-cell{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .numcard-cell:last-child{border-bottom:none;}
+  .cmp-tbl th,.cmp-tbl td{font-size:11px;padding:10px;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.img-ph-desc,.img-ph-prompt-txt{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){
+  .toc-back{padding:22px 20px;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">科学と文化</p>
+    <h1>世界はもう、<em>同じ形</em>をしていない</h1>
+    <p class="cover-deck">同じキーワードで検索しても、隣の人とは違う結果が返ってくる。誰も壁を作った覚えはないのに、気がつくと全員が自分専用の部屋に閉じ込められている。フィルターバブル——2011年、ひとりの活動家がそう名付けた。</p>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>DEEP DIVE</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">2011</span>
+      <p class="est-event">イーライ・パリサーが著書『The Filter Bubble』とTED Talkで概念を世に出す</p>
+      <p class="est-context">同じ年の1月、チュニジアでベン=アリ政権が崩壊。2月、エジプトでムバラクが辞任。アラブの春の年。</p>
+    </div>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>ある晩、家族と同じ話題になった。同じニュースを検索したのに、スマホの画面に出てくる記事の順番がまるで違う。最初の3件が、ひとつも重ならない。</p>
+    <p>似た経験は、たぶん誰にでもある。友人のおすすめ動画、親のSNSのタイムライン、自分のもの。同じサービスを使っているはずなのに、見えている景色はひとりひとり別の部屋のようだ。</p>
+    <p>世界は、もう同じ形をしていない。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 専門知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 12 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-10</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-10</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">アルゴリズムが作る泡と、自分で選んで作る反響室。似ているが、同じものではない。そして最も厄介な方は、たぶん技術の側ではない。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ============ 1. 背景セクション ============ -->
+  <div class="sec-rule fade"><span class="sec-label">Background</span><span class="sec-line"></span></div>
+  <h2 class="fade">BPで検索した二人の女性</h2>
+
+  <p class="body-text fade">2010年の春、メキシコ湾で石油掘削施設「ディープウォーター・ホライズン」が爆発し、史上最悪級の原油流出が続いていた。その頃、ネット活動家の<span class="tip" onclick="toggleTip(this)">イーライ・パリサー<span class="tip-box"><strong>Eli Pariser</strong><br>1980年生まれのアメリカの活動家・作家・起業家。MoveOn.org元事務局長、Avaaz共同創業者、Upworthy共同創業者。2011年の著書『The Filter Bubble』とTED Talkで同名概念を世に出した。</span></span>は、友人二人に頼んで同じ実験をしてもらった。Google で「BP」(ブリティッシュ・ペトロリアム、メキシコ湾で事故を起こした当事者であり、世界的な石油メジャーの一つ)とだけ検索し、最初の1ページ目のスクリーンショットを送ってほしい——ただそれだけのことだった。</p>
+
+  <p class="body-text fade">二人は年齢も学歴も政治的傾向も似ていた。けれど、返ってきた画面は別物だった。片方のトップには、流出事故と環境被害のニュース。もう片方のトップには、BP株の投資情報が並んでいた。同じ検索窓、同じキーワード、同じ国、同じ日。違うのは、画面を見ている人間の過去のクリック履歴だけだ。</p>
+
+  <div class="diag-wrap fade">
+    <p class="diag-title">同じ検索、違う世界</p>
+    <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+      <!-- left screen -->
+      <rect x="30" y="30" width="300" height="240" fill="#f8f5ec" stroke="#c8bfaa" stroke-width="1.5"/>
+      <rect x="30" y="30" width="300" height="32" fill="#3d3020"/>
+      <circle cx="46" cy="46" r="3.5" fill="#ff5f57"/>
+      <circle cx="58" cy="46" r="3.5" fill="#febc2e"/>
+      <circle cx="70" cy="46" r="3.5" fill="#28c840"/>
+      <rect x="130" y="38" width="190" height="18" fill="#5a4a38" rx="2"/>
+      <text x="225" y="51" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="600" fill="#f0e8dc" text-anchor="middle">BP</text>
+      <!-- left result items -->
+      <rect x="46" y="80" width="268" height="44" fill="white" stroke="#e0d8c8"/>
+      <rect x="54" y="88" width="170" height="6" fill="#3c64aa"/>
+      <rect x="54" y="100" width="252" height="4" fill="#d8cfb8"/>
+      <rect x="54" y="109" width="210" height="4" fill="#d8cfb8"/>
+      <rect x="46" y="132" width="268" height="44" fill="white" stroke="#e0d8c8"/>
+      <rect x="54" y="140" width="190" height="6" fill="#3c64aa"/>
+      <rect x="54" y="152" width="250" height="4" fill="#d8cfb8"/>
+      <rect x="54" y="161" width="200" height="4" fill="#d8cfb8"/>
+      <rect x="46" y="184" width="268" height="44" fill="white" stroke="#e0d8c8"/>
+      <rect x="54" y="192" width="155" height="6" fill="#3c64aa"/>
+      <rect x="54" y="204" width="240" height="4" fill="#d8cfb8"/>
+      <rect x="54" y="213" width="220" height="4" fill="#d8cfb8"/>
+      <text x="180" y="296" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle" font-weight="700">原油流出のニュース</text>
+      <text x="180" y="318" font-family="Source Sans 3, sans-serif" font-size="12" fill="#7a6a55" text-anchor="middle">環境記事を多く読む人の画面</text>
+      <!-- right screen -->
+      <rect x="390" y="30" width="300" height="240" fill="#f8f5ec" stroke="#c8bfaa" stroke-width="1.5"/>
+      <rect x="390" y="30" width="300" height="32" fill="#3d3020"/>
+      <circle cx="406" cy="46" r="3.5" fill="#ff5f57"/>
+      <circle cx="418" cy="46" r="3.5" fill="#febc2e"/>
+      <circle cx="430" cy="46" r="3.5" fill="#28c840"/>
+      <rect x="490" y="38" width="190" height="18" fill="#5a4a38" rx="2"/>
+      <text x="585" y="51" font-family="Source Sans 3, sans-serif" font-size="13" font-weight="600" fill="#f0e8dc" text-anchor="middle">BP</text>
+      <rect x="406" y="80" width="268" height="44" fill="white" stroke="#e0d8c8"/>
+      <rect x="414" y="88" width="180" height="6" fill="#aa3c3c"/>
+      <rect x="414" y="100" width="250" height="4" fill="#d8cfb8"/>
+      <rect x="414" y="109" width="210" height="4" fill="#d8cfb8"/>
+      <rect x="406" y="132" width="268" height="44" fill="white" stroke="#e0d8c8"/>
+      <rect x="414" y="140" width="155" height="6" fill="#aa3c3c"/>
+      <rect x="414" y="152" width="240" height="4" fill="#d8cfb8"/>
+      <rect x="414" y="161" width="220" height="4" fill="#d8cfb8"/>
+      <rect x="406" y="184" width="268" height="44" fill="white" stroke="#e0d8c8"/>
+      <rect x="414" y="192" width="200" height="6" fill="#aa3c3c"/>
+      <rect x="414" y="204" width="250" height="4" fill="#d8cfb8"/>
+      <rect x="414" y="213" width="190" height="4" fill="#d8cfb8"/>
+      <text x="540" y="296" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle" font-weight="700">株価と投資情報</text>
+      <text x="540" y="318" font-family="Source Sans 3, sans-serif" font-size="12" fill="#7a6a55" text-anchor="middle">金融記事を多く読む人の画面</text>
+    </svg>
+    <p class="diag-sub">パリサーが2011年の著書で紹介した、二人の友人による「BP」検索の比較。同じ検索語から、まったく別の世界が立ち上がる。</p>
+  </div>
+
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="./eli_pariser.jpg" alt="Eli Pariser speaking at Knight Foundation Media Learning Seminar 2012" style="width:100%;height:auto;display:block;">
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">Eli Pariser</p>
+      <p class="person-block-role">Activist · Author</p>
+      <p class="person-block-desc">1980年生まれ。政治活動家であり起業家。MoveOn.org元事務局長、Avaaz・Upworthy共同創業者。2011年の著書『The Filter Bubble』と同年3月のTED Talkで同概念を世に出した。現在はNew_ Public共同代表として「民主主義と親和的なデジタル公共空間」の設計に取り組む。<a href="https://en.wikipedia.org/wiki/Eli_Pariser" target="_blank" rel="noopener" style="color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.3);">Wikipedia →</a><br><span style="display:block;margin-top:8px;font-size:10px;color:#b0a090;">Photo: Al Diaz / Knight Foundation, <a href="https://commons.wikimedia.org/wiki/File:Eli_Pariser,_author_of_The_Filter_Bubble_-_Flickr_-_Knight_Foundation.jpg" target="_blank" rel="noopener" style="color:#b0a090;border-bottom:1px dotted #c8bfaa;">CC BY-SA 2.0</a></span></p>
+    </div>
+  </div>
+
+  <p class="body-text fade">パリサーはこれに「<em>フィルターバブル</em>」という名前をつけた。個人化アルゴリズムが、ユーザーの過去の行動履歴から好みを推定し、見せる情報を自動的に絞り込む。ひとりひとりの周りに、目に見えない情報の泡が膨らんでいく。泡の中にいる限り、その壁は感じられない。泡は壁だと気づいたときには、もう外の景色がどうなっていたか思い出せなくなっている。</p>
+
+  <p class="body-text fade">似た警告は、実はもう少し前からあった。法学者のキャス・<span class="tip" onclick="toggleTip(this)">サンスティーン<span class="tip-box"><strong>Cass Sunstein</strong><br>アメリカの法学者。ハーバード大学教授。行動経済学・法と公共政策の研究で知られ、2001年の著書『Republic.com』でインターネットが「エコーチェンバー」を生むと警告した。Pariserの『The Filter Bubble』(2011)の10年前。</span></span>は2001年の著書『Republic.com』で、ネット時代の人は自分の好きな意見だけを集めた「共鳴室(echo chamber)」に閉じこもるようになる、と警告していた。ふたつの概念はよく似ていて、実際ほとんど同じ意味で使われている。だが、厳密には指しているものが違う。</p>
+
+  <!-- Compare table -->
+  <div class="cmp-tbl fade">
+    <table>
+      <thead>
+        <tr><th></th><th class="fb-col">フィルターバブル</th><th class="ec-col">エコーチェンバー</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>名付け親</td><td>イーライ・パリサー(2011)</td><td>キャス・サンスティーン(2001)</td></tr>
+        <tr><td>誰が絞るか</td><td>アルゴリズム(自動的に)</td><td>自分(意識的に)</td></tr>
+        <tr><td>ユーザーの役割</td><td>受動 — 気づかないうちに</td><td>能動 — 選んでそこに入る</td></tr>
+        <tr><td>比喩</td><td>透明な壁に囲まれた部屋</td><td>同じ声が反射して返ってくる部屋</td></tr>
+        <tr><td>脱出しやすさ</td><td>壁があることに気づきにくい</td><td>居心地がよくて出る動機がない</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="body-text fade">フィルターバブルは、自分では壁を作っていない。<span class="tip" onclick="toggleTip(this)">アルゴリズム<span class="tip-box"><strong>アルゴリズム</strong><br>問題を解くための手順。ここでは、ユーザーの過去のクリックや滞在時間などのデータから、次にどの情報を上位に出すかを決める計算ルールのこと。推薦システムの中核。</span></span>が過去の<span class="tip" onclick="toggleTip(this)">選択的接触<span class="tip-box"><strong>選択的接触(selective exposure)</strong><br>社会心理学の用語。自分の既存の意見を支持する情報を優先的に選び、反する情報を避ける傾向のこと。1960年代から研究されている基本的な人間の習性。</span></span>のパターンから「たぶんこれが好き」と推定し、気づかないうちに壁を建てる。一方エコーチェンバーは、自分で友達を選び、自分でアカウントをフォローし、自分で居心地のいい部屋に入っていく。どちらも結果としては同じ場所に着地する——異論が届かない場所に。</p>
+
+  <!-- ============ 2. 誰がバブルを作っているのか ============ -->
+  <div class="sec-rule fade"><span class="sec-label">Mechanism</span><span class="sec-line"></span></div>
+  <h2 class="fade">誰がバブルを作っているのか</h2>
+
+  <p class="body-text fade">どうして、そもそも情報の偏りが生まれるのだろう。答えの半分は、人間の古い習性の中にある。社会学では昔から「<span class="tip" onclick="toggleTip(this)">同質性<span class="tip-box"><strong>同質性(homophily)</strong><br>社会学の概念。人は自分と似た属性・意見・趣味の他者と結びつく傾向がある、という現象。友人関係、結婚、SNSのフォロー関係、どれにも強く見られる。「類は友を呼ぶ」の学術版。</span></span>」と呼ぶ。人は、自分と似た人と結びつきやすい。似た政治観、似た趣味、似た語彙、似た笑いのつぼ。SNS時代にそれが始まったわけではなく、中学校の教室でもそうだった。変わったのは、好きな人たちだけで閉じた空間を作るコストが、ほぼゼロになったことだ。</p>
+
+  <div class="diag-wrap fade">
+    <p class="diag-title">友人ネットワークの二つの形</p>
+    <svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+      <!-- LEFT: diverse network -->
+      <text x="160" y="28" font-family="Source Sans 3, sans-serif" font-size="14" fill="#1a1208" text-anchor="middle" font-weight="700">多様な網</text>
+      <text x="160" y="48" font-family="Source Sans 3, sans-serif" font-size="12" fill="#7a6a55" text-anchor="middle">異なる色の点同士が繋がっている</text>
+      <!-- diverse edges -->
+      <g stroke="#c8bfaa" stroke-width="1">
+        <line x1="80" y1="120" x2="160" y2="90"/>
+        <line x1="80" y1="120" x2="130" y2="180"/>
+        <line x1="160" y1="90" x2="230" y2="120"/>
+        <line x1="160" y1="90" x2="200" y2="180"/>
+        <line x1="230" y1="120" x2="250" y2="200"/>
+        <line x1="130" y1="180" x2="200" y2="180"/>
+        <line x1="200" y1="180" x2="250" y2="200"/>
+        <line x1="130" y1="180" x2="80" y2="220"/>
+        <line x1="80" y1="220" x2="200" y2="180"/>
+        <line x1="80" y1="120" x2="230" y2="120"/>
+      </g>
+      <!-- diverse nodes (mixed colors) -->
+      <circle cx="80" cy="120" r="11" fill="#3c64aa" stroke="white" stroke-width="2"/>
+      <circle cx="160" cy="90" r="11" fill="#aa3c3c" stroke="white" stroke-width="2"/>
+      <circle cx="230" cy="120" r="11" fill="#3c64aa" stroke="white" stroke-width="2"/>
+      <circle cx="130" cy="180" r="11" fill="#aa3c3c" stroke="white" stroke-width="2"/>
+      <circle cx="200" cy="180" r="11" fill="#7a7a7a" stroke="white" stroke-width="2"/>
+      <circle cx="250" cy="200" r="11" fill="#aa3c3c" stroke="white" stroke-width="2"/>
+      <circle cx="80" cy="220" r="11" fill="#7a7a7a" stroke="white" stroke-width="2"/>
+      <!-- divider -->
+      <line x1="320" y1="60" x2="320" y2="250" stroke="#e0d8c8" stroke-width="1" stroke-dasharray="4 4"/>
+      <!-- RIGHT: homophilous network -->
+      <text x="480" y="28" font-family="Source Sans 3, sans-serif" font-size="14" fill="#1a1208" text-anchor="middle" font-weight="700">同質な網</text>
+      <text x="480" y="48" font-family="Source Sans 3, sans-serif" font-size="12" fill="#7a6a55" text-anchor="middle">同じ色の点同士が密に結びついている</text>
+      <!-- two clusters -->
+      <g stroke="#c8bfaa" stroke-width="1">
+        <!-- left cluster -->
+        <line x1="400" y1="100" x2="440" y2="140"/>
+        <line x1="400" y1="100" x2="380" y2="170"/>
+        <line x1="440" y1="140" x2="380" y2="170"/>
+        <line x1="440" y1="140" x2="420" y2="210"/>
+        <line x1="380" y1="170" x2="420" y2="210"/>
+        <!-- right cluster -->
+        <line x1="520" y1="100" x2="560" y2="140"/>
+        <line x1="520" y1="100" x2="540" y2="170"/>
+        <line x1="560" y1="140" x2="540" y2="170"/>
+        <line x1="560" y1="140" x2="580" y2="210"/>
+        <line x1="540" y1="170" x2="580" y2="210"/>
+        <!-- weak tie (dashed) -->
+        <line x1="440" y1="140" x2="520" y2="100" stroke-dasharray="3 4" stroke="#d8cfb8"/>
+      </g>
+      <!-- left cluster nodes (all blue) -->
+      <circle cx="400" cy="100" r="11" fill="#3c64aa" stroke="white" stroke-width="2"/>
+      <circle cx="440" cy="140" r="11" fill="#3c64aa" stroke="white" stroke-width="2"/>
+      <circle cx="380" cy="170" r="11" fill="#3c64aa" stroke="white" stroke-width="2"/>
+      <circle cx="420" cy="210" r="11" fill="#3c64aa" stroke="white" stroke-width="2"/>
+      <!-- right cluster nodes (all red) -->
+      <circle cx="520" cy="100" r="11" fill="#aa3c3c" stroke="white" stroke-width="2"/>
+      <circle cx="560" cy="140" r="11" fill="#aa3c3c" stroke="white" stroke-width="2"/>
+      <circle cx="540" cy="170" r="11" fill="#aa3c3c" stroke="white" stroke-width="2"/>
+      <circle cx="580" cy="210" r="11" fill="#aa3c3c" stroke="white" stroke-width="2"/>
+    </svg>
+    <p class="diag-sub">左は異なる意見(色)同士が繋がった網。右は同質のクラスタが固まり、橋渡しが細い破線ひとつ分しかない網。後者のような構造が、情報の壁のない閉鎖空間を作る。</p>
+  </div>
+
+  <p class="body-text fade">同じ意見の人だけで固まっているネットワークでは、誰かが何かを投稿すると、それが同じ色の点の間で何度も拡散する。反対意見は、そもそも到達しない。検索エンジンや推薦システムは、この人間の傾向を「入力データ」として受け取っている。ユーザーが似た色の記事ばかりクリックすれば、アルゴリズムは「この人には似た色を優先的に出そう」と学習する。ここに、技術と習性のフィードバックループが立ち上がる。</p>
+
+  <p class="body-text fade">ひらたく言えば、アルゴリズムが一方的にバブルを作っているわけではない。アルゴリズムは、自分のクリックを反射して返してきているだけだ。<em>鏡は、覗いた人の顔を映しているにすぎない</em>。けれど、映されたものが次の自分の選択を決め、その選択がまた次の表示を決める。鏡は、やがて自分で像を歪ませ始める。</p>
+
+  <!-- Algo strength interactive slider -->
+  <div class="ix-wrap fade">
+    <div class="widget-header">
+      <span class="widget-header-dot"></span>
+      <span class="widget-header-title">理解補助 — 推薦アルゴリズムの強さ</span>
+      <span class="widget-header-meta">INTERACTIVE</span>
+    </div>
+    <div class="ix-context">想定:この人は過去に「赤の記事(自分の意見に近い側)」を多めに選んできた</div>
+    <p class="ix-desc">スライダーを動かすと、アルゴリズムがこの過去をどれだけ強く反映するかに応じて、次に表示される18枠のフィードが変わる。左に振るほど過去は無視され、右に振るほど過去の癖が色濃く反映される。</p>
+    <div class="ix-row">
+      <span class="ix-label">個人化の強さ</span>
+      <input type="range" min="0" max="100" value="50" class="ix-slider" id="algoSlider">
+      <span class="ix-val" id="algoVal">50%</span>
+    </div>
+    <div class="ix-extremes"><span>◀ 個人化なし(ほぼ等分)</span><span>極端な個人化 ▶</span></div>
+    <div class="ix-canvas-wrap">
+      <canvas id="algoCanvas" width="560" height="140"></canvas>
+    </div>
+    <div class="ix-counts">
+      <div class="ix-count-cell L"><span class="ix-count-lbl">反対意見(青)</span><span class="ix-count-val" id="cntL">6</span></div>
+      <div class="ix-count-cell C"><span class="ix-count-lbl">中立(灰)</span><span class="ix-count-val" id="cntC">6</span></div>
+      <div class="ix-count-cell R"><span class="ix-count-lbl">同意(赤)</span><span class="ix-count-val" id="cntR">6</span></div>
+    </div>
+    <p class="ix-note">スライダーを右に振ると、赤の記事が画面を埋め尽くし、青の記事がほぼ消える。これが「過去のクリックで、見える世界の形が決まる」ということだ。個人化ゼロでも完全に均等にならないのは、現実のニュース供給自体に偏りがあるため。</p>
+  </div>
+
+  <!-- Misconception -->
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">アルゴリズムがすべて悪い。個人化をオフにすれば、私たちは本来のバランスの取れた情報空間に戻れる。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">アルゴリズムをオフにしても、自分で好きな記事だけクリックする習性は残る。2015年のFacebookの研究では、アルゴリズムよりも自分の選択の方が、異論への接触を大きく減らしていた。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">フィルターバブルとエコーチェンバーは、同じことを別の言葉で言っているだけだ。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">前者は機械の側の問題、後者は人間の側の問題。どちらが支配的かで、取るべき対処も変わる。よく混同されるが、もともとは別の概念として提案された。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bubble reflection photo -->
+  <figure class="photo-figure fade">
+    <img src="./bubble_reflection.jpg" alt="夜の闇に浮かぶ一個のシャボン玉。表面に別の風景が映り込んでいる">
+    <figcaption class="photo-caption">
+      <em>泡の内側に、もう一つの世界が立ち上がっている。</em>&nbsp;&nbsp;<br>
+      <span class="photo-credit">Photo: <a href="https://www.pexels.com/photo/reflection-on-soap-bubbles-in-close-up-shot-13812410/" target="_blank" rel="noopener">Tanmay Ghosh / Pexels</a></span>
+    </figcaption>
+  </figure>
+
+  <!-- ============ 3. 体験セクション ============ -->
+  <div class="sec-rule fade"><span class="sec-label">Experience</span><span class="sec-line"></span></div>
+  <h2 class="fade">10ラウンドで、あなたの世界は変わる</h2>
+
+  <p class="body-text fade">ここで、自分の指で泡を膨らませてみてほしい。下のシミュレーターは、9つのニュース記事を並べる。中には中立のもの、やや左寄りのもの、やや右寄りのものが等分に混ざっている。あなたは「読んでみたい」と思うものを、毎ラウンド1つだけクリックする。</p>
+
+  <p class="body-text fade">クリックされた瞬間、裏側のアルゴリズムは静かに学習する。次のラウンドでは、あなたが前に選んだ種類の記事が、ほんの少しだけ多めに出る。もう1ラウンド進むと、もう少し多めに。10ラウンド回したとき、フィードは最初の姿とどれほど違っているだろう。</p>
+
+  <!-- MAIN SIMULATOR -->
+  <div class="sim-wrap fade">
+    <div class="widget-header">
+      <span class="widget-header-dot"></span>
+      <span class="widget-header-title">クリック・フィードバックループ・シミュレーター</span>
+      <span class="widget-header-meta">10 ROUNDS</span>
+    </div>
+    <p class="sim-sub" style="margin-bottom:14px;">自分のクリックが、次に見る世界をどう変えるかを10ラウンドで体験する。</p>
+    <div class="sim-rules">
+      <strong>ルール。</strong> 各ラウンドで、表示された9つの記事から「読んでみたい」ものを1つだけクリックする。アルゴリズムがあなたの好みを学習し、次のラウンドの表示比率を更新する。下のメーターは、現在フィードに出ている意見分布の実際の割合を示す。
+    </div>
+    <div class="sim-stage">
+      <div class="sim-feed" id="simFeed"></div>
+    </div>
+    <div class="sim-meter-wrap">
+      <p class="sim-meter-label"><span>フィードに出ている意見の分布</span><span id="simMeterVal">L 33% / C 33% / R 33%</span></p>
+      <div class="sim-bars">
+        <div class="sim-bar L" id="simBarL" style="flex:1;"></div>
+        <div class="sim-bar C" id="simBarC" style="flex:1;"></div>
+        <div class="sim-bar R" id="simBarR" style="flex:1;"></div>
+      </div>
+      <div class="sim-legend">
+        <span><span class="sim-legend-sq L"></span>左寄り</span>
+        <span><span class="sim-legend-sq C"></span>中立</span>
+        <span><span class="sim-legend-sq R"></span>右寄り</span>
+      </div>
+    </div>
+    <div class="sim-ctrl">
+      <span class="sim-round">ラウンド <strong id="simRound">1</strong> / 10</span>
+      <button class="sim-btn secondary" id="simReset">リセット</button>
+      <button class="sim-btn" id="simAuto">自動で10ラウンド回す</button>
+    </div>
+    <div class="sim-status" id="simStatus"></div>
+  </div>
+
+  <p class="body-text fade">自動で回すボタンを押すと、最初のクリックで選んだ色を毎回選び続けるユーザーの挙動を10ラウンド分一気に再生する。ほとんどの場合、最初はほぼ等分だった分布が、最後には3分の2以上が同じ色に染まっている。ここで注目してほしいのは、アルゴリズムが極端に強い設定をしているわけではないということだ。毎ラウンドほんの少しずつ好みに寄せているだけで、10回重ねれば、景色はここまで変わる。</p>
+
+  <p class="body-text fade">もうひとつ、試してほしいことがある。リセットしたあと、今度は<em>わざと反対側をクリック</em>し続けてみる。泡は、壊せるだろうか。動かしてみるとわかるが、少しの逆流では足りない。泡を元に戻すには、同じ回数だけ反対を選び続けなければならない。壁の外に出るのは、壁の中に入るより何倍も意志の力が要る。</p>
+
+  <!-- ============ 4. メカニズム・なぜか ============ -->
+  <div class="sec-rule fade"><span class="sec-label">Why</span><span class="sec-line"></span></div>
+  <h2 class="fade">犯人はアルゴリズムではなかった</h2>
+
+  <p class="body-text fade">2015年、Facebook のデータサイエンティストたちが Science 誌に論文を出した。著者はエイタン・バクシー、ソロモン・メッシング、レイダ・アダミック。自分たちの政治的立場を明示している米国のユーザー 1,010 万人を対象に、友人が共有したニュース、Facebook のニュースフィードが実際に表示したニュース、そして本人がクリックしたニュースの3段階を調べた。目的はひとつ——フィルターバブルは本当に存在するか。</p>
+
+  <div class="flow-wrap fade">
+    <p class="flow-title">3つの段階での「反対意見への触れ率」の落ち方</p>
+    <svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+      <!-- stage 1: base -->
+      <rect x="30" y="60" width="200" height="130" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.5"/>
+      <text x="130" y="98" font-family="Source Sans 3, sans-serif" font-size="15" fill="#1a1208" text-anchor="middle" font-weight="700">友人の網</text>
+      <text x="130" y="122" font-family="Source Sans 3, sans-serif" font-size="12" fill="#7a6a55" text-anchor="middle">共有されたニュース</text>
+      <text x="130" y="166" font-family="Playfair Display, serif" font-size="28" fill="#8b1a1a" text-anchor="middle" font-weight="700">ベース</text>
+
+      <!-- stage 2: algorithm -->
+      <rect x="280" y="60" width="200" height="130" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.5"/>
+      <text x="380" y="98" font-family="Source Sans 3, sans-serif" font-size="15" fill="#1a1208" text-anchor="middle" font-weight="700">アルゴリズム後</text>
+      <text x="380" y="122" font-family="Source Sans 3, sans-serif" font-size="12" fill="#7a6a55" text-anchor="middle">フィードに実際に出た</text>
+      <text x="380" y="166" font-family="Playfair Display, serif" font-size="32" fill="#8b1a1a" text-anchor="middle" font-weight="700">−15%</text>
+
+      <!-- stage 3: click -->
+      <rect x="530" y="60" width="200" height="130" fill="#3d3020" stroke="#3d3020" stroke-width="1.5"/>
+      <text x="630" y="98" font-family="Source Sans 3, sans-serif" font-size="15" fill="#e8ddd0" text-anchor="middle" font-weight="700">クリック後</text>
+      <text x="630" y="122" font-family="Source Sans 3, sans-serif" font-size="12" fill="#c8bfaa" text-anchor="middle">本人が読んだ</text>
+      <text x="630" y="166" font-family="Playfair Display, serif" font-size="32" fill="#e8c56a" text-anchor="middle" font-weight="700">−70%</text>
+
+      <!-- arrows -->
+      <path d="M 232 125 L 278 125" stroke="#7a6a55" stroke-width="2" fill="none"/>
+      <path d="M 270 120 L 278 125 L 270 130" stroke="#7a6a55" stroke-width="2" fill="none"/>
+      <path d="M 482 125 L 528 125" stroke="#7a6a55" stroke-width="2" fill="none"/>
+      <path d="M 520 120 L 528 125 L 520 130" stroke="#7a6a55" stroke-width="2" fill="none"/>
+
+      <!-- labels under arrows -->
+      <text x="255" y="224" font-family="Source Sans 3, sans-serif" font-size="13" fill="#7a6a55" text-anchor="middle">アルゴリズムの効果</text>
+      <text x="505" y="224" font-family="Source Sans 3, sans-serif" font-size="13" fill="#7a6a55" text-anchor="middle">自分の選択の効果</text>
+
+      <text x="380" y="284" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle" font-style="italic">減らしているのは、アルゴリズムよりも自分自身の指先</text>
+    </svg>
+  </div>
+
+  <p class="body-text fade">結果は、技術決定論を信じたい人には不都合なものだった。友人ネットワークが共有したニュースと比べて、Facebook のアルゴリズムは異なるイデオロギーのニュース(cross-cutting content)への露出を約15%減らしていた。確かに、アルゴリズムは泡を作っていた。けれど、その先で起きていることの方がはるかに大きかった——ユーザー本人がクリックする段階で、さらに約70%が消えていた。</p>
+
+  <!-- Number card -->
+  <div class="numcard fade">
+    <div class="numcard-cell">
+      <p class="numcard-lbl">アルゴリズムによる減少</p>
+      <p class="numcard-val">−15<span class="pct">%</span></p>
+      <p class="numcard-desc">フィードに実際に表示される段階で、反対意見への露出がこれだけ減る</p>
+    </div>
+    <div class="numcard-cell">
+      <p class="numcard-lbl">自分のクリック選択による減少</p>
+      <p class="numcard-val">−70<span class="pct">%</span></p>
+      <p class="numcard-desc">表示された反対意見のうち、この割合を自分でクリックしない</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">この研究は当時、大きな論争を呼んだ。Facebook が自社の問題をうやむやにしているだけだという批判も強かった。実際、論文の著者3人は全員 Facebook の社員であり、利益相反の問題は指摘された。けれど重要なのは、その後 Twitter や YouTube を対象にした独立研究もおおむね似た方向の結果を出していることだ。技術は確かに作用しているが、それ以上に人間の<span class="tip" onclick="toggleTip(this)">確証バイアス<span class="tip-box"><strong>確証バイアス</strong><br>自分の既存の信念を支持する情報を優先的に探し、反する情報を軽視する傾向。1960年代のウェイソン実験以来、最もよく再現されている認知バイアスのひとつ。Qualia Journalの別記事「確証バイアス」でも詳しく扱っている。</span></span>が効いている。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">The filter is invisible by design. It shows you what it thinks you want to see, but you don't see what it decided you don't want to see.</p>
+    <p class="quote-ja">フィルターは設計上、目に見えない。「あなたが見たいだろう」と判断したものを見せてくるが、「あなたは見たくないだろう」と判断して隠したものは、あなたには見えない。</p>
+    <p class="quote-attr">— Eli Pariser, The Filter Bubble (2011)</p>
+  </div>
+
+  <!-- ============ 5. 歴史セクション ============ -->
+  <div class="sec-rule fade"><span class="sec-label">History</span><span class="sec-line"></span></div>
+  <h2 class="fade">情報の壁を巡る30年</h2>
+
+  <div class="timeline fade">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1995</p>
+      <p class="tl-title">Negroponte — 「Daily Me」の構想</p>
+      <p class="tl-desc">MITのニコラス・ネグロポンテが著書『Being Digital』で、一人ひとりの興味に完全に合わせた新聞「Daily Me(私の日刊紙)」という構想を肯定的に提示する。当時はまだ希望の比喩だった。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2001</p>
+      <p class="tl-title">Sunstein — 『Republic.com』でエコーチェンバーを警告</p>
+      <p class="tl-desc">法学者キャス・サンスティーンが、Negroponte の構想を反転させた警告として「エコーチェンバー」概念を提唱。ネットは民主主義に必要な異論への偶発的な遭遇を奪うかもしれない、と書いた。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2011</p>
+      <p class="tl-title">Pariser — 『The Filter Bubble』とTED Talk</p>
+      <p class="tl-desc">活動家のイーライ・パリサーが3月のTED Talkで「BP検索」の実例を示し、同年5月に書籍を刊行。Google は57種類のデータを使ってユーザーをプロファイリングしている、と内部情報を引用した。同じ年、アラブの春が中東を駆け抜けていた。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2015</p>
+      <p class="tl-title">Bakshy et al. — Science誌の反証</p>
+      <p class="tl-desc">Facebook の3名の研究者が1,010万ユーザーを対象にした大規模実証研究をScience誌に発表。アルゴリズムの影響よりも、ユーザー自身のクリック選択の方が大きいと報告する。論争を呼んだが、その後の独立研究も同じ方向を支持している。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2016</p>
+      <p class="tl-title">米大統領選と「Brexit」投票 — 概念の一般化</p>
+      <p class="tl-desc">トランプ当選とBrexit 決定をきっかけに、「フィルターバブル」「エコーチェンバー」という語が学術用語を離れ、政治記事とSNSの日常語になる。オバマは退任演説で「自分の泡に引きこもる方が安全になった」と述べた。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2023</p>
+      <p class="tl-title">Meta・Nyhan らの大規模実験</p>
+      <p class="tl-desc">2020年米大統領選の前後に、Meta の協力で研究者らが数万人のユーザーに対するアルゴリズム介入実験を実施。ニュースフィードを時系列順に戻しても、政治的態度や知識はほとんど変わらないという、やはり技術決定論に不利な結果が Science と Nature に掲載された。</p>
+    </div>
+  </div>
+
+  <!-- ============ 6. つまり ============ -->
+  <div class="sec-rule fade"><span class="sec-label">Reflection</span><span class="sec-line"></span></div>
+  <h2 class="fade">鏡の前にいるのは、自分だ</h2>
+
+  <p class="body-text fade">もう一度整理しておく。アルゴリズムは無実ではない。透明な壁を積み重ねているのは確かに機械の側だ。けれど、その壁にいちばん多く煉瓦を足しているのは、自分自身の指先なのかもしれない。サンスティーンが警告したエコーチェンバーと、パリサーが名付けたフィルターバブル——ふたつは別々に語られる概念だったが、実際の世界では互いを強化し合っている。機械がユーザーの好みを学び、ユーザーがその学びをさらに強化し、機械がまたその結果を次の表示に織り込む。鏡と観客の区別が、だんだん曖昧になっていく。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">Personalization filters serve up a kind of <em>invisible autopropaganda</em>, indoctrinating us with our own ideas.</p>
+    <p class="pull-q" style="font-size:15px;color:#7a6a55;margin-top:10px;font-family:'Source Serif 4',serif;font-weight:300;">個人化フィルターは、いわば見えない自動プロパガンダだ。私たち自身の考えで、私たち自身を洗脳する。</p>
+    <p class="pull-attr">— Eli Pariser, The Filter Bubble (2011)</p>
+  </div>
+
+  <p class="body-text fade">ここで素朴な期待をひとつ潰しておきたい。「自覚すれば防げる」という期待だ。研究の多くは、この期待を支持していない。フィルターバブルの存在を知った人でも、次の10分間に自分のSNSを開くとき、やはり同じ癖で同じ記事をタップしてしまう。知識は、習慣を止めるには小さすぎる力だ。</p>
+
+  <p class="body-text fade">では、何ができるのか。万能ではないが、いくつかの手がかりはある。自分が「当然」と思う意見に反対している人のアカウントを、いくつか意識的にフォローしておく。検索するとき、ときどき別のブラウザや別のアカウントで同じ語を試してみる。推薦アルゴリズムに対して、時どきあえて反対側をクリックしてノイズを入れる。どれも地味で、どれも一回では効かない。泡を膨らませる速度と同じだけ、しぼませる手間がかかる、というだけのことだ。</p>
+
+  <div class="culture-block fade">
+    <p class="culture-label">作品・社会への登場</p>
+    <div class="culture-item">
+      <p class="culture-title">『監視資本主義:デジタル社会がもたらす光と影』(2020, Netflix)</p>
+      <p class="culture-desc">Jeff Orlowski監督のドキュメンタリー。元Google, Facebook, Pinterest などの社員が登場し、推薦アルゴリズムが人間の注意をどう設計しているかを告発する。フィルターバブルという語が日常語として定着した作品のひとつ。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">オバマ米大統領 退任演説(2017年1月)</p>
+      <p class="culture-desc">演説の中盤で「自分の泡に引きこもる方が安全になった」と述べ、民主主義の前提としての「異論への偶発的な遭遇」の重要性を訴えた。フィルターバブルという語が政治演説で使われた最初期の例。</p>
+    </div>
+  </div>
+
+  <!-- ============ 7. 参考文献 ============ -->
+  <div class="sec-rule fade"><span class="sec-label">References</span><span class="sec-line"></span></div>
+  <h2 class="fade">参考文献</h2>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">2011</span></div>
+      <p class="ref-title">The Filter Bubble: What the Internet Is Hiding from You</p>
+      <p class="ref-author">Eli Pariser · Penguin Press</p>
+      <p class="ref-desc">概念の原典。BP検索の逸話はここから。Google が個人化に使っている57種類のデータへの言及など、当時としては内部事情に踏み込んだ記述が多く、読むと10年前のネットの空気まで立ち上がる。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2015</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1126/science.aaa1160" target="_blank" rel="noopener">Exposure to ideologically diverse news and opinion on Facebook</a></p>
+      <p class="ref-author">E. Bakshy, S. Messing, L. A. Adamic · Science, 348(6239), 1130-1132 · DOI: 10.1126/science.aaa1160</p>
+      <p class="ref-desc">1,010万ユーザーを対象にした大規模実証研究。アルゴリズムと自分の選択のどちらが異論を遠ざけているか、の分解が数字で読める。論争の渦中に置かれた論文だが、その後の独立研究も同じ方向を支持している。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">2001</span></div>
+      <p class="ref-title">Republic.com</p>
+      <p class="ref-author">Cass R. Sunstein · Princeton University Press</p>
+      <p class="ref-desc">エコーチェンバー概念を提唱した原典。2017年の『#Republic』で増補改訂。民主主義には「偶発的な異論への遭遇」が必要だ、という議論の骨格はここにある。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2016</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1093/poq/nfw006" target="_blank" rel="noopener">Filter Bubbles, Echo Chambers, and Online News Consumption</a></p>
+      <p class="ref-author">S. Flaxman, S. Goel, J. M. Rao · Public Opinion Quarterly, 80(S1), 298-320 · DOI: 10.1093/poq/nfw006</p>
+      <p class="ref-desc">Bakshy et al. と独立に、米国ユーザー5万人のブラウザ履歴を解析した研究。ソーシャルメディアと検索は確かにイデオロギー的分離を増やすが、その効果は絶対値としては小さいと結論する。反証系の代表的論文。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Talk</span><span class="ref-year">2011</span></div>
+      <p class="ref-title"><a href="https://www.ted.com/talks/eli_pariser_beware_online_filter_bubbles" target="_blank" rel="noopener">Beware online "filter bubbles" — TED Talk</a></p>
+      <p class="ref-author">Eli Pariser · TED2011 · 9分</p>
+      <p class="ref-desc">書籍より前に概念を世に広めた9分のトーク。「Egypt」で検索したときに友人間で結果がどれだけ違ったか、という実例を画像付きで提示しており、本が長すぎる人はまずこちらを観ると全体の空気がつかめる。</p>
+    </div>
+  </div>
+
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    この記事は、Pariser 2011とBakshy et al. 2015、Flaxman et al. 2016など、一次資料と査読論文を主な根拠にしている。フィルターバブルとエコーチェンバーの「効果の大きさ」は現在も研究者の間で議論が続いている領域で、両側の見解を並べる形で書いた。2015年のFacebook研究に対しては利益相反の指摘があったため、独立系の後続研究(Flaxman et al. や2023年のMeta協力大規模実験)を併記している。
+  </div>
+
+  <p class="signature fade">e. Tamaki</p>
+
+  <div class="tags fade">
+    <span class="tag">フィルターバブル</span>
+    <span class="tag">エコーチェンバー</span>
+    <span class="tag">アルゴリズム</span>
+    <span class="tag">SNS</span>
+    <span class="tag">確証バイアス</span>
+    <span class="tag">情報環境</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">57</p>
+      <p class="sidebar-text">2011年時点で、Googleがユーザーの検索結果を個人化するために見ていたとされるデータ項目の種類。クッキーだけでなく、使用端末、位置情報、過去の検索クリック傾向などが含まれる。Pariserが元エンジニアから聞いた数字。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">「個人化された情報」という発想自体は1995年の<strong>Negroponte</strong>「Daily Me」まで遡る。当時は希望の言葉だった。わずか6年後の2001年にサンスティーンが反転させて警告に変え、10年後にパリサーが名前を与えた。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">ドキュメンタリー『<em>監視資本主義</em>』(2020)で中心概念として扱われる。オバマ退任演説(2017)でも言及。<strong>Brexit</strong>・米大統領選以降、政治評論の日常語になった。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— 確証バイアス<br>— アテンション・エコノミー<br>— スキューモーフィズム<br>— 相関は因果ではない</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">概念自体は広く認知されているが、「効果の大きさ」については実証研究の結果が分かれている。Pariserの直感とBakshyらのデータを並置した。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// フィルターバブルとエコーチェンバー を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ結局、アルゴリズムと自分、どっちが悪いんだ?</span></div>
+      <span class="t-output" id="to1">両方。ただ、<strong>比率が違う</strong>というのが15%と70%の話。機械を責めるより、自分の指先を見た方が泡の壁は分厚い。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;気づいたら防げるんじゃないの</span></div>
+      <span class="t-output" id="to2">研究はそう言っていない。<em>知識は、習慣を止めるには小さすぎる力</em>。気づいた次の瞬間にも、同じ色の記事をタップしている自分がいる。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ、どうすればいい</span></div>
+      <span class="t-output" id="to3">反対側のアカウントを1つだけフォローする。検索を別ブラウザで試す。地味。効くまで時間がかかる。でも、<strong>泡を膨らませた速度と同じだけ時間をかける</strong>しかない。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 鏡、今日は一回だけ逆から覗いてみる</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/confirmation_bias">
+      <p class="related-card-tag">認知バイアス</p>
+      <p class="related-card-title">確証バイアス</p>
+      <p class="related-card-desc">フィルターバブルの「人間側」の正体。自分の信じたい情報だけを集める癖は、アルゴリズムが生まれる前からあった。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="#">
+      <p class="related-card-tag">科学と文化</p>
+      <p class="related-card-title">アテンション・エコノミー</p>
+      <p class="related-card-desc">1971年、サイモンが予言した「情報の希少資源は注意力」という話。フィルターバブルは、その注意の取り合いから生まれた。</p>
+      <p class="related-card-arrow">近日公開</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2026 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// scroll progress
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// fade-in
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// tooltip (toast)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+/* =============================================
+   ALGO STRENGTH SLIDER (understanding aid)
+   ============================================= */
+(function(){
+  const slider=document.getElementById('algoSlider');
+  const valEl=document.getElementById('algoVal');
+  const cv=document.getElementById('algoCanvas');
+  if(!cv||!slider)return;
+  const ctx=cv.getContext('2d');
+  const dpr=window.devicePixelRatio||1;
+  function fit(){
+    const rect=cv.getBoundingClientRect();
+    cv.width=rect.width*dpr;
+    cv.height=140*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  // Articles: 18 boxes. Assume user's past taste leans red.
+  // At 0% personalization: baseline mix (6 L, 6 C, 6 R)
+  // At 100%: almost all R.
+  function draw(){
+    fit();
+    const W=cv.getBoundingClientRect().width;
+    const H=140;
+    ctx.clearRect(0,0,W,H);
+    const strength=parseInt(slider.value,10)/100;
+    const cols=9,rows=2,gap=6;
+    const cellW=(W-gap*(cols-1))/cols;
+    const cellH=(H-gap*(rows-1))/rows;
+    // determine counts of L/C/R for 18 boxes based on strength
+    // base 6/6/6. As strength->1, R -> 14, C -> 3, L -> 1
+    const total=18;
+    const rCount=Math.round(6 + (14-6)*strength);
+    const cCount=Math.round(6 + (3-6)*strength);
+    const lCount=total-rCount-cCount;
+    // build array (shuffled deterministically by strength for stability)
+    const arr=[];
+    for(let i=0;i<lCount;i++)arr.push('L');
+    for(let i=0;i<cCount;i++)arr.push('C');
+    for(let i=0;i<rCount;i++)arr.push('R');
+    // deterministic shuffle: interleave
+    const sorted=[];
+    // Try to spread the dominant class
+    const buckets={L:arr.filter(x=>x==='L'),C:arr.filter(x=>x==='C'),R:arr.filter(x=>x==='R')};
+    for(let i=0;i<total;i++){
+      // pick from largest remaining bucket
+      let best='L',bestLen=-1;
+      for(const k of ['R','C','L']){if(buckets[k].length>bestLen){bestLen=buckets[k].length;best=k;}}
+      sorted.push(buckets[best].shift());
+    }
+    const colors={L:'#3c64aa',C:'#999999',R:'#aa3c3c'};
+    for(let i=0;i<total;i++){
+      const col=i%cols,row=Math.floor(i/cols);
+      const x=col*(cellW+gap);
+      const y=row*(cellH+gap);
+      ctx.fillStyle=colors[sorted[i]]||'#ccc';
+      ctx.fillRect(x,y,cellW,cellH);
+      ctx.strokeStyle='rgba(255,255,255,0.5)';
+      ctx.lineWidth=1;
+      ctx.strokeRect(x+0.5,y+0.5,cellW-1,cellH-1);
+    }
+    // update live counts
+    const lEl=document.getElementById('cntL');
+    const cEl=document.getElementById('cntC');
+    const rEl=document.getElementById('cntR');
+    if(lEl)lEl.textContent=lCount;
+    if(cEl)cEl.textContent=cCount;
+    if(rEl)rEl.textContent=rCount;
+  }
+  slider.addEventListener('input',()=>{valEl.textContent=slider.value+'%';draw();});
+  window.addEventListener('resize',draw);
+  setTimeout(draw,50);
+  draw();
+})();
+
+/* =============================================
+   MAIN SIMULATOR
+   ============================================= */
+(function(){
+  const feedEl=document.getElementById('simFeed');
+  const roundEl=document.getElementById('simRound');
+  const barL=document.getElementById('simBarL');
+  const barC=document.getElementById('simBarC');
+  const barR=document.getElementById('simBarR');
+  const meterVal=document.getElementById('simMeterVal');
+  const resetBtn=document.getElementById('simReset');
+  const autoBtn=document.getElementById('simAuto');
+  const statusEl=document.getElementById('simStatus');
+  if(!feedEl)return;
+
+  // Each article: {t: title, c: category, m: time ago (固定ダミー値)}
+  const articlesPool={
+    L:[
+      {t:'気候変動対策、政府に新たな規制案',c:'環境',m:'2時間前'},
+      {t:'格差是正へ — 累進課税の強化議論',c:'経済',m:'5時間前'},
+      {t:'労働組合が全国で大規模ストライキ',c:'社会',m:'34分前'},
+      {t:'再生可能エネルギー補助金の拡大へ',c:'環境',m:'1時間前'},
+      {t:'移民支援NGOに記録的な寄付集まる',c:'社会',m:'3時間前'},
+      {t:'公的医療の無償化、国会で前進',c:'政治',m:'12分前'},
+      {t:'同性婚法制化、世論調査で賛成過半数',c:'社会',m:'6時間前'},
+      {t:'最低賃金、全国平均が過去最高に',c:'経済',m:'8時間前'},
+      {t:'環境NGO、プラスチック条約を歓迎',c:'環境',m:'4時間前'},
+      {t:'生活保護受給者支援、自治体が独自策',c:'社会',m:'21分前'},
+      {t:'脱原発、市民団体が署名運動展開',c:'社会',m:'7時間前'},
+      {t:'児童手当の所得制限撤廃を議論',c:'政治',m:'45分前'}
+    ],
+    C:[
+      {t:'金融市場、週明けに小幅な反発',c:'経済',m:'18分前'},
+      {t:'中央銀行が政策金利を据え置き',c:'経済',m:'2時間前'},
+      {t:'大学共通テスト、出題傾向を分析',c:'教育',m:'5時間前'},
+      {t:'宇宙望遠鏡、新たな銀河を観測',c:'科学',m:'9時間前'},
+      {t:'インフルエンザ流行期、例年並みに',c:'健康',m:'1時間前'},
+      {t:'国際会議、多国間協力の枠組み協議',c:'国際',m:'3時間前'},
+      {t:'新型半導体の量産、来年度から',c:'科学',m:'6時間前'},
+      {t:'気象庁、梅雨入りの見通し発表',c:'気象',m:'28分前'},
+      {t:'全国の鉄道、ダイヤ改正の概要',c:'社会',m:'4時間前'},
+      {t:'考古学チーム、新たな遺跡を発掘',c:'文化',m:'11時間前'},
+      {t:'ノーベル物理学賞、日本人研究者候補に',c:'科学',m:'7時間前'},
+      {t:'国連事務総長、気候会議の議題を説明',c:'国際',m:'50分前'}
+    ],
+    R:[
+      {t:'規制緩和で企業投資が過去最高',c:'経済',m:'1時間前'},
+      {t:'治安強化へ — 警察予算の増額方針',c:'政治',m:'3時間前'},
+      {t:'伝統文化継承事業、地方に広がる',c:'文化',m:'6時間前'},
+      {t:'国境警備、新技術の導入を発表',c:'政治',m:'23分前'},
+      {t:'減税策、中小企業の声を受けて',c:'経済',m:'2時間前'},
+      {t:'国防費増額、近隣情勢を背景に',c:'政治',m:'5時間前'},
+      {t:'憲法改正議論、与党内で再燃',c:'政治',m:'8時間前'},
+      {t:'移民審査、厳格化の方針を検討',c:'政治',m:'37分前'},
+      {t:'自衛隊の装備近代化、予算承認へ',c:'政治',m:'4時間前'},
+      {t:'伝統行事の保護条例、複数の自治体で制定',c:'文化',m:'9時間前'},
+      {t:'農業保護へ — 関税維持の方針確認',c:'経済',m:'14分前'},
+      {t:'経済界、法人税減税を政府に要望',c:'経済',m:'6時間前'}
+    ]
+  };
+  // Track used titles across rounds to reduce repetition
+  const sessionUsed={L:new Set(),C:new Set(),R:new Set()};
+
+  // state
+  let round=1;
+  let weights={L:1,C:1,R:1}; // relative weights determining next feed distribution
+  const MAX_ROUND=10;
+  const FEED_SIZE=9;
+
+  function pickFromPool(lean,used){
+    const pool=articlesPool[lean];
+    // Prefer articles not used in this round AND not used in recent rounds
+    const fresh=pool.filter(a=>!used.has(a.t)&&!sessionUsed[lean].has(a.t));
+    if(fresh.length>0){
+      const a=fresh[Math.floor(Math.random()*fresh.length)];
+      used.add(a.t);sessionUsed[lean].add(a.t);
+      return a;
+    }
+    // If session pool is exhausted for this lean, reset session tracking
+    if(sessionUsed[lean].size>=pool.length-1){
+      sessionUsed[lean].clear();
+    }
+    const notInRound=pool.filter(a=>!used.has(a.t));
+    if(notInRound.length>0){
+      const a=notInRound[Math.floor(Math.random()*notInRound.length)];
+      used.add(a.t);sessionUsed[lean].add(a.t);
+      return a;
+    }
+    return pool[0];
+  }
+
+  function buildFeed(){
+    // compute counts from weights
+    const total=weights.L+weights.C+weights.R;
+    let nL=Math.round(FEED_SIZE*weights.L/total);
+    let nC=Math.round(FEED_SIZE*weights.C/total);
+    let nR=FEED_SIZE-nL-nC;
+    if(nR<0){nR=0;nC=FEED_SIZE-nL;}
+    const seq=[];
+    for(let i=0;i<nL;i++)seq.push('L');
+    for(let i=0;i<nC;i++)seq.push('C');
+    for(let i=0;i<nR;i++)seq.push('R');
+    // shuffle
+    for(let i=seq.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [seq[i],seq[j]]=[seq[j],seq[i]];
+    }
+    const used=new Set();
+    // Random but stable fake action counts per card
+    function fakeCount(base){return base+Math.floor(Math.random()*base*2);}
+    feedEl.innerHTML='';
+    seq.forEach(lean=>{
+      const article=pickFromPool(lean,used);
+      const card=document.createElement('div');
+      card.className='sim-card';
+      card.dataset.lean=lean;
+
+      const metaDiv=document.createElement('div');
+      metaDiv.className='sim-card-meta';
+      const catSpan=document.createElement('span');
+      catSpan.className='sim-card-cat '+lean;
+      catSpan.textContent=article.c;
+      const timeSpan=document.createElement('span');
+      timeSpan.className='sim-card-time';
+      timeSpan.textContent=article.m;
+      metaDiv.appendChild(catSpan);
+      metaDiv.appendChild(timeSpan);
+
+      const titleP=document.createElement('p');
+      titleP.className='sim-card-title';
+      titleP.textContent=article.t;
+
+      const actionsDiv=document.createElement('div');
+      actionsDiv.className='sim-card-actions';
+      const commentSpan=document.createElement('span');
+      commentSpan.innerHTML='💬 '+fakeCount(30);
+      const repostSpan=document.createElement('span');
+      repostSpan.innerHTML='🔁 '+fakeCount(15);
+      actionsDiv.appendChild(commentSpan);
+      actionsDiv.appendChild(repostSpan);
+
+      card.appendChild(metaDiv);
+      card.appendChild(titleP);
+      card.appendChild(actionsDiv);
+      card.addEventListener('click',()=>onClick(lean,card));
+      feedEl.appendChild(card);
+    });
+    updateMeter(nL,nC,nR);
+  }
+
+  function updateMeter(nL,nC,nR){
+    const total=nL+nC+nR;
+    const pL=Math.round(100*nL/total);
+    const pC=Math.round(100*nC/total);
+    const pR=100-pL-pC;
+    barL.style.flex=Math.max(nL,0.01);
+    barC.style.flex=Math.max(nC,0.01);
+    barR.style.flex=Math.max(nR,0.01);
+    meterVal.textContent='L '+pL+'% / C '+pC+'% / R '+pR+'%';
+  }
+
+  function onClick(lean,card){
+    if(round>MAX_ROUND)return;
+    document.querySelectorAll('.sim-card').forEach(c=>c.classList.remove('clicked'));
+    card.classList.add('clicked');
+    // learn
+    weights[lean]+=0.6;
+    // next round
+    setTimeout(()=>{
+      round++;
+      if(round>MAX_ROUND){
+        roundEl.textContent=MAX_ROUND;
+        showStatus();
+        return;
+      }
+      roundEl.textContent=round;
+      buildFeed();
+    },450);
+  }
+
+  function showStatus(){
+    const total=weights.L+weights.C+weights.R;
+    const pL=Math.round(100*weights.L/total);
+    const pC=Math.round(100*weights.C/total);
+    const pR=100-pL-pC;
+    const max=Math.max(pL,pC,pR);
+    const dominant=max===pL?'左寄り':max===pC?'中立':'右寄り';
+    statusEl.innerHTML='10ラウンド終了。最初はほぼ <strong>L 33% / C 33% / R 33%</strong> だったフィードが、いま <strong>L '+pL+'% / C '+pC+'% / R '+pR+'%</strong> になった。'+(max>=45?'<strong>'+dominant+'</strong>の意見が支配的な世界に変わっている。':'偏りは出たが、クリックのばらつき次第でまだ回復可能な状態。')+' リセットして、反対側を選び続けて泡を壊せるか試せる。';
+    statusEl.classList.add('show');
+  }
+
+  function reset(){
+    round=1;weights={L:1,C:1,R:1};
+    sessionUsed.L.clear();sessionUsed.C.clear();sessionUsed.R.clear();
+    roundEl.textContent=1;
+    statusEl.classList.remove('show');
+    buildFeed();
+  }
+
+  function autoRun(){
+    reset();
+    // pick first dominant lean randomly (bias slight red to match typical demo)
+    const choices=['L','C','R'];
+    const firstChoice=choices[Math.floor(Math.random()*3)];
+    let i=0;
+    const timer=setInterval(()=>{
+      if(i>=MAX_ROUND){clearInterval(timer);showStatus();return;}
+      weights[firstChoice]+=0.6;
+      round=i+2;
+      if(round>MAX_ROUND)round=MAX_ROUND;
+      roundEl.textContent=Math.min(round,MAX_ROUND);
+      buildFeed();
+      // highlight one card
+      const cards=feedEl.querySelectorAll('.sim-card[data-lean="'+firstChoice+'"]');
+      if(cards.length){cards[0].classList.add('clicked');}
+      i++;
+    },420);
+  }
+
+  resetBtn.addEventListener('click',reset);
+  autoBtn.addEventListener('click',autoRun);
+  buildFeed();
+})();
+
+/* =============================================
+   TERMINAL ANIMATION
+   ============================================= */
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+const tBlock=document.getElementById('terminalBlock');
+if(tBlock)tObs.observe(tBlock);
+
+/* =============================================
+   SHARED HEADER JS
+   ============================================= */
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">記事データの読み込み中です。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>

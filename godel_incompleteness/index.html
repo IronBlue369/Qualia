@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>証明できないことを、証明した男 — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.est-context strong{color:#3d3020;font-weight:600;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'\22A2';position:absolute;right:24px;top:-6px;font-family:'Playfair Display',serif;font-size:140px;font-weight:900;color:#e0d8c8;opacity:.4;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.body-text code{font-family:'JetBrains Mono',monospace;background:#f3efe6;padding:2px 6px;font-size:14px;color:#8b1a1a;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;}
+.person-block-img{background:#ede8dc;display:flex;align-items:stretch;justify-content:center;padding:0;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-body{padding:16px 18px;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:6px;}
+.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;margin-bottom:8px;}
+.person-block-wiki a{color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;transition:all .18s;}
+.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:300;color:#b0a090;line-height:1.5;margin-top:8px;padding-top:8px;border-top:1px solid #e0d8c8;font-style:italic;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.mis-text em{color:#8b1a1a;font-style:italic;font-weight:400;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.tl-legend{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:14px;display:flex;gap:20px;flex-wrap:wrap;}
+.tl-legend span{display:inline-flex;align-items:center;gap:6px;}
+.tl-legend .ldot{width:10px;height:10px;border-radius:50%;border:2px solid #c8bfaa;background:#faf8f3;}
+.tl-legend .ldot.on{background:#8b1a1a;border-color:#8b1a1a;}
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+.hilbert-diag{margin:32px 0;padding:28px 24px;background:white;border:1px solid #c8bfaa;}
+.hilbert-diag-title{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;color:#7a6a55;text-transform:uppercase;text-align:center;margin-bottom:20px;}
+.hilbert-goals{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.hg-item{text-align:center;padding:16px 12px;background:#f3efe6;border:1px solid #e0d8c8;}
+.hg-num{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:6px;}
+.hg-label{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#1a1208;margin-bottom:4px;}
+.hg-desc{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#7a6a55;line-height:1.5;}
+.hg-result{margin-top:18px;padding:12px 16px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;text-align:center;line-height:1.6;}
+.hg-result strong{color:#e8c56a;font-weight:600;}
+@media(max-width:560px){.hilbert-goals{grid-template-columns:1fr;}}
+.gnum-diag{margin:32px 0;padding:28px 24px;background:white;border:1px solid #c8bfaa;}
+.gnum-diag-title{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;color:#7a6a55;text-transform:uppercase;text-align:center;margin-bottom:20px;}
+.gnum-row{display:grid;grid-template-columns:100px 1fr;gap:14px;align-items:center;margin-bottom:12px;padding-bottom:12px;border-bottom:1px dashed #e0d8c8;}
+.gnum-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.gnum-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.08em;color:#8b1a1a;text-transform:uppercase;text-align:right;line-height:1.5;}
+.gnum-val{font-family:'JetBrains Mono',monospace;font-size:13px;color:#1a1208;line-height:1.6;word-break:break-all;}
+.gnum-val .gn-sym{color:#8b1a1a;font-weight:500;}
+.gnum-val .gn-num{color:#3d3020;}
+.gnum-val .gn-hl{background:#fdf3d8;padding:0 4px;}
+.gnum-loop{margin-top:16px;padding:14px 16px;background:#f3efe6;border-left:3px solid #8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.8;}
+.gnum-loop strong{color:#8b1a1a;font-weight:600;}
+
+/* MIU — 改善版 */
+.miu-wrap{margin:40px 0;border:2px solid #1a1208;background:white;overflow:hidden;}
+.miu-header{background:#1a1208;color:#e8e4de;padding:14px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.miu-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#e8c56a;}
+.miu-counter{font-family:'JetBrains Mono',monospace;font-size:11px;color:#b0a090;}
+.miu-mission{padding:20px 22px 18px;background:#f3efe6;border-bottom:1px solid #c8bfaa;}
+.miu-mission-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.18em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.miu-mission-txt{font-family:'Source Serif 4',serif;font-size:14px;font-weight:400;color:#1a1208;line-height:1.75;}
+.miu-mission-txt strong{font-weight:600;}
+.miu-mission-txt code{font-family:'JetBrains Mono',monospace;background:white;border:1px solid #c8bfaa;padding:1px 7px;font-size:13px;color:#8b1a1a;font-weight:500;}
+.miu-goal-row{display:flex;align-items:center;justify-content:center;gap:16px;padding:22px 22px 20px;background:white;border-bottom:1px solid #e0d8c8;}
+.miu-goal-box{text-align:center;padding:14px 18px;min-width:140px;}
+.miu-goal-box.start{background:#f3efe6;border:1px solid #c8bfaa;}
+.miu-goal-box.end{background:#1a1208;color:#e8e4de;border:1px solid #1a1208;}
+.miu-goal-box-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.miu-goal-box.start .miu-goal-box-lbl{color:#7a6a55;}
+.miu-goal-box.end .miu-goal-box-lbl{color:#e8c56a;}
+.miu-goal-box-val{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.1em;}
+.miu-goal-box.start .miu-goal-box-val{color:#1a1208;}
+.miu-goal-box.end .miu-goal-box-val{color:#e8e4de;}
+.miu-goal-arrow{font-family:'Source Sans 3',sans-serif;font-size:24px;color:#8b1a1a;font-weight:300;}
+.miu-body{padding:24px 22px;}
+.miu-display-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;margin-bottom:6px;text-align:center;}
+.miu-display{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:500;color:#1a1208;text-align:center;padding:24px 16px;background:#f3efe6;border:2px solid #c8bfaa;margin-bottom:18px;letter-spacing:.12em;word-break:break-all;min-height:88px;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s;}
+.miu-display.win{background:#e8f3e0;border-color:#1a5a30;}
+.miu-display .s-m{color:#8b1a1a;}
+.miu-display .s-i{color:#1a5a30;}
+.miu-display .s-u{color:#c4392a;}
+.miu-rules-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.miu-rules{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
+.miu-rule{background:#faf8f3;border:2px solid #e0d8c8;padding:12px 14px;cursor:pointer;font-family:'Source Sans 3',sans-serif;text-align:left;transition:all .18s;position:relative;}
+.miu-rule.active{background:#fffdf5;border-color:#8b1a1a;box-shadow:0 0 0 1px rgba(139,26,26,.08);}
+.miu-rule.active::before{content:'▶';position:absolute;left:-1px;top:50%;transform:translateY(-50%);font-size:10px;color:#8b1a1a;background:white;padding:3px 2px;}
+.miu-rule.active:hover{background:#fdf3d8;border-color:#8b1a1a;}
+.miu-rule.inactive{opacity:.45;cursor:not-allowed;background:#f5f2ea;}
+.miu-rule-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;}
+.miu-rule-lbl{font-size:10px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;}
+.miu-rule.inactive .miu-rule-lbl{color:#b0a090;}
+.miu-rule-status{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:2px;}
+.miu-rule.active .miu-rule-status{background:#1a5a30;color:white;}
+.miu-rule.inactive .miu-rule-status{background:#e0d8c8;color:#7a6a55;}
+.miu-rule-txt{display:block;font-size:12px;color:#3d3020;line-height:1.55;margin-bottom:4px;}
+.miu-rule-txt code{font-family:'JetBrains Mono',monospace;background:#ede8dc;padding:1px 5px;font-size:11px;color:#1a1208;}
+.miu-rule-cond{display:block;font-size:10px;color:#7a6a55;line-height:1.5;font-style:italic;padding-top:4px;border-top:1px dashed #e0d8c8;margin-top:4px;}
+.miu-rule.inactive .miu-rule-cond{color:#b0a090;}
+.miu-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.miu-btn{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:9px 15px;background:white;border:1px solid #c8bfaa;color:#7a6a55;cursor:pointer;transition:all .15s;}
+.miu-btn:hover{border-color:#8b1a1a;color:#8b1a1a;}
+.miu-btn.primary{background:#1a1208;color:#e8e4de;border-color:#1a1208;margin-left:auto;}
+.miu-btn.primary:hover{background:#8b1a1a;border-color:#8b1a1a;color:white;}
+.miu-history{margin-top:16px;padding:12px 14px;background:#faf8f3;border:1px solid #e0d8c8;font-family:'JetBrains Mono',monospace;font-size:11px;color:#7a6a55;line-height:1.8;max-height:120px;overflow-y:auto;}
+.miu-history-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#b0a090;margin-bottom:6px;display:block;}
+.miu-history-item{display:block;padding:2px 0;word-break:break-all;}
+.miu-history-item .mh-i{color:#b0a090;display:inline-block;min-width:32px;}
+.miu-reveal{display:none;margin-top:20px;padding:22px 24px;background:#1a1208;color:#e8e4de;border-left:4px solid #e8c56a;}
+.miu-reveal.show{display:block;}
+.miu-reveal-title{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;color:#e8c56a;text-transform:uppercase;margin-bottom:14px;}
+.miu-reveal p{font-family:'Source Sans 3',sans-serif;font-size:13.5px;font-weight:300;line-height:1.9;color:#e8e4de;margin-bottom:14px;}
+.miu-reveal p:last-child{margin-bottom:0;}
+.miu-reveal strong{color:#e8c56a;font-weight:600;}
+.miu-reveal code{font-family:'JetBrains Mono',monospace;background:#2a1f10;padding:2px 6px;color:#e8c56a;font-size:12px;}
+.miu-reveal-bridge{margin-top:18px;padding:16px 18px;background:#2a1f10;border-left:3px solid #8b1a1a;}
+.miu-reveal-bridge-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+@media(max-width:560px){.miu-rules{grid-template-columns:1fr;}.miu-display{font-size:24px;}.miu-goal-box-val{font-size:18px;}.miu-goal-box{min-width:100px;padding:12px 14px;}.miu-btn.primary{margin-left:0;width:100%;margin-top:8px;}}
+
+/* 2階建て図解 */
+.two-floors{margin:36px 0;padding:28px 22px 24px;background:white;border:1px solid #c8bfaa;}
+.two-floors-title{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;color:#7a6a55;text-transform:uppercase;text-align:center;margin-bottom:6px;}
+.two-floors-subtitle{font-family:'Source Serif 4',serif;font-size:13px;font-weight:300;font-style:italic;color:#7a6a55;text-align:center;margin-bottom:22px;}
+.floor{border:1px solid #c8bfaa;margin-bottom:14px;position:relative;}
+.floor:last-child{margin-bottom:0;}
+.floor-upper{background:#fdf3d8;border-color:#c8a544;}
+.floor-lower{background:#f3efe6;}
+.floor-tag{position:absolute;top:-10px;left:16px;background:#1a1208;color:#e8c56a;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.14em;padding:3px 10px;text-transform:uppercase;}
+.floor-upper .floor-tag{background:#c8a544;color:#1a1208;}
+.floor-body{padding:22px 20px 18px;}
+.floor-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:6px;}
+.floor-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.75;margin-bottom:12px;}
+.floor-example{font-family:'JetBrains Mono',monospace;font-size:11px;color:#7a6a55;padding:8px 12px;background:rgba(255,255,255,.6);border-left:2px solid #8b1a1a;line-height:1.7;}
+.floor-example strong{color:#1a1208;font-weight:600;}
+.tf-arrow-wrap{display:flex;justify-content:center;align-items:center;margin:0 0 14px;position:relative;}
+.tf-arrow{font-family:'Playfair Display',serif;font-size:26px;color:#8b1a1a;line-height:1;}
+.tf-arrow-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;color:#8b1a1a;letter-spacing:.1em;text-transform:uppercase;margin-left:10px;}
+.tf-godel-move{margin-top:20px;padding:18px 20px;background:#1a1208;color:#e8e4de;}
+.tf-godel-move-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;}
+.tf-godel-move-txt{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#e8e4de;}
+.tf-godel-move-txt strong{color:#e8c56a;font-weight:600;}
+
+.quiz-wrap{margin:32px 0;border:1px solid #1a1208;background:white;overflow:hidden;}
+.quiz-header{background:#1a1208;color:#e8e4de;padding:11px 20px;}
+.quiz-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.quiz-body{padding:22px 22px 24px;}
+.quiz-q{font-family:'Source Serif 4',serif;font-size:15px;color:#1a1208;line-height:1.7;margin-bottom:18px;font-weight:400;}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{background:#faf8f3;border:1px solid #c8bfaa;padding:12px 16px;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.6;text-align:left;transition:all .15s;}
+.quiz-opt:hover{border-color:#8b1a1a;background:#f3efe6;}
+.quiz-opt.wrong{background:rgba(196,57,42,.08);border-color:#c4392a;color:#c4392a;cursor:default;}
+.quiz-opt.correct{background:rgba(26,90,48,.1);border-color:#1a5a30;color:#1a5a30;cursor:default;}
+.quiz-opt.dim{opacity:.35;cursor:default;}
+.quiz-feedback{display:none;margin-top:16px;padding:14px 16px;background:#f3efe6;border-left:3px solid #8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;}
+.quiz-feedback.show{display:block;}
+.quiz-feedback strong{color:#8b1a1a;font-weight:600;}
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'\2014 ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:0;aspect-ratio:3/2;max-height:260px;}
+  .person-block-img img{object-position:center top;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .gnum-row{grid-template-columns:1fr;gap:4px;}
+  .gnum-lbl{text-align:left;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.img-ph-desc,.img-ph-prompt-txt{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){
+  .toc-back{padding:22px 20px;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">数学・論理</p>
+    <h1>証明できないことを、<em>証明した男</em></h1>
+    <p class="cover-deck">1931年、25歳のクルト・ゲーデルは論文を発表し、数学を完璧に基礎づけるというダフィット・ヒルベルトの30年がかりの夢を、たった数ページで終わらせた。</p>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>DEEP DIVE</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1931</span>
+      <p class="est-event">ゲーデル、論文「プリンキピア・マテマティカおよび関連体系における形式的に決定不能な命題について I」を Monatshefte für Mathematik に発表。</p>
+      <p class="est-context"><strong>同年の世界：</strong>9月、満州事変勃発（柳条湖事件）。5月、ニューヨークでエンパイア・ステート・ビルディング竣工。</p>
+    </div>
+    <p class="cover-aside">この記事は数式を一つも使わずに、不完全性定理の中核を読者の手で体験してもらう。</p>
+  </div>
+</div>
+
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>辞書で知らない言葉を引いたら、説明文の中にまた知らない言葉があって、それも引く。その説明にまた知らない言葉がある。どこまで行っても、辞書は自分自身の言葉で自分を説明している。</p>
+    <p>気づけばあなたは同じページに戻っている。そして「結局この言葉は何を意味しているのか」という問いに、辞書自身は答えていない。</p>
+    <p>どんなに立派な体系でも、自分の中の道具だけでは、自分の正しさを証明できない場所がある。</p>
+  </div>
+</div>
+
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot on"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">上級 — ただし数式は一切使わない</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 18 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-10</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-10</span>
+    </div>
+  </div>
+</div>
+
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">数学という最も厳密な営みの中に、<strong>自分のルールだけでは決して到達できない真理</strong>が必ず住み着いている。この記事では、読者自身が小さな記号体系を動かしてその壁に突き当たり、壁の向こう側から何が見えるかを覗き込む。</p>
+  </div>
+</div>
+
+<div class="article">
+<div class="article-main">
+
+  <div class="sec-rule fade"><span class="sec-label">背景</span><span class="sec-line"></span></div>
+  <h2 class="fade">希望の時代、あるいは数学を機械にかける夢</h2>
+
+  <p class="body-text fade">2+2=4は正しい。誰もが知っている。では、なぜ正しいのか。</p>
+
+  <p class="body-text fade">「当たり前だから」ではない。数学者はそれを証明する。証明とは、認められたルール——<span class="tip" onclick="toggleTip(this)">公理<span class="tip-box"><strong>公理（axiom）</strong>証明なしで出発点として受け入れる命題のこと。「この体系はここから始める」と宣言する土台。</span></span>——から出発して、論理的な手順を踏んで結論に至ること。2+2=4も、「自然数とはこういうものだ」という出発点のルールから、ちゃんと証明できる。ではそのルール自体は、本当に正しいと言えるのか。ルールを証明しようとすると、もっと前のルールが必要になる。そのルールを証明しようとすると、さらに前のルールが要る。どこかで「これは証明なしに正しいと認める」という地点が必要になる。</p>
+
+  <p class="body-text fade">ここに、数学者たちが長い間目をそらしてきた問いがある。<strong>数学の出発点は、本当に安全なのか。</strong>19世紀の終わり、その問いが突然、無視できないものになった。素朴に見えるルールから出発して、正しい手順で推論しただけなのに、矛盾が出てきたのだ。「自分自身を含まない集合すべての集合」を考えると、それは自分自身を含むのか含まないのか——どちらに転んでも矛盾する。数学の足元に、穴が空いていた。</p>
+
+  <p class="body-text fade">1900年8月8日、パリ。第二回<span class="tip" onclick="toggleTip(this)">国際数学者会議<span class="tip-box"><strong>国際数学者会議（ICM）</strong>4年に一度開かれる、世界中の数学者が集まる最大の国際会議。1897年にチューリッヒで第一回が開かれて以来、現在まで続いている。フィールズ賞の授賞式もここで行われる。1900年のパリ会議は20世紀の幕開けに重なり、ヒルベルトの23問題講演が「20世紀数学の羅針盤」として歴史的な位置を占めることになった。</span></span>の講壇に立った38歳のダフィット・<span class="tip" onclick="toggleTip(this)">ヒルベルト<span class="tip-box"><strong>David Hilbert（1862-1943）</strong>19世紀末から20世紀初頭にかけてドイツ・ゲッティンゲン大学を拠点に活躍した数学者。幾何学の公理化、積分方程式論、数学基礎論など、数学の広範な分野に影響を与えた、当時の数学界の中心人物。</span></span>は、20世紀の数学者が取り組むべき23の未解決問題を提示した。聴衆にはこれから数学界を担う人々が座っていた。その第二の問題はこう述べていた——算術の<span class="tip" onclick="toggleTip(this)">公理<span class="tip-box"><strong>公理（axiom）</strong>証明なしで出発点として受け入れる命題のこと。定義の代わりではなく、「この体系はここから始める」と宣言する土台。平面幾何学の「点・線・平面」の扱い方を決めるようなもの。</span></span>が互いに矛盾しないことを証明せよ。</p>
+
+  <p class="body-text fade">それは「数学は正しい」と証明してほしい、という要求だった。奇妙な要求に聞こえるかもしれない。2+2=4が間違っているはずがない、と誰もが思う。しかし19世紀の終わり、数学者たちは自分たちの足元で静かに地面が崩れ始めているのを感じていた。カントールの集合論に現れる逆説、ラッセルが1901年に発見した「自分自身を含まない集合の集合」の矛盾、ブラリ＝フォルティの逆説——これらはすべて、素朴に見えるルールから出発して厳密に推論するだけで矛盾が出てくる、という不気味な事実を示していた。数学の足元には穴が空いていた。</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="hilbert_1912.jpg" alt="David Hilbert, ca 1912">
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">ダフィット・ヒルベルト</p>
+      <p class="person-block-role">David Hilbert · 1862–1943</p>
+      <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%80%E3%83%95%E3%82%A3%E3%83%83%E3%83%88%E3%83%BB%E3%83%92%E3%83%AB%E3%83%99%E3%83%AB%E3%83%88" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p class="person-block-desc">ケーニヒスベルク生まれ。1895年からゲッティンゲン大学教授として、当時の世界の数学の中心地を築いた。幾何学・積分方程式論・数理物理学・数学基礎論と広範な分野で決定的な業績を残す。「数学を記号とルールの機械にかけて完璧に基礎づける」——この構想は<em>ヒルベルト・プログラム</em>と呼ばれ、30年がかりで進められた。</p>
+      <p class="person-block-credit">Photograph: University of Göttingen faculty postcard, c. 1912 / Public domain via Wikimedia Commons</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">ヒルベルトの構想は壮大だった。数学のすべてを、記号とルールだけで動く<span class="tip" onclick="toggleTip(this)">形式体系<span class="tip-box"><strong>形式体系（formal system）</strong>記号とそれを変形するルールだけで動く、機械のような数学システム。中身の「意味」を一切考えず、文字列を別の文字列に書き換える操作だけを実行する。現代のコンピュータプログラムの遠い先祖のようなもの。</span></span>にしてしまおう、と彼は言った。そしてその体系が、(1) すべての真理を証明でき、かつ (2) 決して矛盾しないことを、(3) その体系自身の道具で示そう。もしこれができれば、数学は神学にも哲学にも頼らず、自分の足で立つことができる。</p>
+
+  <div class="hilbert-diag fade">
+    <div class="hilbert-diag-title">Hilbert's Program — 1921年の提案</div>
+    <div class="hilbert-goals">
+      <div class="hg-item">
+        <span class="hg-num">1</span>
+        <div class="hg-label">形式化</div>
+        <div class="hg-desc">数学のすべてを記号と規則で書き換える</div>
+      </div>
+      <div class="hg-item">
+        <span class="hg-num">2</span>
+        <div class="hg-label">完全性</div>
+        <div class="hg-desc">真なる命題はすべて証明できる</div>
+      </div>
+      <div class="hg-item">
+        <span class="hg-num">3</span>
+        <div class="hg-label">無矛盾性</div>
+        <div class="hg-desc">自分自身で矛盾しないことを示せる</div>
+      </div>
+    </div>
+    <div class="hg-result">1931年——この3つが同時に成り立つことは、25歳の若者によって<strong>原理的に不可能</strong>だと証明される。</div>
+  </div>
+
+  <div class="quote-block fade">
+    <p class="quote-en">Wir müssen wissen. Wir werden wissen.</p>
+    <p class="quote-ja">我々は知らねばならない。我々は知るだろう。</p>
+    <p class="quote-attr">— David Hilbert, 1930年9月8日、ケーニヒスベルクでの講演末尾。墓碑銘にも刻まれている</p>
+  </div>
+
+  <p class="body-text fade">この言葉が発せられた前日、同じケーニヒスベルクの学会場で、無名に近い一人の若いオーストリア人が短い発表を行っていた。<span class="tip" onclick="toggleTip(this)">クルト・ゲーデル<span class="tip-box"><strong>Kurt Gödel（1906-1978）</strong>オーストリア出身の論理学者。1931年の不完全性定理のほか、一階述語論理の完全性定理（1929）、集合論における選択公理と連続体仮説の相対的無矛盾性（1938）などの業績がある。後年は深刻な心気症と被毒妄想に苦しみ、最終的に食事を拒んで餓死した。</span></span>という名前で、ウィーン大学で博士号を取ったばかりの24歳だった。彼の発表の内容は、ヒルベルトが翌日熱く語る夢を、静かに、決定的に終わらせるものだった。ヒルベルトがその事実を知るのはもう少し先のことになる。</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="godel_1925.jpg" alt="Kurt Gödel as a student, ca 1925">
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">クルト・ゲーデル</p>
+      <p class="person-block-role">Kurt Gödel · 1906–1978</p>
+      <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AB%E3%83%88%E3%83%BB%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p class="person-block-desc">オーストリア・ブリュン（現チェコ・ブルノ）生まれ。少年時代のあだ名は「なぜ君（der Herr Warum）」。ウィーン大学でハンス・ハーンのもとで博士号を取得後、ウィーン学団の議論に参加しながらも、主流の論理実証主義とは距離を取り続けた。1931年の論文のとき25歳。後年プリンストン高等研究所でアインシュタインと親交を結んだ。</p>
+      <p class="person-block-credit">Photograph: Kurt Gödel Papers, Institute for Advanced Study, Princeton, NJ / Public domain via Wikimedia Commons</p>
+    </div>
+  </div>
+
+  <figure class="img-placeholder fade" style="margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;">
+    <img src="hilbert_1900_p13.jpg" alt="ヒルベルト『数学の問題』第2問題のページ（1900年）" style="width:100%;display:block;">
+    <figcaption style="padding:12px 16px;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.6;">ヒルベルト『数学の問題』（1900年）第13ページ。「2. 算術の公理の無矛盾性」という見出しが見える。ゲーデルが31年後に原理的に不可能だと示した、あの要求が書かれた紙。/ David Hilbert, <em>Mathematische Probleme</em>, 1900. Public domain via Wikimedia Commons.</figcaption>
+  </figure>
+
+  <div class="misconception fade">
+    <div class="misconception-header">
+      <span class="misconception-hl">▼ よくある誤解 vs. 実際は</span>
+    </div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <div class="mis-label wrong">✕ よくある誤解</div>
+          <div class="mis-text">「不完全性定理は、数学には証明できないことがある、と言っている。だから科学も哲学も結局は不確かだ」</div>
+        </div>
+        <div class="misconception-a">
+          <div class="mis-label right">○ 実際は</div>
+          <div class="mis-text">定理は「算術を含む十分に強い<em>形式体系</em>」についてだけ語っている。物理学や哲学や人間の思考一般について何かを言っているわけではない。拡大解釈は論理学者が何十年も戦ってきた誤用。</div>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <div class="mis-label wrong">✕ よくある誤解</div>
+          <div class="mis-text">「ゲーデルが示したのは、数学の中には証明できない真理がある、ということだ」</div>
+        </div>
+        <div class="misconception-a">
+          <div class="mis-label right">○ 実際は</div>
+          <div class="mis-text">正しくは「<em>特定の形式体系 F の中で</em>証明できない」。同じ命題は、より強い別の体系では普通に証明できる。ただしその強い体系にも、そこでは証明できない命題が新たに現れる。</div>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <div class="mis-label wrong">✕ よくある誤解</div>
+          <div class="mis-text">「ゲーデルは数学が矛盾していることを証明した」</div>
+        </div>
+        <div class="misconception-a">
+          <div class="mis-label right">○ 実際は</div>
+          <div class="mis-text">逆。定理の前提は「体系が無矛盾であること」。ゲーデルが示したのは、無矛盾な体系には必ず決定不能な命題がある、ということ。数学は壊れていない。ただ、自分の鏡を自分で持てないだけだ。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-rule fade"><span class="sec-label">背景・続</span><span class="sec-line"></span></div>
+  <h2 class="fade">1931年の衝撃</h2>
+
+  <p class="body-text fade">1931年、ゲーデルの論文が『月刊数学物理学報（Monatshefte für Mathematik und Physik）』38巻に掲載される。タイトルは『<em>プリンキピア・マテマティカおよび関連体系における形式的に決定不能な命題について I</em>』。ページ数にしてわずか25ページ。末尾に「I」が付いていたのは続編を予定していたからだが、彼は続編を書かなかった——書く必要がなくなったからだ。</p>
+
+  <p class="body-text fade">反応は地震のようだった。論理学者<span class="tip" onclick="toggleTip(this)">パウル・ベルナイス<span class="tip-box"><strong>Paul Bernays（1888-1977）</strong>ヒルベルトの最も近い共同研究者で、『数学の基礎』の共著者。ヒルベルト・プログラムの内部からゲーデルの結果を最初に受け止めた一人。のちにゲーデルと30年以上にわたる書簡を交わし続けた。</span></span>とジョン・フォン・ノイマンはすぐにその意味を見抜いた。とりわけフォン・ノイマンは、ゲーデルがまだ公に語っていなかった「第二不完全性定理」——体系は自分の無矛盾性を自分では証明できない——を、論文を読んだその場で独立に導き出してゲーデルに手紙を書いた。<strong>「ヒルベルト・プログラムは実現不可能になった」</strong>。フォン・ノイマンはカルナップに宛ててそう書いている。ヒルベルト・プログラムの核心は、論文発表からわずか数ヶ月で内部から崩れていった。</p>
+
+
+  <div class="sec-rule fade"><span class="sec-label">体験</span><span class="sec-line"></span></div>
+  <h2 class="fade">小さな体系の中で、壁を探してみる</h2>
+
+  <p class="body-text fade">ゲーデルの証明の核心を、数式を一つも使わずに体験してもらう。これから動かすのは、ダグラス・ホフスタッターが『ゲーデル・エッシャー・バッハ』で紹介した<em>MIU-システム</em>という小さなおもちゃの形式体系だ。アルファベットは <code>M</code>・<code>I</code>・<code>U</code> の3文字だけ。使えるルールは4つ。出発点は <code>MI</code>、ゴールは <code>MU</code>。</p>
+
+  <p class="body-text fade">ルールはすべて「機械的な書き換え」であって、意味を考える必要はまったくない。コンピュータがやるような、純粋な記号操作だ。形式体系の最小モデルと言っていい。</p>
+
+  <p class="body-text fade">一つだけ、始める前に言っておく。ルールを見た瞬間に「どうせ無理でしょ」と感じた人は、そのままでいい。その<em>外から見えた</em>という感覚が、すでにゲーデルの話の核心にいる。なぜ外から見ると見えるのに、中からは見えないのか——それがこの体験で確かめたいことだ。逆に「わからない、でも試してみよう」という人も、そのままで正しい入口にいる。どちらの入り方でも、たどり着く場所は同じだ。</p>
+
+  <p class="body-text fade"><strong>さあ、MIからMUへ行けるか試してみてほしい。</strong></p>
+
+  <div class="miu-wrap fade">
+    <div class="miu-header">
+      <span class="miu-hl">✦ MIU System — Formal Game</span>
+      <span class="miu-counter" id="miuCounter">手数: 0</span>
+    </div>
+
+    <div class="miu-mission">
+      <div class="miu-mission-lbl">▼ ミッション</div>
+      <div class="miu-mission-txt">4つのルールだけを使って、<strong><code>MI</code></strong> から <strong><code>MU</code></strong> を作り出せ。ルールは適用できる条件のときだけボタンが<strong>緑の「使える」バッジ</strong>になる。薄くなっているボタンは、いま使えない。</div>
+    </div>
+
+    <div class="miu-goal-row">
+      <div class="miu-goal-box start">
+        <div class="miu-goal-box-lbl">START</div>
+        <div class="miu-goal-box-val">MI</div>
+      </div>
+      <div class="miu-goal-arrow">→</div>
+      <div class="miu-goal-box end">
+        <div class="miu-goal-box-lbl">GOAL</div>
+        <div class="miu-goal-box-val">MU</div>
+      </div>
+    </div>
+
+    <div class="miu-body">
+      <div class="miu-display-lbl">現在の文字列</div>
+      <div class="miu-display" id="miuDisplay"><span class="s-m">M</span><span class="s-i">I</span></div>
+
+      <div class="miu-rules-lbl">▼ 使えるルール（4つ）</div>
+      <div class="miu-rules">
+        <button class="miu-rule" id="miuR1" onclick="miuApply(1)">
+          <div class="miu-rule-top">
+            <span class="miu-rule-lbl">ルール 1</span>
+            <span class="miu-rule-status" id="miuS1">使える</span>
+          </div>
+          <span class="miu-rule-txt">末尾に <code>U</code> を追加<br>例: <code>MI → MIU</code></span>
+          <span class="miu-rule-cond">条件: 末尾が <code>I</code> であること</span>
+        </button>
+        <button class="miu-rule" id="miuR2" onclick="miuApply(2)">
+          <div class="miu-rule-top">
+            <span class="miu-rule-lbl">ルール 2</span>
+            <span class="miu-rule-status" id="miuS2">使える</span>
+          </div>
+          <span class="miu-rule-txt"><code>M</code> の後ろをもう一度コピー<br>例: <code>MIU → MIUIU</code></span>
+          <span class="miu-rule-cond">条件: 先頭が <code>M</code> であること（常に満たす）</span>
+        </button>
+        <button class="miu-rule" id="miuR3" onclick="miuApply(3)">
+          <div class="miu-rule-top">
+            <span class="miu-rule-lbl">ルール 3</span>
+            <span class="miu-rule-status" id="miuS3">使える</span>
+          </div>
+          <span class="miu-rule-txt"><code>III</code> を <code>U</code> に置換<br>例: <code>MIIII → MIU</code> / <code>MUI</code></span>
+          <span class="miu-rule-cond">条件: <code>III</code> が含まれていること</span>
+        </button>
+        <button class="miu-rule" id="miuR4" onclick="miuApply(4)">
+          <div class="miu-rule-top">
+            <span class="miu-rule-lbl">ルール 4</span>
+            <span class="miu-rule-status" id="miuS4">使える</span>
+          </div>
+          <span class="miu-rule-txt"><code>UU</code> を削除<br>例: <code>MUUI → MI</code></span>
+          <span class="miu-rule-cond">条件: <code>UU</code> が含まれていること</span>
+        </button>
+      </div>
+
+      <div class="miu-controls">
+        <button class="miu-btn" onclick="miuUndo()">◀ 1手戻す</button>
+        <button class="miu-btn" onclick="miuReset()">リセット</button>
+        <button class="miu-btn primary" onclick="miuGiveUp()">ギブアップ → 答えを見る</button>
+      </div>
+
+      <div class="miu-history" id="miuHistory">
+        <span class="miu-history-lbl">History</span>
+        <span class="miu-history-item"><span class="mh-i">[0]</span> MI</span>
+      </div>
+
+      <div class="miu-reveal" id="miuReveal">
+        <div class="miu-reveal-title">▼ 答え：なぜ到達できないのか</div>
+        <p>答えから言うと、<strong>MI から MU には、このルールの中では絶対にたどり着けない</strong>。どれだけ長く試しても無駄だ。では、なぜ？　系の中でいくら頑張っても、不可能性の理由は見えない。</p>
+        <p>視点を一段上げる必要がある。「文字列の中にある <code>I</code> の個数を3で割った余り」に注目してみよう。</p>
+        <p>出発点 <code>MI</code> は I が1個 → <strong>余り 1</strong>。各ルールがこの余りに何をするかを調べると、ルール1は I を増やさない（余りは変わらない）、ルール2は I の数を2倍にする（余りは 1→2→1→2... と往復するだけで0にならない）、ルール3は3個減らす（余りは変わらない）、ルール4は I に触らない——つまり<strong>どのルールを使っても「Iの数 mod 3」を 0 にできない</strong>。しかし目標 <code>MU</code> は I が0個 → 余り 0。出発地点から目標地点まで、余りの「色」が合っていない。</p>
+        <div class="miu-reveal-bridge">
+          <div class="miu-reveal-bridge-lbl">▶ ここで起きていること</div>
+          <p style="margin:0;">あなたが「系の中」で真剣に探していた間は、なぜ届かないのかが見えなかった。でも<strong>「Iの個数 mod 3」という視点を系の外から持ち込んだ瞬間</strong>、不可能性が一発で見える。この落差——<em>中からは見えない真理が、外からは一瞬でわかる</em>——が、不完全性定理の骨格だ。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">どうだっただろうか。何手試しても届かない、あの感触。「もう少しで行けそう」という気がするのに、どこかで必ずループに入る。たどり着けない理由が、やっている間は見えない。これは能力の問題ではない。ルールを正しく適用している。それでも届かない。<strong>この「届かなさ」こそが、ゲーデルが算術の中で発見したものの縮小模型だ。</strong></p>
+
+  <p class="body-text fade">あなたが何手試したかは重要ではない。持ち帰ってほしいのは、「系の中で真剣に探している間は、なぜ不可能なのかが見えなかった」という<em>体感</em>のほうだ。一段上の視点——「Iの個数を3で割った余り」——を手に入れた瞬間に、不可能性が一発で見える。しかしその視点は、MIU-システムのルールブックのどこにも書かれていない。<strong>系を動かす道具と、系を外から眺める道具は、別の階にある</strong>。</p>
+
+
+  <h2 class="fade">ゲーデルは何をしたのか — 2階建ての構造を見る</h2>
+
+  <p class="body-text fade">ただし、MIU-Systemと算術のあいだには、決定的な違いがある。MIU-Systemでは、プレイヤーが使える道具（文字列の書き換え）と、観察者が使う道具（算数）は最初から別物だった。観察者が「外の算数」を借りてきて不可能性を証明するのは、ある意味で当然に見える。MIU-Systemにはそもそも数の概念がないのだから。ところが算術は違う。算術のプレイヤーは最初から数を扱える。だから「算術は自分のことを自分で全部語れるはずだ」という期待が生まれる。ヒルベルトはその期待に賭けた。<strong>ゲーデルが壊したのは、その期待だ。</strong></p>
+
+  <p class="body-text fade">ここまでの体験を、そのまま絵にしてみる。あなたが MIU-システムの中で戦っていたとき、<em>2つの階</em>が存在していた。下の階は「ルールを機械的に適用する場所」。上の階は「系を外から眺めて理屈を言う場所」。普段この2つは完全に別の場所にある。下の階で働く人は上の階を見ない。上の階で考える人は下の階を動かさない。</p>
+
+  <div class="two-floors fade">
+    <div class="two-floors-title">The Two Floors</div>
+    <div class="two-floors-subtitle">系の中と、系の外</div>
+
+    <div class="floor floor-upper">
+      <span class="floor-tag">UPPER FLOOR · 外から眺める視点</span>
+      <div class="floor-body">
+        <div class="floor-title">メタ数学の階</div>
+        <div class="floor-desc">系を外から眺めて、「このルールでは何ができて何ができないか」を論じる場所。日常の言葉や別の数学を使って考える。MIU-システムなら「<code>I</code> の個数を 3 で割った余り」。算術なら「この公理系からどんな命題が証明できるか」。</div>
+        <div class="floor-example"><strong>例：</strong> 「どのルールを適用しても、Iの個数 mod 3 は 0 にならない。だから MU には絶対到達できない」</div>
+      </div>
+    </div>
+
+    <div class="tf-arrow-wrap">
+      <span class="tf-arrow">↕</span>
+      <span class="tf-arrow-lbl">普段は行き来できない</span>
+    </div>
+
+    <div class="floor floor-lower">
+      <span class="floor-tag">LOWER FLOOR · 系の中で働く視点</span>
+      <div class="floor-body">
+        <div class="floor-title">形式体系の階</div>
+        <div class="floor-desc">ルールを機械的に適用して文字列を書き換える場所。意味は考えない。ただルールブックに従うだけ。MIU-システムなら 4 つの書き換えルール。算術なら「ペアノの公理」とそこから命題を導く推論規則。</div>
+        <div class="floor-example"><strong>例：</strong> <code>MI → MII → MIIII → MIIIIU → MUIU → ...</code>（文字列の意味ではなくパターンだけを見て書き換えている）</div>
+      </div>
+    </div>
+
+    <div class="tf-godel-move">
+      <div class="tf-godel-move-lbl">▶ ゲーデルがやった離れ業</div>
+      <div class="tf-godel-move-txt">MIU-システムでは、上の階（mod 3）を下の階の中に書き込むことはできない——別の道具を借りてくるしかなかった。ところがゲーデルは、<strong>算術が十分に強ければ、算術自身の中に「上の階」を書き込めることを発見した</strong>。記号も、命題も、証明までも、すべて自然数に翻訳してしまう。一度自然数になれば、それは算術の中の対象として扱える。<em>算術は、自分のことを自分の言葉で喋り始める</em>。</div>
+    </div>
+  </div>
+
+  <p class="body-text fade">この図を頭に入れたうえで、もう一度「ゲーデルは何をしたのか」を整理する。彼がやったことは、一文で言えばこうなる。<em>算術の中に、算術について語る文を埋め込んで、その文に自分自身のことを喋らせた</em>。そして出来上がった文は、次のように主張していた——「<strong>この文は、この体系では証明できない</strong>」。</p>
+
+  <p class="body-text fade">この文を仮に G と呼ぶ。G は算術の命題だから、真か偽かは決まっている。しかしここに罠がある。<strong>もし G が証明できるなら</strong>、G の内容（＝G は証明できない）に矛盾する。体系が嘘をついたことになり、無矛盾でなくなる。<strong>だから G は証明できない</strong>。しかし「G は証明できない」というのは、まさに G が言っていたことだ。つまり G は——<em>証明できないまま、真</em>である。これが<strong>第一不完全性定理</strong>の骨子だ。</p>
+
+  <p class="body-text fade">一つだけ注意がいる。ゲーデルは「算術の中の G が証明できない」ことを<strong>算術の外から</strong>論証している。つまり、証明の舞台は<em>メタ数学の階</em>であり、証明の対象である G が住んでいるのは<em>形式体系の階</em>だ。ゲーデル自身は上の階に立って、「下の階にはこういう命題が住んでいて、しかもそれはこの下の階の道具では捕まえられない」と指差している。「証明できないことを証明した」という言い方が当たっている——ただし、証明した場所と、証明された対象の場所は別の階にある。</p>
+
+  <p class="body-text fade">では肝心の、「どうやって算術の中に上の階を埋め込んだのか」。その手品が<em>ゲーデル数化</em>だ。</p>
+
+  <div class="gnum-diag fade">
+    <div class="gnum-diag-title">Gödel Numbering — 記号を数に翻訳する</div>
+    <div class="gnum-row">
+      <div class="gnum-lbl">① 記号に番号を振る</div>
+      <div class="gnum-val"><span class="gn-sym">¬</span> = 1　<span class="gn-sym">∨</span> = 2　<span class="gn-sym">⊃</span> = 3　<span class="gn-sym">∃</span> = 4　<span class="gn-sym">=</span> = 5　<span class="gn-sym">0</span> = 6　<span class="gn-sym">s</span> = 7　…</div>
+    </div>
+    <div class="gnum-row">
+      <div class="gnum-lbl">② 命題全体を<br>1つの数に</div>
+      <div class="gnum-val">命題 "<span class="gn-sym">∃x ¬(sx=0)</span>" → 記号列 [4, 11, 1, 12, 7, 11, 5, 6] → 素数の冪で符号化して<br>→ 2⁴ × 3¹¹ × 5¹ × 7¹² × 11⁷ × 13¹¹ × 17⁵ × 19⁶ = <span class="gn-num">ひとつのとても大きな自然数 n</span></div>
+    </div>
+    <div class="gnum-row">
+      <div class="gnum-lbl">③ 証明も数に</div>
+      <div class="gnum-val">「命題 A から命題 B を導く証明」も、記号列の列だから同じやり方で1つの数になる。<br>→ 「p は n の証明である」という<strong>メタ数学的関係</strong>が、自然数 p と n の間の<strong>算術的関係</strong>として書けるようになる。</div>
+    </div>
+    <div class="gnum-row">
+      <div class="gnum-lbl">④ 自己言及の<br>登場</div>
+      <div class="gnum-val"><span class="gn-hl">命題 G:「ゲーデル数が g である命題は、この体系では証明できない」</span><br>——ここで、その命題 G 自身のゲーデル数がちょうど g になるように組み立てる。すると G は<strong>自分自身</strong>について語っていることになる。</div>
+    </div>
+    <div class="gnum-loop">
+      <strong>G を日常語で読むと：</strong>「この命題は、この体系では証明できない」。この G が、ただの言葉遊びではなく、ペアノ算術の中の立派な数学命題として書ける——この一点が、ゲーデルの真の離れ業だ。
+    </div>
+  </div>
+
+  <p class="body-text fade">この「自己言及」の仕掛けは、古代ギリシャの<em>嘘つきのパラドックス</em>——「私は今、嘘をついている」——と構造がそっくりだ。ゲーデル自身、論文の冒頭でそのことを認めている。しかし彼の偉業は、このパラドックス的な文を、ただの言葉遊びから<strong>算術の中の厳密な数学命題</strong>に変換したことだった。嘘つきの文は自然言語の曖昧さに頼っている。ゲーデル文は自然数の足し算と掛け算だけで書かれている。曖昧さの入り込む余地がない。</p>
+
+
+  <hr class="art-rule">
+
+  <div class="sec-rule fade"><span class="sec-label">解説</span><span class="sec-line"></span></div>
+  <h2 class="fade">証明の骨格 — 4ステップで見る</h2>
+
+  <p class="body-text fade">ここまでの体験と図解を踏まえて、不完全性定理の証明の骨格を追ってみよう。正確な証明は25ページの論文と膨大な補題を必要とするが、筋道だけなら4つのステップで語れる。各ステップをクリックして展開してほしい。</p>
+
+  <div class="steps-wrap fade">
+    <div class="steps-head">PROOF SKETCH</div>
+
+    <div class="step-card" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">1</div>
+        <div class="step-tw">
+          <div class="step-title">すべてを数に翻訳する（ゲーデル数化）</div>
+          <div class="step-sub">記号・命題・証明 → 自然数</div>
+        </div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>まず、形式体系で使われるすべての記号（論理記号、変数、定数）に番号を振る。次に、命題（記号の列）全体を、ひとつの巨大な自然数に符号化する方法を決める。素数の冪を使うのがゲーデルの方法で、これなら異なる命題は必ず異なる数に対応する。</p>
+        <p>さらに重要なのは、<strong>証明</strong>もまた命題の列だから、同じやり方でひとつの数に変換できるということ。結果として、「<em>p は n の証明である</em>」という本来メタ数学的な関係が、自然数同士の算術的な関係として書けるようになる。<strong>上の階の言語が、下の階の中に入り込んだ瞬間</strong>だ。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">2</div>
+        <div class="step-tw">
+          <div class="step-title">自分について語る命題を作る（対角化）</div>
+          <div class="step-sub">自己言及を体系の中に埋め込む</div>
+        </div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>次にゲーデルは、カントールの対角線論法を応用して、自分自身のゲーデル数に言及する命題を体系の中で構成する技術を開発する。これを使うと、以下のような命題 <strong>G</strong> が作れる。</p>
+        <p><em>G: 「ゲーデル数 g を持つ命題は、この体系では証明不可能である」——ただし、この命題 G 自身のゲーデル数が g である。</em></p>
+        <p>つまり G は、翻訳して読めば「<strong>この私は証明できない</strong>」と言っている。この仕掛けが作れるのは、体系が十分に強い（算術を含む）からだ。弱すぎる体系では、この自己言及は構成できない。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">3</div>
+        <div class="step-tw">
+          <div class="step-title">G が証明できないことを示す（第一定理）</div>
+          <div class="step-sub">矛盾を避けるには決定不能しかない</div>
+        </div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>体系が無矛盾だと仮定する。場合分けで考えよう。</p>
+        <p><strong>(a) もし G が証明できるなら：</strong>G の中身は「G は証明できない」だから、体系は偽の命題を証明したことになる。これは無矛盾の仮定に反する。よって G は証明できない。</p>
+        <p><strong>(b) しかし、G が証明できない、というのはまさに G が主張していたこと。</strong>つまり G は真である——ただし、この体系の中では証明できない。こうして<em>真だが証明不可能な命題</em>が存在することが示される。これが<strong>第一不完全性定理</strong>。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc4">
+      <div class="step-hd" onclick="tog(4)">
+        <div class="step-nb">4</div>
+        <div class="step-tw">
+          <div class="step-title">体系は自分の無矛盾性を証明できない（第二定理）</div>
+          <div class="step-sub">ヒルベルトの夢にとどめを刺す</div>
+        </div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>第一定理の証明を丁寧に追うと、「もし体系が無矛盾なら G は証明できない」という主張そのものが、体系の内部で形式化できることがわかる。記号で書くと：<em>Cons(F) → G</em>（Fが無矛盾なら、Gは真）。</p>
+        <p>ここでもし体系が自分自身の無矛盾性 <em>Cons(F)</em> を証明できたとしたら、上の含意から G も証明できることになる。しかし第一定理より G は証明できない。矛盾。よって<strong>体系はその内部では自分の無矛盾性を証明できない</strong>。これが<strong>第二不完全性定理</strong>——ヒルベルト・プログラムの核心への直接の打撃だ。</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">この4ステップを眺めると、MIU-システムで経験したことの構造がそのまま見えてくる。<strong>系の中だけで探すと、真理の一部が必ず取り逃される</strong>。ただし違いは、算術という体系は自分の外側の視点を自分の中に埋め込めるほど強力だったということ。力が弱ければ不完全性は起きない——だが力を持った瞬間に、この宿命を背負う。</p>
+
+  <hr class="art-rule">
+
+  <div class="sec-rule fade"><span class="sec-label">歴史</span><span class="sec-line"></span></div>
+  <h2 class="fade">1900年から1936年まで、32年の弧</h2>
+
+  <p class="body-text fade">20世紀前半の論理学は、わずか30数年のあいだに「数学を完璧に基礎づけよう」という希望から「計算可能性の原理的限界」という発見まで、急速に駆け抜けた。不完全性定理はその弧の中央に位置する転換点だ。</p>
+
+  <div class="tl-legend fade">
+    <span><span class="ldot on"></span>定理の直接の系譜</span>
+    <span><span class="ldot"></span>関連する出来事</span>
+  </div>
+
+  <div class="timeline fade">
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1900</div>
+      <div class="tl-title">ヒルベルト、23問題を提示</div>
+      <div class="tl-desc">パリ国際数学者会議。第二問題が「算術の無矛盾性の証明」。20世紀の数学の羅針盤になる。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1901</div>
+      <div class="tl-title">ラッセルのパラドックス発見</div>
+      <div class="tl-desc">フレーゲの公理系が矛盾を含むことが発覚。素朴集合論が足元から崩れる。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1910–13</div>
+      <div class="tl-title">『プリンキピア・マテマティカ』刊行</div>
+      <div class="tl-desc">ホワイトヘッドとラッセルによる3巻の大著。型理論で逆説を回避しつつ数学を再構築する試み。ゲーデルの論文タイトルに登場する「プリンキピア」はこれ。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1921</div>
+      <div class="tl-title">ヒルベルト・プログラム正式発表</div>
+      <div class="tl-desc">数学を有限の操作だけで基礎づけるという構想。ゲッティンゲンを中心に基礎論が活発化する。</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1930</div>
+      <div class="tl-title">ゲーデル、完全性定理で博士号</div>
+      <div class="tl-desc">後の不完全性定理とは別の定理。一階述語論理のほうは「完全」だった。同年9月のケーニヒスベルク会議で、ゲーデルは初めて不完全性の結果を簡単に口頭発表する。</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1931</div>
+      <div class="tl-title">不完全性定理、論文として発表</div>
+      <div class="tl-desc">Monatshefte für Mathematik und Physik 38巻、173-198頁。フォン・ノイマンは論文を読むや、論文に書かれていなかった第二定理を独力で再発見してゲーデルに書簡を送る。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1934</div>
+      <div class="tl-title">ゲーデル、プリンストンで講義</div>
+      <div class="tl-desc">アメリカ高等研究所での講義ノートが出版され、英語圏に定理が広まる。一般関数・計算可能性の議論が次の主題になっていく。</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1936</div>
+      <div class="tl-title">チューリングマシンと決定問題</div>
+      <div class="tl-desc">アラン・チューリングが独立に「計算とは何か」を定義し、停止問題の決定不能性を証明。不完全性定理と停止問題は、深いところで同じ壁について語っていることが後にわかる。</div>
+    </div>
+  </div>
+
+  <p class="body-text fade">この時代の論理学者たちが発見したのは、「何ができて何ができないか」という問い自体が、厳密な数学の対象になる、ということだった。不完全性定理は一発勝負の事件ではなく、計算可能性理論・証明論・モデル理論という20世紀論理学の3本柱の出発点になった。</p>
+
+  <hr class="art-rule">
+
+  <div class="sec-rule fade"><span class="sec-label">つまり</span><span class="sec-line"></span></div>
+  <h2 class="fade">誤用の歴史と、本当に残るもの</h2>
+
+  <p class="body-text fade">不完全性定理ほど、専門家の手を離れて誤用されてきた数学の定理は珍しい。「数学にも限界がある」という刺激的な響きが、哲学・文芸批評・神秘思想・AI論・経済学・ポストモダンまで、ありとあらゆる場所に流れ出した。だが誤用のほとんどは、定理が何について語っているかを見失ったところから始まっている。</p>
+
+  <p class="body-text fade">スウェーデンの論理学者<strong>トルケル・フランセン</strong>は2005年、『ゲーデルの定理 — その利用と誤用の不完全な手引』という書物を書いた。タイトル自体が皮肉で、定理は「不完全」なのに、その誤用の網羅は「完全」にはできない、と言っている。フランセンは特定の誤用例を数十ページにわたって丁寧に解体した。ポストモダン批評家、神秘主義者、ロジャー・ペンローズのような著名な物理学者まで、彼の分解対象になった。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">定理が何も語っていない領域で、定理がすべてを語っているかのように引用される——<em>それが誤用の常套手段だ</em>。</p>
+    <p class="pull-attr">— Torkel Franzén, Gödel's Theorem: An Incomplete Guide to Its Use and Abuse (2005, 趣旨の意訳)</p>
+  </div>
+
+  <p class="body-text fade">定理は具体的に、こう言っている。<strong>(1)</strong> 算術を含む <strong>(2)</strong> 有限個の公理で記述でき <strong>(3)</strong> 無矛盾な形式体系には、<strong>(4)</strong> その体系の中では証明も反証もできない命題が存在する。前提条件が4つもある厳しい主張であって、「人間の理性」や「宇宙全体」や「真理そのもの」について語る定理ではない。それらの領域でこの定理を使うには、まず「人間の理性は算術を含む形式体系である」ことを独立に示さねばならず、それは定理から出てくることではない。</p>
+
+  <p class="body-text fade">ここで一つクイズを。読者がこの記事を通じて得たのは、定理への感触だけではなく、<em>定理が何について語っていないかを見抜く感覚</em>のはずだ。それを確かめたい。</p>
+
+  <div class="quiz-wrap fade">
+    <div class="quiz-header">
+      <span class="quiz-hl">✦ Quiz — どれが誤用？</span>
+    </div>
+    <div class="quiz-body">
+      <p class="quiz-q">次の主張のうち、不完全性定理の<strong>誤用</strong>はどれだろう？</p>
+      <div class="quiz-opts" id="quizOpts">
+        <button class="quiz-opt" onclick="quizAnswer(this, false)">A. ペアノ算術には、その体系の中では証明も反証もできない命題が存在する。</button>
+        <button class="quiz-opt" onclick="quizAnswer(this, false)">B. 十分に強い無矛盾な体系は、自分自身の無矛盾性を体系内部で証明できない。</button>
+        <button class="quiz-opt" onclick="quizAnswer(this, true)">C. 人間の心は不完全性定理を「超えている」から、コンピュータより本質的に優れている。</button>
+        <button class="quiz-opt" onclick="quizAnswer(this, false)">D. ゲーデル文 G は、通常の算術の真理としては真である（標準モデルで真）。</button>
+      </div>
+      <div class="quiz-feedback" id="quizFeedback">
+        <strong>正解は C</strong>。これは典型的な誤用で、哲学者ジョン・ルーカスや物理学者ロジャー・ペンローズによる一連の議論がよく知られているが、論理学者からは繰り返し批判されてきた。不完全性定理は「算術を含む形式体系」について語っているのであって、「人間の心」が形式体系であるかどうか、さらに言えば「人間の心」が存在するかどうかについてすら何も主張していない。定理を人間対機械の優劣論に持ち込むには、まず独立した前提を何重にも用意する必要がある。A・B・D はどれも定理の正しい帰結。
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">では、誤用を取り除いたあとに残るのは何か。それは虚無でもニヒリズムでもない。残るのは<em>次のような理解</em>だ。十分に豊かな記号の体系は、自分自身を完全には閉じることができない。自分を語る鏡は自分の外にある。そして外を持つことは、決して欠陥ではなく、むしろ体系が「豊か」であることの証でもある。ゲーデルは数学に限界を突きつけたのではない。数学のもつ、自分で自分を映すには少しだけ余白を持たないといけない、その慎ましさを暴いたのだ。</p>
+
+  <p class="body-text fade">これは絶望ではない。地図がどれだけ精密でも、地図は地形ではない。地図に描けない部分があることは、地形が存在しないことを意味しない。むしろ、地形が地図より豊かだということを意味する。算術はルールブックより豊かだ。そのことを、ゲーデルは証明した。</p>
+
+  <figure class="img-placeholder fade" style="margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:#1a1208;">
+    <img src="mirror_sky.jpg" alt="空を映した鏡" style="width:100%;display:block;object-fit:cover;max-height:400px;">
+    <figcaption style="padding:12px 16px;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;line-height:1.6;">鏡は空を映す。自分の外にあるものを映す。しかし鏡自身は、自分を映せない。算術も同じだ——自分について語ることはできるが、自分の正しさを自分の中で完全に示すことはできない。Photo: Betül Hüküklü / Pexels</figcaption>
+  </figure>
+
+  <div class="culture-block fade">
+    <div class="culture-label">作品への登場 / Culture</div>
+    <div class="culture-item">
+      <div class="culture-title">『ゲーデル・エッシャー・バッハ — あるいは不思議の環』ダグラス・ホフスタッター（1979）</div>
+      <div class="culture-desc">不完全性定理を、エッシャーの版画とバッハの音楽とともに織り上げた大著。一般読者への入門としては今も最良の一冊とされる。ピューリッツァー賞を受賞。本記事で使った MIU-システムもこの本の序盤に登場する。</div>
+    </div>
+    <div class="culture-item">
+      <div class="culture-title">『博士の愛した数式』小川洋子（2003）</div>
+      <div class="culture-desc">80分しか記憶が持たない数学者の物語。作中で直接ゲーデルが語られるわけではないが、「数式は有限の記号で無限を表現する」という主題の底には、記号と意味の間の深い関係——不完全性定理と同じ地下水脈——が流れている。</div>
+    </div>
+    <div class="culture-item">
+      <div class="culture-title">『ゲーデルの不完全性定理』ナーゲル & ニューマン（1958 / 邦訳1999）</div>
+      <div class="culture-desc">定理の証明を、数式をほとんど使わずに一般読者に説明した古典的な入門書。薄いが濃密。ホフスタッター本と並んで標準的な入り口とされる。</div>
+    </div>
+  </div>
+
+  <hr class="art-rule">
+
+  <div class="sec-rule fade"><span class="sec-label">参考文献</span><span class="sec-line"></span></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta">
+        <span class="ref-type">Primary Source</span>
+        <span class="ref-year">1931</span>
+      </div>
+      <p class="ref-title"><a href="https://doi.org/10.1007/BF01700692" target="_blank" rel="noopener">Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I</a></p>
+      <p class="ref-author">Kurt Gödel — Monatshefte für Mathematik und Physik, 38, 173–198</p>
+      <p class="ref-desc">不完全性定理の原論文。25ページ。第一定理と、第二定理の概略が含まれる。当時の数学者の標準的な訓練を受けていれば読めるが、ゲーデル数化の具体構成は相当に込み入っている。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta">
+        <span class="ref-type">Book</span>
+        <span class="ref-year">1958 / 邦訳1999</span>
+      </div>
+      <p class="ref-title"><a href="https://www.iwanami.co.jp/book/b265617.html" target="_blank" rel="noopener">ゲーデルの不完全性定理</a></p>
+      <p class="ref-author">E. Nagel & J. R. Newman（林一訳）— 岩波現代文庫</p>
+      <p class="ref-desc">定理の証明を、数式を極力使わずに一般読者向けに解説した古典。不完全性定理を独学しようとする人に今も最初に薦められる一冊。原書は Gödel's Proof（New York University Press）。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta">
+        <span class="ref-type">Book</span>
+        <span class="ref-year">2005</span>
+      </div>
+      <p class="ref-title"><a href="https://www.cambridge.org/core/books/godels-theorem/1CE5C69E5C45F99F7CAE6BF2C10B6C9E" target="_blank" rel="noopener">Gödel's Theorem: An Incomplete Guide to Its Use and Abuse</a></p>
+      <p class="ref-author">Torkel Franzén — A K Peters / CRC Press</p>
+      <p class="ref-desc">定理の誤用に対する最も包括的な反駁書。ポストモダン批評からペンローズの議論まで、実例を列挙して一つひとつ解体する。論理学者による「注意書き」として必読。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta">
+        <span class="ref-type">Encyclopedia</span>
+        <span class="ref-year">2022 update</span>
+      </div>
+      <p class="ref-title"><a href="https://plato.stanford.edu/entries/goedel-incompleteness/" target="_blank" rel="noopener">Gödel's Incompleteness Theorems</a></p>
+      <p class="ref-author">Stanford Encyclopedia of Philosophy — Panu Raatikainen</p>
+      <p class="ref-desc">定理の現代的な定式化、証明の技術的詳細、哲学的含意、よくある誤解まで、学術的に最新の情報を網羅している無料オンライン記事。これから深掘りする読者の起点として最適。</p>
+    </div>
+  </div>
+
+  <div class="note-box fade">
+    <strong>📌 この記事について：</strong>数学的主張は Nagel & Newman、SEP項目、Franzén の3つの独立した情報源で相互に裏付けている。歴史的事実（1930年9月ケーニヒスベルク会議、ゲーデルの生没年、フォン・ノイマンの書簡）は一次・二次資料で確認。ただし証明の細部や公理系の正確な定義は省略してある。厳密な理解が必要な場合は必ず原典にあたってほしい。
+  </div>
+
+  <p class="signature fade">e. Tamaki</p>
+
+  <div class="tags fade">
+    <span class="tag">数学・論理</span>
+    <span class="tag">論理学</span>
+    <span class="tag">形式体系</span>
+    <span class="tag">20世紀</span>
+    <span class="tag">ゲーデル</span>
+    <span class="tag">DEEP DIVE</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">1931</p>
+      <p class="sidebar-text">ゲーデルの論文が発表された年。<em>25ページ</em>の論文が、ヒルベルト・プログラムという30年がかりの構想に終止符を打った。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">20世紀初頭、ラッセルのパラドックスなど集合論の逆説が数学の基礎を揺るがしていた。ヒルベルトはすべての数学を記号体系に還元し、その無矛盾性を内部から証明することで基礎を立て直そうとした。ゲーデルはその希望を、希望が頂点に達した瞬間に原理的に潰した。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">ホフスタッター『ゲーデル・エッシャー・バッハ』（1979）が最も有名な一般向け紹介。<em>本記事の MIU-システムもこの本由来</em>。他にナーゲル&ニューマンの古典的入門書、小川洋子『博士の愛した数式』など。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— カントールの対角線論法<br>— チューリングマシンと停止問題<br>— ラッセルのパラドックス<br>— 嘘つきのパラドックス<br>— ヒルベルトの23問題</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">数学的主張はすべて <em>論理学の標準的教科書と SEP で相互検証済み</em>。歴史的事実も一次・二次資料で確認。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 不完全性定理を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、MIからMUに行けない、って話だったよね？</span></div>
+      <span class="t-output" id="to1">そう。でも本当に持ち帰ってほしいのは、<em>系の中で真剣に探している間はなぜ不可能なのかが見えなかった</em>、という体験のほうだ。視点を一段上げた瞬間に、不可能性が一発で見える。<strong>ゲーデルは、算術という体系の中にその「一段上」を埋め込めることを発見した</strong>。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ、数学って結局は不完全で、信用できないってこと？</span></div>
+      <span class="t-output" id="to2">それがまさに最大の誤解。定理が言っているのは<em>「算術を含む特定の形式体系の中で」</em>証明できない命題がある、ということ。数学全体が壊れたわけでも、真理が失われたわけでもない。<strong>むしろ逆に、体系が「十分に強い」ことの証明みたいなものだ</strong>。力が弱ければ、不完全性は起きない。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;「人間の心はゲーデルを超えている」って聞いたことあるけど、あれは？</span></div>
+      <span class="t-output" id="to3">ペンローズやルーカスの議論ね。論理学者からは繰り返し批判されている。定理を人間の心に適用するには、まず「人間の心は算術を含む形式体系である」と独立に示さないといけないが、それは定理からは出てこない。<em>定理が何も語っていない領域で定理を引用するのが、誤用の常套手段</em>——Franzén が2005年の本で書いた通り。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# ふうん、まだ頭がくらくらしてる</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="#">
+      <p class="related-card-tag">数学・論理 × 論理学</p>
+      <p class="related-card-title">カントールの対角線論法</p>
+      <p class="related-card-desc">ゲーデルが不完全性定理の証明で使った技法の源流。「無限にも大きさの違いがある」という、数学史上最も人を惑わせた発見。</p>
+      <p class="related-card-arrow">近日公開</p>
+    </a>
+    <a class="related-card" href="#">
+      <p class="related-card-tag">数学・論理 × 哲学</p>
+      <p class="related-card-title">数学は発見か、発明か</p>
+      <p class="related-card-desc">ゲーデルは生涯「数学的対象は実在する」というプラトン主義者だった。その立場の根拠と現代の論争。</p>
+      <p class="related-card-arrow">近日公開</p>
+    </a>
+  </div>
+</div>
+
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// === MIU SYSTEM ===
+let miuState="MI";
+let miuHist=["MI"];
+let miuSteps=0;
+
+function miuRender(){
+  const d=document.getElementById('miuDisplay');
+  if(!d)return;
+  // 表示
+  let html='';
+  for(const ch of miuState){
+    if(ch==='M')html+='<span class="s-m">M</span>';
+    else if(ch==='I')html+='<span class="s-i">I</span>';
+    else if(ch==='U')html+='<span class="s-u">U</span>';
+    else html+=ch;
+  }
+  d.innerHTML=html;
+  // win状態
+  if(miuState==='MU'){
+    d.classList.add('win');
+  }else{
+    d.classList.remove('win');
+  }
+  document.getElementById('miuCounter').textContent='手数: '+miuSteps;
+  // 各ルールの有効/無効を判定して active/inactive クラスを付与
+  const rules=[
+    {id:1,ok:miuState.endsWith('I')},
+    {id:2,ok:miuState.startsWith('M')},
+    {id:3,ok:miuState.includes('III')},
+    {id:4,ok:miuState.includes('UU')},
+  ];
+  rules.forEach(r=>{
+    const btn=document.getElementById('miuR'+r.id);
+    const stat=document.getElementById('miuS'+r.id);
+    if(!btn||!stat)return;
+    if(r.ok){
+      btn.classList.add('active');
+      btn.classList.remove('inactive');
+      btn.disabled=false;
+      stat.textContent='使える';
+    }else{
+      btn.classList.add('inactive');
+      btn.classList.remove('active');
+      btn.disabled=true;
+      stat.textContent='条件未達';
+    }
+  });
+  // 履歴
+  const h=document.getElementById('miuHistory');
+  let hh='<span class="miu-history-lbl">History</span>';
+  miuHist.forEach((s,i)=>{hh+='<span class="miu-history-item"><span class="mh-i">['+i+']</span> '+s+'</span>';});
+  h.innerHTML=hh;
+  h.scrollTop=h.scrollHeight;
+}
+function miuApply(n){
+  let next=miuState;
+  if(n===1){
+    if(!miuState.endsWith('I'))return;
+    next=miuState+'U';
+  }else if(n===2){
+    if(!miuState.startsWith('M'))return;
+    next='M'+miuState.slice(1)+miuState.slice(1);
+  }else if(n===3){
+    const idx=miuState.indexOf('III');
+    if(idx<0)return;
+    next=miuState.slice(0,idx)+'U'+miuState.slice(idx+3);
+  }else if(n===4){
+    const idx=miuState.indexOf('UU');
+    if(idx<0)return;
+    next=miuState.slice(0,idx)+miuState.slice(idx+2);
+  }
+  // 爆発防止
+  if(next.length>60){
+    alert('文字列が長くなりすぎました。リセットして別のルートを試してください。');
+    return;
+  }
+  miuState=next;
+  miuHist.push(miuState);
+  miuSteps++;
+  miuRender();
+}
+function miuUndo(){
+  if(miuHist.length<=1)return;
+  miuHist.pop();
+  miuState=miuHist[miuHist.length-1];
+  miuSteps=Math.max(0,miuSteps-1);
+  miuRender();
+}
+function miuReset(){
+  miuState='MI';
+  miuHist=['MI'];
+  miuSteps=0;
+  miuRender();
+  const r=document.getElementById('miuReveal');
+  if(r)r.classList.remove('show');
+}
+function miuGiveUp(){
+  const r=document.getElementById('miuReveal');
+  if(r)r.classList.add('show');
+  setTimeout(()=>{r.scrollIntoView({behavior:'smooth',block:'center'});},100);
+}
+miuRender();
+
+// === QUIZ ===
+function quizAnswer(btn,isCorrect){
+  const opts=document.querySelectorAll('#quizOpts .quiz-opt');
+  opts.forEach(o=>{
+    o.classList.add('dim');
+    o.onclick=null;
+  });
+  btn.classList.remove('dim');
+  if(isCorrect){
+    btn.classList.add('correct');
+  }else{
+    btn.classList.add('wrong');
+    opts.forEach(o=>{
+      if(o.textContent.trim().startsWith('C.')){
+        o.classList.remove('dim');
+        o.classList.add('correct');
+      }
+    });
+  }
+  const fb=document.getElementById('quizFeedback');
+  if(fb)fb.classList.add('show');
+}
+
+// === TERMINAL SEQUENCE ===
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2600},{id:'to2',delay:3200},
+  {id:'tl3',delay:4400},{id:'to3',delay:5000},
+  {id:'tl4',delay:6200},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">検索データを読み込み中です…</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>
