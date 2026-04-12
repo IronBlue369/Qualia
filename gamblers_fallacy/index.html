@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ギャンブラーの誤謬 — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-stat{border:1px solid #c8bfaa;padding:28px 24px;background:#f3efe6;text-align:center;margin-bottom:20px;}
+.cover-stat-n{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:8px;}
+.cover-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.6;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP (legacy inline box — hidden, replaced by toast) */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-body{padding:18px 22px;background:#f3efe6;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+
+/* SVG FIG */
+.svg-fig{margin:32px 0;max-width:680px;margin-left:auto;margin-right:auto;}
+.svg-fig.wide{max-width:100%;}
+.svg-caption{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;text-align:center;margin-top:8px;line-height:1.7;}
+
+/* SCENE IMAGE (hero/eyecatch in body) */
+.scene-img{margin:36px 0;padding:0;max-width:680px;margin-left:auto;margin-right:auto;}
+.scene-img img{display:block;width:100%;height:auto;border:1px solid #c8bfaa;box-shadow:0 4px 16px rgba(26,18,8,.18);}
+.scene-img figcaption{margin-top:10px;display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:0 2px;flex-wrap:wrap;}
+.scene-img-caption{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#3d3020;line-height:1.6;flex:1;min-width:0;}
+.scene-img-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#b0a090;letter-spacing:.04em;white-space:nowrap;}
+@media(max-width:720px){
+  .scene-img{margin:28px 0;}
+  .scene-img figcaption{flex-direction:column;gap:4px;}
+  .scene-img-credit{align-self:flex-end;}
+}
+
+/* INTERACTIVE WRAP */
+.ix-wrap{margin:36px 0;border:1px solid #c8bfaa;background:#ffffff;overflow:hidden;}
+.ix-head{background:#1a1208;color:#e8e4de;padding:11px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.ix-hlabel{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#e8c56a;}
+.ix-htitle{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#ffffff;}
+.ix-body{padding:24px 22px;background:#faf8f3;}
+.ix-intro{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:18px;}
+.ix-intro strong{color:#1a1208;font-weight:600;}
+
+/* Independence Visualizer */
+.iv-row{display:grid;grid-template-columns:1fr;gap:18px;}
+.iv-graph{background:#ffffff;border:1px solid #e0d8c8;padding:14px;}
+.iv-controls{background:#f3efe6;border:1px solid #e0d8c8;padding:14px 16px;}
+.iv-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#7a6a55;text-transform:uppercase;margin-bottom:8px;}
+.iv-slider{width:100%;-webkit-appearance:none;appearance:none;height:4px;background:linear-gradient(to right,#8b1a1a,#c8bfaa);border-radius:2px;outline:none;}
+.iv-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;background:#1a1208;border:2px solid #faf8f3;border-radius:50%;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.3);}
+.iv-slider::-moz-range-thumb{width:18px;height:18px;background:#1a1208;border:2px solid #faf8f3;border-radius:50%;cursor:pointer;}
+.iv-value{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:#8b1a1a;line-height:1;margin:10px 0 4px;}
+.iv-value-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.iv-readout{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid #e0d8c8;}
+.iv-read-card{background:#ffffff;border:1px solid #e0d8c8;padding:10px 12px;}
+.iv-read-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.12em;color:#b0a090;text-transform:uppercase;margin-bottom:4px;}
+.iv-read-val{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1a1208;}
+.iv-read-val.fact{color:#1a5a30;}
+.iv-read-val.fantasy{color:#c4392a;}
+.iv-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.iv-legend-item{display:flex;align-items:center;gap:6px;}
+.iv-legend-swatch{width:14px;height:3px;display:inline-block;}
+
+/* Monte Carlo Sim — Roulette Table Style */
+.mc-modes{display:flex;gap:0;margin-bottom:14px;border:1px solid #c8bfaa;background:#f3efe6;}
+.mc-mode-btn{flex:1;padding:12px 16px;background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#7a6a55;letter-spacing:.06em;border-right:1px solid #c8bfaa;transition:all .2s;}
+.mc-mode-btn:last-child{border-right:none;}
+.mc-mode-btn.active{background:#1a1208;color:#e8c56a;}
+.mc-mode-btn:hover:not(.active){background:#ede8dc;color:#3d3020;}
+.mc-mode-desc{padding:12px 16px;background:#ede8dc;border:1px solid #c8bfaa;border-top:none;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;line-height:1.7;margin-bottom:16px;}
+.mc-mode-desc strong{color:#8b1a1a;}
+.mc-layout{display:grid;grid-template-columns:1fr;gap:14px;}
+.mc-scene{background:linear-gradient(135deg,#0d4028,#155239 40%,#0d3820);color:#e8e4de;padding:22px 20px;border:2px solid #2a1810;box-shadow:inset 0 0 40px rgba(0,0,0,.4);position:relative;}
+.mc-scene::before{content:'';position:absolute;inset:6px;border:1px solid rgba(232,197,106,.25);pointer-events:none;}
+.mc-scene-title{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:#e8c56a;margin-bottom:4px;text-align:center;position:relative;}
+.mc-scene-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#a8c49a;margin-bottom:16px;line-height:1.7;text-align:center;letter-spacing:.08em;text-transform:uppercase;position:relative;}
+.mc-wheel-row{display:flex;align-items:center;justify-content:center;gap:22px;margin:12px 0 18px;flex-wrap:wrap;position:relative;}
+.mc-wheel{width:150px;height:150px;border-radius:50%;border:4px solid #e8c56a;background:radial-gradient(circle at center,#3d2818 0%,#1a1208 70%,#0d0704 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(232,197,106,.3),inset 0 0 20px rgba(0,0,0,.6);transition:transform .5s cubic-bezier(.22,1,.36,1);flex-shrink:0;position:relative;overflow:hidden;}
+.mc-wheel.spinning{transform:rotate(720deg);}
+.mc-wheel-img{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:50%;display:block;transition:opacity .25s;}
+.mc-wheel-inner{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#ffffff;letter-spacing:.04em;transition:background .3s,opacity .25s;box-shadow:inset 0 0 12px rgba(0,0,0,.4);position:relative;z-index:2;}
+.mc-wheel-inner.wait{background:transparent;color:transparent;box-shadow:none;}
+.mc-wheel.has-result .mc-wheel-img{opacity:0;}
+.mc-wheel-inner.red{background:radial-gradient(circle,#a02020,#6b0f0f);}
+.mc-wheel-inner.black{background:radial-gradient(circle,#2a1810,#0d0704);border:1px solid #3d3020;}
+.mc-stats{flex:1;min-width:180px;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#d8e4cc;line-height:1.85;position:relative;}
+.mc-stats strong{color:#e8c56a;font-weight:600;}
+.mc-stats .mc-fortune{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#e8c56a;line-height:1.1;margin:4px 0 2px;}
+.mc-stats .mc-fortune.lost{color:#e06050;}
+.mc-fortune-jpy{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#a8c49a;margin-bottom:8px;}
+.mc-history{background:rgba(13,32,20,.6);border:1px solid rgba(232,197,106,.3);padding:12px 14px;position:relative;}
+.mc-history-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;}
+.mc-history-strip{display:flex;gap:3px;flex-wrap:wrap;min-height:22px;}
+.mc-history-cell{width:18px;height:22px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:11px;font-weight:700;color:#ffffff;}
+.mc-history-cell.red{background:linear-gradient(#a02020,#6b0f0f);}
+.mc-history-cell.black{background:linear-gradient(#2a1810,#0d0704);border:1px solid #3d3020;}
+.mc-controls{background:#1a1208;border:1px solid #3d3020;padding:18px 20px;}
+.mc-ctrl-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.mc-ctrl-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;}
+.mc-bet-buttons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;}
+.mc-bet-btn{padding:12px 6px 10px;border:2px solid #3d3020;background:#0d0704;font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#e8e4de;cursor:pointer;transition:all .15s;letter-spacing:.04em;font-style:italic;line-height:1.2;}
+.mc-bet-btn *{pointer-events:none;}
+.mc-bet-btn.red{background:linear-gradient(#8b1a1a,#5a0f0f);border-color:#a02020;}
+.mc-bet-btn.black{background:linear-gradient(#2a1810,#0d0704);border-color:#3d3020;}
+.mc-bet-btn.skip{background:#2a2420;border-color:#5a4838;font-style:normal;font-size:12px;}
+.mc-bet-btn:hover:not(:disabled):not(.selected){transform:translateY(-1px);box-shadow:0 2px 8px rgba(232,197,106,.2);}
+.mc-bet-btn.selected{box-shadow:0 0 0 2px #e8c56a,0 2px 12px rgba(232,197,106,.4);}
+.mc-bet-btn.selected:hover{box-shadow:0 0 0 2px #e8c56a,0 4px 16px rgba(232,197,106,.6);transform:none;}
+.mc-bet-btn:disabled{opacity:.4;cursor:not-allowed;}
+.mc-amt-row{display:flex;gap:6px;}
+.mc-amt-btn{flex:1;padding:10px 2px;border:1px solid #5a4838;background:#2a1810;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:#e8c56a;cursor:pointer;transition:all .15s;}
+.mc-amt-btn:hover:not(:disabled):not(.selected){background:#3d2818;}
+.mc-amt-btn.selected{background:#e8c56a;color:#1a1208;border-color:#e8c56a;box-shadow:0 0 0 2px #e8c56a,0 2px 8px rgba(232,197,106,.3);}
+.mc-amt-btn.selected:hover{background:#e8c56a;color:#1a1208;}
+.mc-amt-btn:disabled{opacity:.4;cursor:not-allowed;}
+.mc-spin-btn{width:100%;padding:14px;margin-top:14px;background:linear-gradient(#8b1a1a,#5a0f0f);color:#e8c56a;border:2px solid #e8c56a;font-family:'Playfair Display',serif;font-size:14px;font-weight:700;font-style:italic;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.mc-spin-btn:hover:not(:disabled){background:linear-gradient(#a02020,#6b0f0f);box-shadow:0 0 16px rgba(232,197,106,.4);}
+.mc-spin-btn:disabled{background:#3d3020;color:#7a6a55;border-color:#3d3020;cursor:not-allowed;}
+.mc-summary{background:#3d3020;color:#e8e4de;padding:20px 22px;margin-top:4px;display:none;}
+.mc-summary.show{display:block;}
+.mc-summary-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#e8c56a;margin-bottom:12px;font-style:italic;}
+.mc-summary-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#e0d8c8;line-height:1.85;margin-bottom:14px;}
+.mc-summary-text strong{color:#ffffff;font-weight:600;}
+.mc-summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px;background:#1a1208;border-left:2px solid #e8c56a;}
+.mc-summary-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.14em;color:#a8c49a;text-transform:uppercase;margin-bottom:3px;}
+.mc-summary-stat-val{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#e8c56a;}
+.mc-summary-stat-val.lost{color:#e06050;}
+.mc-reset{margin-top:12px;padding:9px 18px;background:none;border:1px solid #9a8878;color:#e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;}
+.mc-reset:hover{background:#9a8878;color:#1a1208;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* ── FOOTER ── */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .svg-fig{max-width:100%;}
+  .mc-ctrl-row{grid-template-columns:1fr;}
+  .mc-reveal-grid{grid-template-columns:1fr;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){
+  .toc-back{padding:22px 20px;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">認知バイアス / 確率論</p>
+    <h1>黒が26回続いた夜、<em>二十六人</em>が破産した。</h1>
+    <p class="cover-deck">ルーレットに記憶はない。それでも脳は、次こそ赤が「来るはずだ」と叫ぶ。1913年8月18日、モンテカルロで起きたこと。そして今日も、同じ誤りは私たちの頭の中で動き続けている。</p>
+    <div class="cover-byline"><span>認知バイアス</span><span>確率論</span><span>行動経済学</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1913</span>
+      <p class="est-event">モンテカルロカジノで黒が26連続出現。ギャンブラーたちが「次こそ赤」と賭け続け破産。後に「モンテカルロの誤謬」と呼ばれる。</p>
+      <p class="est-context">8月10日、第二次バルカン戦争がブカレスト条約で終結。ヨーロッパは翌年に迫る大戦の足音のなかにいた。</p>
+    </div>
+    <p class="cover-aside">独立試行の誤解は、カジノだけの問題ではない。<strong>亡命審査の判事、野球の主審、銀行のローン審査員</strong>——現代のデータはどこにでも、同じ歪みの指紋を残している。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>赤、赤、赤、赤、赤。あなたがコインを5回投げて、5回とも表が出たとする。6回目を投げる前、指先にかすかな確信がよぎる——さすがに今度は裏だろう。</p>
+    <p>理屈では、表と裏の確率はずっと半分ずつだと知っている。それでも「バランスが取れるはずだ」という感覚のほうが強い。ギャンブルをしない人でも、宝くじで最近出ていない番号を選ぶとき、連続で女の子が生まれた家の三人目を予想するとき、同じ種類の確信が働く。</p>
+    <p>この確信には名前がある。そして、その名前の由来になった夜がある。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 数学の知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-11</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-11</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">独立試行の世界では、<strong>過去は未来に何の情報も渡さない</strong>。それでも脳は、短い系列が「そろそろ均されるはず」と叫ぶ。その叫びは1913年のモンテカルロから今日の裁判所まで、形を変えずに響き続けている。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ===== 背景セクション ===== -->
+  <div class="sec-rule fade"><span class="sec-label">背景</span><span class="sec-line"></span></div>
+  <h2 class="fade">黒が26回続いた夜</h2>
+
+  <p class="body-text fade">1913年8月18日、モナコ公国。地中海から吹き上がる夏の風が、モンテカルロカジノの高い窓を揺らしていた。ヨーロッパはまだ穏やかな顔をしていた——表向きは。その8日前、8月10日に<span class="tip">ブカレスト条約<span class="tip-box"><strong>ブカレスト条約(1913)</strong>第二次バルカン戦争の講和条約。1913年8月10日に締結され、セルビア・ギリシャ・ルーマニア・モンテネグロがブルガリアから領土を獲得した。バルカン半島の勢力図を大きく塗り替え、翌年の第一次世界大戦への伏線となった。</span></span>が結ばれ、<span class="tip">第二次バルカン戦争<span class="tip-box"><strong>第二次バルカン戦争</strong>1913年6月〜8月、第一次バルカン戦争で獲得した領土の配分をめぐってブルガリアがセルビア・ギリシャを攻撃して始まった戦争。わずか1ヶ月余りでブルガリアが敗北し、ブカレスト条約で終結した。</span></span>は終わったばかり。<span class="tip">オスマン帝国<span class="tip-box"><strong>オスマン帝国</strong>14世紀から20世紀初頭まで続いたイスラム国家。最盛期にはバルカン半島全域を支配していたが、バルカン戦争によってヨーロッパでの領土をほぼ失い、1922年に滅亡。</span></span>がヨーロッパから退き、セルビアとギリシャが領土を広げ、オーストリア=ハンガリーは<span class="tip">スラブ民族主義<span class="tip-box"><strong>スラブ民族主義(汎スラヴ主義)</strong>スラヴ系諸民族の統一・連帯を目指す政治思想。オーストリア=ハンガリー領内のスラヴ系住民の独立運動を刺激し、セルビアの台頭と結びついて第一次世界大戦の引き金となった。</span></span>の高まりに神経質になっていた。翌年6月に<span class="tip">サラエボで銃声が響く<span class="tip-box"><strong>サラエボ事件(1914)</strong>1914年6月28日、ボスニアのサラエボでオーストリア=ハンガリー帝位継承者フランツ・フェルディナント大公夫妻がセルビア人青年ガヴリロ・プリンツィプによって暗殺された事件。第一次世界大戦の直接の引き金となった。</span></span>ことを、この夜の誰一人知らない。</p>
+
+  <!-- シーン写真(アイキャッチ) -->
+  <figure class="scene-img fade">
+    <img src="./scene_roulette_wheel.jpg" alt="ルーレット盤のクローズアップ">
+    <figcaption>
+      <span class="scene-img-caption">球が最初に黒に落ちたとき、誰も気に留めなかった。</span>
+      <span class="scene-img-credit">Photo: Pavel Danilyuk / Pexels</span>
+    </figcaption>
+  </figure>
+
+  <p class="body-text fade">カジノの中央、緑のフェルトの上でルーレットが回っていた。赤と黒。18と18。そして1つの緑のゼロ。球が最初に黒に落ちたとき、誰も気に留めなかった。2回目、3回目。4回続いたあたりで、近くの客が顔を上げた。6回、7回、8回——ディーラーの手つきが速くなり、周囲のテーブルから人が集まり始めた。10回連続で黒。</p>
+
+  <p class="body-text fade">ここから先は、部屋全体が一つの物語に取り憑かれる。客たちは一斉に赤に賭け始めた。「次こそ赤が来る」「ここまで黒が続いたのだから」「バランスが取れるはずだ」。チップが積まれ、紙幣が重ねられ、額はどんどん膨らんだ。しかし球は黒に落ちた。そしてまた黒。また黒。20回目の黒が出た頃には、テーブルの周りは人垣になっていた。多くの客が「今こそ」と全財産を赤に押し出した。球は黒に落ちた。結局、黒は<strong>26回連続</strong>で出た。27回目にようやく赤が出たときには、総額で数百万フラン——現在の貨幣価値に換算して十数億円規模——が、カジノの金庫に吸い込まれていた。</p>
+
+  <!-- SVG①: 1913年ヨーロッパ時代文脈図 -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="1913年のヨーロッパとモンテカルロ事件の時代文脈図">
+      <rect x="0" y="0" width="800" height="360" fill="#faf8f3"/>
+      <!-- 時系列軸 -->
+      <line x1="60" y1="250" x2="740" y2="250" stroke="#c8bfaa" stroke-width="1.5"/>
+      <line x1="60" y1="245" x2="60" y2="255" stroke="#c8bfaa" stroke-width="1.5"/>
+      <line x1="740" y1="245" x2="740" y2="255" stroke="#c8bfaa" stroke-width="1.5"/>
+      <text x="60" y="275" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">1912年10月</text>
+      <text x="740" y="275" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="end">1914年6月</text>
+      <text x="400" y="295" font-family="Source Sans 3, sans-serif" font-size="15" fill="#1a1208" text-anchor="middle" font-weight="600">ヨーロッパの「静かな」21ヶ月</text>
+
+      <!-- イベントマーカー -->
+      <!-- 第一次バルカン戦争 -->
+      <circle cx="110" cy="250" r="7" fill="#c8bfaa"/>
+      <line x1="110" y1="245" x2="110" y2="120" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+      <rect x="35" y="85" width="150" height="35" fill="#f3efe6" stroke="#c8bfaa"/>
+      <text x="110" y="100" font-family="Source Sans 3, sans-serif" font-size="14" fill="#1a1208" text-anchor="middle" font-weight="600">第一次バルカン戦争</text>
+      <text x="110" y="115" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">1912年10月開戦</text>
+
+      <!-- ブカレスト条約(左側・下方に配置) -->
+      <circle cx="345" cy="250" r="7" fill="#c8bfaa"/>
+      <line x1="345" y1="245" x2="345" y2="200" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+      <rect x="245" y="165" width="195" height="35" fill="#f3efe6" stroke="#c8bfaa"/>
+      <text x="342" y="180" font-family="Source Sans 3, sans-serif" font-size="14" fill="#1a1208" text-anchor="middle" font-weight="600">ブカレスト条約</text>
+      <text x="342" y="195" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">1913年8月10日</text>
+
+      <!-- モンテカルロ事件(右に離して配置) -->
+      <circle cx="455" cy="250" r="10" fill="#8b1a1a"/>
+      <line x1="455" y1="240" x2="455" y2="55" stroke="#8b1a1a" stroke-width="1.5"/>
+      <rect x="365" y="20" width="180" height="35" fill="#8b1a1a"/>
+      <text x="455" y="35" font-family="Source Sans 3, sans-serif" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">モンテカルロ事件</text>
+      <text x="455" y="50" font-family="Source Sans 3, sans-serif" font-size="14" fill="#e8c56a" text-anchor="middle">1913年8月18日 / 黒26連続</text>
+
+      <!-- サラエボ -->
+      <circle cx="720" cy="250" r="7" fill="#c8bfaa"/>
+      <line x1="720" y1="245" x2="720" y2="120" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+      <rect x="620" y="85" width="160" height="35" fill="#f3efe6" stroke="#c8bfaa"/>
+      <text x="700" y="100" font-family="Source Sans 3, sans-serif" font-size="14" fill="#1a1208" text-anchor="middle" font-weight="600">サラエボ事件</text>
+      <text x="700" y="115" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">1914年6月28日</text>
+
+      <!-- 説明 -->
+      <text x="400" y="335" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle" font-style="italic">バルカン戦争が終わった8日後、カジノの中で別の「確率の戦争」が起きていた</text>
+    </svg>
+    <p class="svg-caption">1913年8月の時代文脈。事件の8日前に第二次バルカン戦争が終結。翌年のサラエボ事件までの「束の間の静寂」の中で起きた。</p>
+  </div>
+
+  <p class="body-text fade">この夜の記録が、確率論の教科書に「<strong>モンテカルロの誤謬</strong>(Monte Carlo fallacy)」という名前を刻んだ。だが、事件そのものは珍しいわけではない。同じ種類の誤りは、それ以前もそれ以後も、人類が確率と付き合ってきた全期間を通じて、形を変えずに繰り返されている。珍しかったのは、26連続黒という事象のほうだ。確率でいえば、およそ<strong>6,660万分の1</strong>。しかし、珍しい出来事はそれでも起きる。ルーレットはその事実を淡々と示しただけだった。</p>
+
+  <!-- 人物ブロック(画像なし1カラム) -->
+  <div class="person-block fade">
+    <div class="person-block-body">
+      <p class="person-block-name">Amos Tversky &amp; Daniel Kahneman</p>
+      <p class="person-block-role">エイモス・トベルスキー / ダニエル・カーネマン</p>
+      <p class="person-block-desc">イスラエル出身の心理学者コンビ。1971年の論文「小数の法則への信念」で、統計の専門家ですら短い系列から過剰な結論を引き出す傾向があることを実証した。ギャンブラーの誤謬を「<span class="tip">代表性ヒューリスティック<span class="tip-box"><strong>代表性ヒューリスティック</strong>ある事象が「典型例」にどれだけ似ているかで確率を判断する思考のショートカット。連続で黒が出た後は、赤を含めたほうが「ランダムらしく見える」から、次は赤だと感じてしまう。</span></span>」という認知の仕組みの帰結として位置づけた。この研究は行動経済学という分野を立ち上げる礎のひとつとなり、2002年にカーネマンはノーベル経済学賞を受賞する(トベルスキーは1996年に他界していたため受賞できなかった)。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">トベルスキーとカーネマンの洞察は、モンテカルロの夜に立ち会った客たちが「愚か」だったのではない、ということだった。数学者でも、統計学者でも、同じ状況に置かれれば似た方向に指が動く。私たちが「ランダム」と呼んでいるものの心像そのものが、数学的なランダムとずれている——問題はそこにある。</p>
+
+  <!-- SVG②: 代表性ヒューリスティックの構造図 -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="代表性ヒューリスティックの構造図">
+      <rect x="0" y="0" width="800" height="420" fill="#faf8f3"/>
+      <text x="400" y="30" font-family="Playfair Display, serif" font-size="18" fill="#1a1208" text-anchor="middle" font-weight="700">「ランダムらしい」と「本当のランダム」のズレ</text>
+
+      <!-- 左: 本当のランダム -->
+      <rect x="40" y="60" width="340" height="300" fill="#ffffff" stroke="#c8bfaa" stroke-width="1.5"/>
+      <text x="210" y="85" font-family="Source Sans 3, sans-serif" font-size="15" fill="#1a5a30" text-anchor="middle" font-weight="600">本当のランダム(確率論)</text>
+      <text x="210" y="108" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">100回コイン投げの一例</text>
+
+      <!-- 本当のランダムの帯(塊を含む) -->
+      <g transform="translate(60,130)">
+        <rect x="0" y="0" width="20" height="20" fill="#1a1208"/>
+        <rect x="22" y="0" width="20" height="20" fill="#e8c56a"/>
+        <rect x="44" y="0" width="20" height="20" fill="#1a1208"/>
+        <rect x="66" y="0" width="20" height="20" fill="#1a1208"/>
+        <rect x="88" y="0" width="20" height="20" fill="#1a1208"/>
+        <rect x="110" y="0" width="20" height="20" fill="#1a1208"/>
+        <rect x="132" y="0" width="20" height="20" fill="#1a1208"/>
+        <rect x="154" y="0" width="20" height="20" fill="#e8c56a"/>
+        <rect x="176" y="0" width="20" height="20" fill="#e8c56a"/>
+        <rect x="198" y="0" width="20" height="20" fill="#1a1208"/>
+        <rect x="220" y="0" width="20" height="20" fill="#e8c56a"/>
+        <rect x="242" y="0" width="20" height="20" fill="#e8c56a"/>
+        <rect x="264" y="0" width="20" height="20" fill="#1a1208"/>
+        <rect x="286" y="0" width="20" height="20" fill="#e8c56a"/>
+        <!-- 5連続黒(x=44から132まで、5マス分) -->
+        <rect x="42" y="-3" width="114" height="26" fill="none" stroke="#8b1a1a" stroke-width="2"/>
+        <text x="99" y="45" font-family="Source Sans 3, sans-serif" font-size="14" fill="#8b1a1a" text-anchor="middle" font-weight="600">5連続</text>
+      </g>
+      <text x="210" y="220" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">長い系列の中には</text>
+      <text x="210" y="240" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">必ず「かたまり」が現れる。</text>
+      <text x="210" y="275" font-family="Source Sans 3, sans-serif" font-size="14" fill="#1a5a30" text-anchor="middle" font-weight="600">100回投げて</text>
+      <text x="210" y="293" font-family="Source Sans 3, sans-serif" font-size="14" fill="#1a5a30" text-anchor="middle" font-weight="600">7連続以上の確率 ≒ 54%</text>
+      <text x="210" y="330" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle" font-style="italic">これが「まとも」な姿</text>
+
+      <!-- 右: 脳が想像するランダム -->
+      <rect x="420" y="60" width="340" height="300" fill="#ffffff" stroke="#c8bfaa" stroke-width="1.5"/>
+      <text x="590" y="85" font-family="Source Sans 3, sans-serif" font-size="15" fill="#c4392a" text-anchor="middle" font-weight="600">脳が想像するランダム</text>
+      <text x="590" y="108" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">「これならランダムっぽい」</text>
+
+      <!-- 脳のランダム(交互) -->
+      <g transform="translate(440,130)">
+        <rect x="0" y="0" width="20" height="20" fill="#1a1208"/>
+        <rect x="22" y="0" width="20" height="20" fill="#e8c56a"/>
+        <rect x="44" y="0" width="20" height="20" fill="#1a1208"/>
+        <rect x="66" y="0" width="20" height="20" fill="#e8c56a"/>
+        <rect x="88" y="0" width="20" height="20" fill="#e8c56a"/>
+        <rect x="110" y="0" width="20" height="20" fill="#1a1208"/>
+        <rect x="132" y="0" width="20" height="20" fill="#e8c56a"/>
+        <rect x="154" y="0" width="20" height="20" fill="#1a1208"/>
+        <rect x="176" y="0" width="20" height="20" fill="#e8c56a"/>
+        <rect x="198" y="0" width="20" height="20" fill="#1a1208"/>
+        <rect x="220" y="0" width="20" height="20" fill="#e8c56a"/>
+        <rect x="242" y="0" width="20" height="20" fill="#1a1208"/>
+        <rect x="264" y="0" width="20" height="20" fill="#e8c56a"/>
+        <rect x="286" y="0" width="20" height="20" fill="#1a1208"/>
+      </g>
+      <text x="590" y="220" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">ほとんど交互。</text>
+      <text x="590" y="240" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">連続は短い。</text>
+      <text x="590" y="275" font-family="Source Sans 3, sans-serif" font-size="14" fill="#c4392a" text-anchor="middle" font-weight="600">数学的には</text>
+      <text x="590" y="293" font-family="Source Sans 3, sans-serif" font-size="14" fill="#c4392a" text-anchor="middle" font-weight="600">ランダムではない</text>
+      <text x="590" y="330" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle" font-style="italic">「均衡」への過剰な信念</text>
+
+      <text x="400" y="395" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle" font-style="italic">脳は短い系列が長期平均と似ているべきだと期待する</text>
+    </svg>
+    <p class="svg-caption">本当のランダム(左)はかたまりを含む。脳が想像するランダム(右)は「交互」に近い。この非対称が誤謬の根にある。</p>
+  </div>
+
+  <!-- INT①: 独立試行ビジュアライザー -->
+  <div class="ix-wrap fade">
+    <div class="ix-head">
+      <span class="ix-hlabel">Interactive 01</span>
+      <span class="ix-htitle">連続した後、次に赤が出る確率</span>
+    </div>
+    <div class="ix-body">
+      <p class="ix-intro">スライダーで「黒が連続した回数」を動かしてみてほしい。<strong>赤線(ルーレットの実際の確率)</strong>は決して変わらない。<strong>点線(脳が期待するカーブ)</strong>は連続数に応じて上がっていく。この2本のズレの大きさが、モンテカルロの夜に二十六人が見ていたものだ。<br><span style="display:block;margin-top:8px;font-size:11px;color:#b0a090;">※点線は特定の関数に基づくものではなく、研究(Tversky &amp; Kahneman 1971, Clotfelter &amp; Cook 1993 ほか)で示された「連続が長いほど反対側への主観確率が上がる」という定性的傾向を概念的に図示したもの。</span></p>
+
+      <div class="iv-row">
+        <div class="iv-graph">
+          <svg id="ivSvg" viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="連続数と次の赤の確率のグラフ">
+            <rect x="0" y="0" width="680" height="300" fill="#faf8f3"/>
+            <!-- Y軸 -->
+            <line x1="70" y1="30" x2="70" y2="250" stroke="#c8bfaa" stroke-width="1.2"/>
+            <line x1="70" y1="250" x2="640" y2="250" stroke="#c8bfaa" stroke-width="1.2"/>
+            <!-- Y軸目盛 -->
+            <line x1="66" y1="30" x2="70" y2="30" stroke="#c8bfaa" stroke-width="1.2"/>
+            <text x="62" y="35" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="end">100%</text>
+            <line x1="66" y1="140" x2="70" y2="140" stroke="#c8bfaa" stroke-width="1.2"/>
+            <text x="62" y="145" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="end">50%</text>
+            <line x1="66" y1="250" x2="70" y2="250" stroke="#c8bfaa" stroke-width="1.2"/>
+            <text x="62" y="254" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="end">0%</text>
+            <!-- X軸ラベル -->
+            <text x="70" y="272" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">0</text>
+            <text x="260" y="272" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">10</text>
+            <text x="450" y="272" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">20</text>
+            <text x="640" y="272" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">30</text>
+            <text x="355" y="292" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">黒が連続した回数</text>
+
+            <!-- 50%ガイドライン -->
+            <line x1="70" y1="140" x2="640" y2="140" stroke="#e0d8c8" stroke-width="1" stroke-dasharray="4,4"/>
+
+            <!-- 真実の赤線(常に48.6%で水平) -->
+            <!-- 48.6% → Y = 250 - 0.486*220 = 143.08 -->
+            <line x1="70" y1="143" x2="640" y2="143" stroke="#8b1a1a" stroke-width="3"/>
+            <text x="635" y="135" font-family="Source Sans 3, sans-serif" font-size="14" fill="#8b1a1a" text-anchor="end" font-weight="600">実際: 48.6%</text>
+
+            <!-- 脳の期待する点線カーブ -->
+            <path id="ivFantasy" d="" stroke="#c4392a" stroke-width="2.5" stroke-dasharray="5,4" fill="none"/>
+            <text x="250" y="55" font-family="Source Sans 3, sans-serif" font-size="14" fill="#c4392a" text-anchor="start" font-weight="600">脳が信じる曲線(概念図)</text>
+
+            <!-- 現在位置マーカー -->
+            <circle id="ivMarkerFact" cx="70" cy="143" r="7" fill="#8b1a1a" stroke="#faf8f3" stroke-width="2"/>
+            <circle id="ivMarkerFantasy" cx="70" cy="143" r="7" fill="#c4392a" stroke="#faf8f3" stroke-width="2"/>
+            <line id="ivMarkerLine" x1="70" y1="30" x2="70" y2="250" stroke="#1a1208" stroke-width="1" stroke-dasharray="2,3"/>
+          </svg>
+        </div>
+        <div class="iv-controls">
+          <div class="iv-label">連続で黒が出た回数</div>
+          <input type="range" min="0" max="30" value="0" class="iv-slider" id="ivSlider">
+          <div class="iv-value" id="ivValue">0 回</div>
+          <div class="iv-value-sub">スライダーを右に動かしてみてください</div>
+
+          <div class="iv-readout">
+            <div class="iv-read-card">
+              <div class="iv-read-lbl">次の赤確率(実際)</div>
+              <div class="iv-read-val fact" id="ivFactVal">48.6%</div>
+            </div>
+            <div class="iv-read-card">
+              <div class="iv-read-lbl">脳が信じる確率</div>
+              <div class="iv-read-val fantasy" id="ivFantasyVal">48.6%</div>
+            </div>
+          </div>
+
+          <div class="iv-legend">
+            <div class="iv-legend-item"><span class="iv-legend-swatch" style="background:#8b1a1a;"></span>実際の確率</div>
+            <div class="iv-legend-item"><span class="iv-legend-swatch" style="background:#c4392a;border-top:2px dashed #c4392a;height:0;"></span>脳の期待</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">実際の数字は動かない。ルーレットには記憶がない。<span class="tip">独立試行<span class="tip-box"><strong>独立試行</strong>一回ごとの結果が、前の結果から一切の情報を受け取らない試行。ルーレット、コイン投げ、サイコロ、宝くじ抽選などがこれにあたる。過去の履歴は未来の確率に影響しない。</span></span>とはそういう意味だ。しかし脳は、連続が長くなるほど「さすがに」という感覚を強めていく。この「さすがに」が、モンテカルロの夜の客たちの財布から、ゆっくりと、しかし確実に資産を吸い出していった。</p>
+
+  <!-- 誤解あるある -->
+  <div class="misconception fade">
+    <div class="misconception-header">
+      <span class="misconception-hl">よくある誤解 vs 実際は</span>
+    </div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">黒が長く続いたのだから、次は赤が出やすくなっているはずだ。長期的には半々に戻るのだから、それが「戻る」方向に確率が傾く。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">次のスピンの確率は、過去に何が起きていようと常に同じ(仏式ルーレットで約48.6%)。長期的に半々に近づくのは、過去の偏りが「打ち消される」からではなく、試行数が増えて<strong>偏りが全体に埋もれる</strong>から。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">26回連続で黒が出るなんて、そんな異常な事象は普段は起こらない。ギャンブラーたちも普通なら赤に賭けて正解だったはずだ。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">モンテカルロ事件は「起きたから有名になった」だけで、赤の連続でも起き得た。そして6,660万分の1の事象でも、世界中で毎晩ルーレットが回り続ければ、どこかで必ず起きる。問題は連続そのものではなく、それを見た脳の反応。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">ギャンブラーの誤謬はカジノでしか起きない。私は賭博をしないから無関係。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">同じ構造の誤りは、宝くじの番号選び、出生順の予想、亡命審査、野球の主審、ローン審査員の判断など、あらゆる「独立した出来事が連続する場面」で観察されている(Chen, Moskowitz &amp; Shue, 2016)。カジノは氷山の一角にすぎない。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 体験セクション ===== -->
+  <div class="sec-rule fade"><span class="sec-label">体験</span><span class="sec-line"></span></div>
+  <h2 class="fade">1913年8月18日の夜へ</h2>
+
+  <p class="body-text fade">ここで、あなたをその夜のテーブルに連れて行く。<strong>最初から断っておく: これから体験する最初のモードは「1913年8月18日の追体験モード」だ。26連続黒は歴史の記録通りに固定され、結果は既に決まっている</strong>。だから試されているのは「次の色を当てられるか」ではない。試されているのは、<em>あなたの指が、いつ、どの色に、いくらで動くか</em>——それだけだ。そのあと、真のランダムで動く「本物のルーレットモード」も試せる。自分の誤謬を、自分のデータで測れる。</p>
+
+  <!-- INT②: モンテカルロ26連続シミュレーター(2モード) -->
+  <div class="ix-wrap fade">
+    <div class="ix-head">
+      <span class="ix-hlabel">Interactive 02</span>
+      <span class="ix-htitle">Monte-Carlo, 1913</span>
+    </div>
+    <div class="ix-body">
+      <div class="mc-modes">
+        <button class="mc-mode-btn active" data-mode="history" id="mcModeHistory">🕰️ 1913年追体験モード</button>
+        <button class="mc-mode-btn" data-mode="random" id="mcModeRandom">🎲 本物のルーレットモード</button>
+      </div>
+      <div class="mc-mode-desc" id="mcModeDesc">
+        <strong>追体験モード:</strong> 最初の26スピンは実際に1913年8月18日に出た「黒」が固定で出る。27回目で赤が出て終了。結果は決まっているので、あなたが観察するのは「自分の指が、いつ、どのタイミングで赤に傾き、ベットを上げるか」。持ち金は10,000フラン(現在の価値で約5,000万円相当と言われる)。
+      </div>
+
+      <div class="mc-layout">
+        <div class="mc-scene">
+          <div class="mc-scene-title">Monte-Carlo — 1913</div>
+          <div class="mc-scene-sub">August 18, 1913 — une nuit d'été</div>
+          <div class="mc-wheel-row">
+            <div class="mc-wheel" id="mcWheel">
+              <img class="mc-wheel-img" id="mcWheelImg" src="./roulette_top.svg" alt="ルーレット盤">
+              <div class="mc-wheel-inner wait" id="mcWheelInner">—</div>
+            </div>
+            <div class="mc-stats">
+              <div>Spin #<strong id="mcSpinNum">0</strong> <span id="mcSpinTotal">/ 27</span></div>
+              <div style="margin-top:6px;">所持金</div>
+              <div class="mc-fortune" id="mcFortune">10,000 F</div>
+              <div class="mc-fortune-jpy" id="mcFortuneJpy">約 5,000 万円</div>
+              <div>最大ベット: <strong id="mcMaxBet">—</strong></div>
+              <div>赤に賭け始めた回: <strong id="mcFirstRedBet">—</strong></div>
+            </div>
+          </div>
+
+          <div class="mc-history">
+            <div class="mc-history-lbl">Spin History</div>
+            <div class="mc-history-strip" id="mcHistory"></div>
+          </div>
+        </div>
+
+        <div class="mc-controls">
+          <div class="mc-ctrl-row">
+            <div>
+              <div class="mc-ctrl-label">賭ける色 / Mise</div>
+              <div class="mc-bet-buttons">
+                <button class="mc-bet-btn red" data-color="red" id="mcBetRed">Rouge<span style="display:block;font-size:10px;font-style:normal;font-family:'Source Sans 3',sans-serif;font-weight:400;margin-top:2px;opacity:.85;">赤</span></button>
+                <button class="mc-bet-btn black" data-color="black" id="mcBetBlack">Noir<span style="display:block;font-size:10px;font-style:normal;font-family:'Source Sans 3',sans-serif;font-weight:400;margin-top:2px;opacity:.85;">黒</span></button>
+                <button class="mc-bet-btn skip" data-color="skip" id="mcBetSkip">見送り<span style="display:block;font-size:10px;font-family:'Source Sans 3',sans-serif;font-weight:400;margin-top:2px;opacity:.7;">pass</span></button>
+              </div>
+            </div>
+            <div>
+              <div class="mc-ctrl-label">ベット額(フラン)</div>
+              <div class="mc-amt-row">
+                <button class="mc-amt-btn" data-amt="100">100</button>
+                <button class="mc-amt-btn" data-amt="500">500</button>
+                <button class="mc-amt-btn" data-amt="1000">1,000</button>
+                <button class="mc-amt-btn" data-amt="2000">2,000</button>
+              </div>
+            </div>
+          </div>
+          <div id="mcStatusLine" style="margin-top:12px;padding:9px 12px;background:rgba(232,197,106,.08);border:1px solid rgba(232,197,106,.3);font-family:'Source Sans 3',sans-serif;font-size:12px;color:#e8c56a;text-align:center;letter-spacing:.04em;">色とベット額を選んでください</div>
+          <button class="mc-spin-btn" id="mcSpinBtn">Faites vos jeux — スピンを回す</button>
+        </div>
+
+        <div class="mc-summary" id="mcSummary">
+          <div class="mc-summary-title" id="mcSummaryTitle">…あの夜を終えて。</div>
+          <p class="mc-summary-text" id="mcSummaryText"></p>
+          <div class="mc-summary-grid">
+            <div>
+              <div class="mc-summary-stat-lbl">最終所持金</div>
+              <div class="mc-summary-stat-val" id="mcFinalFortune">—</div>
+            </div>
+            <div>
+              <div class="mc-summary-stat-lbl">損益</div>
+              <div class="mc-summary-stat-val" id="mcProfit">—</div>
+            </div>
+            <div>
+              <div class="mc-summary-stat-lbl">最大ベット額</div>
+              <div class="mc-summary-stat-val" id="mcSummaryMaxBet">—</div>
+            </div>
+            <div>
+              <div class="mc-summary-stat-lbl" id="mcSummaryExtraLbl">赤に賭け始めた回</div>
+              <div class="mc-summary-stat-val" id="mcSummaryExtra">—</div>
+            </div>
+          </div>
+          <button class="mc-reset" id="mcReset">もう一度体験する</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">多くの人は、10回目くらいまで見送り、12回目あたりから赤に賭け始める。15回目を超えると確信が強まり、ベット額を一段階上げる。20回目でさらに上げる。そして、26回目までの間にすでに破綻している。シミュレーターの中で痛みを感じた人は、1913年の夜にそこに居合わせた自分を想像できるはずだ。この感覚こそが、現代の脳にも同じ形で刻まれているものだ。</p>
+
+  <!-- ===== メカニズム ===== -->
+  <div class="sec-rule fade"><span class="sec-label">なぜ起きるか</span><span class="sec-line"></span></div>
+  <h2 class="fade">小数の法則という幻</h2>
+
+  <p class="body-text fade">ギャンブラーの誤謬は3つの層からなる、積み重なった誤読だ。下の3ステップを順に開いていくと、モンテカルロの夜の二十六人の頭の中で何が起きていたかが見えてくる。</p>
+
+  <div class="steps-wrap fade">
+    <div class="steps-head">メカニズム</div>
+    <div class="step-card" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">1</div>
+        <div class="step-tw"><div class="step-title">大数の法則を誤読する</div><div class="step-sub">「長期的に半々」を「短期的にも半々」と混同する</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>コインを無限回投げれば、表と裏の比率は 0.5 に収束する——これは数学的事実で、<strong>大数の法則</strong>と呼ばれる。脳はこの事実を、短い系列にも当てはめようとする。「10回中6回が表だったなら、次の10回は表が少なめに出るべきだ」と。</p>
+        <p>しかし大数の法則はそんなことを言っていない。<em>長期的な収束は、偏りが打ち消されることで起きるのではなく、偏りが全体に埋もれることで起きる</em>。100回投げて60回表が出たあと、続く900回が完全に半々でも、最終的な比率は 555/1000 = 55.5%。偏りは「解消」されていないが、割合としては 50% にかなり近づいている。</p>
+      </div>
+    </div>
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">2</div>
+        <div class="step-tw"><div class="step-title">代表性ヒューリスティックが働く</div><div class="step-sub">「ランダムらしい系列」を自発的に作ろうとする</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>トベルスキーとカーネマンが1971年に示したのは、人間が「ランダムかどうか」を判断するとき、その系列がどれだけ「典型的なランダムらしさ」に似ているかで決めているということだった。これが<strong>代表性ヒューリスティック</strong>だ。</p>
+        <p>問題は、脳の中の「ランダムらしい系列」が、実際のランダムとはかなり違う形をしていることだ。脳は「かたまり」を嫌い、交互に近い配置を好む。だから「BBBBBB(6連続黒)」は直感的にランダムに見えず、「BRBRBR」のほうがランダムらしく感じる。<em>だがコインは、前者を後者と同じ確率で出す</em>。</p>
+      </div>
+    </div>
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">3</div>
+        <div class="step-tw"><div class="step-title">負のオートコリレーションを期待する</div><div class="step-sub">「直前と逆」が出る方向に、判断がずれる</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>結果として、人間は独立試行の中に「<span class="tip">負のオートコリレーション<span class="tip-box"><strong>負のオートコリレーション</strong>時系列データで「直前と逆方向」に値が動く傾向のこと。本当のランダムではゼロ(直前と次のあいだに何の関係もない)だが、人間の直感はマイナス方向に期待値をずらして認識する。</span></span>」を読み込む。直前が黒なら次は赤寄り、直前が表なら次は裏寄り。本当のランダムではこの相関はゼロのはずが、人の頭の中では常にマイナス側に傾いている。</p>
+        <p>Chen, Moskowitz &amp; Shue (2016) はこの傾向が、亡命審査の判事で<strong>約3%</strong>、ローン審査員で最大<strong>約23%</strong>、野球の主審のストライク判定で<strong>約5%</strong>——すなわち「直前に承認したから次は却下」「直前にストライクと言ったから次はボール」——という形で観察できることを、大規模データで示した。<em>ルーレット盤の前だけの話ではない</em>。これは、あらゆる「連続判断」の場面に漂っている幽霊だ。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SVG④: 日常での顔 -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ギャンブラーの誤謬が現代社会で観察される場面">
+      <rect x="0" y="0" width="800" height="560" fill="#faf8f3"/>
+      <text x="400" y="34" font-family="Playfair Display, serif" font-size="19" fill="#1a1208" text-anchor="middle" font-weight="700">同じ誤謬が現代にも残した指紋</text>
+      <text x="400" y="58" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle" font-style="italic">「直前と逆の判断をする」傾向が実データで観察された例</text>
+
+      <!-- カード1: 亡命審査 -->
+      <g transform="translate(50,85)">
+        <rect x="0" y="0" width="340" height="155" fill="#ffffff" stroke="#c8bfaa" stroke-width="1.5"/>
+        <rect x="0" y="0" width="340" height="38" fill="#8b1a1a"/>
+        <text x="170" y="25" font-family="Source Sans 3, sans-serif" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">米国 亡命審査判事</text>
+        <text x="30" y="85" font-family="Playfair Display, serif" font-size="42" fill="#8b1a1a" font-weight="900">約3%</text>
+        <text x="165" y="72" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">直前に承認したら</text>
+        <text x="165" y="92" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">次は却下しやすい</text>
+        <line x1="20" y1="108" x2="320" y2="108" stroke="#e0d8c8"/>
+        <text x="170" y="128" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">命に関わる判断の場にも</text>
+        <text x="170" y="146" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">同じ歪みの指紋が残っている</text>
+      </g>
+
+      <!-- カード2: ローン審査員 -->
+      <g transform="translate(410,85)">
+        <rect x="0" y="0" width="340" height="155" fill="#ffffff" stroke="#c8bfaa" stroke-width="1.5"/>
+        <rect x="0" y="0" width="340" height="38" fill="#8b1a1a"/>
+        <text x="170" y="25" font-family="Source Sans 3, sans-serif" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">インドのローン審査員</text>
+        <text x="30" y="85" font-family="Playfair Display, serif" font-size="42" fill="#8b1a1a" font-weight="900">最大23%</text>
+        <text x="220" y="72" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">直前に承認したら</text>
+        <text x="220" y="92" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">次は承認しにくい</text>
+        <line x1="20" y1="108" x2="320" y2="108" stroke="#e0d8c8"/>
+        <text x="170" y="128" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">最も大きな歪みが</text>
+        <text x="170" y="146" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">観察された職業</text>
+      </g>
+
+      <!-- カード3: MLB主審(他3枠と同じ配置: text y=72/92, line y=108, bottom y=128/146) -->
+      <g transform="translate(50,260)">
+        <rect x="0" y="0" width="340" height="155" fill="#ffffff" stroke="#c8bfaa" stroke-width="1.5"/>
+        <rect x="0" y="0" width="340" height="38" fill="#8b1a1a"/>
+        <text x="170" y="25" font-family="Source Sans 3, sans-serif" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">MLB 野球の主審</text>
+        <text x="30" y="85" font-family="Playfair Display, serif" font-size="42" fill="#8b1a1a" font-weight="900">約5%</text>
+        <text x="180" y="72" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">直前2球ストライクなら</text>
+        <text x="180" y="92" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">3球目はボール判定へ</text>
+        <line x1="20" y1="108" x2="320" y2="108" stroke="#e0d8c8"/>
+        <text x="170" y="128" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">選手の運命を分ける</text>
+        <text x="170" y="146" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">ボール・ストライク判定</text>
+      </g>
+
+      <!-- カード4: 宝くじ -->
+      <g transform="translate(410,260)">
+        <rect x="0" y="0" width="340" height="155" fill="#ffffff" stroke="#c8bfaa" stroke-width="1.5"/>
+        <rect x="0" y="0" width="340" height="38" fill="#8b1a1a"/>
+        <text x="170" y="25" font-family="Source Sans 3, sans-serif" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">宝くじの番号選び</text>
+        <text x="30" y="85" font-family="Playfair Display, serif" font-size="38" fill="#8b1a1a" font-weight="900">広く観察</text>
+        <text x="195" y="72" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">最近出ていない番号を</text>
+        <text x="195" y="92" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">「そろそろ」と買う</text>
+        <line x1="20" y1="108" x2="320" y2="108" stroke="#e0d8c8"/>
+        <text x="170" y="128" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">番号ごとの当選確率は</text>
+        <text x="170" y="146" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">常に完全に等しい</text>
+      </g>
+
+      <!-- 出典ボックス -->
+      <rect x="50" y="440" width="700" height="100" fill="#ffffff" stroke="#c8bfaa" stroke-width="1"/>
+      <text x="70" y="465" font-family="Source Sans 3, sans-serif" font-size="15" fill="#1a1208" font-weight="600">Chen, Moskowitz &amp; Shue (2016) — Quarterly Journal of Economics</text>
+      <text x="70" y="488" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">約15万件の亡命審査判決、9,000人のローン審査員の判断、150万球の野球投球記録を横断し、</text>
+      <text x="70" y="508" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">「直前の判断と逆方向に次の判断がずれる」という同じパターンが全ての場面で観察された。</text>
+      <text x="70" y="530" font-family="Source Sans 3, sans-serif" font-size="14" fill="#8b1a1a" font-style="italic">ルーレット盤は消えても、ギャンブラーの誤謬は人間の判断システムの中で生き続けている。</text>
+    </svg>
+    <p class="svg-caption">2016年のQJE論文より。現代社会の最も重要な判断の場面にも、1913年のカジノと同じ歪みの指紋が残っている。</p>
+  </div>
+
+  <p class="body-text fade">これらの数値を見て「3%しか違わない」と感じるなら、もう一度考えてほしい。亡命審査で3%却下側に偏るということは、本来なら受け入れられるはずだった<em>命に関わる申請</em>が、直前の判事の判断順序という、当人とは無関係の理由で却下される、ということだ。ローン審査員の23%は、資金が必要な事業者の運命を、申請が受理された順番というサイコロに委ねていることになる。<strong>ルーレットに記憶がないことを理解するのは簡単だが、自分の判断に隠された時系列の歪みを理解するのは、それよりずっと難しい</strong>。</p>
+
+  <!-- ===== 歴史 ===== -->
+  <div class="sec-rule fade"><span class="sec-label">歴史</span><span class="sec-line"></span></div>
+  <h2 class="fade">確率を見誤った200年</h2>
+
+  <div class="timeline fade">
+    <div class="tl-item">
+      <span class="tl-dot"></span>
+      <div class="tl-year">1814</div>
+      <div class="tl-title">ラプラス『確率の哲学的試論』</div>
+      <div class="tl-desc">ピエール=シモン・ラプラスが、ギャンブラーの誤謬に近い現象を初めて明確に記述した。妊婦が「男の子が続いた家の次は女の子」と考える傾向を例に、独立試行における過去と未来の無関係性を説明。ただしこの時点では「誤謬」として名付けられてはいなかった。</div>
+    </div>
+    <div class="tl-item highlight">
+      <span class="tl-dot"></span>
+      <div class="tl-year">1913</div>
+      <div class="tl-title">モンテカルロ事件</div>
+      <div class="tl-desc">8月18日、モナコのモンテカルロカジノで黒が26回連続。群衆が「次こそ赤」と賭け、数百万フランの資産が失われた。この事件が後に「モンテカルロの誤謬」という呼び名の由来となる。事件の8日前にはブカレスト条約で第二次バルカン戦争が終結したばかりだった。</div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-dot"></span>
+      <div class="tl-year">1971</div>
+      <div class="tl-title">Tversky &amp; Kahneman「小数の法則への信念」</div>
+      <div class="tl-desc">Psychological Bulletin 誌掲載。統計学の専門家でさえ、小さなサンプルが母集団を代表していると過剰に信じていることを実証。ギャンブラーの誤謬を、代表性ヒューリスティックという一般的な認知機構の帰結として理論化した。行動経済学という分野が生まれる前夜の基礎論文の一つ。</div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-dot"></span>
+      <div class="tl-year">2004</div>
+      <div class="tl-title">Ayton &amp; Fischer「主観的ランダムの二つの顔」</div>
+      <div class="tl-desc">Memory &amp; Cognition 誌。ギャンブラーの誤謬と「ホットハンド錯覚」(バスケで連続得点した選手は次もシュートを決めると信じる傾向)が、実は表裏一体の現象であることを示した。対象が機械なら負の連続性を、対象が人間なら正の連続性を読み込む——同じ脳が、場面によって真逆の誤りを犯す。</div>
+    </div>
+    <div class="tl-item">
+      <span class="tl-dot"></span>
+      <div class="tl-year">2016</div>
+      <div class="tl-title">Chen, Moskowitz &amp; Shue の大規模データ分析</div>
+      <div class="tl-desc">Quarterly Journal of Economics 誌。亡命審査判事、ローン審査員、野球主審という3つの異なる職業の大規模データから、ギャンブラーの誤謬が現代社会の重要な判断の場に日常的に現れていることを示した。モンテカルロから一世紀を経ても、脳の配線は同じままだった。</div>
+    </div>
+  </div>
+
+  <!-- ===== つまり ===== -->
+  <div class="sec-rule fade"><span class="sec-label">つまり</span><span class="sec-line"></span></div>
+  <h2 class="fade">記憶のない世界を、記憶のある脳で歩く</h2>
+
+  <p class="body-text fade">ギャンブラーの誤謬の核心は、脳が独立試行に記憶を読み込んでしまう、という一点だ。ルーレットに記憶はない。コインに記憶はない。宝くじの抽選機に記憶はない。それでも脳は、直前の出来事と次の出来事のあいだに、どうしても意味を挟もうとする。なぜなら、脳が進化してきた環境では、<em>ほとんどの出来事には記憶があったから</em>だ。</p>
+
+  <p class="body-text fade">草食動物が水場で襲われたら、次に同じ水場に行くときは警戒する。これは正しい判断だ。川の同じ場所で魚が釣れたなら、翌日も同じ場所で釣れる可能性が高い。これも正しい。時系列の相関を読むことは、自然界では生き延びるための基本スキルだった。問題は、このスキルが独立試行の世界——純粋にランダムで記憶のないシステム——に持ち込まれたときに、<strong>本来ないはずのパターンを勝手に見つけてしまう</strong>ことだ。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">"We have no reason for believing that what has happened most frequently will happen again. […] Yet the human mind tends toward this illusion."</p>
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">「最も頻繁に起きたことが再び起きるはずだと信じる理由は、我々には何もない。[…] それでも人の心はこの錯覚に傾いていく。」</p>
+    <p class="pull-attr">— ピエール=シモン・ラプラス『確率の哲学的試論』(1814年)</p>
+  </div>
+
+  <p class="body-text fade">カーネマンとトベルスキーの研究が明らかにしたのは、脳がこの誤りを犯すのは「考えが足りないから」ではなく、<em>考える前の段階</em>で既に答えが形作られているからだ。直感が先に動き、理屈は後からついてくる。そして多くの場合、理屈は直感を追認する役割しか果たさない。モンテカルロの夜、テーブルの周りに群がった人々の中には、おそらく確率論を学んだ人間もいたはずだ。それでも、指は同じ方向に動いた。</p>
+
+  <div class="culture-block fade">
+    <p class="culture-label">文化への登場</p>
+    <div class="culture-item">
+      <p class="culture-title">ドストエフスキー『賭博者』(1866年)</p>
+      <p class="culture-desc">ドストエフスキー自身がルーレットの熱狂的なプレイヤーだった。小説の主人公アレクセイは、賭けの目を読もうとするたびに「必然」を感じ、それがすべて幻想だったと破滅の後に気づく。ギャンブラーの誤謬という言葉がまだなかった時代の、最も鋭い文学的記述と言える。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">ホットハンド錯覚(スポーツ)</p>
+      <p class="culture-desc">バスケットボールで「連続得点中の選手は次も決める」という信念。Gilovich, Vallone &amp; Tversky (1985) はNBAデータでこの効果が存在しないと結論づけたが、近年 Miller &amp; Sanjurjo (2018) がその統計手法を再検討し、小さいが実在する効果を検出した。ギャンブラーの誤謬と鏡像の関係にあり、機械には負の連続性を、人間には正の連続性を読み込むという脳の二重基準を示している。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">マーチンゲール法とカジノのテーブル上限</p>
+      <p class="culture-desc">「負けたら次は倍額を賭けて取り戻す」というマーチンゲール戦略は、理論上は必ず勝てる——資金と回数が無限にあるならば。現実のカジノが必ずテーブルに最大ベット額を設けているのは、この戦略の最後の抜け道を塞ぐためだ。制度の側は、ギャンブラーの誤謬を十分に理解したうえで営業している。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">もしこの記事を読み終えた後、あなたが何かを得るとしたら、それは「賢くなった」という感覚ではないはずだ。むしろ、<em>自分の脳が独立試行の世界でどう誤作動するかを、少しだけ知った</em>という感覚だろう。その誤作動は消えない。けれど、誤作動が起きる場面を知っているだけで、次に「そろそろ来るはず」という感覚が指先に立ち上がったとき、わずかに立ち止まることができる。モンテカルロの夜、テーブルの周りに居たとして、あの雰囲気の中で立ち止まるのは簡単ではなかっただろう。だが、今日、あなたは自分の判断の前で、ほんの少しだけ立ち止まることができる。それが、確率論が人類に残せた、最も個人的な贈り物のひとつだ。</p>
+
+  <!-- ===== 参考文献 ===== -->
+  <div class="sec-rule fade"><span class="sec-label">参考文献</span><span class="sec-line"></span></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1971</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1037/h0031322" target="_blank" rel="noopener">Belief in the Law of Small Numbers</a></p>
+      <p class="ref-author">Amos Tversky &amp; Daniel Kahneman / Psychological Bulletin, 76(2), 105–110</p>
+      <p class="ref-desc">ギャンブラーの誤謬を代表性ヒューリスティックの帰結として初めて体系的に論じた論文。統計の専門家でさえ小さなサンプルを過剰に代表的と見なす傾向を実証した。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2004</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.3758/BF03206327" target="_blank" rel="noopener">The Hot Hand Fallacy and the Gambler's Fallacy: Two Faces of Subjective Randomness?</a></p>
+      <p class="ref-author">Peter Ayton &amp; Ilan Fischer / Memory &amp; Cognition, 32(8), 1369–1378</p>
+      <p class="ref-desc">ギャンブラーの誤謬とホットハンド錯覚が表裏一体の現象であることを示した論文。機械と人間で正反対の連続性を読み込む脳の二重基準を解明した。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2016</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1093/qje/qjw017" target="_blank" rel="noopener">Decision Making Under the Gambler's Fallacy: Evidence from Asylum Judges, Loan Officers, and Baseball Umpires</a></p>
+      <p class="ref-author">Daniel L. Chen, Tobias J. Moskowitz &amp; Kelly Shue / Quarterly Journal of Economics, 131(3), 1181–1242</p>
+      <p class="ref-desc">亡命審査判事、ローン審査員、野球主審という3つの職業の大規模データを横断分析し、ギャンブラーの誤謬が現代社会の重要な判断にも観察されることを示した。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1814</span></div>
+      <p class="ref-title">Essai philosophique sur les probabilités (確率の哲学的試論)</p>
+      <p class="ref-author">Pierre-Simon Laplace</p>
+      <p class="ref-desc">確率論の哲学的基礎を論じた古典。独立試行における過去と未来の無関係性について、ギャンブラーの誤謬と呼ばれる前の時代に既に明確な記述がある。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">事典</span><span class="ref-year">—</span></div>
+      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Gambler%27s_fallacy" target="_blank" rel="noopener">Gambler's fallacy — Wikipedia</a></p>
+      <p class="ref-author">Wikipedia英語版</p>
+      <p class="ref-desc">1913年8月18日のモンテカルロ事件について、26連続黒と6,660万分の1という確率の記述を含む記事。事件の日付・連続回数の基礎データの出典として参照。</p>
+    </div>
+  </div>
+
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    1913年のモンテカルロ事件の日付・連続回数・損失規模は、Wikipedia英語版と複数の二次資料に共通して記載されている内容に基づく。当時の一次史料(カジノの営業記録など)は公開されておらず、数百万フランという損失額は同時代の記録の推定値である。心理学的な解釈については Tversky &amp; Kahneman (1971) と Chen et al. (2016) の査読済み論文に基づく。ホットハンド錯覚の再評価(Miller &amp; Sanjurjo 2018)については議論が続いており、ギャンブラーの誤謬との関係は研究者によって解釈が分かれる。<br><br>ルーレット盤イラスト: <a href="https://www.svgrepo.com" style="color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.3);">SVG Repo</a> (CC0 License)
+  </div>
+
+  <!-- タグ -->
+  <div class="tags fade">
+    <span class="tag">認知バイアス</span>
+    <span class="tag">確率論</span>
+    <span class="tag">独立試行</span>
+    <span class="tag">カーネマン</span>
+    <span class="tag">行動経済学</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">26</p>
+      <p class="sidebar-text">1913年8月18日、モンテカルロカジノで黒が<em>26回連続</em>で出た回数。27回目でようやく赤が出たが、その時までに数百万フランの資産が失われていた。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">事件の8日前、8月10日にブカレスト条約が結ばれ第二次バルカン戦争が終結。翌年のサラエボ事件までの、ヨーロッパの「束の間の静寂」の中で起きた。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">ドストエフスキー『賭博者』(1866年)。ドストエフスキー自身がルーレット依存だった経験をもとに書かれた。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— モンティ・ホール問題<br>— 誕生日のパラドックス<br>— 確証バイアス<br>— 基準率の無視<br>— 相関は因果ではない</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">現象そのものは実験・実データで繰り返し確認されている。事件の細かい金額は同時代の推定値。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue &gt;&gt; Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// ギャンブラーの誤謬 を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ、赤が出る確率が48.6%なら、100回回したら約49回は赤が出るよね？</span></div>
+      <span class="t-output" id="to1">期待値としては約 <em>48.6回</em> が赤。でも実際は 40回かもしれないし 58回かもしれない。その「ブレ」の大きさを直感するのが難しいから、脳は短い系列から長期平均を読み取ろうとしてしまう。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;モンテカルロの夜、自分がそこにいたら賭けなかった自信ある？</span></div>
+      <span class="t-output" id="to2">たぶんない。<strong>ない</strong>。15連続黒を自分の目で見ている時、記事で読んだ知識は指先まで届かない。雰囲気と確信は理屈より早く動く。そこで立ち止まれるのは、よほど自分の直感を疑う訓練を積んだ人だけ。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ローン審査の23%はカジノより怖いな</span></div>
+      <span class="t-output" id="to3">そう。しかも審査員本人は、自分が順番によって判断を変えているとは気づいていない。ギャンブラーの誤謬は<em>自覚のないまま</em>、他人の人生に影響を与える場面ほど、深く入り込んでいる。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 立ち止まる訓練をしよう</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/monty_hall">
+      <p class="related-card-tag">数学・論理</p>
+      <p class="related-card-title">モンティ・ホール問題</p>
+      <p class="related-card-desc">選び直した方が確率2倍。直感に反する確率論の古典的パズル。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/birthday_paradox">
+      <p class="related-card-tag">数学・論理</p>
+      <p class="related-card-title">誕生日のパラドックス</p>
+      <p class="related-card-desc">23人集まれば半数の確率で同じ誕生日のペアがいる。直感と確率のもうひとつのずれ。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ（トースト方式）
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{const tip=e.target.closest('.tip');if(tip){toggleTip(tip);return;}if(!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+const tblock=document.getElementById('terminalBlock');
+if(tblock)tObs.observe(tblock);
+
+// === INDEPENDENCE VISUALIZER ===
+(function(){
+  const slider=document.getElementById('ivSlider');
+  const valueEl=document.getElementById('ivValue');
+  const factEl=document.getElementById('ivFactVal');
+  const fantasyEl=document.getElementById('ivFantasyVal');
+  const markerFact=document.getElementById('ivMarkerFact');
+  const markerFantasy=document.getElementById('ivMarkerFantasy');
+  const markerLine=document.getElementById('ivMarkerLine');
+  const fantasyPath=document.getElementById('ivFantasy');
+  if(!slider)return;
+
+  const FACT=0.486; // 48.6%
+  const X0=70, X1=640, Y0=30, Y1=250;
+  const factY=Y1-FACT*(Y1-Y0);
+
+  function fantasyProb(n){
+    // 脳の幻想: 連続数に応じてシグモイド的に上昇。n=0で48.6%、n=30で約92%。
+    const rise=0.44/(1+Math.exp(-(n-10)/4));
+    return FACT+rise;
+  }
+
+  // 幻想カーブを描画
+  let d='';
+  for(let n=0;n<=30;n++){
+    const x=X0+(n/30)*(X1-X0);
+    const p=fantasyProb(n);
+    const y=Y1-p*(Y1-Y0);
+    d+=(n===0?'M':'L')+x.toFixed(1)+','+y.toFixed(1)+' ';
+  }
+  fantasyPath.setAttribute('d',d);
+
+  function update(){
+    const n=parseInt(slider.value,10);
+    valueEl.textContent=n+' 回';
+    factEl.textContent='48.6%';
+    const p=fantasyProb(n);
+    fantasyEl.textContent=(p*100).toFixed(1)+'%';
+    const x=X0+(n/30)*(X1-X0);
+    markerFact.setAttribute('cx',x);
+    markerFact.setAttribute('cy',factY);
+    const fy=Y1-p*(Y1-Y0);
+    markerFantasy.setAttribute('cx',x);
+    markerFantasy.setAttribute('cy',fy);
+    markerLine.setAttribute('x1',x);
+    markerLine.setAttribute('x2',x);
+  }
+  slider.addEventListener('input',update);
+  update();
+})();
+
+// === MONTE CARLO SIMULATOR (2 modes) ===
+(function(){
+  // 1913年の実際の記録: 最初の26スピンは全て黒、27スピン目で赤
+  const HISTORY_MODE=[];
+  for(let i=0;i<26;i++)HISTORY_MODE.push('black');
+  HISTORY_MODE.push('red');
+  const HISTORY_TOTAL=27;
+  // フラン→日本円換算: 1913年の1フラン ≈ 現代の5,000円(非常にラフな試算)
+  const F_TO_JPY=5000;
+
+  const state={
+    mode:'history', // 'history' or 'random'
+    spin:0,
+    fortune:10000,
+    selectedColor:null,
+    selectedAmt:null,
+    maxBet:0,
+    firstRedBet:null,
+    finished:false,
+    // ランダムモード用: 連続後に反対側に賭けた回数をカウント
+    streakBias:0, // 正の値ほど「連続と逆」に賭けている
+    totalBets:0,
+  };
+
+  const $=(id)=>document.getElementById(id);
+  const wheelEl=$('mcWheel'),wheelInner=$('mcWheelInner'),spinNumEl=$('mcSpinNum'),spinTotalEl=$('mcSpinTotal');
+  const fortuneEl=$('mcFortune'),fortuneJpyEl=$('mcFortuneJpy'),maxBetEl=$('mcMaxBet'),firstRedEl=$('mcFirstRedBet');
+  const historyEl=$('mcHistory'),spinBtn=$('mcSpinBtn'),resetBtn=$('mcReset'),summaryEl=$('mcSummary');
+  const modeDescEl=$('mcModeDesc');
+  const betBtns=document.querySelectorAll('.mc-bet-btn');
+  const amtBtns=document.querySelectorAll('.mc-amt-btn');
+  const modeBtns=document.querySelectorAll('.mc-mode-btn');
+
+  if(!wheelInner)return;
+
+  const MODE_DESCS={
+    history:'<strong>追体験モード:</strong> 最初の26スピンは1913年8月18日に実際に出た「黒」が固定で出る。27回目で赤が出て終了。結果は決まっているので、あなたが観察するのは「自分の指が、いつ、どのタイミングで赤に傾き、ベットを上げるか」。持ち金は10,000フラン(現代価値でおよそ5,000万円相当と言われる)。',
+    random:'<strong>本物のルーレットモード:</strong> 毎スピンが本当にランダム(赤の確率48.6%)。連続は自然に発生する。何回でも回せる。終了ボタンを押すと「連続が長いほど反対側に賭けた傾向」があなたのプレイデータから自動で計算される。自分の誤謬を、自分の手で測れる。'
+  };
+
+  function formatF(n){return n.toLocaleString('fr-FR')+' F';}
+  function formatJpy(f){const y=f*F_TO_JPY;if(y>=100000000)return'約 '+(y/100000000).toFixed(1)+' 億円';if(y>=10000)return'約 '+Math.round(y/10000).toLocaleString('ja-JP')+' 万円';return'約 '+y.toLocaleString('ja-JP')+' 円';}
+
+  function renderHistory(arr){
+    historyEl.innerHTML='';
+    arr.forEach(c=>{const cell=document.createElement('div');cell.className='mc-history-cell '+c;cell.textContent=c==='red'?'R':'N';historyEl.appendChild(cell);});
+  }
+
+  function updateStatusLine(){
+    const sl=$('mcStatusLine');
+    if(!sl)return;
+    if(state.finished){
+      sl.textContent='このラウンドは終了しました';
+      sl.style.color='#a8c49a';
+      spinBtn.disabled=true;
+      return;
+    }
+    const needColor=!state.selectedColor;
+    const needAmt=state.selectedColor && state.selectedColor!=='skip' && !state.selectedAmt;
+    if(needColor){
+      sl.textContent='▸ 賭ける色を選んでください(Rouge / Noir / 見送り)';
+      sl.style.color='#e8c56a';
+      spinBtn.disabled=true;
+    }
+    else if(needAmt){
+      sl.textContent='▸ ベット額を選んでください(100 / 500 / 1,000 / 2,000 F)';
+      sl.style.color='#e8c56a';
+      spinBtn.disabled=true;
+    }
+    else{
+      sl.textContent='✓ 準備完了 — スピンを回せます';
+      sl.style.color='#a8c49a';
+      spinBtn.disabled=false;
+    }
+  }
+
+  function updateUI(){
+    spinNumEl.textContent=state.spin;
+    if(state.mode==='history'){spinTotalEl.textContent=' / '+HISTORY_TOTAL;spinBtn.textContent='Faites vos jeux — スピンを回す';}
+    else{spinTotalEl.textContent='';spinBtn.textContent='Faites vos jeux — スピンを回す';}
+    fortuneEl.textContent=formatF(state.fortune);
+    fortuneJpyEl.textContent=formatJpy(state.fortune);
+    if(state.fortune<10000)fortuneEl.classList.add('lost');else fortuneEl.classList.remove('lost');
+    maxBetEl.textContent=state.maxBet>0?formatF(state.maxBet):'—';
+    firstRedEl.textContent=state.firstRedBet!==null?('Spin #'+state.firstRedBet):'—';
+    finishRandomBtn.style.display=(state.mode==='random'&&state.spin>0&&!state.finished)?'block':'none';
+    updateStatusLine();
+  }
+
+  function resetState(){
+    state.spin=0;state.fortune=10000;state.selectedColor=null;state.selectedAmt=null;
+    state.maxBet=0;state.firstRedBet=null;state.finished=false;state.streakBias=0;state.totalBets=0;
+    wheelInner.className='mc-wheel-inner wait';wheelInner.textContent='';
+    wheelEl.classList.remove('has-result','spinning');
+    betBtns.forEach(b=>b.classList.remove('selected'));
+    amtBtns.forEach(b=>b.classList.remove('selected'));
+    summaryEl.classList.remove('show');
+    spinBtn.disabled=true;
+    renderHistory([]);
+    updateUI();
+  }
+
+  let spinResults=[]; // 実際に出た色の配列
+
+  function selectBet(color){if(state.finished)return;state.selectedColor=color;if(color==='skip')state.selectedAmt=null;betBtns.forEach(b=>b.classList.toggle('selected',b.dataset.color===color));if(color==='skip')amtBtns.forEach(b=>b.classList.remove('selected'));updateStatusLine();}
+  function selectAmt(amt){if(state.finished)return;if(state.selectedColor==='skip')return;state.selectedAmt=amt;amtBtns.forEach(b=>b.classList.toggle('selected',parseInt(b.dataset.amt,10)===amt));updateStatusLine();}
+  betBtns.forEach(b=>b.addEventListener('click',()=>selectBet(b.dataset.color)));
+  amtBtns.forEach(b=>b.addEventListener('click',()=>selectAmt(parseInt(b.dataset.amt,10))));
+
+  modeBtns.forEach(b=>b.addEventListener('click',()=>{
+    const m=b.dataset.mode;
+    if(m===state.mode)return;
+    state.mode=m;
+    modeBtns.forEach(x=>x.classList.toggle('active',x.dataset.mode===m));
+    modeDescEl.innerHTML=MODE_DESCS[m];
+    spinResults=[];
+    resetState();
+  }));
+
+  // 現在の連続を数える(直近の同色が何連続か)
+  function currentStreak(){
+    if(spinResults.length===0)return{color:null,len:0};
+    const last=spinResults[spinResults.length-1];
+    let n=0;
+    for(let i=spinResults.length-1;i>=0;i--){if(spinResults[i]===last)n++;else break;}
+    return{color:last,len:n};
+  }
+
+  spinBtn.addEventListener('click',()=>{
+    if(state.finished)return;
+    if(state.mode==='history' && state.spin>=HISTORY_TOTAL)return;
+    if(!state.selectedColor){alert('賭ける色を選んでください(または「見送り」)');return;}
+    if(state.selectedColor!=='skip' && !state.selectedAmt){alert('ベット額を選んでください');return;}
+
+    let betAmt=0;
+    if(state.selectedColor!=='skip'){
+      betAmt=Math.min(state.selectedAmt,state.fortune);
+      if(betAmt<=0){alert('所持金が足りません');return;}
+      state.fortune-=betAmt;
+      if(betAmt>state.maxBet)state.maxBet=betAmt;
+      if(state.selectedColor==='red' && state.firstRedBet===null)state.firstRedBet=state.spin+1;
+
+      // ランダムモード: 連続の長さに応じて「逆張りバイアス」を集計
+      if(state.mode==='random'){
+        const streak=currentStreak();
+        if(streak.len>=2){
+          // 連続と逆の色に賭けた = 誤謬的な行動
+          if(state.selectedColor!==streak.color)state.streakBias+=streak.len;
+          else state.streakBias-=streak.len;
+        }
+        state.totalBets++;
+      }
+    }
+
+    wheelEl.classList.remove('spinning');void wheelEl.offsetWidth;wheelEl.classList.add('spinning');
+    wheelInner.className='mc-wheel-inner wait';wheelInner.textContent='';
+    spinBtn.disabled=true;
+    betBtns.forEach(b=>b.disabled=true);
+
+    setTimeout(()=>{
+      let result;
+      if(state.mode==='history'){result=HISTORY_MODE[state.spin];}
+      else{result=Math.random()<0.486?'red':'black';}
+      spinResults.push(result);
+      state.spin++;
+      wheelEl.classList.add('has-result');
+      wheelInner.className='mc-wheel-inner '+result;
+      wheelInner.textContent=result==='red'?'R':'N';
+      if(state.selectedColor===result && betAmt>0)state.fortune+=betAmt*2;
+      state.selectedColor=null;state.selectedAmt=null;
+      betBtns.forEach(b=>{b.classList.remove('selected');b.disabled=false;});
+      amtBtns.forEach(b=>b.classList.remove('selected'));
+      renderHistory(spinResults);
+      updateUI();
+
+      if(state.mode==='history' && state.spin>=HISTORY_TOTAL)finishGame();
+      else if(state.fortune<100)finishGame();
+      // それ以外は selectedColor/selectedAmt が null に戻っているので、
+      // updateUI→updateStatusLine が自動で spinBtn.disabled=true にしてくれる
+    },600);
+  });
+
+  // ランダムモード用の「集計」ボタン(updateUIより前に定義する必要)
+  const finishRandomBtn=document.createElement('button');
+  finishRandomBtn.className='mc-reset';finishRandomBtn.textContent='ここまでのプレイを集計する';
+  finishRandomBtn.style.cssText='display:none;margin-top:8px;width:100%;padding:10px;';
+  spinBtn.parentNode.appendChild(finishRandomBtn);
+  finishRandomBtn.addEventListener('click',()=>{if(state.spin>0)finishGame();});
+
+  function finishGame(){
+    state.finished=true;
+    spinBtn.disabled=true;
+    finishRandomBtn.style.display='none';
+    const profit=state.fortune-10000;
+    $('mcFinalFortune').textContent=formatF(state.fortune);
+    const profitEl=$('mcProfit');
+    profitEl.textContent=(profit>=0?'+':'')+formatF(profit);
+    profitEl.classList.toggle('lost',profit<0);
+    $('mcSummaryMaxBet').textContent=state.maxBet>0?formatF(state.maxBet):'見送り続けた';
+
+    if(state.mode==='history'){
+      $('mcSummaryTitle').textContent='…あの夜を終えて。';
+      $('mcSummaryText').innerHTML='あなたが今終えたのは、1913年8月18日にモンテカルロカジノで<strong>実際に起きた夜</strong>の追体験だ。その夜テーブルを囲んだ客たちは、5連続・10連続・15連続と黒が続くのを見ながら「次こそ赤」と思って赤にチップを積み上げ、総額で数百万フランを失った。26連続黒が起きる確率はおよそ<strong>6,660万分の1</strong>。しかし世界中で毎晩ルーレットが回り続ければ、それでもどこかで必ず起きる。振り返って、自分の指が<em>いつ</em>動いたかを思い出してほしい。';
+      $('mcSummaryExtraLbl').textContent='赤に賭け始めた回';
+      $('mcSummaryExtra').textContent=state.firstRedBet!==null?('Spin #'+state.firstRedBet):'賭けなかった';
+    }else{
+      $('mcSummaryTitle').textContent='あなたのプレイデータ';
+      const biasScore=state.totalBets>0?(state.streakBias/state.totalBets).toFixed(2):'0';
+      let msg='';
+      if(state.streakBias>0)msg='あなたは連続が起きた後、<strong>反対側の色に賭ける傾向</strong>があった。これがギャンブラーの誤謬の指先での現れだ。ルーレットには記憶がないのに、脳は「そろそろ均衡が来る」と信じてしまう。';
+      else if(state.streakBias<0)msg='あなたは連続と同じ側に賭ける傾向があった。これは<em>ホットハンド錯覚</em>の側の誤り。連続が起きると「流れが来ている」と感じる反対方向の誤謬で、ギャンブラーの誤謬と鏡像関係にある。';
+      else msg='連続に影響されずに賭けた。素晴らしい——もしくは、そもそも連続が短くてバイアスを観察できなかっただけかもしれない。もう少し回してみると傾向が見える。';
+      $('mcSummaryText').innerHTML=msg;
+      $('mcSummaryExtraLbl').textContent='逆張りバイアス指数';
+      $('mcSummaryExtra').textContent=biasScore+' ('+state.totalBets+' 回中)';
+    }
+    summaryEl.classList.add('show');
+  }
+
+  resetBtn.addEventListener('click',()=>{spinResults=[];resetState();});
+  resetState();
+})();
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">検索データ読み込み中…</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>
