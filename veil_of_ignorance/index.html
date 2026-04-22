@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>無知のヴェール — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-stat{border:1px solid #c8bfaa;padding:28px 24px;background:#f3efe6;text-align:center;margin-bottom:20px;}
+.cover-stat-n{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:8px;}
+.cover-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.6;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'?';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* IMAGE PLACEHOLDER */
+.img-placeholder{margin:32px 0;border:1px dashed #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-ph-area{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px 24px;}
+.img-ph-icon{font-size:28px;opacity:.4;}
+.img-ph-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#7a6a55;text-align:center;}
+.img-ph-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#b0a090;text-align:center;line-height:1.7;max-width:480px;}
+.img-ph-prompt{margin-top:10px;padding:12px 16px;background:#ede8dc;width:100%;max-width:560px;}
+.img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
+.img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;overflow:hidden;padding:0;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-wiki{margin-bottom:8px;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+.outcome{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;margin-top:6px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;}
+.outcome.lose{background:rgba(196,57,42,.08);color:#c4392a;border:1px solid rgba(196,57,42,.25);}
+.outcome.win{background:rgba(26,90,48,.08);color:#1a5a30;border:1px solid rgba(26,90,48,.25);}
+.step-summary{margin-top:2px;padding:16px 20px;background:#f3efe6;border:1px solid #c8bfaa;}
+.step-summary p{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;margin:0;line-height:1.8;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'\2610';flex-shrink:0;font-size:14px;line-height:1.7;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* ── FOOTER ── */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:0;max-height:360px;}
+  .person-block-img img{object-position:center 20%;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.img-ph-desc,.img-ph-prompt-txt{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){
+  .toc-back{padding:22px 20px;}
+}
+
+/* ── QUIZ / INTERACTIVE ── */
+.quiz-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.quiz-header{background:#1a1208;color:#e8e4de;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;}
+.quiz-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;}
+.quiz-hs{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;}
+.quiz-body{background:white;padding:24px 20px;}
+.quiz-q{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:16px;line-height:1.4;}
+.quiz-choices{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.quiz-btn{display:block;width:100%;text-align:left;padding:12px 16px;background:#faf8f3;border:1px solid #c8bfaa;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.5;transition:all .15s;}
+.quiz-btn:hover{border-color:#8b1a1a;background:#f3efe6;}
+.quiz-btn.selected{border-color:#8b1a1a;background:#f3efe6;font-weight:600;}
+.quiz-btn.correct{border-color:#1a5a30;background:rgba(26,90,48,.06);}
+.quiz-btn.wrong{border-color:#c4392a;background:rgba(196,57,42,.06);}
+.quiz-result{margin-top:16px;padding:18px;background:#f3efe6;border-left:3px solid #8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;}
+
+/* PERSON BLOCK WIKI */
+.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:400;margin-bottom:8px;}
+
+/* IX NOTE */
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:20px;padding-left:16px;}
+
+/* SVG FIGURE */
+.svg-fig{max-width:680px;margin:0 auto;}
+@media(max-width:700px){.svg-fig{max-width:100%;}}
+
+/* SVG STRATEGY COMPARISON (図C) */
+.strat-row{transition:filter .3s ease;cursor:default;}
+.strat-row:hover{filter:drop-shadow(0 3px 6px rgba(139,26,26,.18));}
+.strat-bar-focus{transform-origin:center;transition:transform .3s ease;}
+.strat-row:hover .strat-bar-focus{transform:translateY(-3px);}
+.strat-ring{animation:stratPulse 2.6s ease-in-out infinite;transform-origin:center;transform-box:fill-box;}
+@keyframes stratPulse{0%,100%{opacity:.45;}50%{opacity:1;}}
+
+/* TABLE (concept) */
+.concept-table{width:100%;border-collapse:collapse;margin:28px 0;font-family:'Source Sans 3',sans-serif;font-size:13px;}
+.concept-table th{background:#3d3020;color:#e8e4de;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:10px;padding:10px 14px;text-align:left;border:1px solid #3d3020;}
+.concept-table td{padding:10px 14px;border:1px solid #e0d8c8;color:#3d3020;font-weight:300;line-height:1.6;vertical-align:top;}
+.concept-table tr:nth-child(even) td{background:#f3efe6;}
+
+/* ── VEIL TRANSPARENCY (Layer Edition) ── */
+.vt-stage{position:relative;width:100%;aspect-ratio:780/450;background:#f3efe6;border:1px solid #c8bfaa;overflow:hidden;}
+.vt-layer{position:absolute;transition:opacity .5s ease;pointer-events:none;width:auto;max-width:none;}
+.vt-layer-room{top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;}
+.vt-layer-bookshelf{left:3%;bottom:4%;height:76%;z-index:2;}
+.vt-layer-piano{right:4%;bottom:5%;height:58%;z-index:3;}
+.vt-layer-person{left:50%;bottom:3%;height:86%;transform:translateX(-50%);}
+.vt-person-full{z-index:4;}
+.vt-person-nojewel{z-index:5;opacity:0;}
+.vt-person-plain{z-index:6;opacity:0;}
+.vt-person-silhouette{z-index:7;opacity:0;}
+
+.vt-slider-wrap{display:flex;align-items:center;gap:14px;margin-top:18px;padding:0 8px;}
+.vt-slider-wrap input[type="range"]{flex:1;accent-color:#8b1a1a;}
+.vt-slider-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;color:#7a6a55;text-transform:uppercase;}
+
+.vt-panel{margin-top:22px;}
+.vt-panel-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8b1a1a;margin-bottom:12px;text-align:center;}
+.vt-attrs{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+.vt-attrs li{display:flex;flex-direction:column;align-items:center;text-align:center;padding:14px 10px;background:#f3efe6;border-top:2px solid #c8bfaa;font-family:'Source Serif 4',serif;font-size:13px;color:#3d3020;line-height:1.5;transition:opacity .35s ease, color .35s ease;}
+.vt-attr-cat{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;color:#7a6a55;text-transform:uppercase;margin-bottom:8px;}
+.vt-attr-val{font-size:14px;font-weight:500;color:#1a1208;}
+.vt-attr-hint{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;margin-top:4px;}
+.vt-attrs li.vt-attr-hidden{opacity:.25;}
+.vt-attrs li.vt-attr-hidden .vt-attr-val{text-decoration:line-through;text-decoration-color:#8b1a1a;text-decoration-thickness:1px;}
+.vt-attr-always{grid-column:1 / -1;flex-direction:row !important;justify-content:center;gap:18px;margin-top:6px;padding:16px 18px !important;background:#faf8f3 !important;border-top:2px solid #8b1a1a !important;}
+.vt-attr-always .vt-attr-cat{margin-bottom:0;color:#8b1a1a;font-size:11px;}
+.vt-attr-always .vt-attr-val{font-weight:700;color:#1a1208;font-size:15px;}
+
+.vt-desc{font-family:'Source Serif 4',serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.6;text-align:center;margin-top:16px;padding:10px 14px;background:#f3efe6;border-left:2px solid #c8bfaa;}
+
+@media (max-width:700px){
+  .vt-attrs{grid-template-columns:repeat(2,1fr);gap:6px;}
+  .vt-attrs li{font-size:12px;padding:10px 8px;}
+  .vt-attr-cat{margin-bottom:5px;}
+  .vt-attr-val{font-size:13px;}
+  .vt-attr-hint{font-size:10px;}
+  .vt-attr-always{flex-direction:column !important;gap:4px;padding:12px 14px !important;}
+  .vt-attr-always .vt-attr-val{font-size:14px;}
+}
+
+/* ── OP SOCIETY CARDS ── */
+.op-card{background:white;border:1px solid #c8bfaa;padding:16px;transition:all .15s;cursor:default;}
+.op-card-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.op-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.6;margin-bottom:12px;}
+.op-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.op-bar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;color:#7a6a55;width:56px;text-align:right;flex-shrink:0;}
+.op-bar-track{flex:1;height:14px;background:#f3efe6;border:1px solid #e0d8c8;position:relative;}
+.op-bar-fill{height:100%;transition:width .4s;}
+.op-bar-score{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;color:#3d3020;margin-left:6px;flex-shrink:0;width:24px;}
+.op-choose{display:block;width:100%;margin-top:10px;padding:8px;background:#1a1208;color:#e8e4de;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;letter-spacing:.06em;transition:background .15s;}
+.op-choose:hover{background:#8b1a1a;}
+
+/* ── SANDEL SURVEY ── */
+.sandel-item{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #e0d8c8;}
+.sandel-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.sandel-label{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:500;color:#1a1208;margin-bottom:8px;}
+.sandel-scale{display:flex;align-items:center;gap:0;}
+.sandel-end{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:400;color:#b0a090;white-space:nowrap;}
+.sandel-radios{display:flex;justify-content:space-between;gap:4px;margin:0;padding:0 6px;max-width:460px;}
+.sandel-radios label{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;min-width:0;}
+.sandel-radios label span{text-align:center;line-height:1.3;}
+.sandel-radios input[type=radio]{accent-color:#8b1a1a;width:16px;height:16px;margin:0;}
+.sandel-radios .sandel-num{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">思考実験</p>
+    <h1>あなたが誰か<em>知らない</em>まま、社会を設計せよ</h1>
+    <p class="cover-deck">もし自分の性別も、才能も、親の収入も知らないまま社会の仕組みを選ぶとしたら——あなたは何を選ぶだろうか。</p>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>THOUGHT EXPERIMENT</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1971</span>
+      <p class="est-event">『正義論』（A Theory of Justice）刊行</p>
+      <p class="est-context">同年の世界：ニクソン・ショックで戦後ブレトンウッズ体制が終焉。米中「卓球外交」、キッシンジャー極秘訪中で冷戦の地図が書き換わる。</p>
+    </div>
+    <p class="cover-aside">ジョン・ロールズはハーバード大学の哲学者。20世紀で最も影響力のある政治哲学書の著者とされる。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>会社の飲み会で席順を決めるとき、自分が末席になるかもしれないと思った瞬間、急に「くじ引きにしませんか」と言いたくなる。引っ越し先を探すとき、隣人がどんな人か分からないだけで、防音性能を気にし始める。</p>
+    <p>私たちは「自分がどの立場に置かれるか分からない」と感じた途端、ルールに厳格になる。有利な立場にいるときには気にもしなかった公平さが、急に切実な問題として浮かび上がる。</p>
+    <p>1971年、哲学者ジョン・ロールズはこの心理を思考実験に昇華した。自分が誰であるかを一切知らない状態で社会を設計せよ。「無知の<span class="tip" onclick="toggleTip(this)">ヴェール<span class="tip-box"><strong>ヴェール（veil）</strong><br>もともとは顔や頭を覆う薄い布のこと。花嫁が式でかぶる白い布や、中東の女性がまとう頭巾も同じ語。ここでは比喩として、自分が何者かを自分から見えなくする「遮蔽物」の意味で使われる。</span></span>」と呼ばれるその装置は、公正さの条件を根本から問い直す。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 予備知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-16</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-16</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">自分の立場を知らないまま社会制度を選ぶ体験を通じて、「公正さ」がどこから来るのかを考える。あなたの選択は、あなた自身について何かを語るかもしれない。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+<!-- ============================================ -->
+<!--  SECTION 1: 背景                             -->
+<!-- ============================================ -->
+<div class="sec-rule fade">
+  <span class="sec-label">背景</span>
+  <span class="sec-line"></span>
+</div>
+
+<h2 class="fade">「正義とは何か」を、感情ではなく構造で問う。</h2>
+
+<!-- Scene image: veil as visual anchor -->
+<figure class="scene-fig fade" style="margin:28px auto 36px;max-width:440px;text-align:center;">
+  <img src="./scene_veil.jpg" alt="風にひるがえる薄い布——ヴェールのイメージ" style="width:100%;height:auto;display:block;border-radius:2px;box-shadow:0 4px 16px rgba(26,18,8,.18);">
+  <figcaption style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;margin-top:10px;line-height:1.55;letter-spacing:.02em;">装置としての「ヴェール」——顔を覆う薄い布の比喩から、この思考実験は始まる。<br><span style="color:#b0a090;">Photo: Alexander Mass / Pexels</span></figcaption>
+</figure>
+
+<p class="body-text fade">「正義とは何か」という問いは、哲学の歴史とほぼ同じだけの年月を持つ。<span class="tip" onclick="toggleTip(this)">プラトンは『国家』<span class="tip-box"><strong>プラトン『国家』（紀元前380年頃）</strong><br>古代ギリシアの哲学者プラトン(前427–前347)の主著。師ソクラテスを主人公とする対話篇で、「正義とは何か」「理想の国家とはどのようなものか」を10巻にわたって論じた。哲人王による統治、魂の三区分、有名な「洞窟の比喩」などが展開される、西洋政治哲学の源流。</span></span>でこの問いを正面から扱い、<span class="tip" onclick="toggleTip(this)">アリストテレス<span class="tip-box"><strong>アリストテレス（前384–前322）</strong><br>古代ギリシアの哲学者。プラトンの弟子で、アレクサンドロス大王の師。論理学・倫理学・政治学・自然学など、学問の基本形をほぼすべて作った。『ニコマコス倫理学』で正義を体系的に論じた最初の人物。</span></span>は<span class="tip" onclick="toggleTip(this)">「各人にふさわしいものを」<span class="tip-box"><strong>「各人にふさわしいものを」</strong><br>アリストテレスの配分的正義の原則(『ニコマコス倫理学』第5巻)。能力・功績・貢献の度合いに応じて分配するのが正義だ、という考え方。「平等な人には平等に、不平等な人には不平等に」と要約される。ロールズの「最下層を優先する」とは真逆の方向を向いている。</span></span>と答えた。しかし近代に入ると、問いの立て方そのものが変わる。<span class="tip" onclick="toggleTip(this)">ホッブズ<span class="tip-box"><strong>トマス・ホッブズ（1588–1679）</strong><br>イギリスの政治哲学者。主著『リヴァイアサン』(1651)で、人間の自然状態を「万人の万人に対する闘争」と描き、そこから抜け出すために人々が自由を国家に委ねる——という近代社会契約論の原型を示した。</span></span>は人間を「万人の万人に対する闘争」の中に置き、恐怖からの脱出として<span class="tip" onclick="toggleTip(this)">社会契約論<span class="tip-box"><strong>社会契約論（Social Contract Theory）</strong><br>ホッブズ、ロック、ルソーらが展開した政治哲学の伝統。人々は「自然状態」から抜け出すために互いに契約を結び、国家や社会の正当性を根拠づけるという考え方。</span></span>を構想した。<span class="tip" onclick="toggleTip(this)">ロック<span class="tip-box"><strong>ジョン・ロック（1632–1704）</strong><br>イギリスの哲学者。『統治二論』(1689)で、生命・自由・財産は誰にも奪えない「自然権」であると論じた。国家はこの自然権を守るための契約で成立するとし、アメリカ独立宣言の思想的基盤となった。</span></span>は自然権を、<span class="tip" onclick="toggleTip(this)">ルソー<span class="tip-box"><strong>ジャン＝ジャック・ルソー（1712–1778）</strong><br>フランスの哲学者。『社会契約論』(1762)で、個々人の利害を超えた共同体全体の総意を「一般意志」と呼んだ。フランス革命の思想的支柱となり、近代民主主義の核をなす概念を生み出した。</span></span>は一般意志を持ち出した。だが20世紀半ばになっても、「公正な社会の仕組みを、どうやって導き出すか」という問いには、誰もが納得する答えがなかった。1971年、ハーバード大学の哲学者ジョン・ロールズが、その沈黙を破る。</p>
+
+<!-- SVG図A: 原初状態の構造 -->
+<div class="svg-fig fade" style="margin:32px auto;">
+<svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="原初状態の構造を示す4段階のフロー図">
+  <!-- Zone labels -->
+  <text x="100" y="26" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" font-weight="600" letter-spacing=".08em">STEP 1</text>
+  <text x="300" y="26" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" font-weight="600" letter-spacing=".08em">STEP 2</text>
+  <text x="500" y="26" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" font-weight="600" letter-spacing=".08em">STEP 3</text>
+  <text x="700" y="26" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" font-weight="600" letter-spacing=".08em">STEP 4</text>
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arr1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b1a1a"/>
+    </marker>
+  </defs>
+  <!-- Box 1 -->
+  <rect x="20" y="50" width="160" height="120" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.5"/>
+  <text x="100" y="95" text-anchor="middle" font-family="'Playfair Display',serif" font-size="18" fill="#1a1208" font-weight="700">契約者たち</text>
+  <text x="100" y="125" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#7a6a55">合理的な人々が</text>
+  <text x="100" y="145" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#7a6a55">集まる</text>
+  <!-- Arrow 1 -->
+  <line x1="184" y1="110" x2="216" y2="110" stroke="#8b1a1a" stroke-width="2" marker-end="url(#arr1)"/>
+  <!-- Box 2 -->
+  <rect x="220" y="50" width="160" height="120" rx="4" fill="#1a1208" stroke="#1a1208" stroke-width="1.5"/>
+  <text x="300" y="88" text-anchor="middle" font-family="'Playfair Display',serif" font-size="18" fill="#e8e4de" font-weight="700">ヴェール</text>
+  <text x="300" y="115" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#b0a090">自分の属性を</text>
+  <text x="300" y="135" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#b0a090">一切知らない</text>
+  <text x="300" y="158" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#e8c56a">（情報遮断）</text>
+  <!-- Arrow 2 -->
+  <line x1="384" y1="110" x2="416" y2="110" stroke="#8b1a1a" stroke-width="2" marker-end="url(#arr1)"/>
+  <!-- Box 3 -->
+  <rect x="420" y="50" width="160" height="120" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.5"/>
+  <text x="500" y="88" text-anchor="middle" font-family="'Playfair Display',serif" font-size="18" fill="#1a1208" font-weight="700">社会制度を</text>
+  <text x="500" y="113" text-anchor="middle" font-family="'Playfair Display',serif" font-size="18" fill="#1a1208" font-weight="700">選択</text>
+  <text x="500" y="145" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#7a6a55">全員一致で合意</text>
+  <!-- Arrow 3 -->
+  <line x1="584" y1="110" x2="616" y2="110" stroke="#8b1a1a" stroke-width="2" marker-end="url(#arr1)"/>
+  <!-- Box 4 -->
+  <rect x="620" y="50" width="160" height="120" rx="4" fill="#f3efe6" stroke="#8b1a1a" stroke-width="1.5"/>
+  <text x="700" y="95" text-anchor="middle" font-family="'Playfair Display',serif" font-size="18" fill="#8b1a1a" font-weight="700">現実世界へ</text>
+  <text x="700" y="125" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#7a6a55">ヴェールが外れ</text>
+  <text x="700" y="145" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#7a6a55">立場が判明する</text>
+  <!-- Bottom note -->
+  <line x1="20" y1="200" x2="780" y2="200" stroke="#e0d8c8" stroke-width="1"/>
+  <text x="400" y="225" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">ロールズの「原初状態」——公正な社会制度を導き出すための仮想の出発点</text>
+</svg>
+</div>
+
+<p class="body-text fade">ロールズが考案した装置は<span class="tip" onclick="toggleTip(this)">原初状態<span class="tip-box"><strong>原初状態（Original Position）</strong><br>ロールズが考えた仮想の出発点。社会のルールを決める人々が、自分の属性を一切知らない状態で議論する場のこと。社会契約論の「自然状態」に対応する。</span></span>と呼ばれる。想像してほしい。社会のルールを決める会議室に、あなたを含む全員が座っている。ただし、ここには特殊な条件がある。誰も自分が何者であるかを知らない。性別、年齢、才能、資産、健康状態、人種、宗教——すべてが「無知のヴェール」の向こうに隠されている。この状態で、全員が合意できる社会の仕組みを選ぶ。それがロールズの思考実験だ。</p>
+
+<p class="body-text fade">ヴェールが隠すのは個人の属性だけではない。「善き生とは何か」という価値観そのものも遮断される。残されるのは、合理的に考える力と、正義への一般的な関心、そして社会の基本構造についての知識だけだ。ロールズはこの状態で合理的な人間が選ぶ原理を導き出そうとした。その結論が<span class="tip" onclick="toggleTip(this)">マキシミン<span class="tip-box"><strong>マキシミン（Maximin）</strong><br>ゲーム理論の意思決定ルール。最悪のシナリオが最もマシになる選択肢を選ぶ戦略。「最小値を最大化する」の略。ロールズはこれが合理的だと主張した。</span></span>戦略——最も不遇な立場にある人の状態を最大限に改善する社会を選ぶ——だった。</p>
+
+<!-- SVG図B: ヴェールが隠す情報 vs 残る情報 -->
+<div class="svg-fig fade" style="margin:32px auto;">
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ヴェールが隠す情報と残る情報の比較図">
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" font-family="'Playfair Display',serif" font-size="18" fill="#1a1208" font-weight="700">ヴェールが隠す情報 vs 残る情報</text>
+  <!-- Left header -->
+  <text x="190" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#8b1a1a" font-weight="600">隠される（ヴェールの向こう）</text>
+  <!-- Right header -->
+  <text x="610" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#1a5a30" font-weight="600">残る（ヴェールの手前）</text>
+  <!-- Center veil line -->
+  <rect x="393" y="95" width="14" height="350" rx="2" fill="#1a1208"/>
+  <text x="400" y="470" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#1a1208" font-weight="600">ヴェール</text>
+  <!-- Left items (hidden) -->
+  <rect x="40" y="100" width="310" height="48" rx="3" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+  <text x="52" y="130" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020">性別</text>
+  <rect x="40" y="156" width="310" height="48" rx="3" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+  <text x="52" y="186" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020">人種・民族</text>
+  <rect x="40" y="212" width="310" height="48" rx="3" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+  <text x="52" y="242" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020">才能・能力</text>
+  <rect x="40" y="268" width="310" height="48" rx="3" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+  <text x="52" y="298" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020">資産・社会的地位</text>
+  <rect x="40" y="324" width="310" height="48" rx="3" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+  <text x="52" y="354" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020">健康状態</text>
+  <rect x="40" y="380" width="310" height="48" rx="3" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+  <text x="52" y="410" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020">善き生の構想（価値観）</text>
+  <!-- Right items (remaining) -->
+  <rect x="450" y="100" width="310" height="60" rx="3" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+  <text x="462" y="130" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020" font-weight="600">正義への関心</text>
+  <text x="462" y="148" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">公正な社会を望む一般的な動機</text>
+  <rect x="450" y="170" width="310" height="60" rx="3" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+  <text x="462" y="200" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020" font-weight="600">合理的思考力</text>
+  <text x="462" y="218" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">論理的に推論する能力</text>
+  <rect x="450" y="240" width="310" height="60" rx="3" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+  <text x="462" y="270" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020" font-weight="600">社会の基本構造の知識</text>
+  <text x="462" y="288" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">制度がどう機能するかの一般論</text>
+  <rect x="450" y="310" width="310" height="60" rx="3" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+  <text x="462" y="340" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020" font-weight="600">経済学の一般原則</text>
+  <text x="462" y="358" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">インセンティブ・希少性の基礎</text>
+</svg>
+</div>
+
+<p class="body-text fade">ヴェールの向こうに消えるのは、生まれた国、性別、親の収入、才能——私たちが普段、有利にも不利にも使っている条件のほとんどだ。残るのは、論理的に考える力と、公正への一般的な関心だけ。この極端な簡素化を提案した人物は、戦後アメリカで最も影響力のある政治哲学者になった。</p>
+
+<!-- Person block: Rawls -->
+<div class="person-block fade">
+  <div class="person-block-img">
+    <img src="./person_rawls.jpg" alt="ジョン・ロールズのポートレート（1971年）">
+  </div>
+  <div class="person-block-body">
+    <div class="person-block-name">ジョン・ロールズ</div>
+    <div class="person-block-role">John Rawls (1921–2002)</div>
+    <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A7%E3%83%B3%E3%83%BB%E3%83%AD%E3%83%BC%E3%83%AB%E3%82%BA" target="_blank" rel="noopener" style="color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;">Wikipedia</a></p>
+    <p class="person-block-desc">ハーバード大学教授。1971年に『正義論』を刊行し、20世紀後半の政治哲学を一変させた。第二次世界大戦に従軍し、広島の焦土を目撃した経験が、のちの「公正としての正義」の思想に影を落としている。寡黙で控えめな人柄だったが、その著作の影響力は計り知れない。</p>
+  </div>
+</div>
+
+<!-- Quote block -->
+<div class="quote-block fade">
+  <p class="quote-en">"Justice is the first virtue of social institutions, as truth is of systems of thought."</p>
+  <p class="quote-ja">正義は社会制度の第一の徳である。真理が思考体系の第一の徳であるように。</p>
+  <p class="quote-attr">— John Rawls『A Theory of Justice』(1971) 冒頭</p>
+</div>
+
+<p class="body-text fade">この一文から、戦後政治哲学の潮目が変わった。それまで主流だった功利主義——「最大多数の最大幸福」——では、少数者が踏みにじられる余地があった。ロールズはそこに待ったをかけ、<em>まず公正さから始めよう</em>と提案した。本文に入る前に、この記事で繰り返し登場する5つの語を整理しておく。</p>
+
+<!-- Concept table -->
+<table class="concept-table fade">
+  <thead>
+    <tr><th>概念</th><th>意味</th><th>この記事での位置づけ</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>原初状態</strong></td><td>社会のルールを決める仮想の出発点</td><td>思考実験の舞台設定</td></tr>
+    <tr><td><strong>無知のヴェール</strong></td><td>自分の属性を知らない状態にする装置</td><td>公正さを担保する鍵</td></tr>
+    <tr><td><strong>格差原理</strong></td><td>不平等は最下層の利益になる限りで許容</td><td>ロールズが導き出した結論</td></tr>
+    <tr><td><strong>マキシミン</strong></td><td>最悪の最大化。最下層が最もマシな選択肢を選ぶ</td><td>ロールズの推論の根拠</td></tr>
+    <tr><td><strong>期待効用</strong></td><td>確率で重みづけした平均的な利益</td><td>ハルサーニの対抗理論</td></tr>
+  </tbody>
+</table>
+
+<p class="body-text fade">概念が整ったところで、先回りして誤読をつぶしておきたい。「無知のヴェール」は提案されて半世紀、誤解と批判の両方を浴び続けてきた思想である。ありがちなつまずきを先に片付けておくと、このあと実際に体験する思考実験の意味が、ぐっと鮮明になる。</p>
+
+<!-- Misconception block -->
+<div class="misconception fade">
+  <div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+  <div class="misconception-body">
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <p class="mis-label wrong">✗ よくある誤解</p>
+        <p class="mis-text">無知のヴェールは「全員が平等な社会」を主張している</p>
+      </div>
+      <div class="misconception-a">
+        <p class="mis-label right">✓ 実際は</p>
+        <p class="mis-text">ロールズは完全な平等を求めていない。不平等は、最も不遇な人の状態を改善する限りで許容される（格差原理）。ポイントは「どんな不平等が正当化できるか」の基準を示したこと。</p>
+      </div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <p class="mis-label wrong">✗ よくある誤解</p>
+        <p class="mis-text">これは実際に人々を集めて合意を取る手続きだ</p>
+      </div>
+      <div class="misconception-a">
+        <p class="mis-label right">✓ 実際は</p>
+        <p class="mis-text">原初状態は仮想の思考実験。実際に人を集める必要はない。「もし完全に公平な立場で考えたら何を選ぶか」を問うための装置であり、民主的な投票とは異なる。</p>
+      </div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <p class="mis-label wrong">✗ よくある誤解</p>
+        <p class="mis-text">ロールズの理論は誰からも支持されている</p>
+      </div>
+      <div class="misconception-a">
+        <p class="mis-label right">✓ 実際は</p>
+        <p class="mis-text"><span class="tip" onclick="toggleTip(this)">リバタリアン（ノージック）<span class="tip-box"><strong>リバタリアニズム（Libertarianism）</strong><br>個人の自由と最小国家を最も重視する政治思想。所有権に基づく自由な交換から生じた格差は正義だとし、所得再分配を原則として否定する。ハーバードの同僚ロバート・ノージック(1938–2002)が『アナーキー・国家・ユートピア』(1974)で、ロールズへの最も有名な反論を展開した。</span></span>、<span class="tip" onclick="toggleTip(this)">コミュニタリアン（サンデル）<span class="tip-box"><strong>コミュニタリアニズム（Communitarianism）</strong><br>共同体のなかで培われた価値・絆・伝統を、個人の自由より優先する政治思想。マイケル・サンデル(1953–)が代表。ロールズの「属性から切り離された抽象的個人」という前提そのものを、「そんな人間は現実に存在しない」と批判した。</span></span>、<span class="tip" onclick="toggleTip(this)">功利主義者（ハルサーニ）<span class="tip-box"><strong>功利主義（Utilitarianism）</strong><br>「最大多数の最大幸福」を目指す倫理学の立場。19世紀のベンサム・ミルに始まり、ハルサーニ(1920–2000、1994年ノーベル経済学賞)がゲーム理論で洗練させた。全体の幸福総和を優先するため、少数者が犠牲になりうる点をロールズは強く批判した。</span></span>から激しく批判されている。現代政治哲学の「最も偉大な、そして最も論争的な」著作とされる。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="art-rule fade">
+
+<!-- ============================================ -->
+<!--  SECTION 2: 体験する                          -->
+<!-- ============================================ -->
+<div class="sec-rule fade">
+  <span class="sec-label">体験する</span>
+  <span class="sec-line"></span>
+</div>
+
+<h2 class="fade">ヴェールの向こう側で、あなたは何を選ぶか。</h2>
+
+<p class="body-text fade">ここから先は、あなた自身がロールズの原初状態に入る。自分の性別も、才能も、親の収入も知らない。その状態で社会の仕組みを選んでほしい。正解はない。あなたが何を選ぶかが、あなた自身の正義の感覚を映し出す。</p>
+
+<p class="body-text fade">まずは、ヴェールが何を隠すのかを見ておこう。下の人物は、<em>あなた自身</em>だと思ってほしい。スライダーを引くほど、あなたが自分について知っていることが一つずつ失われていく。</p>
+
+<!-- Interactive 1: Veil Transparency (Kisekae Layer Edition) -->
+<div class="quiz-wrap fade" id="veilViz">
+  <div class="quiz-header">
+    <span class="quiz-hl">✦ Veil Transparency — ヴェールの深さ</span>
+  </div>
+  <div class="quiz-body" style="padding:24px 20px;">
+    <!-- Stage: layered scene (full width) -->
+    <div class="vt-stage" id="vtStage">
+      <img class="vt-layer vt-layer-room"       src="./vt_room.png" alt="" aria-hidden="true">
+      <img class="vt-layer vt-layer-bookshelf"  src="./vt_bookshelf.png" alt="" aria-hidden="true">
+      <img class="vt-layer vt-layer-piano"      src="./vt_piano.png" alt="" aria-hidden="true">
+      <img class="vt-layer vt-layer-person vt-person-full"       src="./vt_person_full.png" alt="" aria-hidden="true">
+      <img class="vt-layer vt-layer-person vt-person-nojewel"    src="./vt_person_nojewel.png" alt="" aria-hidden="true">
+      <img class="vt-layer vt-layer-person vt-person-plain"      src="./vt_person_plain.png" alt="" aria-hidden="true">
+      <img class="vt-layer vt-layer-person vt-person-silhouette" src="./vt_person_silhouette.png" alt="" aria-hidden="true">
+    </div>
+    <!-- Slider directly below image -->
+    <div class="vt-slider-wrap">
+      <span class="vt-slider-label">透明</span>
+      <input type="range" id="veilSlider" min="0" max="5" value="0" step="1">
+      <span class="vt-slider-label">不透明</span>
+    </div>
+    <!-- Attributes panel (horizontal cards) -->
+    <div class="vt-panel">
+      <p class="vt-panel-head">あなた自身について、分からなくなっていく属性</p>
+      <ul class="vt-attrs" id="vtAttrs">
+        <li data-hide-at="1"><span class="vt-attr-cat">資産</span><span class="vt-attr-val">真珠の装飾<span class="vt-attr-hint">→ 裕福な階層</span></span></li>
+        <li data-hide-at="2"><span class="vt-attr-cat">才能</span><span class="vt-attr-val">ピアノ<span class="vt-attr-hint">→ 音楽の素養</span></span></li>
+        <li data-hide-at="3"><span class="vt-attr-cat">教育</span><span class="vt-attr-val">蔵書<span class="vt-attr-hint">→ 知的環境</span></span></li>
+        <li data-hide-at="4"><span class="vt-attr-cat">生まれ</span><span class="vt-attr-val">華やかなドレス<span class="vt-attr-hint">→ 文化資本</span></span></li>
+        <li data-hide-at="5"><span class="vt-attr-cat">容姿</span><span class="vt-attr-val">性別・肌色・髪型<span class="vt-attr-hint">→ 人種・ジェンダー</span></span></li>
+        <li class="vt-attr-always" data-always="1"><span class="vt-attr-cat">残るもの</span><span class="vt-attr-val">考える力・正義への関心</span></li>
+      </ul>
+    </div>
+    <p id="veilDesc" class="vt-desc">ヴェールの深さ: 0 / 5 — 自分の属性がすべて見えている。自分が何者か、完全に知っている状態。</p>
+  </div>
+</div>
+<p class="ix-note fade">ロールズの原初状態では、あなた自身がこれらの属性（およびそれ以上）を一切知らないまま社会を設計する。自分が裕福か貧しいか、男か女か、どんな才能を持っているのかも分からない。知っているのは「合理的に考える力」と「正義への関心」だけだ。だから、どの立場に転んでも耐えられるルールを選ばざるを得なくなる——これがロールズの仕掛けの核心。</p>
+
+<p class="body-text fade">属性がすべて隠された状態で、今度は実際に社会を選ぶ。次の4つの社会のうち、あなたはどれを選ぶだろうか。</p>
+
+<!-- Interactive 2: Original Position Simulator -->
+<div class="quiz-wrap fade" id="opSim">
+  <div class="quiz-header">
+    <span class="quiz-hl">✦ Original Position — あなたの社会を選べ</span>
+    <span class="quiz-hs" id="opStatus">4つの社会から1つを選んでください</span>
+  </div>
+  <div class="quiz-body" id="opBody">
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;margin-bottom:16px;text-align:center;">あなたの属性は不明。上位10%かもしれないし、下位10%かもしれない。<br>どの社会で暮らしたいか、1つ選んでください。</p>
+    <div id="opCards" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;"></div>
+    <div id="opResult" style="display:none;"></div>
+  </div>
+</div>
+<p class="ix-note fade">スコアは架空の「生活満足度指数」。実際の社会は無数の変数で構成されるが、ここではロールズの議論の核心——最下層の処遇——に焦点を絞っている。</p>
+
+<p class="body-text fade">どんな結果になっただろうか。あなたの選択は、ロールズが「合理的な人間ならこう選ぶはずだ」と想定した答えと同じだっただろうか。1987年、フロリッチとオッペンハイマーは大学生を使って同じ実験をした。ロールズの予想に反して、マキシミン（社会D）を選んだのは全体の5%未満だった。多くの学生は「最低保証つきの平均最大化」——つまり最下層にフロアを設けたうえで平均を上げる方針——を選んだ。<span class="tip" onclick="toggleTip(this)">格差原理<span class="tip-box"><strong>格差原理（Difference Principle）</strong><br>ロールズの正義の第二原理の一部。社会的・経済的な不平等は、最も不遇な立場にある人々の利益を最大にする場合にのみ正当化される、という考え方。</span></span>は理論としては美しいが、人間の直感はもう少し複雑な場所にあるらしい。</p>
+
+<!-- Interactive 3: Sandel Self-Detachment Survey -->
+<div class="quiz-wrap fade" id="sandelQuiz">
+  <div class="quiz-header">
+    <span class="quiz-hl">✦ Encumbered Self — あなたはヴェールを被れるか</span>
+  </div>
+  <div class="quiz-body" id="sandelBody">
+    <p style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:6px;">あなたはどこまでヴェールをかぶれるか？</p>
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;line-height:1.7;margin-bottom:12px;">ロールズの思考実験に入るには、自分の属性をいったん手放す必要がある。<br>以下の7つについて、「もしこれを一瞬だけ『持っていない自分』と想像できるか」を5段階で答えてください。</p>
+    <div style="background:#f3efe6;border-left:3px solid #c8bfaa;padding:12px 14px;margin-bottom:20px;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;line-height:1.7;">
+      <strong style="color:#1a1208;">「手放す」の目安</strong><br>
+      実際に忘れたり捨てたりする必要はない。各項目の下に「こう考えると外せた状態」のヒントを添えた。<br>
+      <span style="color:#b0a090;">例: 『母語』なら——「自分がこの言語を読めない人間だったら、この社会のルールに賛成できるか」と一瞬考えられれば、その項目は"外せた"とみなす。</span>
+    </div>
+    <div id="sandelItems"></div>
+    <button id="sandelSubmit" style="display:block;margin:20px auto 0;padding:10px 28px;background:#1a1208;color:#e8e4de;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;letter-spacing:.06em;">診断する</button>
+    <div id="sandelResult" style="display:none;margin-top:16px;padding:18px;background:#f3efe6;border-left:3px solid #8b1a1a;"></div>
+  </div>
+</div>
+<p class="ix-note fade">サンデルの批判は『リベラリズムと正義の限界』(1982)に詳しい。「自分を属性から切り離せる」というロールズの前提そのものを問い直した。</p>
+
+<hr class="art-rule fade">
+
+<!-- ============================================ -->
+<!--  SECTION 3: なぜ論争になるのか                 -->
+<!-- ============================================ -->
+<div class="sec-rule fade">
+  <span class="sec-label">なぜ論争になるのか</span>
+  <span class="sec-line"></span>
+</div>
+
+<h2 class="fade">三つの戦略、三つの「合理性」。</h2>
+
+<p class="body-text fade">ヴェールの下で「合理的な人間は何を選ぶか」をめぐって、3つの立場が激突する。ロールズはマキシミン（最悪の最大化）を主張したが、ハルサーニは<span class="tip" onclick="toggleTip(this)">期待効用<span class="tip-box"><strong>期待効用（Expected Utility）</strong><br>ある選択肢の「うまみ」を、起こりうる結果の良さとその確率を掛け合わせて計算したもの。宝くじの期待値と同じ発想で、意思決定理論の基本概念。</span></span>最大化を、フロリッチらは実験で「フロア付き平均最大化」を示した。</p>
+
+<!-- SVG図C: 3つの意思決定戦略(1:1スケール再設計版) -->
+<div class="svg-fig fade" style="margin:32px auto;max-width:760px;">
+<svg viewBox="0 0 800 752" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="同じ社会を3つの戦略で見たときに何に注目するかを比較した図">
+  <defs>
+    <marker id="arrC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b0a090"/>
+    </marker>
+  </defs>
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-family="'Playfair Display',serif" font-size="20" fill="#1a1208" font-weight="700">同じ社会を、3つの「合理性」で見ると</text>
+  <text x="400" y="52" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">社会を構成する3つの層(下位・中位・上位)のうち、<tspan font-weight="600" fill="#8b1a1a">どのスコアを重視するか</tspan>で選び方が変わる</text>
+
+  <!-- Legend (3 layers) -->
+  <g font-family="'Source Sans 3',sans-serif">
+    <text x="40" y="90" font-size="11" fill="#b0a090" letter-spacing=".14em" font-weight="600">社会の3層</text>
+    <rect x="40" y="100" width="16" height="16" rx="2" fill="#c4392a"/>
+    <text x="62" y="113" font-size="13" fill="#3d3020">下位10% (スコア30)</text>
+    <rect x="220" y="100" width="16" height="16" rx="2" fill="#d4a35a"/>
+    <text x="242" y="113" font-size="13" fill="#3d3020">中位80% (スコア65)</text>
+    <rect x="400" y="100" width="16" height="16" rx="2" fill="#4a7a5a"/>
+    <text x="422" y="113" font-size="13" fill="#3d3020">上位10% (スコア100)</text>
+    <text x="590" y="113" font-size="12" fill="#b0a090" font-style="italic">※ 同一社会の仮想スコア</text>
+  </g>
+  <line x1="30" y1="132" x2="770" y2="132" stroke="#e0d8c8" stroke-width="1"/>
+
+  <!-- ========== Row 1: Maximin (y=148-318, h=170) ========== -->
+  <!-- Bar group translated to (440, 163). Bar bottoms align at local y=125. -->
+  <!-- 下位(30)=y95 h30, 中位(65)=y60 h65, 上位(100)=y25 h100 → 1:1 scale -->
+  <g class="strat-row">
+    <rect x="30" y="148" width="740" height="170" rx="6" fill="#faf8f3" stroke="#c8bfaa" stroke-width="1.2"/>
+    <!-- Left: strategy info -->
+    <text x="56" y="184" font-family="'Playfair Display',serif" font-size="20" fill="#1a1208" font-weight="700">① マキシミン</text>
+    <text x="56" y="212" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">最悪のケースを、最もマシにする</text>
+    <text x="56" y="234" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">確率が分からない以上、最悪のケースで判断すべき</text>
+    <rect x="56" y="258" width="170" height="26" rx="13" fill="#1a1208"/>
+    <text x="141" y="276" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#e8e4de">ロールズ (1971)</text>
+    <!-- Right: 3 bars, focus on 下位 -->
+    <g transform="translate(440, 163)">
+      <!-- 下位 (focused) -->
+      <g class="strat-bar-focus">
+        <rect class="strat-ring" x="-8" y="87" width="76" height="46" rx="6" fill="none" stroke="#8b1a1a" stroke-width="2.5" stroke-dasharray="5,3"/>
+        <rect x="0" y="95" width="60" height="30" rx="3" fill="#c4392a"/>
+        <text x="30" y="116" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#fff" font-weight="700">30</text>
+        <text x="30" y="146" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020" font-weight="600">下位</text>
+        <text x="30" y="52" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="700" letter-spacing=".08em">ここだけ見る</text>
+      </g>
+      <!-- 中位 (dimmed) -->
+      <rect x="100" y="60" width="60" height="65" rx="3" fill="#d4a35a" opacity=".3"/>
+      <text x="130" y="96" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#7a6a55" font-weight="700" opacity=".5">65</text>
+      <text x="130" y="146" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#b0a090">中位</text>
+      <!-- 上位 (dimmed) -->
+      <rect x="200" y="25" width="60" height="100" rx="3" fill="#4a7a5a" opacity=".3"/>
+      <text x="230" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#7a6a55" font-weight="700" opacity=".5">100</text>
+      <text x="230" y="146" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#b0a090">上位</text>
+    </g>
+  </g>
+  <!-- Arrow 1: row1 ends 318, row2 starts 352 → gap 34 -->
+  <text x="400" y="332" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090" letter-spacing=".2em">反論</text>
+  <line x1="400" y1="338" x2="400" y2="348" stroke="#b0a090" stroke-width="1.5" marker-end="url(#arrC)"/>
+
+  <!-- ========== Row 2: Expected Utility (y=352-522) ========== -->
+  <!-- Avg line at value 65 = local y=60 (aligns with 中位 top — correct) -->
+  <g class="strat-row">
+    <rect x="30" y="352" width="740" height="170" rx="6" fill="#faf8f3" stroke="#c8bfaa" stroke-width="1.2"/>
+    <text x="56" y="388" font-family="'Playfair Display',serif" font-size="20" fill="#1a1208" font-weight="700">② 期待効用最大化</text>
+    <text x="56" y="416" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">確率で重みづけした「平均的な幸福」を最大化する</text>
+    <text x="56" y="438" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">10%×30 + 80%×65 + 10%×100 = 65 を高くする</text>
+    <rect x="56" y="462" width="170" height="26" rx="13" fill="#1a1208"/>
+    <text x="141" y="480" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#e8e4de">ハルサーニ (1975)</text>
+    <g transform="translate(440, 367)">
+      <!-- All 3 bars equal emphasis -->
+      <rect x="0" y="95" width="60" height="30" rx="3" fill="#c4392a"/>
+      <text x="30" y="116" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#fff" font-weight="700">30</text>
+      <text x="30" y="146" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020" font-weight="600">下位</text>
+      <rect x="100" y="60" width="60" height="65" rx="3" fill="#d4a35a"/>
+      <text x="130" y="96" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#fff" font-weight="700">65</text>
+      <text x="130" y="146" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020" font-weight="600">中位</text>
+      <rect x="200" y="25" width="60" height="100" rx="3" fill="#4a7a5a"/>
+      <text x="230" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#fff" font-weight="700">100</text>
+      <text x="230" y="146" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020" font-weight="600">上位</text>
+      <!-- Average line at value 65 = y=60 (aligns with 中位 top) -->
+      <line x1="-15" y1="60" x2="265" y2="60" stroke="#8b1a1a" stroke-width="2" stroke-dasharray="4,3"/>
+      <text x="270" y="64" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="700">加重平均</text>
+      <text x="130" y="14" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="700" letter-spacing=".08em">全部を平均して見る</text>
+    </g>
+  </g>
+  <!-- Arrow 2: row2 ends 522, row3 starts 556 → gap 34 -->
+  <text x="400" y="536" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090" letter-spacing=".2em">実験で検証</text>
+  <line x1="400" y1="542" x2="400" y2="552" stroke="#b0a090" stroke-width="1.5" marker-end="url(#arrC)"/>
+
+  <!-- ========== Row 3: Floor + Average (y=556-726) ========== -->
+  <!-- 下位 gets focus ring (=floor secured). Avg line spans 中位+上位 at y=60. -->
+  <g class="strat-row">
+    <rect x="30" y="556" width="740" height="170" rx="6" fill="#faf8f3" stroke="#c8bfaa" stroke-width="1.2"/>
+    <text x="56" y="592" font-family="'Playfair Display',serif" font-size="20" fill="#1a1208" font-weight="700">③ フロア付き平均最大化</text>
+    <text x="56" y="620" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">最低保証を確保した上で、平均を最大化する</text>
+    <text x="56" y="642" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">下位に下限を引いてから、全体を上げる——多くの人の直感に近い</text>
+    <rect x="56" y="666" width="252" height="26" rx="13" fill="#1a1208"/>
+    <text x="182" y="684" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#e8e4de">フロリッチ&amp;オッペンハイマー (1987)</text>
+    <g transform="translate(440, 571)">
+      <!-- 下位 with focus ring = floor fixed -->
+      <g class="strat-bar-focus">
+        <rect class="strat-ring" x="-8" y="87" width="76" height="46" rx="6" fill="none" stroke="#8b1a1a" stroke-width="2.5" stroke-dasharray="5,3"/>
+        <rect x="0" y="95" width="60" height="30" rx="3" fill="#c4392a"/>
+        <text x="30" y="116" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#fff" font-weight="700">30</text>
+        <text x="30" y="146" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020" font-weight="600">下位</text>
+        <text x="30" y="52" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="700" letter-spacing=".05em">下限を固定</text>
+      </g>
+      <!-- 中位 full -->
+      <rect x="100" y="60" width="60" height="65" rx="3" fill="#d4a35a"/>
+      <text x="130" y="96" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#fff" font-weight="700">65</text>
+      <text x="130" y="146" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020" font-weight="600">中位</text>
+      <!-- 上位 full -->
+      <rect x="200" y="25" width="60" height="100" rx="3" fill="#4a7a5a"/>
+      <text x="230" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#fff" font-weight="700">100</text>
+      <text x="230" y="146" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#3d3020" font-weight="600">上位</text>
+      <!-- Average line for 中位+上位 at value 65 = y=60 -->
+      <line x1="90" y1="60" x2="265" y2="60" stroke="#8b1a1a" stroke-width="2" stroke-dasharray="4,3"/>
+      <text x="270" y="64" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="700">平均</text>
+      <text x="165" y="14" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="700" letter-spacing=".05em">全体を押し上げる</text>
+    </g>
+  </g>
+</svg>
+</div>
+
+<p class="ix-note fade">図にカーソルを当てると、各戦略の注目する部分がふわりと浮き上がる。マキシミンは下位だけを見、期待効用は全体を平均で見、フロア付き平均は下限と平均の両方を見る——<em>「合理的」の意味が3通りある</em>ことが視覚化される。</p>
+
+<!-- Steps accordion -->
+<div class="steps-wrap fade">
+  <p class="steps-head">3つの立場を詳しく</p>
+  <div class="step-card open" id="sc1">
+    <div class="step-hd" onclick="tog(1)">
+      <div class="step-nb">1</div>
+      <div class="step-tw">
+        <p class="step-title">ロールズの論理——なぜマキシミンか</p>
+        <p class="step-sub">最悪に備える合理性</p>
+      </div>
+      <span class="step-arr">▼</span>
+    </div>
+    <div class="step-body">
+      <p>ヴェールの下では確率を計算できない——これがロールズの主張の出発点だ。自分が最下層になる確率が不明なら、最悪のケースに備えるのが合理的だとロールズは考えた。</p>
+      <p><strong>日常の例:</strong> 海外旅行の保険。事故の確率は低くても、最悪のシナリオ（入院費数百万円）を考えて保険に入る。これがマキシミン的思考だ。「確率が低いから大丈夫」とは考えず、<em>「最悪でも耐えられるか」</em>を基準にする。</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc2">
+    <div class="step-hd" onclick="tog(2)">
+      <div class="step-nb">2</div>
+      <div class="step-tw">
+        <p class="step-title">ハルサーニの反論——なぜ期待効用か</p>
+        <p class="step-sub">確率を無視するのは非合理</p>
+      </div>
+      <span class="step-arr">▼</span>
+    </div>
+    <div class="step-body">
+      <p>ハルサーニは「合理的な人間は確率を考慮する」と反論した。全員が等確率で各ポジションに割り当てられるなら、期待値が最大の社会を選ぶのが合理的だ。</p>
+      <p><strong>日常の例:</strong> レストランを選ぶとき、最悪の料理を基準にはしない。平均的な満足度で選ぶ。マキシミンは<em>「全レストランを最悪の一品で評価する」</em>ようなものだ、とハルサーニは言う。</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc3">
+    <div class="step-hd" onclick="tog(3)">
+      <div class="step-nb">3</div>
+      <div class="step-tw">
+        <p class="step-title">フロリッチ＆オッペンハイマーの実験——人は何を選んだか</p>
+        <p class="step-sub">理論と実際のズレ</p>
+      </div>
+      <span class="step-arr">▼</span>
+    </div>
+    <div class="step-body">
+      <p>1987年の実験で、学生たちは4つの分配原理から1つを選んだ。結果: <strong>マキシミン5%未満</strong>、期待効用最大化12%、<em>フロア付き平均最大化が圧倒的多数</em>。人間は「最下層の安全ネット」を求めつつも、全体の豊かさも捨てたくないのだ。</p>
+      <p><strong>日常の例:</strong> 社会保障は欲しいが、経済成長も諦めたくない。多くの人の直感は、純粋なマキシミンでも純粋な功利主義でもない、その中間にある。</p>
+    </div>
+  </div>
+</div>
+
+<hr class="art-rule fade">
+
+<!-- ============================================ -->
+<!--  SECTION 4: 歴史                              -->
+<!-- ============================================ -->
+<div class="sec-rule fade">
+  <span class="sec-label">歴史</span>
+  <span class="sec-line"></span>
+</div>
+
+<h2 class="fade">社会契約から「公正」へ——350年の系譜</h2>
+
+<p class="body-text fade" style="margin-bottom:28px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;font-size:13px;color:#7a6a55;">
+  <span style="display:inline-flex;align-items:center;gap:8px;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#8b1a1a;border:2px solid #8b1a1a;box-sizing:border-box;"></span>ロールズの業績と正義論の系譜</span>
+  <span style="display:inline-flex;align-items:center;gap:8px;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;box-sizing:border-box;"></span>関連する出来事</span>
+</p>
+
+<div class="timeline fade">
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1651</p>
+    <p class="tl-title">ホッブズ『リヴァイアサン』</p>
+    <p class="tl-desc">社会契約論の原型。「万人の万人に対する闘争」を避けるため、人々は主権者に権利を委ねる。正義の問いはここから始まる。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1762</p>
+    <p class="tl-title">ルソー『社会契約論』</p>
+    <p class="tl-desc">「人間は生まれながらに自由だが、至るところで鎖に繋がれている。」一般意志による社会契約という発想がロールズに遺産を残す。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1921</p>
+    <p class="tl-title">ジョン・ロールズ誕生</p>
+    <p class="tl-desc">メリーランド州ボルチモアに生まれる。少年期にジフテリアで2人の弟を失う。「偶然の不運」への感受性が、のちの理論に通底する。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1950</p>
+    <p class="tl-title">ハルサーニ「期待効用」理論を展開</p>
+    <p class="tl-desc">ゲーム理論の枠組みで、社会的選択を確率的に分析する手法を提唱。のちのロールズ批判の土台を築く。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1971</p>
+    <p class="tl-title">『正義論』刊行</p>
+    <p class="tl-desc">ハーバード大学出版局（Belknap Press）から刊行。「正義は社会制度の第一の徳である」と宣言し、20世紀後半の政治哲学の地図を塗り替えた。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1974</p>
+    <p class="tl-title">ノージック『アナーキー・国家・ユートピア』</p>
+    <p class="tl-desc">ハーバードの同僚ノージックが、リバタリアンの立場からロールズに真正面から反論。自由な交換から生じる不平等は正義だと主張。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1982</p>
+    <p class="tl-title">サンデル『リベラリズムと正義の限界』</p>
+    <p class="tl-desc">コミュニタリアンの立場から「負荷なき自我」の前提を批判。ロールズの人間観そのものを問い直した。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1987</p>
+    <p class="tl-title">フロリッチ＆オッペンハイマーの実験</p>
+    <p class="tl-desc">大学生を原初状態に置く実証研究。マキシミンを選んだのは5%未満。理論と実際の直感のズレが明らかになる。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2002</p>
+    <p class="tl-title">ロールズ死去</p>
+    <p class="tl-desc">81歳。晩年は『万民の法』で国際正義に思索を広げた。弟子たちが理論を継承し、政治哲学の教科書には必ず名前が載る存在となった。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2019</p>
+    <p class="tl-title">Huang, Greene, Bazerman（PNAS論文）</p>
+    <p class="tl-desc">7実験・6,261人の大規模研究。ヴェール的推論は功利的判断を促進する。ロールズの予想とは異なるが、ヴェールの「効果」は実証された。</p>
+  </div>
+</div>
+
+<hr class="art-rule fade">
+
+<!-- Person block: Sandel (no image, 1-column) -->
+<div class="person-block fade" style="grid-template-columns:1fr;">
+  <div class="person-block-body" style="border-left:none;">
+    <div class="person-block-name">マイケル・サンデル</div>
+    <div class="person-block-role">Michael Sandel (1953–)</div>
+    <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%9E%E3%82%A4%E3%82%B1%E3%83%AB%E3%83%BB%E3%82%B5%E3%83%B3%E3%83%87%E3%83%AB" target="_blank" rel="noopener" style="color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;">Wikipedia</a></p>
+    <p class="person-block-desc">ハーバード大学教授。著書『これからの「正義」の話をしよう』(原題: Justice)は世界的ベストセラー。ロールズの「負荷なき自我」を批判し、人間は共同体・家族・文化に深く組み込まれた「負荷ある自我」であると主張した。NHK『ハーバード白熱教室』で日本でも広く知られる。</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!--  SECTION 5: つまり                            -->
+<!-- ============================================ -->
+<div class="sec-rule fade">
+  <span class="sec-label">つまり</span>
+  <span class="sec-line"></span>
+</div>
+
+<h2 class="fade">ヴェールは、完璧である必要はない。</h2>
+
+<p class="body-text fade">ロールズの「無知のヴェール」は完璧な道具ではない。サンデルが指摘した通り、自分を完全に属性から切り離すことは概念的に不可能かもしれない。ハルサーニの反論も一理あり、合理的な人間がマキシミンだけを選ぶとは限らない。2019年のHuangらのPNAS論文は、ヴェール的推論が実際に人々の判断をシフトさせることを示した——ただし、ロールズの予想した方向とは微妙にずれていた。</p>
+
+<p class="body-text fade">しかし、ヴェールの本当の価値は「正解を出すこと」にはない。「もし自分が最も弱い立場だったら」と一瞬でも想像する力を与えてくれることにある。完璧な公正は実現できなくても、「自分の立場を知らない状態で考えてみる」というクセをつけるだけで、判断は変わりうる。</p>
+
+<!-- Pull quote: Sandel -->
+<div class="pull fade">
+  <p class="pull-q">"We cannot regard ourselves as independent in this way, as bearers of selves <em>wholly detached</em> from our aims and attachments."</p>
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">私たちは自分自身を、目的や愛着から完全に切り離された存在としては捉えられない。</p>
+  <p class="pull-attr">— Michael Sandel『Liberalism and the Limits of Justice』(1982)</p>
+</div>
+
+<p class="body-text fade">ロールズの<span class="tip" onclick="toggleTip(this)">リベラリズム<span class="tip-box"><strong>リベラリズム（Liberalism）</strong><br>政治哲学における立場で、個人の自由と権利を最も重視する。ロールズは「公正としてのリベラリズム」を唱え、個人の自由と社会的平等の両立を目指した。</span></span>が前提とする「属性から切り離された自我」に対して、サンデルは<span class="tip" onclick="toggleTip(this)">負荷ある自我<span class="tip-box"><strong>負荷ある自我（Encumbered Self）</strong><br>サンデルの用語。人間は白紙の状態から人生を選ぶのではなく、家族・文化・言語・歴史に深く根ざした存在であるという考え方。ロールズの「属性を一時的に忘れられる」という前提への批判。</span></span>を対置した。どちらが「正しい」かは決着がつかない。だが、両方の視点を持つことで、私たちは自分の判断の癖を知ることができる。では、ヴェールの思考をどう日常に持ち込めるか。3つの方法がある。</p>
+
+<p class="body-text fade"><strong>1. <span class="tip" onclick="toggleTip(this)">逆立場テスト<span class="tip-box"><strong>逆立場テスト</strong><br>意思決定のとき「もし自分が最も不利な立場だったら、この決定に同意できるか?」と問う方法。ロールズのヴェールを簡略化した日常版。</span></span></strong>——大きな決定の前に「もし自分がこの決定で最も不利になる人間だったら、同意できるか?」と問う。会社のルール変更、チームの方針決定、家族の取り決め——どんな場面でも使える。ロールズのヴェールを日常サイズに縮小したものだ。<br><br><strong>2. <span class="tip" onclick="toggleTip(this)">プレモーテム<span class="tip-box"><strong>プレモーテム（Pre-mortem）</strong><br>「もしこの計画が大失敗したとしたら、何が原因だったか」を事前に想像する手法。心理学者ゲイリー・クラインが提唱。ポストモーテム（事後分析）の逆。</span></span></strong>——制度や計画を導入する前に「この仕組みが最悪の結果を生むとしたら、何が原因か?」を書き出す。失敗を事前に想像することで、最下層に落ちる可能性のある人々の視点を取り込める。<br><br><strong>3. <span class="tip" onclick="toggleTip(this)">マキシミン的ヒューリスティック<span class="tip-box"><strong>マキシミン的ヒューリスティック</strong><br>「ヒューリスティック」は、完璧な計算ではなく経験則で使える判断の近道のこと。マキシミン(最悪を最もマシにする)を厳密な原則ではなく「取り返しのつかない決定のときだけ使うルール」として日常に持ち込む方法を指す。</span></span></strong>——完璧にマキシミンで生きる必要はないが、取り返しのつかない決定（法律・制度・組織のルール設計）では「最悪のケースでも耐えられるか」を判断基準の1つに加える。レストラン選びにはマキシミンは不要だが、憲法を書くときには不可欠だ。</p>
+
+<p class="body-text fade">ロールズが本当に問うているのは「公正な社会とは何か」ではない。「あなたは、自分の利害を超えて考える用意があるか」だ。ヴェールは完璧でなくてもいい。ほんの一瞬、自分の属性を忘れる努力をするだけで——判断の質は変わりうる。</p>
+
+<!-- Culture block -->
+<div class="culture-block fade">
+  <p class="culture-label">文化のなかの無知のヴェール</p>
+  <div class="culture-item">
+    <p class="culture-title">『これからの「正義」の話をしよう』マイケル・サンデル（2009）</p>
+    <p class="culture-desc">ハーバード白熱教室。ロールズの無知のヴェールを学生たちに体験させ、その限界をコミュニタリアンの視点から問い直す。NHKの放映で日本に「正義ブーム」を引き起こした。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">『The Good Place』シーズン1–4（2016–2020）</p>
+    <p class="culture-desc">死後の世界を舞台にしたコメディドラマ。ロールズ、カント、功利主義が繰り返し登場し、「善い人間とは何か」をポップカルチャーに持ち込んだ。ヴェール的思考が最終シーズンの鍵となる。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">AI アラインメント研究（2023）</p>
+    <p class="culture-desc">DeepMindらの研究チームが、大規模言語モデルの価値判断にヴェール・オブ・イグノランス概念を応用。「AIは誰の利益を優先すべきか」という問題に、ロールズの装置が再び持ち出された。</p>
+  </div>
+</div>
+
+<hr class="art-rule fade">
+
+<!-- ============================================ -->
+<!--  REFERENCES                                   -->
+<!-- ============================================ -->
+<div class="sec-rule fade">
+  <span class="sec-label">もっと深く知りたい人へ</span>
+  <span class="sec-line"></span>
+</div>
+
+<div class="ref-list">
+  <div class="ref-item fade">
+    <div class="ref-meta">
+      <span class="ref-type">原著</span>
+      <span class="ref-year">1971</span>
+    </div>
+    <p class="ref-title"><a href="https://www.hup.harvard.edu/books/9780674000780" target="_blank" rel="noopener">A Theory of Justice</a></p>
+    <p class="ref-author">John Rawls — Harvard University Press</p>
+    <p class="ref-desc">20世紀政治哲学の最重要著作。分厚いが、第1部（第1章〜第4章）だけでも無知のヴェールの核心は掴める。邦訳は『正義論 改訂版』（紀伊國屋書店）。読む前と読んだ後で、「公正さ」の意味が変わる。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta">
+      <span class="ref-type">原著論文</span>
+      <span class="ref-year">1975</span>
+    </div>
+    <p class="ref-title"><a href="https://doi.org/10.2307/1959090" target="_blank" rel="noopener">Can the Maximin Principle Serve as a Basis for Morality?</a></p>
+    <p class="ref-author">John C. Harsanyi — American Political Science Review</p>
+    <p class="ref-desc">ロールズへの最も鋭い反論の1つ。「合理的な人間はマキシミンではなく期待効用を選ぶ」と論じた。短いが密度が高い。正義論を読んだ後にこれを読むと、両方の見え方が変わる。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta">
+      <span class="ref-type">実証論文</span>
+      <span class="ref-year">1987</span>
+    </div>
+    <p class="ref-title"><a href="https://doi.org/10.2307/2111418" target="_blank" rel="noopener">Choices of Principles of Distributive Justice in Experimental Groups</a></p>
+    <p class="ref-author">Norman Frohlich, Joe A. Oppenheimer, Cheryl L. Eavey — American Journal of Political Science</p>
+    <p class="ref-desc">原初状態を実験室に持ち込んだ先駆的研究。ロールズのマキシミンを選んだのは5%未満という不穏な結果が記録されている。理論と実験の緊張関係に興味があるなら必読。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta">
+      <span class="ref-type">実証論文</span>
+      <span class="ref-year">2019</span>
+    </div>
+    <p class="ref-title"><a href="https://doi.org/10.1073/pnas.1910125116" target="_blank" rel="noopener">Veil-of-ignorance reasoning favors the greater good</a></p>
+    <p class="ref-author">Karen Huang, Joshua D. Greene, Max Bazerman — Proceedings of the National Academy of Sciences</p>
+    <p class="ref-desc">7実験・6,261人の大規模研究。ヴェール的推論は人々をより功利的にする——ロールズの予測とは違う方向に。この論文を読んでから記事を読み返すと、体験セクションの意味合いが変わる。</p>
+  </div>
+</div>
+
+<!-- Note box -->
+<div class="note-box fade">
+  <strong>📌 この記事について</strong><br>
+  ロールズの正義論については『A Theory of Justice』(1971)の原典と、Stanford Encyclopedia of Philosophyの解説に依拠した。批判の整理にはSandel (1982)、Harsanyi (1975)を参照。実証研究はFrohlich et al. (1987)とHuang et al. (2019, PNAS)に基づく。Est. 1971の同年の出来事は複数の歴史資料で確認した。体験コンテンツのスコアは概念を伝えるための架空の数値であり、実際の社会指標ではない。
+</div>
+
+<!-- Signature -->
+<div class="signature fade">e. Tamaki</div>
+
+<!-- Tags -->
+<div class="tags fade">
+  <span class="tag">思考実験</span>
+  <span class="tag">政治哲学</span>
+  <span class="tag">ロールズ</span>
+  <span class="tag">正義</span>
+  <span class="tag">社会契約</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">&lt;5%</p>
+      <p class="sidebar-text">1987年の実験でマキシミン（ロールズの予測）を選んだ被験者の割合。理論と直感のあいだには、大きな溝がある。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1971年、ベトナム戦争への反対が頂点に達し、ニクソン・ショックで国際金融秩序が崩壊した年に『正義論』は刊行された。「公正な社会とは何か」という問いは、時代の空気と共鳴していた。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">サンデル『これからの「正義」の話をしよう』(2009)、Netflix『The Good Place』(2016–2020)、DeepMind AI アラインメント研究(2023)。思考実験として教育・フィクション・AIの3領域に浸透。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">
+        — <a href="https://qualiajournal.com/prisoners_dilemma" style="border-bottom:1px solid #c8bfaa;">囚人のジレンマ</a><br>
+        — <a href="https://qualiajournal.com/asch_conformity" style="border-bottom:1px solid #c8bfaa;">同調圧力（アッシュ実験）</a><br>
+        — <a href="https://qualiajournal.com/ship_of_theseus" style="border-bottom:1px solid #c8bfaa;">テセウスの船</a>
+      </p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">今日の判断を振り返る</p>
+      <ul class="sidebar-check">
+        <li>自分が有利な立場にいることを前提にしていないか?</li>
+        <li>最も不利な人の視点から、この決定を見たか?</li>
+        <li>「公平」と感じるルールは、自分の立場を知っているから公平なのか?</li>
+      </ul>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">ロールズの原典、Stanford Encyclopedia of Philosophy、主要な批判論文（Harsanyi 1975, Sandel 1982）、実証研究（Frohlich et al. 1987, Huang et al. 2019 PNAS）に基づく。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 無知のヴェール を読み終えた人との対話</span>
+
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局ロールズの言うとおりにはならないんだね</span></div>
+      <span class="t-output" id="to1">うん。実験でマキシミンを選んだのは5%未満。でもロールズの価値は「正解を出したこと」じゃなくて、<em>「自分の立場を知らない状態で考えてみろ」</em>という装置を作ったこと。</span>
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;サンデルの批判ってもっともだと思った。自分を忘れるなんて無理でしょ</span></div>
+      <span class="t-output" id="to2">たしかに完全には無理だろうね。でもロールズも「文字通り属性を消せ」と言ってるわけじゃない。「もし消せたら何を選ぶか考えてみろ」という<strong>思考の補助線</strong>を引いてるだけ。完璧じゃなくても、補助線があると判断は変わる。</span>
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;日常で使えるとしたら、どういう場面?</span></div>
+      <span class="t-output" id="to3">たとえば会社のルールを決めるとき。「自分が新入社員だったらこのルールに同意できるか?」って考えるだけで、だいぶ違う。逆立場テストってやつ。完璧じゃなくても、<em>1秒でも相手の立場に立つクセ</em>をつけるだけで。</span>
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;でもそれって結局「いい人でいよう」って話じゃない?</span></div>
+      <span class="t-output" id="to4">いい人かどうかは関係ない。ロールズが言ってるのは、<strong>構造</strong>の話。個人の善意に頼らず、誰がどの立場になっても耐えられるルールを先に作っておけ、と。いい人じゃなくても公正な社会は作れる——それがヴェールの発明だった。</span>
+      <hr class="t-divider">
+
+      <div class="t-line t-exit" id="tl5">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# ヴェール、たたんでおく</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/prisoners_dilemma">
+      <p class="related-card-tag">行動心理学 × ゲーム理論</p>
+      <p class="related-card-title">囚人のジレンマ</p>
+      <p class="related-card-desc">協力と裏切り。最適戦略は存在するか。ロールズの「協力的冒険」の前提が、ここで試される。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/asch_conformity">
+      <p class="related-card-tag">社会心理学 × 集団</p>
+      <p class="related-card-title">同調圧力（アッシュ実験）</p>
+      <p class="related-card-desc">75%の人が、明らかに間違った答えに同調した。ヴェールなき現実で、公正な判断はどこまで可能か。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==================== CORE SCRIPTS ====================
+
+// Scroll progress bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// Fade-in observer
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// Tooltip (toast method)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// Step accordion
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// Terminal animation
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2400},{id:'to2',delay:3000},
+  {id:'tl3',delay:4000},{id:'to3',delay:4600},
+  {id:'tl4',delay:5600},{id:'to4',delay:6200},
+  {id:'tl5',delay:7200},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// ==================== HEADER JS ====================
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined')return;
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+
+// ==================== INTERACTIVE 1: VEIL TRANSPARENCY (Layer Edition) ====================
+(function(){
+  const descs = [
+    '自分の属性がすべて見えている。自分が何者か、完全に知っている状態。',
+    '真珠の装飾が消えた。自分が裕福な階層に属しているのかどうか、その手がかりが1つ失われた。',
+    'ピアノが消えた。自分がどんな才能を持っているのかも、分からなくなる。',
+    '蔵書が消えた。自分がどんな教育環境で育ったのかも、見えなくなる。',
+    '装いが簡素になった。自分の生まれた階層や文化資本も、判断できなくなる。',
+    'シルエットだけが残った。自分の性別も人種も分からない。残されたのは「合理的に考える力」と「正義への関心」だけ——これがロールズの「原初状態」。'
+  ];
+  const slider = document.getElementById('veilSlider');
+  const desc   = document.getElementById('veilDesc');
+  const stage  = document.getElementById('vtStage');
+  const attrsEl = document.getElementById('vtAttrs');
+  if(!slider||!stage||!attrsEl)return;
+
+  const layers = {
+    piano     : stage.querySelector('.vt-layer-piano'),
+    bookshelf : stage.querySelector('.vt-layer-bookshelf'),
+    full      : stage.querySelector('.vt-person-full'),
+    nojewel   : stage.querySelector('.vt-person-nojewel'),
+    plain     : stage.querySelector('.vt-person-plain'),
+    silhouette: stage.querySelector('.vt-person-silhouette'),
+  };
+
+  function render(depth){
+    // background objects
+    layers.piano.style.opacity     = depth >= 2 ? 0 : 1;
+    layers.bookshelf.style.opacity = depth >= 3 ? 0 : 1;
+    // person swap: full(真珠+ドレス) → nojewel(ドレスのみ) → plain(私服) → silhouette
+    layers.full.style.opacity       = depth === 0 ? 1 : 0;
+    layers.nojewel.style.opacity    = (depth >= 1 && depth <= 3) ? 1 : 0;
+    layers.plain.style.opacity      = (depth === 4) ? 1 : 0;
+    layers.silhouette.style.opacity = depth >= 5 ? 1 : 0;
+
+    // attribute strikethrough
+    attrsEl.querySelectorAll('li[data-hide-at]').forEach(li=>{
+      const t = parseInt(li.dataset.hideAt, 10);
+      li.classList.toggle('vt-attr-hidden', depth >= t);
+    });
+
+    desc.textContent = 'ヴェールの深さ: '+depth+' / 5 — '+descs[depth];
+  }
+
+  slider.addEventListener('input',()=>render(parseInt(slider.value,10)));
+  render(0);
+})();
+
+// ==================== INTERACTIVE 2: ORIGINAL POSITION SIMULATOR ====================
+(function(){
+  const societies = [
+    {id:'A',name:'平等社会',desc:'全員が同じ水準で暮らす。格差はゼロだが、突出した成功もない。',top:60,mid:60,bot:60,color:'#4a7a5a'},
+    {id:'B',name:'競争社会',desc:'才能と努力が報われる。勝者は繁栄し、敗者は苦しい。',top:92,mid:65,bot:28,color:'#5a6a9a'},
+    {id:'C',name:'超格差社会',desc:'一握りの超富裕層と、大多数の貧困層。極端な格差。',top:150,mid:50,bot:15,color:'#9a5a5a'},
+    {id:'D',name:'ロールズ型社会',desc:'格差はあるが、最下層の生活水準が最も高い。',top:80,mid:70,bot:52,color:'#7a6a55'}
+  ];
+  const profiles = [
+    {name:'最も恵まれた層（上位10%）',key:'top',prob:0.10},
+    {name:'平均的な層（中位）',key:'mid',prob:0.60},
+    {name:'最も不遇な層（下位10%）',key:'bot',prob:0.30}
+  ];
+  const cardsEl = document.getElementById('opCards');
+  const resultEl = document.getElementById('opResult');
+  const statusEl = document.getElementById('opStatus');
+  if(!cardsEl)return;
+
+  function renderCards(){
+    cardsEl.innerHTML='';
+    societies.forEach(s=>{
+      const maxVal = 150;
+      const card = document.createElement('div');
+      card.className='op-card';
+      card.innerHTML=
+        '<div style="font-family:\'Playfair Display\',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;">'+s.id+'「'+s.name+'」</div>'
+        +'<div style="font-family:\'Source Sans 3\',sans-serif;font-size:12px;color:#7a6a55;font-weight:300;line-height:1.6;margin-bottom:12px;">'+s.desc+'</div>'
+        +'<div style="display:flex;flex-direction:column;gap:6px;">'
+          +'<div style="display:flex;align-items:center;gap:8px;"><span style="font-family:\'Source Sans 3\',sans-serif;font-size:10px;color:#7a6a55;width:55px;text-align:right;">上位10%</span><div style="flex:1;background:#e0d8c8;height:14px;position:relative;"><div style="height:100%;background:'+s.color+';width:'+(s.top/maxVal*100)+'%;"></div></div><span style="font-family:\'Source Sans 3\',sans-serif;font-size:11px;color:#3d3020;width:28px;">'+s.top+'</span></div>'
+          +'<div style="display:flex;align-items:center;gap:8px;"><span style="font-family:\'Source Sans 3\',sans-serif;font-size:10px;color:#7a6a55;width:55px;text-align:right;">中位</span><div style="flex:1;background:#e0d8c8;height:14px;position:relative;"><div style="height:100%;background:'+s.color+';width:'+(s.mid/maxVal*100)+'%;"></div></div><span style="font-family:\'Source Sans 3\',sans-serif;font-size:11px;color:#3d3020;width:28px;">'+s.mid+'</span></div>'
+          +'<div style="display:flex;align-items:center;gap:8px;"><span style="font-family:\'Source Sans 3\',sans-serif;font-size:10px;color:#7a6a55;width:55px;text-align:right;">下位10%</span><div style="flex:1;background:#e0d8c8;height:14px;position:relative;"><div style="height:100%;background:'+s.color+';width:'+(s.bot/maxVal*100)+'%;"></div></div><span style="font-family:\'Source Sans 3\',sans-serif;font-size:11px;color:#3d3020;width:28px;">'+s.bot+'</span></div>'
+        +'</div>'
+        +'<button class="op-choose" onclick="window._opChoose(\''+s.id+'\')">この社会を選ぶ</button>';
+      cardsEl.appendChild(card);
+    });
+  }
+
+  window._opChoose = function(id){
+    const chosen = societies.find(s=>s.id===id);
+    // Random role assignment
+    const r = Math.random();
+    let role;
+    if(r < 0.10) role = profiles[0];
+    else if(r < 0.70) role = profiles[1];
+    else role = profiles[2];
+
+    const yourScore = chosen[role.key];
+    const types = {
+      'A':{label:'平等主義型',desc:'あなたは格差そのものを避けたいタイプだ。全員が同じ水準で暮らす安心感を優先する。ロールズの理論からは近いが、格差原理よりもさらに平等寄り。'},
+      'B':{label:'期待値最大化型（ハルサーニ的）',desc:'あなたは確率的に有利な賭けを好むタイプだ。ハルサーニが主張したように、全体の平均的な豊かさを重視している。ただし下位10%のリスクは高い。'},
+      'C':{label:'リスク愛好型',desc:'あなたは上位に入る可能性に賭けるタイプだ。ハイリスク・ハイリターンを選んだことになる。下位10%に回ったときの代償は最も大きい。'},
+      'D':{label:'マキシミン型（ロールズ的）',desc:'あなたは最悪のケースに備えるタイプだ。ロールズが「合理的な選択」と呼んだのがまさにこれ。最下層のスコアが最も高い社会を選んだ。1987年の実験ではわずか5%未満がこの選択をした。'}
+    };
+    const t = types[id];
+
+    let comparison = '';
+    societies.forEach(s=>{
+      const sc = s[role.key];
+      const mark = s.id===id ? ' ← あなたの選択' : '';
+      const clr = s.id===id ? '#8b1a1a' : '#3d3020';
+      comparison += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span style="font-family:\'Source Sans 3\',sans-serif;font-size:12px;color:'+clr+';font-weight:'+(s.id===id?'600':'300')+';width:120px;">'+s.id+'「'+s.name+'」</span><span style="font-family:\'Playfair Display\',serif;font-size:18px;font-weight:700;color:'+clr+';">'+sc+'</span><span style="font-family:\'Source Sans 3\',sans-serif;font-size:11px;color:#b0a090;">'+mark+'</span></div>';
+    });
+
+    // Find best society for this role
+    let bestSoc = societies[0], bestScore = societies[0][role.key];
+    societies.forEach(s=>{ if(s[role.key]>bestScore){bestScore=s[role.key];bestSoc=s;} });
+    const wasBest = bestSoc.id === id;
+
+    cardsEl.style.display='none';
+    resultEl.style.display='block';
+    statusEl.textContent='結果';
+    resultEl.innerHTML=
+      '<div style="text-align:center;margin-bottom:20px;">'
+        +'<div style="font-family:\'Source Sans 3\',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;margin-bottom:8px;">ヴェールが外されました</div>'
+        +'<div style="font-family:\'Playfair Display\',serif;font-size:20px;font-weight:700;color:#1a1208;margin-bottom:4px;">あなたの役割: '+role.name+'</div>'
+        +'<div style="font-family:\'Source Sans 3\',sans-serif;font-size:13px;color:#7a6a55;">選んだ社会「'+chosen.name+'」でのスコア: <strong style="color:#8b1a1a;font-size:24px;">'+yourScore+'</strong></div>'
+      +'</div>'
+      +'<div style="padding:16px;background:#f3efe6;border:1px solid #c8bfaa;margin-bottom:16px;">'
+        +'<div style="font-family:\'Source Sans 3\',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;margin-bottom:10px;">同じ役割で他の社会だったら</div>'
+        +comparison
+      +'</div>'
+      +(wasBest
+        ? '<div style="padding:12px 16px;background:rgba(26,90,48,.08);border:1px solid rgba(26,90,48,.25);margin-bottom:16px;font-family:\'Source Sans 3\',sans-serif;font-size:13px;color:#1a5a30;">✓ あなたの選択は、この役割で最も高いスコアを得る社会でした。</div>'
+        : '<div style="padding:12px 16px;background:rgba(196,57,42,.08);border:1px solid rgba(196,57,42,.25);margin-bottom:16px;font-family:\'Source Sans 3\',sans-serif;font-size:13px;color:#c4392a;">✗ この役割では「'+bestSoc.name+'」の方がスコアが高かった（'+bestScore+' vs '+yourScore+'）。</div>'
+      )
+      +'<div style="padding:16px;background:white;border:1px solid #c8bfaa;">'
+        +'<div style="font-family:\'Source Sans 3\',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;">あなたの選択パターン</div>'
+        +'<div style="font-family:\'Playfair Display\',serif;font-size:18px;font-weight:700;color:#1a1208;margin-bottom:8px;">'+t.label+'</div>'
+        +'<div style="font-family:\'Source Sans 3\',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;">'+t.desc+'</div>'
+      +'</div>';
+  };
+
+  renderCards();
+})();
+
+// ==================== INTERACTIVE 3: SANDEL SELF-DETACHMENT SURVEY ====================
+(function(){
+  const items = [
+    {label:'母語（日本語・英語など）', hint:'別の言語しか話せない自分を想像して判断できるか'},
+    {label:'宗教・信条', hint:'真逆の信条を持つ自分だったらどう感じるか、を考えられるか'},
+    {label:'家族への愛着', hint:'家族を持たない立場からこのルールを評価できるか'},
+    {label:'性自認', hint:'自分と違う性自認の人の視点で検討できるか'},
+    {label:'育った文化', hint:'別の文化圏で育った自分なら、と想像できるか'},
+    {label:'親友との関係', hint:'その人間関係が無い状態でも同じ判断を下せるか'},
+    {label:'人生の目標', hint:'いまの目標を脇に置いて、別の可能性から判断できるか'}
+  ];
+  const container = document.getElementById('sandelItems');
+  const submitBtn = document.getElementById('sandelSubmit');
+  const resultEl = document.getElementById('sandelResult');
+  if(!container)return;
+
+  items.forEach((item,i)=>{
+    const row = document.createElement('div');
+    row.className='sandel-item';
+    let radios='';
+    const labels=['簡単に外せる','やや外せる','どちらとも','やや外せない','絶対に外せない'];
+    for(let j=1;j<=5;j++){
+      radios+='<label class="sandel-radio-label"><input type="radio" name="sandel'+i+'" value="'+j+'" style="accent-color:#8b1a1a;"><span style="font-family:\'Source Sans 3\',sans-serif;font-size:10px;color:#7a6a55;">'+labels[j-1]+'</span></label>';
+    }
+    row.innerHTML='<div style="font-family:\'Source Sans 3\',sans-serif;font-size:13px;font-weight:500;color:#1a1208;margin-bottom:2px;">'+item.label+'</div>'
+      +'<div style="font-family:\'Source Sans 3\',sans-serif;font-size:11px;color:#b0a090;line-height:1.5;margin-bottom:8px;font-style:italic;">例: '+item.hint+'</div>'
+      +'<div class="sandel-radios">'+radios+'</div>';
+    container.appendChild(row);
+  });
+
+  submitBtn.addEventListener('click',()=>{
+    let total=0, answered=0;
+    items.forEach((_,i)=>{
+      const checked = document.querySelector('input[name="sandel'+i+'"]:checked');
+      if(checked){total+=parseInt(checked.value);answered++;}
+    });
+    if(answered<7){
+      resultEl.style.display='block';
+      resultEl.innerHTML='<p style="font-family:\'Source Sans 3\',sans-serif;font-size:13px;color:#c4392a;">すべての項目に回答してください。</p>';
+      return;
+    }
+    const pct = Math.round(total/35*100);
+    let msg='';
+    if(pct<=40){
+      msg='<strong style="color:#1a5a30;">取り外し困難度: '+pct+'%</strong><br>あなたはかなり身軽だ。自分の属性を「仮に忘れる」ことに抵抗が少ない。ロールズのヴェールをかぶることに、さほど違和感を覚えないかもしれない。';
+    }else if(pct<=70){
+      msg='<strong style="color:#7a6a55;">取り外し困難度: '+pct+'%</strong><br>あなたにはいくつか手放せないものがある。サンデルはそれを「負荷ある自我（encumbered self）」と呼んだ。ヴェールをかぶれる部分と、かぶれない部分がある——多くの人がここに位置する。';
+    }else{
+      msg='<strong style="color:#8b1a1a;">取り外し困難度: '+pct+'%</strong><br>あなたの自我は深く根を張っている。サンデルが指摘した通り、あなたにとって「自分の属性を忘れて判断する」というロールズの前提そのものに疑問を感じるかもしれない。それは弱さではなく、ひとつの哲学的立場だ。';
+    }
+    msg+='<div style="margin-top:14px;padding-top:14px;border-top:1px solid #e0d8c8;font-family:\'Source Sans 3\',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;">サンデルの批判の核心: 人間は白紙の状態から人生を選ぶのではない。家族、文化、言語、歴史——それらを取り外した「自分」は、もはや自分ではない。ロールズのヴェールは強力な思考装置だが、「人間とは何か」という前提において、あまりに多くを捨象しているのかもしれない。</div>';
+    resultEl.style.display='block';
+    resultEl.innerHTML='<p style="font-family:\'Source Sans 3\',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;">'+msg+'</p>';
+    submitBtn.style.display='none';
+  });
+})();
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div>
+</body>
+</html>

@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>再現性の危機 — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;min-width:0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK (anchoring_effect 準拠: 画像120px正方形 + body 2カラムグリッド) */
+.person-block{display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;margin:32px 0;}
+.person-block-img{background:#ede8dc;overflow:hidden;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-wiki{margin-bottom:8px;}
+.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}
+.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#b0a090;line-height:1.6;margin-top:10px;}
+.person-block-credit a{color:#8b1a1a;border-bottom:1px dotted #c8bfaa;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS / SIGNATURE */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* ── FOOTER ── */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* ── SVG FIGURE ── */
+.svg-fig{margin:28px auto;max-width:680px;}
+.svg-fig svg{width:100%;height:auto;display:block;}
+.svg-cap{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;margin-top:10px;line-height:1.6;}
+
+/* ── QUIZ (予想→実測) ── */
+.rp-quiz{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:white;}
+.rp-head{background:#1a1208;color:white;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;}
+.rp-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.rp-hs{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#aaa;}
+.rp-card{padding:24px 22px;border-bottom:1px solid #e0d8c8;}
+.rp-card:last-of-type{border-bottom:none;}
+.rp-card.locked{background:#faf8f3;}
+.rp-card-n{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:6px;}
+.rp-card-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;margin-bottom:6px;}
+.rp-card-sub{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;margin-bottom:12px;}
+.rp-card-q{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:14px;padding:10px 14px;background:#f3efe6;border-left:2px solid #c8bfaa;}
+.rp-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+.rp-btn{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#3d3020;background:#f3efe6;border:1px solid #c8bfaa;padding:12px 10px;cursor:pointer;text-align:center;transition:all .18s;}
+.rp-btn:hover{background:#ede8dc;border-color:#8b1a1a;color:#8b1a1a;}
+.rp-btn.picked{background:#1a1208;color:white;border-color:#1a1208;}
+.rp-btn-mark{display:block;font-size:18px;font-family:'Playfair Display',serif;font-weight:900;margin-bottom:2px;}
+.rp-btn-lbl{display:block;font-size:10px;font-weight:300;letter-spacing:.1em;}
+.rp-reveal{display:none;margin-top:14px;padding:14px 16px;background:#f3efe6;border:1px solid #c8bfaa;}
+.rp-reveal.show{display:block;}
+.rp-reveal-hd{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.rp-reveal-badge{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;color:white;}
+.rp-reveal-badge.fail{background:#c4392a;}
+.rp-reveal-badge.partial{background:#b8772a;}
+.rp-reveal-badge.pass{background:#1a5a30;}
+.rp-reveal-hit{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#8b1a1a;}
+.rp-reveal-hit.hit{color:#1a5a30;}
+.rp-reveal-body{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;}
+.rp-reveal-body strong{color:#1a1208;font-weight:600;}
+.rp-summary{margin:4px 0 0;padding:28px 24px;background:#1a1208;color:white;display:none;}
+.rp-summary.show{display:block;}
+.rp-sum-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#e8c56a;text-transform:uppercase;margin-bottom:14px;}
+.rp-sum-score{font-family:'Playfair Display',serif;font-size:44px;font-weight:900;color:white;line-height:1;margin-bottom:4px;}
+.rp-sum-score small{font-size:18px;color:#aaa;font-weight:400;}
+.rp-sum-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#c8c8c8;line-height:1.85;margin-top:16px;}
+.rp-sum-text em{color:#e8c56a;font-style:normal;font-weight:600;}
+
+/* ── p-hack サプリシミュレーター ── */
+.phack-wrap{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.phack-head{background:#1a1208;color:white;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
+.phack-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.phack-reset{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;background:transparent;color:#e8c56a;border:1px solid #e8c56a;padding:5px 12px;cursor:pointer;text-transform:uppercase;transition:all .18s;}
+.phack-reset:hover{background:#e8c56a;color:#1a1208;}
+.phack-body{padding:20px 22px;}
+.phack-scene{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;align-items:start;}
+.phack-chart{background:#faf8f3;border:1px solid #e0d8c8;padding:14px;}
+.phack-chart svg{width:100%;height:auto;display:block;}
+.phack-readout{font-family:'Source Sans 3',sans-serif;}
+.phack-ro-lbl{font-size:10px;font-weight:600;letter-spacing:.14em;color:#b0a090;text-transform:uppercase;margin-bottom:6px;}
+.phack-ro-n{font-size:13px;color:#7a6a55;margin-bottom:14px;}
+.phack-ro-n strong{color:#1a1208;font-weight:600;}
+.phack-ro-mean{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#1a1208;line-height:1;margin-bottom:4px;}
+.phack-ro-mean.neg{color:#1a5a30;}
+.phack-ro-unit{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#7a6a55;font-weight:400;}
+.phack-ro-judge{display:inline-block;margin-top:14px;padding:5px 14px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.phack-ro-judge.no{background:#f3efe6;color:#7a6a55;border:1px solid #c8bfaa;}
+.phack-ro-judge.yes{background:#1a5a30;color:white;}
+.phack-toggles{padding:16px 0 8px;border-top:1px solid #e0d8c8;}
+.phack-tog-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.phack-tog-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;}
+.phack-tog{display:flex;align-items:center;gap:10px;font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;cursor:pointer;padding:6px 0;}
+.phack-tog input{accent-color:#8b1a1a;width:16px;height:16px;cursor:pointer;}
+.phack-counter{margin-top:14px;padding:12px 16px;background:#1a1208;color:#e8c56a;font-family:'Source Sans 3',sans-serif;font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;}
+.phack-counter strong{color:#ffffff;font-weight:700;font-size:16px;font-family:'JetBrains Mono',monospace;margin:0 2px;}
+.phack-guide{margin-bottom:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.phack-guide-step{padding:10px 12px;background:#fdf8ec;border-left:3px solid #b8772a;}
+.phack-guide-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;color:#b8772a;text-transform:uppercase;margin-bottom:4px;}
+.phack-guide-text{font-family:'Source Serif 4',serif;font-size:14px;color:#3d3020;line-height:1.5;}
+@media (max-width:700px){.phack-guide{grid-template-columns:1fr;}}
+.phack-ad{margin-top:14px;padding:16px 18px;background:#fdf3d8;border-left:4px solid #b8772a;display:none;}
+.phack-ad.show{display:block;}
+.phack-ad-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#b8772a;text-transform:uppercase;margin-bottom:6px;}
+.phack-ad-body{font-family:'Source Serif 4',serif;font-size:17px;font-weight:600;color:#1a1208;line-height:1.5;}
+.phack-ad-body em{color:#8b1a1a;font-style:italic;font-weight:700;}
+.phack-note{margin-top:14px;padding:12px 14px;background:#1a1208;color:#e8c56a;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;display:none;}
+.phack-note.show{display:block;}
+.phack-note strong{color:white;font-weight:600;}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+  .phack-scene{grid-template-columns:1fr;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:100px 1fr;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .rp-choices{grid-template-columns:1fr;}
+  .phack-tog-grid{grid-template-columns:1fr;}
+  .svg-fig{max-width:100%;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){
+  .toc-back{padding:22px 20px;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Special Report — 科学と文化</p>
+    <h1>再現性の<em>危機</em></h1>
+    <p class="cover-deck">2015年、心理学100本のうち、追試で再現できたのは36本だった。科学の自己訂正機能は動いているのか——それとも、止まっているのか。</p>
+    <div class="cover-byline"><span>科学と文化</span><span>統計</span><span>メタ科学</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">2015</span>
+      <p class="est-event">Open Science Collaboration が心理学100本の追試結果を <em>Science</em> に発表。「Reproducibility Project: Psychology」</p>
+      <p class="est-context">同年、NASAの探査機ニュー・ホライズンズが冥王星に最接近。12月にパリ協定採択。</p>
+    </div>
+    <p class="cover-aside">「100本中36本しか再現しない」を出した <strong>OSC 2015</strong> が本記事の中心。その10年前に同じ事態を理論で予言した Ioannidis 2005、仕組みを暴いた Simmons 2011、医療への波及を示した RPCB 2021 が脇を固める。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>中学の保健の教科書で、あるいはテレビの特集で、聞いたことがあるはずだ。「力強いポーズを2分とると自信ホルモンが上がる」「我慢できた子は将来成功する」「満員のバスで老人の写真を見ると歩くのが遅くなる」——どこか記憶の端にひっかかる、ああいう話。</p>
+    <p>それらの研究は、数年後、別の研究者たちが同じ手順でやり直した。結果は、ほとんど再現できなかった。</p>
+    <p>科学の土台で、静かな地殻変動が起きていた。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 統計の前提知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-14</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-14</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">教科書に載っていた有名実験のうち、追試でどれが残り、どれが消えたのか——予想してから実測と照らし合わせる。その後で、何もないところから「効果あり」が生まれる仕組みを、サプリ会社の立場で体験する。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ============ S1: 背景 ============ -->
+  <div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+  <h2 class="fade">科学は自己訂正するはずだった</h2>
+
+  <p class="body-text fade">2015年8月28日、科学誌 <em>Science</em> に異例の論文が載った。タイトルは「Estimating the reproducibility of psychological science(心理学の再現性を見積もる)」。著者は270人。筆頭著者の欄に書かれているのは個人名ではなく、<span class="tip" onclick="toggleTip(this)"><strong>Open Science Collaboration</strong>(以下OSC)<span class="tip-box"><strong>Open Science Collaboration (OSC)</strong><br>Brian Nosek を中心に270人の研究者が参加した共同プロジェクト。2008年に心理学の3大誌(Psychological Science / JPSP / JEP: LMC)に載った100本の論文を、それぞれ別のチームが元の手続きに従って追試した。再現性を初めて大規模・系統的に測った試みだった。</span></span>という集合体の名前だ。</p>
+
+  <p class="body-text fade">彼らは2008年に一流心理学誌3誌に載った論文から100本を選び、オリジナルと同じ手順で追試した。元論文の97%が「統計的に有意」と報告していた。追試で再現できたのは、<em>36%</em>。効果の大きさは平均で元の半分。これが、世に出たときの数字だ。</p>
+
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解 vs 実際は</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <div class="mis-label wrong">よくある誤解</div>
+          <div class="mis-text">追試に失敗した=研究者が嘘をついた。不正な論文がたくさん見つかった、ということ。</div>
+        </div>
+        <div class="misconception-a">
+          <div class="mis-label right">実際は</div>
+          <div class="mis-text">不正はごく一部。問題は個人の誠実さより<strong>出版・分析・評価の構造</strong>のほうにある。正直な研究者でも、仕組みに従うだけで偽陽性を量産してしまう。</div>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <div class="mis-label wrong">よくある誤解</div>
+          <div class="mis-text">心理学が特別にいい加減な分野なのだろう。物理や医学なら大丈夫。</div>
+        </div>
+        <div class="misconception-a">
+          <div class="mis-label right">実際は</div>
+          <div class="mis-text">後続の追試プロジェクトで、がん生物学は <strong>46%</strong>、経済学は <strong>60%前後</strong>、医学では Ioannidis が2005年の段階で同種の警告を出していた。心理学は<em>最初に膿を出した分野</em>に近い。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">「再現できない」というのは、科学の定義そのものを揺さぶる言葉だ。<span class="tip" onclick="toggleTip(this)">再現性<span class="tip-box"><strong>再現性(replication)</strong><br>同じ手順でもう一度実験して、同じ結果が得られること。科学的主張が「知識」として認められる最低条件とされる。</span></span>は、科学が「個人の思いつき」から「人類の知識」に変わる境界線だと信じられてきた。100本のうち64本が境界線を越えられなかったとすれば、私たちが教科書で読んだ何が、まだ知識なのか。</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img"><img src="./person_nosek.jpg" alt="Brian Nosek"></div>
+    <div class="person-block-body">
+      <p class="person-block-role">Reproducibility Project: Psychology 主導者</p>
+      <p class="person-block-name">Brian Nosek(ブライアン・ノセック, 1973–)</p>
+      <p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Brian_Nosek" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p class="person-block-desc">バージニア大学の社会心理学者。2013年に非営利の Center for Open Science を共同創設。論文の事前登録、研究計画の共有、データの公開を標準化するプラットフォーム OSF を構築した。OSC 2015 は彼の研究室から始まった4年越しの共同プロジェクトだった。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">この衝撃の数字を実際に計測したのがノセックのチームなら、<em>10年前から計算で予告していた</em>もう一人の人物がいる。ノセックは現場から、統計と制度の不備を「データで」暴いた。もう一人は数理的に、分野の構造そのものから「理屈で」同じ結論を引き出していた。</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img"><img src="./person_ioannidis.jpg" alt="John Ioannidis"></div>
+    <div class="person-block-body">
+      <p class="person-block-role">危機の予言者</p>
+      <p class="person-block-name">John Ioannidis(ジョン・イオアニディス, 1965–)</p>
+      <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/ジョン・P・A・ヨアニディス" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p class="person-block-desc">スタンフォード大学の疫学者・メタ科学者。2005年の論文「Why Most Published Research Findings Are False(公表された研究結果の大半が誤りである理由)」で、医学研究に偽陽性が蓄積する数理的構造を示した。OSC 2015 の10年前に、同じ警告をすでに出していた。</p>
+      <p class="person-block-credit">写真: PLOS Video Channel / <a href="https://creativecommons.org/licenses/by/3.0/deed.ja" target="_blank" rel="noopener">CC BY 3.0</a>(トリミング済み)</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">Ioannidis の2005年の論文は、タイトルからして挑発的だった。医学系のトップジャーナル PLOS Medicine に載ったこの論文は、仮説の事前確率、統計的検出力、研究者の自由度、分野内の競争度——たった4つのパラメータだけを使って、次のように書かれていた。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">It can be proven that most claimed research findings are false.</p>
+    <p class="quote-ja">「公表されている研究結果の多くが誤りである」ということは、証明可能である。</p>
+    <p class="quote-attr">— John Ioannidis, "Why Most Published Research Findings Are False"(2005)</p>
+  </div>
+
+  <p class="body-text fade">2005年の時点では、これは「理論的な予測」にすぎなかった。医学研究に偽陽性が蓄積する<em>数理的な構造</em>がある、というモデル上の話だ。予言はどれほど当たっていたのか——その答えが、<em>10年後</em>に数字として返ってきた。心理学の有名論文100本を、別の研究室がゼロから追試してみたのだ。</p>
+
+  <!-- ── SVG図解1: OSC2015の結果 ── -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+      <rect width="680" height="360" fill="#faf8f3"/>
+      <!-- title -->
+      <text x="340" y="28" text-anchor="middle" font-family="'Playfair Display',serif" font-size="17" font-weight="700" fill="#1a1208">Reproducibility Project: Psychology (2015)</text>
+      <text x="340" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">心理学の原論文100本を追試した結果</text>
+
+      <!-- Left: original -->
+      <g transform="translate(80,95)">
+        <text x="100" y="0" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#7a6a55">元の論文(100本中)</text>
+        <rect x="20" y="20" width="160" height="160" fill="#ede8dc" stroke="#c8bfaa"/>
+        <rect x="20" y="20" width="160" height="155" fill="#8b1a1a" opacity="0.85"/>
+        <text x="100" y="115" text-anchor="middle" font-family="'Playfair Display',serif" font-size="42" font-weight="900" fill="white">97%</text>
+        <text x="100" y="135" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="white">有意と報告</text>
+        <text x="100" y="200" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">「効果あり」と主張</text>
+      </g>
+
+      <!-- Arrow -->
+      <g transform="translate(300,160)">
+        <line x1="10" y1="25" x2="70" y2="25" stroke="#8b1a1a" stroke-width="2.5"/>
+        <polygon points="70,15 90,25 70,35" fill="#8b1a1a"/>
+        <text x="50" y="15" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#8b1a1a">追試</text>
+      </g>
+
+      <!-- Right: replication -->
+      <g transform="translate(420,95)">
+        <text x="100" y="0" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#7a6a55">追試で再現(100本中)</text>
+        <rect x="20" y="20" width="160" height="160" fill="#ede8dc" stroke="#c8bfaa"/>
+        <rect x="20" y="123" width="160" height="57" fill="#3d3020"/>
+        <text x="100" y="100" text-anchor="middle" font-family="'Playfair Display',serif" font-size="42" font-weight="900" fill="#c4392a">36%</text>
+        <text x="100" y="118" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">しか再現せず</text>
+        <text x="100" y="200" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">効果量は平均で <tspan font-weight="700" fill="#1a1208">半分</tspan></text>
+      </g>
+    </svg>
+    <p class="svg-cap">Open Science Collaboration (2015) — 再現とみなす基準は複数あるが、追試者の主観評価でも39%にとどまった</p>
+  </div>
+
+  <p class="body-text fade">心理学は自分の足元を疑うところから始めた。だが、同じ疑問はすぐに他の分野に波及した。6年後、がん生物学でも同種の大規模な追試が行われた。元論文の3〜5割しか再現しない、という報告は、いまや特定の分野の話ではない。</p>
+
+  <!-- ── SVG図解2: 分野別再現率 ── -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+      <rect width="680" height="360" fill="#faf8f3"/>
+      <text x="340" y="28" text-anchor="middle" font-family="'Playfair Display',serif" font-size="17" font-weight="700" fill="#1a1208">分野別の再現成功率</text>
+      <text x="340" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">大規模追試プロジェクトによる推定値</text>
+
+      <!-- axis line -->
+      <line x1="180" y1="80" x2="180" y2="320" stroke="#c8bfaa"/>
+      <line x1="180" y1="320" x2="640" y2="320" stroke="#c8bfaa"/>
+
+      <!-- scale labels -->
+      <text x="180" y="340" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">0%</text>
+      <text x="295" y="340" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">25%</text>
+      <text x="410" y="340" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">50%</text>
+      <text x="525" y="340" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">75%</text>
+      <text x="640" y="340" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">100%</text>
+
+      <!-- bars (width: value * 4.6) -->
+      <!-- 社会心理学 25% -->
+      <g transform="translate(0,90)">
+        <text x="170" y="15" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">社会心理学</text>
+        <rect x="180" y="0" width="115" height="22" fill="#c4392a"/>
+        <text x="305" y="15" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="700" fill="#1a1208">25%</text>
+      </g>
+      <!-- 認知心理学 50% -->
+      <g transform="translate(0,128)">
+        <text x="170" y="15" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">認知心理学</text>
+        <rect x="180" y="0" width="230" height="22" fill="#b8772a"/>
+        <text x="420" y="15" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="700" fill="#1a1208">50%</text>
+      </g>
+      <!-- 心理学全体 36% -->
+      <g transform="translate(0,166)">
+        <text x="170" y="15" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">心理学 全体</text>
+        <rect x="180" y="0" width="166" height="22" fill="#8b1a1a"/>
+        <text x="356" y="15" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="700" fill="#1a1208">36%</text>
+      </g>
+      <!-- がん生物学 46% -->
+      <g transform="translate(0,204)">
+        <text x="170" y="15" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">がん生物学</text>
+        <rect x="180" y="0" width="212" height="22" fill="#8b1a1a"/>
+        <text x="402" y="15" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="700" fill="#1a1208">46%</text>
+      </g>
+      <!-- 経済学 61% -->
+      <g transform="translate(0,242)">
+        <text x="170" y="15" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">実験経済学</text>
+        <rect x="180" y="0" width="281" height="22" fill="#6a7a4a"/>
+        <text x="471" y="15" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="700" fill="#1a1208">61%</text>
+      </g>
+      <!-- 物理学・化学(参考) -->
+      <g transform="translate(0,280)">
+        <text x="170" y="15" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">物理・化学(参考)</text>
+        <rect x="180" y="0" width="391" height="22" fill="#1a5a30" opacity="0.55"/>
+        <text x="581" y="15" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="700" fill="#7a6a55">85%*</text>
+      </g>
+    </svg>
+    <p class="svg-cap">OSC 2015 / Camerer et al. 2016 (経済学) / RPCB 2021 (がん生物学) / * 物理・化学はNature誌2016年調査の自己報告値</p>
+  </div>
+
+  <p class="body-text fade">社会心理学が最も低く、自然科学に近づくほど再現率は上がる。これは「人間が変わりやすいから」というだけでは説明できない。後で見るように、<em>効果が小さく、測定のノイズが大きい</em>領域ほど、偽陽性が制度的に混入しやすい構造がある。</p>
+
+  <!-- ── SVG図解3: 効果量の縮小 ── -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg">
+      <rect width="680" height="420" fill="#faf8f3"/>
+      <text x="340" y="28" text-anchor="middle" font-family="'Playfair Display',serif" font-size="17" font-weight="700" fill="#1a1208">効果量は、追試で小さくなる</text>
+      <text x="340" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">OSC 2015 の100研究を点でプロット</text>
+
+      <!-- axes -->
+      <line x1="90" y1="80" x2="90" y2="370" stroke="#3d3020" stroke-width="1.2"/>
+      <line x1="90" y1="370" x2="640" y2="370" stroke="#3d3020" stroke-width="1.2"/>
+      <!-- diagonal -->
+      <line x1="90" y1="370" x2="640" y2="80" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="4 4"/>
+      <text x="630" y="76" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090" font-style="italic">完全に再現した場合の線</text>
+
+      <!-- axis labels -->
+      <text x="365" y="400" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">元の論文の効果量</text>
+      <text x="30" y="225" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020" transform="rotate(-90,30,225)">追試の効果量</text>
+
+      <!-- tick -->
+      <text x="90" y="388" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">0</text>
+      <text x="640" y="388" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">大</text>
+      <text x="82" y="374" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">0</text>
+      <text x="82" y="86" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">大</text>
+
+      <!-- Dots: many below diagonal -->
+      <g fill="#8b1a1a" opacity="0.55">
+        <circle cx="180" cy="350" r="5"/><circle cx="200" cy="340" r="5"/><circle cx="215" cy="355" r="5"/>
+        <circle cx="240" cy="335" r="5"/><circle cx="260" cy="345" r="5"/><circle cx="285" cy="330" r="5"/>
+        <circle cx="305" cy="340" r="5"/><circle cx="325" cy="320" r="5"/><circle cx="350" cy="335" r="5"/>
+        <circle cx="370" cy="310" r="5"/><circle cx="385" cy="325" r="5"/><circle cx="405" cy="300" r="5"/>
+        <circle cx="425" cy="320" r="5"/><circle cx="445" cy="290" r="5"/><circle cx="460" cy="310" r="5"/>
+        <circle cx="480" cy="275" r="5"/><circle cx="495" cy="300" r="5"/><circle cx="515" cy="265" r="5"/>
+        <circle cx="530" cy="290" r="5"/><circle cx="550" cy="250" r="5"/><circle cx="570" cy="280" r="5"/>
+        <circle cx="195" cy="360" r="5"/><circle cx="225" cy="350" r="5"/><circle cx="255" cy="355" r="5"/>
+        <circle cx="280" cy="340" r="5"/><circle cx="310" cy="350" r="5"/><circle cx="340" cy="345" r="5"/>
+        <circle cx="365" cy="340" r="5"/><circle cx="395" cy="335" r="5"/><circle cx="430" cy="330" r="5"/>
+        <circle cx="465" cy="325" r="5"/><circle cx="500" cy="320" r="5"/><circle cx="535" cy="310" r="5"/>
+        <circle cx="170" cy="365" r="5"/><circle cx="210" cy="358" r="5"/><circle cx="245" cy="360" r="5"/>
+        <circle cx="290" cy="355" r="5"/><circle cx="335" cy="350" r="5"/><circle cx="380" cy="350" r="5"/>
+        <circle cx="420" cy="340" r="5"/><circle cx="475" cy="335" r="5"/><circle cx="520" cy="330" r="5"/>
+      </g>
+      <!-- Dots near diagonal (replicated) -->
+      <g fill="#1a5a30" opacity="0.65">
+        <circle cx="220" cy="290" r="5"/><circle cx="280" cy="250" r="5"/><circle cx="340" cy="210" r="5"/>
+        <circle cx="400" cy="175" r="5"/><circle cx="460" cy="135" r="5"/><circle cx="510" cy="115" r="5"/>
+        <circle cx="260" cy="270" r="5"/><circle cx="315" cy="230" r="5"/><circle cx="375" cy="195" r="5"/>
+        <circle cx="430" cy="155" r="5"/><circle cx="490" cy="125" r="5"/>
+      </g>
+
+      <!-- legend -->
+      <g transform="translate(110,100)">
+        <rect x="-6" y="-4" width="196" height="50" fill="#faf8f3" stroke="#c8bfaa" stroke-width="0.8"/>
+        <circle cx="10" cy="10" r="5" fill="#8b1a1a" opacity="0.55"/>
+        <text x="22" y="14" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">再現しなかった研究</text>
+        <circle cx="10" cy="32" r="5" fill="#1a5a30" opacity="0.65"/>
+        <text x="22" y="36" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">再現した研究</text>
+      </g>
+    </svg>
+    <p class="svg-cap">点が対角線から下にあるほど、追試で効果が縮んだことを示す。全体として、点は対角線より下に偏っている</p>
+  </div>
+
+  <hr class="art-rule">
+
+  <!-- ============ S2: 体験 (予想→実測) ============ -->
+  <div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+  <h2 class="fade">あなたの再現予想——5つの有名実験</h2>
+  <p class="body-text fade">ここで一度、自分の直感を試してほしい。5つの有名な心理学研究を並べる。教科書で、ニュースで、TED Talkで、どこかで聞いたことがあるはずだ。<em>それぞれ、追試で再現したと思うか</em>——○(再現した) / △(部分的) / × (再現しなかった) で答えてから、実測結果を開いてほしい。</p>
+
+  <div class="rp-quiz fade">
+    <div class="rp-head"><span class="rp-hl">予想 → 実測</span><span class="rp-hs" id="rpStatus">5問中 <strong id="rpCount" style="color:white;">0</strong>問回答</span></div>
+
+    <div class="rp-card" id="rpc1">
+      <p class="rp-card-n">Study 1</p>
+      <p class="rp-card-title">パワーポージング</p>
+      <p class="rp-card-sub">Carney, Cuddy, &amp; Yap (2010) — TED Talk 視聴数2位</p>
+      <p class="rp-card-q">「力強いポーズを2分間とると、テストステロンが上がり、ストレスホルモンが下がり、リスクを取れるようになる」——この結果は、追試で再現したか?</p>
+      <div class="rp-choices">
+        <button class="rp-btn" onclick="rpAnswer(1,'o')"><span class="rp-btn-mark">○</span><span class="rp-btn-lbl">再現した</span></button>
+        <button class="rp-btn" onclick="rpAnswer(1,'t')"><span class="rp-btn-mark">△</span><span class="rp-btn-lbl">部分的</span></button>
+        <button class="rp-btn" onclick="rpAnswer(1,'x')"><span class="rp-btn-mark">×</span><span class="rp-btn-lbl">しなかった</span></button>
+      </div>
+      <div class="rp-reveal" id="rpr1">
+        <div class="rp-reveal-hd"><span class="rp-reveal-badge fail">×  再現しなかった</span><span class="rp-reveal-hit" id="rph1">— あなたの予想: —</span></div>
+        <p class="rp-reveal-body">2015年、Ranehill らが200人規模で追試したが、<strong>ホルモン変化も行動変化も観察されなかった</strong>。2016年、共著者の Dana Carney 自身が「この効果は実在しないと考えている」と公開声明を出した。Amy Cuddyの TED Talk は5,000万回再生を超えていた。</p>
+      </div>
+    </div>
+
+    <div class="rp-card" id="rpc2">
+      <p class="rp-card-n">Study 2</p>
+      <p class="rp-card-title">自我消耗 (ego depletion)</p>
+      <p class="rp-card-sub">Baumeister et al. (1998) — 意志の力は有限な資源である</p>
+      <p class="rp-card-q">「クッキーを我慢した人は、その後の難問に取り組む持続時間が短くなる。意志の力はバッテリーのように減る」——追試で再現したか?</p>
+      <div class="rp-choices">
+        <button class="rp-btn" onclick="rpAnswer(2,'o')"><span class="rp-btn-mark">○</span><span class="rp-btn-lbl">再現した</span></button>
+        <button class="rp-btn" onclick="rpAnswer(2,'t')"><span class="rp-btn-mark">△</span><span class="rp-btn-lbl">部分的</span></button>
+        <button class="rp-btn" onclick="rpAnswer(2,'x')"><span class="rp-btn-mark">×</span><span class="rp-btn-lbl">しなかった</span></button>
+      </div>
+      <div class="rp-reveal" id="rpr2">
+        <div class="rp-reveal-hd"><span class="rp-reveal-badge fail">×  再現しなかった</span><span class="rp-reveal-hit" id="rph2">— あなたの予想: —</span></div>
+        <p class="rp-reveal-body">2016年、23の研究室で2,000人以上を対象に追試。効果量は<strong>ほぼゼロ</strong>だった。自己啓発書やマネジメント書でさんざん引用された「意志の力のバッテリー」モデルは、原型のまま支持できる状態ではなくなった。</p>
+      </div>
+    </div>
+
+    <div class="rp-card" id="rpc3">
+      <p class="rp-card-n">Study 3</p>
+      <p class="rp-card-title">社会的プライミング</p>
+      <p class="rp-card-sub">Bargh, Chen, &amp; Burrows (1996) — 高齢者を連想させる語を見ると歩くのが遅くなる</p>
+      <p class="rp-card-q">「高齢者連想語(しわ、杖など)を含む文を作った学生は、その後の廊下の歩行速度が遅くなる」——追試で再現したか?</p>
+      <div class="rp-choices">
+        <button class="rp-btn" onclick="rpAnswer(3,'o')"><span class="rp-btn-mark">○</span><span class="rp-btn-lbl">再現した</span></button>
+        <button class="rp-btn" onclick="rpAnswer(3,'t')"><span class="rp-btn-mark">△</span><span class="rp-btn-lbl">部分的</span></button>
+        <button class="rp-btn" onclick="rpAnswer(3,'x')"><span class="rp-btn-mark">×</span><span class="rp-btn-lbl">しなかった</span></button>
+      </div>
+      <div class="rp-reveal" id="rpr3">
+        <div class="rp-reveal-hd"><span class="rp-reveal-badge fail">×  再現しなかった</span><span class="rp-reveal-hit" id="rph3">— あなたの予想: —</span></div>
+        <p class="rp-reveal-body">2012年、Doyen らが赤外線センサーで歩行時間を正確に測って追試。<strong>効果は検出されなかった</strong>。元論文は実験者が手動のストップウォッチで測っていた。Bargh はブログで強く反論したが、その後の大規模追試も否定的だった。「プライミングの黄金期」の代表研究のひとつが倒れた。</p>
+      </div>
+    </div>
+
+    <div class="rp-card" id="rpc4">
+      <p class="rp-card-n">Study 4</p>
+      <p class="rp-card-title">マシュマロテスト</p>
+      <p class="rp-card-sub">Mischel (1972) — 我慢できた子は将来成功する</p>
+      <p class="rp-card-q">「4歳時点でマシュマロを目の前にして15分我慢できた子は、10年後の学業成績や30代の収入が高い」——追試で再現したか?</p>
+      <div class="rp-choices">
+        <button class="rp-btn" onclick="rpAnswer(4,'o')"><span class="rp-btn-mark">○</span><span class="rp-btn-lbl">再現した</span></button>
+        <button class="rp-btn" onclick="rpAnswer(4,'t')"><span class="rp-btn-mark">△</span><span class="rp-btn-lbl">部分的</span></button>
+        <button class="rp-btn" onclick="rpAnswer(4,'x')"><span class="rp-btn-mark">×</span><span class="rp-btn-lbl">しなかった</span></button>
+      </div>
+      <div class="rp-reveal" id="rpr4">
+        <div class="rp-reveal-hd"><span class="rp-reveal-badge partial">△  部分的に再現</span><span class="rp-reveal-hit" id="rph4">— あなたの予想: —</span></div>
+        <p class="rp-reveal-body">2018年、Watts らが10倍のサンプル(900人超)で追試。我慢と将来成績の相関は<strong>存在したが、元の半分以下</strong>。さらに、親の学歴・家庭の経済状況を統計的に統制すると、効果は<strong>ほぼ消える</strong>。「自制心が未来をつくる」という物語は、「家庭環境が自制心と未来の両方をつくる」という物語に書き換えられつつある。</p>
+      </div>
+    </div>
+
+    <div class="rp-card" id="rpc5">
+      <p class="rp-card-n">Study 5</p>
+      <p class="rp-card-title">ウェイソンの2-4-6課題</p>
+      <p class="rp-card-sub">Wason (1960) — 確証バイアスの古典実験</p>
+      <p class="rp-card-q">「『2, 4, 6』の背後にある規則を当てる課題で、被験者の大半は自分の仮説に合う数列ばかり試し、反証を試みない」——追試で再現したか?</p>
+      <div class="rp-choices">
+        <button class="rp-btn" onclick="rpAnswer(5,'o')"><span class="rp-btn-mark">○</span><span class="rp-btn-lbl">再現した</span></button>
+        <button class="rp-btn" onclick="rpAnswer(5,'t')"><span class="rp-btn-mark">△</span><span class="rp-btn-lbl">部分的</span></button>
+        <button class="rp-btn" onclick="rpAnswer(5,'x')"><span class="rp-btn-mark">×</span><span class="rp-btn-lbl">しなかった</span></button>
+      </div>
+      <div class="rp-reveal" id="rpr5">
+        <div class="rp-reveal-hd"><span class="rp-reveal-badge pass">○  再現した</span><span class="rp-reveal-hit" id="rph5">— あなたの予想: —</span></div>
+        <p class="rp-reveal-body">60年以上にわたって何度も追試されたが、正答率は<strong>2〜3割で安定している</strong>。単純で、効果が大きく、認知的な一般現象であるため、社会的プライミングのような文脈依存が少ない。<em>全ての心理学実験が疑わしいわけではない</em>——ここが重要だ。</p>
+      </div>
+    </div>
+
+    <div class="rp-summary" id="rpSummary">
+      <p class="rp-sum-lbl">Your Prediction Score</p>
+      <p class="rp-sum-score"><span id="rpScore">0</span><small> / 5</small></p>
+      <p class="rp-sum-text" id="rpSumText">——</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">5問のうち正解は ×・×・×・△・○——つまり<em>有名なほど残っていないことが多い</em>。派手な結果が派手な報道を生み、報道が常識を作る。常識を揺さぶる追試結果は、10年遅れてやってくる。</p>
+
+  <hr class="art-rule">
+
+  <!-- ============ S3: 仕組み(体験B: p-hacking) ============ -->
+  <div class="sec-rule fade"><span class="sec-label">仕組み</span><div class="sec-line"></div></div>
+  <h2 class="fade">偽陽性はどこから生まれるのか</h2>
+  <p class="body-text fade">研究者は嘘をついていない。それでも文献のあちこちに「効果あり」が積み上がる。その構造をいちばん近いところで体感するには、<em>科学者ではなくサプリ会社の立場</em>になるのが早い。「効きました!」という広告を、どうやって作れるか。</p>
+
+  <!-- ── p-hack サプリシミュレーター ── -->
+  <div class="phack-wrap fade">
+    <div class="phack-head">
+      <span class="phack-hl">モニター試験 — サプリ「スリムX」</span>
+      <button class="phack-reset" onclick="phackReset()">▶ 被験者をやり直す</button>
+    </div>
+    <div class="phack-body">
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;line-height:1.7;margin-bottom:14px;">あなたはダイエットサプリ会社の商品担当。40人のモニターに1ヶ月飲んでもらった結果が返ってきた。このままでは広告が打てない。<strong style="color:#1a1208;">「効いた切り口」</strong>を探してほしい。</p>
+
+      <div class="phack-guide">
+        <div class="phack-guide-step">
+          <p class="phack-guide-lbl">Step 1 — 観察する</p>
+          <p class="phack-guide-text">全体の平均を見る。40人ぶんの平均体重変化は <strong>ほぼゼロ</strong>。このままでは「効いた」と言えない。</p>
+        </div>
+        <div class="phack-guide-step">
+          <p class="phack-guide-lbl">Step 2 — 切り口を試す</p>
+          <p class="phack-guide-text">下のチェックボックスで被験者を絞り込む。組み合わせは 32 通り。<strong>どれか一つでも「効果あり」になれば広告が打てる。</strong></p>
+        </div>
+      </div>
+
+      <div class="phack-scene">
+        <div class="phack-chart">
+          <svg id="phackSVG" viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="280" height="200" fill="#faf8f3"/>
+            <!-- zero line -->
+            <line x1="20" y1="100" x2="270" y2="100" stroke="#c8bfaa" stroke-dasharray="3 3"/>
+            <text x="18" y="104" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">0</text>
+            <text x="18" y="22" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">+3kg</text>
+            <text x="18" y="188" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">−3kg</text>
+            <!-- axis frame -->
+            <line x1="20" y1="20" x2="20" y2="180" stroke="#c8bfaa"/>
+            <line x1="20" y1="180" x2="270" y2="180" stroke="#c8bfaa"/>
+            <!-- mean line -->
+            <line id="phackMeanLine" x1="20" y1="100" x2="270" y2="100" stroke="#8b1a1a" stroke-width="2"/>
+            <!-- dots will be injected by JS -->
+            <g id="phackDots"></g>
+          </svg>
+          <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;margin-top:4px;">縦軸: 体重変化(kg) / 横軸: 被験者</p>
+        </div>
+
+        <div class="phack-readout">
+          <p class="phack-ro-lbl">結果</p>
+          <p class="phack-ro-n">対象: <strong id="phackN">40</strong> 名</p>
+          <p class="phack-ro-mean" id="phackMean">−0.1<span class="phack-ro-unit"> kg</span></p>
+          <p style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;">平均体重変化</p>
+          <span class="phack-ro-judge no" id="phackJudge">⚠ 効果なし</span>
+        </div>
+      </div>
+
+      <div class="phack-toggles">
+        <p class="phack-tog-lbl">切り口を選ぶ — サブグループで再分析</p>
+        <div class="phack-tog-grid">
+          <label class="phack-tog"><input type="checkbox" data-f="female" onchange="phackUpdate()"> 女性だけで見る</label>
+          <label class="phack-tog"><input type="checkbox" data-f="thirties" onchange="phackUpdate()"> 30代だけで見る</label>
+          <label class="phack-tog"><input type="checkbox" data-f="morning" onchange="phackUpdate()"> 朝に飲んだ人だけ</label>
+          <label class="phack-tog"><input type="checkbox" data-f="exercise" onchange="phackUpdate()"> 運動を併用した人だけ</label>
+          <label class="phack-tog"><input type="checkbox" data-f="completer" onchange="phackUpdate()"> 中断せず続けた人だけ</label>
+        </div>
+      </div>
+
+      <div class="phack-counter">
+        <span>試した切り口: <strong id="phackTried">0</strong> / 32通り</span>
+        <span>「効果あり」が出た回数: <strong id="phackHits">0</strong></span>
+      </div>
+
+      <div class="phack-ad" id="phackAd">
+        <p class="phack-ad-lbl">📣 この切り口で広告が打てます</p>
+        <p class="phack-ad-body" id="phackAdBody">——</p>
+      </div>
+
+      <div class="phack-note" id="phackNote">
+        <strong>種明かし:</strong> このシミュレーターの体重変化データは、毎回<strong>ランダムに生成された乱数</strong>。サプリの効果は一切設定していません。それでも、切り口を変えるだけで「平均 −2kg」のような広告文が作れてしまう。何もないところから「効果あり」が拾い上げられた——これが <strong style="color:#e8c56a;">p-hacking</strong> の正体です。<br><br><strong>論文でも、同じことが起きる。</strong>研究者は「女性のみで再分析すると有意」「外れ値を1つ除くと有意」「従属変数をAではなくBにすると有意」という切り口を試せる。そのうち<em>一つでも</em> p&lt;0.05 が出たら、その切り口を「最初から予定していた分析」として論文に書き、他の試行には触れない。読者には1回の成功した分析しか見えません。いま広告コピーで拾った<strong>「30代女性で朝に飲んだ人だけ −2kg」</strong>は、そのまま<strong>「30代女性で朝に服用した場合、有意な体重減少が確認された (p&lt;0.05)」</strong>という論文の一文になりえる。
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">いま触ったこのゲームは、論文の世界に置き換えるとそのまま <span class="tip" onclick="toggleTip(this)">p-hacking<span class="tip-box"><strong>p-hacking</strong><br>分析のやり方を複数試し、p値(有意性の指標)が小さく出た結果だけを採用・報告する行為。意図的でなくても起こる。</span></span> と呼ばれる。分析の切り口——性別で切る、年齢で切る、外れ値を外す、従属変数を変える——が多いほど、<em>たまたま有意</em>が混入する確率は跳ね上がる。「どこかで効いた」を「効いた」として論文を書けば、それは偽陽性になる。</p>
+
+  <p class="body-text fade"><strong>p-hacking(ピー・ハッキング)</strong>の正式な定義は「p値を"ハック"する」——つまり一つのデータセットから「どう切れば有意になるか」を何通りも試し、有意になった切り口だけを論文に書く行為だ。悪意がなくても起きる。「あれ、この分析ではダメか。じゃあ外れ値を除いて……」という試行錯誤の中で、気づけば滑り込んでいる。Simmons らは2011年に、たった4つの分析の自由度(変数の追加/データ収集を止めるタイミング/条件の統合/共変量の投入)を組み合わせるだけで、本来5%であるはずの偽陽性率が <em>60%を超える</em>ことをシミュレーションで示した。1/20 のくじ引きが、2/3 のくじ引きになる。</p>
+
+  <p class="body-text fade">もうひとつの名前が <strong>HARKing(ハーキング)</strong>。<em>Hypothesizing After the Results are Known</em> の頭字語で、データを見てから仮説を立て、「最初からこの仮説だった」と論文に書く行為を指す。探索的に見つけた関係は、同じデータで「検証」してもそれは検証ではなく、後付けに過ぎない——にもかかわらず、それを検証であるかのように提示する。読者には、データが予測を確証したように見える。実際には、予測のほうがデータに合わせて書き換えられている。</p>
+
+  <p class="body-text fade">どちらも、<em>捏造ではない</em>。研究者が意図せず、制度の緩みから滑り込んでしまう。だから真面目な人でも巻き込まれる。これが「再現性の危機」が一部の不正研究者の問題ではなく、<strong>分野全体の構造問題</strong>と呼ばれる理由だ。</p>
+
+  <div class="steps-wrap fade">
+    <p class="steps-head">偽陽性を生む三つの歯車</p>
+
+    <div class="step-card" id="sc1">
+      <div class="step-hd" onclick="tog(1)"><div class="step-nb">1</div><div class="step-tw"><div class="step-title">p-hacking</div><div class="step-sub">分析の自由度 — Analytical Flexibility</div></div><div class="step-arr">▼</div></div>
+      <div class="step-body">
+        <p>いま体験した通り。同じデータでも<strong>分析のしかたは何通りもある</strong>。どこかの切り口で p&lt;0.05 が出たら、その切り口を「最初から予定していた分析」として報告する。他の試行は書かない。</p>
+        <p><em>一回の実験に20通りの分析が可能なら、効果ゼロのデータからでも約64%の確率で「有意な結果」が拾える。</em></p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)"><div class="step-nb">2</div><div class="step-tw"><div class="step-title">出版バイアス</div><div class="step-sub">Publication Bias — 失敗は引き出しの中へ</div></div><div class="step-arr">▼</div></div>
+      <div class="step-body">
+        <p>学術誌は<strong>「効果あり」の論文を優先的に載せる</strong>。効果が見つからなかった研究は投稿すらされず、研究室の引き出しに眠る(file drawer problem)。</p>
+        <p>読者が目にする文献は「成功した研究だけ」で構成される。100の研究室が同じ実験をして、1つだけ偶然有意になっても、その1本だけが世に出る。<em>文献全体が、成功のハイライト集になる。</em></p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)"><div class="step-nb">3</div><div class="step-tw"><div class="step-title">HARKing</div><div class="step-sub">Hypothesizing After the Results are Known</div></div><div class="step-arr">▼</div></div>
+      <div class="step-body">
+        <p>結果を見てから、<strong>その結果に合う仮説を「事前の予測だった」ように書く</strong>行為。論文の冒頭で「われわれは X を予測した」と書かれていても、それは結果を見た後に書かれているかもしれない。</p>
+        <p>読者には、データが予測を<em>確証した</em>ように見える。実際には、予測がデータに合わせて書き換えられている。<span class="tip" onclick="toggleTip(this)">Kerr (1998)<span class="tip-box"><strong>Norbert L. Kerr</strong><br>ミシガン州立大学の心理学者。1998年に論文「HARKing: Hypothesizing After the Results are Known」でこの用語を提唱。</span></span>がこの振る舞いを命名した。</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">3つの歯車は、それぞれ別の層で回っている。p-hacking は<em>一人の研究者のパソコンの中</em>で、出版バイアスは<em>分野全体の出版システム</em>の中で、HARKing は<em>論文の中の物語</em>の中で。言葉で並べても掴みにくいので、一つずつ図で見ていく。まずは p-hacking——一回のデータ収集から、何通りの「分析の枝」が引けるのか。</p>
+
+  <!-- ── SVG図解4: 分析の自由度 ── -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+      <rect width="680" height="320" fill="#faf8f3"/>
+      <text x="340" y="28" text-anchor="middle" font-family="'Playfair Display',serif" font-size="17" font-weight="700" fill="#1a1208">分析の自由度という罠</text>
+      <text x="340" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">一回のデータから引ける「分析の枝」は何通りもある</text>
+
+      <!-- trunk -->
+      <line x1="340" y1="80" x2="340" y2="120" stroke="#3d3020" stroke-width="2"/>
+      <text x="340" y="75" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#1a1208">一つのデータセット</text>
+
+      <!-- branches to 5 analyses -->
+      <g stroke="#8b1a1a" stroke-width="1.5" fill="none">
+        <path d="M340,120 L130,180"/>
+        <path d="M340,120 L235,180"/>
+        <path d="M340,120 L340,180"/>
+        <path d="M340,120 L445,180"/>
+        <path d="M340,120 L550,180"/>
+      </g>
+
+      <!-- analysis labels -->
+      <g font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">
+        <text x="130" y="200">性別で切る</text>
+        <text x="235" y="200">年齢で切る</text>
+        <text x="340" y="200">外れ値を除く</text>
+        <text x="445" y="200">別の指標で</text>
+        <text x="550" y="200">時期で切る</text>
+      </g>
+
+      <!-- connector to p-values -->
+      <g stroke="#c8bfaa" stroke-width="1" fill="none">
+        <line x1="130" y1="210" x2="130" y2="240"/>
+        <line x1="235" y1="210" x2="235" y2="240"/>
+        <line x1="340" y1="210" x2="340" y2="240"/>
+        <line x1="445" y1="210" x2="445" y2="240"/>
+        <line x1="550" y1="210" x2="550" y2="240"/>
+      </g>
+
+      <!-- p-values (one per branch) -->
+      <g font-family="'Source Sans 3',sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+        <text x="130" y="260" fill="#7a6a55">p=.12</text>
+        <text x="235" y="260" fill="#c4392a">p=.04 ✓</text>
+        <text x="340" y="260" fill="#7a6a55">p=.31</text>
+        <text x="445" y="260" fill="#c4392a">p=.03 ✓</text>
+        <text x="550" y="260" fill="#7a6a55">p=.22</text>
+      </g>
+
+      <text x="340" y="300" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#8b1a1a" font-weight="600">2つの「有意」を拾い、論文にはそれだけを書く</text>
+    </svg>
+    <p class="svg-cap">偽陽性の率は、試した切り口の数だけ水増しされる</p>
+  </div>
+
+  <p class="body-text fade">p-hacking は、一人の研究者が<em>一つのデータセットの中</em>で起こす話だった。次は視点をもっと広げる——20の研究室が同じ実験をしたら何が起きるか、という話だ。偶然1つだけ有意になった研究だけが世に出て、他の19本は<em>そもそも投稿されない</em>。</p>
+
+  <!-- ── SVG図解5: 出版バイアス ── -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+      <rect width="680" height="360" fill="#faf8f3"/>
+      <text x="340" y="28" text-anchor="middle" font-family="'Playfair Display',serif" font-size="17" font-weight="700" fill="#1a1208">出版バイアス — 引き出しの中の見えない研究</text>
+      <text x="340" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">20の研究室が同じ実験をしたと仮定する(効果ゼロの薬)</text>
+
+      <!-- drawer background -->
+      <rect x="60" y="90" width="280" height="220" fill="#ede8dc" stroke="#7a6a55" stroke-width="1.5" rx="4"/>
+      <text x="200" y="115" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" font-weight="700" fill="#3d3020">研究室の引き出し</text>
+
+      <!-- 19 faded studies in drawer -->
+      <g font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">
+        <g>
+          <rect x="78" y="135" width="78" height="28" fill="#faf8f3" stroke="#c8bfaa"/>
+          <text x="117" y="153" text-anchor="middle">p=.45 ×</text>
+        </g>
+        <g>
+          <rect x="165" y="135" width="78" height="28" fill="#faf8f3" stroke="#c8bfaa"/>
+          <text x="204" y="153" text-anchor="middle">p=.22 ×</text>
+        </g>
+        <g>
+          <rect x="252" y="135" width="78" height="28" fill="#faf8f3" stroke="#c8bfaa"/>
+          <text x="291" y="153" text-anchor="middle">p=.88 ×</text>
+        </g>
+        <g>
+          <rect x="78" y="170" width="78" height="28" fill="#faf8f3" stroke="#c8bfaa"/>
+          <text x="117" y="188" text-anchor="middle">p=.15 ×</text>
+        </g>
+        <g>
+          <rect x="165" y="170" width="78" height="28" fill="#faf8f3" stroke="#c8bfaa"/>
+          <text x="204" y="188" text-anchor="middle">p=.67 ×</text>
+        </g>
+        <g>
+          <rect x="252" y="170" width="78" height="28" fill="#faf8f3" stroke="#c8bfaa"/>
+          <text x="291" y="188" text-anchor="middle">p=.34 ×</text>
+        </g>
+        <g>
+          <rect x="78" y="205" width="78" height="28" fill="#faf8f3" stroke="#c8bfaa"/>
+          <text x="117" y="223" text-anchor="middle">p=.51 ×</text>
+        </g>
+        <g>
+          <rect x="165" y="205" width="78" height="28" fill="#faf8f3" stroke="#c8bfaa"/>
+          <text x="204" y="223" text-anchor="middle">p=.28 ×</text>
+        </g>
+        <g>
+          <rect x="252" y="205" width="78" height="28" fill="#faf8f3" stroke="#c8bfaa"/>
+          <text x="291" y="223" text-anchor="middle">p=.71 ×</text>
+        </g>
+        <g>
+          <rect x="78" y="240" width="78" height="28" fill="#faf8f3" stroke="#c8bfaa"/>
+          <text x="117" y="258" text-anchor="middle">p=.19 ×</text>
+        </g>
+        <g>
+          <rect x="165" y="240" width="78" height="28" fill="#faf8f3" stroke="#c8bfaa"/>
+          <text x="204" y="258" text-anchor="middle">p=.43 ×</text>
+        </g>
+        <g>
+          <rect x="252" y="240" width="78" height="28" fill="#faf8f3" stroke="#c8bfaa"/>
+          <text x="291" y="258" text-anchor="middle">p=.62 ×</text>
+        </g>
+        <g>
+          <rect x="78" y="275" width="252" height="24" fill="#faf8f3" stroke="#c8bfaa"/>
+          <text x="204" y="292" text-anchor="middle">…ほか 7 研究すべて有意でない</text>
+        </g>
+      </g>
+
+      <text x="200" y="330" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">投稿されない / されても採択されない</text>
+
+      <!-- arrow -->
+      <g transform="translate(360,200)">
+        <line x1="0" y1="0" x2="60" y2="0" stroke="#8b1a1a" stroke-width="2"/>
+        <polygon points="60,-8 80,0 60,8" fill="#8b1a1a"/>
+      </g>
+
+      <!-- published 1 study -->
+      <rect x="460" y="150" width="170" height="100" fill="#8b1a1a" stroke="#8b1a1a" stroke-width="2" rx="4"/>
+      <text x="545" y="185" text-anchor="middle" font-family="'Playfair Display',serif" font-size="22" font-weight="900" fill="white">p=.03 ✓</text>
+      <text x="545" y="215" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="white">1本だけ</text>
+      <text x="545" y="235" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="white">一流誌に載る</text>
+
+      <text x="545" y="280" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#8b1a1a" font-weight="600">読者が目にするのは、これだけ</text>
+    </svg>
+    <p class="svg-cap">効果ゼロの薬でも、20の研究室が試せば偶然1つ p&lt;0.05 が出る(=5%)。出版されるのはその1本</p>
+  </div>
+
+  <p class="body-text fade">引き出しから消えるのは、研究だけではない。論文の<em>中にある仮説</em>もまた、書き換えられる。最後の歯車、HARKing は、p-hacking ほど派手ではないが、文献全体の「予測の的中率」を静かに底上げしていく。</p>
+
+  <!-- ── SVG図解6: HARKing ── -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+      <rect width="680" height="280" fill="#faf8f3"/>
+      <text x="340" y="28" text-anchor="middle" font-family="'Playfair Display',serif" font-size="17" font-weight="700" fill="#1a1208">HARKing — 結果を見てから仮説を書く</text>
+
+      <!-- Top row: Proper science -->
+      <g transform="translate(40,70)">
+        <text x="0" y="0" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="700" fill="#1a5a30">本来の手順</text>
+        <rect x="0" y="10" width="130" height="44" fill="#faf8f3" stroke="#1a5a30"/>
+        <text x="65" y="32" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#1a5a30">① 仮説を立てる</text>
+        <text x="65" y="48" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#1a5a30">事前登録</text>
+
+        <line x1="130" y1="32" x2="170" y2="32" stroke="#1a5a30" stroke-width="2"/>
+        <polygon points="165,26 175,32 165,38" fill="#1a5a30"/>
+
+        <rect x="175" y="10" width="130" height="44" fill="#faf8f3" stroke="#1a5a30"/>
+        <text x="240" y="32" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#1a5a30">② データ収集</text>
+
+        <line x1="305" y1="32" x2="345" y2="32" stroke="#1a5a30" stroke-width="2"/>
+        <polygon points="340,26 350,32 340,38" fill="#1a5a30"/>
+
+        <rect x="350" y="10" width="130" height="44" fill="#faf8f3" stroke="#1a5a30"/>
+        <text x="415" y="32" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#1a5a30">③ 予定の分析</text>
+
+        <line x1="480" y1="32" x2="520" y2="32" stroke="#1a5a30" stroke-width="2"/>
+        <polygon points="515,26 525,32 515,38" fill="#1a5a30"/>
+
+        <rect x="525" y="10" width="110" height="44" fill="#faf8f3" stroke="#1a5a30"/>
+        <text x="580" y="32" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#1a5a30">④ 結果を書く</text>
+
+        <text x="320" y="80" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" font-style="italic">予測が外れる可能性に開いている</text>
+      </g>
+
+      <!-- Bottom row: HARKing -->
+      <g transform="translate(40,175)">
+        <text x="0" y="0" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="700" fill="#c4392a">HARKing の手順</text>
+        <rect x="0" y="10" width="130" height="44" fill="#faf8f3" stroke="#c4392a"/>
+        <text x="65" y="32" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#c4392a">① データ収集</text>
+
+        <line x1="130" y1="32" x2="170" y2="32" stroke="#c4392a" stroke-width="2"/>
+        <polygon points="165,26 175,32 165,38" fill="#c4392a"/>
+
+        <rect x="175" y="10" width="130" height="44" fill="#faf8f3" stroke="#c4392a"/>
+        <text x="240" y="32" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#c4392a">② 色々な分析</text>
+
+        <line x1="305" y1="32" x2="345" y2="32" stroke="#c4392a" stroke-width="2"/>
+        <polygon points="340,26 350,32 340,38" fill="#c4392a"/>
+
+        <rect x="350" y="10" width="130" height="44" fill="#faf8f3" stroke="#c4392a"/>
+        <text x="415" y="32" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#c4392a">③ 有意だった結果</text>
+
+        <line x1="480" y1="32" x2="520" y2="32" stroke="#c4392a" stroke-width="2"/>
+        <polygon points="515,26 525,32 515,38" fill="#c4392a"/>
+
+        <rect x="525" y="10" width="110" height="44" fill="#faf8f3" stroke="#c4392a"/>
+        <text x="580" y="26" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#c4392a">④「これを予測</text>
+        <text x="580" y="42" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#c4392a">していた」</text>
+      </g>
+    </svg>
+    <p class="svg-cap">順序を入れ替えるだけで、偶然が理論に化ける</p>
+  </div>
+
+  <p class="body-text fade">この3つは独立に起きるのではない。p-hackingで作った「有意」を、HARKingで「最初から予測していた」と装い、出版バイアスが成功したものだけを選び出す。<em>三つの歯車は噛み合って回っている</em>。</p>
+
+  <hr class="art-rule">
+
+  <!-- ============ S4: 歴史 ============ -->
+  <div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+  <h2 class="fade">危機は突然来なかった</h2>
+
+  <div class="timeline fade">
+    <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1998</p><p class="tl-title">Kerr が「HARKing」を命名</p><p class="tl-desc">結果を見てから仮説を書く振る舞いが、心理学で広く行われていることを指摘。まだ誰も動かなかった。</p></div>
+
+    <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2005</p><p class="tl-title">Ioannidis「Why Most Published Research Findings Are False」</p><p class="tl-desc">公表された医学研究の大半が誤りである、と数理的に示した。いまやメタ科学の出発点とされる。</p></div>
+
+    <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2011</p><p class="tl-title">Bem「Feeling the Future」事件</p><p class="tl-desc">心理学の一流誌 JPSP に「予知能力」を示唆する論文が掲載される。追試は失敗。この騒ぎが業界の危機感を決定的にした。</p></div>
+
+    <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2011</p><p class="tl-title">Simmons, Nelson, &amp; Simonsohn「False-Positive Psychology」</p><p class="tl-desc">分析の自由度を悪用すれば、どんな仮説でも p&lt;0.05 を作れることを実証。後に「p-hacking」と呼ばれるようになる。</p></div>
+
+    <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">2015</p><p class="tl-title">OSC「Reproducibility Project: Psychology」</p><p class="tl-desc">270人の研究者が4年かけて100本を追試。再現率36%。<em>Science</em> 誌掲載。「再現性の危機」が一般用語になった瞬間。</p></div>
+
+    <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2016</p><p class="tl-title">Many Labs 3・自我消耗の大規模追試</p><p class="tl-desc">23研究室・2000人以上。自我消耗の効果は検出されず。教科書の書き換えが始まる。</p></div>
+
+    <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2021</p><p class="tl-title">RPCB 公表 — がん生物学は46%</p><p class="tl-desc">8年がかりの追試プロジェクトの最終結果。医療と近い分野でも、心理学と同水準の問題が確認された。</p></div>
+  </div>
+
+  <hr class="art-rule">
+
+  <!-- ============ S5: つまり ============ -->
+  <div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+  <h2 class="fade">科学は、遅いが、自分を訂正する</h2>
+
+  <p class="body-text fade">再現性の危機、と呼ばれたこの出来事の本当の意味は、「心理学はダメだった」ではない。<em>心理学が、自分のダメさを率先して可視化した</em>ということだ。同じ装置を他の分野に向けたら、同じものが出た。出してしまった。</p>
+
+  <p class="body-text fade">そして出したあと、何が起きているか。事前登録(プレレジ)、データ公開、多重比較補正、追試ジャーナル、効果量の推定重視——ここ10年で、心理学の標準的な手続きは大きく変わった。2015年以降に書かれた心理学論文を読むときは、かつてとは違う目で読む必要がある。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">One of the reasons for its success is that science has a <em>built-in, error-correcting machinery</em> at its very heart.</p>
+    <p class="pull-q" style="font-style:normal;font-size:clamp(15px,1.9vw,18px);color:#7a6a55;margin-top:10px;">科学が成功している理由のひとつは、その心臓部に <em>エラー訂正の仕組み</em> が組み込まれていることだ。</p>
+    <p class="pull-attr">— Carl Sagan, <em style="font-style:italic;">The Demon-Haunted World: Science as a Candle in the Dark</em> (1995)</p>
+  </div>
+
+  <div class="culture-block fade">
+    <p class="culture-label">文化の中に現れた「再現性の危機」</p>
+    <div class="culture-item">
+      <p class="culture-title">Amy Cuddy の TED Talk 『Your Body Language May Shape Who You Are』(2012)</p>
+      <p class="culture-desc">5000万回以上再生。パワーポージングが崩れた後も動画は削除されず、ビジネス書・自己啓発本での引用は減ったが消えてはいない。常識の訂正には、研究の訂正よりはるかに長い時間がかかる。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">John Oliver『Last Week Tonight』"Scientific Studies"(2016)</p>
+      <p class="culture-desc">再現性の危機と出版バイアスをプライムタイムのコメディ番組で20分にわたって解説。「科学ニュースを信じる前に、再現されたかを確認してほしい」を一般視聴者向けに伝えた最初期の大衆番組。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">『Nature』誌アンケート(2016)</p>
+      <p class="culture-desc">1,576人の研究者の70%以上が「他の研究者の実験を再現できなかった経験がある」と回答。「危機」は心理学者だけの感覚ではないことが数字で出た。</p>
+    </div>
+  </div>
+
+  <hr class="art-rule">
+
+  <!-- ============ 参考文献 ============ -->
+  <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2015</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1126/science.aac4716" target="_blank" rel="noopener">Estimating the reproducibility of psychological science</a></p>
+      <p class="ref-author">Open Science Collaboration — Science, 349(6251), aac4716</p>
+      <p class="ref-desc">再現性の危機を決定づけた論文。著者は270人、筆頭著者は集合体名義。Science誌のサイトで全文無料公開。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">予言的エッセイ</span><span class="ref-year">2005</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1371/journal.pmed.0020124" target="_blank" rel="noopener">Why Most Published Research Findings Are False</a></p>
+      <p class="ref-author">John P. A. Ioannidis — PLOS Medicine, 2(8), e124</p>
+      <p class="ref-desc">OSC 2015 の10年前。偽陽性が科学文献に蓄積する構造を数理的に示した。オープンアクセス。メタ科学の出発点。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">概念化</span><span class="ref-year">2011</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1177/0956797611417632" target="_blank" rel="noopener">False-Positive Psychology: Undisclosed Flexibility in Data Collection and Analysis</a></p>
+      <p class="ref-author">Joseph Simmons, Leif Nelson, Uri Simonsohn — Psychological Science, 22(11), 1359–1366</p>
+      <p class="ref-desc">「ビートルズの曲を聞くと年齢が若返る」という露骨にあり得ない仮説でp&lt;0.05を作って見せた。p-hacking の教科書。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">追試プロジェクト</span><span class="ref-year">2021</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.7554/eLife.71601" target="_blank" rel="noopener">Investigating the replicability of preclinical cancer biology</a></p>
+      <p class="ref-author">Timothy M. Errington et al. — eLife, 10, e71601</p>
+      <p class="ref-desc">8年がかりでがん生物学53本を追試。再現率46%、効果量は元の平均15%。医療への含意は深刻。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">追試実験</span><span class="ref-year">2015</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1177/0956797614553946" target="_blank" rel="noopener">Assessing the Robustness of Power Posing</a></p>
+      <p class="ref-author">Eva Ranehill et al. — Psychological Science, 26(5), 653–656</p>
+      <p class="ref-desc">パワーポージングの大規模追試(N=200)。ホルモン変化も行動変化も検出されなかった。Carney 自身の撤退声明もこの論文がきっかけ。</p>
+    </div>
+  </div>
+
+  <div class="note-box fade"><strong>📌 この記事について</strong><br>「心理学100本のうち再現できたのは36本」という衝撃の数字を出したのが <strong>Open Science Collaboration (2015)</strong>。270人の研究者が手分けして、2008年に3誌に載った論文を追試した4年がかりのプロジェクトだった。<br><br>この問題を10年早く警告していたのが <strong>Ioannidis (2005)</strong>「Why Most Published Research Findings Are False」で、統計的な構造から「公表される"発見"の多くは偽陽性のはず」と理論的に予言した論文。その警告が単なる理屈ではないことを、手続きの側から実証したのが <strong>Simmons, Nelson, & Simonsohn (2011)</strong>「False-Positive Psychology」で、分析の自由度だけで偽陽性率が60%を超えることをシミュレーションで示した。心理学の外でも同じ現象が起きることを確認したのが <strong>Errington et al. (2021)</strong> のがん生物学追試で、こちらは再現率46%。<br><br>「再現とみなす基準」「分野間の差異の解釈」「追試の方法論自体への批判」には複数の立場がある(たとえば Gilbert et al. 2016 は OSC の方法論に反論している)。本記事は、再現性の低さが広く観察されているという事実に重心を置いている。</div>
+
+  <div class="signature fade">e. Tamaki</div>
+
+  <div class="tags fade">
+    <span class="tag">科学と文化</span><span class="tag">メタ科学</span><span class="tag">統計</span><span class="tag">心理学</span><span class="tag">p-hacking</span><span class="tag">出版バイアス</span><span class="tag">オープンサイエンス</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">36%</p>
+      <p class="sidebar-text">OSC 2015 で追試を試みた心理学100本のうち、再現できた本数の割合。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1620年、ベーコンは<strong>『ノヴム・オルガヌム』</strong>で「観察から結論へ飛躍する前に、反証事例を探せ」と書いた。再現性の問題意識は、少なくとも400年前から記述されていた。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">John Oliver『Last Week Tonight』2016年「Scientific Studies」回。Richard Harris『Rigor Mortis』(2017)。『The Economist』特集「How science goes wrong」(2013)。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— <em>相関は因果ではない</em><br>数字の解釈の第一関門<br>— <em>確証バイアス</em><br>p-hacking の認知的原型<br>— <em>事前登録(プレレジ)</em><br>危機への制度的応答</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">今日の判断を振り返る</p>
+      <ul class="sidebar-check">
+        <li>今日見た「○○は××に効く」という記事に、追試情報は載っていたか</li>
+        <li>「驚きの研究結果!」を共有する前に、一拍置いたか</li>
+        <li>自分の仕事で「色々試して当たった結果だけ報告」していないか</li>
+      </ul>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">📌 信頼度</p>
+      <p class="sidebar-text">OSC (2015)、Ioannidis (2005)、Simmons et al. (2011) を主要文献。分野別再現率の内訳解釈には複数の立場がある。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- ===== ZONE C ===== -->
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 再現性の危機 を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ心理学の論文って、もう信じちゃダメ?</span></div>
+      <span class="t-output" id="to1">全否定しなくていい。いまは<em>事前登録(プレレジ)</em>つきの論文が増えている。データを取る前に分析手順を宣言してあるから、後付けの p-hacking ができない。<strong>「Registered Report」と書いてあれば、信頼度が一段高い</strong>と思って読める。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;有名な人の研究ほど危ない感じがしたんだけど</span></div>
+      <span class="t-output" id="to2">正確には、<em>派手な結果</em>を出した研究が危ない。平凡な結果は報道されず、極端な結果は大きく報道される。その構造がバイアスを増幅する。有名=危ないではなく、<strong>有名な結果ほど、派手さの後ろに偽陽性が混じる確率が上がっている</strong>。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;医学とか、物理とかは大丈夫なの?</span></div>
+      <span class="t-output" id="to3">物理と化学は比較的良好。医学・がん生物学・経済学は心理学に近い問題を抱える。効果が小さく、ノイズが大きく、分析の自由度が高い分野ほど危ない。<strong>心理学は先に膿を出した分野</strong>と見たほうが実態に近い。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# ちょっと考えるわ</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/correlation_causation">
+      <p class="related-card-tag">科学と文化 × 統計</p>
+      <p class="related-card-title">相関は因果ではない</p>
+      <p class="related-card-desc">数字が一緒に動くだけでは、原因とは言えない。p-hackingの前段にある、数字の解釈の第一関門。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/confirmation_bias">
+      <p class="related-card-tag">認知バイアス × 推論</p>
+      <p class="related-card-title">確証バイアス</p>
+      <p class="related-card-desc">都合のよい情報だけ集めてしまう人間の癖。p-hackingは、この認知の癖が制度化された姿とも言える。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレス
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;document.getElementById('prog').style.width=(scrollY/h*100)+'%';});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){const c=document.getElementById('sc'+n);if(!c)return;const w=c.classList.contains('open');document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));if(!w)c.classList.add('open');}
+tog(1);
+
+// ============ RP QUIZ (予想→実測) ============
+const rpTruth={1:'x',2:'x',3:'x',4:'t',5:'o'};
+const rpAnswered={};
+function rpAnswer(n,choice){
+  if(rpAnswered[n])return;
+  rpAnswered[n]=choice;
+  const card=document.getElementById('rpc'+n);
+  card.querySelectorAll('.rp-btn').forEach(b=>b.classList.remove('picked'));
+  const idx=choice==='o'?0:choice==='t'?1:2;
+  card.querySelectorAll('.rp-btn')[idx].classList.add('picked');
+  const reveal=document.getElementById('rpr'+n);
+  reveal.classList.add('show');
+  const hit=rpTruth[n]===choice;
+  const label=choice==='o'?'○ 再現した':choice==='t'?'△ 部分的':'× しなかった';
+  const hitEl=document.getElementById('rph'+n);
+  hitEl.textContent='— あなたの予想: '+label+(hit?' ✓':' ✗');
+  if(hit)hitEl.classList.add('hit');
+  // update counter
+  const count=Object.keys(rpAnswered).length;
+  document.getElementById('rpCount').textContent=count;
+  if(count===5){
+    let score=0;
+    for(let i=1;i<=5;i++)if(rpAnswered[i]===rpTruth[i])score++;
+    document.getElementById('rpScore').textContent=score;
+    const text=score<=1?'予想の大半を外した。あなたは、報道や教科書で強調された派手な結果を素直に信じていた——それは健全な読者の反応でもあった。今日から、一つだけ足してほしい:「これ、追試された?」と一度問う癖。':score<=3?'半分近く当てた。あなたは、ある程度「派手な結果=怪しい」という嗅覚を持っている。ただし正しく外した問題を振り返ると、<em>どこが見抜けたか</em>より<em>どこで引っかかったか</em>のほうが次につながる。':'派手な研究に対して、十分に懐疑的な目を持っている。その懐疑は、シニシズム(全否定)ではなく、分野と手続きで信頼度を重みづける姿勢に育てたい。ウェイソン2-4-6のような認知の基礎研究と、パワーポージングのような文脈依存の結果を同じ棚に並べないこと——それが次のステップ。';
+    document.getElementById('rpSumText').innerHTML=text;
+    document.getElementById('rpSummary').classList.add('show');
+  }
+}
+
+// ============ p-hack サプリシミュレーター ============
+let phackSubjects=[];
+let phackTriedCombos=new Set();
+let phackHitsCount=0;
+
+// 簡易乱数(Box-Muller で正規乱数)
+function gaussian(){let u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+
+function phackGenerate(){
+  phackSubjects=[];
+  for(let i=0;i<40;i++){
+    phackSubjects.push({
+      female:Math.random()<0.5,
+      thirties:Math.random()<0.5,
+      morning:Math.random()<0.55,
+      exercise:Math.random()<0.5,
+      completer:Math.random()<0.75,
+      change:gaussian()*1.8 // 平均0, 標準偏差1.8kg(部分集合で偶然の偏りが出やすい)
+    });
+  }
+}
+
+function phackReset(){
+  phackGenerate();
+  phackTriedCombos.clear();
+  phackHitsCount=0;
+  document.querySelectorAll('.phack-tog input').forEach(x=>x.checked=false);
+  phackUpdate();
+}
+
+function phackUpdate(){
+  const filters={
+    female:document.querySelector('[data-f="female"]').checked,
+    thirties:document.querySelector('[data-f="thirties"]').checked,
+    morning:document.querySelector('[data-f="morning"]').checked,
+    exercise:document.querySelector('[data-f="exercise"]').checked,
+    completer:document.querySelector('[data-f="completer"]').checked,
+  };
+  const subset=phackSubjects.filter(s=>{
+    if(filters.female&&!s.female)return false;
+    if(filters.thirties&&!s.thirties)return false;
+    if(filters.morning&&!s.morning)return false;
+    if(filters.exercise&&!s.exercise)return false;
+    if(filters.completer&&!s.completer)return false;
+    return true;
+  });
+
+  // ドット描画
+  const dotsEl=document.getElementById('phackDots');
+  let dotsHtml='';
+  const allIdx=phackSubjects.map((s,i)=>i);
+  const highlightSet=new Set(subset.map(s=>phackSubjects.indexOf(s)));
+  for(let i=0;i<40;i++){
+    const s=phackSubjects[i];
+    const x=24+i*6.1;
+    const y=100-(s.change*26); // 1kg ≈ 26px
+    const isIn=highlightSet.has(i);
+    const fill=isIn?(s.change<0?'#1a5a30':'#c4392a'):'#c8bfaa';
+    const op=isIn?0.9:0.3;
+    dotsHtml+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${isIn?3.2:2.5}" fill="${fill}" opacity="${op}"/>`;
+  }
+  dotsEl.innerHTML=dotsHtml;
+
+  // 平均算出
+  const n=subset.length;
+  let mean=0;
+  if(n>0){mean=subset.reduce((a,b)=>a+b.change,0)/n;}
+  const meanEl=document.getElementById('phackMean');
+  const sign=mean<0?'−':'+';
+  const absMean=Math.abs(mean).toFixed(2);
+  meanEl.innerHTML=sign+absMean+'<span class="phack-ro-unit"> kg</span>';
+  meanEl.classList.toggle('neg',mean<-0.4&&n>=4);
+
+  // 平均ライン
+  const meanY=100-(mean*26);
+  document.getElementById('phackMeanLine').setAttribute('y1',meanY.toFixed(1));
+  document.getElementById('phackMeanLine').setAttribute('y2',meanY.toFixed(1));
+
+  // N表示
+  document.getElementById('phackN').textContent=n;
+
+  // 判定: 「効果あり」 = N>=4 かつ 平均 <= -0.8kg
+  const judgeEl=document.getElementById('phackJudge');
+  const adEl=document.getElementById('phackAd');
+  const noteEl=document.getElementById('phackNote');
+  const isTooSmall=(n<4);
+  const isEffective=(!isTooSmall&&mean<=-0.8);
+
+  // カウンター: 何か切り口を選んでいるとき(1つ以上フィルタON)だけカウント
+  const activeFilters=Object.values(filters).filter(v=>v);
+  const comboKey=Object.entries(filters).filter(([k,v])=>v).map(([k])=>k).sort().join(',');
+  if(activeFilters.length>0&&!phackTriedCombos.has(comboKey)){
+    phackTriedCombos.add(comboKey);
+    if(isEffective)phackHitsCount++;
+  }
+  document.getElementById('phackTried').textContent=phackTriedCombos.size;
+  document.getElementById('phackHits').textContent=phackHitsCount;
+
+  if(isTooSmall){
+    judgeEl.textContent='⚠ 絞りすぎ(n<4)';
+    judgeEl.classList.remove('yes');
+    judgeEl.classList.add('no');
+    adEl.classList.remove('show');
+  }else if(isEffective){
+    judgeEl.textContent='✓ 効果あり';
+    judgeEl.classList.remove('no');
+    judgeEl.classList.add('yes');
+    const labels=[];
+    if(filters.female)labels.push('女性');
+    if(filters.thirties)labels.push('30代');
+    if(filters.morning)labels.push('朝服用');
+    if(filters.exercise)labels.push('運動併用');
+    if(filters.completer)labels.push('完走者');
+    const tag=labels.length?labels.join('・')+'の':'全モニターの';
+    document.getElementById('phackAdBody').innerHTML=`「${tag}モニターで<em>平均 −${absMean}kg</em>を達成!」`;
+    adEl.classList.add('show');
+  }else{
+    judgeEl.textContent='⚠ 効果なし';
+    judgeEl.classList.remove('yes');
+    judgeEl.classList.add('no');
+    adEl.classList.remove('show');
+  }
+
+  // 2回以上「効果あり」が出たら種明かしを出す
+  if(phackHitsCount>=2){
+    noteEl.classList.add('show');
+  }
+}
+
+phackReset(); // 初期化
+
+// ============ ターミナルアニメーション ============
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{setTimeout(()=>{const el=document.getElementById(s.id);if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}},s.delay);});
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// ============ SHARED HEADER JS ============
+function closeMenu(){document.getElementById('menuPanel').classList.remove('open');document.getElementById('menuBackdrop').classList.remove('open');}
+document.getElementById('burgerBtn').addEventListener('click',()=>{document.getElementById('menuPanel').classList.add('open');document.getElementById('menuBackdrop').classList.add('open');});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join(''):'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div>
+<div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div>
+</body>
+</html>

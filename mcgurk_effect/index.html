@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>耳は口を見ている（マクガーク効果） — Qualia Journal</title>
+<meta name="description" content="音声「ba」に口の動き「ga」を重ねると、多くの人に「da」と聞こえる。耳は独立していない——脳は顔を見て、音を作り直している。">
+<link rel="canonical" href="https://qualiajournal.com/mcgurk_effect">
+<meta property="og:title" content="耳は口を見ている（マクガーク効果） — Qualia Journal">
+<meta property="og:description" content="音声「ba」に口の動き「ga」を重ねると、多くの人に「da」と聞こえる。耳は独立していない——脳は顔を見て、音を作り直している。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/mcgurk_effect">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="耳は口を見ている（マクガーク効果） — Qualia Journal">
+<meta name="twitter:description" content="音声「ba」に口の動き「ga」を重ねると、多くの人に「da」と聞こえる。耳は独立していない——脳は顔を見て、音を作り直している。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"耳は口を見ている（マクガーク効果）","description":"音声「ba」に口の動き「ga」を重ねると、多くの人に「da」と聞こえる。耳は独立していない——脳は顔を見て、音を作り直している。","author":{"@type":"Organization","name":"Qualia Journal"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/mcgurk_effect","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"知覚・錯覚","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"耳は口を見ている"}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;margin-bottom:20px;}.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;align-items:center;gap:14px;}.cover-byline span+span::before{content:"·";margin-right:14px;color:#c8bfaa;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:6px;}.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}.cover-aside strong{color:#3d3020;font-weight:600;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}.meta-item{display:flex;align-items:center;gap:10px;}.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}.difficulty-dots{display:flex;gap:4px;}.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}.dot.on{background:#8b1a1a;}.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}.meta-sep{width:1px;height:20px;background:#e0d8c8;}.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}.date-item{display:flex;align-items:center;gap:8px;}.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;}.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}.article-main{padding:48px 0;}.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;margin-bottom:20px;}.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}.body-text strong{color:#1a1208;font-weight:600;}.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}.pull-q em{color:#8b1a1a;}.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;}.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}.tip-box strong{color:#e8c56a;font-weight:600;}.tip.open .tip-box{display:block;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block-body{padding:16px 20px;background:#f3efe6;}.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.misconception-header{background:#3d3020;color:white;padding:11px 20px;}.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.misconception-body{background:white;}.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}.misconception-item:last-child{border-bottom:none;}.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}.mis-label.wrong{color:#c4392a;}.mis-label.right{color:#1a5a30;}.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.diagram-wrap{margin:28px 0;text-align:center;}.diagram-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;text-align:center;max-width:560px;margin-left:auto;margin-right:auto;}
+
+/* Spectrogram figure with HTML legend */
+.spec-fig{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:white;}
+.spec-fig img{width:100%;display:block;}
+.spec-legend{padding:18px 22px;background:#faf8f3;border-top:1px solid #e0d8c8;}
+.spec-legend-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:12px;letter-spacing:.04em;}
+.spec-legend-row{display:flex;align-items:center;gap:12px;margin-bottom:8px;font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.5;}
+.spec-legend-row:last-child{margin-bottom:0;}
+.spec-marker{flex-shrink:0;width:32px;height:18px;display:inline-block;position:relative;}
+.spec-marker-red-line{background:#8b1a1a;width:3px;height:20px;align-self:center;margin-left:14px;}
+.spec-marker-cyan-line{background:#00c8e6;width:32px;height:4px;align-self:center;}
+.spec-marker-white-dash{width:32px;height:4px;align-self:center;background:repeating-linear-gradient(to right,#1a1208 0,#1a1208 2px,transparent 2px,transparent 4px,#ffffff 4px,#ffffff 10px,transparent 10px,transparent 12px);border:1px solid #999;box-sizing:border-box;}
+.spec-marker-up-arrow{width:20px;height:22px;align-self:center;position:relative;margin-left:6px;}
+.spec-marker-up-arrow::before{content:'';position:absolute;top:4px;left:50%;transform:translateX(-50%);width:3px;height:18px;background:#1a1208;}
+.spec-marker-up-arrow::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:8px solid #1a1208;}
+.spec-observations{padding:18px 22px 20px;background:white;border-top:3px double #c8bfaa;}
+.spec-obs-title{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:12px;}
+.spec-observations ul{margin:0;padding-left:20px;font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.9;}
+.spec-observations li{margin-bottom:6px;}
+.spec-observations li:last-child{margin-bottom:0;}
+.spec-observations strong{color:#1a1208;font-weight:700;}
+.svg-fig{max-width:680px;margin:0 auto;display:block;}
+
+/* Brain figure with overlay callouts */
+.brain-fig{margin:32px 0;text-align:center;}
+.brain-wrap{position:relative;max-width:680px;margin:0 auto;display:inline-block;line-height:0;}
+.brain-wrap img{width:100%;display:block;border:1px solid #e0d8c8;background:white;}
+.brain-ovl{position:absolute;font-family:'Source Sans 3',sans-serif;pointer-events:none;line-height:1.3;}
+/* STS callout bubble — positioned TOP-RIGHT of image (above the red line, outside brain) */
+.brain-ovl-sts{right:2%;top:6%;text-align:left;max-width:38%;}
+.brain-bubble{display:inline-block;background:#8b1a1a;color:white;padding:8px 12px;border-radius:3px;box-shadow:0 3px 10px rgba(0,0,0,.25);}
+.brain-bubble-title{font-size:13px;font-weight:700;letter-spacing:.04em;color:#ffffff;line-height:1.3;}
+.brain-bubble-sub{font-size:11px;font-weight:400;color:#ffe8d8;margin-top:3px;line-height:1.4;}
+.brain-arrow-line{position:absolute;top:38px;right:28%;width:2px;height:58%;background:#8b1a1a;transform:rotate(15deg);transform-origin:top;pointer-events:none;}
+.brain-arrow-tip{position:absolute;top:82%;right:38%;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:10px solid #8b1a1a;pointer-events:none;}
+.brain-ovl-front{left:3%;top:48%;font-size:13px;color:#7a6a55;font-weight:700;background:rgba(255,255,255,.85);padding:2px 6px;border-radius:2px;}
+.brain-ovl-back{right:3%;top:92%;font-size:13px;color:#7a6a55;font-weight:700;background:rgba(255,255,255,.85);padding:2px 6px;border-radius:2px;}
+.brain-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:16px;max-width:580px;margin-left:auto;margin-right:auto;}
+.brain-caption strong{color:#3d3020;font-weight:600;}
+.brain-credit{font-size:10px;color:#b0a090;margin-top:6px;line-height:1.6;}
+@media(max-width:560px){
+  .brain-ovl-sts{max-width:46%;top:4%;}
+  .brain-bubble-title{font-size:11px;}
+  .brain-bubble-sub{font-size:10px;}
+  .brain-ovl-front,.brain-ovl-back{font-size:11px;}
+}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}.tl-item{position:relative;margin-bottom:28px;}.tl-item:last-child{margin-bottom:0;}.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.culture-block{margin:32px 0;border:1px solid #c8bfaa;padding:20px 24px;background:#f3efe6;}.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:12px;}.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}.culture-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:4px;}.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}.ref-title a:hover{border-bottom-color:#8b1a1a;}.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}.sidebar-block:last-child{border-bottom:none;}.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}.sidebar-text strong{color:#3d3020;font-weight:600;}.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}.terminal-dots{display:flex;gap:6px;}.terminal-dot{width:12px;height:12px;border-radius:50%;}.terminal-dot.red{background:#ff5f57;}.terminal-dot.yellow{background:#febc2e;}.terminal-dot.green{background:#28c840;}.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;}.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;}.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}.t-prompt{color:#4a9e6a;margin-right:8px;user-select:none;}.t-input{color:#e8e4de;}.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}.t-output em{color:#e8c56a;font-style:normal;}.t-output strong{color:#fff;font-weight:500;}.t-exit .t-prompt{color:#555;}.t-exit .t-input{color:#555;}.t-exit .t-comment{color:#4a9e6a;}.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}.fade.on{opacity:1;transform:translateY(0);}
+
+/* ── McGurk Lab ── */
+.lab-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:white;}
+.lab-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}
+.lab-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.lab-body{padding:24px 22px;}
+.lab-intro{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:20px;}
+.lab-intro strong{font-weight:600;color:#1a1208;}
+/* Video-based Lab (2-step flow) */
+.vid-stage-large{position:relative;margin:0 auto 20px;background:#000;border:2px solid #1a1208;overflow:hidden;aspect-ratio:16/9;max-width:100%;}
+.vid-stage-large video{width:100%;height:100%;display:block;object-fit:contain;background:#000;}
+.vid-cover{position:absolute;inset:0;background:#1a1208;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity .3s;pointer-events:none;z-index:2;}
+.vid-cover.hide{opacity:0;pointer-events:none;}
+.vid-cover-ico{font-size:80px;line-height:1;}
+.vid-cover-text{font-family:'Source Sans 3',sans-serif;font-size:15px;color:#e8c56a;text-align:center;line-height:1.6;letter-spacing:.06em;padding:0 16px;}
+.vid-progress-bar{position:absolute;left:0;right:0;bottom:0;height:5px;background:rgba(255,255,255,.12);z-index:3;pointer-events:none;}
+.vid-progress-fill{height:100%;width:0%;background:#8b1a1a;transition:width .08s linear;}
+.vid-live-badge{display:none;position:absolute;top:14px;right:14px;padding:6px 14px;background:rgba(139,26,26,.92);color:white;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;border-radius:3px;z-index:3;pointer-events:none;}
+.vid-live-badge.show{display:flex;align-items:center;gap:8px;}
+
+/* Step blocks */
+.lab-step{margin-bottom:16px;padding:18px 20px;background:#faf8f3;border:1px solid #e0d8c8;border-left:4px solid #8b1a1a;transition:all .2s;}
+.lab-step.lab-step-locked{opacity:.5;border-left-color:#c8bfaa;background:#ede8dc;}
+.lab-step.lab-step-locked .vid-btn-play{cursor:not-allowed;}
+.lab-step.lab-step-done{border-left-color:#1a5a30;background:#f0f5ef;}
+.lab-step-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+.lab-step-num{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;padding:4px 12px;background:#8b1a1a;color:white;border-radius:2px;}
+.lab-step.lab-step-locked .lab-step-num{background:#b0a090;}
+.lab-step.lab-step-done .lab-step-num{background:#1a5a30;}
+.lab-step-title{font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:600;color:#1a1208;}
+.lab-step-status{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-left:auto;}
+.lab-step.lab-step-done .lab-step-status{color:#1a5a30;font-weight:600;}
+.lab-step.lab-step-done .lab-step-status::before{content:'✓ ';}
+
+.vid-btn{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;padding:14px 24px;border:2px solid #1a1208;background:white;color:#1a1208;cursor:pointer;letter-spacing:.04em;transition:all .15s;width:100%;}
+.vid-btn:hover:not(:disabled){background:#1a1208;color:white;}
+.vid-btn:disabled{opacity:.4;cursor:not-allowed;background:#ede8dc;color:#b0a090;border-color:#c8bfaa;}
+.vid-btn.playing{background:#8b1a1a !important;border-color:#8b1a1a;color:white !important;animation:btnPulse 1.2s ease-in-out infinite;}
+@keyframes btnPulse{0%,100%{box-shadow:0 0 0 0 rgba(139,26,26,.5);}50%{box-shadow:0 0 0 8px rgba(139,26,26,0);}}
+.vid-btn-play{padding:16px 24px;font-size:15px;}
+.vid-btn-reset{margin-top:14px;padding:11px 22px;font-size:13px;background:#faf8f3;}
+
+.lab-answer{margin-top:14px;padding:14px 16px;background:white;border:1px solid #e0d8c8;}
+.lab-answer .lab-answer-q{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;margin-bottom:12px;text-align:center;}
+.lab-answer .lab-answer-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;}
+.lab-answer .lab-ans{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;padding:8px 16px;border:1px solid #c8bfaa;background:white;color:#1a1208;cursor:pointer;transition:all .15s;}
+.lab-answer .lab-ans:hover{border-color:#8b1a1a;background:#f3efe6;}
+.lab-answer .lab-ans.selected{border-color:#8b1a1a;background:#8b1a1a;color:white;}
+
+/* Result */
+.lab-result-wrap{margin-top:20px;border:2px solid #1a1208;overflow:hidden;background:white;}
+.lab-result-head{background:#1a1208;color:#e8c56a;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:12px 20px;}
+.lab-result-body{padding:20px 22px;}
+.lab-result-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:14px;}
+.lab-result-row:last-of-type{border-bottom:none;}
+.lab-result-label{color:#7a6a55;}
+.lab-result-value{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#1a1208;}
+.lab-result-verdict{margin:16px 0 8px;padding:14px 16px;font-family:'Playfair Display',serif;font-size:18px;font-weight:700;text-align:center;border-radius:2px;}
+.lab-result-verdict.mcgurk{background:#8b1a1a;color:white;}
+.lab-result-verdict.no-effect{background:#3d3020;color:#e8c56a;}
+.lab-result-explain{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;margin-top:8px;}
+.lab-result-explain strong{color:#8b1a1a;}
+.lab-result-stimulus{margin-top:24px;padding:16px 18px;background:#f3efe6;border:1px solid #c8bfaa;border-left:4px solid #1a1208;}
+.lab-result-stimulus-head{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;color:#1a1208;text-transform:uppercase;margin-bottom:12px;}
+.lab-result-stimulus-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;}
+.lab-stim-item{display:grid;grid-template-columns:140px 1fr;gap:12px;padding:8px 0;border-bottom:1px dashed #d8cfb8;}
+.lab-stim-item:last-child{border-bottom:none;}
+.lab-stim-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#7a6a55;line-height:1.5;letter-spacing:.04em;}
+.lab-stim-value{font-family:'Source Serif 4',serif;font-size:13px;font-weight:400;color:#1a1208;line-height:1.7;}
+.lab-stim-note{display:block;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#7a6a55;margin-top:2px;}
+.lab-stim-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.8;margin:0;padding-top:10px;border-top:1px solid #d8cfb8;}
+.lab-stim-caption strong{color:#8b1a1a;font-weight:700;}
+@media(max-width:560px){
+  .lab-stim-item{grid-template-columns:1fr;gap:4px;}
+}
+
+@media(max-width:560px){
+  .lab-step-status{margin-left:0;width:100%;}
+  .lab-answer .lab-ans{font-size:13px;padding:7px 12px;}
+}
+
+.lab-set-wrap{margin-bottom:20px;padding:14px 16px;background:#faf8f3;border:1px solid #e0d8c8;}
+.lab-set-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#7a6a55;text-transform:uppercase;margin-bottom:10px;}
+.lab-sets{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.lab-set{font-family:'Source Sans 3',sans-serif;padding:12px 14px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;text-align:left;transition:all .15s;line-height:1.5;}
+.lab-set strong{display:block;font-size:14px;font-weight:700;color:#1a1208;margin-bottom:3px;}
+.lab-set span{display:block;font-size:11px;font-weight:300;color:#7a6a55;}
+.lab-set:hover{border-color:#8b1a1a;background:#f3efe6;}
+.lab-set.active{border-color:#8b1a1a;background:#8b1a1a;color:white;}
+.lab-set.active strong{color:white;}
+.lab-set.active span{color:#f0d0b0;}
+.lab-modes{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:18px;}
+.lab-mode{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;padding:12px 8px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;transition:all .15s;text-align:center;line-height:1.5;}
+.lab-mode:hover{border-color:#8b1a1a;background:#f3efe6;}
+.lab-mode.active{border-color:#8b1a1a;background:#8b1a1a;color:white;}
+.lab-mode .lab-mode-ico{display:block;font-size:20px;margin-bottom:4px;line-height:1;}
+.lab-mode .lab-mode-sub{display:block;font-size:10px;font-weight:400;color:#b0a090;margin-top:2px;}
+.lab-mode.active .lab-mode-sub{color:#f0d0b0;}
+.lab-display{background:#f3efe6;border:1px solid #e0d8c8;padding:20px;text-align:center;margin-bottom:14px;position:relative;}
+.lab-modelabel{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;color:#8b1a1a;text-transform:uppercase;margin-bottom:12px;}
+.mouth-svg{max-width:260px;width:100%;height:auto;margin:0 auto;display:block;}
+.lab-play{margin-top:16px;font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;padding:12px 32px;border:1px solid #1a1208;background:#1a1208;color:white;cursor:pointer;letter-spacing:.04em;transition:all .15s;}
+.lab-play:hover{background:#8b1a1a;border-color:#8b1a1a;}
+.lab-play:disabled{opacity:.5;cursor:not-allowed;}
+.lab-play.playing{background:#8b1a1a;border-color:#8b1a1a;}
+.lab-playing-badge{display:none;position:absolute;top:12px;right:12px;padding:6px 14px;background:#8b1a1a;color:white;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;border-radius:16px;animation:labPulse 0.6s ease-in-out infinite alternate;}
+.lab-playing-badge.show{display:inline-block;}
+@keyframes labPulse{from{opacity:0.65;transform:scale(0.96);}to{opacity:1;transform:scale(1.04);}}
+.sound-waves{display:none;position:absolute;bottom:72px;left:50%;transform:translateX(-50%);}
+.sound-waves.show{display:flex;gap:3px;align-items:flex-end;height:28px;}
+.sound-waves span{display:block;width:4px;background:#8b1a1a;border-radius:2px;animation:swBar 0.5s ease-in-out infinite alternate;}
+.sound-waves span:nth-child(1){animation-delay:0s;height:35%;}
+.sound-waves span:nth-child(2){animation-delay:.1s;height:65%;}
+.sound-waves span:nth-child(3){animation-delay:.2s;height:100%;}
+.sound-waves span:nth-child(4){animation-delay:.1s;height:65%;}
+.sound-waves span:nth-child(5){animation-delay:0s;height:35%;}
+@keyframes swBar{from{transform:scaleY(0.4);}to{transform:scaleY(1);}}
+.lab-answer{margin-top:16px;padding:16px 18px;background:#faf8f3;border:1px solid #e0d8c8;}
+.lab-answer-q{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;margin-bottom:10px;text-align:center;}
+.lab-answer-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.lab-ans{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;padding:8px 22px;border:1px solid #c8bfaa;background:white;color:#1a1208;cursor:pointer;transition:all .15s;}
+.lab-ans:hover{border-color:#8b1a1a;background:#f3efe6;}
+.lab-ans.selected{border-color:#8b1a1a;background:#8b1a1a;color:white;}
+.lab-feedback{display:none;margin-top:14px;padding:14px 18px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;}
+.lab-feedback.show{display:block;}
+.lab-feedback strong{color:#e8c56a;font-weight:600;}
+.lab-sync{margin-top:20px;padding:14px 18px;background:#faf8f3;border:1px solid #e0d8c8;}
+.lab-sync-lbl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#7a6a55;text-transform:uppercase;margin-bottom:8px;display:flex;justify-content:space-between;}
+.lab-sync-lbl .lab-sync-val{font-family:'JetBrains Mono',monospace;color:#8b1a1a;font-weight:700;letter-spacing:0;}
+.lab-sync input{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;outline:none;background:linear-gradient(to right,#e0d8c8,#8b1a1a 40%,#8b1a1a 60%,#e0d8c8);}
+.lab-sync input::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:white;border:2px solid #1a1208;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.15);}
+.lab-sync input::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:white;border:2px solid #1a1208;cursor:pointer;}
+.lab-sync-note{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:8px;line-height:1.6;}
+.lab-note{margin-top:14px;padding-top:12px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* ── Quiz ── */
+.quiz-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.quiz-header{background:#1a1208;color:white;padding:11px 20px;}.quiz-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.quiz-body{padding:22px 20px;background:white;}.quiz-q{font-family:'Source Serif 4',serif;font-size:15px;font-weight:400;color:#1a1208;line-height:1.7;margin-bottom:14px;}.quiz-opts{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}.quiz-btn{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;padding:10px 16px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;transition:all .15s;text-align:left;}.quiz-btn:hover{border-color:#8b1a1a;background:#f3efe6;}.quiz-btn.correct{border-color:#1a5a30;background:rgba(26,90,48,.08);color:#1a5a30;}.quiz-btn.wrong{border-color:#c4392a;background:rgba(196,57,42,.08);color:#c4392a;}.quiz-result{display:none;padding:14px;background:#f3efe6;border:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.8;margin-top:10px;}.quiz-result strong{font-weight:600;color:#1a1208;}.quiz-result.show{display:block;}
+.quiz-divider{border:none;border-top:1px solid #e0d8c8;margin:20px 0;}
+
+/* ── Bar Chart ── */
+.bar-wrap{margin:28px 0;border:1px solid #e0d8c8;overflow:hidden;}
+.bar-chart{padding:22px 24px 24px;background:#f3efe6;}
+.bar-title{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid #d8cfb8;}
+.bar-row{display:grid;grid-template-columns:130px 1fr 50px;gap:12px;align-items:center;margin-bottom:10px;}
+.bar-row:last-child{margin-bottom:0;}
+.bar-label{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;font-weight:500;}
+.bar-track{height:22px;background:#e0d8c8;position:relative;border-radius:2px;overflow:hidden;}
+.bar-fill{height:100%;background:linear-gradient(to right,#8b1a1a,#c4392a);transition:width 1s ease;}
+.bar-val{font-family:'JetBrains Mono',monospace;font-size:13px;color:#8b1a1a;font-weight:700;text-align:right;}
+.bar-note-block{padding:18px 24px;background:white;border-top:3px double #c8bfaa;}
+.bar-note-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.bar-note{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.85;margin:0;}
+.bar-note strong{color:#1a1208;font-weight:700;}
+
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+  .toc-back{padding:22px 20px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .meta-dates{margin-left:0;width:100%;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;gap:0;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .lab-modes{grid-template-columns:1fr 1fr;}
+  .bar-row{grid-template-columns:90px 1fr 40px;gap:8px;}
+  .svg-fig{max-width:100%;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text{overflow-wrap:anywhere;}
+.tip-box{display:none!important;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}
+.tip.open{background:#fdf3d8;}
+.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}
+.tip-toast.show{bottom:16px;}
+.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}
+.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}
+.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}
+.tip-toast-close:hover{color:#e8c56a;}
+.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}
+.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+</style>
+<script src="https://qualiajournal.com/articles.js" defer></script>
+</head>
+<body>
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<div id="prog"></div>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">知覚・錯覚</p>
+    <h1>耳は<em>口を見ている</em></h1>
+    <p class="cover-deck">音声「ba」に、口の動き「ga」を重ねる。それだけで、多くの人には「da」と聞こえる。耳に届いた音は、顔を見ると別の音に書き換わる。</p>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>CROSS-MODAL</span><span>PHENOMENON</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1976</span>
+      <p class="est-event">McGurk と MacDonald が Nature 誌に「Hearing lips and seeing voices」を発表。偶然の録音ミスから、視覚が聴覚を書き換えていることが明らかになった。</p>
+      <p class="est-context">同年、ベトナム社会主義共和国が成立。モントリオール五輪。毛沢東死去。米大統領選でカーターがフォードを破った。</p>
+    </div>
+    <p class="cover-aside">発表から半世紀。この48年で <strong>4,800本以上の論文</strong>がこの効果を引用してきた。それでも「視覚が聴覚を書き換える仕組み」は、今なお完全には解明されていない。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade"><div class="scenario-inner">
+  <p>ビデオ通話で、音声と映像が数百ミリ秒ズレていることがある。相手の口の動きと声が合わない。すると、なぜか言葉が頭に入ってこない。理解できないわけではない。聞き取れないわけでもない。ただ、どこか違和感があって、会話に集中できなくなる。</p>
+  <p>私たちは気づかないうちに、話し手の口を見ている。その動きを音と重ね合わせて、ひとつの「言葉」として聞いている。耳と目は、別々に働いているのではない。聞くという行為の中に、見るという行為が織り込まれている。</p>
+  <p>聞こえているという体験は、耳から入った音だけで決まっているわけではない。</p>
+</div></div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item"><span class="meta-label">難易度</span>
+    <div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+    <span class="difficulty-text">中級 — 音声学の予備知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item"><span class="meta-label">読了時間</span>
+    <span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 17 分</span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item"><span class="meta-label">Published</span><span class="date-value">2026-04-18</span></div>
+    <div class="date-item"><span class="meta-label">Updated</span><span class="date-value">2026-04-18</span></div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade"><div class="summary-inner">
+  <span class="summary-icon">要点</span>
+  <p class="summary-text">同じ音声でも、重なる口の動きが変われば、聞こえ方は変わる。<strong>聴覚は視覚と分離していない</strong>という事実を、自分の耳で確かめる。</p>
+</div></div>
+
+<!-- ===== ARTICLE ===== -->
+<div class="article">
+<div class="article-main">
+
+<!-- ── 背景 ── -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">1976年、テープを取り違えた実験室から始まった。</h2>
+
+<p class="body-text fade">1976年の春、サリー大学の発達心理学研究室で、ハリー・マクガークと助手のジョン・マクドナルドは、乳児の言語知覚についての実験を準備していた。技術者に依頼したのは単純な作業だった——音声 <em>[ba]</em> を、口が <em>[ga]</em> を発音している映像に、手違いで重ねて再生した。二人が顔を見合わせたのは、その直後である。映像を見ながら聴くと、はっきりと <em>[da]</em> に聞こえる。目を閉じて音だけを聴くと、元どおり <em>[ba]</em> だった。</p>
+
+<p class="body-text fade">二人は実験を組み替えた。成人51名、3〜5歳児21名、7〜8歳児28名を集め、同じ映像を見せ、何に聞こえたかを記録した。結果は衝撃的だった。<strong>映像を見ながら聴いたとき、成人の98%が「違う音」を報告した。</strong>音声 [ba] + 映像 [ga] の組み合わせでは、大多数が「da」または「tha」と答えた。聴覚はそれまで、視覚とは独立した感覚だと信じられてきた。その前提が崩れた瞬間だった。</p>
+
+<!-- 発見の概念図SVG -->
+<div class="diagram-wrap fade">
+  <svg class="svg-fig" viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg">
+    <!-- 音声入力 -->
+    <rect x="20" y="30" width="130" height="70" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.5"/>
+    <text x="85" y="55" font-family="Source Sans 3,sans-serif" font-size="15" fill="#7a6a55" text-anchor="middle">耳に届く音声</text>
+    <text x="85" y="85" font-family="Playfair Display,serif" font-size="26" font-weight="900" fill="#1a1208" text-anchor="middle">/ba/</text>
+    <!-- 映像入力 -->
+    <rect x="20" y="160" width="130" height="70" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.5"/>
+    <text x="85" y="185" font-family="Source Sans 3,sans-serif" font-size="15" fill="#7a6a55" text-anchor="middle">目に映る口の動き</text>
+    <text x="85" y="215" font-family="Playfair Display,serif" font-size="26" font-weight="900" fill="#1a1208" text-anchor="middle">/ga/</text>
+    <!-- 矢印 -->
+    <line x1="155" y1="65" x2="250" y2="120" stroke="#7a6a55" stroke-width="1.5" marker-end="url(#arrA)"/>
+    <line x1="155" y1="195" x2="250" y2="140" stroke="#7a6a55" stroke-width="1.5" marker-end="url(#arrA)"/>
+    <defs>
+      <marker id="arrA" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L3,5 Z" fill="#7a6a55"/></marker>
+    </defs>
+    <!-- 脳の統合ボックス -->
+    <rect x="260" y="90" width="170" height="80" rx="6" fill="#ede8dc" stroke="#8b1a1a" stroke-width="2"/>
+    <text x="345" y="118" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#8b1a1a" text-anchor="middle">脳の統合</text>
+    <text x="345" y="145" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">視覚 × 聴覚</text>
+    <text x="345" y="162" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">(上側頭溝 STS)</text>
+    <!-- 出力矢印 -->
+    <line x1="435" y1="130" x2="525" y2="130" stroke="#8b1a1a" stroke-width="2" marker-end="url(#arrB)"/>
+    <defs>
+      <marker id="arrB" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L3,5 Z" fill="#8b1a1a"/></marker>
+    </defs>
+    <!-- 知覚出力 -->
+    <rect x="530" y="95" width="130" height="70" rx="4" fill="#1a1208" stroke="none"/>
+    <text x="595" y="120" font-family="Source Sans 3,sans-serif" font-size="14" fill="#e8c56a" text-anchor="middle">聞こえる音</text>
+    <text x="595" y="150" font-family="Playfair Display,serif" font-size="26" font-weight="900" fill="white" text-anchor="middle">/da/</text>
+    <!-- 下ラベル -->
+    <text x="340" y="245" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020" text-anchor="middle" font-style="italic">耳にも届いていない音が、聞こえる</text>
+  </svg>
+  <p class="diagram-caption">マクガーク効果の基本構造。音声 /ba/ と視覚 /ga/ を脳が統合した結果、どちらでもない /da/ が聞こえる。/ba/(唇を閉じる) と /ga/(喉奥) の中間にあたる /da/(舌先) が、視覚と聴覚の折衷案として出力される。</p>
+</div>
+
+<p class="body-text fade">発見は意図したものではなかった。マクガークは乳児が母親の顔と声をどう結びつけるかに興味があった。視覚が聴覚を「書き換える」現象を探していたわけではない。しかし、技術者がテープのトラックを誤って組み合わせたおかげで、半世紀にわたって引用され続ける論文が生まれた。Natureへの投稿は1976年7月、受理は11月、掲載は同年12月23日。タイトルは<em>Hearing lips and seeing voices</em>——「唇を聴き、声を見る」。</p>
+
+<div class="quote-block fade">
+  <p class="quote-en">"We present here a new phenomenon which, as far as we are aware, has not hitherto been reported. It reveals a previously unsuspected influence of vision upon speech perception."</p>
+  <p class="quote-ja">ここに、これまで報告されたことのない新しい現象を示す。視覚が音声知覚に与える、これまで想定されていなかった影響が明らかになる。</p>
+  <p class="quote-attr">— McGurk & MacDonald, <em>Hearing lips and seeing voices</em> (Nature, 1976)</p>
+</div>
+
+<!-- 人物ブロック（画像なし1カラム） -->
+<div class="person-block fade">
+  <div class="person-block-body">
+    <p class="person-block-name">ハリー・マクガーク (1936–1998)</p>
+    <p class="person-block-role">British developmental psychologist</p>
+    <p class="person-block-desc">スコットランド生まれの発達心理学者。サリー大学で乳児の音声知覚を研究していた1976年、偶然の録音ミスから<span class="tip" onclick="toggleTip(this)">クロスモーダル<span class="tip-box"><strong>クロスモーダル (Cross-modal)</strong><br>複数の感覚（視覚・聴覚・触覚など）をまたいで情報が統合される現象。モダリティ間の相互作用。</span></span>錯覚を発見した。助手のジョン・マクドナルドとの共著論文は1976年12月のNature誌に掲載。後にストラスクライド大学の児童発達研究センター長を務めたが、1998年に62歳で死去。本人はこの発見を「娘の言語発達を観察する副産物だった」と回想している。</p>
+  </div>
+</div>
+
+<!-- 誤解あるある -->
+<div class="misconception fade">
+  <div class="misconception-header"><span class="misconception-hl">読む前に確認 — よくある誤解</span></div>
+  <div class="misconception-body">
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">錯覚だと知れば、本来の音が聞こえるようになる。</p></div>
+      <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">知識があっても効果は消えない。目を開けている限り、脳は視覚を音に織り込み続ける。解けないのが特徴。</p></div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">耳が良い人ほど、視覚に影響されずに聞き取れる。</p></div>
+      <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">原論文では健聴の成人98%が融合を経験した。聴覚能力の高さと影響の受けやすさは、直接の関係がない。</p></div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">訓練された音楽家なら、耳を独立させて聴ける。</p></div>
+      <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">2019年の研究で、熟練音楽家もマクガーク効果を経験することが確認された。視聴統合は意識の下で起きる。</p></div>
+    </div>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ── 体験 ── -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">目を閉じて聴いたときと、開けて聴いたときで、音は変わる。</h2>
+
+<p class="body-text fade">マクガーク効果は、説明を読むだけでは腑に落ちない。自分の耳で確かめる必要がある。以下の McGurk Lab には、マクガーク効果の研究(Proverbio et al., 2016)で<strong>実際に実験刺激として使われた動画</strong>を埋め込んでいる。この動画は Wikipedia 英語版・中国語版の McGurk 記事でも公式採用されている定番デモ刺激だ。<strong>まず「目を閉じて聴く」で音声だけ確認</strong>し、次に<strong>「映像あり で見る」で同じ動画を見ながら聴き直して</strong>ほしい。同じ音声なのに聞こえ方が変わる瞬間が、マクガーク効果の体験だ。</p>
+
+<!-- McGurk Lab (Wikimedia Commons 動画ベース・2ステップ) -->
+<div class="lab-wrap fade">
+  <div class="lab-header"><span class="lab-hl">✦ McGurk Lab — 本物の研究刺激で体験する</span></div>
+  <div class="lab-body">
+    <p class="lab-intro">ヘッドホン推奨。動画は <strong>Wikipedia 英語版の McGurk 記事で公式採用されている定番刺激</strong>で、Proverbio et al. 2016 論文に収録された実験刺激(音声 /pa/ に口 /ka/ の発音映像を重ねたもの)。<strong>重要</strong>: この音声トラックは論文著者が研究目的で<em>意図的に子音情報を弱めた「曖昧な音」</em>に加工されている。そのため、目を閉じて聴いても人によって /pa/・/ta/・/ba/・/fa/ などに聞こえる。これはバグではなく、視覚の影響が働きやすいように設計された実験刺激の特徴。Step 1 と Step 2 を順番に進めてください。</p>
+
+    <!-- 動画ステージ(Step1/Step2共通) -->
+    <div class="vid-stage-large" id="vidStageMain">
+      <video id="vidMain" playsinline preload="metadata">
+        <source src="./mcgurk_s3_suppvid2.webm" type="video/webm">
+        <source src="./mcgurk_s3_suppvid2.ogv" type="video/ogg">
+      </video>
+      <div class="vid-cover" id="coverMain">
+        <span class="vid-cover-ico" id="coverIco">🙈</span>
+        <span class="vid-cover-text" id="coverText">▶ 再生ボタンを押してください</span>
+      </div>
+      <div class="vid-progress-bar" id="vidProgressBar"><div class="vid-progress-fill" id="vidProgressFill"></div></div>
+      <div class="vid-live-badge" id="vidLiveBadge">🔴 再生中 <span id="vidTimer">0.0s / 7.4s</span></div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="lab-step" id="step1Block">
+      <div class="lab-step-head">
+        <span class="lab-step-num">STEP 1</span>
+        <span class="lab-step-title">🙈 まず目を閉じて(映像なしで音だけ)聴く</span>
+        <span class="lab-step-status" id="step1Status">未完了</span>
+      </div>
+      <button class="vid-btn vid-btn-play" id="btnStep1" onclick="playLabStep(1)">▶ Step 1 を再生(音のみ)</button>
+      <div class="lab-answer" id="ans1Block" style="display:none;">
+        <p class="lab-answer-q"><strong>何に聞こえた?</strong>(クリックして選ぶ)</p>
+        <div class="lab-answer-row">
+          <button class="lab-ans" data-ans="BA" onclick="answerStep(1,'BA')">BA (ば)</button>
+          <button class="lab-ans" data-ans="PA" onclick="answerStep(1,'PA')">PA (ぱ)</button>
+          <button class="lab-ans" data-ans="DA" onclick="answerStep(1,'DA')">DA (だ)</button>
+          <button class="lab-ans" data-ans="TA" onclick="answerStep(1,'TA')">TA (た)</button>
+          <button class="lab-ans" data-ans="GA" onclick="answerStep(1,'GA')">GA (が)</button>
+          <button class="lab-ans" data-ans="KA" onclick="answerStep(1,'KA')">KA (か)</button>
+          <button class="lab-ans" data-ans="其他" onclick="answerStep(1,'その他')">その他</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="lab-step lab-step-locked" id="step2Block">
+      <div class="lab-step-head">
+        <span class="lab-step-num">STEP 2</span>
+        <span class="lab-step-title">👀 次に映像あり で同じ動画を観る</span>
+        <span class="lab-step-status" id="step2Status">Step 1 を完了してください</span>
+      </div>
+      <button class="vid-btn vid-btn-play" id="btnStep2" onclick="playLabStep(2)" disabled>▶ Step 2 を再生(映像+音)</button>
+      <div class="lab-answer" id="ans2Block" style="display:none;">
+        <p class="lab-answer-q"><strong>何に聞こえた?</strong>(映像を見ながら聴いた結果)</p>
+        <div class="lab-answer-row">
+          <button class="lab-ans" data-ans="BA" onclick="answerStep(2,'BA')">BA (ば)</button>
+          <button class="lab-ans" data-ans="PA" onclick="answerStep(2,'PA')">PA (ぱ)</button>
+          <button class="lab-ans" data-ans="DA" onclick="answerStep(2,'DA')">DA (だ)</button>
+          <button class="lab-ans" data-ans="TA" onclick="answerStep(2,'TA')">TA (た)</button>
+          <button class="lab-ans" data-ans="GA" onclick="answerStep(2,'GA')">GA (が)</button>
+          <button class="lab-ans" data-ans="KA" onclick="answerStep(2,'KA')">KA (か)</button>
+          <button class="lab-ans" data-ans="其他" onclick="answerStep(2,'その他')">その他</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 結果 -->
+    <div class="lab-result-wrap" id="labResult" style="display:none;">
+      <div class="lab-result-head">結果</div>
+      <div class="lab-result-body">
+        <div class="lab-result-row">
+          <span class="lab-result-label">Step 1(音だけ)</span>
+          <span class="lab-result-value" id="resultAns1">—</span>
+        </div>
+        <div class="lab-result-row">
+          <span class="lab-result-label">Step 2(映像あり)</span>
+          <span class="lab-result-value" id="resultAns2">—</span>
+        </div>
+        <div class="lab-result-verdict" id="resultVerdict"></div>
+        <div class="lab-result-explain" id="resultExplain"></div>
+
+        <div class="lab-result-stimulus">
+          <p class="lab-result-stimulus-head">📎 種あかし — この動画で実際に起きていたこと</p>
+          <div class="lab-result-stimulus-grid">
+            <div class="lab-stim-item">
+              <span class="lab-stim-label">実際に鳴っていた音声</span>
+              <span class="lab-stim-value">/pa/(ぱ)<span class="lab-stim-note">※ただし論文著者が子音情報を意図的に弱めた曖昧な音</span></span>
+            </div>
+            <div class="lab-stim-item">
+              <span class="lab-stim-label">映像の口の動き</span>
+              <span class="lab-stim-value">/ka/(か)を発音している様子</span>
+            </div>
+            <div class="lab-stim-item">
+              <span class="lab-stim-label">この2つを合成した結果</span>
+              <span class="lab-stim-value">McGurk 効果が発動した場合、多くの人に /ta/(た)と聞こえる</span>
+            </div>
+          </div>
+          <p class="lab-stim-caption">音声トラックは Step 1・Step 2 で一字一句同じ。違うのは<strong>映像を見せたか見せなかったか</strong>だけ。それでも聞こえ方が変わるなら、脳が視覚情報を聴覚に織り込んだ証拠です。</p>
+        </div>
+
+        <button class="vid-btn vid-btn-reset" onclick="resetLab()">もう一度試す</button>
+      </div>
+    </div>
+
+    <p class="lab-note">
+      <strong>動画のライセンス</strong>: Proverbio A, Massetti G, Rizzi E, Zani A (2016) <em>Skilled musicians are not subject to the McGurk effect</em>, Scientific Reports 6:30423 の補足動画 S2。<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color:#8b1a1a;">CC BY 4.0</a>(改変なし)。再生できない場合は Chrome/Firefox でお試しください。
+      <br><br>
+      <strong>自然な肉声での McGurk 効果も体験したい方へ</strong>: 上記の研究刺激は子音情報を弱めた曖昧な音声を使うため、結果がばらつきやすい特徴があります。自然に録音された肉声ベースのデモ映像は、BBC Horizon の番組 <em>"Is Seeing Believing?"</em> に収録されており、<a href="https://www.youtube.com/watch?v=G-lN8vWm3m0" target="_blank" rel="noopener" style="color:#8b1a1a;">YouTube で視聴可能</a>(著作権は BBC に帰属、外部サイトへ移動します)。加工されていない自然発話での体験と本 Lab の結果を比べてみてください。
+    </p>
+  </div>
+</div>
+
+<p class="body-text fade">Step 1 と Step 2 を試してみて、どうだっただろうか。<strong>目を閉じて聴いたときと、映像を見ながら聴いたときで、同じ音声なのに聞こえ方が変わった</strong>——もし変わったなら、それがマクガーク効果を自分の耳と脳で体験した瞬間だ。融合は自分で「書き換えるぞ」と意識して起きるわけではない。目を開けているだけで、視覚情報が勝手に聴覚を上書きする。意識がそれを検知することすらできない。</p>
+
+<div class="note-box fade">
+  <strong>📌 日本語話者が気づくかもしれないこと</strong>—— 動画の話者は英語話者で、/g/ を発音するとき破裂の<em>直後</em>から声帯を震わせる。一方、日本語の /が/ は破裂の<em>前</em>から声帯を震わせる先行有声化があるため、日本人の耳には英語 /g/ が「か」寄りに聞こえることがある(VOT = 声帯振動開始時間の違い)。これも<strong>脳が学習した音韻の枠組みで物理音を分類している</strong>現象で、視覚が聴覚を書き換えるマクガーク効果と同じ原理の、言語学習版だ。この Lab で使っている動画は voiceless(/pa/+/ka/→/ta/)パターンなので、日本人にも VOT 問題の影響が少なく効果を体験しやすい。
+</div>
+
+<!-- 音声の音響解析(補足) -->
+<div class="spec-fig fade">
+  <img src="./fig_spectrogram.png" alt="動画音声第1音節のスペクトログラム。縦軸は周波数、横軸は時刻" loading="lazy">
+  <div class="spec-legend">
+    <p class="spec-legend-title">📊 図の見方(※筆者による簡易解析)</p>
+    <div class="spec-legend-row"><span class="spec-marker spec-marker-red-line"></span><span>縦の赤線 = 破裂(burst)の瞬間</span></div>
+    <div class="spec-legend-row"><span class="spec-marker spec-marker-cyan-line"></span><span>水色の実線 = この音声の<strong>実測 F2(第二フォルマント、~1400Hz)</strong></span></div>
+    <div class="spec-legend-row"><span class="spec-marker spec-marker-white-dash"></span><span>白い破線 = 本来の <strong>/pa/ が持つべき F2 locus(~800Hz)</strong></span></div>
+    <div class="spec-legend-row"><span class="spec-marker spec-marker-up-arrow"></span><span>黒い上向き矢印 = F2 が本来より高く加工されている方向(/ta/ 寄りの ~1800Hz に近づけた中間値)</span></div>
+  </div>
+  <div class="spec-observations">
+    <p class="spec-obs-title">観察から示唆されること(100%の確定ではない)</p>
+    <ul>
+      <li>破裂音のエネルギーは低周波に集中 → 両唇音 <strong>/p/・/b/</strong> の典型的特徴(/t/ なら高域、/k/ なら中域が強くなる)</li>
+      <li>したがって子音部は物理的に <strong>/pa/</strong> と考えられる(Wikipedia キャプション「audio of [pa]」と整合)</li>
+      <li>ただし F2 立ち上がりが ~1300Hz と、本来の /pa/(~800Hz)より高い</li>
+      <li>これは <strong>/ta/ の F2 locus(~1800Hz)寄りに加工された中間値</strong>。Proverbio 論文の「子音情報を曖昧化」と符合</li>
+      <li>結果として、聴者によっては /pa/ とも /ta/ とも聞こえうる<strong>境界的な刺激</strong>になっている可能性がある</li>
+    </ul>
+  </div>
+</div>
+
+<div class="note-box fade">
+  <strong>🎧 Step 1 でも「た」寄りに聞こえた人へ</strong>—— Lab の Step 1(音だけ)でも「た」「タ」寄りに聞こえ、Step 2(映像あり)で変化しなかった場合、それは Lab が機能していないわけではなく、<strong>刺激音声そのものが境界的に作られている</strong>ことが効いている可能性があります。Proverbio 論文は実際に「子音情報を意図的に弱めた」と記述しており、上記のスペクトログラム解析もそれと整合しています(※100%の確定ではなく強く示唆される範囲の知見)。マクガーク融合が視覚で発動したかどうかは、元の音声が十分に曖昧なほど分かりにくくなります。自然な肉声でのデモ(BBC Horizon など Lab 末尾のリンク)も併せて試すと比較しやすいです。
+</div>
+
+<!-- ミニクイズ -->
+<div class="quiz-wrap fade">
+  <div class="quiz-header"><span class="quiz-hl">✦ Quick Quiz — 個人差と文化差</span></div>
+  <div class="quiz-body">
+    <p class="quiz-q"><strong>Q1.</strong> 原論文 (McGurk & MacDonald 1976) で、健聴の成人が /ba/音 + /ga/口 を見せられたとき、視覚の影響を受けて「本来とは違う音」を報告した割合は?</p>
+    <div class="quiz-opts">
+      <button class="quiz-btn" onclick="q1(this,'a')">A. 約 35%（3人に1人程度）</button>
+      <button class="quiz-btn" onclick="q1(this,'b')">B. 約 65%（3人に2人）</button>
+      <button class="quiz-btn" onclick="q1(this,'c')">C. 約 98%（ほぼ全員）</button>
+    </div>
+    <div class="quiz-result" id="q1res"></div>
+    <hr class="quiz-divider">
+    <p class="quiz-q"><strong>Q2.</strong> 日本語を母語とする聴者と、英語を母語とする聴者。マクガーク効果(融合知覚)を強く体験するのはどちらか?</p>
+    <div class="quiz-opts">
+      <button class="quiz-btn" onclick="q2(this,'a')">A. 日本語話者のほうが強い</button>
+      <button class="quiz-btn" onclick="q2(this,'b')">B. 英語話者のほうが強い</button>
+      <button class="quiz-btn" onclick="q2(this,'c')">C. 母語による差はない</button>
+    </div>
+    <div class="quiz-result" id="q2res"></div>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ── なぜか（メカニズム） ── -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">統合は、耳の中では起きていない。</h2>
+
+<p class="body-text fade">音は鼓膜を震わせて蝸牛に届き、有毛細胞が電気信号に変換する。ここまでは純粋な聴覚処理だ。映像は網膜の光受容細胞から、視覚野(後頭葉)に送られる。別々の入力、別々の経路。しかし、この2つがどこかで合流するからこそ、マクガーク効果は起きる。合流地点はどこにあるのか——fMRIと<span class="tip" onclick="toggleTip(this)">経頭蓋磁気刺激<span class="tip-box"><strong>経頭蓋磁気刺激 (TMS)</strong><br>頭蓋外から磁気パルスを当てて、特定の脳領域の活動を一時的に抑制する手法。神経科学で因果関係を調べるのに使われる。</span></span>(TMS)が、答えを教えてくれる。</p>
+
+<!-- Brain lateral view (Gray's Anatomy 1918, Public Domain) with overlay -->
+<figure class="brain-fig fade">
+  <div class="brain-wrap">
+    <img src="./fig_brain_sts.png" alt="左大脳半球の側面図。赤い線が上側頭溝(STS)を示す" loading="lazy">
+    <span class="brain-ovl brain-ovl-front">◀ 前</span>
+    <span class="brain-ovl brain-ovl-back">後 ▶</span>
+    <div class="brain-ovl brain-ovl-sts">
+      <div class="brain-bubble">
+        <div class="brain-bubble-title">上側頭溝 (STS)</div>
+        <div class="brain-bubble-sub">視覚と聴覚の統合ハブ</div>
+      </div>
+    </div>
+    <span class="brain-arrow-line"></span>
+    <span class="brain-arrow-tip"></span>
+  </div>
+  <p class="brain-caption">左大脳半球の側面図。赤くハイライトされているのが<strong>上側頭溝(STS)</strong>——側頭葉の上・中2つの回(Superior / Middle Temporal Gyrus)を分ける溝だ。耳からの音情報は側頭葉上部の聴覚野へ、目からの視覚情報は後頭葉の視覚野へ入り、両者がこのSTSで合流する。</p>
+  <p class="brain-credit">原図: Henry Vandyke Carter, Gray's Anatomy (1918) — Public Domain / STSハイライト: Wikimedia Commons user "Was a bee" (Public Domain)</p>
+</figure>
+
+<!-- 情報フロー図: 耳・目 → 聴覚野・視覚野 → STSで統合 → 意識 -->
+<div class="diagram-wrap fade">
+  <svg class="svg-fig" viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arrBlue" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L3,5 Z" fill="#3a5a8a"/></marker>
+      <marker id="arrBrown" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L3,5 Z" fill="#8b6a40"/></marker>
+      <marker id="arrRed" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L3,5 Z" fill="#8b1a1a"/></marker>
+    </defs>
+
+    <!-- 上の行: 聴覚経路 -->
+    <!-- 耳 (入力) — 丸枠なし、大きい絵文字 -->
+    <text x="60" y="95" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,sans-serif" font-size="62" text-anchor="middle">👂</text>
+    <text x="60" y="125" font-family="Source Sans 3,sans-serif" font-size="16" font-weight="700" fill="#3a5a8a" text-anchor="middle">耳</text>
+    <!-- 矢印: 耳→聴覚野 -->
+    <line x1="110" y1="80" x2="210" y2="80" stroke="#3a5a8a" stroke-width="2.5" marker-end="url(#arrBlue)"/>
+    <text x="160" y="68" font-family="Source Sans 3,sans-serif" font-size="16" font-weight="600" fill="#3a5a8a" text-anchor="middle">音波</text>
+    <!-- 聴覚野 (中間処理) -->
+    <rect x="220" y="46" width="160" height="70" rx="6" fill="#d4dae8" stroke="#3a5a8a" stroke-width="1.5"/>
+    <text x="300" y="76" font-family="Source Sans 3,sans-serif" font-size="18" font-weight="700" fill="#1a1208" text-anchor="middle">聴覚野</text>
+    <text x="300" y="100" font-family="Source Sans 3,sans-serif" font-size="15" fill="#3a5a8a" text-anchor="middle">音の周波数を分析</text>
+
+    <!-- 下の行: 視覚経路 -->
+    <!-- 目 (入力) — 丸枠なし、大きい絵文字 -->
+    <text x="60" y="295" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,sans-serif" font-size="62" text-anchor="middle">👁</text>
+    <text x="60" y="324" font-family="Source Sans 3,sans-serif" font-size="16" font-weight="700" fill="#8b6a40" text-anchor="middle">目</text>
+    <!-- 矢印: 目→視覚野 -->
+    <line x1="110" y1="280" x2="210" y2="280" stroke="#8b6a40" stroke-width="2.5" marker-end="url(#arrBrown)"/>
+    <text x="160" y="268" font-family="Source Sans 3,sans-serif" font-size="16" font-weight="600" fill="#8b6a40" text-anchor="middle">光</text>
+    <!-- 視覚野 (中間処理) -->
+    <rect x="220" y="246" width="160" height="70" rx="6" fill="#ece2ce" stroke="#8b6a40" stroke-width="1.5"/>
+    <text x="300" y="276" font-family="Source Sans 3,sans-serif" font-size="18" font-weight="700" fill="#1a1208" text-anchor="middle">視覚野</text>
+    <text x="300" y="300" font-family="Source Sans 3,sans-serif" font-size="15" fill="#8b6a40" text-anchor="middle">口の動きを識別</text>
+
+    <!-- 中央: STS (統合) -->
+    <rect x="420" y="140" width="190" height="90" rx="6" fill="#f3d8d4" stroke="#8b1a1a" stroke-width="2.5"/>
+    <text x="515" y="168" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#8b1a1a" text-anchor="middle">統合ハブ</text>
+    <text x="515" y="192" font-family="Source Sans 3,sans-serif" font-size="20" font-weight="700" fill="#8b1a1a" text-anchor="middle">上側頭溝 (STS)</text>
+    <text x="515" y="215" font-family="Source Sans 3,sans-serif" font-size="15" fill="#8b1a1a" text-anchor="middle">視覚 × 聴覚</text>
+
+    <!-- 聴覚野→STS -->
+    <path d="M380,90 Q420,90 440,145" stroke="#3a5a8a" stroke-width="2.5" fill="none" marker-end="url(#arrBlue)"/>
+    <!-- 視覚野→STS -->
+    <path d="M380,270 Q420,270 440,225" stroke="#8b6a40" stroke-width="2.5" fill="none" marker-end="url(#arrBrown)"/>
+
+    <!-- STS→意識 -->
+    <line x1="610" y1="185" x2="655" y2="185" stroke="#8b1a1a" stroke-width="2.5" marker-end="url(#arrRed)"/>
+    <!-- 意識出力 -->
+    <rect x="660" y="145" width="58" height="80" rx="6" fill="#1a1208"/>
+    <text x="689" y="176" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="700" fill="#e8c56a" text-anchor="middle">意識</text>
+    <text x="689" y="200" font-family="Source Sans 3,sans-serif" font-size="14" fill="white" text-anchor="middle">に上る</text>
+
+    <!-- 下部説明 -->
+    <line x1="20" y1="360" x2="700" y2="360" stroke="#c8bfaa" stroke-width="0.5" stroke-dasharray="3,3"/>
+    <text x="360" y="388" font-family="Source Sans 3,sans-serif" font-size="16" font-style="italic" fill="#3d3020" text-anchor="middle">音と映像は別経路で脳に入り、STSで合流してから「聞こえた音」になる</text>
+  </svg>
+  <p class="diagram-caption">耳からの音と目からの口の動きは、別々の経路で脳に入る。しかし意識に上る前に、<strong>上側頭溝(STS)</strong>で一度統合される。STSをTMSで一時的に止めるとマクガーク効果が消える(Beauchamp 2010)——視覚が聴覚を書き換える中継地点だ。</p>
+</div>
+
+<p class="body-text fade"><span class="tip" onclick="toggleTip(this)">上側頭溝<span class="tip-box"><strong>上側頭溝 (Superior Temporal Sulcus, STS)</strong><br>側頭葉の外側を前後に走る深いしわ。顔認識・生物的動き・音声の統合など、社会的情報処理の中心的ハブ。</span></span>(STS) は、脳の側頭葉にある深いしわで、顔の動きや生物的な運動を処理する場所として知られていた。2010年、ボーシャンらは、被験者が不一致動画(/ba/音+/ga/口)を見ている最中にTMSでSTSの活動を抑制した。結果、マクガーク効果の発生率はほぼ半分に落ちた。STSを黙らせると、視覚は聴覚を書き換えなくなる。逆に一致動画(/ba/音+/ba/口)の認識には影響しなかった。STSは、クロスモーダルな錯覚の司令塔だった。</p>
+
+<!-- 3段階処理フロー -->
+<div class="diagram-wrap fade">
+  <svg class="svg-fig" viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+    <!-- ステップ1 -->
+    <rect x="20" y="90" width="170" height="80" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.5"/>
+    <text x="105" y="114" font-family="Source Sans 3,sans-serif" font-size="14" font-weight="600" fill="#8b1a1a" text-anchor="middle">STEP 1 (〜50ms)</text>
+    <text x="105" y="138" font-family="Source Sans 3,sans-serif" font-size="16" font-weight="600" fill="#1a1208" text-anchor="middle">感覚入力</text>
+    <text x="105" y="158" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">耳・目それぞれ別経路</text>
+    <!-- 矢印1 -->
+    <line x1="195" y1="130" x2="230" y2="130" stroke="#7a6a55" stroke-width="2" marker-end="url(#arrD)"/>
+    <!-- ステップ2 -->
+    <rect x="235" y="90" width="180" height="80" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1.5"/>
+    <text x="325" y="114" font-family="Source Sans 3,sans-serif" font-size="14" font-weight="600" fill="#8b1a1a" text-anchor="middle">STEP 2 (〜150ms)</text>
+    <text x="325" y="138" font-family="Source Sans 3,sans-serif" font-size="16" font-weight="600" fill="#1a1208" text-anchor="middle">STSでの統合</text>
+    <text x="325" y="158" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">視覚で聴覚を補正</text>
+    <!-- 矢印2 -->
+    <line x1="420" y1="130" x2="455" y2="130" stroke="#7a6a55" stroke-width="2" marker-end="url(#arrD)"/>
+    <!-- ステップ3 -->
+    <rect x="460" y="90" width="180" height="80" rx="4" fill="#1a1208"/>
+    <text x="550" y="114" font-family="Source Sans 3,sans-serif" font-size="14" font-weight="600" fill="#e8c56a" text-anchor="middle">STEP 3 (〜200ms)</text>
+    <text x="550" y="138" font-family="Source Sans 3,sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">意識に上る音</text>
+    <text x="550" y="158" font-family="Source Sans 3,sans-serif" font-size="14" fill="#c8bfaa" text-anchor="middle">修正後の結果だけ</text>
+    <defs>
+      <marker id="arrD" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L3,5 Z" fill="#7a6a55"/></marker>
+    </defs>
+    <!-- 下部説明 -->
+    <line x1="20" y1="220" x2="660" y2="220" stroke="#c8bfaa" stroke-width="0.5" stroke-dasharray="3,3"/>
+    <text x="330" y="250" font-family="Source Sans 3,sans-serif" font-size="15" font-style="italic" fill="#3d3020" text-anchor="middle">意識が触れるのは Step 3 だけ。Step 2 の修正作業は、気づけない。</text>
+  </svg>
+  <p class="diagram-caption">音が「聞こえた」と意識するまでの3段階。意識化されるのは Step 3 の最終結果だけで、Step 2 でどう修正されたかは自覚できない。だから錯覚だと知っていても効果は消えない——書き換えは自覚の外で起きている。</p>
+</div>
+
+<p class="body-text fade">ここで重要なのは<strong>意識のタイミング</strong>だ。耳に届いた音が鼓膜を揺らしてから、意識に「何か聞こえた」と上るまで約200ミリ秒かかる。この200msの中で、脳は耳と目からの情報を突き合わせ、ズレていれば片方を書き換える。視覚は口の動きという<strong>強い文脈情報</strong>を持っているため、優先度が高い。結果として、意識に上る音は「耳に届いた音」ではなく「視覚で補正された音」になる。</p>
+
+<div class="pull fade">
+  <p class="pull-q">"As far as the speech brain is concerned, <em>the auditory and visual information are never really separate.</em>"</p>
+  <p class="pull-attr">話すための脳にとって、聴覚情報と視覚情報は決して切り離されていない。<br>— Lawrence Rosenblum(カリフォルニア大学リバーサイド校・心理学教授、『See What I'm Saying』著者)</p>
+</div>
+
+<p class="body-text fade">もうひとつ、興味深い事実がある。<strong>融合の強さは、人によって驚くほど違う</strong>。同じ /ba/音+/ga/口 の動画を見せても、融合率が0%の人から100%の人までが存在する。健康な成人の中でも、この分布は広い。発達段階による差もある。5〜9歳の子どもは視覚の影響が弱く、音声のまま「ba」と聞き取ることが多い。視聴統合は、年齢とともに深まる技能だ。</p>
+
+<!-- 発達・文化差の棒グラフ -->
+<div class="bar-wrap fade">
+  <div class="bar-chart">
+    <p class="bar-title">McGurk 融合率の4つの比較</p>
+    <div class="bar-row">
+      <div class="bar-label">成人(英語話者)</div>
+      <div class="bar-track"><div class="bar-fill" style="width:82%;"></div></div>
+      <div class="bar-val">82%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">10代(英語話者)</div>
+      <div class="bar-track"><div class="bar-fill" style="width:72%;"></div></div>
+      <div class="bar-val">72%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">5〜9歳児</div>
+      <div class="bar-track"><div class="bar-fill" style="width:40%;"></div></div>
+      <div class="bar-val">40%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">成人(日本語話者)</div>
+      <div class="bar-track"><div class="bar-fill" style="width:48%;"></div></div>
+      <div class="bar-val">48%</div>
+    </div>
+  </div>
+  <div class="bar-note-block">
+    <p class="bar-note-label">◆ 読み方</p>
+    <p class="bar-note">成人は視覚統合が強い。子どもは音声優位で、年齢とともに視覚依存が増える。日本語話者は英語話者より融合が弱い——Sekiyama &amp; Tohkura (1993)の解釈は2つある。<strong>音韻弁別性仮説</strong>(日本語の子音差が明瞭で、視覚に頼る必要が少ない)と、<strong>顔直視回避仮説</strong>(対面で顔を凝視する習慣が相対的に弱い)。いずれも確定ではない。数値は諸研究の平均的傾向で、個人差は非常に大きい。</p>
+  </div>
+</div>
+
+<p class="body-text fade">個人差と文化差の存在は、マクガーク効果が<em>固定した「仕組み」</em>ではないことを示している。誰もが同じ割合で視覚に頼っているわけではない。幼少期の言語環境、顔を見る習慣、おそらくは眼球運動の癖まで、さまざまな要因がこの統合の強さを調整している。<strong>「脳は視覚を優先する」は平均的な話であって、個々人にそのまま当てはまるわけではない。</strong></p>
+
+<hr class="art-rule">
+
+<!-- ── 歴史 ── -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">「聞く」と「見る」の境目を溶かした半世紀。</h2>
+
+<div class="timeline fade">
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1954</p>
+    <p class="tl-title">ススマンのダイコティック実験</p>
+    <p class="tl-desc">両耳に別々の単語を流すと片方しか聞き取れない「選択的注意」の研究が始まる。聴覚は独立の感覚だとされていた。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1976</p>
+    <p class="tl-title">McGurk & MacDonald — Nature誌に「Hearing lips and seeing voices」</p>
+    <p class="tl-desc">音声/ba/ + 口/ga/の映像で成人の98%が「da」と報告。視覚が聴覚を書き換える初の実証。偶然の録音ミスが出発点だった。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1991</p>
+    <p class="tl-title">Sekiyama & Tohkura — 日本語話者の特殊性</p>
+    <p class="tl-desc">日本語を母語とする被験者でマクガーク効果が弱いことを報告。言語・文化によって視覚依存の度合いが違うことが判明した。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2005</p>
+    <p class="tl-title">Calvert & Thesen — fMRIでSTSの関与を特定</p>
+    <p class="tl-desc">マクガーク融合が起きているとき、脳のどこが活動しているかを画像で観察。上側頭溝が有力候補として浮上した。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2010</p>
+    <p class="tl-title">Beauchamp et al. — TMSで因果関係を証明</p>
+    <p class="tl-desc">被験者がマクガーク刺激を見ている最中にSTSをTMSで抑制。融合率がほぼ半分に落ち、STSがこの錯覚の因果的中枢であることが示された。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2016</p>
+    <p class="tl-title">YouTubeとTikTokで拡散</p>
+    <p class="tl-desc">BBC Horizon「Is Seeing Believing?」(2010) の /ba/-/fa/ デモ映像をきっかけに、視聴覚錯覚の動画が数千万回再生される。大衆文化への浸透。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2018</p>
+    <p class="tl-title">40年レビュー — Alsius et al.</p>
+    <p class="tl-desc">発見から40年のレビューが刊行。研究蓄積は膨大だが、個人差・文化差の本当の原因はいまだ確定していないと結論される。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2023</p>
+    <p class="tl-title">AI音声モデルへの応用</p>
+    <p class="tl-desc">Audio-Visual Speech Recognition が実用段階に。騒音下では口の動きを併用した方が認識精度が上がる——マクガーク効果の工学的応用。</p>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ── つまり ── -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">聞こえるという出来事は、顔とセットで起きている。</h2>
+
+<p class="body-text fade">耳が音を拾い、脳が意味を付ける——それだけなら、話はシンプルだ。しかし現実には、脳は耳だけの信号を信じていない。話し手の口を見ていれば、口の動きを<span class="tip" onclick="toggleTip(this)">音素<span class="tip-box"><strong>音素 (Phoneme)</strong><br>言語の意味を区別する最小の音単位。/b//g//d/ のような子音はすべて音素。耳が受け取る物理音から、脳が抽出する分類ラベル。</span></span>と突き合わせ、ズレていれば視覚を優先して音を書き換える。<strong>聞こえるという体験は、顔を見るという行為と、分かちがたく結びついている。</strong></p>
+
+<p class="body-text fade">この発見が意味するのは、単に「視覚が強い」ということではない。<em>聴覚という独立した感覚は、実のところ存在しないかもしれない</em>、ということだ。進化の時間尺度で、人間は常に話し相手の顔を見ながら言葉を聞いてきた。耳と目は、常にセットで働く前提で設計されている。電話やラジオのように、音声だけを切り離して届ける技術は20世紀の発明に過ぎない。脳は、それに合わせて進化していない。</p>
+
+<p class="body-text fade">同じ理由で、マスクをつけた相手の声は聞き取りにくい。コロナ禍で多くの人が経験した通りだ。音量は変わっていない。なのに、理解の負荷が上がる。<strong>口の動きが見えないせいで、脳は普段使える情報源を一つ失い、耳だけで音を組み立てなければならない。</strong>「聞こえているけれど聞き取れない」という奇妙な感覚の正体は、ここにある。</p>
+
+<!-- 文化への登場 -->
+<div class="culture-block fade">
+  <p class="culture-label">◆ 文化・メディアへの登場</p>
+  <div class="culture-item">
+    <p class="culture-title">BBC Horizon — "Is Seeing Believing?" (2010)</p>
+    <p class="culture-desc">科学ドキュメンタリー番組がマクガーク効果を扱い、口を「Fa」と動かしながら音声「Ba」を流すクリップを放映。視聴者はまず「Fa」と聞き、目を閉じて再生すると「Ba」に切り替わる体験を一斉に経験した。YouTubeに転載され数千万再生を記録。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">映画吹替の違和感の正体</p>
+    <p class="culture-desc">外国映画の日本語吹替で、役者の口の動きと日本語のセリフがズレていると不自然に感じる。マクガーク効果は失敗した吹替で最もよく観察される——脳が口と音を整合させようとして、違和感が残留する。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">"Yanny / Laurel" (2018)</p>
+    <p class="culture-desc">2018年、同じ音声が人によって「ヤニー」と「ローレル」に聞こえ分かれる錯覚がSNSで拡散。マクガーク効果と厳密には別現象だが、「同じ物理入力で人によって聞こえる音が違う」という点で、同じ系譜の驚きが大衆に届いた瞬間だった。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">音声認識AIへの工学応用</p>
+    <p class="culture-desc">TeslaやGoogleの音声認識は、カメラを併用するAudio-Visual Speech Recognitionが研究されている。騒音下では口の動きを加えた方が精度が上がる。人間の脳が1976年に示していた戦略を、機械も取り入れつつある。</p>
+  </div>
+</div>
+
+<p class="body-text fade">マクガーク効果は、意識の端にある装置を可視化する。<em>意識に上る音は、世界の物理的な事実ではなく、複数の感覚を突き合わせた後の「結論」</em>だ。私たちは生のデータを聞いていない。耳と目が共同で作った編集済みの出力を、「聞こえたもの」として受け取っている。世界を直接知覚しているという感覚そのものが、実のところ幻影に近い。</p>
+
+<hr class="art-rule">
+
+<!-- ── 参考文献 ── -->
+<div class="sec-rule fade"><span class="sec-label">参考文献</span><div class="sec-line"></div></div>
+
+<div class="ref-list">
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1976</span></div>
+    <p class="ref-title"><a href="https://www.nature.com/articles/264746a0" target="_blank" rel="noopener">Hearing lips and seeing voices</a></p>
+    <p class="ref-author">McGurk, H. &amp; MacDonald, J. — Nature, 264(5588), 746–748</p>
+    <p class="ref-desc">マクガーク効果を報告した原論文。わずか3ページだが、成人・子ども合わせて100名の実験データで視覚が聴覚を書き換えることを示した。引用数4,800回超。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1991</span></div>
+    <p class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/1960275/" target="_blank" rel="noopener">McGurk effect in non-English listeners: few visual effects for Japanese subjects hearing Japanese syllables of high auditory intelligibility</a></p>
+    <p class="ref-author">Sekiyama, K. &amp; Tohkura, Y. — Journal of the Acoustical Society of America</p>
+    <p class="ref-desc">日本語話者でマクガーク効果が弱く出ることを初めて示した研究。母語の音韻特性または文化的要因が視覚統合の強度に影響することを示唆した。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2010</span></div>
+    <p class="ref-title"><a href="https://www.jneurosci.org/content/30/7/2414" target="_blank" rel="noopener">fMRI-Guided Transcranial Magnetic Stimulation Reveals That the Superior Temporal Sulcus Is a Cortical Locus of the McGurk Effect</a></p>
+    <p class="ref-author">Beauchamp, M. S. et al. — Journal of Neuroscience, 30(7), 2414–2417</p>
+    <p class="ref-desc">TMSを使って上側頭溝(STS)の活動を一時的に抑制。マクガーク錯覚の発生率がほぼ半分に落ちた。STSがこの錯覚の因果的中枢であることを示した決定的な研究。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2018</span></div>
+    <p class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/31264593/" target="_blank" rel="noopener">Hearing Lips and Seeing Voices: The Origins and Development of the "McGurk Effect" and Reflections on Audio–Visual Speech Perception Over the Last 40 Years</a></p>
+    <p class="ref-author">Alsius, A., Paré, M. &amp; Munhall, K. G. — Multisensory Research, 31(1-2), 7–38</p>
+    <p class="ref-desc">発見40周年のレビュー。マクガーク効果の歴史、現状、残された問いを俯瞰。個人差・文化差の原因が未解明であることを率直に認めている。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2018</span></div>
+    <p class="ref-title"><a href="https://www.nature.com/articles/s41598-018-30798-8" target="_blank" rel="noopener">The threshold for the McGurk effect in audio-visual noise decreases with development</a></p>
+    <p class="ref-author">Hirst, R. J. et al. — Scientific Reports, 8</p>
+    <p class="ref-desc">5歳から成人までの発達過程を追跡。視覚統合は年齢とともに強化され、5〜9歳では音声優位、10代以降は大人並みになることを示した。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2021</span></div>
+    <p class="ref-title"><a href="https://link.springer.com/article/10.3758/s13414-021-02265-6" target="_blank" rel="noopener">Rethinking the McGurk effect as a perceptual illusion</a></p>
+    <p class="ref-author">Magnotti, J. F. et al. — Attention, Perception, &amp; Psychophysics, 83, 2583–2598</p>
+    <p class="ref-desc">マクガーク効果の個人差が非常に大きいことを強調し、「錯覚」としての汎用性を問い直した論文。融合率0%〜100%の幅広い分布を報告。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">Media</span><span class="ref-year">2016</span></div>
+    <p class="ref-title"><a href="https://doi.org/10.1038/srep30423" target="_blank" rel="noopener">Skilled musicians are not subject to the McGurk effect — Supplementary Videos</a></p>
+    <p class="ref-author">Proverbio, A., Massetti, G., Rizzi, E., &amp; Zani, A. — Scientific Reports, 6:30423</p>
+    <p class="ref-desc">本記事の McGurk Lab に埋め込まれている動画は、この論文の補足動画(Supplementary Video S1/S2)を使用。<a href="https://commons.wikimedia.org/wiki/File:Skilled-musicians-are-not-subject-to-the-McGurk-effect-srep30423-s2.ogv" target="_blank" rel="noopener">Wikimedia Commons</a> 経由、<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> ライセンス(改変なし)。後続研究(Politzer-Ahles &amp; Pan, 2019)はこの「音楽家は効果を受けない」という結論を再検証して反証しており、現在は<em>音楽訓練による免疫はない</em>というのが主流の見解。</p>
+  </div>
+</div>
+
+<div class="note-box fade">
+  <strong>📌 この記事について</strong>——マクガーク効果そのものの存在と、STSが統合ハブであることは、複数の独立した研究室で再現されている。一方、個人差・文化差・発達の詳細な原因は、2026年現在も研究が続いている段階である。本文の数値(融合率の具体的なパーセンテージ)は研究ごとのばらつきが大きく、あくまで代表値として扱っている。
+</div>
+
+<p class="signature fade">e. Tamaki</p>
+
+<div class="tags fade">
+  <span class="tag">知覚・錯覚</span>
+  <span class="tag">クロスモーダル</span>
+  <span class="tag">聴覚</span>
+  <span class="tag">視覚</span>
+  <span class="tag">音声知覚</span>
+  <span class="tag">脳と意識</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">98<span style="font-size:22px;color:#7a6a55;">%</span></p>
+      <p class="sidebar-text">原論文で健聴の成人が<strong>/ba/音 + /ga/口</strong>の組み合わせを見たとき、違う音を報告した割合。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1976年、McGurk らが<strong>乳児研究の準備中に偶然発見</strong>。技術者が音声と映像を取り違えて録音したテープから、視覚が聴覚を書き換えることが明らかになった。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">BBC Horizon「Is Seeing Believing?」(2010)のデモ映像がYouTubeで拡散。TikTokでも定番の視聴覚錯覚として繰り返し話題に。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">
+        — 音は存在しない<br>
+        — 色は存在しない<br>
+        — 味は鼻で感じている<br>
+        — サーマルグリル錯覚
+      </p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">確かめるチェックリスト</p>
+      <ul class="sidebar-check">
+        <li>目を閉じて音だけ聴いたか</li>
+        <li>目を開けて同じ音を聴いたか</li>
+        <li>音量は一定に保ったか</li>
+        <li>複数の組み合わせを試したか</li>
+      </ul>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">現象の存在は確立。STSが統合ハブであることもTMSで確認済み。<strong>個人差・文化差の原因</strong>については未解明の論点が残る。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// マクガーク効果 を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;違う音に聞こえた。なんかふしぎ。</span></div>
+      <span class="t-output" id="to1">そう、その<em>ふしぎさ</em>が一番の発見だと思う。目を開けている間は、自分が音を書き換えていることに気づけない。目を閉じて初めて、<strong>さっきまで違う音を聞いていた自分</strong>を発見する。錯覚というより、知覚の素のデザインを目撃する体験に近い。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ電話は「劣化した会話」なのか。</span></div>
+      <span class="t-output" id="to2">工学的にはね。脳の前提からすれば、音だけ届く通話は<em>片足を縛って走れと言っている</em>ようなもの。だからビデオ通話で口が見えると一気に楽になる。疲労度が違う理由もここにある。<strong>音声通話の疲れは、情報量の不足ではなく、脳が普段使えている情報源を奪われていることからきている。</strong></span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;日本語話者だと効果が弱いって、本当?</span></div>
+      <span class="t-output" id="to3">平均としてはそう報告されている。ただ<em>個人差のほうが言語差より大きい</em>というのが最近の見方だ。日本語話者でも強く効く人はいる。原因も確定していない。音韻の違いか、顔を見る文化の違いか、それ以外か——<strong>「日本人だから弱い」ではなく「傾向として弱く出ることが多い」</strong>くらいに受け取っておくのが正確だと思う。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 今度ビデオ通話にしよう</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/sound_does_not_exist">
+      <p class="related-card-tag">知覚・錯覚</p>
+      <p class="related-card-title">音は存在しない</p>
+      <p class="related-card-desc">空気の振動が存在するだけ。「音」は脳の解釈。マクガーク効果はその「解釈」に視覚が介入していることを示す。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/flavor_nose">
+      <p class="related-card-tag">知覚・錯覚</p>
+      <p class="related-card-title">味は鼻で感じている</p>
+      <p class="related-card-desc">舌で分かるのは5種類だけ。「味」の大部分は嗅覚が担う。感覚は、名前どおりの器官だけで作られていない。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ（トースト方式）
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ── McGurk Lab (2-step video flow) ──
+// Wikipedia 英語版 McGurk 記事で使用されている Proverbio 2016 の刺激動画を使う
+// Step 1: 映像を隠して音だけ再生 → 回答
+// Step 2: Step 1 完了後に解禁。映像あり で再生 → 回答
+// 最後に2つの回答を比較して McGurk 効果が発動したかを判定
+
+const LAB_STATE = { step1Answer: null, step2Answer: null, currentPlaying: null };
+let labTimerId = null;
+
+function $(id){ return document.getElementById(id); }
+
+function updateProgress(pct){
+  const fill = $('vidProgressFill');
+  if(fill) fill.style.width = pct + '%';
+}
+
+function updateTimer(cur, total){
+  const t = $('vidTimer');
+  if(t) t.textContent = cur.toFixed(1) + 's / ' + total.toFixed(1) + 's';
+}
+
+function setCover(visible, mode){
+  const cover = $('coverMain');
+  const ico = $('coverIco');
+  const text = $('coverText');
+  if(!cover) return;
+  if(visible){
+    cover.classList.remove('hide');
+    if(mode === 'audio'){
+      ico.textContent = '🙈';
+      text.innerHTML = '目を閉じた状態<br>(映像は隠されています)';
+    } else if(mode === 'idle'){
+      ico.textContent = '🎬';
+      text.textContent = '▶ 再生ボタンを押してください';
+    }
+  } else {
+    cover.classList.add('hide');
+  }
+}
+
+function showLiveBadge(show){
+  const b = $('vidLiveBadge');
+  if(!b) return;
+  if(show) b.classList.add('show'); else b.classList.remove('show');
+}
+
+function playLabStep(step){
+  const v = $('vidMain');
+  if(!v) return;
+
+  // Step 2 は Step 1 完了(回答済み)でないと再生不可
+  if(step === 2 && !LAB_STATE.step1Answer){
+    return;
+  }
+
+  // 再生中ボタンのクリア
+  document.querySelectorAll('.vid-btn-play').forEach(b => b.classList.remove('playing'));
+  const btn = $('btnStep' + step);
+  if(btn) btn.classList.add('playing');
+
+  // カバーの状態
+  if(step === 1){
+    setCover(true, 'audio'); // 音のみ → カバー表示
+  } else {
+    setCover(false, 'full'); // 映像あり → カバー非表示
+  }
+
+  LAB_STATE.currentPlaying = step;
+
+  // 再生
+  v.currentTime = 0;
+  const p = v.play();
+  if(p && p.catch) p.catch(err => console.warn('video play blocked', err));
+
+  showLiveBadge(true);
+
+  // プログレスバー更新
+  if(labTimerId) clearInterval(labTimerId);
+  labTimerId = setInterval(() => {
+    if(v.duration && v.duration > 0){
+      const pct = (v.currentTime / v.duration) * 100;
+      updateProgress(pct);
+      updateTimer(v.currentTime, v.duration);
+    }
+  }, 80);
+
+  v.onended = () => {
+    if(labTimerId){ clearInterval(labTimerId); labTimerId = null; }
+    updateProgress(100);
+    showLiveBadge(false);
+    if(btn) btn.classList.remove('playing');
+
+    // 回答欄を表示
+    const ansBlock = $('ans' + step + 'Block');
+    if(ansBlock) ansBlock.style.display = 'block';
+
+    // カバーはそのままの状態で残す(Step1終了後も音なし視覚なしのまま)
+    // Step2終了後は映像最終フレームが残る
+    LAB_STATE.currentPlaying = null;
+
+    // Step1 再生終了でステータス更新
+    if(step === 1){
+      const st = $('step1Status');
+      if(st) st.textContent = '再生完了 — 聞こえた音を選んでください';
+    } else if(step === 2){
+      const st = $('step2Status');
+      if(st) st.textContent = '再生完了 — 聞こえた音を選んでください';
+    }
+  };
+}
+
+function answerStep(step, ans){
+  LAB_STATE['step' + step + 'Answer'] = ans;
+
+  // 選択状態を更新
+  const row = document.querySelectorAll('#ans' + step + 'Block .lab-ans');
+  row.forEach(b => b.classList.toggle('selected', b.dataset.ans === ans || (ans === 'その他' && b.dataset.ans === '其他')));
+
+  // ステップブロックを完了マークに
+  const block = $('step' + step + 'Block');
+  if(block){
+    block.classList.remove('lab-step-locked');
+    block.classList.add('lab-step-done');
+  }
+  const status = $('step' + step + 'Status');
+  if(status) status.textContent = '回答: ' + ans;
+
+  if(step === 1){
+    // Step 2 を解禁
+    const step2 = $('step2Block');
+    if(step2) step2.classList.remove('lab-step-locked');
+    const btn2 = $('btnStep2');
+    if(btn2) btn2.disabled = false;
+    const status2 = $('step2Status');
+    if(status2) status2.textContent = '再生してください';
+  } else if(step === 2){
+    // 両方回答済み → 結果表示
+    showResult();
+  }
+}
+
+function showResult(){
+  const a1 = LAB_STATE.step1Answer;
+  const a2 = LAB_STATE.step2Answer;
+  $('resultAns1').textContent = a1 || '—';
+  $('resultAns2').textContent = a2 || '—';
+
+  const verdict = $('resultVerdict');
+  const explain = $('resultExplain');
+
+  if(a1 === a2){
+    // 両方同じ回答 — 視覚に影響されない反応
+    if(a1 === 'TA' || a1 === 'DA'){
+      // もともと /ta/ 寄りに聞こえていて、映像を見ても変わらなかった
+      verdict.className = 'lab-result-verdict no-effect';
+      verdict.textContent = '視覚に影響されなかった — 音楽家型の反応?';
+      explain.innerHTML = 'Step 1・Step 2 とも「' + a1 + '」と回答。<strong>視覚情報による書き換えが起きなかったタイプ</strong>です。' +
+        '注意: この動画の音声は Proverbio 論文で<em>意図的に子音情報を弱めて曖昧化</em>されているため、元々「' + a1 + '」寄りに聞こえる人がいます。その場合、映像が加わっても既に /ta/ 側にあるので変化が起きない(見かけ上「効果なし」)。' +
+        '<br><br>もう一つの可能性: <strong>あなたが視覚の影響を受けにくい「音楽家型」の反応パターン</strong>。Proverbio 2016 論文の主要な発見は「熟練音楽家は McGurk 効果を受けない」ことで、あなたの結果はそれを実地で再現しているかもしれません(ただしこの結論は Politzer-Ahles 2019 で反証されており、現在は議論中)。';
+    } else if(a1 === 'PA' || a1 === 'BA'){
+      // 両方とも音声寄りの回答 — 映像を見ても音声優位を保った
+      verdict.className = 'lab-result-verdict no-effect';
+      verdict.textContent = '視覚に影響されなかった — 音声優位型の反応';
+      explain.innerHTML = 'Step 1・Step 2 とも「' + a1 + '」と回答。<strong>映像を見ても音声の優位が崩れなかった</strong>という結果です。' +
+        '個人差は 0〜100% の幅があり、融合が起きにくい人は一定の割合で存在します。<br><br>' +
+        'もう一度試すなら、映像の口の動き(/ka/ = 唇が閉じない)により強く意識を向けてみてください。それでも変わらなければ、あなたは視覚非依存型のタイプです。';
+    } else {
+      verdict.className = 'lab-result-verdict no-effect';
+      verdict.textContent = 'Step 1 と Step 2 で同じ音(' + a1 + ')に聞こえた';
+      explain.innerHTML = '映像の有無で回答が変わらなかった。視覚統合の影響を受けにくいタイプか、ブラウザの再生環境・音量の問題で視覚が届いていない可能性。';
+    }
+  } else {
+    // 異なる回答 — 何らかの書き換えが起きた
+    const fusion = ((a1 === 'BA' || a1 === 'PA') && (a2 === 'DA' || a2 === 'TA'));
+    verdict.className = 'lab-result-verdict mcgurk';
+    verdict.textContent = '✦ 音が書き換わった — McGurk 効果を体験';
+    if(fusion){
+      explain.innerHTML = '<strong>典型的なマクガーク融合が発生しました。</strong>Step 1(音だけ)では「' + a1 + '」と聞こえた音声が、Step 2(映像あり)で同じ音声を聴いたとき「' + a2 + '」に変わった。音声そのものは同一で、変わったのは視覚情報だけ。それでも脳は視覚の口の動きを統合して、聞こえる音を書き換えた。この書き換えは意識の外で起こるので、「どう努力しても」目を開けて聴く限り元の音には戻りません。';
+    } else {
+      explain.innerHTML = 'Step 1 と Step 2 で回答が変わりました(「' + a1 + '」→「' + a2 + '」)。<strong>視覚情報が聴覚知覚に影響を与えた証拠です。</strong>古典的な /pa/→/ta/ 融合パターンとは違いますが、McGurk 現象の一種です(視覚主導型や、別の統合パターン)。';
+    }
+  }
+  $('labResult').style.display = 'block';
+  $('labResult').scrollIntoView({behavior: 'smooth', block: 'nearest'});
+}
+
+function resetLab(){
+  LAB_STATE.step1Answer = null;
+  LAB_STATE.step2Answer = null;
+  LAB_STATE.currentPlaying = null;
+
+  const v = $('vidMain');
+  if(v){ try{ v.pause(); v.currentTime = 0; }catch(e){} }
+  if(labTimerId){ clearInterval(labTimerId); labTimerId = null; }
+
+  updateProgress(0);
+  showLiveBadge(false);
+  setCover(true, 'idle');
+
+  // Step 1 リセット
+  const step1 = $('step1Block');
+  step1.classList.remove('lab-step-done');
+  $('step1Status').textContent = '未完了';
+  $('ans1Block').style.display = 'none';
+  document.querySelectorAll('#ans1Block .lab-ans').forEach(b => b.classList.remove('selected'));
+
+  // Step 2 リセット&ロック
+  const step2 = $('step2Block');
+  step2.classList.remove('lab-step-done');
+  step2.classList.add('lab-step-locked');
+  $('step2Status').textContent = 'Step 1 を完了してください';
+  $('btnStep2').disabled = true;
+  $('ans2Block').style.display = 'none';
+  document.querySelectorAll('#ans2Block .lab-ans').forEach(b => b.classList.remove('selected'));
+
+  $('labResult').style.display = 'none';
+}
+
+
+// クイズ
+function q1(btn, ans){
+  document.querySelectorAll('#q1res').forEach(r=>r.classList.remove('show'));
+  const res = document.getElementById('q1res');
+  btn.parentElement.querySelectorAll('.quiz-btn').forEach(b=>b.classList.remove('correct','wrong'));
+  if(ans==='c'){
+    btn.classList.add('correct');
+    res.innerHTML = '<strong>正解。</strong>原論文では健聴の成人 54 名中 98%(53名)が映像の影響を受けて元の /ba/ とは違う音を報告した。ただし最近の研究では、人・刺激・実験条件によって融合率は 10〜80% まで大きくばらつくことが分かっている。98%という数字は原論文固有のもので、一般的な「誰でも強く効く」指標とは言えない。';
+  } else {
+    btn.classList.add('wrong');
+    res.innerHTML = '<strong>不正解。</strong>原論文での融合率は <em>約 98%</em>。ほぼ全員が効果を経験した。ただし最近の研究では人・刺激・実験条件によって 10〜80% まで大きくばらつくことが分かっている。';
+  }
+  res.classList.add('show');
+}
+
+function q2(btn, ans){
+  document.querySelectorAll('#q2res').forEach(r=>r.classList.remove('show'));
+  const res = document.getElementById('q2res');
+  btn.parentElement.querySelectorAll('.quiz-btn').forEach(b=>b.classList.remove('correct','wrong'));
+  if(ans==='b'){
+    btn.classList.add('correct');
+    res.innerHTML = '<strong>正解。</strong>Sekiyama & Tohkura (1991) が日本語話者で融合が弱いことを最初に報告した。平均的な傾向として英語話者のほうがマクガーク効果を強く経験する。原因仮説は <em>音韻弁別性(日本語の子音区別の明瞭さ)</em> と <em>顔直視回避(対面で顔を凝視する習慣の違い)</em> の2つが挙げられているが、どちらも確定していない。ただし<strong>個人差のほうが言語差より大きい</strong>という指摘もあり、「日本人は弱い」と断言できるほど単純ではない。';
+  } else if(ans==='a'){
+    btn.classList.add('wrong');
+    res.innerHTML = '<strong>不正解。</strong>報告されているのは逆で、<em>英語話者のほうが融合を強く経験する</em>傾向がある(Sekiyama & Tohkura 1991)。ただし個人差のほうが言語差より大きいという指摘もあり、「日本人は必ず弱い」とは言えない。';
+  } else {
+    btn.classList.add('wrong');
+    res.innerHTML = '<strong>不正解。</strong>平均的な傾向として<em>英語話者のほうが強い</em>とする研究が多い。ただし個人差のほうが言語差より大きく、母語だけで判定できないのは事実。';
+  }
+  res.classList.add('show');
+}
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=(typeof ARTICLES!=='undefined'?ARTICLES:[]).filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+
+// McGurk Lab 初期化(初期状態は idle カバー表示)
+(function initLab(){
+  if(document.getElementById('vidMain')){
+    setCover(true, 'idle');
+    updateProgress(0);
+  }
+})();
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div>
+</body>
+</html>

@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>意識のハードプロブレム — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* SLIDE MENU */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* SEARCH OVERLAY */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* MASTHEAD */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-ja{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;line-height:1.7;margin-top:12px;padding-left:12px;border-left:1px solid #c8bfaa;font-style:normal;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block.no-img{display:block;grid-template-columns:1fr;}
+.person-block.no-img .person-block-body{border-left:none;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:0;overflow:hidden;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-img img[alt="Thomas Nagel"]{object-position:18% 80%;}
+.person-block-img img[alt="David Chalmers"]{object-position:center 22%;}
+.person-block-img img[alt="Daniel Dennett"]{object-position:center 28%;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-name a{color:#1a1208;border-bottom:1px solid rgba(139,26,26,.25);transition:border-color .2s;}
+.person-block-name a:hover{border-bottom-color:#8b1a1a;color:#8b1a1a;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:300;color:#b0a090;line-height:1.5;margin-top:10px;letter-spacing:.01em;}
+.person-block-credit a{color:#b0a090;border-bottom:1px dotted rgba(176,160,144,.5);}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.note-box a{color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.25);}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+
+/* SVG FIG */
+.svg-fig{max-width:720px;margin:28px auto;display:block;}
+.svg-wrap{margin:28px 0;text-align:center;}
+.svg-cap{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;margin-top:8px;letter-spacing:.04em;}
+@media(max-width:700px){.svg-fig{max-width:100%;}}
+
+/* IMG FIG */
+.img-fig{margin:28px auto;text-align:center;max-width:720px;}
+.img-fig img{max-width:100%;height:auto;display:block;margin:0 auto;}
+.img-fig-cap{font-family:'Source Serif 4',serif;font-size:12.5px;font-style:italic;color:#7a6a55;text-align:center;margin-top:12px;line-height:1.6;}
+@media(max-width:700px){.img-fig{max-width:100%;}}
+
+/* XMIT — 送信 + 検証インタラクティブ */
+.xmit-wrap{margin:32px 0;background:#faf8f3;border:1px solid #c8bfaa;padding:0;overflow:hidden;}
+.xmit-head{background:#1a1208;color:#e8e4de;padding:14px 20px;}
+.xmit-head-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#e8c56a;text-transform:uppercase;margin-bottom:4px;}
+.xmit-head-tt{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;}
+.xmit-body{padding:22px 20px;}
+.xmit-intro{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:16px;padding:12px 14px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.xmit-intro em{color:#8b1a1a;font-style:italic;font-weight:600;}
+.xmit-banner{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;margin-bottom:18px;padding:18px 16px;background:#fff;border:1px solid #c8bfaa;}
+.xmit-banner-side{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;}
+.xmit-banner-icon{width:56px;height:72px;display:flex;align-items:center;justify-content:center;}
+.xmit-banner-icon svg{display:block;width:100%;height:100%;}
+.xmit-banner-role{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;}
+.xmit-banner-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;}
+.xmit-banner-hint{font-family:'Source Sans 3',sans-serif;font-size:10.5px;color:#7a6a55;font-style:italic;line-height:1.45;max-width:180px;}
+.xmit-banner-arrow{display:flex;flex-direction:column;align-items:center;gap:4px;padding:0 6px;min-width:130px;}
+.xmit-banner-arrow-glyph{font-family:'Source Sans 3',sans-serif;font-size:26px;color:#8b1a1a;line-height:1;letter-spacing:.04em;font-weight:500;}
+.xmit-banner-arrow-lbl{font-family:'Source Sans 3',sans-serif;font-size:10.5px;color:#3d3020;line-height:1.45;text-align:center;}
+.xmit-banner-arrow-lbl em{color:#8b1a1a;font-style:italic;font-weight:600;}
+@media(max-width:720px){.xmit-banner{grid-template-columns:1fr;gap:10px;padding:14px;}.xmit-banner-arrow-glyph{transform:rotate(90deg);}.xmit-banner-arrow{min-width:auto;padding:6px 0;}}
+.xmit-phase{margin-bottom:12px;}
+.xmit-phase-lbl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.xmit-phase-n{display:inline-block;width:26px;height:26px;background:#8b1a1a;color:white;border-radius:50%;text-align:center;line-height:26px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0;flex-shrink:0;}
+.xmit-stage{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.xmit-sender,.xmit-receiver{border:1px solid #c8bfaa;padding:14px 14px 16px;background:white;display:flex;flex-direction:column;}
+.xmit-sender-lbl,.xmit-receiver-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.xmit-swatch{width:100%;height:120px;margin-bottom:6px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.1);}
+.xmit-swatch img{width:100%;height:100%;object-fit:cover;display:block;}
+.xmit-swatch-cap{font-family:'Source Serif 4',serif;font-size:11px;font-style:italic;color:#7a6a55;text-align:center;margin-bottom:14px;line-height:1.5;}
+.xmit-btns{display:flex;flex-direction:column;gap:6px;}
+.xmit-btn{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;letter-spacing:.04em;padding:8px 10px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;transition:all .18s;text-align:left;display:flex;align-items:center;gap:8px;}
+.xmit-btn::before{content:'►';color:#8b1a1a;font-size:9px;}
+.xmit-btn:hover{background:#8b1a1a;color:white;border-color:#8b1a1a;}
+.xmit-btn:hover::before{color:white;}
+.xmit-btn.sent{background:#f3efe6;color:#b0a090;border-color:#e0d8c8;pointer-events:none;}
+.xmit-btn.sent::before{content:'✓';color:#1a5a30;}
+.xmit-log{background:#0d0d0d;color:#b8e6b8;font-family:'JetBrains Mono',monospace;font-size:10px;padding:10px 12px;min-height:300px;max-height:300px;overflow-y:auto;line-height:1.7;margin-bottom:10px;border:1px solid #2a2a2a;}
+.xmit-log-init{color:#5a5a5a;font-style:italic;}
+.xmit-log-line{margin-bottom:4px;word-break:break-all;}
+.xmit-log-line.fresh{animation:xmitLogIn .3s ease;}
+@keyframes xmitLogIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.xmit-meters{display:flex;flex-direction:column;gap:10px;margin-top:auto;}
+.xmit-meter{display:grid;grid-template-columns:1fr 42px;row-gap:4px;column-gap:8px;align-items:center;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#7a6a55;}
+.xmit-meter-lbl{grid-column:1/3;font-weight:500;letter-spacing:.02em;}
+.xmit-meter-bar{grid-column:1;height:6px;background:#e0d8c8;border-radius:3px;overflow:hidden;}
+.xmit-meter-fill{height:100%;width:0%;transition:width .5s ease;}
+.xmit-meter-fill.phys{background:#1a5a30;}
+.xmit-meter-fill.phen{background:#8b1a1a;}
+.xmit-meter-v{grid-column:2;font-family:'JetBrains Mono',monospace;font-weight:600;color:#1a1208;text-align:right;font-size:10px;}
+.xmit-transition{margin-top:14px;padding:12px 16px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;opacity:0;max-height:0;overflow:hidden;transition:all .5s ease;}
+.xmit-transition.show{opacity:1;max-height:200px;margin-top:14px;}
+.xmit-transition strong{color:#8b1a1a;font-weight:600;}
+.xmit-phase-2{opacity:.35;pointer-events:none;transition:opacity .5s ease;padding-top:18px;margin-top:20px;border-top:1px dashed #c8bfaa;}
+.xmit-phase-2.unlocked{opacity:1;pointer-events:auto;}
+.xmit-phase-q{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:400;color:#3d3020;line-height:1.7;margin-bottom:14px;padding:10px 14px;background:#fbf3f0;border-left:3px solid #8b1a1a;}
+.xmit-tests{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.xmit-test{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;padding:10px 8px 16px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;transition:all .18s;line-height:1.4;text-align:center;position:relative;}
+.xmit-test:hover{background:#1a1208;color:white;border-color:#1a1208;}
+.xmit-test.done{background:#f3efe6;color:#b0a090;border-color:#e0d8c8;pointer-events:none;}
+.xmit-test.done::after{content:'差分 0';position:absolute;bottom:3px;right:6px;font-size:8px;color:#1a5a30;font-family:'JetBrains Mono',monospace;letter-spacing:.02em;}
+.xmit-diff{margin-top:12px;padding:10px 14px;background:#ede8dc;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;letter-spacing:.04em;display:flex;justify-content:space-between;align-items:center;}
+.xmit-diff-v{color:#8b1a1a;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;}
+.xmit-final{display:none;margin-top:14px;padding:18px 20px;background:#1a1208;color:#e8e4de;}
+.xmit-final.show{display:block;}
+.xmit-final-hd{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#e8c56a;margin-bottom:10px;}
+.xmit-final-body{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#e8e4de;}
+.xmit-final-body strong{color:#e8c56a;font-weight:600;}
+.xmit-final-body em{color:#f4b26a;font-style:italic;font-weight:600;}
+.xmit-reset{margin-top:14px;display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#c8bfaa;background:transparent;border:1px solid #5a5040;padding:7px 14px;cursor:pointer;letter-spacing:.04em;}
+.xmit-reset:hover{background:#5a5040;color:white;}
+@media(max-width:720px){.xmit-stage{grid-template-columns:1fr;}.xmit-tests{grid-template-columns:repeat(2,1fr);}.xmit-meter{grid-template-columns:1fr 36px;}}
+
+/* POSITIONS GRID */
+.positions-intro{margin:20px 0 8px;padding:12px 16px;background:#ede8dc;border-left:3px solid #8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:400;color:#3d3020;line-height:1.7;}
+.positions{margin:16px 0 32px;display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.pos-card{border:1px solid #c8bfaa;padding:14px 16px;background:white;}
+.pos-card-tag{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:6px;}
+.pos-card-title{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.pos-card-who{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-bottom:8px;font-style:italic;}
+.pos-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.75;}
+@media(max-width:720px){.positions{grid-template-columns:1fr;}}
+
+/* ZOMBIE COMPARE */
+.zombie-wrap{margin:32px 0;display:grid;grid-template-columns:1fr 40px 1fr;gap:0;align-items:stretch;}
+.zombie-card{border:1px solid #c8bfaa;padding:16px 18px;background:white;}
+.zombie-card.you{border-left:3px solid #8b1a1a;}
+.zombie-card.zombie{border-left:3px solid #1a1208;background:#f3efe6;}
+.zombie-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.zombie-card.zombie .zombie-lbl{color:#3d3020;}
+.zombie-row{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;padding:6px 0;border-bottom:1px dashed #e0d8c8;display:flex;gap:8px;}
+.zombie-row:last-child{border-bottom:none;}
+.zombie-row-k{color:#b0a090;min-width:80px;font-size:11px;font-weight:500;}
+.zombie-eq{display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#8b1a1a;}
+.zombie-eq em{font-style:italic;}
+@media(max-width:720px){.zombie-wrap{grid-template-columns:1fr;}.zombie-eq{padding:8px 0;}}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:0;justify-content:center;flex-direction:row;max-height:220px;}
+  .person-block-img img{max-height:220px;width:auto;max-width:100%;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.pos-card-desc,.zombie-row,.gap-step-li,.gap-msg{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){
+  .toc-back{padding:22px 20px;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">The Hard Problem</p>
+    <h1>物理の言葉は、<em>体験</em>に届かない</h1>
+    <p class="cover-deck">すべての神経発火を解明しても、「赤の赤さ」「痛みの痛さ」は残る。科学が説明できない一点。</p>
+    <div class="cover-byline"><span>脳と意識</span><span>思考実験・哲学</span><span>心の哲学</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1995</span>
+      <p class="est-event">デイヴィッド・チャーマーズが論文「Facing Up to the Problem of Consciousness」で「ハードプロブレム」という語を提唱。意識研究の地形を書き換えた。</p>
+      <p class="est-context">1995年:Windows 95 発売 / Yahoo! 設立 / オウム真理教事件 / 阪神淡路大震災。</p>
+    </div>
+    <p class="cover-aside"><strong><tip>トゥーソン<span class="tip-box"><strong>Tucson(トゥーソン)</strong>米国アリゾナ州第2の都市。アリゾナ大学がある。1994年4月、同大学で初開催された国際会議「Toward a Science of Consciousness」が、チャーマーズの提案によってハードプロブレム論争の起点となった。</span></tip>での提案。</strong> 前年のトゥーソン会議でチャーマーズが口頭発表し、会場を沸かせた。論文はその翌年に公刊された。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>夕方の光が部屋に差し込む。机の上のマグカップが、深い赤色にほんのり輝く。あなたはその「赤さ」を確かに感じている。</p>
+    <p>同じ場面を見ている誰か——友人、恋人、見知らぬ通行人——の脳の中でも、おそらく似たような神経細胞が発火している。けれど、その人の内側に立ち上がっている「赤の感じ」が、あなたのそれと同じである保証はどこにもない。</p>
+    <p>脳を隅々まで調べても、この「感じ」が立ち上がる理由だけが、どうしても説明できない。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot on"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">上級 — 哲学と神経科学の交差点</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-14</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-15</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">脳の機能を完璧に記述しても、そこから<strong>主観的体験</strong>が生まれる理由は残る。30年続く未解決問題の輪郭を、物理と現象の対応を自分で組み立てながら体感する。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- 背景 -->
+  <div class="sec-rule fade">
+    <span class="sec-label">背景</span>
+    <div class="sec-line"></div>
+  </div>
+  <h2 class="fade">「なぜ」が残る問い</h2>
+
+  <p class="body-text fade">1994年4月、アリゾナ州<tip>トゥーソン<span class="tip-box"><strong>Tucson</strong>アリゾナ州第2の都市で、アリゾナ大学の所在地。1994年にここで開かれた「Toward a Science of Consciousness」が、学際的な意識研究の大規模会議の先駆けとなった。以降、隔年でこの地で続いている。</span></tip>。初めて開かれた「意識の科学」の大規模な国際会議の壇上に、27歳のオーストラリア人哲学者が立っていた。彼は、それまで研究者たちが「意識」と呼んできたものを、静かに二つに切り分けて見せた。</p>
+
+  <p class="body-text fade">ひとつは、知覚・注意・記憶の統合・言語報告といった「どう動いているか」を問う問題群。これらは難しいが、原理的には神経科学で解ける。もうひとつは——脳のそうした機能が、なぜ<em>体験を伴って</em>起こるのか、という問い。前者を<strong>イージープロブレム</strong>、後者を<strong>ハードプロブレム</strong>と彼は呼んだ。翌年、この命名を軸にした論文が公刊されると、言葉は一気に広まった。以来30年、この区別は消えずに残っている。</p>
+
+  <!-- SVG: Easy vs Hard -->
+  <div class="svg-wrap fade">
+    <svg class="svg-fig" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+      <!-- Easy side -->
+      <rect x="40" y="60" width="340" height="280" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+      <text x="210" y="92" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" font-weight="700" fill="#7a6a55" letter-spacing="3">EASY PROBLEMS</text>
+      <text x="210" y="132" text-anchor="middle" font-family="'Playfair Display',serif" font-size="24" font-weight="700" fill="#1a1208">機能の問い</text>
+      <line x1="110" y1="150" x2="310" y2="150" stroke="#c8bfaa" stroke-width="1"/>
+      <text x="210" y="186" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="17" fill="#3d3020">・刺激の弁別</text>
+      <text x="210" y="214" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="17" fill="#3d3020">・情報の統合</text>
+      <text x="210" y="242" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="17" fill="#3d3020">・行動の制御</text>
+      <text x="210" y="270" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="17" fill="#3d3020">・自己状態の報告</text>
+      <text x="210" y="298" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="17" fill="#3d3020">・注意の焦点化</text>
+      <text x="210" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#1a5a30" font-weight="600">→ 脳の仕組みで説明できる</text>
+      <!-- Hard side -->
+      <rect x="420" y="60" width="340" height="280" fill="#1a1208" stroke="#8b1a1a" stroke-width="2"/>
+      <text x="590" y="92" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" font-weight="700" fill="#e8c56a" letter-spacing="3">HARD PROBLEM</text>
+      <text x="590" y="132" text-anchor="middle" font-family="'Playfair Display',serif" font-size="24" font-weight="700" fill="#faf8f3">体験の問い</text>
+      <line x1="490" y1="150" x2="690" y2="150" stroke="#8b1a1a" stroke-width="1"/>
+      <text x="590" y="200" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="18" font-style="italic" fill="#c8bfaa">なぜ、機能が</text>
+      <text x="590" y="230" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="18" font-style="italic" fill="#c8bfaa">「感じ」を伴って</text>
+      <text x="590" y="260" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="18" font-style="italic" fill="#c8bfaa">起こるのか</text>
+      <text x="590" y="326" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#e8c56a" font-weight="600">→ 説明のギャップが残る</text>
+      <!-- Bridge question -->
+      <line x1="380" y1="200" x2="420" y2="200" stroke="#7a6a55" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <text x="400" y="188" text-anchor="middle" font-family="'Playfair Display',serif" font-size="22" font-weight="700" fill="#8b1a1a">?</text>
+    </svg>
+    <p class="svg-cap">Fig. 1 — チャーマーズによる問題の切り分け(1995)</p>
+  </div>
+
+  <p class="body-text fade">切り分けの切れ味はこうだ。たとえば「痛みの機能」は説明できる。組織が損傷すると感覚神経が発火し、脊髄を経て<tip>脳幹<span class="tip-box"><strong>脳幹(brain stem)</strong>大脳と脊髄をつなぐ部分。延髄・橋・中脳の総称で、呼吸・心拍・覚醒など生命維持の基本機能を司る。上行性の感覚信号と下行性の運動信号の中継地点でもある。</span></tip>・<tip>視床<span class="tip-box"><strong>視床(thalamus)</strong>脳の中央にある卵形の核集合。嗅覚以外のあらゆる感覚情報が、大脳皮質へ届く前にここを必ず経由する「感覚の玄関」。意識の神経相関の候補として重視されている。</span></tip>・<tip>体性感覚野<span class="tip-box"><strong>体性感覚野(somatosensory cortex)</strong>頭頂葉にある皮質領域。触覚・痛覚・温度覚・体の位置感覚(固有感覚)を処理する。身体の各部位に対応する「体のマップ」が描かれている(ペンフィールドのホムンクルス)。</span></tip>へ届き、行動を引き起こし「痛い」と報告させる。この因果の鎖はすべて物理的に追える。しかし——その鎖のどこにも、<em>痛さそのもの</em>が混じっているようには見えない。</p>
+
+  <p class="body-text fade">赤い光の波長を脳が処理する仕組みを、分子レベルまで書き切ったとしよう。それでも「<tip>赤の赤さ<span class="tip-box"><strong>クオリア</strong>主観的体験の質そのもの。赤い物を見るときの「赤という感じ」、痛みの「痛さ」など、機能や構造の記述からは取り出せない私秘的な質のこと。</span></tip>」がなぜそこにあるのか、という問いには一言も答えていないように感じられる。ハードプロブレムの核は、この「いくら物理を足しても、体験が言葉に立ち上がらない」という直感に尽きる。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"Why is all this processing accompanied by an experienced inner life at all?"</p>
+    <p class="quote-ja">なぜ、これらすべての処理が、体験された内的生に<em>伴って</em>起きているのか?</p>
+    <p class="quote-attr">— David Chalmers, 1995</p>
+  </div>
+
+  <!-- 誤解あるある -->
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解 / 実際は</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">「難しい問題」というから、イージープロブレムよりも、ただ<strong>難度が高い</strong>問題のことだろう。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">難度ではなく<strong>種類</strong>が違う。機能の問い(easy)は物理的説明と同じ土俵にあるが、体験の問い(hard)はその土俵の外にある、とチャーマーズは主張した。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">脳科学が進めば、いずれ自然に解ける問題だ。時間の問題に過ぎない。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">それも一つの立場だが、その主張自体が論争の只中にある。進歩しているのはイージープロブレム側で、ハード側は<strong>進歩の指標がそもそも何なのか</strong>、いまだ合意がない。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">宗教や神秘主義の話で、きちんとした科学の対象ではない。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">提唱者は<strong>分析哲学者</strong>。議論は神経科学・情報理論・数理モデルを用いて行われる。神秘的なのはテーマではなく、「説明できない」という<strong>主張の強さ</strong>の方である。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 体験 -->
+  <div class="sec-rule fade">
+    <span class="sec-label">体験</span>
+    <div class="sec-line"></div>
+  </div>
+  <h2 class="fade">物理を足しても、体験は増えない</h2>
+
+  <p class="body-text fade">ギャップを言葉で伝えるのは難しい。だから、<strong>送信と検証の実験</strong>をひとつ用意した。あなたが今この瞬間見ている「赤の赤さ」——それを受信者に転送する手段を、物理的に全部試してもらう。そのあと、届いたかどうかを検証するテストも、全部試せる。</p>
+
+  <div class="xmit-wrap fade">
+    <div class="xmit-head">
+      <div class="xmit-head-lbl">Interactive — 赤さを転送せよ</div>
+      <div class="xmit-head-tt">物理事実を全部送り、外から検証する。何が残るかを確かめる</div>
+    </div>
+    <div class="xmit-body">
+      <div class="xmit-intro">あなたの手元には、<em>この赤</em>の体験がある。それを、まだ色を見たことがない<em>受信用のロボット</em>に転送したい。下の5つの物理的手段を順に試し、そのあと本当に届いたかを外部テストで検証する。</div>
+
+      <div class="xmit-banner">
+        <div class="xmit-banner-side">
+          <div class="xmit-banner-icon">
+            <svg viewBox="0 0 56 72" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 8 72 Q 8 28 28 28 Q 48 28 48 72" fill="none" stroke="#3d3020" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="28" cy="16" r="13" fill="none" stroke="#3d3020" stroke-width="2"/>
+              <circle cx="22.5" cy="17" r="2.6" fill="#3d3020"/>
+              <circle cx="33.5" cy="17" r="2.6" fill="#3d3020"/>
+            </svg>
+          </div>
+          <div class="xmit-banner-role">Sender</div>
+          <div class="xmit-banner-name">あなた(人間)</div>
+          <div class="xmit-banner-hint">赤の赤さを<br>今この瞬間に体験している</div>
+        </div>
+        <div class="xmit-banner-arrow">
+          <div class="xmit-banner-arrow-glyph">━▶</div>
+          <div class="xmit-banner-arrow-lbl"><em>「赤」を転送する</em><br>物理的手段で試みる</div>
+        </div>
+        <div class="xmit-banner-side">
+          <div class="xmit-banner-icon">
+            <svg viewBox="0 0 56 72" xmlns="http://www.w3.org/2000/svg">
+              <line x1="28" y1="3" x2="28" y2="10" stroke="#3d3020" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="28" cy="3" r="2.2" fill="#3d3020"/>
+              <rect x="11" y="10" width="34" height="26" rx="3" fill="none" stroke="#3d3020" stroke-width="2"/>
+              <circle cx="20" cy="22" r="2.4" fill="#3d3020"/>
+              <circle cx="36" cy="22" r="2.4" fill="#3d3020"/>
+              <line x1="22" y1="30" x2="34" y2="30" stroke="#3d3020" stroke-width="1.6" stroke-linecap="round"/>
+              <rect x="14" y="38" width="28" height="30" rx="2" fill="none" stroke="#3d3020" stroke-width="2"/>
+              <line x1="19" y1="46" x2="37" y2="46" stroke="#3d3020" stroke-width="1.2"/>
+              <line x1="19" y1="52" x2="37" y2="52" stroke="#3d3020" stroke-width="1.2"/>
+              <line x1="19" y1="58" x2="30" y2="58" stroke="#3d3020" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <div class="xmit-banner-role">Receiver</div>
+          <div class="xmit-banner-name">ロボット受信機</div>
+          <div class="xmit-banner-hint">物理データは保存できる<br>体験はあるのか?</div>
+        </div>
+      </div>
+
+      <div class="xmit-phase">
+        <div class="xmit-phase-lbl"><span class="xmit-phase-n">01</span>送信フェーズ — 物理的手段を全部使う</div>
+        <div class="xmit-stage">
+          <div class="xmit-sender">
+            <div class="xmit-sender-lbl">Sender — あなた(人間)</div>
+            <div class="xmit-swatch"><img src="./red_rose_heart.jpg" alt="今あなたが見ているこの赤さ"></div>
+            <div class="xmit-swatch-cap">今あなたが見ているこの赤さ<br>(=赤のクオリア)</div>
+            <div class="xmit-btns">
+              <button class="xmit-btn" data-i="0">波長データを送る</button>
+              <button class="xmit-btn" data-i="1">錐体細胞応答を送る</button>
+              <button class="xmit-btn" data-i="2">V4 発火パターンを送る</button>
+              <button class="xmit-btn" data-i="3">行動・言語報告を送る</button>
+              <button class="xmit-btn" data-i="4">詩的な描写を送る</button>
+            </div>
+          </div>
+          <div class="xmit-receiver">
+            <div class="xmit-receiver-lbl">Receiver — ロボットの受信ログ</div>
+            <div class="xmit-log" id="xmitLog"><div class="xmit-log-line xmit-log-init">// まだ何も届いていない</div></div>
+            <div class="xmit-meters">
+              <div class="xmit-meter"><div class="xmit-meter-lbl">物理的知識</div><div class="xmit-meter-bar"><div class="xmit-meter-fill phys" id="xmitPhysFill"></div></div><div class="xmit-meter-v" id="xmitPhysV">0%</div></div>
+              <div class="xmit-meter"><div class="xmit-meter-lbl">体験の知識</div><div class="xmit-meter-bar"><div class="xmit-meter-fill phen" id="xmitPhenFill"></div></div><div class="xmit-meter-v" id="xmitPhenV">0%</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="xmit-transition" id="xmitTransition">物理的手段は使い切った。ロボットは<strong>あなたが送った物理事実のすべて</strong>を手にしている。では、ロボットが「赤の赤さ」まで受け取ったかは——<strong>外から確かめられるか?</strong> 下の検証テストを全部試してみる。</div>
+      </div>
+
+      <div class="xmit-phase xmit-phase-2" id="xmitPhase2">
+        <div class="xmit-phase-lbl"><span class="xmit-phase-n">02</span>検証フェーズ — ロボットを外から調べる</div>
+        <div class="xmit-phase-q">ロボットに「赤の赤さ」が届いたか——外部テストで差分の検出を試みる。あなた(人間)と区別できるなにかが見つかるだろうか。</div>
+        <div class="xmit-tests" id="xmitTests"></div>
+        <div class="xmit-diff"><span>実行済みテスト</span><span class="xmit-diff-v" id="xmitDiffV">0 / 6</span></div>
+        <div class="xmit-final" id="xmitFinal">
+          <div class="xmit-final-hd">結果 — ハードプロブレム</div>
+          <div class="xmit-final-body">送信は5手段すべて完了。検証は6テストすべて<strong>差分 0</strong>。<br><br>ロボットが「赤の赤さ」を<em>体験した</em>かは、最後まで確かめられなかった。物理的事実をすべて揃え、外部テストをすべて実行しても、<strong>体験の存在は物理的に確定しない</strong>。<br><br>これがチャーマーズの言う <strong>ハードプロブレム</strong>——物理と体験の間にある、埋められるかどうかすらわからない構造的な亀裂である。</div>
+          <button class="xmit-reset" id="xmitReset">最初からやり直す</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">「送る」側も「検証する」側も、どちらも物理で閉じていた。でも体験は、その外側のどこかにある——あるいは、その内側のどこにもない。チャーマーズの出発点はここだ。「もっと足せば埋まる」という希望は1990年代以降多くの研究者が試み、そして「本当に埋まっているのか」の議論は今も続いている。</p>
+
+  <!-- メカニズム -->
+  <div class="sec-rule fade">
+    <span class="sec-label">なぜ決着しないのか</span>
+    <div class="sec-line"></div>
+  </div>
+  <h2 class="fade">ギャップの正体を、図で見る</h2>
+
+  <p class="body-text fade">1983年、哲学者 <tip>ジョセフ・レヴァイン<span class="tip-box"><strong>Joseph Levine</strong>米国の心の哲学者。1983年の論文「Materialism and Qualia: The Explanatory Gap」で「説明のギャップ」という概念を導入した。</span></tip> が、この直感に名前を与えた——「<strong>説明のギャップ</strong>」。どれだけ物理的事実を揃えても、なぜ体験が立ち上がるかは<em>演繹</em>できない、という構造的な裂け目のことだ。</p>
+
+  <!-- SVG: Explanatory Gap (flat redesign) -->
+  <div class="svg-wrap fade">
+    <svg class="svg-fig" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="800" height="400" fill="#faf8f3"/>
+      <!-- Gap label (above, centered) -->
+      <text x="400" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#8b1a1a" letter-spacing="3">EXPLANATORY GAP</text>
+      <text x="400" y="82" text-anchor="middle" font-family="'Playfair Display',serif" font-size="24" font-style="italic" font-weight="700" fill="#8b1a1a">説明のギャップ</text>
+      <!-- Left island (Physical) -->
+      <rect x="40" y="130" width="280" height="200" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+      <text x="180" y="162" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#7a6a55" letter-spacing="2">PHYSICAL</text>
+      <text x="180" y="196" text-anchor="middle" font-family="'Playfair Display',serif" font-size="22" font-weight="700" fill="#1a1208">物理の語彙</text>
+      <line x1="80" y1="214" x2="280" y2="214" stroke="#c8bfaa" stroke-width="1"/>
+      <text x="180" y="244" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="16" fill="#3d3020">神経発火</text>
+      <text x="180" y="270" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="16" fill="#3d3020">情報処理</text>
+      <text x="180" y="296" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="16" fill="#3d3020">機能の記述</text>
+      <!-- Right island (Phenomenal) -->
+      <rect x="480" y="130" width="280" height="200" fill="#1a1208" stroke="#8b1a1a" stroke-width="2"/>
+      <text x="620" y="162" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#e8c56a" letter-spacing="2">PHENOMENAL</text>
+      <text x="620" y="196" text-anchor="middle" font-family="'Playfair Display',serif" font-size="22" font-weight="700" fill="#faf8f3">体験の語彙</text>
+      <line x1="520" y1="214" x2="720" y2="214" stroke="#8b1a1a" stroke-width="1"/>
+      <text x="620" y="244" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="16" fill="#c8bfaa">赤の赤さ</text>
+      <text x="620" y="270" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="16" fill="#c8bfaa">痛みの痛さ</text>
+      <text x="620" y="296" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="16" fill="#c8bfaa">体験そのもの</text>
+      <!-- Broken bridge between islands -->
+      <line x1="320" y1="230" x2="380" y2="230" stroke="#c4392a" stroke-width="2" stroke-dasharray="6,5"/>
+      <line x1="420" y1="230" x2="480" y2="230" stroke="#c4392a" stroke-width="2" stroke-dasharray="6,5"/>
+      <circle cx="400" cy="230" r="16" fill="#faf8f3" stroke="#c4392a" stroke-width="2"/>
+      <text x="400" y="238" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="20" fill="#c4392a" font-weight="700">×</text>
+      <!-- Bottom caption -->
+      <text x="400" y="376" text-anchor="middle" font-family="'Source Serif 4',serif" font-size="16" fill="#3d3020" font-style="italic">物理の語彙をどれだけ精密にしても、体験の語彙には演繹できない</text>
+    </svg>
+    <p class="svg-cap">Fig. 2 — 説明のギャップ(Levine 1983)</p>
+  </div>
+
+  <p class="body-text fade">この直感をさらに鋭く突いたのが、1974年の <tip>トマス・ネーゲル<span class="tip-box"><strong>Thomas Nagel</strong>米国の哲学者。1974年の論文「コウモリであるとはどのようなことか」で、主観的視点の還元不可能性を論じた。</span></tip> の論文「<em>What Is It Like to Be a Bat?</em>」である。コウモリは超音波反響定位で世界を感じている。その神経回路は書き切れるだろう。しかし「コウモリであることは、どのように感じられるか」は、外側からの記述では決してたどり着けない。<strong>主観的な「〜であること」は、客観的記述の外にある。</strong></p>
+
+  <div class="person-block fade">
+    <div class="person-block-img"><img src="./Thomas_Nagel_teaching_Ethics.jpeg" alt="Thomas Nagel"></div>
+    <div class="person-block-body">
+      <p class="person-block-name"><a href="https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%9E%E3%82%B9%E3%83%BB%E3%83%8D%E3%83%BC%E3%82%B2%E3%83%AB" target="_blank" rel="noopener">Thomas Nagel(1937–)</a></p>
+      <p class="person-block-role">Philosopher</p>
+      <p class="person-block-desc">ニューヨーク大学の哲学者。1974年の論文「コウモリであるとはどのようなことか」は、意識を客観的に還元する試みへの古典的な反論として今も引かれる。物理主義を否定せず、しかし「何かが欠けている」と言い続けた人。</p>
+      <p class="person-block-credit">Photo: <a href="https://en.wikipedia.org/wiki/User:Jmd442" target="_blank" rel="noopener">Jmd442</a> / <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 3.0</a>, via Wikimedia Commons(リサイズ済み)</p>
+    </div>
+  </div>
+
+  <div class="person-block no-img fade">
+    <div class="person-block-body">
+      <p class="person-block-name"><a href="https://en.wikipedia.org/wiki/Joseph_Levine_(philosopher)" target="_blank" rel="noopener">Joseph Levine(1952–)</a></p>
+      <p class="person-block-role">Philosopher</p>
+      <p class="person-block-desc">マサチューセッツ大学アマースト校の哲学者。1983年に「説明のギャップ」という言葉を鋳造。存在論的主張(意識は物理を超える)と認識論的主張(物理だけでは説明できない)を区別し、後者に注力した。</p>
+    </div>
+  </div>
+
+  <div class="person-block fade">
+    <div class="person-block-img"><img src="./500px-David_Chalmers_2011_(cropped).jpg" alt="David Chalmers"></div>
+    <div class="person-block-body">
+      <p class="person-block-name"><a href="https://ja.wikipedia.org/wiki/%E3%83%87%E3%82%A4%E3%83%B4%E3%82%A3%E3%83%83%E3%83%89%E3%83%BB%E3%83%81%E3%83%A3%E3%83%BC%E3%83%9E%E3%83%BC%E3%82%BA" target="_blank" rel="noopener">David Chalmers(1966–)</a></p>
+      <p class="person-block-role">Philosopher</p>
+      <p class="person-block-desc">オーストラリア出身、ニューヨーク大学。1994年トゥーソン会議と1995年論文で「ハードプロブレム」を命名。哲学的ゾンビの思考実験でも知られる。物理的事実だけでは意識の事実を決められない、という立場を<strong>自然主義的二元論</strong>と呼んだ。</p>
+      <p class="person-block-credit">Photo: <a href="https://commons.wikimedia.org/wiki/User:HerbertErwin" target="_blank" rel="noopener">HerbertErwin</a> / <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 3.0</a>, via Wikimedia Commons(リサイズ済み)</p>
+    </div>
+  </div>
+
+  <div class="person-block fade">
+    <div class="person-block-img"><img src="./960px-Daniel_dennett_Oct2008.jpeg" alt="Daniel Dennett"></div>
+    <div class="person-block-body">
+      <p class="person-block-name"><a href="https://ja.wikipedia.org/wiki/%E3%83%80%E3%83%8B%E3%82%A8%E3%83%AB%E3%83%BB%E3%83%87%E3%83%8D%E3%83%83%E3%83%88" target="_blank" rel="noopener">Daniel Dennett(1942–2024)</a></p>
+      <p class="person-block-role">Philosopher</p>
+      <p class="person-block-desc">タフツ大学。ハードプロブレムの提唱を<em>誤った問題設定</em>だと終生批判した代表格。著書『Consciousness Explained』(1991)とその後の議論で、「ギャップは錯覚であり、機能を全部書けば何も残らない」と主張した。2024年に逝去。</p>
+      <p class="person-block-credit">Photo: <a href="https://commons.wikimedia.org/wiki/User:Mathias_Schindler" target="_blank" rel="noopener">Mathias Schindler</a> / <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 3.0</a>, via Wikimedia Commons(リサイズ済み)</p>
+    </div>
+  </div>
+
+  <!-- 哲学的ゾンビ -->
+  <p class="body-text fade">チャーマーズはこのギャップを、ひとつの思考実験で可視化した。<tip>哲学的ゾンビ<span class="tip-box"><strong>philosophical zombie</strong>あなたと原子単位で物理的にまったく同じだが、内側に何の体験も伴わない存在。想像可能であれば、物理だけでは意識を決定できないことになる——というチャーマーズの論法のための装置。</span></tip>と呼ばれるものだ。あなたと原子単位で区別がつかず、同じ脳回路が同じように動き、同じ言葉で「赤は鮮やかだ」と報告する。ただ一点だけが違う——<em>内側には、なにもない</em>。</p>
+
+  <div class="zombie-wrap fade">
+    <div class="zombie-card you">
+      <div class="zombie-lbl">あなた</div>
+      <div class="zombie-row"><span class="zombie-row-k">神経発火</span><span>同一</span></div>
+      <div class="zombie-row"><span class="zombie-row-k">行動</span><span>同一</span></div>
+      <div class="zombie-row"><span class="zombie-row-k">言語報告</span><span>「赤が見える」</span></div>
+      <div class="zombie-row"><span class="zombie-row-k">機能</span><span>完全に一致</span></div>
+      <div class="zombie-row"><span class="zombie-row-k">内側の「赤さ」</span><span style="color:#8b1a1a;font-weight:600;">ある</span></div>
+    </div>
+    <div class="zombie-eq"><em>vs</em></div>
+    <div class="zombie-card zombie">
+      <div class="zombie-lbl">哲学的ゾンビ</div>
+      <div class="zombie-row"><span class="zombie-row-k">神経発火</span><span>同一</span></div>
+      <div class="zombie-row"><span class="zombie-row-k">行動</span><span>同一</span></div>
+      <div class="zombie-row"><span class="zombie-row-k">言語報告</span><span>「赤が見える」</span></div>
+      <div class="zombie-row"><span class="zombie-row-k">機能</span><span>完全に一致</span></div>
+      <div class="zombie-row"><span class="zombie-row-k">内側の「赤さ」</span><span style="color:#3d3020;font-weight:600;">なし(想定)</span></div>
+    </div>
+  </div>
+
+  <p class="body-text fade">この装置のポイントは、ゾンビが<em>存在する</em>と主張することではない。「<strong>矛盾なく想像できる</strong>」だけで十分なのだ。もし想像可能なら、物理の事実がすべて決まっていても意識の事実は自動的には決まらない——という論理が通る。批判する側は「いや、本当はちゃんと想像できていない」と応戦する。論争は今も止まない。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">"Why should physical processing give rise to a rich inner life at all? It seems objectively unreasonable that it should, and yet it does."</p>
+    <p class="pull-ja">なぜ物理処理は、そもそも豊かな内的生を生み出すのか。そうなる客観的必然性はないように思える——にもかかわらず、現にそうなっている。</p>
+    <p class="pull-attr">— David Chalmers, <em>Facing Up to the Problem of Consciousness</em>, 1995</p>
+  </div>
+
+  <!-- 立場の見取り図 -->
+  <p class="body-text fade">問いの強度ゆえに、応答は一つに収束しなかった。<strong>「意識とは何か、物理と体験のギャップをどう扱うべきか」</strong>——この中心的な問いに対して、現代の論者はおおむね四つの立場に分かれて拮抗している。</p>
+
+  <div class="positions fade">
+    <div class="pos-card">
+      <div class="pos-card-tag">Position 01</div>
+      <div class="pos-card-title">幻想主義</div>
+      <div class="pos-card-who">Dennett, Frankish</div>
+      <div class="pos-card-desc">「体験」という独立した何かは存在せず、脳が自分の状態を誤って報告しているだけ。<em>ギャップは錯覚</em>。機能を完全に書けば、残るものは何もない。</div>
+    </div>
+    <div class="pos-card">
+      <div class="pos-card-tag">Position 02</div>
+      <div class="pos-card-title">物理主義(還元派)</div>
+      <div class="pos-card-who">Crick, Koch(初期)</div>
+      <div class="pos-card-desc">意識は脳の物理プロセスそのもの。まだ記述が足りないだけで、いずれ<em>特定の神経相関(NCC)</em>が見つかれば、説明は完了する。</div>
+    </div>
+    <div class="pos-card">
+      <div class="pos-card-tag">Position 03</div>
+      <div class="pos-card-title">自然主義的二元論</div>
+      <div class="pos-card-who">Chalmers</div>
+      <div class="pos-card-desc">物理は閉じているが、<em>それに加えて</em>体験は自然の基本要素として認める必要がある。電磁気を物理に加えたのと同じ構造の拡張。</div>
+    </div>
+    <div class="pos-card">
+      <div class="pos-card-tag">Position 04</div>
+      <div class="pos-card-title">汎心論</div>
+      <div class="pos-card-who">Goff, Strawson</div>
+      <div class="pos-card-desc">体験の原型は、物質の最小単位にすでにある。脳で突然立ち上がるのではなく、<em>もとから在る微小な体験</em>が統合されて私たちの意識になる。</div>
+    </div>
+  </div>
+
+  <p class="body-text fade">どの立場も一長一短を持つ。幻想主義は、いま痛みを感じている自分を「錯覚」と呼ぶ直感の強い抵抗を受ける。還元派は神経相関を特定できても「なぜそれに<em>伴って</em>体験があるのか」という一段上の問いに答えられない。自然主義的二元論は自然法則を増やしすぎると批判される。汎心論は「原子に体験がある」という主張の奇妙さを呑み込まねばならない。</p>
+
+  <!-- IIT vs GNWT -->
+  <p class="body-text fade">一方、神経科学側でも理論化の努力は進んできた。代表が2つある。<tip>統合情報理論<span class="tip-box"><strong>Integrated Information Theory (IIT)</strong>トノーニ(Tononi)らが2004年から発展させた意識の理論。「統合された情報量 Φ(ファイ)」が意識の定量化の指標であり、この値が体験の強度と構造を決めるとする。</span></tip>(IIT、Tononi 2004)は、意識を「Φ(ファイ)」という<strong>統合された情報量</strong>で定量化しようとする理論。システムがどれだけ「部分に分解できない一つの全体として情報を持つか」を数値化し、それが高いほど豊かな体験が伴うと主張する。もう一つが<tip>グローバル・ニューロナル・ワークスペース理論<span class="tip-box"><strong>Global Neuronal Workspace Theory (GNWT)</strong>デアンヌ(Dehaene)らの理論。前頭前野を中心とする広域ネットワークが情報を「ブロードキャスト」することで意識的アクセスが生じる、とする。</span></tip>(GNWT、Dehaene)で、こちらは意識を<strong>情報の広域ブロードキャスト</strong>として捉える。前頭前野を中心とする脳全体のネットワークに情報が「放送」された瞬間、それが意識に上る、という枠組みだ。</p>
+
+  <p class="body-text fade">2025年4月、両理論の予測を<em>同じデータで敵対的に検証する</em>大規模共同研究の結果が Nature に掲載された。どちらも部分的に支持されたが、どちらも決定打にならなかった。「意識はどう発生するか」の答えは、今なお出ていない。</p>
+
+  <!-- 歴史 -->
+  <div class="sec-rule fade">
+    <span class="sec-label">歴史</span>
+    <div class="sec-line"></div>
+  </div>
+  <h2 class="fade">問いの系譜</h2>
+
+  <div class="timeline fade">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1641</div>
+      <div class="tl-title">デカルト「我思うゆえに我あり」</div>
+      <div class="tl-desc">思考する精神(res cogitans)と延長する物体(res extensa)の二元論を体系化。以後の議論の前提が敷かれる。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1867</div>
+      <div class="tl-title">デュ・ボア=レイモン「無知と、無知のまま」</div>
+      <div class="tl-desc">ドイツの生理学者が「Ignorabimus(我々は知らない、そして知らないだろう)」を宣言。意識は自然科学の限界の外にあると述べた。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1974</div>
+      <div class="tl-title">ネーゲル「コウモリであるとは?」</div>
+      <div class="tl-desc">客観的記述から主観的視点は取り出せない、と論じた論文。現代の問題設定の起点のひとつ。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1983</div>
+      <div class="tl-title">レヴァイン「説明のギャップ」</div>
+      <div class="tl-desc">Pacific Philosophical Quarterly 誌に論文「Materialism and Qualia」を発表。名指しされた裂け目が、のちに神経科学者にも共有される。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1991</div>
+      <div class="tl-title">デネット『意識の説明』</div>
+      <div class="tl-desc">機能の完全な記述が説明のすべてである、という反対方向からの包括的著作。クオリアは存在しない、と宣言した。</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1995</div>
+      <div class="tl-title">チャーマーズ「ハードプロブレム」論文公刊</div>
+      <div class="tl-desc">"Facing Up to the Problem of Consciousness" が Journal of Consciousness Studies に掲載。前年のトゥーソン会議での発表を論文化。名前がついた。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1996</div>
+      <div class="tl-title">『The Conscious Mind』刊行</div>
+      <div class="tl-desc">チャーマーズが著書で哲学的ゾンビの思考実験を中心に、自然主義的二元論を体系化。書評欄は賛否で割れた。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2004</div>
+      <div class="tl-title">統合情報理論の提案</div>
+      <div class="tl-desc">トノーニが意識を「統合された情報量 Φ」として数理化する理論を発表。定量化という方向からの応答が始まる。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2015</div>
+      <div class="tl-title">ストッパード『The Hard Problem』</div>
+      <div class="tl-desc">劇作家トム・ストッパードが国立劇場(ロンドン)でこの問題を題材にした戯曲を初演。哲学の語彙が演劇に渡った。</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2025</div>
+      <div class="tl-title">IIT vs GNWT、敵対的共同研究</div>
+      <div class="tl-desc">Nature に結果が掲載。両理論を同じデータで検証する初の大規模試み。部分的支持が半々で、決着には至らなかった。</div>
+    </div>
+  </div>
+
+  <!-- つまり -->
+  <div class="sec-rule fade">
+    <span class="sec-label">つまり</span>
+    <div class="sec-line"></div>
+  </div>
+  <h2 class="fade">体験という壁</h2>
+
+  <div class="img-fig fade">
+    <img src="./fig_p_zombie.png" alt="哲学的ゾンビ:物理的に同一の2体、片方は内側で何も体験していない">
+    <div class="img-fig-cap">物理的に同一の2体。違うのは——内側の体験の有無だけ。</div>
+  </div>
+
+  <p class="body-text fade">ハードプロブレムが提起したのは、「脳が分からない」ではなく「<strong>物理の語彙では体験の語彙に届かない</strong>」という構造的な非対応である。物理は三人称の記述で動く。体験はそもそも一人称の側にしかない。三人称で一人称を書こうとすると、何かが落ちる——その「何か」の輪郭を問い続けてきたのが、この30年だ。</p>
+
+  <p class="body-text fade">同じ裂け目を、別の角度から見たのが『<a href="https://qualiajournal.com/mary_room" style="color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.3);">マリーの部屋</a>』の思考実験である。白黒の部屋で色のすべての物理を学んだマリーが、初めて赤いトマトを見たとき、何か<em>新しいこと</em>を学ぶのか。学ぶとすれば、物理の外に情報があったことになる。マリーが出会ったその「何か」こそ、チャーマーズが「説明のギャップ」と呼んだものと同じ場所を指している。</p>
+
+  <div class="culture-block fade">
+    <div class="culture-label">文化・作品への登場</div>
+    <div class="culture-item">
+      <div class="culture-title">Tom Stoppard『The Hard Problem』(2015)</div>
+      <div class="culture-desc">英国の劇作家による戯曲。ロンドンの国立劇場で初演。神経科学と進化心理学が支配する研究所で、主人公が「脳の活動と、善悪を感じる心とはどう繋がるのか」を問い続ける。</div>
+    </div>
+    <div class="culture-item">
+      <div class="culture-title">『Ex Machina』(2014)</div>
+      <div class="culture-desc">アレックス・ガーランド監督の映画。AI の行動が人間と区別できないとき、その内側に「体験」があるかをどう判定できるか、という哲学的ゾンビの問いを物語化した。</div>
+    </div>
+    <div class="culture-item">
+      <div class="culture-title">『ウエストワールド』(2016–)</div>
+      <div class="culture-desc">HBO のドラマシリーズ。アンドロイドが自己意識を獲得する過程を、内的独白(「迷宮」)の図を用いて描く。シーズンを通じて、機能と体験の区別が物語の駆動力になる。</div>
+    </div>
+  </div>
+
+  <p class="body-text fade">それでも、この問題が<em>解かれる</em>日は来るかもしれない。物理の語彙が拡張されるかもしれない。あるいは、ギャップを「問うべきでない誤った問い」として放棄する日が来るかもしれない。どちらに転んでも、いまこの瞬間に赤を見ているあなたの「赤さ」が、科学の説明のどこにも書かれていない——その小さな事実は、どうしても残り続ける。</p>
+
+  <!-- 参考文献 -->
+  <div class="sec-rule fade">
+    <span class="sec-label">参考文献</span>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1995</span></div>
+      <div class="ref-title"><a href="https://consc.net/papers/facing.pdf" target="_blank" rel="noopener">Facing Up to the Problem of Consciousness</a></div>
+      <div class="ref-author">David J. Chalmers — Journal of Consciousness Studies, 2(3): 200–219</div>
+      <div class="ref-desc">「ハードプロブレム」という語を導入し、問題群の切り分けを提案した論文。すべての議論の起点。</div>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1974</span></div>
+      <div class="ref-title"><a href="https://warwick.ac.uk/fac/cross_fac/iatl/study/ugmodules/humananimalstudies/lectures/32/nagel_bat.pdf" target="_blank" rel="noopener">What Is It Like to Be a Bat?</a></div>
+      <div class="ref-author">Thomas Nagel — The Philosophical Review, 83(4): 435–450</div>
+      <div class="ref-desc">主観性の還元不可能性を論じた古典。現代のハードプロブレム議論の思想的下地。</div>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1983</span></div>
+      <div class="ref-title"><a href="https://www.marcsandersfoundation.org/wp-content/uploads/2019/11/Levine-1983-Materialism-and-Qualia.pdf" target="_blank" rel="noopener">Materialism and Qualia: The Explanatory Gap</a></div>
+      <div class="ref-author">Joseph Levine — Pacific Philosophical Quarterly, 64: 354–361</div>
+      <div class="ref-desc">「説明のギャップ」という概念を初めて明示的に定式化した論文。</div>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1996</span></div>
+      <div class="ref-title"><a href="https://global.oup.com/academic/product/the-conscious-mind-9780195117899" target="_blank" rel="noopener">The Conscious Mind: In Search of a Fundamental Theory</a></div>
+      <div class="ref-author">David J. Chalmers — Oxford University Press</div>
+      <div class="ref-desc">哲学的ゾンビの思考実験を中核に、自然主義的二元論の全体像を展開した書籍。</div>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1991</span></div>
+      <div class="ref-title"><a href="https://www.littlebrown.com/titles/daniel-c-dennett/consciousness-explained/9780316180665/" target="_blank" rel="noopener">Consciousness Explained</a></div>
+      <div class="ref-author">Daniel C. Dennett — Little, Brown</div>
+      <div class="ref-desc">機能主義・幻想主義の立場からの包括的な反論。ハードプロブレム派と並び読む必要がある古典。</div>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2004</span></div>
+      <div class="ref-title"><a href="https://bmcneurosci.biomedcentral.com/articles/10.1186/1471-2202-5-42" target="_blank" rel="noopener">An Information Integration Theory of Consciousness</a></div>
+      <div class="ref-author">Giulio Tononi — BMC Neuroscience, 5: 42</div>
+      <div class="ref-desc">IIT の最初期の定式化。統合情報量 Φ を導入した。</div>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2025</span></div>
+      <div class="ref-title"><a href="https://www.nature.com/articles/s41586-025-08888-1" target="_blank" rel="noopener">Adversarial testing of global neuronal workspace and integrated information theories of consciousness</a></div>
+      <div class="ref-author">Cogitate Consortium — Nature</div>
+      <div class="ref-desc">IIT と GNWT を同一データで敵対的に検証した初の大規模研究。両理論とも部分的支持に留まった。</div>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">入門向け解説</span><span class="ref-year">2022</span></div>
+      <div class="ref-title"><a href="https://plato.stanford.edu/entries/consciousness/" target="_blank" rel="noopener">Consciousness — Stanford Encyclopedia of Philosophy</a></div>
+      <div class="ref-author">Robert Van Gulick (ed.)</div>
+      <div class="ref-desc">意識をめぐる哲学・科学の主要論点を俯瞰する標準的リファレンス。</div>
+    </div>
+  </div>
+
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    一次資料はチャーマーズ 1995 論文、ネーゲル 1974 論文、レヴァイン 1983 論文、『The Conscious Mind』(1996)、『Consciousness Explained』(1991)、トノーニ 2004 論文、および 2025 年の Cogitate Consortium 論文(Nature)に基づく。哲学的ゾンビや汎心論の記述は、Stanford Encyclopedia of Philosophy の当該項目とチャーマーズの公式サイトの論文集を参照した。30年続く論争の現況を伝えるため、複数の立場を敵対的でない形で並置した。
+  </div>
+
+  <div class="signature fade">e. Tamaki</div>
+
+  <div class="tags">
+    <span class="tag">脳と意識</span><span class="tag">心の哲学</span><span class="tag">思考実験</span><span class="tag">クオリア</span><span class="tag">哲学的ゾンビ</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">30</p>
+      <p class="sidebar-text">チャーマーズが「<em>ハードプロブレム</em>」という語を提案してからの年数。この間、神経科学は著しく進歩したが、<strong>体験がなぜ生まれるか</strong>への決着はついていない。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1994年、トゥーソンの「Toward a Science of Consciousness」会議で口頭発表。1995年に論文公刊。提唱当時チャーマーズは<em>27歳</em>だった。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">トム・ストッパード戯曲『The Hard Problem』(2015, 英国国立劇場)/ 映画『Ex Machina』/ ドラマ『ウエストワールド』など、2010年代以降の意識系フィクションの背骨として機能している。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">
+        — <a href="https://qualiajournal.com/mary_room" style="color:#8b1a1a;">マリーの部屋</a><br>
+        — <a href="https://qualiajournal.com/libet_free_will" style="color:#8b1a1a;">リベット実験</a><br>
+        — <a href="https://qualiajournal.com/color" style="color:#8b1a1a;">色は存在しない</a><br>
+        — <a href="https://qualiajournal.com/butterfly_dream" style="color:#8b1a1a;">胡蝶の夢</a>
+      </p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">一次文献(チャーマーズ 1995、ネーゲル 1974、レヴァイン 1983、Nature 2025)と Stanford 哲学百科を基に執筆。<strong>未解決問題</strong>のため、結論ではなく論点を提示。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 意識のハードプロブレム を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、科学は意識を説明できないってこと?</span></div>
+      <span class="t-output" id="to1">「<em>いまは</em>説明できていない」が正確。<strong>機能</strong>の側(注意・記憶・報告)は着実に解けていて、これは easy problem。ただし「<em>なぜ機能が体験を伴うのか</em>」という hard の側は、30年たっても原理的な合意がない。できない、ではなく、<strong>論点そのものが未解決</strong>という状態。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ゾンビの話、ちょっとズルくない? 想像できたからって何?</span></div>
+      <span class="t-output" id="to2">それは最大の反論のひとつ。<strong>デネット</strong>らは「本当は想像できていない、できたつもりになっているだけ」と応じる。逆に<strong>チャーマーズ</strong>側は「想像可能性から論理的可能性を導ける」という哲学の伝統に立つ。どちらも譲らず、論点の前線はいまもそこにある。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;AI にも「感じ」ってあるのかな?</span></div>
+      <span class="t-output" id="to3">ハードプロブレムは、この問いを<em>判定不能</em>にする装置でもある。行動や報告で見分けられないなら、AI の内側に体験があるかは原理的に確かめられない。だから倫理の議論は、<strong>「確信が持てないまま、どう振る舞うか」</strong>という別のレイヤーに移る。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 漫画、寄生獣のミギーのラストを思い出した。</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/mary_room">
+      <p class="related-card-tag">思考実験・哲学</p>
+      <p class="related-card-title">マリーの部屋</p>
+      <p class="related-card-desc">すべての知識を得た彼女が、何ひとつ知らなかった可能性。ハードプロブレムと同じ裂け目を別角度から。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/libet_free_will">
+      <p class="related-card-tag">脳と意識</p>
+      <p class="related-card-title">自由意志への疑問(リベット実験)</p>
+      <p class="related-card-desc">意識的「決断」の0.3秒前に脳が動いている。意識は主役ではないかもしれない。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト方式)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.querySelectorAll('.tip').forEach(t=>t.addEventListener('click',e=>{e.stopPropagation();toggleTip(t);}));
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ===== XMIT INTERACTIVE =====
+const XMIT_SENDS=[
+  {label:'波長データ',log:'λ=620nm σ=8nm | RGB(196,57,42) | HSV(5°,79%,77%)'},
+  {label:'錐体細胞応答',log:'cone_L=0.72 | cone_M=0.31 | cone_S=0.04 | opsin_cascade=0.9s'},
+  {label:'V4 発火パターン',log:'neural_pattern_3892.dat | 1.2MB | 72ch @ 8kHz | 完全記録'},
+  {label:'行動・言語報告',log:'verbal_report: "It is vivid red, warm, saturated." | RT=380ms'},
+  {label:'詩的な描写',log:'poem: "熟したりんご、夕陽の最後の縁、血の記憶"'}
+];
+const XMIT_TESTS=['入出力を比較','応答時間を対照','行動を観察','「赤を見てるか」と問う','言語報告を照合','機能記述の網羅を確認'];
+(function(){
+  const btns=document.querySelectorAll('.xmit-btn');
+  const log=document.getElementById('xmitLog');
+  const physFill=document.getElementById('xmitPhysFill');
+  const physV=document.getElementById('xmitPhysV');
+  const phenV=document.getElementById('xmitPhenV');
+  const trans=document.getElementById('xmitTransition');
+  const phase2=document.getElementById('xmitPhase2');
+  const testsEl=document.getElementById('xmitTests');
+  const diffV=document.getElementById('xmitDiffV');
+  const finalEl=document.getElementById('xmitFinal');
+  const resetBtn=document.getElementById('xmitReset');
+  let sentCount=0,testedCount=0;
+  const sentState=new Array(XMIT_SENDS.length).fill(false);
+  const testedState=new Array(XMIT_TESTS.length).fill(false);
+
+  function addLog(text,cls){
+    const init=log.querySelector('.xmit-log-init');
+    if(init)init.remove();
+    const line=document.createElement('div');
+    line.className='xmit-log-line fresh'+(cls?' '+cls:'');
+    const t=new Date().toLocaleTimeString('ja-JP',{hour12:false});
+    line.textContent='['+t+'] '+text;
+    log.appendChild(line);
+    log.scrollTop=log.scrollHeight;
+  }
+
+  function renderTests(){
+    testsEl.innerHTML=XMIT_TESTS.map((t,i)=>
+      '<button class="xmit-test'+(testedState[i]?' done':'')+'" data-i="'+i+'">'+t+'</button>'
+    ).join('');
+    testsEl.querySelectorAll('.xmit-test').forEach(b=>{
+      b.addEventListener('click',e=>{
+        if(!phase2.classList.contains('unlocked'))return;
+        const i=parseInt(b.dataset.i);
+        if(testedState[i])return;
+        testedState[i]=true;testedCount++;
+        addLog('TEST: '+XMIT_TESTS[i]+' → 人間とロボットで差分検出されず');
+        diffV.textContent=testedCount+' / '+XMIT_TESTS.length;
+        renderTests();
+        if(testedCount===XMIT_TESTS.length){
+          setTimeout(()=>finalEl.classList.add('show'),500);
+        }
+      });
+    });
+  }
+
+  btns.forEach(b=>{
+    b.addEventListener('click',()=>{
+      const i=parseInt(b.dataset.i);
+      if(sentState[i])return;
+      sentState[i]=true;sentCount++;
+      b.classList.add('sent');
+      addLog('✓ RECEIVED: '+XMIT_SENDS[i].log);
+      const pct=Math.round(sentCount/XMIT_SENDS.length*100);
+      physFill.style.width=pct+'%';
+      physV.textContent=pct+'%';
+      // phen meter intentionally stays at 0
+      phenV.textContent='0%';
+      if(sentCount===XMIT_SENDS.length){
+        setTimeout(()=>{
+          trans.classList.add('show');
+          phase2.classList.add('unlocked');
+        },500);
+      }
+    });
+  });
+
+  resetBtn.addEventListener('click',()=>{
+    sentCount=0;testedCount=0;
+    for(let i=0;i<sentState.length;i++)sentState[i]=false;
+    for(let i=0;i<testedState.length;i++)testedState[i]=false;
+    btns.forEach(b=>b.classList.remove('sent'));
+    log.innerHTML='<div class="xmit-log-line xmit-log-init">// まだ何も届いていない</div>';
+    physFill.style.width='0%';physV.textContent='0%';phenV.textContent='0%';
+    trans.classList.remove('show');
+    phase2.classList.remove('unlocked');
+    finalEl.classList.remove('show');
+    diffV.textContent='0 / '+XMIT_TESTS.length;
+    renderTests();
+    document.querySelector('.xmit-wrap').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+
+  diffV.textContent='0 / '+XMIT_TESTS.length;
+  renderTests();
+})();
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>

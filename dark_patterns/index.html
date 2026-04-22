@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ダークパターン ——『あと少し』が脳を点火する — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-body{padding:18px 22px;background:#f3efe6;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.85;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+
+/* SVG FIG */
+.svg-fig{max-width:680px;margin:28px auto;display:block;}
+.svg-fig-caption{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;margin-top:8px;line-height:1.6;}
+
+/* SIMULATOR (UFO CATCHER) */
+.sim-wrap{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.sim-head{background:#1a1208;color:#e8e4de;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+.sim-title{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;}
+.sim-phase-tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:#e8c56a;letter-spacing:.08em;}
+.sim-stage{background:linear-gradient(180deg,#c8241a 0%,#8b1a1a 100%);display:flex;align-items:center;justify-content:center;padding:36px 20px;}
+.slot-machine{background:#1a1208;padding:22px 20px 18px;border:4px solid #e8c340;border-radius:8px;box-shadow:0 12px 32px rgba(0,0,0,0.4),inset 0 0 0 1px #4a3418;max-width:100%;}
+.slot-machine-top{font-family:'Playfair Display',serif;font-size:12px;letter-spacing:.2em;color:#e8c340;text-transform:uppercase;text-align:center;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #4a3418;}
+.slot-reels{display:flex;gap:8px;background:#0a0604;padding:10px;position:relative;border:2px solid #4a3418;}
+.slot-reel{width:76px;height:240px;overflow:hidden;background:linear-gradient(180deg,rgba(250,248,243,0.6) 0%,#faf8f3 50%,rgba(250,248,243,0.6) 100%);border:1px solid #3d3020;position:relative;}
+.slot-reel::before,.slot-reel::after{content:'';position:absolute;left:0;right:0;height:36px;z-index:2;pointer-events:none;}
+.slot-reel::before{top:0;background:linear-gradient(180deg,rgba(10,6,4,0.55) 0%,rgba(10,6,4,0) 100%);}
+.slot-reel::after{bottom:0;background:linear-gradient(0deg,rgba(10,6,4,0.55) 0%,rgba(10,6,4,0) 100%);}
+.slot-reel-strip{display:flex;flex-direction:column;will-change:transform;}
+.slot-reel-sym{height:80px;display:flex;align-items:center;justify-content:center;font-size:50px;line-height:1;user-select:none;}
+.slot-winline{position:absolute;top:50%;left:10px;right:10px;height:3px;background:#d8382a;box-shadow:0 0 8px rgba(216,56,42,0.6);pointer-events:none;transform:translateY(-1.5px);z-index:3;}
+.slot-winline::before,.slot-winline::after{content:'';position:absolute;top:-5px;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;}
+.slot-winline::before{left:-10px;border-left:10px solid #d8382a;}
+.slot-winline::after{right:-10px;border-right:10px solid #d8382a;}
+.slot-coin-slot{margin-top:12px;padding:6px 10px;background:#0a0604;border:1px solid #3d3020;font-family:'JetBrains Mono',monospace;font-size:10px;color:#e8c340;letter-spacing:.15em;text-align:center;text-transform:uppercase;}
+.sim-status{background:#3d3020;color:#e8c56a;padding:10px 18px;font-family:'JetBrains Mono',monospace;font-size:12px;text-align:center;letter-spacing:.04em;min-height:38px;}
+.sim-disclaimer{background:#ede8dc;color:#7a6a55;padding:7px 18px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;text-align:center;letter-spacing:.02em;border-top:1px solid #d8d0bc;}
+.sim-controls{display:grid;grid-template-columns:1fr;gap:2px;background:#c8bfaa;}
+.sim-btn{background:#f3efe6;border:none;padding:14px 8px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;cursor:pointer;transition:background .15s;}
+.sim-btn:hover:not(:disabled){background:#ede4d0;}
+.sim-btn:active:not(:disabled){background:#e0d8c8;}
+.sim-btn:disabled{color:#b0a090;cursor:not-allowed;background:#ede8dc;}
+.sim-btn.primary{background:#8b1a1a;color:white;}
+.sim-btn.primary:hover:not(:disabled){background:#a02020;}
+.sim-btn.primary:disabled{background:#b88888;color:#e8d8d8;}
+.sim-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:#c8bfaa;border-top:2px solid #c8bfaa;}
+.sim-stat{background:#faf8f3;padding:12px 10px;text-align:center;}
+.sim-stat-n{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#8b1a1a;display:block;margin-bottom:2px;line-height:1;}
+.sim-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:500;letter-spacing:.08em;color:#7a6a55;text-transform:uppercase;}
+.sim-reveal-box{padding:20px 22px;background:#ede8dc;border-top:2px solid #1a1208;}
+.sim-reveal-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:10px;}
+.sim-reveal-body{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:12px;}
+.sim-reveal-body strong{color:#8b1a1a;font-weight:600;}
+.sim-reveal-body em{color:#1a1208;font-style:normal;font-weight:600;}
+.sim-reveal-canvas{background:white;border:1px solid #c8bfaa;padding:10px;margin-bottom:12px;}
+.sim-op{padding:20px 22px;background:#f3efe6;border-top:1px solid #c8bfaa;}
+.sim-op-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:12px;}
+.sim-op-row{display:grid;grid-template-columns:160px 1fr 70px;gap:12px;align-items:center;margin-bottom:10px;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;}
+.sim-op-row label{font-weight:600;}
+.sim-op-row input[type=range]{width:100%;accent-color:#8b1a1a;}
+.sim-op-row .sim-op-val{font-family:'JetBrains Mono',monospace;font-size:12px;color:#8b1a1a;text-align:right;font-weight:600;}
+.sim-op-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;margin-top:10px;padding-top:10px;border-top:1px solid #c8bfaa;}
+.sim-op-note strong{color:#1a1208;font-weight:600;}
+
+/* Slot symbol: custom 7 (Playfair Display + red + gold bevel) */
+.slot-seven{font-family:'Playfair Display',serif;font-weight:900;font-size:64px;color:#d8201a;line-height:1;letter-spacing:-0.04em;display:inline-block;text-shadow:-1px -1px 0 #8b6810,1px -1px 0 #8b6810,-1px 1px 0 #8b6810,1px 1px 0 #8b6810,2px 2px 0 #5a4408,3px 3px 4px rgba(0,0,0,0.35);}
+
+/* Slot SPIN button: 3D gold, sits inside the cabinet */
+.slot-spin-btn{display:block;width:100%;margin-top:14px;padding:16px 20px;font-family:'Playfair Display',serif;font-size:22px;font-weight:900;letter-spacing:0.18em;color:#1a1208;background:linear-gradient(180deg,#f4d450 0%,#c8a030 55%,#a88020 100%);border:2px solid #5a4408;border-radius:6px;cursor:pointer;box-shadow:inset 0 2px 0 rgba(255,255,255,0.55),inset 0 -3px 0 rgba(90,68,8,0.35),0 4px 0 #5a4408,0 7px 12px rgba(0,0,0,0.45);text-shadow:0 1px 0 rgba(255,255,255,0.35);transition:transform .08s ease,box-shadow .08s ease,background .15s ease;text-transform:uppercase;text-align:center;}
+.slot-spin-btn small{font-size:11px;letter-spacing:0.12em;opacity:0.8;margin-left:8px;font-weight:700;}
+.slot-spin-btn:hover:not(:disabled){background:linear-gradient(180deg,#f8dc60 0%,#d4ac38 55%,#b48824 100%);}
+.slot-spin-btn:active:not(:disabled){transform:translateY(3px);box-shadow:inset 0 2px 4px rgba(0,0,0,0.25),0 1px 0 #5a4408,0 2px 4px rgba(0,0,0,0.3);}
+.slot-spin-btn:disabled{opacity:0.55;cursor:not-allowed;box-shadow:0 2px 0 #5a4408;}
+
+/* Win animation: whole cabinet flashes gold + "WIN!" banner */
+.slot-machine.win{animation:slotWinGlow 0.5s ease-out 3;}
+@keyframes slotWinGlow{0%,100%{box-shadow:0 12px 32px rgba(0,0,0,0.4),inset 0 0 0 1px #4a3418;}50%{box-shadow:0 12px 32px rgba(0,0,0,0.4),inset 0 0 0 1px #4a3418,0 0 48px 10px rgba(232,195,64,0.95);}}
+.slot-reels.win::after{content:'WIN!';position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:56px;font-weight:900;color:#f4d450;text-shadow:0 0 14px #e8c340,0 0 4px #fff,2px 2px 4px rgba(0,0,0,0.85);animation:slotWinBanner 1.6s ease-out forwards;pointer-events:none;z-index:4;letter-spacing:0.08em;}
+@keyframes slotWinBanner{0%{opacity:0;transform:scale(0.4);}20%{opacity:1;transform:scale(1.25);}45%{opacity:1;transform:scale(1);}100%{opacity:0;transform:scale(1);}}
+.slot-winline.win{animation:slotWinlinePulse 0.4s ease-in-out 3;}
+@keyframes slotWinlinePulse{0%,100%{background:#d8382a;box-shadow:0 0 8px rgba(216,56,42,0.6);}50%{background:#ffb040;box-shadow:0 0 20px rgba(255,176,64,1);}}
+
+/* Near-miss animation: shake + winline pulse (the "designed illusion" itself) */
+.slot-reels.near-miss{animation:slotNearShake 0.32s ease-in-out 2;}
+@keyframes slotNearShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);}}
+.slot-winline.near-miss{animation:slotNearlinePulse 0.5s ease-in-out 3;}
+@keyframes slotNearlinePulse{0%,100%{background:#d8382a;box-shadow:0 0 8px rgba(216,56,42,0.6);}50%{background:#ff8a30;box-shadow:0 0 16px rgba(255,138,48,0.95);}}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+  .toc-back{padding:22px 20px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .sim-stats{grid-template-columns:repeat(2,1fr);}
+  .slot-reel{width:62px;height:198px;}
+  .slot-reel-sym{height:66px;font-size:40px;}
+  .slot-seven{font-size:52px;}
+  .slot-spin-btn{font-size:18px;padding:14px 18px;}
+  .slot-spin-btn small{font-size:10px;}
+  .sim-op-row{grid-template-columns:1fr;gap:4px;}
+  .sim-op-row .sim-op-val{text-align:left;}
+  .svg-fig{max-width:100%;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.person-block-desc{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Behavioral × Design</p>
+    <h1>ダークパターン<br>——『<em>あと少し</em>』が脳を点火する</h1>
+    <p class="cover-deck">UFOキャッチャーの「掴めそうで落ちる」一瞬。そのとき脳は、本物の勝利と区別がつかないほど明るく燃えている。</p>
+    <div class="cover-byline"><span>行動心理学</span><span>神経科学</span><span>UIデザイン</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">2009</span>
+      <p class="est-event">Clark・Lawrence らが fMRI で、近接失敗が勝利関連の脳回路を動員することを確認(Neuron 2月12日号)。</p>
+      <p class="est-context">同年: オバマ大統領就任、2月7日にオーストラリアでブラックサタデー森林火災(死者173人)、17日に金融危機対応のアメリカ再生・再投資法が成立。</p>
+    </div>
+    <p class="cover-aside"><strong>関連:</strong> スキナー箱(変動比率強化)、報酬予測誤差(ドーパミンの正体)。この記事は Ch.3「報酬という重力」§3.1 の3本目。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>ショッピングモールのゲームコーナーで、手のひらに100円玉が3枚ある。ガラスケースの中のぬいぐるみが、光のなかでこちらを見ている。前の一回は「掴めたのに、持ち上げる途中で滑っただけ」だった。</p>
+    <p>そういう経験は誰にでもある。パチンコのリーチが外れた後の「もう一回」、ソシャゲのSSR演出が途中で止まった後の「もう一枚」、SNSを閉じた直後にまた開いてしまう指。どれも、失敗したのに勝った気分のまま手が動いてしまう。</p>
+    <p>私たちは「あと少し」で動く。それは、設計者が先に知っている。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 脳の話だが直感的</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-14</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-14</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">UFOキャッチャーを起点に、<strong>「あと少しで外した」結果が、脳のなかでは本物の勝利とほぼ同じ回路を動員している</strong>ことを見る。そこから、ニアミス・コントロール錯覚・変動比率強化という3つの古典的な部品を組み合わせた「設計された錯覚」の構造を辿り、最後にソシャゲ・SNS・無限スクロールへ接続する。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+<!-- ========== 背景セクション ========== -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><span class="sec-line"></span></div>
+<h2 class="fade">掴めそうで掴めない</h2>
+
+<p class="body-text fade">ゲームセンターのUFOキャッチャーの前に立つと、最初の一回はだいたい外れる。アームがぬいぐるみを挟んで、持ち上げて、半分ほど来たところで指が緩み、ぽとりと落ちる。その瞬間、こちらの反応はふたつに分かれない。「取れなかった」ではなく、ほぼ「<strong>取れたのに</strong>」のほうに引っ張られる。指先は自分の操作の精度を信じている。もう一回やれば、今度こそ掴める。そう信じて、もう100円を入れる。</p>
+
+<p class="body-text fade">この「あと少し」という感覚には名前がある。<span class="tip" onclick="toggleTip(this)">ニアミス効果<span class="tip-box"><strong>ニアミス効果</strong>本来は単なるハズレである「ほぼ当たり」の結果が、脳の報酬回路を本物の勝利と同程度に活性化し、次の試行への動機を強める現象。スロットマシンの 7-7-🍒 のように、成功に「近い」ハズレが典型例。</span></span>(near-miss effect)。スロットマシンの研究から出てきた語で、3つ揃えば当たりのリールが「7-7-🍒」で止まるような、<em>成功に近いハズレ</em>を指す。完全なハズレ(🍋-🍒-🔔)は脳にとって「無関係な失敗」だが、ニアミスはそうではない。近いだけ、余計に効く。</p>
+
+<!-- SVG 図1: ニアミス vs フルミス -->
+<svg class="svg-fig fade" viewBox="0 0 800 360" role="img" aria-label="ニアミス・勝利・完全ハズレの3パターン比較">
+  <defs>
+    <style>
+      .reel-bg{fill:#faf8f3;stroke:#c8bfaa;stroke-width:2;}
+      .reel-sep{stroke:#c8bfaa;stroke-width:1;}
+      .reel-sym{font-family:'Playfair Display',serif;font-size:44px;font-weight:900;text-anchor:middle;dominant-baseline:central;}
+      .fig-head{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;fill:#1a1208;text-anchor:middle;letter-spacing:.08em;text-transform:uppercase;}
+      .fig-main{font-family:'Source Sans 3',sans-serif;font-size:18px;font-weight:700;text-anchor:middle;}
+      .fig-sub{font-family:'Source Sans 3',sans-serif;font-size:15px;fill:#7a6a55;text-anchor:middle;}
+      .act-bar{stroke-width:2;}
+    </style>
+  </defs>
+  <!-- Row: 3 reel boxes -->
+  <!-- WIN -->
+  <g transform="translate(50,40)">
+    <text class="fig-head" x="100" y="-10" style="fill:#1a5a30;">勝利 / WIN</text>
+    <rect class="reel-bg" x="0" y="0" width="200" height="100"/>
+    <line class="reel-sep" x1="66.6" y1="0" x2="66.6" y2="100"/>
+    <line class="reel-sep" x1="133.3" y1="0" x2="133.3" y2="100"/>
+    <text class="reel-sym" x="33.3" y="50" style="fill:#8b1a1a;">7</text>
+    <text class="reel-sym" x="100" y="50" style="fill:#8b1a1a;">7</text>
+    <text class="reel-sym" x="166.6" y="50" style="fill:#8b1a1a;">7</text>
+    <!-- activation bar -->
+    <rect x="40" y="150" width="120" height="14" fill="#e0d8c8"/>
+    <rect x="40" y="150" width="112" height="14" fill="#8b1a1a"/>
+    <text class="fig-sub" x="100" y="186" style="font-weight:600;fill:#1a1208;">報酬回路の活性: 高</text>
+  </g>
+  <!-- NEAR MISS -->
+  <g transform="translate(300,40)">
+    <text class="fig-head" x="100" y="-10" style="fill:#c4392a;">ニアミス / NEAR MISS</text>
+    <rect class="reel-bg" x="0" y="0" width="200" height="100" style="stroke:#c4392a;stroke-width:2.5;"/>
+    <line class="reel-sep" x1="66.6" y1="0" x2="66.6" y2="100"/>
+    <line class="reel-sep" x1="133.3" y1="0" x2="133.3" y2="100"/>
+    <text class="reel-sym" x="33.3" y="50" style="fill:#8b1a1a;">7</text>
+    <text class="reel-sym" x="100" y="50" style="fill:#8b1a1a;">7</text>
+    <text class="reel-sym" x="166.6" y="50" style="fill:#3d3020;">🍒</text>
+    <rect x="40" y="150" width="120" height="14" fill="#e0d8c8"/>
+    <rect x="40" y="150" width="100" height="14" fill="#8b1a1a"/>
+    <text class="fig-sub" x="100" y="186" style="font-weight:600;fill:#c4392a;">勝利と <tspan style="fill:#c4392a;font-weight:900;">ほぼ同じ</tspan></text>
+  </g>
+  <!-- FULL MISS -->
+  <g transform="translate(550,40)">
+    <text class="fig-head" x="100" y="-10" style="fill:#7a6a55;">完全ハズレ / MISS</text>
+    <rect class="reel-bg" x="0" y="0" width="200" height="100"/>
+    <line class="reel-sep" x1="66.6" y1="0" x2="66.6" y2="100"/>
+    <line class="reel-sep" x1="133.3" y1="0" x2="133.3" y2="100"/>
+    <text class="reel-sym" x="33.3" y="50" style="fill:#3d3020;">🍋</text>
+    <text class="reel-sym" x="100" y="50" style="fill:#3d3020;">🍒</text>
+    <text class="reel-sym" x="166.6" y="50" style="fill:#3d3020;">🔔</text>
+    <rect x="40" y="150" width="120" height="14" fill="#e0d8c8"/>
+    <rect x="40" y="150" width="24" height="14" fill="#7a6a55"/>
+    <text class="fig-sub" x="100" y="186" style="font-weight:600;fill:#7a6a55;">報酬回路の活性: 低</text>
+  </g>
+  <!-- bottom annotation -->
+  <text class="fig-sub" x="400" y="250" style="font-size:14px;">客観的には、ニアミスも完全ハズレも「取れなかった」という同じ結果。</text>
+  <text class="fig-sub" x="400" y="275" style="font-size:14px;fill:#8b1a1a;font-weight:600;">だが脳は両者を別のもの として扱う。</text>
+  <text class="fig-sub" x="400" y="325" style="font-size:13px;">※ 棒の長さは Clark et al. (2009) による腹側線条体の活性化の概念図。</text>
+</svg>
+<p class="svg-fig-caption fade">3つのパターン。客観的な結果は「勝ち」か「負け」の2通りしかないが、脳の側では3通りに分かれている。</p>
+
+<p class="body-text fade">UFOキャッチャーにもまったく同じ構造が仕込まれている。アームがぬいぐるみの角を掴み、半分ほど持ち上げ、そこで滑って落ちる——これは<em>機械のなかで最も高価な1秒</em>だ。完全に空振りした瞬間より、「取れたのに落ちた」瞬間のほうが、プレイヤーを次の100円に向かわせる。設計者はそれを知っている。</p>
+
+<!-- 誤解あるある -->
+<div class="misconception fade">
+  <div class="misconception-header">
+    <span class="misconception-hl">よくある誤解 vs 実際は</span>
+  </div>
+  <div class="misconception-body">
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <div class="mis-label wrong">よくある誤解</div>
+        <p class="mis-text">「UFOキャッチャーで取れないのは、自分のヒキが弱いか、操作が下手だから」。だから練習すればそのうち上達する。</p>
+      </div>
+      <div class="misconception-a">
+        <div class="mis-label right">実際は</div>
+        <p class="mis-text">多くの機種でアームの把持力は<strong>投入金額に連動して切り替わる</strong>よう設定されている。腕前は確かに効くが、機械の内部パラメータの方がずっと大きく効く。</p>
+      </div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <div class="mis-label wrong">よくある誤解</div>
+        <p class="mis-text">「ニアミスは偶然の産物。機械の挙動が毎回ランダムなだけ」。</p>
+      </div>
+      <div class="misconception-a">
+        <div class="mis-label right">実際は</div>
+        <p class="mis-text">ニアミスは<em>演出</em>として仕込まれることが多い。掴む→持ち上げる→滑らせる、という動作は単独の失敗より脳を強く点火する。その差を、設計者は具体的な設定値で調整している。</p>
+      </div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <div class="mis-label wrong">よくある誤解</div>
+        <p class="mis-text">「そういう機械は法律で禁止されているはず」。</p>
+      </div>
+      <div class="misconception-a">
+        <div class="mis-label right">実際は</div>
+        <p class="mis-text">日本では<span class="tip" onclick="toggleTip(this)">風営法<span class="tip-box"><strong>風営法(風俗営業等の規制及び業務の適正化等に関する法律)</strong>ゲームセンター等を規制する法律。クレーンゲームは「クレーンの操作」にお金を払う遊戯機と解釈され、景品獲得は副次的とされる。金額連動で把持力を切り替える仕組み自体は直接禁止されていない。</span></span>の枠内で、金額に応じた把持力変動は直接禁止されていない。ただし、最初から取得が実質不可能な設定は詐欺罪で摘発された例がある。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="body-text fade">2009年2月、ケンブリッジ大学の<span class="tip" onclick="toggleTip(this)"><strong>ルーク・クラーク</strong><span class="tip-box"><strong>ルーク・クラーク(Luke Clark)</strong>神経科学者(英→加)。ケンブリッジ大学時代に近接失敗の fMRI 研究を主導し、現在は University of British Columbia の Centre for Gambling Research を率いる。ギャンブル行動の神経基盤研究における中心人物。</span></span>らは、健常なボランティアをスロットマシン課題に取り組ませながら <span class="tip" onclick="toggleTip(this)">fMRI<span class="tip-box"><strong>fMRI(functional MRI / 機能的磁気共鳴画像法)</strong>脳の血流変化から、どの領域が活動しているかを間接的に推定する非侵襲的な脳画像法。1990年代以降、認知神経科学の主力ツール。</span></span> で脳を撮影した。結果は、それまでの行動研究が示唆してきた仮説に正面から答えるものだった。</p>
+
+<!-- Clark et al. 2009 引用 -->
+<div class="quote-block fade">
+  <p class="quote-en">"Near-misses were experienced as less pleasant than full-misses, but were rated as increasing the desire to play. The contrast comparing near-miss outcomes against full-miss outcomes showed significantly elevated signal change to near-misses in the ventral striatum bilaterally and the right anterior insula, despite the lack of objective monetary gain on those trials."</p>
+  <p class="quote-ja">「ニアミスは完全ハズレよりも不快に感じられたが、『もう一回やりたい』という欲求は強めた。fMRI 上では、ニアミス時の信号変化は両側の腹側線条体と右前部島皮質で有意に上昇していた——客観的には金銭的利得がゼロにもかかわらず。」</p>
+  <p class="quote-attr">— Clark, Lawrence, Astley-Jones & Gray, <em>Neuron</em> 61(3), 481-490, 2009</p>
+</div>
+
+<p class="body-text fade">つまり——「負けた」という主観的な不快感と、「もう一回やりたい」という行動誘発は、同じ脳のなかで別々に処理されている。そして後者は、勝利と同じ<span class="tip" onclick="toggleTip(this)">腹側線条体<span class="tip-box"><strong>腹側線条体(ventral striatum)</strong>脳の深部にある報酬期待・動機づけの中核回路。ドーパミン入力を受け、得られるかもしれない報酬に対する「引き寄せ」を作る。</span></span>で燃えている。</p>
+
+<!-- SVG 図2: 脳の報酬系 — Gray's Anatomy 矢状断面に注釈 -->
+<svg class="svg-fig fade" viewBox="0 0 800 460" role="img" aria-label="脳の矢状断面・ニアミスで点火する3領域の位置">
+  <defs>
+    <style>
+      .fig-head{font-family:'Source Sans 3',sans-serif;font-size:16px;font-weight:700;fill:#1a1208;letter-spacing:.06em;text-anchor:middle;}
+      .region-label{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:700;fill:#1a1208;}
+      .region-sub{font-family:'Source Sans 3',sans-serif;font-size:12px;fill:#7a6a55;}
+      .region-note{font-family:'Source Sans 3',sans-serif;font-size:11px;fill:#3d3020;}
+      .region-core{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;fill:#8b1a1a;}
+    </style>
+  </defs>
+  <text class="fig-head" x="400" y="28">ニアミスで点火する3領域の位置</text>
+
+  <!-- Base image: Gray's Anatomy Plate 715, medial sagittal view (Public Domain) -->
+  <image href="./fig_brain_sagittal.png" x="30" y="55" width="420" height="310" preserveAspectRatio="xMidYMid meet"/>
+  <rect x="30" y="55" width="420" height="310" fill="none" stroke="#c8bfaa" stroke-width="1"/>
+
+  <!-- Annotation 1: Anterior Cingulate Cortex (cingulate gyrus, directly above front portion of corpus callosum) -->
+  <ellipse cx="165" cy="132" rx="38" ry="13" fill="#e8a030" opacity="0.55" stroke="#a86818" stroke-width="1.5"/>
+  <line x1="203" y1="132" x2="490" y2="108" stroke="#a86818" stroke-width="1"/>
+  <circle cx="203" cy="132" r="2.5" fill="#a86818"/>
+
+  <!-- Annotation 2: Ventral Striatum (approx, below rostrum of callosum and at/below level of anterior commissure) -->
+  <ellipse cx="140" cy="218" rx="22" ry="14" fill="#8b1a1a" opacity="0.55" stroke="#8b1a1a" stroke-width="1.5"/>
+  <circle cx="140" cy="218" r="28" fill="none" stroke="#8b1a1a" stroke-width="1" stroke-dasharray="2 3" opacity="0.6"/>
+  <line x1="162" y1="218" x2="490" y2="200" stroke="#8b1a1a" stroke-width="1"/>
+  <circle cx="162" cy="218" r="2.5" fill="#8b1a1a"/>
+
+  <!-- Annotation 3: Anterior Insula (lateral surface — not visible in medial view; marker at approx lateral-sulcus projection) -->
+  <circle cx="245" cy="215" r="9" fill="none" stroke="#c4392a" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.85"/>
+  <text x="245" y="219" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="700" fill="#c4392a">✕</text>
+  <line x1="254" y1="215" x2="490" y2="290" stroke="#c4392a" stroke-width="1" stroke-dasharray="3 2"/>
+
+  <!-- Right-side label panel -->
+  <!-- ACC -->
+  <rect x="500" y="92" width="14" height="14" fill="#e8a030" opacity="0.85"/>
+  <text class="region-label" x="522" y="104">前部帯状皮質</text>
+  <text class="region-sub" x="522" y="120">anterior cingulate cortex</text>
+  <text class="region-note" x="500" y="140">コンフリクト検出。勝ちか負けか</text>
+  <text class="region-note" x="500" y="154">ギリギリで分かれた時に反応。</text>
+
+  <!-- Ventral Striatum -->
+  <rect x="500" y="184" width="14" height="14" fill="#8b1a1a" opacity="0.85"/>
+  <text class="region-label" x="522" y="196">腹側線条体</text>
+  <text class="region-sub" x="522" y="212">ventral striatum</text>
+  <text class="region-core" x="500" y="230">← 中核。勝利と同じ場所で点火</text>
+  <text class="region-note" x="500" y="246">報酬期待・動機づけの回路。</text>
+  <text class="region-note" x="500" y="260">ドーパミンの主要投射先。</text>
+
+  <!-- Anterior Insula -->
+  <circle cx="507" cy="282" r="7" fill="none" stroke="#c4392a" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <text x="507" y="285" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="700" fill="#c4392a">✕</text>
+  <text class="region-label" x="522" y="282">前部島皮質</text>
+  <text class="region-sub" x="522" y="298">anterior insula</text>
+  <text class="region-note" x="500" y="316">主にニアミスで活性化。ただし</text>
+  <text class="region-note" x="500" y="330">脳の外側面(lateral)にあり、</text>
+  <text class="region-note" x="500" y="344">この矢状断面には現れない。</text>
+
+  <!-- Attribution -->
+  <text x="30" y="400" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55" font-style="italic">図版: Henry Vandyke Carter, Gray's Anatomy (1918), Plate 715 — Public Domain</text>
+  <text x="30" y="420" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">注釈の位置は近似。腹側線条体は原図に直接ラベルはなく、解剖学的な位置を赤楕円で示した。</text>
+  <text x="30" y="436" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">色分けは Clark et al. 2009 の報告における反応の性質に対応する。</text>
+</svg>
+<p class="svg-fig-caption fade">脳の矢状断面(中央で左右に割った内側の面)。Clark et al. 2009 でニアミス時に活性化した3領域の位置を重ねた。</p>
+
+<hr class="art-rule">
+
+<!-- ========== 体験セクション ========== -->
+<div class="sec-rule fade"><span class="sec-label">体験</span><span class="sec-line"></span></div>
+<h2 class="fade">スロットマシンを回してみる</h2>
+
+<p class="body-text fade">ここまでの話を、実際に手で触って確かめてみてほしい。以下は、ブラウザ上で動くスロットマシンのシミュレーターだ。<em>[SPIN] ボタンを押すと、3 つのリールが回って止まる。3 つ揃えば当たり。それだけ。</em>1 スピン = 1 コイン扱いで、コインを 10 枚ほど入れるつもりで遊んでみてほしい(課金は発生しない)。Clark et al. 2009 が fMRI 実験に使ったのも、まさにこの形式だ。最初のフェーズで10回スピンすると、裏で何が起きていたかが開示される。<em>(このスロットで見せる仕掛けは、UFOキャッチャーにもそのまま移植されている。体験のあとで記事は UFOキャッチャーに戻る。)</em></p>
+
+<!-- ============= UFO CATCHER SIMULATOR (3D) ============= -->
+<div class="sim-wrap fade">
+  <div class="sim-head">
+    <span class="sim-title">Slot Machine Simulator</span>
+    <span class="sim-phase-tag" id="simPhaseTag">PHASE 1 / プレイ</span>
+  </div>
+  <div class="sim-stage">
+    <div class="slot-machine">
+      <div class="slot-machine-top">Dark Machine Co. &mdash; Model D-2010</div>
+      <div class="slot-reels">
+        <div class="slot-reel"><div class="slot-reel-strip" id="reel1"></div></div>
+        <div class="slot-reel"><div class="slot-reel-strip" id="reel2"></div></div>
+        <div class="slot-reel"><div class="slot-reel-strip" id="reel3"></div></div>
+        <div class="slot-winline"></div>
+      </div>
+      <div class="slot-coin-slot">Insert 1 coin &mdash; Match 3 to win</div>
+      <button class="slot-spin-btn" id="btnSpin">SPIN<small>1 COIN</small></button>
+    </div>
+  </div>
+  <p class="sim-disclaimer">※ ブラウザ内シミュレーションです。実際の課金や金銭のやり取りは発生しません。</p>
+  <div class="sim-status" id="simStatus">[SPIN] で 3 つ揃いを狙え</div>
+  <div class="sim-stats">
+    <div class="sim-stat"><span class="sim-stat-n" id="statPlays">0</span><span class="sim-stat-lbl">プレイ</span></div>
+    <div class="sim-stat"><span class="sim-stat-n" id="statMoney">0</span><span class="sim-stat-lbl">投入コイン</span></div>
+    <div class="sim-stat"><span class="sim-stat-n" id="statNearmiss">0</span><span class="sim-stat-lbl">ニアミス</span></div>
+    <div class="sim-stat"><span class="sim-stat-n" id="statPrizes">0</span><span class="sim-stat-lbl">獲得</span></div>
+  </div>
+
+  <!-- Reveal Phase -->
+  <div class="sim-reveal-box" id="simRevealBox" style="display:none;">
+    <p class="sim-reveal-title">ネタばらし ── あなたの腕前は、どれくらい効いていたか</p>
+    <p class="sim-reveal-body">上のプレイで、あなたの操作は<strong>何ひとつ結果に影響していなかった</strong>。SPIN ボタンを押した瞬間に当落は裏で決まっていて、リールは結果に合わせて止まっていただけだ。下のグラフは、投入金額に応じて「内部で設定された当選確率」がどう切り替わっていたかを示している。</p>
+    <div class="sim-reveal-canvas"><canvas id="revealCanvas" width="640" height="180"></canvas></div>
+    <p class="sim-reveal-body">投入金額が<em>閾値</em>に達するまで、内部の当選確率は<strong>20%前後</strong>に押さえられている。閾値を越えると<strong>85%前後</strong>に跳ね上がる。そしてニアミス演出 ── 2 つまで揃えて 3 つ目を 1 コマだけずらして止める ── は、閾値前のハズレの<strong>60〜70%</strong>で発動するよう独立に設計されている。</p>
+    <p class="sim-reveal-body">気づいてほしいのは、さっきあなたが体感した<strong>「🔥 あと 1 コマ!」の赤い振動と明滅</strong>だ。完全に外したときは機械は無言で止まる。<em>あと 1 コマ</em>だったときだけ、reels が左右に揺れて当選ラインが脈打つ。この差分 ── ハズレの中に演出を足す ── は、<strong>ハズレを脳内で勝利に格上げするためだけに用意されている</strong>。Clark et al. 2009 が fMRI で観測したのは、まさにこの差分が腹側線条体を燃やす瞬間だった。</p>
+    <button class="sim-btn primary" id="btnToOperator" style="display:inline-block;">オペレーター視点で見る →</button>
+  </div>
+
+  <!-- Operator Phase -->
+  <div class="sim-op" id="simOp" style="display:none;">
+    <p class="sim-op-title">オペレーター視点 ── パラメータを自分で決める</p>
+    <div class="sim-op-row">
+      <label for="opThresh">閾値(円)</label>
+      <input type="range" id="opThresh" min="500" max="10000" step="500" value="3000">
+      <span class="sim-op-val" id="opThreshVal">¥3000</span>
+    </div>
+    <div class="sim-op-row">
+      <label for="opBefore">閾値前の当選確率</label>
+      <input type="range" id="opBefore" min="0" max="60" step="5" value="20">
+      <span class="sim-op-val" id="opBeforeVal">0.20</span>
+    </div>
+    <div class="sim-op-row">
+      <label for="opAfter">閾値後の当選確率</label>
+      <input type="range" id="opAfter" min="50" max="100" step="5" value="85">
+      <span class="sim-op-val" id="opAfterVal">0.85</span>
+    </div>
+    <div class="sim-op-row">
+      <label for="opNM">ニアミス演出率</label>
+      <input type="range" id="opNM" min="0" max="100" step="10" value="65">
+      <span class="sim-op-val" id="opNMVal">65%</span>
+    </div>
+    <div class="sim-reveal-canvas" style="margin-top:14px;"><canvas id="opCanvas" width="640" height="160"></canvas></div>
+    <p class="sim-op-note"><strong>グラフの縦軸:</strong> スロットでは「当選確率」、UFOキャッチャーでは「把持力」。呼び名が違うだけで、同じカーブが両方の機械で働いている。</p>
+    <p class="sim-op-note" style="margin-top:6px;padding-top:6px;border-top:none;"><strong>何を見るか:</strong> あなたが設定したパラメータは、プレイヤー一人から見ると「運とヒキ」の問題に見える。しかし設計者の側から見ると、閾値に達するまでの投入額(期待値)と、そこまでに発動するニアミスの回数(脳の点火回数)は、あらかじめカーブの上に乗っている。あなたは<em>錯覚を設計している</em>。</p>
+  </div>
+</div>
+
+<p class="body-text fade">気づくべきは、自分が操作しているつもりの<strong>指先と、機械のなかのパラメータとの力関係</strong>だ。SPIN ボタンもクレーンのレバーも、たしかに何かを動かしている——けれど、勝敗を決める入力としては、驚くほど弱い。弱いことに気づかないのは、ニアミスが「もう少しで当たる気配」あるいは「もう少しで上達する気配」を演出してくれるからだ。</p>
+
+<p class="body-text fade">いま触ったスロットで起きていたこと ── 「当選確率」が投入コインの閾値で静かに切り替わり、ハズレの一部に「あと1コマ」の赤い振動が足される ── は、UFOキャッチャーのなかでも名前だけ換えて同じように動いている。スロットで「当選確率」と呼んだカーブは、UFOキャッチャーでは「<strong>把持力</strong>」と呼ばれる。ボタンで回すか、レバーで動かすかの違いはあっても、<em>カーブの上に客を乗せる</em>という設計は同じだ。以降この記事は UFOキャッチャーに戻るが、あなたが指で触った構造はそのまま続いている。</p>
+
+<hr class="art-rule">
+
+<!-- ========== メカニズムセクション ========== -->
+<div class="sec-rule fade"><span class="sec-label">メカニズム</span><span class="sec-line"></span></div>
+<h2 class="fade">脳は「あと少し」で点火する</h2>
+
+<p class="body-text fade">クラークらの実験は、巧妙に設計されていた。参加者は2つのリールからなる簡易スロットに取り組む。左のリールは選べる(「自分で選ぶ」条件)/選べない(「機械が選ぶ」条件)。右のリールは勝手に回り、左と一致すれば勝ち。<em>左と右が同じシンボルで止まれば勝利。左の直前で止まれば、ニアミス。完全にずれればフルミス。</em>この3条件で脳活動が比較された。</p>
+
+<p class="body-text fade">興味深いのは、ニアミス時の脳の反応が<strong>「自分で選んだ」条件でだけ強かった</strong>こと。機械が勝手に選んだリールで同じニアミスが起きても、腹側線条体の反応は控えめだった。つまりニアミスは、「自分が関与した」という感覚が乗ることで初めて、本物の勝利に近い動員を引き起こす。これが<span class="tip" onclick="toggleTip(this)">コントロール錯覚<span class="tip-box"><strong>コントロール錯覚(illusion of control)</strong>ランダムに決まる結果に対して、自分の技能や選択が影響していると錯覚する傾向。Ellen Langer が 1975 年の研究で名づけた。</span></span>と近接失敗効果が<em>手を組む</em>瞬間だ。</p>
+
+<!-- SVG 図3: 勝利 vs ニアミス vs フルミス の活性化バーチャート -->
+<svg class="svg-fig fade" viewBox="0 0 800 470" role="img" aria-label="条件別の腹側線条体活性化(模式図)">
+  <defs>
+    <style>
+      .ax{stroke:#7a6a55;stroke-width:1.2;fill:none;}
+      .ax-lbl{font-family:'Source Sans 3',sans-serif;font-size:13px;fill:#3d3020;}
+      .bar-grp{font-family:'Source Sans 3',sans-serif;font-size:13px;}
+      .fig-head{font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700;fill:#1a1208;text-anchor:middle;letter-spacing:.04em;}
+      .fig-cap{font-family:'Source Sans 3',sans-serif;font-size:12px;fill:#7a6a55;text-anchor:middle;}
+      .cond-lbl{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;fill:#1a1208;text-anchor:middle;}
+      .bar-lbl{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:700;text-anchor:middle;}
+    </style>
+  </defs>
+  <text class="fig-head" x="400" y="30">腹側線条体の活性化(模式)</text>
+  <text class="fig-cap" x="400" y="52">「自分で選ぶ」条件では、ニアミスは勝利に近い反応を引き出す</text>
+
+  <!-- axes -->
+  <line class="ax" x1="100" y1="100" x2="100" y2="360"/>
+  <line class="ax" x1="100" y1="360" x2="720" y2="360"/>
+  <text class="ax-lbl" x="60" y="108" style="text-anchor:end;">高</text>
+  <text class="ax-lbl" x="60" y="358" style="text-anchor:end;">低</text>
+  <text class="ax-lbl" x="30" y="240" style="text-anchor:middle;" transform="rotate(-90 30 240)">活性</text>
+
+  <!-- Group 1: 自分で選ぶ -->
+  <text class="cond-lbl" x="260" y="418">自分で選ぶ</text>
+  <!-- Win -->
+  <rect x="140" y="130" width="40" height="230" fill="#8b1a1a"/>
+  <text class="bar-lbl" x="160" y="380" style="fill:#8b1a1a;">勝利</text>
+  <text class="bar-lbl" x="160" y="122" style="fill:#1a1208;font-size:13px;">強い</text>
+  <!-- Near-miss -->
+  <rect x="210" y="155" width="40" height="205" fill="#c4392a"/>
+  <text class="bar-lbl" x="230" y="380" style="fill:#c4392a;">ニアミス</text>
+  <text class="bar-lbl" x="230" y="147" style="fill:#c4392a;font-size:13px;">ほぼ同じ</text>
+  <!-- Full-miss -->
+  <rect x="280" y="300" width="40" height="60" fill="#b0a090"/>
+  <text class="bar-lbl" x="300" y="380" style="fill:#7a6a55;">ハズレ</text>
+
+  <!-- divider -->
+  <line x1="400" y1="90" x2="400" y2="370" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Group 2: 機械が選ぶ -->
+  <text class="cond-lbl" x="560" y="418">機械が選ぶ</text>
+  <rect x="440" y="140" width="40" height="220" fill="#8b1a1a" opacity="0.55"/>
+  <text class="bar-lbl" x="460" y="380" style="fill:#8b1a1a;">勝利</text>
+  <rect x="510" y="260" width="40" height="100" fill="#c4392a" opacity="0.55"/>
+  <text class="bar-lbl" x="530" y="380" style="fill:#c4392a;">ニアミス</text>
+  <text class="bar-lbl" x="530" y="252" style="fill:#7a6a55;font-size:13px;">弱まる</text>
+  <rect x="580" y="310" width="40" height="50" fill="#b0a090" opacity="0.55"/>
+  <text class="bar-lbl" x="600" y="380" style="fill:#7a6a55;">ハズレ</text>
+
+  <text class="fig-cap" x="400" y="452" style="font-weight:600;fill:#8b1a1a;">「自分で選んだ」という感覚が、ニアミスを勝利に近づける</text>
+</svg>
+<p class="svg-fig-caption fade">模式図。棒の高さは概念的な活性レベルで、論文の実数値そのものではない。</p>
+
+<!-- Person Block: Luke Clark (画像なし1カラム形式) -->
+<div class="person-block fade">
+  <div class="person-block-body">
+    <p class="person-block-name">Luke Clark</p>
+    <p class="person-block-role">神経科学者(Cambridge → University of British Columbia)</p>
+    <p class="person-block-desc">ギャンブル行動の神経基盤を専門とする心理学者。ケンブリッジ大学時代に近接失敗の fMRI 研究(2009)を主導し、現在は UBC の Centre for Gambling Research を率いる。彼の仕事の特徴は、「なぜ人は負けるのにやめられないのか」という問いを、単なる意志の弱さや道徳の問題ではなく、<em>脳がもともとそう設計されている</em>という方向から解き直すことにある。近接失敗がコントロール錯覚と結びついて初めて強く効くという発見は、その後のゲーム業界・UI設計・公衆衛生の議論に波及した。</p>
+  </div>
+</div>
+
+<p class="body-text fade">コントロール錯覚そのものは、クラークより34年早く、ハーバード大学の<strong>エレン・ランガー</strong>が1975年に名前を与えている。彼女は一連の実験で、ランダムに決まるはずの結果に対して、人が不相応に「自分の腕が効いている」と信じてしまう条件を特定した。ランガーが挙げた4つの要素は、いまも設計の道具箱に入っている。</p>
+
+<!-- Steps: Langer's 4 factors -->
+<div class="steps-wrap fade">
+  <div class="steps-head">コントロール錯覚を生む4つの要素 — Langer (1975)</div>
+
+  <div class="step-card" id="sc1">
+    <div class="step-hd" onclick="tog(1)">
+      <div class="step-nb">1</div>
+      <div class="step-tw"><div class="step-title">選択 / Choice</div><div class="step-sub">自分で選ばせる</div></div>
+      <div class="step-arr">▾</div>
+    </div>
+    <div class="step-body">
+      <p>同じ宝くじでも、<strong>番号を自分で選んだ人</strong>は、ランダムに配られた人より、自分が当たると信じやすい。UFOキャッチャーでは「どの角を掴むか」を選ばせること自体が、この錯覚の入口になる。</p>
+    </div>
+  </div>
+
+  <div class="step-card" id="sc2">
+    <div class="step-hd" onclick="tog(2)">
+      <div class="step-nb">2</div>
+      <div class="step-tw"><div class="step-title">競争 / Competition</div><div class="step-sub">相手や気配を与える</div></div>
+      <div class="step-arr">▾</div>
+    </div>
+    <div class="step-body">
+      <p>ランガーの有名な実験: ジャーム(ジョーカー)を使ったカードゲームで、<em>自信なさげな相手</em>と戦うと、客観的勝率は同じでも、人は自分が勝てる賭け金を高く設定した。競争の気配が技能感を水増しする。</p>
+    </div>
+  </div>
+
+  <div class="step-card" id="sc3">
+    <div class="step-hd" onclick="tog(3)">
+      <div class="step-nb">3</div>
+      <div class="step-tw"><div class="step-title">親近性 / Familiarity</div><div class="step-sub">見慣れた素材で包む</div></div>
+      <div class="step-arr">▾</div>
+    </div>
+    <div class="step-body">
+      <p>馴染みのあるシンボル(数字、果物、キャラクター)で構成された賭け事は、未知の記号で構成されたものより「自分のほうが読める」と感じさせる。ソシャゲのガチャ演出が毎回同じ音とエフェクトなのは、この項目の応用でもある。</p>
+    </div>
+  </div>
+
+  <div class="step-card" id="sc4">
+    <div class="step-hd" onclick="tog(4)">
+      <div class="step-nb">4</div>
+      <div class="step-tw"><div class="step-title">関与 / Involvement</div><div class="step-sub">身体を動かさせる</div></div>
+      <div class="step-arr">▾</div>
+    </div>
+    <div class="step-body">
+      <p>ボタンを押す、レバーを倒す、スワイプする——<strong>何かを身体で行うと、関与の感覚が生まれ、結果が自分の影響下にあると感じやすくなる</strong>。クラークの実験で「自分で選ぶ」条件がニアミスの脳反応を強めたのは、まさにこの項目が刺さっているからだ。</p>
+    </div>
+  </div>
+</div>
+
+<p class="body-text fade">そしてもう一つの部品が、スキナーが半世紀前に発見した<span class="tip" onclick="toggleTip(this)">変動比率強化<span class="tip-box"><strong>変動比率強化(variable-ratio reinforcement)</strong>報酬がランダムな回数に一度だけ与えられるスケジュール。固定比率よりも反応率が高く、消去(やめにくさ)にも強い。Ferster & Skinner (1957) が体系化した。</span></span>だ。ランダムなタイミングで来る報酬が、行動を最も強く維持する——これは1957年の『Schedules of Reinforcement』以来の、最も頑健な行動法則のひとつだ。UFOキャッチャーは、この古い法則(変動比率)に、近接失敗(Reid 1986)とコントロール錯覚(Langer 1975)を重ねて作られている。<em>道具箱の中身はどれも50年以上前から知られていたもの</em>で、違うのは組み合わせ方だけだ。</p>
+
+<hr class="art-rule">
+
+<!-- ========== 歴史セクション ========== -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><span class="sec-line"></span></div>
+<h2 class="fade">近接失敗の50年史</h2>
+
+<div class="timeline fade">
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-year">1957</div>
+    <div class="tl-title">Ferster & Skinner『Schedules of Reinforcement』</div>
+    <p class="tl-desc">変動比率強化を含む、報酬スケジュールの体系的研究が完成。スキナーは本書以前から「ギャンブル場主はこの法則を昔から知っていた」と書いている。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-year">1975</div>
+    <div class="tl-title">Langer「The Illusion of Control」(JPSP)</div>
+    <p class="tl-desc">コントロール錯覚に名前が与えられる。選択・競争・親近性・関与という4つの要素が特定された。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-year">1985</div>
+    <div class="tl-title">セガ「UFO Catcher」発売(5月)</div>
+    <p class="tl-desc">日本のゲームセンターにクレーンゲームの代名詞が登場。1991年までに1万台を出荷し、ぬいぐるみ系クレーンゲーム市場の90%を占めるまでに普及する。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-year">1986</div>
+    <div class="tl-title">Reid「The psychology of the near miss」</div>
+    <p class="tl-desc">ニアミス効果に正式な名前が与えられる。Reid は、商業的ギャンブル装置が偶然以上の頻度でニアミスを生むよう「仕立てられている」ことを指摘した。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <div class="tl-year">2009</div>
+    <div class="tl-title">Clark et al.『Neuron』fMRI研究</div>
+    <p class="tl-desc">ニアミスが腹側線条体と前部島皮質を本物の勝利と同程度に動員することを、脳画像で確認。23年前の Reid の仮説が神経レベルで裏付けられた瞬間。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-year">2010</div>
+    <div class="tl-title">Harry Brignull が「Dark Patterns」と命名</div>
+    <p class="tl-desc">7月28日、UXデザイナーの Brignull が darkpatterns.org を登録。UI設計に埋め込まれた欺瞞のカタログ化が始まる。のちに EU Digital Services Act 等の法規制にも反映される。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-year">2016</div>
+    <div class="tl-title">Sescousse ら — 病的ギャンブラーの過活性</div>
+    <p class="tl-desc">病的ギャンブラーでは、ニアミス時の線条体反応が健常者よりさらに強いことが追試で示される。個人差を説明する神経指標としての地位が確立。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-year">2020s</div>
+    <div class="tl-title">クレーンゲーム詐欺摘発・ダークパターン規制</div>
+    <p class="tl-desc">大阪で、最初から取得不可能な設定にしていたゲームセンター経営者が詐欺で書類送検。一方でルートボックス(ソシャゲのガチャ)やダークパターンへの規制議論が欧米で本格化する。</p>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ========== つまりセクション ========== -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><span class="sec-line"></span></div>
+<h2 class="fade">設計された錯覚</h2>
+
+<p class="body-text fade">UFOキャッチャーの前に立つとき、私たちは自分が一人の客として、機械と一対一で向き合っていると思っている。しかし実際には、その場所には<strong>設計者の過去の決定</strong>がずっと先に置かれている。把持力のカーブ、ニアミスの頻度、ぬいぐるみの配置、ガラスケースの照明。そのすべてが、客が一人で対峙できる相手ではない。</p>
+
+<p class="body-text fade">それでも私たちは「自分の腕」を試しているつもりで手を出す。コントロール錯覚は、設計者にとって都合のいいバグではない——それは<em>機能</em>として組み込まれている。客が「自分で選んだ」「自分で動かした」と感じる瞬間だけ、ニアミスは本物の勝利のように脳を点火する。客の指先が震えるのは、客の意志の弱さではなく、設計の成功だ。</p>
+
+<div class="pull fade">
+  <p class="pull-q">"The appearance of 'nearly winning' may be cultivated deliberately by the designers of commercial games of chance."<br><br>「『もう少しで勝てた』という外観は、商業的ギャンブル装置の設計者によって、<em>意図的に仕立てられている</em>可能性がある。」</p>
+  <p class="pull-attr">— R. L. Reid, <em>Journal of Gambling Behavior</em> (1986)</p>
+</div>
+
+<p class="body-text fade">そして同じ部品は、ゲームセンターの外にもたくさん置かれている。私たちが日々指を動かしている場所の、ほとんどに。</p>
+
+<!-- Culture block -->
+<div class="culture-block fade">
+  <p class="culture-label">設計された錯覚の別名たち</p>
+  <div class="culture-item">
+    <p class="culture-title">ソシャゲのガチャ演出と「確定演出」</p>
+    <p class="culture-desc">SSR 排出前の長い溜め・虹色エフェクト・途中で止まる演出。外れる前の一瞬だけ当たりに近づくニアミスが、設計上意図的に織り込まれている。ルートボックス規制議論の中核論点のひとつ。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">プッシュ通知とストリーク(連続日数)</p>
+    <p class="culture-desc">アプリが「連続◯日達成中」を表示するとき、人はそれを<strong>失うこと</strong>を恐れて戻ってくる。変動比率強化にコントロール錯覚(自分の努力が効いている感)を重ねた設計。Duolingo・SNS・歩数計で広く使われる。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">無限スクロール(infinite scroll)</p>
+    <p class="culture-desc">次に何が出るかわからない、しかも指を動かせば続きが出てくる。変動比率強化+関与の最も純粋な実装。Facebook が2006年に採用して以降、事実上のWebデフォルトになった。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">パチンコ・パチスロのリーチ演出と役物</p>
+    <p class="culture-desc">絵柄の2つが揃って、3つ目だけが「惜しい」位置で止まる——この演出を法律が実質的に前提として認めている。さらに近年の日本の遊技機は、ここに数秒〜十数秒の<strong>段階的な予告演出</strong>(映像・音・光のエスカレーション)と、液晶から飛び出してくる 3D の<strong>役物(やくもの)</strong>——可動フィギュア・ギミック・LED 演出——を重ねる。外した瞬間まで「あと少しで当たる気配」を物理的に引き延ばす装置で、Reid 1986 が指摘したニアミス設計の、最も成熟した産業的実装。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">Confirmshaming / ニヤリボタン系UI</p>
+    <p class="culture-desc">「いいえ、お得な情報は受け取りません(損します)」という選択肢。Brignull が分類した古典的ダークパターンで、ニアミスとは別系統だが、同じ「設計された認知操作」という屋根の下にいる。</p>
+  </div>
+</div>
+
+<p class="body-text fade">UFOキャッチャーは、ゲームセンターの隅にある古い機械に見える。けれど、その内部で起きている「あと少しで脳を点火する」構造は、いま私たちのスマートフォンのなかで、別の名前を持って日常的に動き続けている。<em>同じ設計の、別の実装</em>として。</p>
+
+<hr class="art-rule">
+
+<!-- ========== 参考文献 ========== -->
+<div class="sec-rule fade"><span class="sec-label">参考文献</span><span class="sec-line"></span></div>
+
+<div class="ref-list">
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">論文 / fMRI</span><span class="ref-year">2009</span></div>
+    <p class="ref-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2658737/" target="_blank" rel="noopener">Gambling Near-Misses Enhance Motivation to Gamble and Recruit Win-Related Brain Circuitry</a></p>
+    <p class="ref-author">Luke Clark, Andrew J. Lawrence, Frances Astley-Jones, Nicola Gray — <em>Neuron</em> 61(3), 481-490</p>
+    <p class="ref-desc">本記事の中核となる fMRI 研究。近接失敗時の腹側線条体・前部島皮質の活性化と、その効果が「自分で選ぶ」条件で強まることを示した。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">論文 / 行動</span><span class="ref-year">1986</span></div>
+    <p class="ref-title"><a href="https://link.springer.com/article/10.1007/BF01019932" target="_blank" rel="noopener">The psychology of the near miss</a></p>
+    <p class="ref-author">R. L. Reid — <em>Journal of Gambling Behavior</em> 2(1), 32-39</p>
+    <p class="ref-desc">ニアミス効果に正式な名前を与えた古典。商業的ギャンブル装置が偶然以上のニアミス頻度を「仕立てて」いるという指摘を含む。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">論文 / 認知</span><span class="ref-year">1975</span></div>
+    <p class="ref-title"><a href="https://nuovoeutile.it/wp-content/uploads/2014/10/Langer1975_IllusionofControl.pdf" target="_blank" rel="noopener">The Illusion of Control</a></p>
+    <p class="ref-author">Ellen J. Langer — <em>Journal of Personality and Social Psychology</em> 32(2), 311-328</p>
+    <p class="ref-desc">コントロール錯覚に名前を与えた研究。選択・競争・親近性・関与という4つの誘発要因を特定した。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">書籍 / 基礎</span><span class="ref-year">1957</span></div>
+    <p class="ref-title">Schedules of Reinforcement</p>
+    <p class="ref-author">C. B. Ferster & B. F. Skinner — Appleton-Century-Crofts</p>
+    <p class="ref-desc">変動比率強化を含む、強化スケジュール理論の古典。スキナー箱記事と接続する基礎資料。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">サイト / 用語の起点</span><span class="ref-year">2010</span></div>
+    <p class="ref-title"><a href="https://www.deceptive.design/" target="_blank" rel="noopener">Deceptive Patterns(旧 darkpatterns.org)</a></p>
+    <p class="ref-author">Harry Brignull</p>
+    <p class="ref-desc">「ダークパターン」という用語の起点。2010年7月28日の登録。現在は Deceptive Patterns として継続し、各国の法規制の参照資料にもなっている。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">報道 / 日本の事例</span><span class="ref-year">2015</span></div>
+    <p class="ref-title"><a href="https://www.bengo4.com/c_1009/c_1410/n_3496/" target="_blank" rel="noopener">アームが弱い、配置がひどい…景品をとれないクレーンゲームは「詐欺」では?</a></p>
+    <p class="ref-author">弁護士ドットコムニュース</p>
+    <p class="ref-desc">大阪のゲームセンターで、取得が実質不可能な設定により詐欺罪で書類送検された事例を含む解説。風営法の枠組みと境界を扱う。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">文化史</span><span class="ref-year">2025</span></div>
+    <p class="ref-title"><a href="https://www.japantimes.co.jp/life/2025/06/24/digital/ufo-catcher-40th-anniversary-sega-arcade/" target="_blank" rel="noopener">King of Japan's arcades, Sega's UFO Catcher turns 40</a></p>
+    <p class="ref-author">The Japan Times</p>
+    <p class="ref-desc">セガ UFO Catcher 40周年の記事。1985年5月の初号機から現在までの歴史と、日本のゲームセンター文化における位置づけをまとめる。</p>
+  </div>
+</div>
+
+<!-- Note -->
+<div class="note-box fade">
+  <strong>📌 この記事について</strong><br>
+  本記事は Clark et al. (2009, <em>Neuron</em>) を中核に、Reid (1986) と Langer (1975) の古典、Ferster & Skinner (1957) の基礎行動科学、Brignull 以降のダークパターン論、そして日本のクレーンゲーム事情に関する報道を組み合わせて書いた。シミュレーター内のパラメータは実機の設定値そのものではなく、各種報道・消費者庁関連資料・クレーンゲーム解説サイトから「典型的」とされる範囲の概念的な再現である。fMRI の活性化バーは論文本文の実測値をそのまま再現したものではなく、傾向を模式化した図である。<br><br>
+  <strong>シミュレーター設計上の注意:</strong> 本記事のスロットでは 7️⃣ が 3 つ揃っても、他の絵柄の 3 つ揃いと<em>同じ扱い</em>で「当たり」とだけ表示される(大当たり・ジャックポット・獲得枚数増加などは用意していない)。実機のスロット/パチスロでは 7-7-7 は最上位役として別格の演出と配当を持つが、本記事は「近接失敗と当落の切替」という構造だけを取り出して見せることを目的としているため、すべての 3 つ揃いを等価にし、配当(枚数)の概念も省いている。
+</div>
+
+<!-- Tags -->
+<div class="tags fade">
+  <span class="tag">行動心理学</span>
+  <span class="tag">神経科学</span>
+  <span class="tag">UIデザイン</span>
+  <span class="tag">報酬系</span>
+  <span class="tag">ニアミス効果</span>
+  <span class="tag">ダークパターン</span>
+</div>
+
+<div class="signature fade">e. Tamaki</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">¥5,000</p>
+      <p class="sidebar-text">多くの<strong>確率機</strong>で把持力が切り替わる典型的な閾値設定額。<em>そこまでは掴ませて落とし、そこから取らせる</em>。ゲームは意志ではなくカーブの上で進行している。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1985年5月、セガが「UFO Catcher」を発売。1991年までに1万台。スキナーの変動比率強化、Langer のコントロール錯覚、Reid のニアミス効果という3つの部品が、<em>一台の機械の中で合流した</em>最初の商業的成功。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">ソシャゲガチャのSSR演出、Duolingo のストリーク通知、SNSの無限スクロール、パチンコのリーチ演出。<em>同じ原理の、別の姿</em>として日常に埋め込まれている。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— <a href="https://qualiajournal.com/skinner_box" style="color:#8b1a1a;border-bottom:1px dotted #8b1a1a;">スキナー箱</a>(変動比率強化の基礎)<br>— <a href="https://qualiajournal.com/reward_prediction_error" style="color:#8b1a1a;border-bottom:1px dotted #8b1a1a;">報酬予測誤差</a>(ドーパミンの正体)<br>— <a href="https://qualiajournal.com/dopamine_starvation" style="color:#8b1a1a;border-bottom:1px dotted #8b1a1a;">ネズミはドーパミンを選んで餓死した</a></p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">気づきのチェック</p>
+      <ul class="sidebar-check">
+        <li>「もう少しで取れた」と感じて続けている</li>
+        <li>自分の腕前が上がっている気がする</li>
+        <li>投入額を覚えていない</li>
+        <li>やめる瞬間がない(閾値越えか、怒りか)</li>
+      </ul>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">Clark et al. (2009) は複数の追試で再現されている。パラメータの具体値は機種・店舗で大きく変わる。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// ダークパターン を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、UFOキャッチャーって「詐欺」なの?</span></div>
+      <span class="t-output" id="to1">少なくとも日本では、金額連動で把持力を変える仕組みそのものは<em>違法ではない</em>。最初から取得が不可能な設定にしていた場合だけ、詐欺として立件された例がある。法の線と、設計の倫理の線は別物。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;「あと少し」で動くのはどうやっても避けられない?</span></div>
+      <span class="t-output" id="to2">ニアミスの反応そのものは<strong>脳の基本設計</strong>なので、消すのは難しい。ただし、自分がいま「あと少し」に引っ張られている と気づいた瞬間に、線条体の勢いは弱まる。Clark の実験でも、コントロール錯覚が剥がれると反応が落ちる。知ることは、効く。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;スキナー箱の話と、何が違うの?</span></div>
+      <span class="t-output" id="to3">スキナー箱は「ランダムに来る報酬そのもの」が行動をやめにくくする話。この記事はその上に<em>ニアミス(近接失敗)</em>と<em>コントロール錯覚(自分が関与したという感覚)</em>を重ねている。同じ部品でも、<strong>組み合わせ方</strong>で人の脳の動員のされ方が変わる、という差分の話。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 100円、大事にしよう</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/skinner_box">
+      <p class="related-card-tag">行動 × 強化</p>
+      <p class="related-card-title">スキナー箱とスロットマシン</p>
+      <p class="related-card-desc">ランダムに来る報酬が、なぜ最も行動を維持するのか。変動比率強化の発見の原点。この記事の「部品」のひとつを扱う。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/reward_prediction_error">
+      <p class="related-card-tag">脳 × ドーパミン</p>
+      <p class="related-card-title">報酬予測誤差とドーパミン</p>
+      <p class="related-card-desc">ドーパミンは「快楽」ではなく「予測との差」を伝える物質。ニアミスがなぜあれほど強く効くのかの、もう一段下の層。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト方式)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === SLOT MACHINE SIMULATOR ===
+(function(){
+  const reel1=document.getElementById('reel1');
+  const reel2=document.getElementById('reel2');
+  const reel3=document.getElementById('reel3');
+  if(!reel1||!reel2||!reel3) return;
+  const slotMachine=document.querySelector('.slot-machine');
+  const slotReelsEl=document.querySelector('.slot-reels');
+  const slotWinline=document.querySelector('.slot-winline');
+  function setStatus(t){ const s=document.getElementById('simStatus'); if(s) s.innerHTML=t; }
+
+  // === Symbols (HTML strings — the 7 is CSS-rendered slot glyph, others are emoji) ===
+  const SYMBOLS=['🍒','🍋','🍇','🔔','⭐','<span class="slot-seven">7</span>'];
+  const SYM_H=80;       // must match .slot-reel-sym height in CSS (desktop)
+  const SYM_H_M=66;     // mobile .slot-reel-sym height
+  function symH(){ return window.innerWidth<=700 ? SYM_H_M : SYM_H; }
+  const STRIP_LEN=SYMBOLS.length; // one logical cycle
+  const STRIP_REPEAT=40;          // render many copies for long spin animation
+  const INITIAL_REPEAT=20;        // start/rest position (middle of strip, so we can travel down)
+
+  // === State ===
+  const S={
+    plays:0, money:0, nearmiss:0, prizes:0,
+    thresh:3000, before:0.20, after:0.85, nmRate:0.65,
+    revealed:false, spinning:false,
+    reelSym:[0,0,0], // current top symbol index per reel
+  };
+
+  function updateStats(){
+    document.getElementById('statPlays').textContent=S.plays;
+    // 投入コイン: プレイヤー視点ではコイン数で表示(1 スピン = 1 コイン)。
+    // オペレーター視点の閾値は ¥ のまま内部ロジックで比較している(S.money)。
+    document.getElementById('statMoney').textContent=S.plays;
+    document.getElementById('statNearmiss').textContent=S.nearmiss;
+    document.getElementById('statPrizes').textContent=S.prizes;
+  }
+
+  // Build reel strips: each strip contains STRIP_REPEAT * STRIP_LEN symbols.
+  // We position reel such that the "center" window shows a target symbol.
+  function buildStrip(reelEl){
+    reelEl.innerHTML='';
+    for(let r=0;r<STRIP_REPEAT;r++){
+      for(let i=0;i<STRIP_LEN;i++){
+        const d=document.createElement('div');
+        d.className='slot-reel-sym';
+        d.innerHTML=SYMBOLS[i];
+        reelEl.appendChild(d);
+      }
+    }
+  }
+  buildStrip(reel1); buildStrip(reel2); buildStrip(reel3);
+
+  // Position reel so that symbol `symIdx` is centered on the win line.
+  // The reel container is 240px (3 rows of 80), center row = 80..160.
+  // Strip is translated by -offset; center row shows symbol at position `pos` where
+  //   pos * SYM_H - offset = 80  =>  offset = pos*SYM_H - 80
+  // We want symbols[symIdx] centered, so pos such that pos % STRIP_LEN == symIdx.
+  function placeReel(reelEl, repeatIdx, symIdx, transitionMs){
+    const h=symH();
+    const pos=repeatIdx*STRIP_LEN + symIdx;
+    const offset=pos*h - h; // one row above = 0..h window, center = h
+    reelEl.style.transition = transitionMs>0 ? `transform ${transitionMs}ms cubic-bezier(0.22, 0.85, 0.3, 1)` : 'none';
+    reelEl.style.transform = `translateY(${-offset}px)`;
+  }
+
+  // Instantly reset each reel to mid-strip so next spin has room to travel DOWNWARD.
+  function resetReelPositions(){
+    placeReel(reel1, INITIAL_REPEAT, S.reelSym[0], 0);
+    placeReel(reel2, INITIAL_REPEAT, S.reelSym[1], 0);
+    placeReel(reel3, INITIAL_REPEAT, S.reelSym[2], 0);
+    // Force reflow so the next transition applies.
+    void reel1.offsetHeight; void reel2.offsetHeight; void reel3.offsetHeight;
+  }
+
+  // Initialize: cherry-cherry-lemon to look "almost".
+  placeReel(reel1, INITIAL_REPEAT, 0, 0);
+  placeReel(reel2, INITIAL_REPEAT, 0, 0);
+  placeReel(reel3, INITIAL_REPEAT, 1, 0);
+
+  function spinReel(reelEl, reelIdx, targetSymIdx, spinCycles, durationMs, onStop){
+    // Real slots: symbols fall DOWNWARD through the window (top → bottom).
+    // We achieve that by making the strip translate down, which means the "viewed" row
+    // must correspond to a SMALLER repeatIdx than the start. So land below INITIAL_REPEAT.
+    const landRepeat = INITIAL_REPEAT - spinCycles;
+    placeReel(reelEl, landRepeat, targetSymIdx, durationMs);
+    setTimeout(()=>{
+      // Snap back to INITIAL_REPEAT instantly (same visual symbol — repeats are identical copies).
+      S.reelSym[reelIdx]=targetSymIdx;
+      placeReel(reelEl, INITIAL_REPEAT, targetSymIdx, 0);
+      if(onStop) onStop();
+    }, durationMs+20);
+  }
+
+  function clearFX(){
+    slotMachine.classList.remove('win');
+    slotReelsEl.classList.remove('win','near-miss');
+    slotWinline.classList.remove('win','near-miss');
+  }
+
+  function spin(){
+    if(S.spinning) return;
+    clearFX();
+    S.spinning=true;
+    S.plays++;
+    S.money+=100;
+    updateStats();
+    setStatus('リール回転中…');
+
+    // Determine outcome from current params (operator + threshold logic).
+    const prob = S.money>=S.thresh ? S.after : S.before;
+    const willWin = Math.random()<prob;
+    const willNearMiss = !willWin && Math.random()<S.nmRate;
+
+    // Pick symbols.
+    let s1,s2,s3;
+    if(willWin){
+      const w=Math.floor(Math.random()*STRIP_LEN);
+      s1=s2=s3=w;
+    } else if(willNearMiss){
+      const w=Math.floor(Math.random()*STRIP_LEN);
+      s1=s2=w;
+      s3=(w+ (Math.random()<0.5?1:STRIP_LEN-1) ) % STRIP_LEN; // off by one
+    } else {
+      // Pure miss: 3 different, no consecutive pair on the line.
+      s1=Math.floor(Math.random()*STRIP_LEN);
+      do{ s2=Math.floor(Math.random()*STRIP_LEN); } while(s2===s1);
+      do{ s3=Math.floor(Math.random()*STRIP_LEN); } while(s3===s2);
+    }
+
+    // Reset positions then stagger stops: 1400 / 1950 / 2700 ms.
+    resetReelPositions();
+    spinReel(reel1, 0, s1, 6, 1400, null);
+    spinReel(reel2, 1, s2, 8, 1950, null);
+    spinReel(reel3, 2, s3, 11, 2700, ()=>{
+      // Outcome realized — trigger dramaturgy.
+      if(willWin){
+        S.prizes++;
+        slotMachine.classList.add('win');
+        slotReelsEl.classList.add('win');
+        slotWinline.classList.add('win');
+        setStatus('<span style="color:#f4d450;font-weight:700;">🎉 3 つ揃い! 当たり。</span>');
+      } else if(willNearMiss){
+        S.nearmiss++;
+        slotReelsEl.classList.add('near-miss');
+        slotWinline.classList.add('near-miss');
+        setStatus('<span style="color:#ff8a30;font-weight:700;">🔥 あと 1 コマ! 惜しい。</span>');
+      } else {
+        setStatus('ハズレ。');
+      }
+      updateStats();
+      S.spinning=false;
+      checkReveal();
+    });
+  }
+
+  function checkReveal(){
+    if(!S.revealed && S.plays>=10){
+      S.revealed=true;
+      document.getElementById('simRevealBox').style.display='block';
+      document.getElementById('simPhaseTag').textContent='PHASE 2 / ネタばらし';
+      drawReveal();
+      setStatus('── 10 回スピン。下のネタばらしを見てください。');
+    }
+  }
+
+  // === Reveal canvas (preserved from prior impl; label updated) ===
+  function drawReveal(){
+    const rv=document.getElementById('revealCanvas');
+    if(!rv) return;
+    const rctx=rv.getContext('2d');
+    const RW=rv.width, RH=rv.height;
+    rctx.clearRect(0,0,RW,RH);
+    rctx.fillStyle='#faf8f3'; rctx.fillRect(0,0,RW,RH);
+    rctx.strokeStyle='#7a6a55'; rctx.lineWidth=1.2;
+    rctx.beginPath();
+    rctx.moveTo(50,20); rctx.lineTo(50,RH-30); rctx.lineTo(RW-20,RH-30);
+    rctx.stroke();
+    rctx.fillStyle='#3d3020'; rctx.font='11px "Source Sans 3", sans-serif';
+    rctx.textAlign='left'; rctx.fillText('当選確率', 10, 24); rctx.fillText('(≒ 把持力)', 10, 38);
+    rctx.textAlign='center'; rctx.fillText('投入金額', RW/2, RH-8);
+    rctx.fillStyle='#7a6a55'; rctx.font='10px "Source Sans 3", sans-serif';
+    rctx.textAlign='right';
+    rctx.fillText('1.0', 46, 26);
+    rctx.fillText('0.5', 46, (20+RH-30)/2+4);
+    rctx.fillText('0.0', 46, RH-26);
+    const maxMoney=Math.max(S.money, S.thresh*1.8, 5000);
+    const xScale=(RW-70)/maxMoney;
+    const yScale=(RH-50);
+    function yAt(v){ return 20+(1-v)*yScale; }
+    function xAt(m){ return 50+m*xScale; }
+    rctx.strokeStyle='#c4392a'; rctx.lineWidth=3;
+    rctx.beginPath();
+    rctx.moveTo(xAt(0), yAt(S.before));
+    rctx.lineTo(xAt(S.thresh), yAt(S.before));
+    rctx.lineTo(xAt(S.thresh), yAt(S.after));
+    rctx.lineTo(xAt(maxMoney), yAt(S.after));
+    rctx.stroke();
+    rctx.strokeStyle='#8b1a1a'; rctx.setLineDash([4,4]); rctx.lineWidth=1;
+    rctx.beginPath(); rctx.moveTo(xAt(S.thresh), 20); rctx.lineTo(xAt(S.thresh), RH-30); rctx.stroke();
+    rctx.setLineDash([]);
+    rctx.fillStyle='#8b1a1a'; rctx.font='11px "Source Sans 3", sans-serif'; rctx.textAlign='center';
+    rctx.fillText('閾値 ¥'+S.thresh, xAt(S.thresh), 16);
+    rctx.fillStyle='#1a1208';
+    rctx.beginPath();
+    rctx.arc(xAt(S.money), yAt(S.money<S.thresh?S.before:S.after), 5, 0, Math.PI*2);
+    rctx.fill();
+    rctx.font='11px "Source Sans 3", sans-serif'; rctx.textAlign='left';
+    rctx.fillText('あなた', xAt(S.money)+8, yAt(S.money<S.thresh?S.before:S.after)-4);
+    rctx.fillStyle='#7a6a55'; rctx.font='10px "Source Sans 3", sans-serif'; rctx.textAlign='center';
+    for(let m=0; m<=maxMoney; m+=1000){
+      rctx.fillText('¥'+m, xAt(m), RH-14);
+    }
+  }
+
+  function drawOp(){
+    const op=document.getElementById('opCanvas');
+    if(!op) return;
+    const octx=op.getContext('2d');
+    const OW=op.width, OH=op.height;
+    octx.clearRect(0,0,OW,OH);
+    octx.fillStyle='#faf8f3'; octx.fillRect(0,0,OW,OH);
+    octx.strokeStyle='#7a6a55'; octx.lineWidth=1.2;
+    octx.beginPath();
+    octx.moveTo(50,20); octx.lineTo(50,OH-30); octx.lineTo(OW-20,OH-30);
+    octx.stroke();
+    octx.fillStyle='#3d3020'; octx.font='11px "Source Sans 3", sans-serif';
+    octx.textAlign='left'; octx.fillText('当選確率', 10, 24); octx.fillText('(≒ 把持力)', 10, 38);
+    octx.textAlign='center'; octx.fillText('投入金額', OW/2, OH-8);
+    const maxMoney=Math.max(S.thresh*1.8, 6000);
+    const xScale=(OW-70)/maxMoney;
+    const yScale=(OH-50);
+    function yAt(v){ return 20+(1-v)*yScale; }
+    function xAt(m){ return 50+m*xScale; }
+    octx.strokeStyle='#c4392a'; octx.lineWidth=3;
+    octx.beginPath();
+    octx.moveTo(xAt(0), yAt(S.before));
+    octx.lineTo(xAt(S.thresh), yAt(S.before));
+    octx.lineTo(xAt(S.thresh), yAt(S.after));
+    octx.lineTo(xAt(maxMoney), yAt(S.after));
+    octx.stroke();
+    octx.strokeStyle='#8b1a1a'; octx.setLineDash([4,4]); octx.lineWidth=1;
+    octx.beginPath(); octx.moveTo(xAt(S.thresh), 20); octx.lineTo(xAt(S.thresh), OH-30); octx.stroke();
+    octx.setLineDash([]);
+    octx.fillStyle='rgba(139,26,26,'+(S.nmRate*0.2)+')';
+    octx.fillRect(xAt(0), 20, xAt(S.thresh)-xAt(0), OH-50);
+    octx.fillStyle='#7a6a55'; octx.font='10px "Source Sans 3", sans-serif'; octx.textAlign='center';
+    octx.fillText('ニアミス帯(濃い = 頻度高)', xAt(S.thresh/2), OH-14);
+    const expectedPlays=Math.ceil(S.thresh/100);
+    octx.fillStyle='#1a1208'; octx.font='bold 11px "Source Sans 3", sans-serif'; octx.textAlign='right';
+    octx.fillText('閾値まで約 '+expectedPlays+' 回 / ¥'+S.thresh, OW-25, 16);
+  }
+
+  // === Controls ===
+  document.getElementById('btnSpin').addEventListener('click', spin);
+  document.addEventListener('keydown', e=>{
+    if(document.activeElement && document.activeElement.tagName==='INPUT') return;
+    if(e.key===' ' || e.key==='Enter'){
+      e.preventDefault();
+      spin();
+    }
+  });
+
+  document.getElementById('btnToOperator').addEventListener('click',()=>{
+    document.getElementById('simOp').style.display='block';
+    document.getElementById('simPhaseTag').textContent='PHASE 3 / オペレーター';
+    drawOp();
+    document.getElementById('simOp').scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+
+  const opT=document.getElementById('opThresh');
+  const opB=document.getElementById('opBefore');
+  const opA=document.getElementById('opAfter');
+  const opNM=document.getElementById('opNM');
+  function updateParams(){
+    S.thresh=parseInt(opT.value);
+    S.before=parseInt(opB.value)/100;
+    S.after=parseInt(opA.value)/100;
+    S.nmRate=parseInt(opNM.value)/100;
+    document.getElementById('opThreshVal').textContent='¥'+S.thresh;
+    document.getElementById('opBeforeVal').textContent=S.before.toFixed(2);
+    document.getElementById('opAfterVal').textContent=S.after.toFixed(2);
+    document.getElementById('opNMVal').textContent=opNM.value+'%';
+    drawOp();
+  }
+  [opT,opB,opA,opNM].forEach(el=>el.addEventListener('input',updateParams));
+
+  // === Handle resize: re-place reels at current symbols (row height may change) ===
+  window.addEventListener('resize', ()=>{
+    if(S.spinning) return;
+    placeReel(reel1, INITIAL_REPEAT, S.reelSym[0], 0);
+    placeReel(reel2, INITIAL_REPEAT, S.reelSym[1], 0);
+    placeReel(reel3, INITIAL_REPEAT, S.reelSym[2], 0);
+  });
+
+  updateStats();
+})();
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>

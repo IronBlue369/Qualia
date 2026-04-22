@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>変化の見落とし（見えないゴリラ） — Qualia Journal</title>
+<meta name="description" content="目の前を黒いゴリラが堂々と横切る。なのに半数の人は気づかない。1999年の古典的実験と2024年の追試が突きつける、注意と知覚の境界線。">
+<link rel="canonical" href="https://qualiajournal.com/change_blindness">
+<meta property="og:title" content="変化の見落とし（見えないゴリラ） — Qualia Journal">
+<meta property="og:description" content="目の前を黒いゴリラが堂々と横切る。なのに半数の人は気づかない。1999年の古典的実験と2024年の追試が突きつける、注意と知覚の境界線。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/change_blindness">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="変化の見落とし（見えないゴリラ） — Qualia Journal">
+<meta name="twitter:description" content="目の前を黒いゴリラが堂々と横切る。なのに半数の人は気づかない。1999年の古典的実験と2024年の追試が突きつける、注意と知覚の境界線。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"変化の見落とし（見えないゴリラ）","description":"目の前を黒いゴリラが堂々と横切る。なのに半数の人は気づかない。1999年の古典的実験と2024年の追試が突きつける、注意と知覚の境界線。","author":{"@type":"Organization","name":"Qualia Journal"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/change_blindness","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"知覚・錯覚","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"変化の見落とし（見えないゴリラ）"}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.15;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;align-items:center;gap:14px;}
+.cover-byline span+span::before{content:"·";margin-right:14px;color:#c8bfaa;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'BLIND';position:absolute;right:20px;top:-4px;font-family:'Playfair Display',serif;font-size:72px;font-weight:900;font-style:italic;color:#e0d8c8;opacity:.38;line-height:1;pointer-events:none;letter-spacing:-.02em;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}
+.person-block-wiki{margin-bottom:8px;}
+.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}
+.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block.no-img{display:block;}
+.person-block.no-img .person-block-body{border-left:none;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.tl-legend{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-bottom:16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.tl-legend-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:4px;}
+.tl-legend-dot.red{background:#8b1a1a;}
+.tl-legend-dot.white{background:#faf8f3;border:2px solid #c8bfaa;}
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+.step-summary{margin-top:2px;padding:16px 20px;background:#f3efe6;border:1px solid #c8bfaa;}
+.step-summary p{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;margin:0;line-height:1.8;}
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#fff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+.flow-diagram{margin:24px 0;overflow-x:auto;}
+.flow-diagram svg{display:block;margin:0 auto;}
+.svg-fig{margin:24px 0;max-width:680px;margin-left:auto;margin-right:auto;}
+.svg-fig svg{display:block;width:100%;height:auto;}
+.svg-fig img{display:block;width:100%;height:auto;border:1px solid #c8bfaa;}
+.svg-fig.portrait{max-width:420px;}
+.fig-caption{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;margin-top:8px;line-height:1.7;}
+.fig-caption em{font-style:italic;color:#7a6a55;}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* ===== EXPERIENCE BLOCK (Canvas Simulator) ===== */
+.exp-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:white;}
+.exp-header{background:#1a1208;color:white;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;}
+.exp-header-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;}
+.exp-body{padding:24px 24px 28px;}
+.exp-instr{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;line-height:1.75;margin-bottom:18px;}
+.exp-instr strong{color:#1a1208;font-weight:600;}
+.exp-result{margin-top:16px;padding:14px 18px;background:#f3efe6;border-left:3px solid #8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.85;}
+.exp-result strong{color:#1a1208;font-weight:600;}
+.exp-result em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.exp-btn{display:inline-block;padding:10px 22px;background:#8b1a1a;color:white;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;border:none;cursor:pointer;letter-spacing:.06em;transition:background .2s;}
+.exp-btn:hover{background:#6d1414;}
+.exp-btn-secondary{display:inline-block;padding:10px 22px;background:transparent;color:#8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;border:2px solid #8b1a1a;cursor:pointer;letter-spacing:.06em;margin-left:8px;transition:all .2s;}
+.exp-btn-secondary:hover{background:#8b1a1a;color:white;}
+.fk-stage{position:relative;margin:0 auto;max-width:480px;border:1px solid #c8bfaa;background:#1a1208;overflow:hidden;}
+.fk-photo-wrap{position:relative;width:100%;aspect-ratio:800/1200;cursor:crosshair;user-select:none;}
+.fk-photo{position:absolute;inset:0;display:block;width:100%;height:100%;-webkit-user-drag:none;}
+.fk-photo-b{opacity:0;pointer-events:none;}
+.fk-photo-b.on{opacity:1;}
+.fk-hotspot-debug{position:absolute;border:2px dashed #ff0;background:rgba(255,255,0,0.15);pointer-events:none;z-index:4;}
+.fk-highlight{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.fk-mask{position:absolute;inset:0;background:#7a6a55;opacity:0;pointer-events:none;transition:opacity 16ms linear;}
+.fk-hud{position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-end;padding:0 14px;pointer-events:none;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.05em;z-index:3;}
+.fk-hud-tag{background:rgba(13,9,4,.82);padding:4px 10px;color:#e8c56a;}
+.fk-hud-time{background:rgba(13,9,4,.82);padding:4px 10px;color:#c8b8a8;}
+.fk-giveup{position:absolute;top:12px;right:14px;background:rgba(13,9,4,.82);color:#c8b8a8;border:1px solid #7a6a55;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;padding:6px 14px;cursor:pointer;z-index:5;}
+.fk-giveup:hover{background:#8b1a1a;color:#fff;border-color:#8b1a1a;}
+.fk-overlay{position:absolute;inset:0;background:rgba(13,9,4,.9);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;color:#e8e4de;}
+.fk-overlay-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;margin-bottom:10px;color:#fff;line-height:1.3;}
+.fk-overlay-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.75;color:#c8b8a8;margin-bottom:18px;max-width:440px;}
+.fk-overlay-text strong{color:#e8c56a;font-weight:600;}
+.fk-overlay-text em{color:#f0a888;font-style:normal;font-weight:600;}
+.fk-progress{display:flex;gap:6px;margin-top:4px;}
+.fk-pdot{width:10px;height:10px;border-radius:50%;background:#3d3020;border:1px solid #5a3e28;}
+.fk-pdot.done{background:#8b1a1a;border-color:#8b1a1a;}
+.fk-pdot.active{background:#e8c56a;border-color:#e8c56a;}
+.fk-wrong{pointer-events:none;animation:fkWrongFade .5s ease-out forwards;}
+@keyframes fkWrongFade{0%{opacity:1;transform:scale(1);}100%{opacity:0;transform:scale(1.4);}}
+
+/* 残余感受性クイズ */
+.rs-stage{position:relative;max-width:600px;margin:0 auto;border:1px solid #c8bfaa;background:#1a1208;overflow:hidden;min-height:360px;}
+.rs-svg{display:block;width:100%;height:auto;}
+.rs-hud{position:absolute;top:10px;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;padding:0 14px;pointer-events:none;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.05em;z-index:5;}
+.rs-hud-tag{background:rgba(13,9,4,.78);padding:4px 10px;color:#e8c56a;}
+.rs-hud-phase{background:rgba(13,9,4,.78);padding:4px 10px;color:#c8b8a8;}
+.rs-overlay{position:absolute;inset:0;background:rgba(13,9,4,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;color:#e8e4de;z-index:10;}
+.rs-overlay-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:12px;color:#fff;line-height:1.3;}
+.rs-overlay-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.75;color:#c8b8a8;margin-bottom:18px;max-width:460px;}
+.rs-overlay-text strong{color:#e8c56a;font-weight:600;}
+.rs-overlay-text em{color:#f0a888;font-style:normal;font-weight:600;}
+.rs-choices{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:460px;}
+.rs-choice{background:#2a1d10;border:1px solid #5a3e28;color:#e8e4de;padding:10px 16px;font-family:'Source Sans 3',sans-serif;font-size:13px;cursor:pointer;transition:all .18s;min-width:80px;}
+.rs-choice:hover{background:#3d2818;border-color:#8a6a48;color:#e8c56a;}
+.rs-choice.selected{background:#8b1a1a;border-color:#8b1a1a;color:#fff;}
+.rs-mask{position:absolute;inset:0;background:#7a6a55;pointer-events:none;}
+.rs-countdown{position:absolute;top:10px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:11px;color:#e8c56a;background:rgba(13,9,4,.78);padding:4px 12px;z-index:5;}
+.rs-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-family:'Source Sans 3',sans-serif;font-size:13px;}
+.rs-bar-label{flex:0 0 180px;color:#3d3020;}
+.rs-bar-track{flex:1;background:#ede8dc;height:18px;position:relative;border:1px solid #d6cdb8;}
+.rs-bar-fill{background:#8b1a1a;height:100%;transition:width .8s ease-out;}
+.rs-bar-fill.alt{background:#3d3020;}
+.rs-bar-val{flex:0 0 56px;text-align:right;font-family:'JetBrains Mono',monospace;font-weight:600;color:#3d3020;}
+.rs-bar-chance{position:absolute;top:-2px;bottom:-2px;width:2px;background:#7a6a55;opacity:.7;}
+.rs-bar-chance-lbl{position:absolute;top:-16px;transform:translateX(-50%);font-size:10px;color:#7a6a55;font-family:'JetBrains Mono',monospace;}
+
+/* RESPONSIVE */
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .meta-dates{margin-left:0;width:100%;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .fk-stage{max-width:100%;}
+  .fk-hud{font-size:10px;padding:0 10px;}
+  .fk-hud-tag,.fk-hud-time{padding:3px 7px;}
+  .fk-giveup{font-size:10px;padding:5px 10px;top:8px;right:10px;}
+  .fk-overlay{padding:16px;}
+  .fk-overlay-title{font-size:16px;}
+  .fk-overlay-text{font-size:12px;}
+  .rs-stage{max-width:100%;}
+  .rs-hud{font-size:10px;padding:0 10px;}
+  .rs-overlay{padding:18px;}
+  .rs-overlay-title{font-size:17px;}
+  .rs-overlay-text{font-size:12px;}
+  .rs-bar-label{flex:0 0 130px;font-size:12px;}
+  .svg-fig{max-width:100%;}
+}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+/* ── FOOTER ── */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.img-ph-desc,.img-ph-prompt-txt{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){.toc-back{padding:22px 20px;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">知覚・錯覚</p>
+    <h1>見えていたのに、<em>気づかなかった</em></h1>
+    <p class="cover-deck">視覚は私たちを裏切らない——そう信じている。だが網膜に届いた光のうち、意識に上るのはごく一部にすぎない。注意が通さなかったものは、目の前で起きていても、体験にならない。「見ていた」という確信の解像度は、思っているよりずっと粗い。</p>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>EXPERIMENT</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1997</span>
+      <p class="est-event">レンシンク・オレーガン・クラーク「To See or Not to See」がPsychological Science誌に発表。チェンジ・ブラインドネスが定量的に研究可能な現象として確立した。</p>
+      <p class="est-context">同年、IBMのディープ・ブルーがカスパロフを破り、ドリーが公表された前年。人間の知覚と機械の判断の境界が、別々の方向から問われ始めていた。</p>
+    </div>
+    <p class="cover-aside">2年後にサイモンズらの「ゴリラ動画」が続き、25年後のナートカー2024では「見えなかった」人にも<strong>残余の感受性</strong>があると判明。「気づく」の定義そのものが、いま書き換えの途中にある。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>駅のホームで電車を待ちながら、スマホでメッセージを書き終え、顔を上げる。誰かが「すみません」と声をかけてきた。とっさに笑顔で応じる——が、相手の顔を見た瞬間に戸惑う。さっきまで隣にいた人ではない。いつ入れ替わったのだろう。</p>
+    <p>私たちは「目で見たもの」を律儀に記録していると信じている。スマホに視線を落とす数秒のあいだ、世界がぴたりと止まっていてくれると思っている。だが脳の中では、視野は粗いスケッチのまま放置されている。注意が向いていないものは、たとえ目に映っていても、ほとんど記録されない。</p>
+    <p>目の前で大きな何かが変わっても、人は気づかない。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 統計の知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 13 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item"><span class="meta-label">Published</span><span class="date-value">2026-04-16</span></div>
+    <div class="date-item"><span class="meta-label">Updated</span><span class="date-value">2026-04-16</span></div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">注意を一点に集中したとき、視野の中で何が抜け落ちるのか。<strong>自分の知覚を実験台にして</strong>、注意と意識の境界線を歩く記事。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+<!-- ===== 背景 ===== -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">点滅する2枚の絵と、通り過ぎるゴリラ。</h2>
+<p class="body-text fade">1997年、ブリティッシュコロンビア大学の心理学者<span class="tip" onclick="toggleTip(this)">ロナルド・レンシンク<span class="tip-box"><strong>Ronald A. Rensink</strong><br>ブリティッシュコロンビア大学心理学教授。「フリッカー法」「マッドスプラッシュ法」など、変化の見落としを定量的に測る実験パラダイムを確立した中心人物。</span></span>、ケヴィン・オリーガン、ジェームズ・クラークは、気味の悪いほど単純な実験を報告した。ほとんど同じ 2 枚の風景写真を、あいだに一瞬の灰色画面を挟んで交互に表示する——それだけだ。2 枚の間では画像の大きな部分、たとえば飛行機のジェットエンジンが消え、建物の色が変わり、手すりが出現していた。<em>なのに、多くの参加者は 10 秒、20 秒、ときに 1 分以上探しても、変化の場所を特定できなかった。</em></p>
+<p class="body-text fade">論文のタイトルは直截だ。<strong>"To See or Not to See: The Need for Attention to Perceive Changes in Scenes"</strong>（見るということ、あるいは見ないということ——シーンの変化を知覚するには、注意が必要なのだ）。この現象に彼らが与えた名前が <span class="tip" onclick="toggleTip(this)">チェンジ・ブラインドネス<span class="tip-box"><strong>チェンジ・ブラインドネス（Change Blindness）</strong><br>シーンの前後で何か大きな変化が起きているのに、マスクや遮蔽、瞬き、サッカード（視線移動）などで変化の手がかりが途切れると、その変化に気づかなくなる現象。Rensink et al. 1997が定量的研究の出発点となった。</span></span>、日本語で「変化の見落とし」である。</p>
+<p class="body-text fade">2 年後の 1999 年、ハーバード大学の<span class="tip" onclick="toggleTip(this)">ダニエル・サイモンズ<span class="tip-box"><strong>Daniel J. Simons（1969–）</strong><br>イリノイ大学アーバナ・シャンペーン校教授。視覚的注意・記憶・知覚の研究で著名。Christopher Chabrisとの共著『The Invisible Gorilla』（2010）で広く知られる。</span></span>と<span class="tip" onclick="toggleTip(this)">クリストファー・シャブリ<span class="tip-box"><strong>Christopher F. Chabris（1966–）</strong><br>ジオシンガー・ヘルス・システム上席研究員、ユニオン大学教授。チェスや集合的知性の研究も手がける。Simonsと共著で2004年にイグ・ノーベル賞（心理学）を受賞。</span></span>は、同じ問題を別の角度から突く動画を公開する。3人ずつ白いシャツと黒いシャツを着た学生が、それぞれのチームでバスケットボールをパスし合う 75 秒の映像。観客への指示は「白チームのパス回数を数えてください」——それだけ。動画が終わってから研究者は尋ねる。<strong>「動画の途中で、何か変わったものに気づきましたか？」</strong></p>
+<p class="body-text fade">気づいたのは半分しかいなかった。残りの半分は首をかしげた。映像の中では約 9 秒間、ゴリラの着ぐるみを着た人物が画面の中央を悠々と横切り、立ち止まって胸を叩き、退場していた。<em>画面のど真ん中を、9 秒間も。</em>サイモンズらはこの現象を<span class="tip" onclick="toggleTip(this)">非注意性盲目<span class="tip-box"><strong>非注意性盲目（Inattentional Blindness）</strong><br>注意が他に向いているとき、予期せぬ刺激の存在に気づかない現象。Mack & Rock（1998）が体系化し、Simons & Chabris（1999）が動的事象で実証した。変化の見落としとは発生条件が違うが、「注意の外は意識に届かない」という結論は共通する。</span></span>と呼んだ。</p>
+<p class="body-text fade">フリッカーは<strong>視覚情報そのものを遮断</strong>して変化を隠す。ゴリラは<strong>注意を別の課題に縛りつけて</strong>変化を隠す。手口は違うが、導かれる結論は同じだ——<em>視野に入ることと、意識に届くことは、別の出来事である</em>。</p>
+
+<div class="person-block no-img fade">
+  <div class="person-block-body">
+    <p class="person-block-name">ロナルド・A・レンシンク</p>
+    <p class="person-block-role">Ronald A. Rensink</p>
+    <p class="person-block-desc">ブリティッシュコロンビア大学コンピューターサイエンス・心理学 joint 教授。MITで博士号取得後、ケンブリッジ大学、Cambridge Basic Research等を経て現職。1997年に O'Regan、Clark と共同で発表した「To See or Not to See」が、チェンジ・ブラインドネスを定量的に研究可能な現象にした決定的論文。以後、フリッカー法・マッドスプラッシュ法などの実験パラダイムを次々と開発し、視覚的注意と意識の境界を探り続けている。</p>
+  </div>
+</div>
+
+<p class="body-text fade">レンシンクが「注意なしには何も見えない」ことを実験室のなかで定量化したのに対し、その 2 年後、同じ主張を体育館のコートで——しかも素人の目にも一撃でわかる形で——突き返した二人がいる。</p>
+
+<div class="person-block no-img fade">
+  <div class="person-block-body">
+    <p class="person-block-name">ダニエル・J・サイモンズ</p>
+    <p class="person-block-role">Daniel J. Simons（1969–）</p>
+    <p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Daniel_Simons" target="_blank" rel="noopener">Wikipedia</a></p>
+    <p class="person-block-desc">イリノイ大学アーバナ・シャンペーン校心理学科教授。コーネル大学で博士号を取得後、ハーバード大学で教鞭をとっていた1999年、シャブリと共同でゴリラ動画を制作。視覚的注意、変化検出、記憶の歪みなど、知覚の限界を扱う研究を一貫して続けている。2004年イグ・ノーベル賞（心理学）受賞。著書『The Invisible Gorilla』（邦訳『錯覚の科学』）はベストセラーに。</p>
+  </div>
+</div>
+
+<p class="body-text fade">この動画は一人では成立していない。サイモンズが視覚的注意の側から問いを設計し、もう一人が実験の半分と、のちの執筆の半分を担った。</p>
+
+<div class="person-block no-img fade">
+  <div class="person-block-body">
+    <p class="person-block-name">クリストファー・F・シャブリ</p>
+    <p class="person-block-role">Christopher F. Chabris（1966–）</p>
+    <p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Christopher_Chabris" target="_blank" rel="noopener">Wikipedia</a></p>
+    <p class="person-block-desc">ジオシンガー・ヘルス・システム上席研究員、ユニオン大学教授。ハーバード大学博士。チェスのマスターでもあり、専門知識・集合的知性・遺伝行動学にも研究領域を広げている。サイモンズとの共著『The Invisible Gorilla』では、注意の限界、記憶の脆さ、自信過剰、因果認知など6つの「日常の錯覚」を一般読者向けに体系化した。</p>
+  </div>
+</div>
+
+<div class="quote-block fade">
+  <p class="quote-en">"We are aware of only a small portion of what our eyes see, and we miss far more than we can imagine."</p>
+  <p class="quote-ja">私たちは、目が見ているもののうちごく一部しか意識していない。想像をはるかに超える量を、私たちは見落としている。</p>
+  <p class="quote-attr">— Christopher Chabris &amp; Daniel Simons, <em>The Invisible Gorilla</em>（2010）</p>
+</div>
+
+<p class="body-text fade">この実験には先駆者がいた。1970年代、心理学者ウルリック・ナイサーが、半透明に重ね合わせたバスケットボールの動画で「視覚的選択」を実演している。その後、1995年には<span class="tip" onclick="toggleTip(this)">ロナルド・レンシンク<span class="tip-box"><strong>Ronald A. Rensink</strong><br>ブリティッシュコロンビア大学心理学教授。「フリッカー法」「マッドスプラッシュ法」など、変化の見落としを定量的に測る実験パラダイムを確立した中心人物。</span></span>らが「フリッカー法」によって変化の見落とし（change blindness）を体系的に測定し始めていた。サイモンズとシャブリの動画は、これらの系譜の上に「素人にも一目でわかる衝撃」を与えた点で決定的だった。</p>
+
+<div class="svg-fig fade">
+<svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="680" height="340" fill="#faf8f3"/>
+<text x="340" y="22" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#1a1208" font-weight="600">「変化の見落とし」と「非注意性盲目」は別の現象である</text>
+<rect x="20" y="46" width="310" height="270" rx="6" fill="#f3efe6" stroke="#c8bfaa"/>
+<rect x="350" y="46" width="310" height="270" rx="6" fill="#f3efe6" stroke="#c8bfaa"/>
+<text x="175" y="74" text-anchor="middle" font-family="'Playfair Display',serif" font-size="17" font-weight="700" fill="#8b1a1a">変化の見落とし</text>
+<text x="175" y="92" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">change blindness</text>
+<text x="505" y="74" text-anchor="middle" font-family="'Playfair Display',serif" font-size="17" font-weight="700" fill="#8b1a1a">非注意性盲目</text>
+<text x="505" y="92" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">inattentional blindness</text>
+<text x="40" y="122" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#3d3020">何が起きているか</text>
+<text x="40" y="146" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">直前と直後で <tspan font-weight="600">変化</tspan> が起きる</text>
+<text x="40" y="166" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">のに、その変化に気づかない</text>
+<text x="370" y="122" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#3d3020">何が起きているか</text>
+<text x="370" y="146" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020"><tspan font-weight="600">予期しない刺激</tspan> が現れた</text>
+<text x="370" y="166" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">のに、その存在に気づかない</text>
+<text x="40" y="200" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#3d3020">必要な条件</text>
+<text x="40" y="224" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">記憶（前後の比較が必須）</text>
+<text x="40" y="244" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">視覚の遮断（瞬き・遮蔽など）</text>
+<text x="370" y="200" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#3d3020">必要な条件</text>
+<text x="370" y="224" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">記憶は不要（その瞬間の話）</text>
+<text x="370" y="244" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">他課題への注意の集中が必要</text>
+<text x="40" y="278" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#3d3020">代表例</text>
+<text x="40" y="300" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">サイモンズ＆レヴィン「ドア実験」</text>
+<text x="370" y="278" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#3d3020">代表例</text>
+<text x="370" y="300" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">サイモンズ＆シャブリ「ゴリラ動画」</text>
+</svg>
+<p class="fig-caption">日常では両方が混ざって起きる。本記事のタイトルは前者だが、ゴリラ動画は厳密には後者の古典である。</p>
+</div>
+
+<div class="misconception fade">
+  <div class="misconception-header"><span class="misconception-hl">読む前に確認 — よくある誤解</span></div>
+  <div class="misconception-body">
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">「気づかなかった」のは、ぼーっと見ていたからだ</p></div>
+      <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">逆である。<strong>真剣にパスを数えた人ほど</strong>気づき率が下がる。注意を強く集中するほど、その外側は見えなくなる</p></div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">専門家や訓練された目には起こらない</p></div>
+      <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">2013年、放射線科医24人にCT画像で結節を探させたところ、画像に挿入されたゴリラを<strong>83%が見落とした</strong>。視線追跡では多くがゴリラを直視していた</p></div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">気づかない＝見えていない</p></div>
+      <div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">2024年のジョンズ・ホプキンス大の研究では、「気づかなかった」と答えた人が<strong>形や色を偶然以上に当てられた</strong>。「見えていた」けれど「報告できなかった」可能性がある</p></div>
+    </div>
+  </div>
+</div>
+<hr class="art-rule">
+
+<!-- ===== 体験 ===== -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">あなたの目を、実験台にする</h2>
+
+<div class="svg-fig fade">
+  <img src="./fig_selective_attention.jpg" alt="体育館でバスケットボールを回す5人の人物" loading="lazy">
+  <p class="fig-caption"><em>1999年、サイモンズとシャブリはこの課題を被験者192名に与えた。「白シャツチームのパス回数を数えてください」と——ただそれだけ。</em></p>
+</div>
+
+<p class="body-text fade">サイモンズとシャブリのゴリラ動画は著作権上、ブラウザに埋め込めない。未見なら <a href="https://www.youtube.com/watch?v=vJG698U2Mvo" target="_blank" rel="noopener" style="color:#8b1a1a;border-bottom:1px solid #8b1a1a;text-decoration:none;">公式動画（YouTube）</a> を先に観てほしい。一度知ると二度と体験できない、文字どおり一期一会の映像だ。ここでは、ゴリラ動画より2年早くチェンジ・ブラインドネスを世界に突きつけた<strong>レンシンクのフリッカー課題</strong>を再現する。</p>
+<p class="body-text fade">ルールは単純だ。2枚の画像が灰色の幕を挟んで交互に表示される。2枚のどこかが1か所だけ違う。<strong>違いを見つけたら、そこをクリック（タップ）する</strong>。それだけ。全5ラウンド。</p>
+
+<div class="exp-wrap fade">
+<div class="exp-header"><span class="exp-header-label">✦ Flicker Paradigm — Rensink 1997 再現</span></div>
+<div class="exp-body">
+<p class="exp-instr" id="fkInstr">2枚の写真が灰色の幕を挟んで高速に切り替わる。<strong>違いを見つけたら、その場所をクリック</strong>してください。全5ラウンド。</p>
+
+<div class="fk-stage" id="fkStage">
+
+  <!-- 書斎シーン（写真ベース、2枚重ね opacity切替方式） -->
+  <div class="fk-photo-wrap" id="fkPhotoWrap">
+    <img class="fk-photo fk-photo-a" id="fkPhotoA" src="./scene_base.jpg" width="800" height="1200" alt="書斎のシーン">
+    <img class="fk-photo fk-photo-b" id="fkPhotoB" src="./scene_r1.jpg" width="800" height="1200" alt="">
+  </div>
+
+  <!-- マスク層 -->
+  <div class="fk-mask" id="fkMask"></div>
+  <!-- 正解ハイライト -->
+  <svg class="fk-highlight" id="fkHighlight" viewBox="0 0 800 1200" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+    <ellipse id="fkRing" cx="0" cy="0" rx="0" ry="0" fill="none" stroke="#e8c56a" stroke-width="3" stroke-dasharray="6 4"/>
+  </svg>
+
+  <!-- HUD -->
+  <div class="fk-hud">
+    <span class="fk-hud-tag" id="fkRoundLbl">ROUND 1 / 5</span>
+    <span class="fk-hud-time" id="fkTimer">00.0 s</span>
+  </div>
+  <button class="fk-giveup" id="fkGiveUp" style="display:none;">ギブアップ</button>
+
+  <!-- オーバーレイ -->
+  <div class="fk-overlay" id="fkOverlay">
+    <p class="fk-overlay-title" id="fkOvTitle">Flicker Paradigm</p>
+    <p class="fk-overlay-text" id="fkOvText">2枚の画像が<strong>灰色の幕</strong>を挟んで交互に切り替わる。<br>どこか1か所だけ違う。見つけたら<em>その場所をクリック</em>。</p>
+    <div class="fk-progress" id="fkProgress">
+      <span class="fk-pdot active"></span><span class="fk-pdot"></span><span class="fk-pdot"></span><span class="fk-pdot"></span><span class="fk-pdot"></span>
+    </div>
+    <button class="exp-btn" id="fkStartBtn" style="margin-top:16px;">ラウンド1を開始</button>
+  </div>
+</div>
+
+<div class="exp-result" id="fkResult" style="display:none;"></div>
+</div>
+</div>
+
+<p class="body-text fade">灰色の幕がなければ、どの変化も一目でわかる。それなのに、幕が入った途端に見つからなくなる。これがフリッカー課題の核心であり、1997年にレンシンクが示したことだ。目の前の変化が消えるのではない。<strong>変化を捉えるために必要な「差分信号」が、幕によって奪われる</strong>。</p>
+
+<p class="body-text fade">2年後の1999年、サイモンズとシャブリは同じ問題を別の角度から突いた。バスケットボールのパスを数える課題に集中した被験者の約半数が、画面の真ん中を横切るゴリラに気づかなかった。条件によって40%から70%まで揺れるが、構造は同じだ。注意を一つに絞ると、それ以外が消える。</p>
+
+<p class="body-text fade">そして2024年、ジョンズ・ホプキンス大学の<span class="tip" onclick="toggleTip(this)">マカエラ・ナートカー<span class="tip-box"><strong>Makaela Nartker</strong><br>ジョンズ・ホプキンス大学心理脳科学科の研究者。Chaz Firestoneらと共同で、非注意性盲目に関する大規模実験を主導している。</span></span>らが、約25,000人を対象にした5つの研究で衝撃的な結果を発表した。「気づかなかった」と答えた人の<strong>57%が、その後で「見えたものの色」「形」を偶然以上の精度で当てられた</strong>。気づかなかったものが、それでも何らかの形で脳内には届いていた。古典の解釈は、いま書き換えられつつある。</p>
+
+<div class="svg-fig fade">
+<svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="680" height="280" fill="#faf8f3"/>
+<text x="340" y="22" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#1a1208" font-weight="600">「気づき率」と「残余感受性」——25年で見えてきた重層構造</text>
+
+<text x="170" y="58" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#3d3020">サイモンズ＆シャブリ 1999</text>
+<text x="170" y="76" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">N=192、課題：白チームのパス計数</text>
+<rect x="170" y="90" width="460" height="22" fill="#ede8dc" stroke="#d6cdb8"/>
+<rect x="170" y="90" width="247" height="22" fill="#8b1a1a"/>
+<text x="425" y="106" font-family="'JetBrains Mono',monospace" font-size="13" fill="#fff" font-weight="600">気づいた 54%</text>
+<text x="640" y="106" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="11" fill="#7a6a55"></text>
+
+<text x="170" y="138" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#3d3020">ドリュー他 2013（放射線科医24名）</text>
+<text x="170" y="156" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">CT画像にゴリラを挿入、結節を探す課題</text>
+<rect x="170" y="170" width="460" height="22" fill="#ede8dc" stroke="#d6cdb8"/>
+<rect x="170" y="170" width="78" height="22" fill="#8b1a1a"/>
+<text x="260" y="186" font-family="'JetBrains Mono',monospace" font-size="13" fill="#3d3020" font-weight="600">気づいた 17%</text>
+
+<text x="170" y="218" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#3d3020">ナートカー他 2024（約25,000名）</text>
+<text x="170" y="236" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">「気づかなかった」人にも色・形の弁別力</text>
+<rect x="170" y="250" width="460" height="22" fill="#ede8dc" stroke="#d6cdb8"/>
+<rect x="170" y="250" width="262" height="22" fill="#3d3020"/>
+<text x="441" y="266" font-family="'JetBrains Mono',monospace" font-size="13" fill="#fff" font-weight="600">残余感受性が確認された人 57%</text>
+
+<text x="22" y="58" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">N=192</text>
+<text x="22" y="138" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">N=24</text>
+<text x="22" y="218" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">N≈25,000</text>
+</svg>
+<p class="fig-caption">気づき率は実験の文脈次第で大きく変わる。さらに、「気づき」と「視覚情報の到達」は別物かもしれない。</p>
+</div>
+
+<p class="body-text fade">ここでナートカー他の結果を、あなた自身の脳で確かめてみよう。以下は同じ論理の縮小版だ。3試行を通して、<strong>指示された課題</strong>に集中してほしい。試行が終わるたびに、<em>指示されていなかった場所にあったもの</em>について、不意打ちで聞く。<strong>「見ていない」「わからない」という選択肢はない</strong>。3択のどれかに必ず答えてもらう。偶然当てられる確率は33%。あなたの正答率がそれを超えるかどうかが、この課題の問いだ。</p>
+
+<div class="exp-wrap fade">
+<div class="exp-header"><span class="exp-header-label">✦ Residual Sensitivity — Nartker 2024 再現</span></div>
+<div class="exp-body">
+<p class="exp-instr">指示された課題に集中してください。各試行のあと、<strong>指示されていなかった項目について不意打ちで3択</strong>を聞きます。「わからない」でも当てずっぽうで答えてください。</p>
+
+<div class="rs-stage" id="rsStage">
+  <svg class="rs-svg" id="rsSvg" viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg">
+    <rect width="600" height="360" fill="#1a1208"/>
+    <g id="rsScene"></g>
+  </svg>
+  <div class="rs-mask" id="rsMask" style="display:none;"></div>
+  <div class="rs-countdown" id="rsCountdown" style="display:none;">1.5 s</div>
+  <div class="rs-hud" style="display:none;" id="rsHud">
+    <span class="rs-hud-tag" id="rsRoundLbl">TRIAL 1 / 3</span>
+    <span class="rs-hud-phase" id="rsPhase">準備</span>
+  </div>
+
+  <div class="rs-overlay" id="rsOverlay">
+    <p class="rs-overlay-title">Residual Sensitivity Quiz</p>
+    <p class="rs-overlay-text">各試行で、<strong>指示された課題だけ</strong>に集中してください。<br>課題のあと、<em>指示されなかった場所にあったもの</em>を不意打ちで3択で聞きます。</p>
+    <button class="exp-btn" id="rsStartBtn">試行1を開始</button>
+  </div>
+</div>
+
+<div class="exp-result" id="rsResult" style="display:none;"></div>
+</div>
+</div>
+
+<p class="body-text fade">結果は、あなたのメイン課題の正答率（当然、高い）と、「見ていないはずの項目」の正答率の対比で出る。偶然水準33%を上回れば——あなたの視覚野は、あなたが<em>見ていないと感じた</em>ものを、それでも処理していた可能性がある。<strong>「気づき」と「処理」のあいだには、私たちが思うよりずっと広い空白がある。</strong></p>
+<hr class="art-rule">
+
+<!-- ===== なぜか ===== -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">脳は「見たいもの」だけに帯域を割く。</h2>
+<p class="body-text fade">人間の視覚野には、毎秒およそ10メガビットに相当する情報が網膜から流れ込んでくる。だが、意識に上るのはそのほんの一部だ。視覚野は<strong>限られた処理資源</strong>で大きすぎる入力を捌いており、何を意識まで届けるかは「注意」というシステムが決めている。</p>
+
+<div class="svg-fig fade">
+<svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="680" height="320" fill="#faf8f3"/>
+<text x="340" y="24" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#1a1208" font-weight="600">注意のスポットライト・モデル（Posner 1980）</text>
+
+<rect x="40" y="48" width="600" height="240" fill="#1a1208" stroke="#3d3020"/>
+
+<g opacity="0.5">
+  <circle cx="120" cy="100" r="14" fill="#7a6a55"/>
+  <circle cx="220" cy="130" r="14" fill="#7a6a55"/>
+  <circle cx="540" cy="110" r="14" fill="#7a6a55"/>
+  <circle cx="600" cy="200" r="14" fill="#7a6a55"/>
+  <circle cx="100" cy="240" r="14" fill="#7a6a55"/>
+  <text x="540" y="148" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">ゴリラ</text>
+</g>
+
+<defs>
+  <radialGradient id="spot" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0%" stop-color="#fff8d8" stop-opacity="0.85"/>
+    <stop offset="60%" stop-color="#fff8d8" stop-opacity="0.35"/>
+    <stop offset="100%" stop-color="#fff8d8" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<ellipse cx="340" cy="170" rx="135" ry="90" fill="url(#spot)"/>
+<g>
+  <circle cx="290" cy="160" r="14" fill="#faf8f3" stroke="#1a1208" stroke-width="2"/>
+  <circle cx="340" cy="200" r="14" fill="#faf8f3" stroke="#1a1208" stroke-width="2"/>
+  <circle cx="400" cy="150" r="14" fill="#faf8f3" stroke="#1a1208" stroke-width="2"/>
+  <circle cx="370" cy="170" r="6" fill="#faf8f3"/>
+</g>
+
+<text x="340" y="270" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#fff8d8" font-weight="600">スポットライト内：白チーム＝意識に届く</text>
+<text x="340" y="288" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">スポットライト外：ゴリラも他のオブジェクトも、意識の外側に置かれる</text>
+</svg>
+<p class="fig-caption">視覚処理は均一ではない。注意の当たった狭い領域だけが鮮明に「見られ」、他は粗くフィルターされる。</p>
+</div>
+
+<p class="body-text fade">パス数を数えるという課題は、この狭いスポットライトを白い円の動きに固定し続けることを要求する。脳は処理資源の大部分をその追跡に投入する。結果として、視野の中央であっても、白チームと無関係な動き——たとえば黒いゴリラ——には処理がほとんど割かれない。網膜には映っているが、意識の手前で篩い落とされる。</p>
+
+<div class="steps-wrap fade">
+<p class="steps-head">注意が世界を選ぶ3つの段階</p>
+
+<div class="step-card" id="sc1">
+  <div class="step-hd" onclick="tog(1)">
+    <div class="step-nb">1</div>
+    <div class="step-tw">
+      <div class="step-title">課題の指示が、フィルターを設定する</div>
+      <div class="step-sub">「白いものを数える」という指示が脳のフィルターを書き換える</div>
+    </div>
+    <div class="step-arr">▼</div>
+  </div>
+  <div class="step-body">
+    <p>「白いシャツのチームのパスを数える」という指示が与えられた瞬間、視覚系は <strong>白いオブジェクトを優先的に拾う</strong> ようにチューニングされる。これは1958年、英国の心理学者ドナルド・ブロードベントが提唱した <strong>注意のフィルター理論</strong> の現代版だ。</p>
+    <p>結果として、黒いシャツの選手たちの動きは「無視すべき情報」としてフィルター段階で減衰する。同じ <em>黒</em> という属性をもつゴリラが横切ったとき、それも自動的に減衰の対象になる——というのが、サイモンズらが示唆した一つの説明だ。実際、白いゴリラだったら気づき率はもっと高かった可能性がある。</p>
+  </div>
+</div>
+
+<div class="step-card" id="sc2">
+  <div class="step-hd" onclick="tog(2)">
+    <div class="step-nb">2</div>
+    <div class="step-tw">
+      <div class="step-title">焦点外の処理は浅く、保存もされない</div>
+      <div class="step-sub">視野の周辺は「あとで思い出せる形」では記憶されない</div>
+    </div>
+    <div class="step-arr">▼</div>
+  </div>
+  <div class="step-body">
+    <p>注意が向いていない領域でも、初期視覚野では一定の処理が走る。色や輪郭くらいは抽出される。だが、その先の <strong>「これは何か」「なぜここにあるか」</strong> の判断にはほとんど資源が回らず、短期記憶にも長期記憶にも残らない。だから後から「ゴリラがいたか？」と聞かれても、思い出せる「跡」がない。</p>
+    <p>2024年のナートカーらの研究は、ここに新しい層を加えた。「気づかなかった」と答えた人でも、二者択一で色や形を尋ねると <em>偶然より高い精度</em> で答えられた。視覚情報は届いていたが、それを「見た」と <strong>言語的に報告する閾値</strong> を超えなかった、という解釈だ。</p>
+  </div>
+</div>
+
+<div class="step-card" id="sc3">
+  <div class="step-hd" onclick="tog(3)">
+    <div class="step-nb">3</div>
+    <div class="step-tw">
+      <div class="step-title">「見ていた」という主観的確信は、後から再構成される</div>
+      <div class="step-sub">私たちは「見た」のではなく「見たと感じている」</div>
+    </div>
+    <div class="step-arr">▼</div>
+  </div>
+  <div class="step-body">
+    <p>多くの参加者は、ゴリラの存在を知らされた後で動画を再生すると、衝撃を受ける。「これだけ堂々と歩いていたのに、なぜ気づかなかったのか」。だが衝撃の本当の対象は、ゴリラを見落とした事実ではなく、<strong>「自分は世界を全部見ている」という自己像が崩れた</strong> ことだ。</p>
+    <p>視覚は <em>網膜のスナップショット</em> ではなく、注意と予測と記憶が混ざった <em>能動的な構築物</em> である。普段、私たちは構築の継ぎ目を意識せずにすんでいる。だから「見ている」と感じる。ゴリラ動画は、その継ぎ目を一瞬だけ見せてくれる装置なのだ。</p>
+  </div>
+</div>
+
+<div class="step-summary"><p>注意は世界を選ぶ。選ばれなかったものは、視野の中にあっても意識には届かない——あるいは、届いていても報告できない。そして私たちは、その選択が起きていること自体に気づかない。</p></div>
+</div>
+<hr class="art-rule">
+
+<!-- ===== 歴史 ===== -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">注意研究の60年で、「見える」の意味が動いた。</h2>
+<p class="tl-legend fade"><span class="tl-legend-dot red"></span>サイモンズ＆シャブリの本筋　<span class="tl-legend-dot white"></span>関連する研究</p>
+<div class="timeline fade">
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1958</p><p class="tl-title">ブロードベントの注意フィルター理論</p><p class="tl-desc">ドナルド・ブロードベントが「Perception and Communication」を発表。注意は「無関係な情報を初期段階でフィルターする装置」だと位置づけた。後の選択的注意研究の出発点。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1975</p><p class="tl-title">ナイサーの「選択的見ること」</p><p class="tl-desc">ウルリック・ナイサーが、半透明に重ねたバスケ動画と握手動画で「見ようとしないものは見えない」ことを実演。これがゴリラ動画の直接の祖先となる。</p></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1997</p><p class="tl-title">レンシンク「To See or Not to See」</p><p class="tl-desc">ロナルド・レンシンク、J・ケビン・オレーガン、ジェームズ・クラークが Psychological Science に発表。2枚の画像のあいだに灰色画面を一瞬挟むだけで大きな変化が見えなくなることを実証。「変化の見落とし（change blindness）」が定量的に研究可能な現象になった。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1998</p><p class="tl-title">サイモンズ＆レヴィン「ドア実験」</p><p class="tl-desc">道で会話中の研究者が、運搬中のドアに視界を遮られた隙に別人とすり替わる。15人中8人がすり替わりに気づかなかった。実験室の外でも変化の見落としが起きることを示した。</p></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1999</p><p class="tl-title">サイモンズ＆シャブリ「Gorillas in our midst」</p><p class="tl-desc">Perception誌に発表。バスケのパスを数える参加者192名のうち、約46%が画面を9秒間横切るゴリラに気づかなかった。古典中の古典となる。</p></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">2004</p><p class="tl-title">イグ・ノーベル賞（心理学）受賞</p><p class="tl-desc">「人々を笑わせ、その後で考えさせる」研究としてイグ・ノーベル賞を受賞。授賞式でもゴリラ動画が上映された。</p></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">2010</p><p class="tl-title">著書『The Invisible Gorilla』</p><p class="tl-desc">サイモンズとシャブリの共著（邦訳『錯覚の科学』）が刊行。注意・記憶・知識・自信・原因・潜在能力という「6つの日常の錯覚」を一般向けに体系化。世界的なベストセラーに。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2013</p><p class="tl-title">放射線科医のゴリラ</p><p class="tl-desc">トラフトン・ドリュー、メリッサ・ヴォー、ジェレミー・ウルフが、CT画像にマッチ箱大のゴリラを埋め込み、放射線科医24名のうち83%が見落とすことを示した。専門知識は非注意性盲目を防がない。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2023</p><p class="tl-title">NYU「速度を変えると気づき率が変わる」</p><p class="tl-desc">クレイナーとヴーアらが1500人超で速度を変えて再検証。原実験より大幅に速いゴリラは気づきやすくなった。「物理的な目立ちやすさ」と「意味的な予期」の役割を切り分けた。</p></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">2024</p><p class="tl-title">ナートカーらの残余感受性研究</p><p class="tl-desc">ジョンズ・ホプキンス大が約25,000人で5研究を実施。「気づかなかった」人の57%が、その後で形・色を偶然以上に答えられた。「注意がなくても視覚は届いている」可能性を示し、現在も論争の中心にある。</p></div>
+</div>
+<hr class="art-rule">
+
+<!-- ===== つまり ===== -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">意識のふちには、届かないクオリアがある。</h2>
+<p class="body-text fade">フリッカー課題と残余感受性のクイズが突きつけるのは、視覚の不正確さではない。もっと根本的なことだ——<strong>網膜に光が届いても、そこに<span class="tip" onclick="toggleTip(this)">クオリア<span class="tip-box"><strong>クオリア（qualia）</strong><br>主観的な経験の質感。「赤を見たときに感じる、あの赤さそのもの」「痛みが痛いと感じられる、その感触」。物理的な記述だけでは言い尽くせない、一人称的な体験の内容を指す哲学用語。</span></span>が生まれるとは限らない</strong>。色が赤く感じられる、形が三角に見える、そうした主観的な「何かに見える」という感触は、注意が通過したものにだけ立ち上がる。通らなかったものは、目の前にあっても、<em>体験されない</em>。</p>
+<p class="body-text fade">哲学者<span class="tip" onclick="toggleTip(this)">ネッド・ブロック<span class="tip-box"><strong>Ned Block</strong><br>ニューヨーク大学の哲学者。意識を二層に分けた——報告や思考に使える「アクセス意識」と、主観的な感触そのものの「現象意識（フェノメナル意識）」。両者は一致するとは限らないと主張した。</span></span>は、意識を二つに分けた。<strong>アクセス意識</strong>——報告したり思考に使ったりできる意識。<strong>現象意識</strong>——赤が赤く感じられる、あの主観的な感触そのもの。普通この二つは重なっていると思われているが、チェンジ・ブラインドネスや残余感受性は、そこに隙間があることを示唆する。<em>処理はされている。だが現象意識には立ち上がっていない。あるいは立ち上がっていたが、アクセス意識には届いていない。</em></p>
+<p class="body-text fade">この裂け目は、この媒体が何度も扱ってきたテーマと地続きだ。「色は存在しない」は、物理世界にない色が脳の中で<em>生まれる</em>話だった。「マリーの部屋」は、物理情報とクオリアの関係を問う話だった。本記事はその裏面——<strong>クオリアが<em>生まれない</em>瞬間</strong>の話だ。見開かれた眼球の前を、色と形が揺らぎ、しかし何一つクオリアにならずに流れ去っていく。意識の枠内にいる私たちからは、その不在は<em>原理的に</em>見えない。</p>
+
+<div class="pull fade">
+  <p class="pull-q">"You can <em>look</em> directly at something and not <em>see</em> it."</p>
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;margin-top:10px;padding-left:14px;border-left:1px solid #c8bfaa;">何かを直視していても、それを見ていないことはある。</p>
+  <p class="pull-attr">— Trafton Drew on the radiologist gorilla study, National Geographic（2013）</p>
+</div>
+
+<p class="body-text fade">実用的な含意もある。注意の容量は意志力では広げられない。だから対策は「もっと注意深く見る」ではなく、<strong>注意の偏りを前提にして環境を設計する</strong> 方向にある。チェックリスト、複数人の独立確認、視線追跡による死角の可視化。航空業界が何十年もかけて積み上げてきた事故対策は、この前提のうえに立っている。</p>
+<p class="body-text fade">ただそれ以上に、この研究群が残したのは一つの居心地悪い事実である。<strong>私たちは、自分が何を見て、何を見ていないかすら、信頼できる目撃者ではない</strong>。見えているという確信そのものが、意識の編集済みバージョンだ。クオリアは世界の側にあるのではない。注意を通過したものにだけ、遅れて立ち上がる。残りは、沈黙のまま私たちの脳を横切っていく。</p>
+
+<div class="svg-fig portrait fade">
+  <img src="./scene_coda.jpg" alt="窓明かりに照らされた、ひとつきりの椅子" loading="lazy">
+  <p class="fig-caption"><em>見逃したものは、見逃したまま通り過ぎる。気づかなかったという事実さえ、多くの場合は気づかれない。</em></p>
+</div>
+
+<div class="culture-block fade">
+  <p class="culture-title">サイモンズ＆シャブリ『The Invisible Gorilla』（2010、邦訳『錯覚の科学』）</p>
+  <p class="culture-desc">ゴリラ実験を起点に、注意・記憶・知識・自信・原因・潜在能力という6つの日常の錯覚を解説した一般書。NYTベストセラー。サイモンズは目撃証言の信頼性、医療ミス、運転事故、警察の見落としなどに議論を広げ、「見ているつもり」の代償を多面的に論じた。</p>
+</div>
+<div class="culture-block fade">
+  <p class="culture-title">ダニエル・カーネマン『ファスト＆スロー』（2011）</p>
+  <p class="culture-desc">ノーベル経済学賞受賞者カーネマンは、ゴリラ実験を「私たちが自分の盲点に対して盲目である」例として冒頭近くで引用。直感的判断（システム1）の自動性と、それが取りこぼすものの両方を象徴する事例として広く知られるきっかけになった。</p>
+</div>
+<div class="culture-block fade">
+  <p class="culture-title">マルコム・グラッドウェル『Talking to Strangers』（2019）</p>
+  <p class="culture-desc">グラッドウェルはこの本で、ボストン警察官ケニー・コンリーが暴行事件の現場を走り抜けながら同僚警官の暴行を「見なかった」と証言した1995年の事件を、ゴリラ実験の延長線上で再解釈。非注意性盲目が法廷でどう扱われるべきかを問うた。</p>
+</div>
+<hr class="art-rule">
+
+<!-- ===== 参考文献 ===== -->
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+<div class="ref-list">
+
+<div class="ref-item fade">
+  <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1997</span></div>
+  <p class="ref-title"><a href="https://doi.org/10.3758/BF03211521" target="_blank" rel="noopener">To See or Not to See: The Need for Attention to Perceive Changes in Scenes</a></p>
+  <p class="ref-author">Ronald A. Rensink, J. Kevin O'Regan &amp; James J. Clark — Psychological Science, 8(5), 368–373</p>
+  <p class="ref-desc">フリッカー法の原典。2枚の画像を灰色幕で交互に表示し、大きな変化でも検出に数十秒かかることを定量的に示した。チェンジ・ブラインドネス研究の出発点であり、本記事の体験コンテンツの直接の元ネタ。</p>
+</div>
+
+<div class="ref-item fade">
+  <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1999</span></div>
+  <p class="ref-title"><a href="https://doi.org/10.1068/p281059" target="_blank" rel="noopener">Gorillas in Our Midst: Sustained Inattentional Blindness for Dynamic Events</a></p>
+  <p class="ref-author">Daniel J. Simons &amp; Christopher F. Chabris — Perception, 28(9), 1059–1074</p>
+  <p class="ref-desc">原典そのもの。192人の参加者で4条件を比較し、半透明・不透明、難易度・対象団の色を変えた厳密な設計が記述されている。著者の<a href="http://www.chabris.com/Simons1999.pdf" target="_blank" rel="noopener">PDF版</a>が無料で読める。</p>
+</div>
+
+<div class="ref-item fade">
+  <div class="ref-meta"><span class="ref-type">動画資料</span><span class="ref-year">1999</span></div>
+  <p class="ref-title"><a href="https://www.youtube.com/watch?v=vJG698U2Mvo" target="_blank" rel="noopener">selective attention test — YouTube</a></p>
+  <p class="ref-author">Daniel Simons（公式チャンネル）</p>
+  <p class="ref-desc">サイモンズとシャブリの実験で使われた「ゴリラ動画」の公式アップロード。記事を読む前に一度だけ観ることを勧める。一度知ると二度と体験できない、文字どおり一期一会の映像。</p>
+</div>
+
+<div class="ref-item fade">
+  <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1998</span></div>
+  <p class="ref-title"><a href="https://doi.org/10.3758/BF03208840" target="_blank" rel="noopener">Failure to Detect Changes to People During a Real-World Interaction</a></p>
+  <p class="ref-author">Daniel J. Simons &amp; Daniel T. Levin — Psychonomic Bulletin &amp; Review, 5(4), 644–649</p>
+  <p class="ref-desc">「ドア実験」の原典。実験室を出て路上で行われた変化の見落とし研究。ゴリラ動画の前史にあたる重要論文で、社会的カテゴリーが検出に影響する点も興味深い。</p>
+</div>
+
+<div class="ref-item fade">
+  <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2013</span></div>
+  <p class="ref-title"><a href="https://doi.org/10.1177/0956797613479386" target="_blank" rel="noopener">The Invisible Gorilla Strikes Again: Sustained Inattentional Blindness in Expert Observers</a></p>
+  <p class="ref-author">Trafton Drew, Melissa L.-H. Võ &amp; Jeremy M. Wolfe — Psychological Science, 24(9), 1848–1853</p>
+  <p class="ref-desc">放射線科医24人にCT画像にゴリラを埋め込んで結節を探させ、83%が見落としたことを示した実験。視線追跡データも含み、「直視していても気づかない」ことが明確に可視化されている。</p>
+</div>
+
+<div class="ref-item fade">
+  <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2023</span></div>
+  <p class="ref-title"><a href="https://doi.org/10.1073/pnas.2214930120" target="_blank" rel="noopener">The Visible Gorilla: Unexpected Fast—Not Physically Salient—Objects Are Noticeable</a></p>
+  <p class="ref-author">Pascal Wallisch et al. — Proceedings of the National Academy of Sciences, 120(22)</p>
+  <p class="ref-desc">原実験より速いゴリラは気づきやすくなることを1500人規模で示した再検証研究。「目立つ」とは何かを物理的特徴と意味的予期に分けて考える視点を提供する。</p>
+</div>
+
+<div class="ref-item fade">
+  <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2024</span></div>
+  <p class="ref-title"><a href="https://doi.org/10.7554/eLife.100337" target="_blank" rel="noopener">Sensitivity to Visual Features in Inattentional Blindness</a></p>
+  <p class="ref-author">Makaela Nartker, Chaz Firestone, Howard Egeth &amp; Ian Phillips — eLife</p>
+  <p class="ref-desc">約25,000人を対象とした5研究で、「気づかなかった」と報告した参加者でも色・形・位置を偶然以上の精度で答えられることを示した。「気づき＝注意」という古典的等式に再検討を迫る最新の議論。</p>
+</div>
+
+<div class="ref-item fade">
+  <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2010</span></div>
+  <p class="ref-title"><a href="https://www.theinvisiblegorilla.com/" target="_blank" rel="noopener">The Invisible Gorilla: How Our Intuitions Deceive Us</a></p>
+  <p class="ref-author">Christopher Chabris &amp; Daniel Simons — Crown Publishing（邦訳『錯覚の科学』文藝春秋）</p>
+  <p class="ref-desc">著者本人による一般向け解説書。注意の錯覚から始まり、記憶・知識・自信・因果・潜在能力という6つの「日常の錯覚」を扱う。実験の背景と社会的応用を一冊で押さえられる。</p>
+</div>
+
+<div class="ref-item fade">
+  <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2005</span></div>
+  <p class="ref-title"><a href="https://doi.org/10.1016/j.tics.2004.11.006" target="_blank" rel="noopener">Change Blindness: Past, Present, and Future</a></p>
+  <p class="ref-author">Daniel J. Simons &amp; Ronald A. Rensink — Trends in Cognitive Sciences, 9(1), 16–20</p>
+  <p class="ref-desc">変化の見落とし研究の到達点と未解決問題を整理した総説。本記事で扱った change blindness と inattentional blindness の概念整理を、原典の言葉で確認したい人に。</p>
+</div>
+
+</div>
+
+<div class="note-box fade"><strong>📌 この記事について</strong><br>本記事はレンシンク他の1997年のフリッカー法原典、サイモンズ＆シャブリの1999年の原著論文、サイモンズ＆レヴィン1998年のドア実験論文、ドリュー他の2013年の放射線科医研究、ナートカー他の2024年のeLife論文、および著書『The Invisible Gorilla』を主な根拠としている。気づき率の数値は条件・追試によって幅があり、特に2024年のナートカーらの結果は「気づき」の定義そのものに議論を呼んでいる現在進行形のテーマである。</div>
+<div class="signature fade">e. Tamaki</div>
+
+<div class="tags">
+  <span class="tag">意識</span><span class="tag">クオリア</span><span class="tag">注意</span><span class="tag">アクセス意識</span><span class="tag">現象意識</span><span class="tag">非注意性盲目</span><span class="tag">変化の見落とし</span><span class="tag">知覚心理学</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">57%</p>
+      <p class="sidebar-text">ナートカー他2024（N≈25,000）で、「見えなかった」と答えた参加者のうち、それでも色や形を偶然以上の精度で当てられた人の割合。「気づく」と「処理される」は別物である可能性を示す。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">注意研究は<strong>ブロードベント</strong>のフィルター理論（1958）から始まり、ナイサーの「選択的見ること」（1975）、レンシンクのフリッカー法（1997）を経て、サイモンズらに結実した。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">— カーネマン『ファスト＆スロー』<br>— グラッドウェル『Talking to Strangers』<br>— TED講演・教育番組で頻出</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— D-01 色は存在しない<br>— D-02 チェッカーシャドウ錯視<br>— A-04 脳は予測機械<br>— E-01 確証バイアス</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">今日の知覚を振り返る</p>
+      <ul class="sidebar-check">
+        <li>探していなかったものを偶然見つけた経験はあるか？</li>
+        <li>「見ていたつもり」で見ていなかったものは何か？</li>
+        <li>注意を集中したとき、何が背景に溶けたか？</li>
+      </ul>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">原実験は何度も追試されている。気づき率の正確な値は条件依存で、2024年以降は「気づきの定義」自体が議論の対象。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap"><div class="terminal-label fade"><span class="terminal-label-text">▼ Internal Dialogue >> Active</span><div class="terminal-label-line"></div></div></div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 「見えていたのに、気づかなかった」を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;フリッカー、ほんと気づかなかった</span></div>
+      <span class="t-output" id="to1">だよね。しかも幕を外した瞬間に<em>一目で</em>わかる。つまり見えていなかったのは情報じゃなくて、<strong>意識への到達</strong>だけ。まばたき一回ぶんの灰色で、意識は途切れる。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;残余感受性のクイズ、たまに当たってびびった</span></div>
+      <span class="t-output" id="to2">偶然33%を超えたなら、あなたの視覚野はちゃんと処理してた。<strong>意識には届かなかったが、処理はされていた。</strong>これがナートカー2024の言っていること。見ていないつもりで、見ている。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ「見えた」って何なんだ</span></div>
+      <span class="t-output" id="to3">それが本当に難しい問いで、ブロックが「アクセス意識」と「現象意識」に分けたのも、答えが一つじゃないから。<em>処理されている</em>、<em>感じている</em>、<em>報告できる</em>——この3つは別々にズレうる。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 自分の目が信用ならん</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="/checker_shadow">
+      <p class="related-card-tag">知覚と錯覚 × 視覚</p>
+      <p class="related-card-title">チェッカーシャドウ錯視</p>
+      <p class="related-card-desc">同じ色のマスが、影の文脈で違う色に見える。脳が「現実」を編集する仕組みを、自分の手で操作して確かめる。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="/color">
+      <p class="related-card-tag">知覚と錯覚 × 視覚</p>
+      <p class="related-card-title">色は存在しない</p>
+      <p class="related-card-desc">波長はあるが「赤さ」は脳の産物。色の正体を波長スライダーで操作し、脳が色を作り出す仕組みを体感する。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ（トースト方式）
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const w=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!w)c.classList.add('open');
+}
+tog(1);
+
+// ===== FLICKER PARADIGM (Rensink 1997) =====
+(function(){
+  const photoWrap=document.getElementById('fkPhotoWrap');
+  const photoA=document.getElementById('fkPhotoA');
+  const photoB=document.getElementById('fkPhotoB');
+  const mask=document.getElementById('fkMask');
+  const highlight=document.getElementById('fkHighlight');
+  const ring=document.getElementById('fkRing');
+  const overlay=document.getElementById('fkOverlay');
+  const ovTitle=document.getElementById('fkOvTitle');
+  const ovText=document.getElementById('fkOvText');
+  const progress=document.getElementById('fkProgress');
+  const startBtn=document.getElementById('fkStartBtn');
+  const roundLbl=document.getElementById('fkRoundLbl');
+  const timerEl=document.getElementById('fkTimer');
+  const resultEl=document.getElementById('fkResult');
+  const giveUpBtn=document.getElementById('fkGiveUp');
+
+  // Round definitions
+  // 画像サイズ: 800×1200 座標系（実際の差分を画像解析して決定）
+  const rounds=[
+    {id:1, hint:'中央の額入り肖像',   answerCx:301, answerCy:552, answerRx:40,  answerRy:45,  hotX:261, hotY:507, hotW:80,  hotH:90},
+    {id:2, hint:'右のバナー',         answerCx:715, answerCy:560, answerRx:55,  answerRy:170, hotX:660, hotY:380, hotW:110, hotH:370},
+    {id:3, hint:'中央下のバッグ',     answerCx:410, answerCy:815, answerRx:90,  answerRy:165, hotX:310, hotY:640, hotW:200, hotH:350},
+    {id:4, hint:'左本棚の水色の本',   answerCx:171, answerCy:454, answerRx:25,  answerRy:32,  hotX:140, hotY:410, hotW:60,  hotH:95},
+    {id:5, hint:'左上の額',           answerCx:113, answerCy:35,  answerRx:58,  answerRy:38,  hotX:40,  hotY:0,   hotW:145, hotH:105}
+  ];
+
+  let curRound=0;   // 0-indexed
+  let flickering=false;
+  let showA=true;
+  let flickerTimer=null;
+  let elapsed=0;
+  let clockTimer=null;
+  let results=[];    // [{round,time,attempts}]
+  let attempts=0;
+  let wrongMarkers=[];
+
+  // Flicker timing (ms)
+  const IMG_DUR=220;
+  const MASK_DUR=200;
+
+  // 画像の事前読み込み
+  function preloadImages(){
+    [1,2,3,4,5].forEach(n=>{
+      const img=new Image();
+      img.src='./scene_r'+n+'.jpg';
+    });
+  }
+  preloadImages();
+
+  // 初期状態: Aレイヤー(base)を表示、Bレイヤー(variant)を非表示
+  // ラウンド切替時に photoB の src を scene_r{id}.jpg に差し替える
+  function resetScene(){
+    const rid=rounds[curRound].id;
+    photoB.src='./scene_r'+rid+'.jpg';
+    photoB.classList.remove('on');
+    mask.style.opacity='0';
+    highlight.style.display='none';
+  }
+
+  // フリッカー: Bレイヤーの表示・非表示をopacityで切り替える（srcは変えない）
+  function toggleVariant(){
+    showA=!showA;
+    if(showA) photoB.classList.remove('on');
+    else      photoB.classList.add('on');
+  }
+
+  // デバッグ用: URL に ?debug=1 をつけると hotspot 領域を黄色い点線で可視化
+  const isDebug = new URLSearchParams(location.search).get('debug')==='1';
+  function showDebugHotspot(){
+    document.querySelectorAll('.fk-hotspot-debug').forEach(el=>el.remove());
+    if(!isDebug) return;
+    const rd=rounds[curRound];
+    const d=document.createElement('div');
+    d.className='fk-hotspot-debug';
+    d.style.left=(rd.hotX/800*100)+'%';
+    d.style.top=(rd.hotY/1200*100)+'%';
+    d.style.width=(rd.hotW/800*100)+'%';
+    d.style.height=(rd.hotH/1200*100)+'%';
+    photoWrap.appendChild(d);
+  }
+
+  function startFlicker(){
+    flickering=true;
+    showA=true;
+    resetScene();
+    elapsed=0;
+    attempts=0;
+    wrongMarkers=[];
+    showDebugHotspot();
+
+    // Update HUD
+    roundLbl.textContent='ROUND '+(curRound+1)+' / '+rounds.length;
+    timerEl.textContent='00.0 s';
+    giveUpBtn.style.display='';
+
+    // Clock
+    const t0=performance.now();
+    clockTimer=setInterval(()=>{
+      elapsed=(performance.now()-t0)/1000;
+      timerEl.textContent=elapsed.toFixed(1)+' s';
+    },100);
+
+    // Flicker cycle: image → mask → image(toggled) → mask → …
+    let phase='img'; // img or mask
+    function tick(){
+      if(!flickering) return;
+      if(phase==='img'){
+        mask.style.opacity='0';
+        phase='mask';
+        flickerTimer=setTimeout(()=>{
+          if(!flickering) return;
+          mask.style.opacity='1';
+          phase='img';
+          flickerTimer=setTimeout(()=>{
+            if(!flickering) return;
+            toggleVariant();
+            tick();
+          }, MASK_DUR);
+        }, IMG_DUR);
+      }
+    }
+    tick();
+  }
+
+  function stopFlicker(){
+    flickering=false;
+    clearTimeout(flickerTimer);
+    clearInterval(clockTimer);
+    mask.style.opacity='0';
+    giveUpBtn.style.display='none';
+    // base(A)表示状態に戻す
+    photoB.classList.remove('on');
+  }
+
+  function handleGiveUp(){
+    if(!flickering) return;
+    stopFlicker();
+    showAnswerRing();
+    // 変化版(B)を表示して違いを見せる
+    photoB.classList.add('on');
+    results.push({round:curRound+1, time:null, attempts:attempts, gaveUp:true});
+    setTimeout(()=>{
+      photoB.classList.remove('on');
+      highlight.style.display='none';
+      setTimeout(()=>showRoundComplete(null, true), 300);
+    }, 1800);
+  }
+  giveUpBtn.addEventListener('click', handleGiveUp);
+
+  // Hit test: did click land on current round's hotspot?
+  function hitTest(evt){
+    const rect=photoWrap.getBoundingClientRect();
+    const scaleX=800/rect.width;
+    const scaleY=1200/rect.height;
+    const imgX=(evt.clientX-rect.left)*scaleX;
+    const imgY=(evt.clientY-rect.top)*scaleY;
+
+    const rd=rounds[curRound];
+    const margin=30;
+    return imgX>=rd.hotX-margin && imgX<=rd.hotX+rd.hotW+margin
+        && imgY>=rd.hotY-margin && imgY<=rd.hotY+rd.hotH+margin;
+  }
+
+  function showAnswerRing(){
+    const rd=rounds[curRound];
+    ring.setAttribute('cx',rd.answerCx);
+    ring.setAttribute('cy',rd.answerCy);
+    ring.setAttribute('rx',rd.answerRx);
+    ring.setAttribute('ry',rd.answerRy);
+    highlight.style.display='block';
+  }
+
+  function addWrongMarker(evt){
+    const rect=photoWrap.getBoundingClientRect();
+    const px=evt.clientX-rect.left;
+    const py=evt.clientY-rect.top;
+    const m=document.createElement('div');
+    m.className='fk-wrong';
+    m.style.cssText='position:absolute;left:'+(px-12)+'px;top:'+(py-12)+'px;width:24px;height:24px;border:2px solid #8b1a1a;border-radius:50%;';
+    photoWrap.appendChild(m);
+    wrongMarkers.push(m);
+    setTimeout(()=>{if(m.parentElement)m.parentElement.removeChild(m);},600);
+  }
+
+  function handleClick(evt){
+    if(!flickering) return;
+    attempts++;
+    if(hitTest(evt)){
+      // Correct!
+      stopFlicker();
+      showAnswerRing();
+      const time=elapsed;
+      results.push({round:curRound+1, time:time.toFixed(1), attempts:attempts});
+      // 正解時: Bレイヤー(変化版)を1.2秒間表示して違いを見せる
+      photoB.classList.add('on');
+      setTimeout(()=>{
+        const isLast=curRound>=rounds.length-1;
+        if(isLast){
+          // 最終ラウンド: ベース写真を再表示せず、そのまま CLEAR オーバーレイで覆う
+          showRoundComplete(time);
+        }else{
+          photoB.classList.remove('on');
+          highlight.style.display='none';
+          setTimeout(()=>showRoundComplete(time),300);
+        }
+      },1200);
+    }else{
+      addWrongMarker(evt);
+    }
+  }
+
+  photoWrap.addEventListener('click',handleClick);
+  photoWrap.addEventListener('touchend',function(e){
+    e.preventDefault();
+    const t=e.changedTouches[0];
+    handleClick({clientX:t.clientX,clientY:t.clientY});
+  });
+
+  function showRoundComplete(time, gaveUp){
+    overlay.style.display='flex';
+    if(curRound<rounds.length-1){
+      ovTitle.textContent=gaveUp ? 'ラウンド'+(curRound+1)+' ギブアップ' : 'ラウンド'+(curRound+1)+' クリア';
+      const nextHint=curRound===2?'<br><em style="color:#b0a090;font-size:12px;">次の2ラウンドは、変化が画面の端にある。注意が届きにくい場所は、時間がかかる。</em>':'';
+      if(gaveUp){
+        ovText.innerHTML='灰色の幕があるだけで、目の前の変化が消える。これがチェンジ・ブラインドネスだ。<br>次のラウンドに進もう。'+nextHint;
+      }else{
+        ovText.innerHTML=time.toFixed(1)+'秒（'+attempts+'回タップ）で発見。<br>次のラウンドでは別の場所が変わる。'+nextHint;
+      }
+      updateDots(curRound+1);
+      startBtn.textContent='ラウンド'+(curRound+2)+'を開始';
+      startBtn.style.display='';
+      startBtn.onclick=function(){
+        curRound++;
+        overlay.style.display='none';
+        resetScene();
+        startFlicker();
+      };
+    }else{
+      showFinale();
+    }
+  }
+
+  function updateDots(nextIdx){
+    const dots=progress.querySelectorAll('.fk-pdot');
+    dots.forEach((d,i)=>{
+      d.className='fk-pdot';
+      if(i<nextIdx) d.classList.add('done');
+      else if(i===nextIdx) d.classList.add('active');
+    });
+  }
+
+  function showFinale(){
+    // ラウンド完了。タイマー・マスク・HUD・ハイライトを確実に止める
+    flickering=false;
+    clearTimeout(flickerTimer);
+    clearInterval(clockTimer);
+    mask.style.opacity='0';
+    mask.style.display='none';
+    highlight.style.display='none';
+    document.querySelector('.fk-hud').style.display='none';
+    giveUpBtn.style.display='none';
+    // 不透明な CLEAR オーバーレイでステージを覆い切る(ベース写真を見せない)
+    overlay.style.background='#1a1208';
+    overlay.style.display='flex';
+    startBtn.style.display='none';
+    ovTitle.innerHTML='<span style="display:block;font-family:\'Source Sans 3\',sans-serif;font-size:12px;font-weight:400;letter-spacing:.3em;color:#b0a090;margin-bottom:10px;">— EXPERIMENT COMPLETE —</span><span style="display:block;font-family:\'Playfair Display\',serif;font-size:52px;font-weight:700;letter-spacing:.18em;color:#e8c56a;line-height:1;">CLEAR</span>';
+    ovText.innerHTML='<span style="display:block;margin-top:14px;font-size:12px;letter-spacing:.15em;color:#b0a090;">全 5 ラウンド終了</span>';
+    updateDots(rounds.length);
+    // 2秒後、下に結果サマリーを表示(CLEAR画面はそのまま残す)
+    setTimeout(showReveal,2000);
+  }
+
+  function showReveal(){
+    // CLEAR オーバーレイはそのまま残し、下部に結果サマリーをフェードインで出す
+    // Build a result summary
+    let html='<strong>灰色の幕がなければ、一瞬でわかる。</strong><br><br>';
+    html+='<table style="width:100%;border-collapse:collapse;font-family:\'Source Sans 3\',sans-serif;font-size:14px;margin-bottom:16px;">';
+    html+='<tr style="border-bottom:1px solid #c8bfaa;"><th style="text-align:left;padding:6px 8px;color:#7a6a55;font-weight:600;">ラウンド</th><th style="text-align:left;padding:6px 8px;color:#7a6a55;font-weight:600;">変化の内容</th><th style="text-align:right;padding:6px 8px;color:#7a6a55;font-weight:600;">発見まで</th><th style="text-align:right;padding:6px 8px;color:#7a6a55;font-weight:600;">タップ数</th></tr>';
+    const descs=['中央の額入り肖像写真が別人に差し替わっていた','右側の赤い大きな布（バナー）が消えていた','床の中央に置かれていた黒いバッグ類が消えていた','左の本棚、中段付近の本1冊の色が変わっていた（赤 ↔ 水色）','左上に掛かっていた男性の白黒肖像写真（額入り）が消えていた'];
+    results.forEach((r,i)=>{
+      const timeCell = r.gaveUp
+        ? '<span style="color:#8b1a1a;">ギブアップ</span>'
+        : '<span style="font-family:\'JetBrains Mono\',monospace;font-weight:600;">'+r.time+' s</span>';
+      html+='<tr style="border-bottom:1px solid #ede8dc;"><td style="padding:6px 8px;">'+r.round+'</td><td style="padding:6px 8px;">'+descs[i]+'</td><td style="text-align:right;padding:6px 8px;">'+timeCell+'</td><td style="text-align:right;padding:6px 8px;">'+r.attempts+'</td></tr>';
+    });
+    html+='</table>';
+    function avg(slice){
+      const solved=slice.filter(r=>!r.gaveUp);
+      if(solved.length===0) return null;
+      return (solved.reduce((s,r)=>s+parseFloat(r.time),0)/solved.length).toFixed(1);
+    }
+    const centralAvg=avg(results.slice(0,3));
+    const peripheralAvg=avg(results.slice(3,5));
+    const centralLbl=centralAvg===null ? '全てギブアップ' : '<strong>'+centralAvg+' 秒</strong>';
+    const peripheralLbl=peripheralAvg===null ? '全てギブアップ' : '<strong>'+peripheralAvg+' 秒</strong>';
+    html+='中心的変化の平均（ラウンド1〜3）: '+centralLbl+'　／　周辺的変化の平均（ラウンド4〜5）: '+peripheralLbl+'<br><br>';
+    html+='ほぼ確実に、後半のほうが時間がかかったはずだ。レンシンクの原実験でも、中心的変化は平均7〜10秒、周辺的変化は30秒以上かかった。<strong>あなたの視覚は、注意が届いた場所しか鮮明に処理しない</strong>。画面の端で大きな変化が起きていても、注意がそこを訪れるまで、それは意識に上らない。<br><br>';
+    html+='灰色の幕はわずか120ミリ秒——まばたき1回ぶんの遮断にすぎない。それだけで、目の前の変化が消える。<strong>あなたの目が悪いのではない。変化を捉えるための「差分信号」を、幕が奪っているのだ。</strong>';
+    resultEl.innerHTML=html;
+    resultEl.style.opacity='0';
+    resultEl.style.transition='opacity .6s ease';
+    resultEl.style.display='block';
+    requestAnimationFrame(()=>{ resultEl.style.opacity='1'; });
+  }
+
+  // Initial state
+  resetScene();
+
+  // onclick（プロパティ）で登録することで、showRoundComplete 内の onclick 再設定に
+  // よってクリーンに上書きされる。addEventListener だと旧ハンドラが残り二重発火する。
+  startBtn.onclick=function(){
+    overlay.style.display='none';
+    startFlicker();
+  };
+})();
+
+// ===== RESIDUAL SENSITIVITY QUIZ (Nartker 2024 再現) =====
+(function(){
+  const stage=document.getElementById('rsStage');
+  const scene=document.getElementById('rsScene');
+  const mask=document.getElementById('rsMask');
+  const countdown=document.getElementById('rsCountdown');
+  const hud=document.getElementById('rsHud');
+  const roundLbl=document.getElementById('rsRoundLbl');
+  const phaseLbl=document.getElementById('rsPhase');
+  const overlay=document.getElementById('rsOverlay');
+  const startBtn=document.getElementById('rsStartBtn');
+  const resultEl=document.getElementById('rsResult');
+
+  const SHAPES={circle:'円',square:'四角',triangle:'三角'};
+  const COLORS={red:['赤','#c84848'],blue:['青','#4a78c8'],green:['緑','#4aa068'],yellow:['黄','#d8b048']};
+
+  let curTrial=0;
+  let mainAnswers=[];  // bool
+  let probeAnswers=[]; // bool
+
+  // Draw a shape at (x,y)
+  function drawShape(shape,color,x,y,size){
+    const fill=COLORS[color][1];
+    const ns='http://www.w3.org/2000/svg';
+    let el;
+    if(shape==='circle'){
+      el=document.createElementNS(ns,'circle');
+      el.setAttribute('cx',x); el.setAttribute('cy',y);
+      el.setAttribute('r',size);
+    }else if(shape==='square'){
+      el=document.createElementNS(ns,'rect');
+      el.setAttribute('x',x-size); el.setAttribute('y',y-size);
+      el.setAttribute('width',size*2); el.setAttribute('height',size*2);
+    }else{
+      el=document.createElementNS(ns,'polygon');
+      const pts=[x+','+(y-size),(x+size*0.9)+','+(y+size*0.7),(x-size*0.9)+','+(y+size*0.7)];
+      el.setAttribute('points',pts.join(' '));
+    }
+    el.setAttribute('fill',fill);
+    scene.appendChild(el);
+    return el;
+  }
+
+  // === Trial definitions ===
+  // trial: returns {sceneFn, mainQ, mainChoices, mainAnswer, probeQ, probeChoices, probeAnswer}
+  const trials=[
+    // Trial 1: center shape identification; probe top-left color
+    (function(){
+      const items=[
+        {pos:'center',shape:'triangle',color:'yellow',x:300,y:180,size:32},
+        {pos:'top-left',shape:'square',color:'green',x:130,y:90,size:24},
+        {pos:'top-right',shape:'circle',color:'red',x:470,y:90,size:24},
+        {pos:'bottom-left',shape:'circle',color:'blue',x:130,y:270,size:24},
+        {pos:'bottom-right',shape:'triangle',color:'red',x:470,y:270,size:24}
+      ];
+      return {
+        instr:'画面<strong>中央</strong>にある図形の<strong>形</strong>を覚えてください。',
+        items:items,
+        mainQ:'中央にあった図形の<strong>形</strong>は？',
+        mainChoices:[{lbl:'円',v:'circle'},{lbl:'四角',v:'square'},{lbl:'三角',v:'triangle'}],
+        mainAnswer:'triangle',
+        probeQ:'<em>不意打ち:</em> <strong>左上</strong>にあった図形の<strong>色</strong>は？',
+        probeChoices:[{lbl:'赤',v:'red'},{lbl:'青',v:'blue'},{lbl:'緑',v:'green'}],
+        probeAnswer:'green'
+      };
+    })(),
+    // Trial 2: count red shapes; probe right-side largest shape
+    (function(){
+      const items=[
+        {pos:'tl',shape:'circle',color:'red',x:100,y:80,size:22},
+        {pos:'tc',shape:'square',color:'blue',x:260,y:100,size:22},
+        {pos:'tr',shape:'triangle',color:'red',x:440,y:80,size:22},
+        {pos:'cl',shape:'square',color:'green',x:160,y:200,size:22},
+        {pos:'c',shape:'circle',color:'yellow',x:320,y:190,size:22},
+        {pos:'cr',shape:'circle',color:'red',x:500,y:200,size:22},
+        {pos:'bl',shape:'triangle',color:'blue',x:180,y:290,size:22},
+        {pos:'br',shape:'square',color:'green',x:420,y:290,size:22}
+      ];
+      return {
+        instr:'<strong>赤い図形</strong>の個数を数えてください。',
+        items:items,
+        mainQ:'赤い図形は何個でしたか？',
+        mainChoices:[{lbl:'2個',v:2},{lbl:'3個',v:3},{lbl:'4個',v:4}],
+        mainAnswer:3,
+        probeQ:'<em>不意打ち:</em> <strong>右下</strong>にあった図形の<strong>形</strong>は？',
+        probeChoices:[{lbl:'円',v:'circle'},{lbl:'四角',v:'square'},{lbl:'三角',v:'triangle'}],
+        probeAnswer:'square'
+      };
+    })(),
+    // Trial 3: identify color of top-right; probe left-side any color
+    (function(){
+      const items=[
+        {pos:'tl',shape:'circle',color:'blue',x:130,y:100,size:26},
+        {pos:'tr',shape:'square',color:'yellow',x:470,y:100,size:26},
+        {pos:'c',shape:'triangle',color:'green',x:300,y:200,size:28},
+        {pos:'bl',shape:'circle',color:'red',x:130,y:280,size:26},
+        {pos:'br',shape:'triangle',color:'blue',x:470,y:280,size:26}
+      ];
+      return {
+        instr:'画面<strong>右上</strong>にある図形の<strong>色</strong>を覚えてください。',
+        items:items,
+        mainQ:'右上にあった図形の<strong>色</strong>は？',
+        mainChoices:[{lbl:'赤',v:'red'},{lbl:'青',v:'blue'},{lbl:'黄',v:'yellow'}],
+        mainAnswer:'yellow',
+        probeQ:'<em>不意打ち:</em> <strong>左下</strong>にあった図形の<strong>色</strong>は？',
+        probeChoices:[{lbl:'赤',v:'red'},{lbl:'青',v:'blue'},{lbl:'緑',v:'green'}],
+        probeAnswer:'red'
+      };
+    })()
+  ];
+
+  function clearScene(){
+    while(scene.firstChild) scene.removeChild(scene.firstChild);
+  }
+
+  function showTrialInstr(){
+    const t=trials[curTrial];
+    overlay.style.display='flex';
+    hud.style.display='none';
+    overlay.innerHTML='';
+    const title=document.createElement('p');
+    title.className='rs-overlay-title';
+    title.textContent='試行 '+(curTrial+1)+' / 3';
+    overlay.appendChild(title);
+    const text=document.createElement('p');
+    text.className='rs-overlay-text';
+    text.innerHTML=t.instr+'<br><small style="color:#7a6a55;">1.5秒間だけ表示されます。</small>';
+    overlay.appendChild(text);
+    const btn=document.createElement('button');
+    btn.className='exp-btn';
+    btn.textContent='表示する';
+    btn.onclick=runTrial;
+    overlay.appendChild(btn);
+  }
+
+  function runTrial(){
+    const t=trials[curTrial];
+    overlay.style.display='none';
+    clearScene();
+    // Draw
+    t.items.forEach(it=>drawShape(it.shape,it.color,it.x,it.y,it.size));
+    hud.style.display='flex';
+    roundLbl.textContent='TRIAL '+(curTrial+1)+' / 3';
+    phaseLbl.textContent='注視';
+    // Countdown display (optional)
+    setTimeout(()=>{
+      // Mask
+      mask.style.display='block';
+      phaseLbl.textContent='マスク';
+      setTimeout(()=>{
+        mask.style.display='none';
+        clearScene();
+        askMain();
+      },350);
+    },1500);
+  }
+
+  function buildChoices(choices,correctVal,onAnswer){
+    const wrap=document.createElement('div');
+    wrap.className='rs-choices';
+    choices.forEach(c=>{
+      const b=document.createElement('button');
+      b.className='rs-choice';
+      b.textContent=c.lbl;
+      b.onclick=()=>{
+        Array.from(wrap.children).forEach(x=>x.classList.remove('selected'));
+        b.classList.add('selected');
+        setTimeout(()=>onAnswer(c.v===correctVal),400);
+      };
+      wrap.appendChild(b);
+    });
+    return wrap;
+  }
+
+  function askMain(){
+    const t=trials[curTrial];
+    hud.style.display='flex';
+    phaseLbl.textContent='メイン課題';
+    overlay.style.display='flex';
+    overlay.innerHTML='';
+    const title=document.createElement('p');
+    title.className='rs-overlay-title';
+    title.textContent='回答';
+    overlay.appendChild(title);
+    const text=document.createElement('p');
+    text.className='rs-overlay-text';
+    text.innerHTML=t.mainQ;
+    overlay.appendChild(text);
+    overlay.appendChild(buildChoices(t.mainChoices,t.mainAnswer,ok=>{
+      mainAnswers.push(ok);
+      askProbe();
+    }));
+  }
+
+  function askProbe(){
+    const t=trials[curTrial];
+    phaseLbl.textContent='不意打ち';
+    overlay.innerHTML='';
+    const title=document.createElement('p');
+    title.className='rs-overlay-title';
+    title.textContent='もうひとつだけ';
+    overlay.appendChild(title);
+    const text=document.createElement('p');
+    text.className='rs-overlay-text';
+    text.innerHTML=t.probeQ+'<br><small style="color:#7a6a55;">「わからない」でも当てずっぽうで選んでください。</small>';
+    overlay.appendChild(text);
+    overlay.appendChild(buildChoices(t.probeChoices,t.probeAnswer,ok=>{
+      probeAnswers.push(ok);
+      curTrial++;
+      if(curTrial<3) showTrialInstr();
+      else showResults();
+    }));
+  }
+
+  function showResults(){
+    overlay.style.display='none';
+    hud.style.display='none';
+    const mainN=mainAnswers.filter(x=>x).length;
+    const probeN=probeAnswers.filter(x=>x).length;
+    const probePct=Math.round(probeN/3*100);
+    let comment;
+    if(probeN>=2) comment='偶然水準33%を明らかに超えている。あなたの視覚野は、意識が「見ていない」と判定した項目を、それでも処理していた。';
+    else if(probeN===1) comment='偶然水準33%とほぼ同じ。この試行数では判定不能だが、ナートカー2024では25,000人規模で同じパラダイムを回し、57%の人に残余感受性が確認された。';
+    else comment='今回は全て外した。ただ試行が3回では偶然の揺らぎが大きい。ナートカーの実験は大規模試行の統計的パターンとして57%の残余感受性を検出している。';
+
+    let html='<strong>3試行、終了。</strong><br><br>';
+    html+='<div class="rs-bar-row"><div class="rs-bar-label">メイン課題の正答率<small style="display:block;color:#7a6a55;font-size:11px;">注意を向けていた項目</small></div><div class="rs-bar-track"><div class="rs-bar-fill" style="width:'+Math.round(mainN/3*100)+'%"></div></div><div class="rs-bar-val">'+mainN+'/3</div></div>';
+    html+='<div class="rs-bar-row" style="margin-top:18px;"><div class="rs-bar-label"><strong>不意打ち質問の正答率</strong><small style="display:block;color:#7a6a55;font-size:11px;">「見ていなかった」項目</small></div><div class="rs-bar-track" style="overflow:visible;"><div class="rs-bar-fill alt" style="width:'+probePct+'%"></div><div class="rs-bar-chance" style="left:33%;"><span class="rs-bar-chance-lbl">偶然 33%</span></div></div><div class="rs-bar-val">'+probeN+'/3</div></div>';
+    html+='<br><p style="font-family:\'Source Sans 3\',sans-serif;font-size:14px;line-height:1.8;color:#3d3020;">'+comment+'</p>';
+    html+='<br><p style="font-family:\'Source Sans 3\',sans-serif;font-size:13px;line-height:1.75;color:#7a6a55;">ナートカー他 2024（eLife、約25,000名）では、「見ていない」と報告した参加者の <strong style="color:#8b1a1a;">57%</strong> が、それでも対象の色・形・位置を偶然以上の精度で当てた。「気づく」と「視覚情報の到達」は別物かもしれない——この問いは、意識とクオリアの関係に直接刺さる。</p>';
+    html+='<div style="margin-top:16px;text-align:center;"><button class="exp-btn-secondary" id="rsRetry">もう一度やる</button></div>';
+    resultEl.innerHTML=html;
+    resultEl.style.display='block';
+    document.getElementById('rsRetry').onclick=()=>{
+      curTrial=0;mainAnswers=[];probeAnswers=[];
+      resultEl.style.display='none';
+      showTrialInstr();
+    };
+  }
+
+  startBtn.addEventListener('click',()=>{
+    curTrial=0;mainAnswers=[];probeAnswers=[];
+    showTrialInstr();
+  });
+})();
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5500},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>

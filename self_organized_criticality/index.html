@@ -1,0 +1,2160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自己組織化臨界 — 世界はいつも崩れる直前にある — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-stat{border:1px solid #c8bfaa;padding:28px 24px;background:#f3efe6;text-align:center;margin-bottom:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'~';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* IMAGE */
+.fig-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:#1a1208;}
+.fig-wrap img{display:block;width:100%;height:auto;}
+.fig-caption{padding:10px 16px;border-top:1px solid #c8bfaa;background:#f3efe6;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;}
+.fig-credit{display:block;font-size:10px;color:#b0a090;margin-top:4px;}
+.fig-svg-holder{background:#faf8f3;padding:20px 18px;}
+.fig-svg-holder img{display:block;width:100%;height:auto;max-width:100%;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;margin-bottom:8px;}
+.person-block-wiki a{color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;transition:color .2s,border-color .2s;}
+.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TABLE */
+.ex-table{margin:28px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.ex-table-head{background:#3d3020;color:white;padding:10px 16px;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.ex-table table{width:100%;border-collapse:collapse;background:white;font-family:'Source Sans 3',sans-serif;}
+.ex-table th{background:#f3efe6;padding:10px 14px;text-align:left;font-size:11px;font-weight:600;color:#7a6a55;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #c8bfaa;}
+.ex-table td{padding:12px 14px;font-size:13px;font-weight:300;color:#3d3020;line-height:1.7;border-bottom:1px solid #e0d8c8;}
+.ex-table tr:last-child td{border-bottom:none;}
+.ex-table td strong{color:#1a1208;font-weight:600;}
+.ex-table td .exp{color:#8b1a1a;font-weight:500;font-variant-numeric:tabular-nums;font-family:'JetBrains Mono',monospace;font-size:12px;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* SVG wrapper */
+.svg-fig{margin:28px auto;max-width:680px;}
+.svg-fig svg{display:block;width:100%;height:auto;}
+.svg-caption{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;margin-top:6px;}
+
+/* INTERACTIVE */
+.ix-block{margin:32px 0;background:#1a1208;color:#e8e4de;padding:0;overflow:hidden;border:1px solid #3d3020;}
+.ix-head{background:#0d0d0d;padding:11px 20px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;color:#e8c56a;text-transform:uppercase;border-bottom:1px solid #3d3020;}
+.ix-body{padding:20px 22px;}
+.ix-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px;}
+.ix-btn{background:#3d3020;color:#e8e4de;border:1px solid #5a4838;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;letter-spacing:.08em;padding:7px 14px;cursor:pointer;text-transform:uppercase;transition:all .18s;}
+.ix-btn:hover{background:#8b1a1a;border-color:#8b1a1a;color:white;}
+.ix-btn.active{background:#8b1a1a;border-color:#8b1a1a;color:white;}
+.ix-slider-row{display:flex;align-items:center;gap:14px;margin-bottom:12px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#c8b8a8;}
+.ix-slider-row label{min-width:110px;color:#e8c56a;letter-spacing:.06em;text-transform:uppercase;font-size:10px;font-weight:600;}
+.ix-slider-row input[type=range]{flex:1;}
+.ix-slider-row .ix-val{min-width:90px;color:#e8e4de;font-family:'JetBrains Mono',monospace;font-size:11px;}
+.ix-canvases{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
+.ix-canvas-wrap{background:#0d0d0d;border:1px solid #3d3020;padding:12px;}
+.ix-canvas-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#b0a090;text-transform:uppercase;margin-bottom:8px;display:flex;justify-content:space-between;}
+.ix-canvas-lbl span{color:#e8c56a;}
+.ix-canvas-wrap canvas{display:block;width:100%;height:auto;}
+.ix-stats{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;padding:10px 14px;background:#0d0d0d;border:1px solid #3d3020;font-family:'JetBrains Mono',monospace;font-size:11px;color:#c8b8a8;}
+.ix-stats .stat{display:flex;flex-direction:column;gap:2px;}
+.ix-stats .stat-lbl{color:#7a6a55;font-size:9px;letter-spacing:.1em;text-transform:uppercase;}
+.ix-stats .stat-v{color:#e8c56a;font-size:14px;}
+.ix-legend-title{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;color:#b0a090;margin-top:16px;margin-bottom:6px;padding-top:10px;border-top:1px solid #3d3020;}
+.ix-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;}
+.ix-legend label{display:flex;align-items:center;gap:6px;cursor:pointer;}
+.ix-legend input[type=checkbox]{margin:0;}
+.ix-legend .swatch{width:14px;height:2px;display:inline-block;}
+.ix-color-legend{display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:10px;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#c8b8a8;}
+.ix-color-legend .clg-item{display:flex;align-items:center;gap:5px;white-space:nowrap;}
+.ix-color-legend .clg-sw{width:12px;height:12px;display:inline-block;border:1px solid #3d3020;}
+.ix-obs{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#e8c56a;margin-top:14px;padding:12px 14px;background:#0d0d0d;border-left:3px solid #e8c56a;line-height:1.75;}
+.ix-obs strong{color:#e8c56a;font-weight:700;}
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:10px;padding:0 2px;line-height:1.7;}
+.ix-mode-pill{display:inline-block;padding:2px 10px;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-left:8px;}
+.ix-mode-pill.sub{background:#1a3a5a;color:#8fb8d8;}
+.ix-mode-pill.crit{background:#8b1a1a;color:white;}
+.ix-mode-pill.super{background:#5a2a1a;color:#e8a878;}
+
+input[type=range]{-webkit-appearance:none;appearance:none;height:3px;background:#3d3020;outline:none;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:#e8c56a;border-radius:50%;cursor:pointer;}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#e8c56a;border-radius:50%;cursor:pointer;border:none;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .ix-canvases{grid-template-columns:1fr;}
+  .svg-fig{max-width:100%;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){
+  .toc-back{padding:22px 20px;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">複雑系</p>
+    <h1>世界は<em>崩れる直前</em>で回っている</h1>
+    <p class="cover-deck">書類の山が、ある日1枚足した瞬間に崩れるのと、地震が起きるのと、脳で神経が一斉に発火するのは、同じ形をした現象だ。1987年、3人の物理学者が「なだれ」に数式を与えた。</p>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>DEEP DIVE</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1987</span>
+      <p class="est-event">Per Bak, Chao Tang, Kurt Wiesenfeld が『自己組織化臨界』を Physical Review Letters に発表(7月27日)。砂山モデルが複雑系科学の出発点になった。</p>
+      <p class="est-context">同年7月、ダウ平均が初めて2500ドルを突破。誰も3ヵ月後の暴落(ブラックマンデー)を予期していなかった。</p>
+    </div>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>デスクに積んだ書類が、ある日、ふと1枚足した瞬間にドサッと崩れる。そんな経験は誰にでもあるはずだ。</p>
+    <p>崩れる前は、すべてが普通に見えていた。1枚ずつ重ねてきた積み重ねのうち、「どの1枚」が最後の一押しだったかは、あとから辿り直しても特定できない。</p>
+    <p>書類の山と、地震と、SNSで何かが急に流行ることは、同じ形の現象だ。世界はいつも、崩れる直前で自分を保っている。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 数式は使わない</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-16</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-16</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">この記事では、あなたの手で砂を1粒ずつ落としてもらう。その1粒から始まる小さな「なだれ」が、なぜか地震や森林火災や脳の発火と同じ法則に従うことを、目の前で確かめることになる。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ============ 背景セクション ============ -->
+  <div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+  <h2 class="fade">書類の山、地震、流行り——同じ形をしている</h2>
+
+  <p class="body-text fade">日常の書類の山に話を戻そう。1枚、また1枚と重ねていくうち、ある瞬間に限界を超えて崩れる。奇妙なのは、崩れる直前までは、いたって普通に見えていることだ。最後の1枚が特別重いわけでもない。ただ、そこにあっただけで「全体が」動いた。</p>
+
+  <p class="body-text fade">さらに奇妙なのは、崩れる<strong>規模</strong>に規則があることだ。たいていは1〜2枚が滑り落ちる程度の小さな崩れで済むが、ごくたまに山全体が雪崩れる。小さな崩れは頻繁に、大きな崩れはごく稀に——この「頻度と規模のはっきりした反比例」が、実は自然界のあちこちに何度も現れている。</p>
+
+  <!-- SVG (a) 冪乗則 vs ガウス分布 -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg">
+      <!-- Left: Gaussian -->
+      <text x="200" y="30" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#7a6a55" letter-spacing="2">ベル型(ガウス分布)</text>
+      <text x="200" y="52" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#b0a090">身長・テストの点数・測定誤差</text>
+      <line x1="60" y1="340" x2="340" y2="340" stroke="#7a6a55" stroke-width="1.2"/>
+      <line x1="60" y1="80" x2="60" y2="340" stroke="#7a6a55" stroke-width="1.2"/>
+      <!-- Gaussian curve (smooth) -->
+      <path d="M 60,340 C 115,340 145,338 165,322 C 183,300 180,100 200,100 C 220,100 217,300 235,322 C 255,338 285,340 340,340" stroke="#3d3020" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+      <text x="200" y="370" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">値</text>
+      <text x="50" y="210" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" transform="rotate(-90 50 210)">頻度</text>
+      <text x="200" y="398" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020">平均のまわりに集まる</text>
+
+      <!-- Divider -->
+      <line x1="400" y1="70" x2="400" y2="380" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="4 4"/>
+      <text x="400" y="215" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="20" fill="#8b1a1a">vs</text>
+
+      <!-- Right: Power law -->
+      <text x="600" y="30" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#8b1a1a" letter-spacing="2">冪乗則(log-log)</text>
+      <text x="600" y="52" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#b0a090">地震・火災・株価・SNSの拡散</text>
+      <line x1="460" y1="340" x2="740" y2="340" stroke="#7a6a55" stroke-width="1.2"/>
+      <line x1="460" y1="80" x2="460" y2="340" stroke="#7a6a55" stroke-width="1.2"/>
+      <!-- Straight line on log-log = power law -->
+      <line x1="470" y1="100" x2="740" y2="335" stroke="#8b1a1a" stroke-width="2.5"/>
+      <!-- dots on line -->
+      <circle cx="490" cy="117" r="3.5" fill="#8b1a1a"/>
+      <circle cx="560" cy="178" r="3.5" fill="#8b1a1a"/>
+      <circle cx="640" cy="247" r="3.5" fill="#8b1a1a"/>
+      <circle cx="720" cy="317" r="3.5" fill="#8b1a1a"/>
+      <text x="600" y="370" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">log(規模)</text>
+      <text x="450" y="210" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" transform="rotate(-90 450 210)">log(頻度)</text>
+      <text x="600" y="398" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020">どの規模にもスケールが無い</text>
+    </svg>
+    <p class="svg-caption">左: 身長のような日常の量は「平均値のまわり」に集まる。右: 地震の規模・火災の面積・株価の変動などは、両対数プロットで直線を描く。「ふつう」が存在しない。</p>
+  </div>
+
+  <p class="body-text fade">身長や体重は「ベル型の曲線」(釣鐘型とも呼ばれる)に従う。平均値のまわりに集まり、極端に高い人・低い人はごく少数。一方で、地震のマグニチュード、森林火災の焼失面積、株価の日々の変動幅、SNSの拡散規模は、まったく違う分布をしている。マグニチュード8の地震は年1回、7は10回、6は100回——1桁大きくなるごとに頻度が10倍減る。こういう分布を<span class="tip" onclick="toggleTip(this)"><ruby>冪乗<rt>べきじょう</rt></ruby>則<span class="tip-box"><strong>冪乗則 Power Law</strong><br>値が大きくなるほど頻度が急激に下がる、ただし「ゼロ」にはならない分布のこと。ベル型の曲線と違い、極端に大きな値にも、ちらほら出会う。地震やSNSの拡散など、自然界にも人間社会にも多い。</span></span>と呼ぶ。</p>
+
+  <p class="body-text fade">ここで不思議な問いが生まれる。なぜ、これほど種類の違う現象が、そろって同じ分布に従うのか。地震のプレートの話と、森林の燃え広がる話と、脳の発火の話は、まったく別のメカニズムのはずだ。それなのに、出てくる統計の「かたち」だけは、ぴったり同じ。</p>
+
+  <div class="person-block fade" style="grid-template-columns:1fr;">
+    <div class="person-block-body" style="border-left:none;">
+      <div class="person-block-name">ペル・バック</div>
+      <div class="person-block-role">PER BAK (1948–2002)</div>
+      <p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Per_Bak" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p class="person-block-desc">デンマークの理論物理学者。ニールス・ボーア研究所、ブルックヘブン国立研究所、サンタフェ研究所などを渡り歩いた。1987年にチャオ・タン、カート・ワイゼンフェルドと『自己組織化臨界』の論文を発表。複雑系科学の出発点をつくった。1996年、一般向け書籍『How Nature Works』で持論を広く提示した。「自然はなぜ複雑か」という、物理学が素通りしてきた問いに正面から取り組んだ人物。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">1987年、バックらはひとつの答えを出した。<strong>大規模で、構成要素が多く、緩く押されつづけるシステムは、勝手に「崩れる直前の状態」に自分を組織化する</strong>。この状態を彼らは<span class="tip" onclick="toggleTip(this)">臨界<span class="tip-box"><strong>臨界点 Critical Point</strong><br>状態が激変する境目のこと。たとえば水は 100°C で急に蒸気に、0°C で急に氷になる。そのちょうどの温度で、液体と気体/氷が「どっちつかず」に揺らぐ。システムが臨界にあると、ちょっとした刺激でも大きな反応が起きる可能性を持つ。</span></span>状態と呼ぶ。そしてこの考え方全体——「<span class="tip" onclick="toggleTip(this)">系<span class="tip-box"><strong>系 system</strong><br>物理や数理科学で「注目する対象全体をひとかたまりと見たもの」を指す基本語。格子全体、森全体、脳全体、市場全体のように、境界を決めて『これを観察する』と切り出したものが「系」。個々のマスや個々の木ではなく、その総体の振る舞いを見るときに使う。</span></span>がひとりでに臨界へ収束する」という性質——を、彼らは<strong>自己組織化臨界</strong>(Self-Organized Criticality、略して <strong>SOC</strong>)と名付けた。この記事では、以下この略称 SOC を使う。</p>
+
+  <p class="body-text fade">SOC は、抽象的な概念のままでは誰にも信じてもらえない。バックらは、この性質を目の前で再現する、できるだけ単純な「おもちゃ」を必要とした。彼らがたどり着いたのは、<strong>砂山</strong>だった。</p>
+
+  <p class="body-text fade">なぜ砂なのか。緩く押されて、ときどき崩れる——この「書類の山」と同じ構造を、自然界のあちこちから剥ぎ取って、一番シンプルな形に蒸留したのが砂山だからだ。粒を格子状のマスに落としていき、一定数を超えたマスは隣にこぼれる。たったこれだけ。ここから<ruby>冪乗<rt>べきじょう</rt></ruby>則が出てくるなら、地震や森林火災や脳のなだれで同じ分布が出る「理由」の説明にもなる——というのが、バックらの賭けだった。このおもちゃのモデルは、3人の名前を取って <strong>BTWモデル</strong>(Bak-Tang-Wiesenfeld model)と呼ばれる。</p>
+
+  <p class="body-text fade">BTWモデルのルールは、次の4ステップに集約される。</p>
+
+  <!-- SVG (b) BTWルール(4ステップ版) -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg">
+      <!-- タイトル -->
+      <text x="400" y="28" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" font-weight="700" fill="#1a1208" letter-spacing="2">BTW モデルのルール(4ステップ)</text>
+      <text x="400" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">数字は「そのマスに積まれた砂粒の数」を表す</text>
+
+      <!-- ========== ステップ① 砂を1粒ずつ落とす(積み上がり) ========== -->
+      <g>
+        <text x="130" y="92" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#8b1a1a" font-weight="700" letter-spacing="1">① 砂を1粒ずつ落とす</text>
+        <text x="130" y="112" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">空マスに0→1→2→3 と積もっていく</text>
+
+        <!-- 1x4 の progression grid -->
+        <g transform="translate(40,128)">
+          <!-- cell 0 -->
+          <rect x="0" y="0" width="40" height="40" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+          <text x="20" y="26" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="16" fill="#b0a090" font-weight="700">0</text>
+          <text x="20" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">空</text>
+          <!-- arrow -->
+          <text x="55" y="26" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+          <!-- cell 1 -->
+          <rect x="70" y="0" width="40" height="40" fill="#efe4c8" stroke="#c8bfaa" stroke-width="1"/>
+          <text x="90" y="26" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="16" fill="#1a1208" font-weight="700">1</text>
+          <text x="55" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a">+1粒</text>
+          <!-- arrow -->
+          <text x="125" y="26" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+          <!-- cell 2 -->
+          <rect x="140" y="0" width="40" height="40" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+          <text x="160" y="26" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="16" fill="#1a1208" font-weight="700">2</text>
+          <text x="125" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a">+1粒</text>
+          <!-- arrow -->
+          <text x="195" y="26" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+          <!-- cell 3 -->
+          <rect x="210" y="0" width="40" height="40" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+          <text x="230" y="26" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="16" fill="#1a1208" font-weight="700">3</text>
+          <text x="195" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a">+1粒</text>
+        </g>
+      </g>
+
+      <!-- ==================== 右上に②: 4粒目で不安定 ==================== -->
+      <g>
+        <text x="600" y="92" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#8b1a1a" font-weight="700" letter-spacing="1">② さらに1粒で「4粒」に達する</text>
+        <text x="600" y="112" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">4粒以上になったマスは「不安定」</text>
+
+        <g transform="translate(510,128)">
+          <!-- 3 -->
+          <rect x="0" y="0" width="40" height="40" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+          <text x="20" y="26" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="16" fill="#1a1208" font-weight="700">3</text>
+          <text x="20" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">3粒</text>
+          <!-- arrow + sand drop -->
+          <text x="55" y="22" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">+1</text>
+          <text x="55" y="36" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+          <!-- 4 unstable -->
+          <rect x="70" y="0" width="40" height="40" fill="#8b1a1a" stroke="#8b1a1a" stroke-width="1"/>
+          <text x="90" y="26" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="16" fill="white" font-weight="700">4</text>
+          <text x="90" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a" font-weight="700">!不安定</text>
+        </g>
+      </g>
+
+      <!-- ==================== ③ 転倒:4方向へ1粒ずつ配布 ==================== -->
+      <g>
+        <text x="210" y="240" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#8b1a1a" font-weight="700" letter-spacing="1">③ 不安定マスは「転倒」: 4粒を隣4方向へ1粒ずつ配る</text>
+        <text x="210" y="260" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">中央は0に戻り、上下左右が +1 される</text>
+
+        <!-- 転倒前 -->
+        <g transform="translate(40,280)">
+          <!-- 3x3 grid -->
+          <rect x="0" y="0" width="120" height="120" fill="none" stroke="#c8bfaa" stroke-width="1.2"/>
+          <line x1="40" y1="0" x2="40" y2="120" stroke="#c8bfaa" stroke-width="0.8"/>
+          <line x1="80" y1="0" x2="80" y2="120" stroke="#c8bfaa" stroke-width="0.8"/>
+          <line x1="0" y1="40" x2="120" y2="40" stroke="#c8bfaa" stroke-width="0.8"/>
+          <line x1="0" y1="80" x2="120" y2="80" stroke="#c8bfaa" stroke-width="0.8"/>
+          <!-- neighbor cells with some counts -->
+          <rect x="40" y="0" width="40" height="40" fill="#efe4c8"/>
+          <text x="60" y="26" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="15" fill="#1a1208" font-weight="700">1</text>
+          <rect x="0" y="40" width="40" height="40" fill="#e8d49a"/>
+          <text x="20" y="66" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="15" fill="#1a1208" font-weight="700">2</text>
+          <!-- 中央 4 -->
+          <rect x="40" y="40" width="40" height="40" fill="#8b1a1a"/>
+          <text x="60" y="66" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="15" fill="white" font-weight="700">4</text>
+          <rect x="80" y="40" width="40" height="40" fill="#f3efe6"/>
+          <text x="100" y="66" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="15" fill="#b0a090" font-weight="700">0</text>
+          <rect x="40" y="80" width="40" height="40" fill="#efe4c8"/>
+          <text x="60" y="106" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="15" fill="#1a1208" font-weight="700">1</text>
+          <text x="60" y="138" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">転倒前</text>
+        </g>
+
+        <!-- 矢印(大きめ) -->
+        <text x="195" y="348" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="22" fill="#8b1a1a" font-weight="700">→</text>
+        <text x="195" y="368" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#8b1a1a">転倒</text>
+
+        <!-- 転倒後 -->
+        <g transform="translate(230,280)">
+          <rect x="0" y="0" width="120" height="120" fill="none" stroke="#c8bfaa" stroke-width="1.2"/>
+          <line x1="40" y1="0" x2="40" y2="120" stroke="#c8bfaa" stroke-width="0.8"/>
+          <line x1="80" y1="0" x2="80" y2="120" stroke="#c8bfaa" stroke-width="0.8"/>
+          <line x1="0" y1="40" x2="120" y2="40" stroke="#c8bfaa" stroke-width="0.8"/>
+          <line x1="0" y1="80" x2="120" y2="80" stroke="#c8bfaa" stroke-width="0.8"/>
+          <!-- 上: 1+1=2 -->
+          <rect x="40" y="0" width="40" height="40" fill="#e8d49a"/>
+          <text x="60" y="22" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" fill="#1a1208" font-weight="700">1→2</text>
+          <text x="60" y="35" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">+1</text>
+          <!-- 左: 2+1=3 -->
+          <rect x="0" y="40" width="40" height="40" fill="#e8c56a"/>
+          <text x="20" y="62" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" fill="#1a1208" font-weight="700">2→3</text>
+          <text x="20" y="75" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">+1</text>
+          <!-- 中央: 4→0 -->
+          <rect x="40" y="40" width="40" height="40" fill="#f3efe6"/>
+          <text x="60" y="62" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" fill="#1a1208" font-weight="700">4→0</text>
+          <text x="60" y="75" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">−4</text>
+          <!-- 右: 0+1=1 -->
+          <rect x="80" y="40" width="40" height="40" fill="#efe4c8"/>
+          <text x="100" y="62" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" fill="#1a1208" font-weight="700">0→1</text>
+          <text x="100" y="75" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">+1</text>
+          <!-- 下: 1+1=2 -->
+          <rect x="40" y="80" width="40" height="40" fill="#e8d49a"/>
+          <text x="60" y="102" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" fill="#1a1208" font-weight="700">1→2</text>
+          <text x="60" y="115" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#8b1a1a">+1</text>
+          <text x="60" y="138" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">転倒後(中央=0, 隣+1ずつ)</text>
+        </g>
+      </g>
+
+      <!-- ==================== ④ 連鎖なだれ ==================== -->
+      <g>
+        <text x="600" y="240" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#8b1a1a" font-weight="700" letter-spacing="1">④ 隣もすでに3粒だったら、連鎖して転倒</text>
+        <text x="600" y="260" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">これが「なだれ(avalanche)」</text>
+
+        <g transform="translate(480,280)">
+          <!-- 5x3 grid showing chain -->
+          <rect x="0" y="0" width="240" height="120" fill="none" stroke="#c8bfaa" stroke-width="1.2"/>
+          <line x1="40" y1="0" x2="40" y2="120" stroke="#c8bfaa" stroke-width="0.8"/>
+          <line x1="80" y1="0" x2="80" y2="120" stroke="#c8bfaa" stroke-width="0.8"/>
+          <line x1="120" y1="0" x2="120" y2="120" stroke="#c8bfaa" stroke-width="0.8"/>
+          <line x1="160" y1="0" x2="160" y2="120" stroke="#c8bfaa" stroke-width="0.8"/>
+          <line x1="200" y1="0" x2="200" y2="120" stroke="#c8bfaa" stroke-width="0.8"/>
+          <line x1="0" y1="40" x2="240" y2="40" stroke="#c8bfaa" stroke-width="0.8"/>
+          <line x1="0" y1="80" x2="240" y2="80" stroke="#c8bfaa" stroke-width="0.8"/>
+
+          <!-- Toppled cells (red) with arrows -->
+          <rect x="80" y="40" width="40" height="40" fill="#8b1a1a" opacity="0.85"/>
+          <text x="100" y="66" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" fill="white" font-weight="700">0</text>
+          <rect x="120" y="40" width="40" height="40" fill="#8b1a1a" opacity="0.6"/>
+          <text x="140" y="66" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" fill="white" font-weight="700">0</text>
+          <rect x="40" y="40" width="40" height="40" fill="#e8c56a"/>
+          <text x="60" y="66" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" fill="#1a1208" font-weight="700">3</text>
+          <rect x="160" y="40" width="40" height="40" fill="#e8c56a"/>
+          <text x="180" y="66" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" fill="#1a1208" font-weight="700">3</text>
+          <!-- 周囲を黄色で +1 -->
+          <rect x="80" y="0" width="40" height="40" fill="#efe4c8"/>
+          <text x="100" y="26" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#8b1a1a" font-weight="700">+1</text>
+          <rect x="120" y="0" width="40" height="40" fill="#efe4c8"/>
+          <text x="140" y="26" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#8b1a1a" font-weight="700">+1</text>
+          <rect x="80" y="80" width="40" height="40" fill="#efe4c8"/>
+          <text x="100" y="106" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#8b1a1a" font-weight="700">+1</text>
+          <rect x="120" y="80" width="40" height="40" fill="#efe4c8"/>
+          <text x="140" y="106" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#8b1a1a" font-weight="700">+1</text>
+          <text x="120" y="138" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">2つのマスが連鎖転倒 → 周囲に波及</text>
+        </g>
+      </g>
+
+      <!-- Bottom description -->
+      <text x="400" y="460" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#3d3020" font-weight="700">ルールはこれだけ。あとはひたすら①〜④を繰り返す。</text>
+      <text x="400" y="486" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">誰もなだれの大きさを設計していない。それでも、なだれのサイズ分布は冪乗則になる。</text>
+      <text x="400" y="520" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#b0a090" font-style="italic">※ 格子の端から外へ出た砂は捨てられる。これを「散逸」という。砂が「入ってきて」「出ていく」バランスが、臨界を支える前提。</text>
+    </svg>
+    <p class="svg-caption">BTW モデルのルール。空のマスに砂を1粒ずつ落とし、4粒以上になったマスは周囲に配る——たったこれだけのルールを格子状のマスで一斉に適用するだけで、「なだれ」のサイズが<ruby>冪乗<rt>べきじょう</rt></ruby>則に従う。</p>
+  </div>
+
+  <p class="body-text fade">なぜ「4粒」なのか、気になった人もいるかもしれない。これは任意の数字ではなく、<strong>格子の形から自動的に決まる数</strong>だ。2次元の正方格子では、1つのマスが隣接する相手は上下左右の4つ。BTW の転倒ルールは「隣の数と同じだけ積もったら、1粒ずつ全員に配る」という対応なので、閾値は自然に4になる(三角格子なら6、ハニカム格子なら3、1次元なら2)。専門用語では格子の<strong>配位数</strong>と呼ばれるこの数字が、そのまま臨界の閾値になっている。</p>
+
+  <p class="body-text fade">このルールを、コンピュータの中で何千回、何万回と繰り返すと何が起きるか。最初のうちは、落とした砂粒がそのマスに積もるだけで何も起きない。しかし粒数が増えていくと、ぽつぽつと小さな連鎖(なだれ)が始まる。さらに続けると、1粒落としただけで何百ものマスを巻き込む「大なだれ」がごくたまに起きるようになる。</p>
+
+  <!-- SVG: 砂山の時間発展(4パネル) -->
+  <div class="svg-fig fade" id="fig-avalanche">
+    <svg viewBox="0 0 780 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="av-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b1a1a"/>
+        </marker>
+      </defs>
+      <text x="390.0" y="22" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" font-weight="700" fill="#1a1208" letter-spacing="2">砂山モデルの時間発展</text>
+      <text x="390.0" y="42" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">数字=マスの砂粒数 / 赤=4粒に達した不安定マス</text>
+        <g>
+          <text x="90.0" y="76" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#8b1a1a" font-weight="700">① 臨界近くの状態</text>
+          <text x="90.0" y="92" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">3 や 2 が混在</text>
+          <g transform="translate(20,94)">
+            <rect x="0" y="0" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="28" y="0" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="56" y="0" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="0" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="112" y="0" width="28" height="28" fill="#efe4c8" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">1</text>
+            <rect x="0" y="28" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="28" y="28" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="56" y="28" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="28" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="112" y="28" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="0" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="28" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="56" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="112" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="0" y="84" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="28" y="84" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="56" y="84" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="84" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="112" y="84" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="0" y="112" width="28" height="28" fill="#efe4c8" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">1</text>
+            <rect x="28" y="112" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="56" y="112" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="112" width="28" height="28" fill="#efe4c8" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">1</text>
+            <rect x="112" y="112" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+          </g>
+        </g>
+        <g>
+          <text x="290.0" y="76" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#8b1a1a" font-weight="700">② 1粒落とす</text>
+          <text x="290.0" y="92" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">中央が 4 に(不安定)</text>
+          <g transform="translate(220,94)">
+            <rect x="0" y="0" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="28" y="0" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="56" y="0" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="0" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="112" y="0" width="28" height="28" fill="#efe4c8" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">1</text>
+            <rect x="0" y="28" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="28" y="28" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="56" y="28" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="28" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="112" y="28" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="0" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="28" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="56" y="56" width="28" height="28" fill="#8b1a1a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="white" font-weight="700">4</text>
+            <rect x="84" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="112" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="0" y="84" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="28" y="84" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="56" y="84" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="84" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="112" y="84" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="0" y="112" width="28" height="28" fill="#efe4c8" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">1</text>
+            <rect x="28" y="112" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="56" y="112" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="112" width="28" height="28" fill="#efe4c8" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">1</text>
+            <rect x="112" y="112" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+          </g>
+        </g>
+        <g>
+          <text x="490.0" y="76" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#8b1a1a" font-weight="700">③ 転倒が連鎖</text>
+          <text x="490.0" y="92" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">赤いマスがドミノ式に転倒</text>
+          <g transform="translate(420,94)">
+            <rect x="0" y="0" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="28" y="0" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="56" y="0" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="0" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="112" y="0" width="28" height="28" fill="#efe4c8" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">1</text>
+            <rect x="0" y="28" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="28" y="28" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="56" y="28" width="28" height="28" fill="#8b1a1a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="white" font-weight="700">4</text>
+            <rect x="84" y="28" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="112" y="28" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="0" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="28" y="56" width="28" height="28" fill="#8b1a1a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="white" font-weight="700">4</text>
+            <rect x="56" y="56" width="28" height="28" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#b0a090" font-weight="700">0</text>
+            <rect x="84" y="56" width="28" height="28" fill="#8b1a1a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="white" font-weight="700">4</text>
+            <rect x="112" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="0" y="84" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="28" y="84" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="56" y="84" width="28" height="28" fill="#8b1a1a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="white" font-weight="700">4</text>
+            <rect x="84" y="84" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="112" y="84" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="0" y="112" width="28" height="28" fill="#efe4c8" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">1</text>
+            <rect x="28" y="112" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="56" y="112" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="112" width="28" height="28" fill="#efe4c8" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">1</text>
+            <rect x="112" y="112" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+          </g>
+        </g>
+        <g>
+          <text x="690.0" y="76" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#8b1a1a" font-weight="700">④ 鎮静後</text>
+          <text x="690.0" y="92" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">全マス 3 以下へ戻る</text>
+          <g transform="translate(620,94)">
+            <rect x="0" y="0" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="28" y="0" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="56" y="0" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="0" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="112" y="0" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="19.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="0" y="28" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="28" y="28" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="56" y="28" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="28" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="112" y="28" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="47.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="0" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="28" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="56" y="56" width="28" height="28" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#b0a090" font-weight="700">0</text>
+            <rect x="84" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="112" y="56" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="75.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="0" y="84" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="28" y="84" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="56" y="84" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="84" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="112" y="84" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="103.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="0" y="112" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="14.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+            <rect x="28" y="112" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="42.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="56" y="112" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="70.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="84" y="112" width="28" height="28" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="98.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">3</text>
+            <rect x="112" y="112" width="28" height="28" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+            <text x="126.0" y="131.0" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#1a1208" font-weight="700">2</text>
+          </g>
+        </g>
+        <line x1="166" y1="164.0" x2="214" y2="164.0" stroke="#8b1a1a" stroke-width="2" marker-end="url(#av-arr)"/>
+        <text x="190.0" y="156.0" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#8b1a1a" font-weight="700">+1粒</text>
+        <line x1="366" y1="164.0" x2="414" y2="164.0" stroke="#8b1a1a" stroke-width="2" marker-end="url(#av-arr)"/>
+        <text x="390.0" y="156.0" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#8b1a1a" font-weight="700">転倒</text>
+        <line x1="566" y1="164.0" x2="614" y2="164.0" stroke="#8b1a1a" stroke-width="2" marker-end="url(#av-arr)"/>
+        <text x="590.0" y="156.0" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#8b1a1a" font-weight="700">連鎖</text>
+        <rect x="20" y="254" width="18" height="14" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+        <text x="42" y="265" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">0 空</text>
+        <rect x="100" y="254" width="18" height="14" fill="#efe4c8" stroke="#c8bfaa" stroke-width="1"/>
+        <text x="122" y="265" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">1</text>
+        <rect x="180" y="254" width="18" height="14" fill="#e8d49a" stroke="#c8bfaa" stroke-width="1"/>
+        <text x="202" y="265" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">2</text>
+        <rect x="260" y="254" width="18" height="14" fill="#e8c56a" stroke="#c8bfaa" stroke-width="1"/>
+        <text x="282" y="265" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">3</text>
+        <rect x="340" y="254" width="18" height="14" fill="#8b1a1a" stroke="#c8bfaa" stroke-width="1"/>
+        <text x="362" y="265" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">4 (不安定)</text>
+        <text x="760" y="265" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090" font-style="italic">※ 連鎖は 1 マスで止まることも、何百マスに広がることもある</text>
+    </svg>
+    <p class=”svg-caption”>臨界近くの状態に、砂粒を 1 つ落としたときの時間発展。中央のマスが 4 に達すると転倒し、周囲の 3 のマスを次々に 4 へ押し上げる(③)。<strong>原因は 1 粒なのに、どこまで連鎖するかは事前に決められない</strong>——同じ 1 粒が、1 マスで止まることもあれば、系全体を揺さぶる大なだれを起こすこともある。これが SOC の「入力と応答が比例しない」核心の挙動だ。</p>
+  </div>
+
+  <p class="body-text fade">そして<strong>起きたなだれの大きさを、一つひとつ記録していくと、その分布は冪乗則になる</strong>。誰もこの分布を設計していない。ルールは「4粒を超えたら配る」だけで、大規模ななだれを呼ぼうとも、抑えようともしていない。それでもモデルは、勝手にその分布に辿り着く——これが、バックらが見つけた「自己組織化」の正体だ。</p>
+
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q"><div class="mis-label wrong">よくある誤解</div><p class="mis-text">大きな地震の前には特別な前兆があるはずだ。巨大な崩壊には、それに見合う大きな引き金がある。</p></div>
+        <div class="misconception-a"><div class="mis-label right">実際は</div><p class="mis-text">臨界状態にある系では、原因の大きさと結果の大きさに比例関係が無い。砂を1粒落としたら、小さな崩れで終わることもあれば、系全体を巻き込むなだれになることもある。事後にしか区別できない。</p></div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q"><div class="mis-label wrong">よくある誤解</div><p class="mis-text">複雑な現象が複雑なのは、裏にある仕組みが複雑だからだ。</p></div>
+        <div class="misconception-a"><div class="mis-label right">実際は</div><p class="mis-text">逆のことが起きている。4つの単純な局所規則だけで、冪乗則・フラクタル・1/f ノイズが勝手に出てくる。見た目の複雑さは、仕組みの複雑さを必要としない。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 画像: 砂山モデルのフラクタルパターン -->
+  <div class="fig-wrap fade">
+    <img src="./scene_sandpile_pattern.png" alt="砂山モデルを3000万粒まで走らせた結果の自己相似パターン">
+    <div class="fig-caption">
+      砂山モデルを、無限グリッドに3000万粒まで走らせた結果の最終パターン。色はマスの砂粒数(白=0・緑=1・紫=2・金=3)。設計者はいない。ただBTWルールを繰り返しただけで、このフラクタル模様がひとりでに現れる。
+      <span class="fig-credit">“Sandpile on infinite grid, 3e7 grains” by <a href="https://commons.wikimedia.org/wiki/File:Sandpile_on_infinite_grid,_3e7_grains.png" target="_blank" rel="noopener">colt_browning</a> / <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>(記事掲載にあたり縮小)</span>
+    </div>
+  </div>
+
+  <!-- 理解補助インタラクティブ① 臨界の窓 -->
+  <div class="ix-block fade">
+    <div class="ix-head">✦ Phase Window Visualizer</div>
+    <div class="ix-body">
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#c8b8a8;margin-bottom:10px;line-height:1.75;">「臨界」とは、亜臨界(静かすぎ)と超臨界(荒れすぎ)の狭間にある、狭い窓。スライダーを動かして、3つのモードを見比べてみる。冪乗則の直線は、<span style="color:#e8c56a;">真ん中だけ</span>に現れる。</p>
+
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8a7d6a;margin:0 0 10px;line-height:1.8;">
+        ▶ 開始 を押すと、砂山の中央(<span style="color:#e8c56a;">黄色い点線枠</span>の内側)に砂粒を少しずつランダムに落としていく。下のスライダーは<strong>転倒しやすさ</strong>(= マスがどれくらいの粒数で崩れるか、物理では<em>結合強度</em>と呼ばれる)を変える:<span style="color:#9ab5d8;">SUB=5粒で転倒</span>(鈍い)/ <span style="color:#e8c56a;">CRIT=4粒で転倒</span>(砂山モデル本来)/ <span style="color:#c8785a;">SUPER=3粒で転倒</span>(敏感すぎ)。下側のグラフは、発生したなだれの大きさ別の頻度を両対数プロットしたもの。<strong>点が斜めの直線に並べば冪乗則</strong>、つまり臨界状態の目印。右上に <strong>⚡ 冪乗則</strong> バッジが点けば到達確定。
+      </p>
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8a7d6a;margin:0 0 14px;line-height:1.8;padding:10px 12px;background:rgba(139,26,26,0.10);border-left:2px solid #8b1a1a;">
+        <strong style="color:#e8c56a;">※ 本来 BTW の閾値は 4 粒で固定です</strong>(正方格子の配位数=4 から必然的に決まる、記事前半で説明した通り)。この Visualizer では<strong>あえて閾値を人工的にずらした変種</strong>を左右に置き、<strong>CRIT=4(本物の BTW)</strong>を中央として両端と比べることで、「閾値が 4 からズレると SOC が壊れる」ことを体感させるための教育用装置です。SUB/SUPER は実在するモデル分類ではなく、3段階を対比するためのダミー変種だと思ってください。
+      </p>
+
+      <div class="ix-slider-row">
+        <label>転倒しやすさ</label>
+        <input type="range" id="pwSlider" min="0" max="100" value="50">
+        <span class="ix-val" id="pwVal">CRITICAL <span class="ix-mode-pill crit">CRIT</span></span>
+      </div>
+
+      <div class="ix-controls">
+        <button class="ix-btn" id="pwStartBtn" onclick="pwToggle()">▶ 開始</button>
+        <button class="ix-btn" onclick="pwResetAll()" style="background:#3d3020;">リセット</button>
+      </div>
+
+      <div class="ix-canvases" style="grid-template-columns:repeat(auto-fit,minmax(360px,1fr));">
+        <div class="ix-canvas-wrap">
+          <div class="ix-canvas-lbl">20×20 ミニ砂山(真上から) <span id="pwCount">0 粒</span></div>
+          <canvas id="pwCanvas" width="400" height="400"></canvas>
+          <div class="ix-color-legend">
+            <span class="clg-item"><span class="clg-sw" style="background:#1a1208;"></span>0(空)</span>
+            <span class="clg-item"><span class="clg-sw" style="background:#5a4838;"></span>1</span>
+            <span class="clg-item"><span class="clg-sw" style="background:#c8785a;"></span>2</span>
+            <span class="clg-item"><span class="clg-sw" style="background:#e8c56a;"></span>3</span>
+            <span class="clg-item"><span class="clg-sw" style="background:#8b1a1a;"></span>4粒(SUB で残る)</span>
+            <span class="clg-item"><span class="clg-sw" style="background:transparent;border:1px dashed #e8c56a;"></span>落下ゾーン</span>
+          </div>
+        </div>
+        <div class="ix-canvas-wrap">
+          <div class="ix-canvas-lbl">なだれサイズ分布(log-log)</div>
+          <canvas id="pwChart" width="400" height="400"></canvas>
+          <div style="font-family:'Source Sans 3',sans-serif;font-size:10px;color:#8a7d6a;line-height:1.65;margin-top:10px;">
+            横軸=なだれの大きさ / 縦軸=その大きさが起きた回数(両対数)。<span style="color:#9ab5d8;">青の破線</span>が理想の冪乗則(傾き −1.2)の斜め直線。<br>
+            <strong style="color:#9ab5d8;">SUB</strong>: 左下に点が集中 / <strong style="color:#e8c56a;">CRIT</strong>: 点が破線に沿う / <strong style="color:#c8785a;">SUPER</strong>: 右端に大きなコブ<br>
+            <span style="color:#e8c56a;">※ <strong>⚡ 冪乗則</strong>バッジが点灯するのは CRIT モードだけ。一度点灯したら、そのまま動かし続けても臨界状態は維持される。</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ix-stats">
+        <div class="stat"><span class="stat-lbl">状態</span><span class="stat-v" id="pwMode">臨界</span></div>
+        <div class="stat"><span class="stat-lbl">最大なだれ</span><span class="stat-v" id="pwMax">—</span></div>
+        <div class="stat"><span class="stat-lbl">なだれ総数</span><span class="stat-v" id="pwN">0</span></div>
+      </div>
+
+      <p class="ix-note">砂山モデル(BTW 1987)の縮小版 20×20。CRIT は厳密な BTW(閾値4・4隣マスに1粒ずつ分配)、<strong>SUB</strong> は転倒閾値を 5 に上げて各転倒で 1 粒散逸させた変種(非保存・鈍感)、<strong>SUPER</strong> は閾値を 3 に下げて 3 マスにだけ分配する確率的変種(過敏)。SUPER は理論的には確率的 SOC モデル(Manna 変種)に近く、異なる冪指数のスケーリングを示す可能性がある——そのため <strong>⚡ 冪乗則</strong> の判定は「傾きが BTW の理想値 −1.2 に近いか」まで要求している。目的は「BTW の閾値 4 はズラせば SOC の『窓』から外れる」という質的事実を体感させることで、現実のモデル分類はもっと細かい。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">ここまでが、Per Bak が世界に提示した光景だ。臨界は「どっちつかずの場所」で、そこだけに冪乗則が現れる。そしてモデルは、何もしなくても、勝手にその狭い場所に辿り着き、<strong>辿り着いた後はそこに留まり続ける</strong>。一度臨界に入った系は、勝手に抜け出したりしない。砂を落とし続ける限り、個々のなだれは起きたり起きなかったりするが、サイズ分布は冪乗則のまま安定する——これが「自己組織化」のもう一つの意味だ。入口も出口も、系が自分で決めている。この性質を、彼らは<span class="tip" onclick="toggleTip(this)">自己組織化<span class="tip-box"><strong>自己組織化 Self-Organization</strong><br>外からの指示や中央の設計がなくても、システムが勝手にまとまった構造をつくること。群れ・渦・結晶・脳の発達、そして砂山のなだれも同じ仲間。「誰も設計していないのに、そうなる」現象を指す。</span></span><strong>臨界</strong>と名づけた。</p>
+
+  <!-- ============ 体験セクション ============ -->
+  <div class="sec-rule fade"><span class="sec-label">体験</span><div class="sec-line"></div></div>
+  <h2 class="fade">砂を1粒ずつ落としてみる</h2>
+
+  <p class="body-text fade">ここからは、自分の手で砂山を崩してみてほしい。さっきの Phase Window Visualizer が「3つの体制を見比べる」ための小型版だったのに対し、このシミュレーターは<strong>臨界(閾値4)に固定した本物の BTW モデル</strong>で、粒数を増やしたときに冪乗則がはっきり現れる現場を見届けるためのものだ。50×50 のマスに BTW ルール(4粒を超えたら隣4方向に配る)を適用するだけ。仕組みは紙芝居と同じで、複雑な追加要素は何も入っていない。</p>
+
+  <p class="body-text fade">画面の見方はこうだ。<strong>「砂山」と書かれた黒い画面は、砂山を真上から覗いた航空写真</strong>のようなものだと思ってほしい。1マス1マスが、地上に積み上がった砂の山。マスの色は「そのマスに何粒の砂があるか」を表している——空なら暗く、多いほど明るく、3粒(黄色)が「いつ崩れてもおかしくない」転倒寸前の色だ。</p>
+
+  <p class="body-text fade"><strong>「なだれサイズ分布」と書かれた画面は、起きた「なだれ」のサイズを記録した両対数グラフ</strong>だ。横軸はなだれの大きさ(巻き込んだマスの数)、縦軸はその大きさが何回起きたかの頻度。どちらも対数目盛で、<strong>点の並びが「左上から右下へ降りていく、斜めの直線」になれば冪乗則が成立している証拠</strong>になる。水平の直線でも、垂直の直線でもなく、右肩下がりの一本線、という意味だ(大きいなだれほど頻度が下がっていく)。黄色い点があなたの砂山のデータで、チェックボックスを入れると、地震・森林火災・神経雪崩・太陽フレアという実在する現象の冪指数の直線を参考ガイドとして重ねて表示できる。自分の砂山の傾きが、どの分野の線と近い角度になっているかを見比べるためのものだ。</p>
+
+  <p class="body-text fade">ただし、1点だけ気をつけてほしい。<strong>冪乗則の直線は、ある程度の粒数を落とさないと現れない。</strong>「1000粒」「10000粒」ボタンを押して、系が臨界に落ち着くまで数秒待つこと。それが「自己組織化」の現場を見届ける、唯一の方法だ。</p>
+
+  <!-- 砂山シミュレーター(メイン体験) -->
+  <div class="ix-block fade">
+    <div class="ix-head">⚫ Sandpile Simulator — BTW Rule</div>
+    <div class="ix-body">
+      <div class="ix-controls">
+        <button class="ix-btn" onclick="dropGrains(1)">1粒</button>
+        <button class="ix-btn" onclick="dropGrains(100)">100粒</button>
+        <button class="ix-btn" onclick="dropGrains(1000)">1000粒</button>
+        <button class="ix-btn" onclick="dropGrains(10000)">10000粒</button>
+        <button class="ix-btn" onclick="resetSim()" style="background:#3d3020;">リセット</button>
+      </div>
+
+      <div class="ix-canvases">
+        <div class="ix-canvas-wrap">
+          <div class="ix-canvas-lbl">砂山(真上から) <span id="gridStatus">00/0000粒</span></div>
+          <canvas id="mainCanvas" width="400" height="400"></canvas>
+          <div class="ix-color-legend">
+            <span class="clg-item"><span class="clg-sw" style="background:#1a1208;"></span>0粒(空)</span>
+            <span class="clg-item"><span class="clg-sw" style="background:#3d3020;"></span>1粒</span>
+            <span class="clg-item"><span class="clg-sw" style="background:#8b6030;"></span>2粒</span>
+            <span class="clg-item"><span class="clg-sw" style="background:#e8c56a;"></span>3粒(転倒寸前)</span>
+          </div>
+          <div style="font-family:'Source Sans 3',sans-serif;font-size:10px;color:#8a7d6a;line-height:1.6;margin-top:6px;">
+            ※ 4粒に達したマスは同じフレームで転倒して周囲に配るため、画面上には描画されない(瞬間的)。黄色いマスが多い状態=「いつ崩れてもおかしくない臨界」。
+          </div>
+        </div>
+        <div class="ix-canvas-wrap">
+          <div class="ix-canvas-lbl">なだれサイズ分布(log-log)</div>
+          <canvas id="mainChart" width="400" height="400"></canvas>
+          <div class="ix-color-legend">
+            <span class="clg-item"><span class="clg-sw" style="background:#e8c56a;border-radius:50%;"></span>あなたの砂山(点)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ix-legend-title">▼ 他分野の実データ傾きを重ねて比較(チェックで表示)</div>
+      <div class="ix-legend">
+        <label><input type="checkbox" id="dataEarthquake" onchange="redrawChart()"><span class="swatch" style="background:#e8c56a;"></span>地震(Gutenberg-Richter, 傾き ≈ −1)</label>
+        <label><input type="checkbox" id="dataFire" onchange="redrawChart()"><span class="swatch" style="background:#c4392a;"></span>森林火災(傾き ≈ −1.3)</label>
+        <label><input type="checkbox" id="dataNeuron" onchange="redrawChart()"><span class="swatch" style="background:#8fb8d8;"></span>神経雪崩(Beggs-Plenz, 傾き −1.5)</label>
+        <label><input type="checkbox" id="dataSolar" onchange="redrawChart()"><span class="swatch" style="background:#9a6ae8;"></span>太陽フレア(傾き ≈ −1.5)</label>
+      </div>
+      <p class="ix-obs">観察ポイント: <strong>(1)</strong> 最初は乱雑に粒が積もるが、やがて赤いなだれが走り、左画面に金色(3粒)の線が樹枝状に走るようになる。<strong>(2)</strong> 右の点(黄色)が「直線状」に並び始めたら、あなたの砂山が臨界に到達したサイン。<strong>(3)</strong> チェックを入れて、地震や神経雪崩の傾きと、あなたの砂山の傾きがどれくらい近いかを見比べてみる。</p>
+
+      <div class="ix-stats">
+        <div class="stat"><span class="stat-lbl">総粒数</span><span class="stat-v" id="statTotal">0</span></div>
+        <div class="stat"><span class="stat-lbl">なだれ回数</span><span class="stat-v" id="statAv">0</span></div>
+        <div class="stat"><span class="stat-lbl">最大なだれ</span><span class="stat-v" id="statMax">0</span></div>
+        <div class="stat"><span class="stat-lbl">冪指数(推定)</span><span class="stat-v" id="statExp">—</span></div>
+      </div>
+
+      <p class="ix-note">Bak, Tang, Wiesenfeld (1987) の砂山モデルをJavaScriptで実装したもの。転倒ルールは原論文の2Dアベリアン版に準拠。端から落ちた砂は散逸として記録から除外。実データ曲線(地震・火災・神経・太陽フレア)は各分野の代表的な冪指数をもとに概念的に重ね書きしたもので、縦軸の絶対位置は比較しやすいよう正規化している。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">右のグラフを見てほしい。横軸はなだれの大きさ(巻き込んだマスの数)、縦軸はその大きさがどれくらいの頻度で起きたか——どちらも対数目盛だ。<strong>両対数でプロットして直線になる分布、それが冪乗則のサイン</strong>である。あなたの砂山が描いた直線が、地震・森林火災・神経雪崩・太陽フレアの実データ曲線と、同じ傾きで並んでいるのが見えるはずだ。</p>
+
+  <p class="body-text fade">これは偶然ではない。1粒ずつ粛々と駆動され、局所的な閾値で雪崩れ、端からエネルギーが逃げていくシステムは——それがコンピュータの中の砂山であれ、プレート境界の岩盤であれ、森林であれ、大脳皮質であれ——同じ統計法則に辿り着く。SOC の最も強い主張はここにある。</p>
+
+  <!-- ============ メカニズムセクション ============ -->
+  <div class="sec-rule fade"><span class="sec-label">なぜ</span><div class="sec-line"></div></div>
+  <h2 class="fade">なぜ「勝手に」臨界に向かうのか</h2>
+
+  <p class="body-text fade">通常、臨界点は物理学のなかで「丁寧にパラメータを調整しないと達成できない、幅ゼロの点」だと考えられてきた。水が沸騰する直前のある特別な温度・圧力、磁石が磁性を失う特別な温度——ほんの少しずれたら、もう臨界ではない。ところがSOCでは、系が<strong>自動的にその一点に向かって収束する</strong>。なぜそんなことが可能なのか。</p>
+
+  <p class="body-text fade">答えは、システムの「駆動」と「散逸」の時間スケールが極端に離れていることにある。砂山で言えば、1粒を落とすのはゆっくり、雪崩は一瞬——この2つのスピードのギャップが、臨界という狭い場所を「引き寄せるアトラクター」に変える。</p>
+
+  <div class="steps-wrap fade">
+    <div class="steps-head">MECHANISM / 4 STEPS</div>
+
+    <div class="step-card" id="sc1"><div class="step-hd" onclick="tog(1)"><div class="step-nb">1</div><div class="step-tw"><div class="step-title">緩慢駆動(slowly driven)</div><div class="step-sub">なだれより、ずっと遅いスピードで「少しだけ押す」</div></div><div class="step-arr">▼</div></div><div class="step-body"><p><strong>砂粒は、前のなだれが完全に収まってから次を落とす。</strong>これがBTWモデルの暗黙のルールで、「一度に押さない」という制約が臨界を作る。</p><p>日常の例: 書類を1日に1枚ずつ積み重ねていく。1時間に100枚まとめて置いたら、山はすぐに崩れて臨界には辿り着かない。じわじわ押す、という時間のスケール差が重要だ。</p><p><em>駆動が速すぎれば超臨界へ、遅すぎれば亜臨界へ。臨界はその間にある。</em></p></div></div>
+
+    <div class="step-card" id="sc2"><div class="step-hd" onclick="tog(2)"><div class="step-nb">2</div><div class="step-tw"><div class="step-title">局所の閾値(local threshold)</div><div class="step-sub">「4粒を超えたら転倒」というローカルな決まり</div></div><div class="step-arr">▼</div></div><div class="step-body"><p><strong>転倒ルールは隣のマスしか見ない。</strong>系全体を監視する「指揮者」はどこにもいない。各マスが自分の周りだけを見て、勝手にルールを適用する。</p><p>日常の例: 地震のすべり面は、局所的な応力が岩石の強度を超えた点でしか動かない。プレート全体を見渡して「ここでそろそろ大地震」と決めている主体はいない。</p><p><em>局所性は、なだれが遠距離まで連鎖する前提条件。大域的な制御があると、連鎖のスケールが制限される。</em></p></div></div>
+
+    <div class="step-card" id="sc3"><div class="step-hd" onclick="tog(3)"><div class="step-nb">3</div><div class="step-tw"><div class="step-title">散逸(dissipation)</div><div class="step-sub">エネルギーが端から抜けていく</div></div><div class="step-arr">▼</div></div><div class="step-body"><p><strong>格子の端に達した砂は、外に落ちて消える。</strong>この「逃げ道」がないと、系はどんどん積み上がるばかりで、なだれが統計的に安定した分布にならない。</p><p>日常の例: 森林火災では、湖や川や燃え尽きた跡地が散逸の出口になる。すべてが可燃物だったら、いったん火がつけば全てが焼けるだけで、冪乗則の多様な規模の火災は現れない。</p><p><em>駆動が「入ってくる」だけではなく、散逸で「出ていく」バランスが臨界を生む。</em></p></div></div>
+
+    <div class="step-card" id="sc4"><div class="step-hd" onclick="tog(4)"><div class="step-nb">4</div><div class="step-tw"><div class="step-title">長距離相関の出現(long-range correlation)</div><div class="step-sub">局所ルールだけで、系全体が「繋がる」</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>①〜③を満たすと、局所的な相互作用しかないのに、系の端と端が統計的に相関しはじめる。<strong>1つのマスの転倒が、遠く離れたマスの転倒確率を変える。</strong>臨界状態の中核的特徴であり、なだれがあらゆるスケールで起きる理由でもある。</p><p>日常の例: ある株式の下落が、別業界の株式を連鎖的に下げる。業種が違うから本来なら無関係のはずだが、臨界にある市場では見えない糸で繋がっている。</p><p><em>この「見えない繋がり」が、大きな崩れを予測不能にする原因になる。</em></p></div></div>
+  </div>
+
+  <!-- SVG (c) 相図 -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg">
+      <!-- Horizontal bar -->
+      <text x="400" y="32" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#7a6a55" letter-spacing="2">3つの状態 — 臨界はひとつの「点」ではなく、狭い「窓」</text>
+
+      <rect x="80" y="90" width="640" height="60" fill="url(#phaseGrad)"/>
+      <defs>
+        <linearGradient id="phaseGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#1a3a5a"/>
+          <stop offset="40%" stop-color="#8b1a1a"/>
+          <stop offset="60%" stop-color="#8b1a1a"/>
+          <stop offset="100%" stop-color="#5a2a1a"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Tick marks -->
+      <line x1="80" y1="150" x2="80" y2="170" stroke="#7a6a55" stroke-width="1.5"/>
+      <line x1="360" y1="150" x2="360" y2="170" stroke="#7a6a55" stroke-width="1.5"/>
+      <line x1="440" y1="150" x2="440" y2="170" stroke="#7a6a55" stroke-width="1.5"/>
+      <line x1="720" y1="150" x2="720" y2="170" stroke="#7a6a55" stroke-width="1.5"/>
+
+      <!-- Zone labels -->
+      <text x="220" y="78" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#1a3a5a" font-weight="700" letter-spacing="1">亜臨界</text>
+      <text x="400" y="78" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#8b1a1a" font-weight="700" letter-spacing="1">臨界(SOC)</text>
+      <text x="580" y="78" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#5a2a1a" font-weight="700" letter-spacing="1">超臨界</text>
+
+      <text x="220" y="200" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">なだれが広がらない</text>
+      <text x="220" y="220" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">小さな崩れだけ</text>
+
+      <text x="400" y="200" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#8b1a1a" font-weight="600">冪乗則が現れる</text>
+      <text x="400" y="220" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#8b1a1a" font-weight="600">あらゆる規模のなだれ</text>
+
+      <text x="580" y="200" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">すぐ全体が崩れる</text>
+      <text x="580" y="220" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">系が毎回リセット</text>
+
+      <text x="400" y="270" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#3d3020">散逸・駆動・閾値が釣り合う狭い領域</text>
+      <text x="400" y="295" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#b0a090" font-style="italic">自然界の「臨界っぽい」系は、だいたいこの窓を行ったり来たりしている</text>
+    </svg>
+    <p class="svg-caption">臨界は「1点」ではなく「狭い窓」として現れる。SOC の系は、この窓の内側で長時間過ごす。</p>
+  </div>
+
+  <!-- ============ 歴史セクション ============ -->
+  <div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+  <h2 class="fade">「なだれ」に名前がついた 25 年</h2>
+
+  <p class="body-text fade">SOC そのものは1987年に提唱されたが、冪乗則は、それよりずっと前から地震学者たちに知られていた。赤いドットは SOC の発展史の核になった瞬間、白いドットはそれを可能にした関連研究を示す。</p>
+
+  <div class="timeline fade">
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">1944</p>
+      <p class="tl-title">グーテンベルクとリヒター、地震の冪乗則を発見</p>
+      <p class="tl-desc">マグニチュードが1大きくなるごとに、その規模の地震の頻度が約10分の1になる——のちに「Gutenberg-Richter 則」と呼ばれる関係が、カリフォルニアの地震データから抽出された。このときは「なぜそうなるか」は謎のままだった。</p>
+    </div>
+    <div class="tl-item highlight"><div class="tl-dot"></div>
+      <p class="tl-year">1987.07.27</p>
+      <p class="tl-title">Bak-Tang-Wiesenfeld、砂山モデルを発表</p>
+      <p class="tl-desc">Physical Review Letters に『Self-organized criticality: An explanation of 1/f noise』が掲載。4粒転倒という局所規則だけで、なだれのサイズが冪乗則を描くことを示した。「臨界は、自分で自分を組織化する」というアイデアが初めて名前を得た瞬間。</p>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">1996</p>
+      <p class="tl-title">Bak『How Nature Works』出版</p>
+      <p class="tl-desc">バックが一般読者向けに SOC を広めた書籍。地震・進化・渋滞・経済・戦争——SOC をあらゆる場所に当てはめて語ったため、熱狂的な支持と同時に、強い批判も呼んだ。</p>
+    </div>
+    <div class="tl-item highlight"><div class="tl-dot"></div>
+      <p class="tl-year">2003</p>
+      <p class="tl-title">Beggs & Plenz、脳の「神経雪崩」を発見</p>
+      <p class="tl-desc">ラット大脳皮質スライスの電気活動が、冪乗則で指数 −3/2 のなだれを示した。SOC が物理の話だけでなく、神経科学でも観測される現象であることが明らかになった。以後、「脳は臨界で動く情報処理装置」という仮説が急速に広がる。</p>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">2015</p>
+      <p class="tl-title">Watkins ら、SOC 25年の論争を総括</p>
+      <p class="tl-desc">『25 Years of Self-organized Criticality』が Space Science Reviews に掲載。「SOC は強力な枠組みだが、バックが主張したほど万能ではない。適用範囲は狭く、冪乗則が出てもSOCとは限らない」——という、ブームの後の冷静な整理がおこなわれた。</p>
+    </div>
+  </div>
+
+  <!-- ============ つまりセクション ============ -->
+  <div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+  <h2 class="fade">世界はいつも「ギリギリ」で回っている</h2>
+
+  <p class="body-text fade">砂山モデルは、単なる砂の話ではない。それは「世界はなぜ複雑なのか」という問いへの、ひとつの回答だった。4つの局所規則に<em>だけ</em>従う系が、誰の指示も受けずに、勝手に狭い臨界状態へ向かい、そこであらゆる規模のなだれを起こす。自然界の多様性は、特別な設計や微妙な調整を必要としない。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">"Nature is perpetually out of balance, but organized in a poised state — the <em>critical state</em> — where anything can happen within well-defined statistical laws."</p>
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">「自然は永遠に均衡から外れている。しかし統計法則が明確に支配する『ギリギリの状態』——臨界——に組織化されている。あらゆることがそこで起こりうる。」</p>
+    <p class="pull-attr">— Per Bak『How Nature Works』Copernicus(1996)序章</p>
+  </div>
+
+  <p class="body-text fade">では、どんな現象に SOC の考え方が適用されるのか。分野ごとに整理すると、冪指数も時間スケールも駆動源もばらばらなのが分かる。同じ枠組みで語れるのに、実体はまったく違う。</p>
+
+  <!-- Table: 主要SOC現象の比較 -->
+  <div class="ex-table fade">
+    <div class="ex-table-head">主要な SOC 現象の比較</div>
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin:0 0 8px;line-height:1.7;">
+      ※ 表中の <span style="font-family:'JetBrains Mono',monospace;color:#8b1a1a;">≈</span> は「およそ / ほぼ等しい」の意味(=の代わりに、厳密な値ではなく近似値であることを表す記号)。冪指数の前の「−」は、グラフの直線が<strong>右肩下がり</strong>(大きいほど頻度が下がる)という意味。
+    </p>
+    <table>
+      <thead>
+        <tr><th>現象</th><th>冪指数(参考値)</th><th>時間スケール</th><th>駆動源</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>地震</strong>(Gutenberg-Richter 則)</td><td><span class="exp">≈ −1.0</span></td><td>数年〜数万年</td><td>プレート運動による応力蓄積</td></tr>
+        <tr><td><strong>森林火災</strong>(Malamud ら 1998)</td><td><span class="exp">≈ −1.3</span></td><td>数週間〜数十年</td><td>植物の成長・乾燥</td></tr>
+        <tr><td><strong>神経雪崩</strong>(Beggs & Plenz 2003)</td><td><span class="exp">≈ −1.5</span></td><td>ミリ秒単位</td><td>外部入力・自発発火</td></tr>
+        <tr><td><strong>太陽フレア</strong>(Lu & Hamilton 1991)</td><td><span class="exp">≈ −1.5</span></td><td>数分〜数日</td><td>対流運動・磁場再結合</td></tr>
+        <tr><td><strong>電力網のカスケード故障</strong></td><td><span class="exp">≈ −1.4</span></td><td>秒〜時間</td><td>負荷変動・設備劣化</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="body-text fade">この表を見て「まとめて一括りにするには違いすぎる」と感じるなら、それが現代の学界の温度感でもある。SOC は魅力的な枠組みだが、どれも完全に同じメカニズムで動いているわけではない。<span class="tip" onclick="toggleTip(this)">Frigg(2003)<span class="tip-box"><strong>Frigg 2003</strong><br>科学哲学者 Roman Frigg が書いた論文「SOC — 何であり、何でないか」。SOC がブームになった時期に、「冪乗則が出たら即 SOC」という当時の安易な結論への警告として書かれた。現在の SOC 研究が慎重な温度感を保っている一因。</span></span>や Watkins ら(2015)が繰り返し警告してきたように、「冪乗則が出たら即 SOC」ではない。しかし共通する直感はある——<strong>世界のある領域では、原因の大きさと結果の大きさが比例しない</strong>。これだけは、SOC の学問的論争を越えて、受け入れざるを得ない事実である。</p>
+
+  <p class="body-text fade">この事実は、私たちの直感と正面からぶつかる。私たちは「大きな結果には大きな原因がある」と信じて育つ。株が暴落すれば誰かが引き金を引いたと考え、戦争が始まれば誰かの決断が原因だと考える。しかし臨界の世界では、小さな擾乱が小さな崩れで終わるか、巨大な崩れを呼ぶか、事前の区別はつかない。「最後の書類1枚」は、他の書類1枚と何も変わらない。</p>
+
+  <div class="culture-block fade">
+    <div class="culture-label">作品・議論への登場</div>
+    <div class="culture-item">
+      <div class="culture-title">ナシーム・タレブ『ブラックスワン』(2007)</div>
+      <div class="culture-desc">タレブは SOC そのものを主軸にはしていないが、「極端な事象は正規分布では記述できない」という中心的主張は、冪乗則の世界観と重なる。金融市場の暴落・戦争・9.11 のような"想定外"は、平均値の延長ではなく、冪乗則の尾の厚さ(heavy tail)からやって来る、という議論。</div>
+    </div>
+    <div class="culture-item">
+      <div class="culture-title">L'Aquila 地震裁判(2009–2015)</div>
+      <div class="culture-desc">イタリア中部地震の前に「大地震は起きない」と公式発表した科学者たちが、2012年に過失致死で有罪判決を受けた(後に一部無罪)。裁判の争点は、臨界状態にある系の"個別予測の不可能性"を、社会がどう扱うかだった。SOC の実社会への接続点の一つ。</div>
+    </div>
+  </div>
+
+  <p class="body-text fade">ではどうすればいいのか。臨界の世界で唯一できることは、<strong>大きなイベントの時期を当てることを諦める代わりに、分布のかたちを把握する</strong>ことだ。マグニチュード9の地震がいつ来るかは分からない。しかし冪乗則から、「100年に1回くらい起きる」という頻度は言える。個別の予測ではなく統計的な見通しに投資する——これは「プレモーテム」(悪いシナリオから逆算して備える)や、システムを<span class="tip" onclick="toggleTip(this)">臨界から遠ざける<span class="tip-box"><strong>臨界から遠ざける Detuning</strong><br>SOC 系は"ほっとけば臨界に向かう"性質がある。それを意図的にずらす介入が「デチューン」。例: 森林の計画的な小規模間伐(大火を防ぐ)、金融市場のサーキットブレーカー(連鎖暴落を止める)、書類の山に上限を設ける。どれも「大崩れのリスクを下げる代わりに、小崩れを増やす」取引。</span></span>設計の思想にも繋がる。</p>
+
+  <p class="body-text fade">それでも、私たちが日々暮らしている世界は、常に"崩れる直前"に自分を保ちつづけている。書類の山だけでなく、脳の発火も、交通の流れも、SNSの話題も。臨界から離れて「安全」にすれば、世界は硬直する。臨界のまま暮らすことは、大きな崩れに備える覚悟と引き換えに、あらゆる規模の反応を可能にする柔軟さを保つ、ということでもある。</p>
+
+  <p class="body-text fade">砂山の1粒に意味があるかと聞かれたら、答えは「あるともないとも言える」だ。ない、というのは、どの1粒も他の1粒と区別できないから。ある、というのは、その1粒がたまたま最後の一押しになった瞬間、世界を巻き込むなだれの引き金になっていたかもしれないから。私たちの日々の小さな決断も、たぶん、その間のどこかに置かれている。</p>
+
+  <!-- ============ 参考文献 ============ -->
+  <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1987</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1103/PhysRevLett.59.381" target="_blank" rel="noopener">Self-organized criticality: An explanation of 1/f noise</a></p>
+      <p class="ref-author">Per Bak, Chao Tang, Kurt Wiesenfeld / Physical Review Letters 59, 381–384</p>
+      <p class="ref-desc">SOC の原論文。たった4ページだが、複雑系科学のその後30年以上の方向を決めた。有料だが大学図書館経由で読めることが多い。数式は多いが、中心のアイデア(砂山モデルと冪乗則の結合)は、この記事を読んだ後なら辿れる。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1996</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1007/978-1-4757-5426-1" target="_blank" rel="noopener">How Nature Works: The Science of Self-Organized Criticality</a></p>
+      <p class="ref-author">Per Bak / Copernicus(Springer)</p>
+      <p class="ref-desc">バック本人が SOC を語り下ろした書籍。数式はほとんど使わず、地震・進化・渋滞・経済・戦争まで、あらゆる場所に SOC を当てはめていく。批判も多いが、「自然はなぜ複雑か」という問いを一般読者に突きつけた最初の一冊として、読む価値は失われていない。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2003</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1523/JNEUROSCI.23-35-11167.2003" target="_blank" rel="noopener">Neuronal Avalanches in Neocortical Circuits</a></p>
+      <p class="ref-author">John M. Beggs, Dietmar Plenz / Journal of Neuroscience 23(35), 11167–11177</p>
+      <p class="ref-desc">大脳皮質の電気活動が SOC のサインを示すことを初めて示した論文。脳が臨界で動く情報処理装置である、という後の大きな流れの起点。オープンアクセス。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2015</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1007/s11214-015-0155-x" target="_blank" rel="noopener">25 Years of Self-organized Criticality: Concepts and Controversies</a></p>
+      <p class="ref-author">Nicholas W. Watkins, Gunnar Pruessner, Sandra C. Chapman, Norma B. Crosby, Henrik J. Jensen / Space Science Reviews 198, 3–44</p>
+      <p class="ref-desc">SOC 25年の歴史と、その間に起きた批判・論争をまとめた総説。この記事で採った"冷静な温度感"は、この論文が準拠元。ブームの後の成熟した姿が見える。</p>
+    </div>
+  </div>
+
+  <div class="note-box fade"><strong>📌 この記事について</strong><br>砂山モデルと原論文(Bak, Tang, Wiesenfeld 1987)は確立された物理学の成果。Gutenberg-Richter 則・神経雪崩・太陽フレアの冪乗則は各分野で繰り返し観測されている。一方、「どこまでの現象が真に SOC として同じメカニズムを共有するか」は、Frigg 2003 や Watkins ら 2015 を軸に、今も議論が続いている。この記事は、現象の観測は受け入れつつ、メカニズムの普遍性には慎重、という現在の学界の温度感に沿って書いている。</div>
+
+  <div class="signature fade">e. Tamaki</div>
+
+  <div class="tags fade">
+    <span class="tag">複雑系</span>
+    <span class="tag">自己組織化</span>
+    <span class="tag">臨界</span>
+    <span class="tag">冪乗則</span>
+    <span class="tag">砂山モデル</span>
+    <span class="tag">創発</span>
+    <span class="tag">1/f ノイズ</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;letter-spacing:-.02em;">1/<em>f</em></p>
+      <p class="sidebar-text">周波数が低いほど強いゆらぎ。自然界のあちこちに現れるこの<em>1/f ノイズ</em>を説明するために、Bak らは砂山モデルを書いた。</p>
+    </div>
+    <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">地震の冪乗則は<em>1944 年</em>から知られていた。その「なぜ」に初めて構造を与えたのが、1987 年の BTW 論文。</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">タレブ『<strong>ブラックスワン</strong>』(2007)の「heavy tail」の議論。L'Aquila 地震裁判(2009–2015)で争われた、臨界系の予測不可能性。</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— ライフゲーム<br>— ボイド<br>— ラングトンのアリ<br>— マンデルブロ集合<br>— カオスと三体問題</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">原論文の定式化は確立。応用範囲の普遍性には、現在も学界で議論が続いている。</p></div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 自己組織化臨界 を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ、地震予知も天気予報も本当に無理なの?</span></div>
+      <span class="t-output" id="to1">予測の不可能性には <strong>2 種類</strong>あって、混ぜるとわかりにくい。天気予報は<em>初期値鋭敏性(カオス)</em>の話で、「今日の誤差 0.1 度が、1 週間後には予報を崩す」タイプ。一方で地震や株価暴落は SOC 的で、「そもそも大イベントのタイミング自体に原因が無い」タイプ。前者は計算資源で多少改善できるけど、後者は原理的に個別予測ができない。ただ、統計的な分布(100 年に 1 回、など)は両方とも言える。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;自分の書類の山、どうすればいい?</span></div>
+      <span class="t-output" id="to2">片付けよう、と決意するんじゃなくて、<strong>臨界に近づかないルールを外部化</strong>するのがいい。たとえば「高さ 10cm を超えたら必ず整理」のような固定の閾値を、自分の判断じゃなくて物理的な基準で決めてしまう。人間の脳は「まあ、もう少しだけ」で臨界に寄せる性質があるから、意志の力で戦わない方が合理的。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;脳が臨界にあるって、ちょっと不気味じゃない?</span></div>
+      <span class="t-output" id="to3">不気味でもあり、機能的でもある。臨界状態にある系は、小さな刺激にも大きな反応にも<em>同じくらい自在に</em>応じられる。情報処理には最適だという説(Beggs & Plenz, 2003 以降)があって、脳が好んで臨界で動いているという見方もある。むしろ<strong>臨界からずれる</strong>方が問題で、鬱や癲癇は「臨界から離れた状態」と理解されつつある。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 砂の1粒にも、意味があるのかもね</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/life_game">
+      <p class="related-card-tag">創発 × セル・オートマトン</p>
+      <p class="related-card-title">ライフゲーム——4つのルールが宇宙を作る</p>
+      <p class="related-card-desc">設計者なしに移動体・自己複製・コンピュータが出現する。単純ルールからの創発を、もう一段階奥から。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/boids">
+      <p class="related-card-tag">創発 × 集団</p>
+      <p class="related-card-title">群れに指揮者はいない</p>
+      <p class="related-card-desc">3 つの単純ルールで数千の個体が一糸乱れぬ動きを見せる。自己組織化の、もうひとつの顔。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト方式)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// ================================================
+// PHASE WINDOW VISUALIZER (小型砂山 + 3モード)
+// ================================================
+(function(){
+  const N=20, CELL=20; // 20×20 grid, 20px/cell → 400×400 canvas
+  const THR_SUB=5, THR_CRIT=4, THR_SUPER=3; // 転倒閾値
+  const DROP_RANGE=3; // 中央から ±3 のゾーンに落とす
+  const CX_CENTER=Math.floor(N/2), CY_CENTER=Math.floor(N/2);
+  let grid=new Array(N*N).fill(0);
+  let avalanches=[];
+  const canvas=document.getElementById('pwCanvas');
+  const ctx=canvas.getContext('2d');
+  const chart=document.getElementById('pwChart');
+  const cctx=chart.getContext('2d');
+  const slider=document.getElementById('pwSlider');
+  const val=document.getElementById('pwVal');
+  const modeEl=document.getElementById('pwMode');
+  const maxEl=document.getElementById('pwMax');
+  const nEl=document.getElementById('pwN');
+  const cntEl=document.getElementById('pwCount');
+  const startBtn=document.getElementById('pwStartBtn');
+  let thr=THR_CRIT;
+  let currentMode='crit';
+  let totalGrains=0;
+  let pwTimer=null;
+  let fitSticky=0; // 一度到達した最高 FIT レベル(sticky)
+  let fitStickyFrames=0; // sticky 維持カウンタ
+  let fitAchievedAt=null; // ⚡ 達成時の grain 数を記録
+  let autoPaused=false;   // 自動一時停止中フラグ
+  const MAX_GRAINS=3000;           // この粒数に達したら自動停止
+  const STICKY_HOLD_GRAINS=700;    // ⚡ 達成後この粒数追加で自動停止
+
+  function pwMode(){
+    const v=parseInt(slider.value);
+    if(v<33){return{mode:'sub',label:'亜臨界',pill:'<span class="ix-mode-pill sub">SUB</span>',thr:THR_SUB};}
+    if(v>66){return{mode:'super',label:'超臨界',pill:'<span class="ix-mode-pill super">SUPER</span>',thr:THR_SUPER};}
+    return{mode:'crit',label:'臨界',pill:'<span class="ix-mode-pill crit">CRIT</span>',thr:THR_CRIT};
+  }
+
+  function pwDraw(){
+    const W=canvas.width, H=canvas.height;
+    ctx.fillStyle='#0d0d0d';
+    ctx.fillRect(0,0,W,H);
+    for(let y=0;y<N;y++){
+      for(let x=0;x<N;x++){
+        const v=grid[y*N+x];
+        if(v===0){ctx.fillStyle='#1a1208';}
+        else if(v===1){ctx.fillStyle='#5a4838';}
+        else if(v===2){ctx.fillStyle='#c8785a';}
+        else if(v===3){ctx.fillStyle='#e8c56a';}
+        else{ctx.fillStyle='#8b1a1a';}
+        ctx.fillRect(x*CELL,y*CELL,CELL-1,CELL-1);
+      }
+    }
+    // 落下ゾーンを黄色い点線枠で可視化
+    const zx=(CX_CENTER-DROP_RANGE)*CELL;
+    const zy=(CY_CENTER-DROP_RANGE)*CELL;
+    const zs=(DROP_RANGE*2+1)*CELL-1;
+    ctx.save();
+    ctx.strokeStyle='#e8c56a';
+    ctx.lineWidth=1.5;
+    ctx.setLineDash([4,4]);
+    ctx.globalAlpha=0.8;
+    ctx.strokeRect(zx,zy,zs,zs);
+    ctx.restore();
+  }
+
+  function pwChart(){
+    const W=chart.width, H=chart.height;
+    const PL=60, PR=18, PT=30, PB=50; // padding
+    const PW=W-PL-PR, PH=H-PT-PB;
+    // 固定軸: x = log10(size) ∈ [0, 2.6], y = log10(freq) ∈ [0, 2.7]
+    const XMIN=0, XMAX=2.6;
+    const YMIN=0, YMAX=2.7;
+    const xScale=x=>PL+(x-XMIN)/(XMAX-XMIN)*PW;
+    const yScale=y=>PT+(1-(y-YMIN)/(YMAX-YMIN))*PH;
+
+    cctx.fillStyle='#0d0d0d';
+    cctx.fillRect(0,0,W,H);
+
+    // プロット枠
+    cctx.strokeStyle='#3d3020';
+    cctx.lineWidth=1;
+    cctx.strokeRect(PL,PT,PW,PH);
+
+    // 軸ラベル
+    cctx.fillStyle='#b0a090';
+    cctx.font='17px "Source Sans 3",sans-serif';
+    cctx.textAlign='center';
+    cctx.fillText('log(なだれの大きさ)',PL+PW/2,H-14);
+    cctx.save();
+    cctx.translate(20,PT+PH/2);
+    cctx.rotate(-Math.PI/2);
+    cctx.fillText('log(頻度)',0,0);
+    cctx.restore();
+
+    // データ点を計算(avalanches があるなら常に)
+    let pts=[];
+    if(avalanches.length>=3){
+      const bins=new Map();
+      avalanches.forEach(s=>{
+        const b=Math.floor(Math.log10(Math.max(s,1))*3);
+        bins.set(b,(bins.get(b)||0)+1);
+      });
+      pts=[...bins.entries()].map(([b,c])=>[b/3,Math.log10(c)]).sort((a,b)=>a[0]-b[0]);
+    }
+
+    // 「冪乗則 FIT」判定(十分な統計量があるとき)
+    // ヒステリシス: 一度到達したレベルはゆらぎで下がらないよう sticky にする
+    let fitLevel=0; // 0=不明, 1=低, 2=中, 3=高
+    if(avalanches.length>=30 && pts.length>=3){
+      // 理想ラインからの偏差
+      const avgDev=pts.reduce((s,[x,y])=>s+Math.abs(y-refY_at(x)),0)/pts.length;
+      const spanOK=(Math.max(...pts.map(p=>p[0]))-Math.min(...pts.map(p=>p[0])))>=0.6;
+      // データの傾きを最小二乗法で推定
+      const n=pts.length;
+      let sx=0,sy=0,sxy=0,sxx=0;
+      pts.forEach(([x,y])=>{sx+=x;sy+=y;sxy+=x*y;sxx+=x*x;});
+      const slope=(n*sxy-sx*sy)/(n*sxx-sx*sx);
+      const slopeCloseToIdeal=Math.abs(slope-(-1.2))<0.35;
+      let rawFit=1;
+      // FIT=3 は「傾きも偏差も理想に近い」ことを要求(BTW-like のみが満たす)
+      if(avgDev<0.30 && spanOK && slopeCloseToIdeal)rawFit=3;
+      else if(avgDev<0.55 && spanOK)rawFit=2;
+      // sticky: 一度上がったら、明確に逸脱しない限り維持
+      if(rawFit>fitSticky){fitSticky=rawFit;fitStickyFrames=0;}
+      else if(rawFit<fitSticky){
+        fitStickyFrames++;
+        const demoteThresh=(fitSticky===3)?0.70:0.80;
+        if(avgDev>demoteThresh && fitStickyFrames>=5){fitSticky=rawFit;fitStickyFrames=0;}
+      } else {fitStickyFrames=0;}
+      fitLevel=fitSticky;
+    }
+
+    // 理想の冪乗則ライン(傾き −1.2)
+    const tau=1.2;
+    const refAx=XMIN, refAy=2.3 - tau*(refAx-0.3);
+    const refBx=XMAX, refBy=2.3 - tau*(refBx-0.3);
+    cctx.save();
+    // FIT高なら目立たせる
+    if(fitLevel>=3){
+      cctx.strokeStyle='#e8c56a';
+      cctx.lineWidth=2;
+      cctx.globalAlpha=0.85;
+      cctx.shadowColor='#e8c56a';
+      cctx.shadowBlur=8;
+    } else {
+      cctx.strokeStyle='#9ab5d8';
+      cctx.lineWidth=1.4;
+      cctx.globalAlpha=0.6;
+    }
+    cctx.setLineDash([5,4]);
+    cctx.beginPath();
+    cctx.moveTo(xScale(refAx),yScale(Math.max(YMIN,Math.min(YMAX,refAy))));
+    cctx.lineTo(xScale(refBx),yScale(Math.max(YMIN,Math.min(YMAX,refBy))));
+    cctx.stroke();
+    cctx.restore();
+
+    // 理想ラインのラベル(ラインに沿って傾けて配置)
+    cctx.save();
+    cctx.setLineDash([]);
+    cctx.fillStyle=fitLevel>=3?'#e8c56a':'#9ab5d8';
+    cctx.globalAlpha=0.9;
+    cctx.font='14px "Source Sans 3",sans-serif';
+    // 傾きに合わせてラベルを回転配置
+    const labelX=xScale(0.45), labelY=yScale(refY_at(0.45))-8;
+    const slopeDeg=Math.atan2((yScale(refY_at(1.45))-yScale(refY_at(0.45))),(xScale(1.45)-xScale(0.45)))*180/Math.PI;
+    cctx.translate(labelX,labelY);
+    cctx.rotate(slopeDeg*Math.PI/180);
+    cctx.textAlign='left';
+    cctx.fillText('この斜めの直線に沿えば「臨界」',0,0);
+    cctx.restore();
+
+    // データがまだ少なければ案内
+    if(avalanches.length<3){
+      cctx.save();
+      cctx.fillStyle='#8a7d6a';
+      cctx.font='15px "Source Sans 3",sans-serif';
+      cctx.textAlign='center';
+      cctx.fillText('▶ 開始 を押してデータを集めてください',PL+PW/2,PT+PH/2);
+      cctx.restore();
+      return;
+    }
+
+    if(pts.length<1)return;
+
+    // データ点の連結線
+    if(pts.length>=2){
+      cctx.save();
+      cctx.strokeStyle='#e8c56a';
+      cctx.lineWidth=1.5;
+      cctx.globalAlpha=0.5;
+      cctx.beginPath();
+      cctx.moveTo(xScale(pts[0][0]),yScale(pts[0][1]));
+      pts.forEach(([x,y])=>cctx.lineTo(xScale(x),yScale(y)));
+      cctx.stroke();
+      cctx.restore();
+    }
+    // データ点
+    cctx.fillStyle='#e8c56a';
+    pts.forEach(([x,y])=>{
+      const px=xScale(x), py=yScale(y);
+      if(px<PL-2||px>PL+PW+2||py<PT-2||py>PT+PH+2)return;
+      cctx.beginPath();
+      cctx.arc(px,py,5,0,Math.PI*2);
+      cctx.fill();
+    });
+
+    // 自動一時停止中のバナー(上部)
+    if(autoPaused){
+      cctx.save();
+      cctx.fillStyle=fitSticky>=3?'rgba(139,26,26,0.92)':'rgba(61,48,32,0.92)';
+      cctx.fillRect(PL,PT,PW,28);
+      cctx.fillStyle='#fff';
+      cctx.font='bold 13px "Source Sans 3",sans-serif';
+      cctx.textAlign='center';
+      cctx.fillText(fitSticky>=3?'⚡ 臨界確認完了 — 自動停止':'⏸ データ上限到達 — 自動停止',PL+PW/2,PT+19);
+      cctx.restore();
+    }
+
+    // FIT バッジ(右上)
+    cctx.save();
+    const badgeW=108, badgeH=30;
+    const bx=PL+PW-badgeW-6, by=autoPaused?PT+36:PT+6;
+    let badgeBG='#3d3020', badgeText='#8a7d6a', label='FIT: —';
+    if(fitLevel===1){badgeBG='#3d2020';badgeText='#c8785a';label='FIT: 低';}
+    else if(fitLevel===2){badgeBG='#3d3020';badgeText='#e8c56a';label='FIT: 中';}
+    else if(fitLevel===3){badgeBG='#8b1a1a';badgeText='#fff';label='⚡ 冪乗則';}
+    cctx.fillStyle=badgeBG;
+    cctx.fillRect(bx,by,badgeW,badgeH);
+    cctx.strokeStyle=badgeText;
+    cctx.lineWidth=1.2;
+    cctx.strokeRect(bx,by,badgeW,badgeH);
+    cctx.fillStyle=badgeText;
+    cctx.font='bold 14px "Source Sans 3",sans-serif';
+    cctx.textAlign='center';
+    cctx.fillText(label,bx+badgeW/2,by+20);
+    cctx.restore();
+  }
+
+  // ヘルパー: 理想ラインの y を計算
+  function refY_at(x){ return 2.3 - 1.2*(x-0.3); }
+
+  function pwTopple(){
+    let size=0;
+    let changed=true;
+    const MAX_TOPPLES=20000; // 暴走防止の安全弁
+    while(changed && size<MAX_TOPPLES){
+      changed=false;
+      for(let y=0;y<N && size<MAX_TOPPLES;y++){
+        for(let x=0;x<N && size<MAX_TOPPLES;x++){
+          if(grid[y*N+x]>=thr){
+            grid[y*N+x]-=thr;
+            size++;
+            changed=true;
+            if(currentMode==='super'){
+              // thr=3: 4マス中3マスにだけ配る(保存則を守る)
+              const skip=Math.floor(Math.random()*4);
+              if(skip!==0 && x>0)grid[y*N+x-1]++;
+              if(skip!==1 && x<N-1)grid[y*N+x+1]++;
+              if(skip!==2 && y>0)grid[(y-1)*N+x]++;
+              if(skip!==3 && y<N-1)grid[(y+1)*N+x]++;
+            } else {
+              // sub (thr=5): 4マスに配布+1粒散逸 / crit (thr=4): 標準BTW
+              if(x>0)grid[y*N+x-1]++;
+              if(x<N-1)grid[y*N+x+1]++;
+              if(y>0)grid[(y-1)*N+x]++;
+              if(y<N-1)grid[(y+1)*N+x]++;
+            }
+          }
+        }
+      }
+    }
+    return size;
+  }
+
+  function pwDrop(n){
+    for(let i=0;i<n;i++){
+      const cx=CX_CENTER+Math.floor(Math.random()*(DROP_RANGE*2+1))-DROP_RANGE;
+      const cy=CY_CENTER+Math.floor(Math.random()*(DROP_RANGE*2+1))-DROP_RANGE;
+      grid[cy*N+cx]++;
+      totalGrains++;
+      const sz=pwTopple();
+      if(sz>0)avalanches.push(sz);
+      if(avalanches.length>2000)avalanches.shift();
+    }
+    pwDraw();
+    pwChart();
+    maxEl.textContent=avalanches.length?Math.max(...avalanches):'—';
+    nEl.textContent=avalanches.length;
+    cntEl.textContent=totalGrains+' 粒';
+
+    // ⚡ 達成時刻を記録
+    if(fitSticky>=3 && fitAchievedAt===null){fitAchievedAt=totalGrains;}
+
+    // 自動一時停止: (a) ⚡ 達成後 STICKY_HOLD_GRAINS 粒追加 or (b) MAX_GRAINS 到達
+    if(!autoPaused && pwTimer){
+      const shouldAutoStop =
+        (fitAchievedAt!==null && totalGrains-fitAchievedAt>=STICKY_HOLD_GRAINS) ||
+        (totalGrains>=MAX_GRAINS);
+      if(shouldAutoStop){
+        autoPaused=true;
+        pwPause();
+        startBtn.textContent='▶ 続きから';
+      }
+    }
+  }
+
+  function pwStart(){
+    if(pwTimer)return;
+    // 自動一時停止されていた状態から再開する場合は、以後の自動停止を無効化(MAX_GRAINS のみ有効)
+    if(autoPaused){autoPaused=false;fitAchievedAt=-Infinity;}
+    pwTimer=setInterval(()=>pwDrop(6),120);
+    startBtn.textContent='⏸ 一時停止';
+  }
+  function pwPause(){
+    if(!pwTimer)return;
+    clearInterval(pwTimer);
+    pwTimer=null;
+    startBtn.textContent='▶ 再開';
+  }
+  window.pwToggle=function(){
+    if(pwTimer){pwPause();}else{pwStart();}
+  };
+  window.pwResetAll=function(){
+    pwPause();
+    grid=new Array(N*N).fill(0);
+    avalanches=[];
+    totalGrains=0;
+    fitSticky=0;
+    fitStickyFrames=0;
+    fitAchievedAt=null;
+    autoPaused=false;
+    pwDraw();
+    pwChart();
+    maxEl.textContent='—';
+    nEl.textContent='0';
+    cntEl.textContent='0 粒';
+    startBtn.textContent='▶ 開始';
+  };
+
+  slider.addEventListener('input',()=>{
+    const m=pwMode();
+    thr=m.thr;
+    currentMode=m.mode;
+    val.innerHTML=m.label.toUpperCase()+' '+m.pill;
+    modeEl.textContent=m.label;
+    // モード変更時はリセットして手動スタート待ちにする
+    window.pwResetAll();
+  });
+
+  // ビジュアライザーのブロック全体が画面から外れたら一時停止(CPU節約)
+  // 砂山 or Graph のどちらかが見えていれば動き続ける
+  const pwBlock=canvas.closest('.ix-block');
+  if(pwBlock){
+    const pwVisObs=new IntersectionObserver(entries=>{
+      if(!entries[0].isIntersecting && pwTimer){
+        clearInterval(pwTimer);
+        pwTimer=null;
+        startBtn.textContent='▶ 再開';
+      }
+    },{threshold:0});
+    pwVisObs.observe(pwBlock);
+  }
+
+  pwDraw();
+  pwChart();
+})();
+
+// ================================================
+// MAIN SANDPILE SIMULATOR
+// ================================================
+const MN=50, MC=8; // 50x50, cell 8px
+let mgrid=new Array(MN*MN).fill(0);
+let mAvalanches=[];
+let mTotal=0;
+const mCanvas=document.getElementById('mainCanvas');
+const mCtx=mCanvas.getContext('2d');
+const mChart=document.getElementById('mainChart');
+const mcCtx=mChart.getContext('2d');
+
+function mDraw(){
+  mCtx.fillStyle='#0d0d0d';
+  mCtx.fillRect(0,0,400,400);
+  for(let y=0;y<MN;y++){
+    for(let x=0;x<MN;x++){
+      const v=mgrid[y*MN+x];
+      if(v===0){mCtx.fillStyle='#1a1208';}
+      else if(v===1){mCtx.fillStyle='#3d3020';}
+      else if(v===2){mCtx.fillStyle='#8b6030';}
+      else if(v===3){mCtx.fillStyle='#e8c56a';}
+      else{mCtx.fillStyle='#8b1a1a';}
+      mCtx.fillRect(x*MC,y*MC,MC,MC);
+    }
+  }
+}
+
+function mTopple(){
+  let size=0;
+  let changed=true;
+  while(changed){
+    changed=false;
+    for(let y=0;y<MN;y++){
+      for(let x=0;x<MN;x++){
+        if(mgrid[y*MN+x]>=4){
+          mgrid[y*MN+x]-=4;
+          size++;
+          changed=true;
+          if(x>0)mgrid[y*MN+x-1]++;
+          if(x<MN-1)mgrid[y*MN+x+1]++;
+          if(y>0)mgrid[(y-1)*MN+x]++;
+          if(y<MN-1)mgrid[(y+1)*MN+x]++;
+        }
+      }
+    }
+  }
+  return size;
+}
+
+function dropGrains(n){
+  const CHUNK=500;
+  let remaining=n;
+  function tick(){
+    const chunk=Math.min(remaining,CHUNK);
+    for(let i=0;i<chunk;i++){
+      const cx=Math.floor(MN/2)+Math.floor(Math.random()*10-5);
+      const cy=Math.floor(MN/2)+Math.floor(Math.random()*10-5);
+      mgrid[cy*MN+cx]++;
+      mTotal++;
+      const sz=mTopple();
+      if(sz>0)mAvalanches.push(sz);
+    }
+    remaining-=chunk;
+    mDraw();
+    updateMainStats();
+    redrawChart();
+    if(remaining>0)requestAnimationFrame(tick);
+  }
+  tick();
+}
+
+function resetSim(){
+  mgrid=new Array(MN*MN).fill(0);
+  mAvalanches=[];
+  mTotal=0;
+  mDraw();
+  redrawChart();
+  updateMainStats();
+}
+
+function updateMainStats(){
+  const sumGrains=mgrid.reduce((a,b)=>a+b,0);
+  document.getElementById('gridStatus').textContent=sumGrains+'/'+mTotal+'粒';
+  document.getElementById('statTotal').textContent=mTotal.toLocaleString();
+  document.getElementById('statAv').textContent=mAvalanches.length.toLocaleString();
+  document.getElementById('statMax').textContent=mAvalanches.length?Math.max(...mAvalanches).toLocaleString():'0';
+  // rough power-law exponent estimate (linear fit on log-log)
+  if(mAvalanches.length>=50){
+    const bins=new Map();
+    mAvalanches.forEach(s=>{
+      const b=Math.floor(Math.log10(Math.max(s,1))*4);
+      bins.set(b,(bins.get(b)||0)+1);
+    });
+    const pts=[...bins.entries()].map(([b,c])=>[b/4,Math.log10(c)]).filter(p=>p[1]>0).sort((a,b)=>a[0]-b[0]);
+    if(pts.length>=3){
+      const n=pts.length;
+      let sx=0,sy=0,sxy=0,sxx=0;
+      pts.forEach(([x,y])=>{sx+=x;sy+=y;sxy+=x*y;sxx+=x*x;});
+      const slope=(n*sxy-sx*sy)/(n*sxx-sx*sx);
+      document.getElementById('statExp').textContent=slope.toFixed(2);
+    }
+  }
+}
+
+function redrawChart(){
+  mcCtx.fillStyle='#0d0d0d';
+  mcCtx.fillRect(0,0,400,400);
+  mcCtx.strokeStyle='#3d3020';
+  mcCtx.lineWidth=1;
+  mcCtx.strokeRect(40,30,330,320);
+  mcCtx.fillStyle='#7a6a55';
+  mcCtx.font='11px "Source Sans 3",sans-serif';
+  mcCtx.textAlign='center';
+  mcCtx.fillText('log(なだれサイズ)',205,378);
+  mcCtx.save();
+  mcCtx.translate(16,190);
+  mcCtx.rotate(-Math.PI/2);
+  mcCtx.fillText('log(頻度)',0,0);
+  mcCtx.restore();
+
+  // Reference data lines (conceptual, normalized)
+  const refs=[
+    {id:'dataEarthquake',slope:-1.0,color:'#e8c56a',offset:0.1,label:'地震'},
+    {id:'dataFire',slope:-1.3,color:'#c4392a',offset:0.3,label:'火災'},
+    {id:'dataNeuron',slope:-1.5,color:'#8fb8d8',offset:0.5,label:'神経'},
+    {id:'dataSolar',slope:-1.5,color:'#9a6ae8',offset:-0.1,label:'太陽'},
+  ];
+  const xMin=0,xMax=3.5;
+  const xScale=x=>40+(x-xMin)/(xMax-xMin)*330;
+
+  // Data histogram
+  let pts=[];
+  if(mAvalanches.length>=5){
+    const bins=new Map();
+    mAvalanches.forEach(s=>{
+      const b=Math.floor(Math.log10(Math.max(s,1))*4);
+      bins.set(b,(bins.get(b)||0)+1);
+    });
+    pts=[...bins.entries()].map(([b,c])=>[b/4,Math.log10(c)]).sort((a,b)=>a[0]-b[0]);
+  }
+  let yMin=-0.2,yMax=3.5;
+  if(pts.length){
+    yMin=Math.min(...pts.map(p=>p[1]))-0.3;
+    yMax=Math.max(...pts.map(p=>p[1]))+0.3;
+  }
+  const yScale=y=>30+(1-(y-yMin)/(yMax-yMin))*320;
+  // clamp を使った境界付き clip line helper (プロット領域内に閉じ込める)
+  const PX=40, PY=30, PW=330, PH=320;
+
+  // ======= プロット領域にクリップ(線がはみ出さないように) =======
+  mcCtx.save();
+  mcCtx.beginPath();
+  mcCtx.rect(PX,PY,PW,PH);
+  mcCtx.clip();
+
+  // Reference lines
+  refs.forEach(r=>{
+    const cb=document.getElementById(r.id);
+    if(!cb||!cb.checked)return;
+    mcCtx.strokeStyle=r.color;
+    mcCtx.lineWidth=2;
+    mcCtx.globalAlpha=0.7;
+    mcCtx.beginPath();
+    const y0=yMax+r.offset-0.3;
+    const y1=y0+r.slope*(xMax-xMin);
+    mcCtx.moveTo(xScale(xMin),yScale(y0));
+    mcCtx.lineTo(xScale(xMax),yScale(y1));
+    mcCtx.stroke();
+    mcCtx.globalAlpha=1;
+    // ラベルは線の中点近くに配置(クリップ内に収まる位置)
+    const midY=(y0+y1)/2;
+    mcCtx.fillStyle=r.color;
+    mcCtx.font='10px "Source Sans 3",sans-serif';
+    mcCtx.textAlign='left';
+    mcCtx.fillText(r.label,xScale(xMax-0.7),yScale(midY)-4);
+  });
+
+  // Data points
+  if(pts.length){
+    mcCtx.fillStyle='#e8c56a';
+    pts.forEach(([x,y])=>{
+      mcCtx.beginPath();
+      mcCtx.arc(xScale(x),yScale(y),3.5,0,Math.PI*2);
+      mcCtx.fill();
+    });
+    // connect line
+    mcCtx.strokeStyle='#e8c56a';
+    mcCtx.lineWidth=1.2;
+    mcCtx.globalAlpha=0.5;
+    mcCtx.beginPath();
+    pts.forEach(([x,y],i)=>{i===0?mcCtx.moveTo(xScale(x),yScale(y)):mcCtx.lineTo(xScale(x),yScale(y));});
+    mcCtx.stroke();
+    mcCtx.globalAlpha=1;
+  }
+  mcCtx.restore();
+  // ======= クリップここまで =======
+
+  if(!pts.length){
+    mcCtx.fillStyle='#555';
+    mcCtx.textAlign='center';
+    mcCtx.font='12px "Source Sans 3",sans-serif';
+    mcCtx.fillText('ボタンを押して砂を落とす',205,200);
+  }
+
+  // Axis tick marks(プロット領域外に描画するのでクリップ外)
+  mcCtx.fillStyle='#7a6a55';
+  mcCtx.font='9px "Source Sans 3",sans-serif';
+  mcCtx.textAlign='center';
+  [0,1,2,3].forEach(x=>{
+    const xx=xScale(x);
+    mcCtx.fillText('10^'+x,xx,365);
+    mcCtx.beginPath();
+    mcCtx.moveTo(xx,350);
+    mcCtx.lineTo(xx,354);
+    mcCtx.strokeStyle='#3d3020';
+    mcCtx.stroke();
+  });
+}
+
+mDraw();
+redrawChart();
+updateMainStats();
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=(typeof ARTICLES!=='undefined'?ARTICLES:[]).filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>

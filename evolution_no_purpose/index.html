@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>進化に目的はない — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-stat{border:1px solid #c8bfaa;padding:28px 24px;background:#f3efe6;text-align:center;margin-bottom:20px;}
+.cover-stat-n{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:8px;}
+.cover-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.6;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-q-ja{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#7a6a55;line-height:1.9;margin-top:14px;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block-img{background:#ede8dc;padding:0;overflow:hidden;}
+.person-block-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center top;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* SCENE IMAGE */
+.scene-img{margin:28px 0;border:1px solid #c8bfaa;overflow:hidden;background:#ede8dc;}
+.scene-img img{width:100%;height:auto;display:block;}
+.scene-img-caption{padding:10px 16px;border-top:1px solid #c8bfaa;background:#f3efe6;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.6;}
+.scene-img-caption strong{color:#3d3020;font-weight:600;}
+.scene-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin:28px 0;}
+.scene-grid .scene-img{margin:0;}
+@media(max-width:720px){.scene-grid{grid-template-columns:1fr;}}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* SVG FIG */
+.svg-fig{margin:28px auto;max-width:680px;background:white;border:1px solid #c8bfaa;padding:18px;}
+.svg-fig svg{width:100%;height:auto;display:block;}
+.svg-fig-caption{margin-top:10px;padding-top:10px;border-top:1px dashed #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;}
+.svg-fig-caption strong{color:#3d3020;font-weight:600;}
+@media(max-width:700px){.svg-fig{max-width:100%;}}
+
+/* PHRASE TABLE */
+.phrase-tbl{margin:28px 0;border:1px solid #c8bfaa;overflow:hidden;background:white;}
+.phrase-tbl-head{display:grid;grid-template-columns:1fr 1fr;background:#3d3020;color:white;}
+.phrase-tbl-head div{padding:10px 18px;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;}
+.phrase-tbl-head div:first-child{border-right:1px solid #5a4a38;}
+.phrase-tbl-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #e0d8c8;}
+.phrase-tbl-row > div{padding:12px 18px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;line-height:1.7;color:#3d3020;}
+.phrase-tbl-row > div:first-child{border-right:1px solid #e0d8c8;color:#7a6a55;text-decoration:line-through;text-decoration-color:rgba(196,57,42,.6);}
+.phrase-tbl-row > div:last-child{background:#f3efe6;color:#1a1208;}
+@media(max-width:600px){.phrase-tbl-head,.phrase-tbl-row{grid-template-columns:1fr;}.phrase-tbl-head div:first-child,.phrase-tbl-row > div:first-child{border-right:none;border-bottom:1px solid #5a4a38;}.phrase-tbl-row > div:first-child{border-bottom:1px solid #e0d8c8;}}
+
+/* SIMULATOR */
+.sim-wrap{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.sim-head{padding:14px 20px;background:#1a1208;color:#e8e4de;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.sim-head-title{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.sim-gen-readout{font-family:'JetBrains Mono',monospace;font-size:11px;color:#e8c56a;letter-spacing:.04em;}
+.sim-intro{padding:16px 20px 18px;background:#f3efe6;border-bottom:1px solid #e0d8c8;}
+.sim-intro-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.sim-intro-lbl::before{content:'';width:18px;height:1px;background:#8b1a1a;}
+.sim-intro-txt{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;}
+.sim-intro-txt strong{color:#1a1208;font-weight:600;}
+.sim-intro-try{margin-top:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.sim-intro-try-item{padding:10px 12px;background:#faf8f3;border:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#3d3020;line-height:1.6;}
+.sim-intro-try-item strong{display:block;font-weight:600;color:#8b1a1a;font-size:10px;letter-spacing:.1em;margin-bottom:4px;}
+@media(max-width:720px){.sim-intro-try{grid-template-columns:1fr;}}
+.sim-canvas-wrap{padding:16px;background:#faf8f3;border-bottom:1px solid #e0d8c8;}
+.sim-canvas-wrap canvas{display:block;width:100%;max-width:100%;height:auto;background:#ffffff;border:1px solid #e0d8c8;}
+.sim-readouts{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #e0d8c8;background:#f3efe6;}
+.sim-readout{padding:12px 16px;border-right:1px solid #e0d8c8;text-align:center;}
+.sim-readout:last-child{border-right:none;}
+.sim-readout-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.14em;color:#b0a090;text-transform:uppercase;margin-bottom:4px;}
+.sim-readout-val{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#8b1a1a;line-height:1;font-variant-numeric:tabular-nums;}
+.sim-controls{padding:18px 20px;display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;}
+.sim-toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;color:#3d3020;user-select:none;padding:6px 10px;border:1px solid #c8bfaa;background:#faf8f3;transition:all .18s;}
+.sim-toggle:hover{border-color:#8b1a1a;}
+.sim-toggle.on{background:#8b1a1a;color:white;border-color:#8b1a1a;}
+.sim-toggle-dot{width:8px;height:8px;border-radius:50%;background:#c8bfaa;transition:background .18s;}
+.sim-toggle.on .sim-toggle-dot{background:#e8c56a;}
+.sim-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.05em;padding:8px 14px;background:#1a1208;color:white;border:none;cursor:pointer;transition:background .18s;text-transform:uppercase;}
+.sim-btn:hover{background:#8b1a1a;}
+.sim-btn:disabled{background:#c8bfaa;cursor:not-allowed;}
+.sim-btn.ghost{background:#faf8f3;color:#3d3020;border:1px solid #c8bfaa;}
+.sim-btn.ghost:hover{background:#3d3020;color:white;border-color:#3d3020;}
+.sim-note{padding:12px 20px;background:#faf8f3;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.sim-note strong{color:#8b1a1a;font-weight:600;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
+  .person-block-img img{max-width:160px;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .sim-readouts{grid-template-columns:1fr;}
+  .sim-readout{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .sim-readout:last-child{border-bottom:none;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.scene-img-caption,.svg-fig-caption{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){
+  .toc-back{padding:22px 20px;}
+}
+
+/* March of Progress figure with X overlay */
+.march-fig{margin:32px 0;border:1px solid #c8bfaa;background:#f3efe6;padding:22px;}
+.march-wrap{position:relative;width:100%;background:#faf8f3;padding:12px 8px;border:1px solid #e0d8c8;}
+.march-img{width:100%;height:auto;display:block;max-width:540px;margin:0 auto;}
+.march-x{position:absolute;inset:12px 8px;width:calc(100% - 16px);height:calc(100% - 24px);pointer-events:none;max-width:540px;left:50%;transform:translateX(-50%);}
+.march-cap{font-family:'Source Serif 4',serif;font-size:14px;line-height:1.8;color:#3d3020;margin-top:14px;}
+.march-credit{display:block;margin-top:10px;font-family:'Source Sans 3',sans-serif;font-size:10.5px;color:#b0a090;letter-spacing:.03em;}
+
+/* Wikimedia hominini tree figure with scaffolding */
+.wiki-fig{margin:32px 0;display:block;}
+.fig-guide-top{background:#f3efe6;border:1px solid #c8bfaa;border-left:3px solid #8b1a1a;padding:16px 20px;}
+.fig-guide-top-ttl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;display:block;}
+.fig-guide-top ul{list-style:none;padding:0;margin:0;}
+.fig-guide-top li{font-family:'Source Serif 4',serif;font-size:14px;line-height:1.8;color:#3d3020;padding-left:18px;position:relative;}
+.fig-guide-top li::before{content:'›';position:absolute;left:0;top:0;color:#8b1a1a;font-weight:700;}
+.fig-img-wrap{background:#faf8f3;border:1px solid #c8bfaa;border-top:none;padding:28px 20px 12px;text-align:center;}
+.fig-img{max-width:720px;width:100%;height:auto;display:block;margin:0 auto;}
+.fig-caption{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-top:14px;text-align:center;line-height:1.6;}
+.fig-caption a{color:#8b1a1a;border-bottom:1px dotted #8b1a1a;}
+.fig-highlight{background:#1a1208;color:#f3efe6;padding:18px 22px;margin-top:14px;border-left:3px solid #8b1a1a;}
+.fig-highlight-ttl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#d4a574;text-transform:uppercase;margin-bottom:8px;display:block;}
+.fig-highlight p{font-family:'Source Serif 4',serif;font-size:14.5px;line-height:1.85;color:#f3efe6;margin:0;}
+.fig-highlight strong{color:#ffcf7a;font-weight:600;}
+.fig-glossary{margin-top:18px;border:1px solid #c8bfaa;background:#faf8f3;}
+.fig-glossary-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;padding:12px 18px;border-bottom:1px solid #e0d8c8;background:#f3efe6;}
+.fig-glossary table{width:100%;border-collapse:collapse;}
+.fig-glossary tr{border-bottom:1px solid #f0ebe0;}
+.fig-glossary tr:last-child{border-bottom:none;}
+.fig-glossary th{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;font-style:italic;color:#1a1208;text-align:left;padding:10px 16px;width:28%;white-space:nowrap;}
+.fig-glossary td{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;padding:10px 14px;line-height:1.6;}
+.fig-glossary td.gl-read{color:#8b1a1a;font-weight:500;width:22%;white-space:nowrap;}
+.fig-glossary tr.us{background:#fdf4e7;}
+.fig-glossary tr.us th,.fig-glossary tr.us td{font-weight:600;}
+@media(max-width:720px){
+  .fig-glossary th{width:36%;font-size:11px;padding:8px 10px;}
+  .fig-glossary td{font-size:11px;padding:8px 10px;}
+  .fig-glossary td.gl-read{width:28%;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Special Report / Biology &amp; Evolution</p>
+    <h1>進化に<em>目的はない</em></h1>
+    <p class="cover-deck">「より賢く、より高度に」——進化という言葉に染みついたその方向感覚は、200年のあいだ私たちの目を曇らせてきた。生物は坂道を登っているのではない。壁ぎわをふらつきながら歩く、酔っ払いのようにして歴史を進んできた。</p>
+    <div class="cover-byline"><span>生命・進化</span><span>進化生物学</span><span>目的論批判</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1996</span>
+      <p class="est-event">スティーヴン・ジェイ・グールド『フルハウス——生命の全容』刊行。進化を「進歩」ではなく「壁際の<ruby>酔歩<rt>すいほ</rt></ruby>」として描き出した。</p>
+      <p class="est-context">同年7月、クローン羊ドリー誕生。遺伝子が「本人らしさ」を保証しないことが可視化された年でもある。</p>
+    </div>
+    <p class="cover-aside"><strong>この記事の読みどころ</strong>——ランダムウォーク選抜のシミュレーターで、「目的なき進化」が「進歩」に見える錯覚を体験する。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>水族館の水槽の前で、子どもに聞かれたことがある。「この魚も、ずっと経ったら人間になるの?」。笑って首を振りながら、私はうまく答えられなかった。ならないとは言えるのだが、「なぜならないか」を十秒で説明できない。</p>
+    <p>進化という言葉を、私たちはいつの間にか「前に進む」という意味で覚えてしまった。教科書の、猿から人間へと歩いていくあの一列の絵。アプリのアップデート通知のような響き。レベルアップ、という語感。</p>
+    <p>しかし生物学者たちが200年かけてたどり着いたのは、その真逆の結論だった。進化に目的はない。行き先も、ゴールも、上昇も、存在しない。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 数学の知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-17</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-17</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">生物は「より優れた形」を目指して進化しているわけではない。環境に合うものが残り、合わないものが消える——それだけの積み重ねが、38億年続いてきた。<strong>複雑化の錯覚は、単純な統計の副産物</strong>に過ぎないことを、乱歩のシミュレーターで目撃する。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ========== 背景 ========== -->
+  <div class="sec-rule fade"><span class="sec-label">背景</span><span class="sec-line"></span></div>
+  <h2 class="fade">「進歩」というレンズが歪めてきた200年</h2>
+
+  <p class="body-text fade">1859年、ダーウィンが『種の起源』を世に出したとき、彼はひとつの厄介な単語を選んだ。<em>evolution</em>——この語はもともと「巻物をひらく」というラテン語 <ruby>evolvere<rt>エウォルウェレ</rt></ruby> に由来し、隠されていた計画が展開していくというニュアンスを引きずっている。ダーウィン自身、最終版でようやくこの語を本文に採用した。それほど慎重だった。</p>
+
+  <p class="body-text fade">にもかかわらず、言葉は意味を裏切る。ヴィクトリア朝の英国で進化論が受け入れられた最大の理由は、「神の計画なしに世界を説明できる」という革新性と同時に、「生物は着実に高みへ登っている」という<span class="tip" onclick="toggleTip(this)">目的論<span class="tip-box"><strong>目的論(teleology)</strong><br>自然現象には向かうべき目的や終着点があるという考え方。ギリシャのアリストテレス以来、西洋思想の深部に埋め込まれている。進化生物学が200年かけて切り離そうとしてきた最大の罠。</span></span>的な錯覚と馴染んだからだった。進化は進歩だ——その甘美な誤訳は、教室の壁のあのイラストで完成する。</p>
+
+  <div class="scene-img fade">
+    <img src="./scene_opabinia.jpg" alt="カンブリア紀の化石オパビニア">
+    <div class="scene-img-caption"><strong>オパビニア</strong>——5つのキノコ型の眼と、先端に鋏を持つ象の鼻のような吻。5億年前のバージェス頁岩から出てきたこの奇妙生物は、どの現代生物の直系の祖でもない。<br><span style="color:#b0a090;">撮影: Jstuby / Smithsonian, public domain</span></div>
+  </div>
+
+  <div class="scene-img fade">
+    <img src="./scene_hallucigenia.jpg" alt="カンブリア紀の化石ハルキゲニア">
+    <div class="scene-img-caption"><strong>ハルキゲニア</strong>——発見当初、研究者たちは背と腹を取り違えて復元した。7対の棘を背中に立てた姿に見えるが、実はそれが脚で、背中側に軟らかい触手が並んでいたことが後にわかった。<br><span style="color:#b0a090;">撮影: Jstuby / Smithsonian, public domain</span></div>
+  </div>
+
+  <p class="body-text fade"><span class="tip" onclick="toggleTip(this)">カンブリア紀<span class="tip-box"><strong>カンブリア紀(Cambrian period)</strong><br>約5億3900万年前〜4億8500万年前の地質時代。硬い殻や骨格を持つ動物群が一気に出現し、現在の動物門の大半がこの時期に登場した(カンブリア爆発)。バージェス頁岩はこの時代を代表する化石産地。</span></span>の海は、今の地球とは別の星のように見える。<span class="tip" onclick="toggleTip(this)">バージェス頁岩<span class="tip-box"><strong>バージェス頁岩(Burgess Shale)</strong><br>カナダ・ロッキー山脈で1909年に発見された約5億500万年前の化石層。軟体部まで保存された状態で、現代のどの分類群にも属さない奇妙な動物が大量に出土した。グールドが『ワンダフル・ライフ』(1989)でこの化石群を扱い、進化の偶発性を論じた。</span></span>から出土する生物たちは、眼の数も体節の配置もバラバラで、現代の分類学の枠に収まらない。ここには、生物の基本設計が今より豊富に試されていた痕跡がある。そのうち生き残った系統だけが、今の地球を占めている。</p>
+
+  <p class="body-text fade">古生物学者<strong>スティーヴン・ジェイ・グールド</strong>は、この奇妙な化石群に新しい意味を与えた。彼は問う——もし生命の歴史のテープを巻き戻して、同じ出発点から再生したら、私たちはまた現れるか?</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="./person_gould.jpg" alt="Stephen Jay Gould">
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name"><a href="https://ja.wikipedia.org/wiki/スティーヴン・ジェイ・グールド" target="_blank" rel="noopener" style="color:#1a1208;border-bottom:1px solid rgba(139,26,26,.25);">Stephen Jay Gould</a> (1941–2002)</p>
+      <p class="person-block-role">Paleontologist, Harvard</p>
+      <p class="person-block-desc">ハーバード大学教授・古生物学者。断続平衡説の提唱者のひとりで、進化を「ゆるやかな上昇」ではなく「長い停滞と短い飛躍」として捉え直した。『ワンダフル・ライフ』(1989)と『フルハウス』(1996)で、進化に進歩の方向性はないことを一般読者に向けて論じ切った。<br><span style="color:#b0a090;">Photo: Lawrence Lipke, 1980, public domain</span></p>
+    </div>
+  </div>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"Wind back the tape of life to the early days of the Burgess Shale; let it play again from an identical starting point, and the chance becomes vanishingly small that anything like human intelligence would grace the replay."</p>
+    <p class="quote-ja">テープを巻き戻して、バージェス頁岩の時代にまで戻そう。同じ出発点から再生し直してみれば、人間のような知性がふたたびそこに現れる確率は、限りなくゼロに近い。</p>
+    <p class="quote-attr">— Stephen Jay Gould, <em>Wonderful Life</em>, 1989</p>
+  </div>
+
+  <p class="body-text fade">グールドの主張は単純で、しかし破壊的だ。生命の歴史は「より良いもの」が残った結果ではない。5億年前に<em>たまたま</em>生き残った数十の基本形が、そのあとの多様化の原料になった。絶滅した奇妙生物のほうが優れていなかった保証はどこにもない。隕石が少しずれたら、知性を持つのはタコの近い仲間だったかもしれない。</p>
+
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 800 470" xmlns="http://www.w3.org/2000/svg">
+      <!-- Title -->
+      <text x="400" y="36" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="26" font-weight="600" fill="#7a6a55">進化のイメージ:直線 vs 分岐ブッシュ</text>
+      <!-- Left panel: linear progress -->
+      <rect x="20" y="60" width="370" height="380" fill="#faf8f3" stroke="#c8bfaa"/>
+      <text x="205" y="100" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="24" font-weight="600" fill="#c4392a">× 誤ったイメージ</text>
+      <text x="205" y="130" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="20" fill="#7a6a55">(直線的な進歩)</text>
+      <!-- Arrow -->
+      <line x1="65" y1="355" x2="345" y2="215" stroke="#c4392a" stroke-width="2.5"/>
+      <polygon points="345,215 328,213 333,227" fill="#c4392a"/>
+      <!-- Steps along the arrow -->
+      <circle cx="85" cy="345" r="7" fill="#c4392a"/>
+      <circle cx="160" cy="310" r="9" fill="#c4392a"/>
+      <circle cx="235" cy="275" r="11" fill="#c4392a"/>
+      <circle cx="310" cy="235" r="13" fill="#c4392a"/>
+      <text x="85" y="385" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="20" fill="#7a6a55">原始</text>
+      <text x="310" y="210" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="20" fill="#7a6a55">ヒト</text>
+      <text x="205" y="425" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" font-style="italic" fill="#b0a090">単純 → 複雑、下等 → 高等</text>
+      <!-- Right panel: bush -->
+      <rect x="410" y="60" width="370" height="380" fill="#faf8f3" stroke="#c8bfaa"/>
+      <text x="595" y="100" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="24" font-weight="600" fill="#1a5a30">○ 実際のイメージ</text>
+      <text x="595" y="130" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="20" fill="#7a6a55">(分岐するブッシュ)</text>
+      <!-- Bush structure -->
+      <line x1="595" y1="395" x2="595" y2="325" stroke="#1a5a30" stroke-width="2.5"/>
+      <line x1="595" y1="325" x2="495" y2="260" stroke="#1a5a30" stroke-width="2"/>
+      <line x1="595" y1="325" x2="595" y2="245" stroke="#1a5a30" stroke-width="2"/>
+      <line x1="595" y1="325" x2="695" y2="260" stroke="#1a5a30" stroke-width="2"/>
+      <line x1="495" y1="260" x2="455" y2="205" stroke="#1a5a30" stroke-width="1.5"/>
+      <line x1="495" y1="260" x2="535" y2="220" stroke="#1a5a30" stroke-width="1.5"/>
+      <line x1="595" y1="245" x2="560" y2="175" stroke="#1a5a30" stroke-width="1.5"/>
+      <line x1="595" y1="245" x2="630" y2="170" stroke="#1a5a30" stroke-width="1.5"/>
+      <line x1="695" y1="260" x2="660" y2="210" stroke="#1a5a30" stroke-width="1.5"/>
+      <line x1="695" y1="260" x2="735" y2="185" stroke="#1a5a30" stroke-width="1.5"/>
+      <line x1="455" y1="205" x2="430" y2="165" stroke="#1a5a30" stroke-width="1.2"/>
+      <line x1="455" y1="205" x2="478" y2="155" stroke="#1a5a30" stroke-width="1.2"/>
+      <!-- Tips -->
+      <circle cx="430" cy="162" r="6" fill="#1a5a30"/>
+      <circle cx="478" cy="152" r="6" fill="#1a5a30"/>
+      <circle cx="535" cy="217" r="6" fill="#1a5a30"/>
+      <circle cx="560" cy="172" r="6" fill="#1a5a30"/>
+      <circle cx="630" cy="167" r="6" fill="#1a5a30"/>
+      <circle cx="660" cy="207" r="6" fill="#1a5a30"/>
+      <circle cx="735" cy="182" r="6" fill="#1a5a30"/>
+      <!-- Dead-end marks -->
+      <line x1="530" y1="255" x2="544" y2="269" stroke="#b0a090" stroke-width="2"/>
+      <line x1="544" y1="255" x2="530" y2="269" stroke="#b0a090" stroke-width="2"/>
+      <line x1="645" y1="235" x2="659" y2="249" stroke="#b0a090" stroke-width="2"/>
+      <line x1="659" y1="235" x2="645" y2="249" stroke="#b0a090" stroke-width="2"/>
+      <text x="595" y="425" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" font-style="italic" fill="#b0a090">枝分かれ、絶滅、共存——どの葉先も「現在」</text>
+    </svg>
+    <div class="svg-fig-caption"><strong>進化は一列のハシゴではなく、分岐する<span class="tip" onclick="toggleTip(this)">ブッシュ<span class="tip-box"><strong>ブッシュ(bush)</strong><br>低木・茂みの意。ダーウィンが用いた「系統樹(tree)」は幹と先端の序列を想起させるため、後のグールドら進化生物学者は「どの枝にも上下関係のない低く広がる茂み」のメタファーに置き換えた。ヒトもチンパンジーもバクテリアも、それぞれ別の枝の先端にいる。</span></span>である。</strong>どの枝の先端にいる生物も、それぞれの環境に適応した「現役」の存在であり、上下関係はない。ヒトは隅の一枚の葉に過ぎない。×印は絶滅した枝。</div>
+  </div>
+
+  <p class="body-text fade">この「直線」の呪いをもっとも視覚的に焼きつけたのが、1965年にタイム・ライフ社の図鑑に載った、ルドルフ・ザリンジャーの挿絵「The Road to Homo Sapiens」である。四つ足の祖先が、少しずつ背を伸ばし、ついに現代人に至る、あの一列。実は原作者のザリンジャー自身、線形表現に反対していた。だが依頼主の科学者が押し通した。そして教科書に永遠にコピーされつづけた。</p>
+
+  <figure class="march-fig fade">
+    <div class="march-wrap">
+      <img src="./fig_march_of_progress.svg" alt="March of Progress:猿人から現代人への一列行進" class="march-img">
+      <svg class="march-x" viewBox="0 0 540 192" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none">
+        <g stroke="#8b1a1a" stroke-width="8" stroke-linecap="round" opacity="0.72">
+          <line x1="40" y1="24" x2="500" y2="168"/>
+          <line x1="500" y1="24" x2="40" y2="168"/>
+        </g>
+      </svg>
+    </div>
+    <p class="march-cap">これが、ザリンジャーの挿絵から派生して世界中に広まった「猿から人へ」の一列行進である。直線的な進化も、「より高度なもの」への方向性も、生物学は認めていない。実際の人類史は枝分かれの茂みで、この絵のような一列の系譜は存在しない。<span class="march-credit">図版: M. Garde (Wikimedia Commons), CC BY-SA 3.0(赤×は本記事で追加)</span></p>
+  </figure>
+
+  <div class="phrase-tbl fade">
+    <div class="phrase-tbl-head">
+      <div>日常で使いがちな目的論フレーズ</div>
+      <div>生物学として正確な言い換え</div>
+    </div>
+    <div class="phrase-tbl-row">
+      <div>キリンは高い葉を食べるために首を伸ばした</div>
+      <div>首の長い個体のほうが子孫を多く残せる環境だったため、その形質が集団に広がった</div>
+    </div>
+    <div class="phrase-tbl-row">
+      <div>魚は陸に上がるために肺を進化させた</div>
+      <div>酸素の少ない浅瀬で、たまたま空気呼吸できる肉鰭類が生き残った</div>
+    </div>
+    <div class="phrase-tbl-row">
+      <div>ヒトは「高等生物」である</div>
+      <div>ヒトは多くの種のうちの一つで、局所環境に適応している点はバクテリアと同じ</div>
+    </div>
+    <div class="phrase-tbl-row">
+      <div>進化はより高度な形を生み出す</div>
+      <div>進化は環境との相互作用で形を変える。方向は環境次第であり、固定されていない</div>
+    </div>
+  </div>
+
+  <p class="body-text fade">左列の言い方は、どれもこの記事を書いている私にとっても自然に出てくる。脳は目的と意図で世界を組み立てる装置だから、目的のない過程を語ろうとすると、どうしても語彙のほうが追いつかない。だがこのズレが、理解を200年遅らせてきた。</p>
+
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解 vs 実際は</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">進化とは、生物がより優れた形態へと「進歩」していく過程である。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">進化とは、各世代の局所適応の積み重ねであり、「より優れた」の基準は環境が変わるたびに書き換わる。普遍的な優劣は存在しない。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">複雑な生物ほど「進化している」。ヒトは最上位にいる。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">地球の生物量でも種数でも、バクテリアが圧倒的に優勢。複雑化は統計分布の長い裾にすぎず、中心はずっとバクテリアのままだ。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">ヒトは進化のゴールである。だから他の動物より「上」だ。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">今この瞬間が、すべての現存種にとっての進化の最先端である。ゴールはなく、ヒトはブッシュの末端の一枚の葉に過ぎない。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 体験 ========== -->
+  <div class="sec-rule fade"><span class="sec-label">体験</span><span class="sec-line"></span></div>
+  <h2 class="fade">ランダムウォーク選抜シミュレーター</h2>
+
+  <p class="body-text fade">議論だけでは腑に落ちない。だから、手を動かしてみる。以下は、グールドが『フルハウス』で提示した「酔っぱらいの歩行」モデルを、ブラウザ上で走らせるシミュレーターだ。300の個体(点)が、「複雑度」の軸に沿って世代ごとにランダムに一歩ずつ動く。方向の選好はない。ただし、<strong>最小複雑度の壁</strong>(これ以上単純にはなれない下限)だけが効く。</p>
+
+  <p class="body-text fade">試してほしい設定は2つ。<em>左壁</em>のON/OFFと、<em>方向選抜</em>(「複雑なほどわずかに有利」という偏り)のON/OFF。初期状態は左壁ON、方向選抜OFF——つまり、完全にランダムな歩行だ。再生ボタンを押して、500世代の歩みを見てほしい。</p>
+
+  <div class="sim-wrap fade">
+    <div class="sim-head">
+      <span class="sim-head-title">Drunkard's Walk Selector / v1</span>
+      <span class="sim-gen-readout" id="simGenOut">gen = 0 / 500</span>
+    </div>
+    <div class="sim-intro">
+      <div class="sim-intro-lbl">このシミュレーターでやること</div>
+      <p class="sim-intro-txt">300の個体(点)が「複雑度」の軸上を世代ごとにランダムに歩く。<strong>「▶ 再生」ボタン</strong>で500世代を一気に進め、分布の形の変化を観察する。下の3パターンを順に試すと、<strong>「目的のない進化が『進歩』に見える理由」</strong>が体で分かる。</p>
+      <div class="sim-intro-try">
+        <div class="sim-intro-try-item"><strong>Try 1 — そのまま再生</strong>左壁ON・方向選抜OFF(初期状態)。平均は動かず、最大値だけ伸びるのを見る。</div>
+        <div class="sim-intro-try-item"><strong>Try 2 — 方向選抜をON</strong>「複雑なほうが有利」という偏りを加える。分布全体が右へ流れるのを見る。</div>
+        <div class="sim-intro-try-item"><strong>Try 3 — 左壁をOFF</strong>下限を外して再生。裾が伸びなくなる=壁こそが進歩の錯覚を生んでいたことが分かる。</div>
+      </div>
+    </div>
+    <div class="sim-canvas-wrap">
+      <canvas id="simCanvas" width="640" height="260"></canvas>
+    </div>
+    <div class="sim-readouts">
+      <div class="sim-readout">
+        <div class="sim-readout-lbl">平均複雑度</div>
+        <div class="sim-readout-val" id="simMeanOut">5.0</div>
+      </div>
+      <div class="sim-readout">
+        <div class="sim-readout-lbl">最大複雑度</div>
+        <div class="sim-readout-val" id="simMaxOut">5.0</div>
+      </div>
+      <div class="sim-readout">
+        <div class="sim-readout-lbl">壁張りつき率</div>
+        <div class="sim-readout-val" id="simWallOut">0%</div>
+      </div>
+    </div>
+    <div class="sim-controls">
+      <label class="sim-toggle on" id="tglWall"><span class="sim-toggle-dot"></span>左壁(最小複雑度)</label>
+      <label class="sim-toggle" id="tglBias"><span class="sim-toggle-dot"></span>方向選抜(複雑化バイアス)</label>
+      <button class="sim-btn" id="simRun">▶ 再生(500世代)</button>
+      <button class="sim-btn ghost" id="simReset">リセット</button>
+    </div>
+    <div class="sim-note">
+      <strong>注目点:</strong> 方向選抜をOFFにしたまま、左壁だけONで再生してみてほしい。平均複雑度は壁のすぐそばに張りついたまま動かない。しかし最大値だけは、世代を重ねるごとに少しずつ伸びる。これが「進歩のように見える進化」の正体だ。
+    </div>
+  </div>
+
+  <p class="body-text fade">何度か走らせてみると、ある感覚が手に入るはずだ。方向選抜をONにすれば、分布全体が右に流れていく(これが<em>積極的な適応進化</em>のイメージ)。しかしOFFのままでも、最大値は伸びる。伸びる理由は、左側に壁があるから「左に行きたくても行けない」一方で、右側は空いているからだ。平均が動かなくても、裾だけが伸びる。これが<span class="tip" onclick="toggleTip(this)">遺伝的浮動<span class="tip-box"><strong>遺伝的浮動(genetic drift)</strong><br>自然選択によらず、集団内で遺伝子の頻度がランダムに揺らぐ現象。特に集団サイズが小さいほど効く。進化の「方向のなさ」を数学的に扱うときの基本概念。</span></span>の効いた世界の景色である。</p>
+
+  <p class="body-text fade">グールドの書名『フルハウス』は、ポーカーの役から来ている。彼の真意は、「進化の中心(モード)はバクテリアである。ヒトは分布の右端の裾にぽつんと現れた一枚のカードに過ぎない」という構図だ。シミュレーターのヒストグラムをよく見てほしい——左に張りついた山がモードであり、右に伸びていく希少な点が「複雑な生物」だ。</p>
+
+  <!-- ========== メカニズム ========== -->
+  <div class="sec-rule fade"><span class="sec-label">メカニズム</span><span class="sec-line"></span></div>
+  <h2 class="fade">壁と乱歩——「進歩」の幻影はなぜ生まれるか</h2>
+
+  <p class="body-text fade">シミュレーターの動きを3ステップに分解する。なぜ方向なき進化が、外から見ると方向があるように錯覚されるのか。その仕組みは驚くほど簡単な統計の産物だ。</p>
+
+  <div class="steps-wrap fade">
+    <div class="steps-head">Drunkard's Walk — 3 Steps</div>
+    <div class="step-card" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">1</div>
+        <div class="step-tw"><div class="step-title">ランダムな歩み</div><div class="step-sub">方向の選好はない</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>各個体(種、系統)が、世代ごとに<strong>複雑度の軸をランダムに±一歩</strong>動くと考える。ここに「より複雑になりたい」という意志はない。突然変異の大半は中立か、わずかに不利か、わずかに有利のどれかで、長い時間で均すと方向性はほぼゼロになる。これが<em>木村資生の中立説</em>が明らかにしたことでもある。</p>
+      </div>
+    </div>
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">2</div>
+        <div class="step-tw"><div class="step-title">最小複雑度の壁</div><div class="step-sub">生命には下限がある</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>ただし、複雑度には<strong>下限が存在する</strong>。自己複製できる最小構造より単純になれば、それはもう「生きもの」ではない。ここに「壁」が生まれる。左に行きたくても、行ける場所がない。このとき乱歩は、<em>反射壁のあるランダムウォーク</em>という古典的モデルに変わる。</p>
+      </div>
+    </div>
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">3</div>
+        <div class="step-tw"><div class="step-title">裾だけが伸びる</div><div class="step-sub">平均は壁に張りつく</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>時間が経つほど、<strong>分布は右に長い尾を引く</strong>。最大値だけが着実に伸びていく。一方、モード(最頻値)と平均は壁のすぐそばに張りついたまま動かない。外から「最大値」だけを追うと進歩に見えるが、中央値は38億年ずっとバクテリア近傍である。<em>進歩の幻影は、長い尾だけを見て中心を見ないことで生まれる</em>。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+      <text x="340" y="22" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" font-weight="600" fill="#7a6a55">複雑度分布は時間とともに「右に裾を伸ばす」</text>
+      <!-- Background -->
+      <rect x="50" y="50" width="600" height="220" fill="#faf8f3" stroke="#c8bfaa"/>
+      <!-- Wall line on left -->
+      <line x1="70" y1="50" x2="70" y2="270" stroke="#c4392a" stroke-width="2" stroke-dasharray="4,3"/>
+      <text x="70" y="44" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" font-weight="600" fill="#c4392a">最小複雑度の壁</text>
+      <!-- Distribution at t=0 -->
+      <path d="M 70 270 L 70 100 L 90 110 L 110 170 L 130 220 L 150 250 L 180 265 L 210 268 L 250 270 L 650 270 Z" fill="#c8bfaa" opacity="0.7"/>
+      <text x="100" y="95" font-family="Source Sans 3,sans-serif" font-size="13" font-weight="600" fill="#7a6a55">t = 0</text>
+      <!-- Distribution at t=500 -->
+      <path d="M 70 270 L 70 130 L 85 140 L 105 180 L 130 210 L 170 235 L 220 248 L 290 258 L 380 264 L 470 267 L 550 269 L 650 270 Z" fill="#8b1a1a" opacity="0.55"/>
+      <text x="230" y="235" font-family="Source Sans 3,sans-serif" font-size="13" font-weight="600" fill="#8b1a1a">t = 500</text>
+      <!-- Axis labels -->
+      <line x1="50" y1="270" x2="650" y2="270" stroke="#3d3020" stroke-width="1.2"/>
+      <text x="50" y="290" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55">単純</text>
+      <text x="650" y="290" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="12" fill="#7a6a55">複雑</text>
+      <text x="350" y="305" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" font-style="italic" fill="#b0a090">複雑度の軸 →</text>
+      <!-- Arrow showing tail extension -->
+      <line x1="270" y1="100" x2="560" y2="100" stroke="#1a1208" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <polygon points="560,100 548,96 548,104" fill="#1a1208"/>
+      <text x="415" y="92" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" fill="#1a1208">裾が伸びる(ヒトのような"複雑な例"が現れる)</text>
+      <!-- Mode indicator -->
+      <line x1="82" y1="280" x2="82" y2="300" stroke="#1a5a30" stroke-width="1.5"/>
+      <text x="82" y="314" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="11" fill="#1a5a30">モード(最頻値)は動かない</text>
+    </svg>
+    <div class="svg-fig-caption"><strong>灰色が初期状態、赤が500世代後。</strong>平均とモードは壁近くに張りついたまま動かず、右端だけが伸びていく。裾の端点だけを追うと、あたかも全体が進歩しているように錯覚する。</div>
+  </div>
+
+  <p class="body-text fade">このモデルは、分子レベルでも正しい。1968年、日本の遺伝学者<span class="tip" onclick="toggleTip(this)">木村資生<span class="tip-box"><strong>木村資生(1924–1994)</strong><br>国立遺伝学研究所の集団遺伝学者。1968年、分子レベルの進化の大部分は自然選択ではなく中立的な浮動によって起きるという「中立説」をNatureに提唱。進化生物学を定量的に書き換えた日本発の理論。</span></span>がNature誌に「<span class="tip" onclick="toggleTip(this)">中立説<span class="tip-box"><strong>中立説(Neutral Theory)</strong><br>DNA配列の進化の大半は、適応上ほぼ差のない変異が偶然によって固定されていく過程だ、という理論。自然選択だけでなく、偶然も進化の主要エンジンだと主張した。</span></span>」を発表した。DNAレベルでの進化の大半は、自然選択ではなく偶然の固定によって起きている。生物の設計図そのものが、目的なき乱歩の結果なのだ。</p>
+
+  <p class="body-text fade">ここで誤解を避けたい。進化に「目的」はないが、<span class="tip" onclick="toggleTip(this)">自然選択<span class="tip-box"><strong>自然選択(natural selection)</strong><br>ダーウィンが提唱した進化の駆動力。環境内でより多くの子孫を残す個体の形質が、世代を経るにつれ集団に広がる。意志も意図もなく、統計的な帰結として起きる。</span></span>はちゃんと働いている。生き残りやすい形質は残るし、不利な形質は消える。<span class="tip" onclick="toggleTip(this)">適応度<span class="tip-box"><strong>適応度(fitness)</strong><br>ある個体や遺伝子が次世代にどれだけ子孫を残せるかを測る量。環境ごとに定義され、環境が変われば何が「適応的」かも変わる。絶対的な優劣ではない。</span></span>は実在する。ただしその「有利・不利」の基準は<em>いま・ここ</em>の環境によって決まるだけで、「生物全体が目指す一つの頂点」ではない。適応は局所的で、一時的で、相対的だ。</p>
+
+  <p class="body-text fade">面白いのは、方向なき乱歩からでも、<span class="tip" onclick="toggleTip(this)">収束進化<span class="tip-box"><strong>収束進化(convergent evolution)</strong><br>系統的に遠い生物が、似た環境で似た形質を独立に獲得する現象。タコとヒトのカメラ眼は5億年前に分岐した系統で独立に発達した代表例。</span></span>のような「似た解」が何度も出現すること。タコの眼とヒトの眼は、別々の系統で独立に発明された。世界には「良い眼を作る物理的正解」がいくつかしかないので、ランダムな探索でも同じ解に辿り着くことがある。これを「進化は目標に向かっている」と読み違えるのは、やはり錯覚だ。良い解が複数の経路から発見されただけで、最初から用意されていた到着点ではない。</p>
+
+  <!-- ========== 歴史 ========== -->
+  <div class="sec-rule fade"><span class="sec-label">歴史</span><span class="sec-line"></span></div>
+  <h2 class="fade">進化論の脱目的論化、200年の道筋</h2>
+
+  <div class="timeline fade">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1859</div>
+      <div class="tl-title">ダーウィン『種の起源』</div>
+      <div class="tl-desc">自然選択という、意図なき進化の機構を提出。ただしダーウィン自身は「目的」の語法を完全には捨てず、適応についてはゴール的表現を用いていた。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1965</div>
+      <div class="tl-title">ザリンジャー「The Road to Homo Sapiens」</div>
+      <div class="tl-desc">Time-Life『Early Man』に掲載。猿から人間への一列のイラストが、「進化=直線的進歩」のイメージを全世界に焼きつけた。作者本人は線形配置に反対していた。</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1968</div>
+      <div class="tl-title">木村資生「中立説」</div>
+      <div class="tl-desc">分子進化の大半は自然選択ではなく偶然の固定による、とNature誌で主張。進化が必ずしも「適応のため」でないことを数学的に示した。日本発の理論。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1986</div>
+      <div class="tl-title">ドーキンス『盲目の時計職人』</div>
+      <div class="tl-desc">ペイリーの「時計職人=神の設計」への反論として、自然選択は「盲目的で、計画を持たない時計職人」だと描き直した。</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1989</div>
+      <div class="tl-title">グールド『ワンダフル・ライフ』</div>
+      <div class="tl-desc">バージェス頁岩の奇妙生物を手がかりに、「生命のテープを巻き戻せば同じ結果にはならない」という偶発性(contingency)の立場を提出。</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1996</div>
+      <div class="tl-title">グールド『フルハウス』</div>
+      <div class="tl-desc">「進歩」そのものを統計的に解体。壁付きランダムウォーク(drunkard's walk)モデルで、複雑化の見かけ上の進歩が実は統計の副産物であることを示した。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2008</div>
+      <div class="tl-title">レンスキーのE. coli 実験</div>
+      <div class="tl-desc">12系統のE. coliを同じ条件で3万世代追跡する長期実験で、1系統だけがクエン酸利用能を獲得。同じ条件でも進化の経路は偶然に左右されることが実証された。</div>
+    </div>
+  </div>
+
+  <p class="body-text fade">この年表を眺めると、「進化に目的はない」という命題は、一夜にして証明されたものではないとわかる。進化論自体は1859年に生まれたが、そこから「目的」「進歩」「高等・下等」といった語彙を一つずつ外す作業に、生物学者たちはその後130年以上を費やしてきた。私たちの日常語がまだ「進化=アップデート」と取り違えているのは、ある意味で当然なのだ。科学の側も、言葉から自由になるのに時間がかかった。</p>
+
+  <!-- ========== 思考実験 ========== -->
+  <div class="sec-rule fade"><span class="sec-label">思考実験</span><span class="sec-line"></span></div>
+  <h2 class="fade">テープをもう一度再生する</h2>
+
+  <p class="body-text fade">ここまで見てきた「進歩の錯覚」は、統計の話だった。グールドはもうひとつ別の刃を出した——<span class="tip" onclick="toggleTip(this)">偶発性<span class="tip-box"><strong>偶発性(contingency)</strong><br>歴史の結果が、必然ではなく、途中で起きた無数の偶然の積み重ねによって決まっているという考え方。グールドは生命史を「もう一度再生したら別の結果になる」テープに喩えた。</span></span>だ。冒頭でも引いた「テープを巻き戻す」という彼の問いを、ここで実際に手を動かして試してみる。</p>
+
+  <p class="body-text fade">以下のシミュレーターは、6つの「平行宇宙」で同じ根から進化を走らせる。各宇宙では毎世代、それぞれの枝が独立に<strong>分岐・継続・絶滅</strong>のいずれかをランダムに選ぶ。再生ボタンを押すと、同じ初期状態・同じルールから、まったく別の系統樹が6本同時に育つのが見える。</p>
+
+  <div class="sim-wrap fade">
+    <div class="sim-head">
+      <span class="sim-head-title">Tape Replay / 6 Universes</span>
+      <span class="sim-gen-readout" id="tapeGenOut">gen = 0 / 10</span>
+    </div>
+    <div class="sim-canvas-wrap">
+      <canvas id="tapeCanvas" width="640" height="360"></canvas>
+    </div>
+    <div class="sim-controls">
+      <button class="sim-btn" id="tapeRun">▶ 再生(6つの平行宇宙)</button>
+      <button class="sim-btn ghost" id="tapeReset">別のシードで作り直す</button>
+    </div>
+    <div class="sim-note">
+      <strong>注目点:</strong> 赤丸は「知性をもつ種が現れた枝」。同じ出発点なのに、宇宙ごとに赤丸が出る位置も、そもそも現れるかどうかも変わる。×印は途中で絶滅した枝。ヒトは偶発性の海に浮かぶ一枚の葉にすぎない。<br><br>
+      <strong style="color:#7a6a55;">補足:</strong> <span style="color:#7a6a55;">これは生物学的に厳密な進化モデルではなく、<em>偶発性(contingency)</em>という概念を視覚的に体感するためのイラストレーションである。各世代の「分岐45%・継続37%・絶滅18%」という確率は、短時間で6つの対照的な系統樹を描き分けるために恣意的に設定した値で、実際の種分化率や絶滅率には基づかない。「ヒト?」の抽選も、生物が実際に知性を獲得する確率ではなく、「たまたま一部の宇宙で現れて一部では現れない」という偶発性の性質そのものを示すためのシンボルである。</span>
+    </div>
+  </div>
+
+  <p class="body-text fade">何度か再生して気づくのは、6つの宇宙のうち、赤丸がつく宇宙もあれば、つかない宇宙もあることだ。「私たちが存在する」という事実は、進化の必然ではなく、ただ一度たまたま選ばれた枝の先端で起きた出来事である。カンブリア紀から再生すれば、知性は別の枝に現れるかもしれないし、どこにも現れないかもしれない。</p>
+
+  <p class="body-text fade">この「たまたま選ばれた枝の先端」という構図は、抽象的なシミュレーションの中だけの話ではない。私たち自身のヒト族(ホミニニ)の系統を過去1000万年ぶん遡って描くと、同じ形がそのまま現れる。ヒトも、チンパンジーも、ゴリラも、同じ祖先から別方向へ伸びた枝の一本ずつに過ぎない。</p>
+
+  <figure class="wiki-fig fade">
+    <div class="fig-guide-top">
+      <span class="fig-guide-top-ttl">図の読み方</span>
+      <ul>
+        <li><strong>縦軸が時間</strong>。上が <strong>現在(0 Mya)</strong>、下が <strong>1000万年前(10 Mya)</strong>。樹は下から上へ伸びる</li>
+        <li>各系統は<strong>色付きの領域(川のような塊)</strong>として描かれている。領域の広がり=その時代に存在していた範囲</li>
+        <li>領域が<strong>途中で終わっている</strong>塊 = その時点で<strong>絶滅</strong>した系統</li>
+        <li>領域が<strong>上端(0の線)まで届いている</strong>塊 = <strong>現存する</strong>種(ヒト・チンパンジー・ゴリラなど)</li>
+        <li>枝の分かれ目 = 共通祖先から別の系統に分化したタイミング</li>
+      </ul>
+    </div>
+    <div class="fig-img-wrap">
+      <img src="./fig_hominini_lineage.svg" alt="ホミニニ(ヒト族)の系統樹、1000万年前から現在まで" class="fig-img">
+      <figcaption class="fig-caption">Dbachmann, <em>Hominini lineage</em>(Wikimedia Commons). Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Based on Stringer (2012).</figcaption>
+    </div>
+    <div class="fig-highlight">
+      <span class="fig-highlight-ttl">注目ポイント</span>
+      <p>図の<strong>上寄り・左側</strong>にある <strong>Homo</strong> と書かれた領域を探してほしい。その内側に <strong>H. sapiens</strong>——これが私たちだ。図全体を見渡すと、<strong>上端の「0の線」(現在)まで届いている色の塊はほんのわずか</strong>でしかない。H. erectusもアウストラロピテクスもパラントロプスも、途中で終わっている。私たちはたどり着いたのではなく、たまたま剪定を生き延びた一本の末端にいる。</p>
+    </div>
+    <div class="fig-glossary">
+      <div class="fig-glossary-head">主な分類群(タクソン)の読み方</div>
+      <table>
+        <tr class="us"><th>H. sapiens</th><td class="gl-read">ホモ・サピエンス</td><td>私たち(現生人類)。約30万年前に登場</td></tr>
+        <tr><th>H. erectus</th><td class="gl-read">ホモ・エレクトゥス</td><td>最長寿のヒト属。約180万〜10万年前。絶滅</td></tr>
+        <tr><th>Homo</th><td class="gl-read">ホモ(ヒト属)</td><td>ハビリス・エレクトゥス・サピエンスなどを含む属</td></tr>
+        <tr><th>Australopithecus</th><td class="gl-read">アウストラロピテクス</td><td>約400〜200万年前の猿人。ルーシーの仲間。絶滅</td></tr>
+        <tr><th>Paranthropus</th><td class="gl-read">パラントロプス</td><td>頑丈型の猿人。約270〜120万年前。系統ごと絶滅</td></tr>
+        <tr><th>Ardipithecus</th><td class="gl-read">アルディピテクス</td><td>約580〜440万年前の初期ホミニン。絶滅</td></tr>
+        <tr><th>Sahelanthropus</th><td class="gl-read">サヘラントロプス</td><td>最古級の候補(約700万年前)。絶滅</td></tr>
+        <tr><th>Orrorin</th><td class="gl-read">オロリン</td><td>約600万年前。初期二足歩行の候補。絶滅</td></tr>
+        <tr><th>Pan</th><td class="gl-read">パン属</td><td>チンパンジーとボノボ。ヒトと最も近縁な現生の親戚</td></tr>
+        <tr><th>Gorilla</th><td class="gl-read">ゴリラ属</td><td>現生。約800万年前にヒトの系統と分岐</td></tr>
+        <tr><th>Hominini</th><td class="gl-read">ヒト族</td><td>ヒト亜族 + チンパンジー亜族を含む「族(tribe)」</td></tr>
+        <tr><th>Homininae</th><td class="gl-read">ヒト亜科</td><td>ヒト・チンパンジー・ゴリラを含む亜科</td></tr>
+        <tr><th>Australopithecina</th><td class="gl-read">アウストラロピテクス亜族</td><td>アウストラロピテクス属+パラントロプス属などをまとめた分類群</td></tr>
+      </table>
+    </div>
+  </figure>
+
+  <!-- ========== つまり ========== -->
+  <div class="sec-rule fade"><span class="sec-label">つまり</span><span class="sec-line"></span></div>
+  <h2 class="fade">坂道を登っているのではなく、壁際をさまよっている</h2>
+
+  <p class="body-text fade">「進化に目的はない」という結論は、冷たいものではない。むしろ、生物の世界を見る目をやわらかくしてくれる。バクテリアはヒトの祖先でも原始形態でもない。彼らは今この瞬間も、独自の環境に精密に適応した「現役の成功者」だ。地下深くで硫黄を食べる古細菌も、私たちの腸内で働く乳酸菌も、ブッシュの別の先端で元気に揺れている葉である。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">Life is a copiously branching bush, continually pruned by the grim reaper of extinction, <em>not a ladder of predictable progress.</em></p>
+    <p class="pull-q-ja">生命は、絶えず枝分かれするブッシュである。絶滅という死神に刈り取られ続けるその茂みは、予測可能な進歩のハシゴなどではない。</p>
+    <p class="pull-attr">— Stephen Jay Gould, <em>Full House</em>, 1996</p>
+  </div>
+
+  <p class="body-text fade">目的のない乱歩から、眼や翼や意識のような複雑なものが立ち上がる——この事実は、最初は少し怖い。計画がないなら、私という存在も偶然の副産物ということになるからだ。だがグールドは、そこにむしろ自由と驚きを見出した。私たちは「到着点」ではなく、「まだ続いている酔歩の途中で、たまたま現れた一枚の葉」である。だからこそ、他の葉たちとの関係は、上下ではなく横並びになる。</p>
+
+  <div class="culture-block fade">
+    <p class="culture-label">作品・文化への登場</p>
+    <div class="culture-item">
+      <p class="culture-title">ポケモンの"進化"</p>
+      <p class="culture-desc">ピカチュウがライチュウになる現象は、生物学的には進化(evolution)ではなく変態(metamorphosis)に近い。世代を超えた集団の変化ではなく、一個体が一瞬で形を変える。ゲームがあまりに普及したため、若い世代にとって「進化=パワーアップ」という誤解が強化された側面がある。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">『2001年宇宙の旅』(1968)</p>
+      <p class="culture-desc">冒頭、猿が骨を武器として振り下ろす瞬間、ジャンプカットで骨が宇宙船になる。映画史に残る名カットだが、「骨 → 宇宙船」の一直線の進歩イメージはまさに"直線型進化観"を前提にしている。スタンリー・キューブリックが描いた20世紀の進化観の典型例。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">「The March of Progress」</p>
+      <p class="culture-desc">ザリンジャーが1965年に描いた、猿から人間へ一列に歩く挿絵。教科書・Tシャツ・CM・風刺画に使われ続け、進化生物学者が最も「誤解のもと」として警告しつづけてきたイメージ。原作者本人がブッシュ型の別案を用意していたことは、ほとんど知られていない。</p>
+    </div>
+  </div>
+
+  <!-- ========== 参考文献 ========== -->
+  <div class="sec-rule fade"><span class="sec-label">参考文献</span><span class="sec-line"></span></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1996</span></div>
+      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Full_House:_The_Spread_of_Excellence_from_Plato_to_Darwin" target="_blank" rel="noopener">Full House: The Spread of Excellence from Plato to Darwin</a></p>
+      <p class="ref-author">Stephen Jay Gould / Harmony Books</p>
+      <p class="ref-desc">本記事の中核となる書籍。進化を「酔っぱらいの歩行(drunkard's walk)」として統計的に描き直し、「進歩」概念を解体した。バクテリアこそがモードであるという主張の原典。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1989</span></div>
+      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Wonderful_Life_(book)" target="_blank" rel="noopener">Wonderful Life: The Burgess Shale and the Nature of History</a></p>
+      <p class="ref-author">Stephen Jay Gould / W. W. Norton</p>
+      <p class="ref-desc">バージェス頁岩の奇妙動物を通して、進化の偶発性(contingency)を論じた古典。「生命のテープを巻き戻したら」という思考実験はここから生まれた。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1968</span></div>
+      <p class="ref-title"><a href="https://www.nature.com/articles/217624a0" target="_blank" rel="noopener">Evolutionary Rate at the Molecular Level</a></p>
+      <p class="ref-author">Motoo Kimura / Nature 217, 624–626</p>
+      <p class="ref-desc">中立説の原典論文。分子レベルの進化の大半は自然選択ではなく中立的な偶然で説明できることを示し、進化を定量的に考える枠組みを書き換えた。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2008</span></div>
+      <p class="ref-title"><a href="https://www.pnas.org/doi/10.1073/pnas.0803151105" target="_blank" rel="noopener">Historical contingency and the evolution of a key innovation in an experimental population of Escherichia coli</a></p>
+      <p class="ref-author">Blount, Borland &amp; Lenski / PNAS 105(23)</p>
+      <p class="ref-desc">同条件の12並行系統のうち、1系統だけがクエン酸利用能を獲得。進化に「偶然の積み重ね」が効くことを実験で示した代表的研究。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1986</span></div>
+      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/The_Blind_Watchmaker" target="_blank" rel="noopener">The Blind Watchmaker</a></p>
+      <p class="ref-author">Richard Dawkins / Norton</p>
+      <p class="ref-desc">ペイリーの「時計職人論証」(設計者がいなければ時計はできない)に対し、自然選択は「盲目の時計職人」だと反駁。進化に設計者が不要であることを一般読者向けに展開した名著。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">解説</span><span class="ref-year">—</span></div>
+      <p class="ref-title"><a href="https://evolution.berkeley.edu/teach-evolution/misconceptions-about-evolution/" target="_blank" rel="noopener">Misconceptions about Evolution (UC Berkeley)</a></p>
+      <p class="ref-author">Understanding Evolution / UC Berkeley</p>
+      <p class="ref-desc">教育現場で繰り返される進化の誤解を類型化して解説。「進化=進歩」「ヒトがゴール」「生物は何かのために進化する」などの典型的な誤解が整理されている。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">図版</span><span class="ref-year">2007</span></div>
+      <p class="ref-title"><a href="https://commons.wikimedia.org/wiki/File:Human_evolution_scheme.svg" target="_blank" rel="noopener">Human evolution scheme</a></p>
+      <p class="ref-author">M. Garde(原案: José-Manuel Benitos)/ Wikimedia Commons</p>
+      <p class="ref-desc">本記事中の「March of Progress」図版の出典。<a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>。作者自身が「厳密さを目指したものではなく、進化のプロセスの象徴である」と明記しており、誤解の代表例としての用途に合う。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">図版</span><span class="ref-year">2017</span></div>
+      <p class="ref-title"><a href="https://commons.wikimedia.org/wiki/File:Hominini_lineage.svg" target="_blank" rel="noopener">Hominini lineage</a></p>
+      <p class="ref-author">Dbachmann / Wikimedia Commons(基礎: Stringer 2012)</p>
+      <p class="ref-desc">本記事中のヒト族系統樹の出典。<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>。Stringer, C. (2012) “What makes a modern human” <em>Nature</em> 485, 33–35 を基礎にした10 Mya〜現在のホミニニ系統樹。</p>
+    </div>
+  </div>
+
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    「進化に目的はない」は、現代進化生物学の標準的理解である。ただし、どこまでが中立説で、どこまでが自然選択で、どこまでが偶発性かの相対的な重みづけは、今も研究者のあいだで議論がある。本記事はグールドの「壁付きランダムウォーク」モデルを軸に、目的論的な語彙を避けて進化を説明することを主眼とした。キリンの首や鳥の翼のような個別適応の話は、また別の記事で扱う。
+  </div>
+
+  <div class="signature fade">e. Tamaki</div>
+
+  <div class="tags fade">
+    <span class="tag">進化生物学</span>
+    <span class="tag">目的論</span>
+    <span class="tag">Gould</span>
+    <span class="tag">中立説</span>
+    <span class="tag">ランダムウォーク</span>
+    <span class="tag">バージェス頁岩</span>
+    <span class="tag">Full House</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">38億</p>
+      <p class="sidebar-text">地球に生命が現れてからの<strong>年数</strong>。そしてその大半の期間、地球の主役はずっと<em>バクテリア</em>である。複雑な多細胞生物が現れるのは、最後のほんの20%ほどの時間。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">進化論はダーウィンとウォレスの<strong>独立同時発見</strong>として始まった。二人は1858年に共同で学会発表し、翌年『種の起源』が出版。以降、進化の<em>メカニズム</em>は何度も書き換えられてきた。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">『2001年宇宙の旅』の骨→宇宙船ジャンプカット、ポケモンの"進化"システム、進化論を扱うあらゆる科学番組。いずれも<em>直線的進歩</em>のイメージを色濃く残している。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">
+        — <a href="https://qualiajournal.com/plant_communication">植物の会話</a><br>
+        — <a href="https://qualiajournal.com/slime_mold_intelligence">粘菌の知性</a><br>
+        — <a href="https://qualiajournal.com/cellular_turnover">細胞の新陳代謝</a>
+      </p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">高い。進化に目的がないことは現代生物学の基本的理解。ただし日常語としての「進化する」は進歩のニュアンスを残したまま使われる。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 「進化に目的はない」を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ、ヒトに意識があるのは偶然なの?</span></div>
+      <span class="t-output" id="to1">そう考えるのが、いちばん筋が通る。意識が有利だから選ばれた、という説明も部分的には成り立つけど、<strong>同じ地球を別の星からやり直せば、意識を持つのはタコの近い仲間かもしれない</strong>し、誰もいないかもしれない。必然ではない、というのがグールドの結論。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;でも結局、複雑なものは増えてきてるよね?</span></div>
+      <span class="t-output" id="to2">最大値だけ見ればね。<em>平均値や中央値は動いていない</em>。地球の生物量は今もバクテリアが圧倒的な主役だし、多様性でも昆虫が圧勝。記事のシミュレーターで見た「壁のそばに山がある」絵を思い出してほしい。複雑なものが増えたのではなく、<strong>右の裾が伸びた</strong>だけ。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;「目的がない」って、なんか虚しくない?</span></div>
+      <span class="t-output" id="to3">最初はそう感じるけど、逆でもある。あらかじめ用意されたゴールがないなら、自分がいる場所は<em>誰かの想定した到着点</em>ではない。ブッシュの末端にある一枚の葉として、他の葉たちと横に並んでいる。上下関係のない世界のほうが、たぶん広い。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 壁際のランダムウォーク、悪くない</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/plant_communication">
+      <p class="related-card-tag">生命・進化</p>
+      <p class="related-card-title">植物は会話しているかもしれない</p>
+      <p class="related-card-desc">傷ついた植物が放つ分子が、隣の植物の防御遺伝子を起動する。脳のない生物にも、"集団としての応答"がある。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/slime_mold_intelligence">
+      <p class="related-card-tag">生命・進化</p>
+      <p class="related-card-title">脳がなくても、考えられる——粘菌の知性</p>
+      <p class="related-card-desc">脳も神経も持たない単細胞生物が、迷路を解き、鉄道網を設計する。知性の定義を問い直す生きもの。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト方式)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// =====================================================
+// 酔歩シミュレーター: Drunkard's Walk Selector
+// =====================================================
+(function(){
+  const N = 300;              // 個体数
+  const MAX_GEN = 500;        // 最大世代
+  const STEP_MAG = 1.4;       // 1世代あたりの歩幅(±)
+  const BIAS = 0.12;          // 方向選抜時のドリフト
+  const AXIS_MAX = 100;
+  const AXIS_MIN = 0;
+  const BINS = 40;
+
+  let population = [];
+  let gen = 0;
+  let hasWall = true;
+  let hasBias = false;
+  let running = false;
+  let animHandle = null;
+
+  const cv = document.getElementById('simCanvas');
+  const ctx = cv.getContext('2d');
+
+  // HiDPI
+  function setupCanvas(){
+    const cssW = cv.clientWidth;
+    const cssH = 260;
+    const dpr = window.devicePixelRatio || 1;
+    cv.width = cssW * dpr;
+    cv.height = cssH * dpr;
+    cv.style.height = cssH + 'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    return {W:cssW, H:cssH};
+  }
+
+  function reset(){
+    if(animHandle){cancelAnimationFrame(animHandle);animHandle=null;}
+    running = false;
+    gen = 0;
+    population = Array.from({length:N}, ()=>5 + (Math.random()-0.5)*2);
+    updateBtnText();
+    draw();
+  }
+
+  function stepOne(){
+    for(let i=0;i<N;i++){
+      let delta = (Math.random()-0.5) * 2 * STEP_MAG;
+      if(hasBias) delta += BIAS;
+      population[i] += delta;
+      if(hasWall && population[i] < 1) population[i] = 1;
+      if(!hasWall && population[i] < AXIS_MIN) population[i] = AXIS_MIN;
+      if(population[i] > AXIS_MAX) population[i] = AXIS_MAX;
+    }
+    gen++;
+  }
+
+  function computeStats(){
+    let sum = 0, max = -Infinity, wallCount = 0;
+    for(let i=0;i<N;i++){
+      sum += population[i];
+      if(population[i] > max) max = population[i];
+      if(population[i] < 3) wallCount++;
+    }
+    return {
+      mean: sum/N,
+      max: max,
+      wallPct: Math.round(wallCount/N*100)
+    };
+  }
+
+  function draw(){
+    const {W,H} = setupCanvas();
+    ctx.clearRect(0,0,W,H);
+    // padding
+    const padL=40, padR=20, padT=20, padB=40;
+    const plotW = W-padL-padR;
+    const plotH = H-padT-padB;
+
+    // bg
+    ctx.fillStyle='#ffffff';
+    ctx.fillRect(0,0,W,H);
+
+    // ヒストグラム計算
+    const bins = new Array(BINS).fill(0);
+    const binW = (AXIS_MAX-AXIS_MIN)/BINS;
+    for(let i=0;i<N;i++){
+      const bi = Math.min(BINS-1, Math.max(0, Math.floor((population[i]-AXIS_MIN)/binW)));
+      bins[bi]++;
+    }
+    const maxBin = Math.max(...bins, 10);
+
+    // Y軸の薄いグリッド
+    ctx.strokeStyle='#f0ebe0';
+    ctx.lineWidth=1;
+    for(let g=1;g<=4;g++){
+      const y = padT + plotH*g/4;
+      ctx.beginPath();
+      ctx.moveTo(padL,y);
+      ctx.lineTo(W-padR,y);
+      ctx.stroke();
+    }
+
+    // バー描画
+    const bw = plotW/BINS;
+    for(let i=0;i<BINS;i++){
+      const h = (bins[i]/maxBin) * plotH;
+      const x = padL + i*bw;
+      const y = padT + plotH - h;
+      ctx.fillStyle = hasBias ? '#c8785a' : '#8b1a1a';
+      ctx.fillRect(x+0.5, y, bw-1, h);
+    }
+
+    // 壁の表示
+    if(hasWall){
+      ctx.strokeStyle='#c4392a';
+      ctx.setLineDash([4,3]);
+      ctx.lineWidth=1.5;
+      ctx.beginPath();
+      ctx.moveTo(padL, padT);
+      ctx.lineTo(padL, padT+plotH);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle='#c4392a';
+      ctx.font='600 11px "Source Sans 3",sans-serif';
+      ctx.textAlign='right';
+      ctx.fillText('wall', padL-4, padT+plotH-6);
+    }
+
+    // 軸
+    ctx.strokeStyle='#3d3020';
+    ctx.lineWidth=1.2;
+    ctx.beginPath();
+    ctx.moveTo(padL, padT+plotH);
+    ctx.lineTo(W-padR, padT+plotH);
+    ctx.stroke();
+
+    // 軸ラベル
+    ctx.fillStyle='#7a6a55';
+    ctx.font='11px "Source Sans 3",sans-serif';
+    ctx.textAlign='left';
+    ctx.fillText('単純', padL, H-15);
+    ctx.textAlign='right';
+    ctx.fillText('複雑', W-padR, H-15);
+    ctx.textAlign='center';
+    ctx.fillStyle='#b0a090';
+    ctx.font='italic 11px "Source Sans 3",sans-serif';
+    ctx.fillText('← 複雑度の軸 →', W/2, H-15);
+
+    // 平均位置のマーカー
+    const stats = computeStats();
+    const meanX = padL + (stats.mean/AXIS_MAX)*plotW;
+    ctx.strokeStyle='#1a5a30';
+    ctx.lineWidth=2;
+    ctx.beginPath();
+    ctx.moveTo(meanX, padT);
+    ctx.lineTo(meanX, padT+plotH);
+    ctx.stroke();
+
+    // 最大値のマーカー
+    const maxX = padL + (stats.max/AXIS_MAX)*plotW;
+    ctx.strokeStyle='#1a1208';
+    ctx.lineWidth=1.5;
+    ctx.setLineDash([2,2]);
+    ctx.beginPath();
+    ctx.moveTo(maxX, padT);
+    ctx.lineTo(maxX, padT+plotH);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // ラベル (重なり回避: 近接時は上下段分け・左壁近接時は右寄せ)
+    const close = Math.abs(maxX - meanX) < 48;
+    const meanY = padT - 8;
+    const maxY  = close ? padT - 26 : padT - 8;
+
+    // 平均ラベル
+    ctx.fillStyle='#1a5a30';
+    ctx.font='600 12px "Source Sans 3",sans-serif';
+    if(meanX - padL < 24){
+      ctx.textAlign='left';
+      ctx.fillText('平均 '+stats.mean.toFixed(1), meanX+4, meanY);
+    } else {
+      ctx.textAlign='center';
+      ctx.fillText('平均 '+stats.mean.toFixed(1), meanX, meanY);
+    }
+
+    // 最大ラベル
+    ctx.fillStyle='#1a1208';
+    ctx.font='600 12px "Source Sans 3",sans-serif';
+    if(maxX - padL < 24){
+      ctx.textAlign='left';
+      ctx.fillText('最大 '+stats.max.toFixed(1), maxX+4, maxY);
+    } else {
+      ctx.textAlign='center';
+      ctx.fillText('最大 '+stats.max.toFixed(1), maxX, maxY);
+    }
+
+    // 読み出し更新
+    document.getElementById('simMeanOut').textContent = stats.mean.toFixed(1);
+    document.getElementById('simMaxOut').textContent = stats.max.toFixed(1);
+    document.getElementById('simWallOut').textContent = stats.wallPct + '%';
+    document.getElementById('simGenOut').textContent = 'gen = ' + gen + ' / ' + MAX_GEN;
+  }
+
+  function updateBtnText(){
+    const btn = document.getElementById('simRun');
+    if(running){
+      btn.textContent = '⏸ 一時停止';
+    } else if(gen >= MAX_GEN){
+      btn.textContent = '↻ もう一度再生';
+    } else if(gen > 0){
+      btn.textContent = '▶ 続きを再生';
+    } else {
+      btn.textContent = '▶ 再生(500世代)';
+    }
+  }
+
+  function loop(){
+    if(!running) return;
+    // 1フレームで数世代進める(スムーズだが早い)
+    const stepsPerFrame = 3;
+    for(let i=0;i<stepsPerFrame && gen<MAX_GEN;i++) stepOne();
+    draw();
+    if(gen>=MAX_GEN){
+      running=false;
+      updateBtnText();
+      return;
+    }
+    animHandle = requestAnimationFrame(loop);
+  }
+
+  document.getElementById('simRun').addEventListener('click',()=>{
+    if(running){
+      running=false;
+      if(animHandle){cancelAnimationFrame(animHandle);animHandle=null;}
+      updateBtnText();
+      return;
+    }
+    if(gen>=MAX_GEN) reset();
+    running=true;
+    updateBtnText();
+    loop();
+  });
+
+  document.getElementById('simReset').addEventListener('click',reset);
+
+  document.getElementById('tglWall').addEventListener('click',function(){
+    hasWall = !hasWall;
+    this.classList.toggle('on', hasWall);
+    draw();
+  });
+
+  document.getElementById('tglBias').addEventListener('click',function(){
+    hasBias = !hasBias;
+    this.classList.toggle('on', hasBias);
+    draw();
+  });
+
+  window.addEventListener('resize',draw);
+
+  // 初期化
+  reset();
+})();
+
+// =====================================================
+// テープ再生:6宇宙平行進化シミュレーター
+// =====================================================
+(function(){
+  const cv = document.getElementById('tapeCanvas');
+  if(!cv) return;
+  const ctx = cv.getContext('2d');
+  const UNIVERSES = 6;
+  const MAX_DEPTH = 10;
+  const GRID_COLS = 3, GRID_ROWS = 2;
+
+  let trees = [];
+  let running = false;
+  let currentDepth = 0;
+  let animHandle = null;
+
+  function setupCanvas(){
+    const cssW = cv.clientWidth;
+    const cssH = 360;
+    const dpr = window.devicePixelRatio || 1;
+    cv.width = cssW * dpr;
+    cv.height = cssH * dpr;
+    cv.style.height = cssH + 'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    return {W:cssW, H:cssH};
+  }
+
+  function generateTree(uid){
+    const t = {universeId:uid, nodes:[], edges:[], humanIdx:-1};
+    t.nodes.push({x:0.5, depth:0, alive:true});
+    let currentLevel = [0];
+    for(let d=1; d<=MAX_DEPTH; d++){
+      const nextLevel = [];
+      currentLevel.forEach(idx => {
+        const parent = t.nodes[idx];
+        if(!parent.alive) return;
+        const r = Math.random();
+        if(r < 0.18){
+          parent.alive = false; // 絶滅
+        } else if(r < 0.55){
+          // 継続
+          const dx = (Math.random()-0.5)*0.06;
+          const nx = Math.max(0.05, Math.min(0.95, parent.x+dx));
+          const nIdx = t.nodes.length;
+          t.nodes.push({x:nx, depth:d, alive:true});
+          t.edges.push([idx, nIdx]);
+          nextLevel.push(nIdx);
+        } else {
+          // 分岐
+          const gap = 0.04 + Math.random()*0.10;
+          const nx1 = Math.max(0.04, Math.min(0.96, parent.x - gap));
+          const nx2 = Math.max(0.04, Math.min(0.96, parent.x + gap));
+          const i1 = t.nodes.length;
+          t.nodes.push({x:nx1, depth:d, alive:true});
+          t.edges.push([idx, i1]);
+          nextLevel.push(i1);
+          const i2 = t.nodes.length;
+          t.nodes.push({x:nx2, depth:d, alive:true});
+          t.edges.push([idx, i2]);
+          nextLevel.push(i2);
+        }
+      });
+      currentLevel = nextLevel;
+    }
+    // 頂上の生存葉を集めて、~45%で一つを「ヒト?」としてマーク
+    const survivors = [];
+    t.nodes.forEach((n,i)=>{
+      if(n.depth === MAX_DEPTH && n.alive) survivors.push(i);
+    });
+    if(survivors.length > 0 && Math.random() < 0.45){
+      t.humanIdx = survivors[Math.floor(Math.random()*survivors.length)];
+    }
+    return t;
+  }
+
+  function drawTreeBox(t, bx, by, bw, bh, reveal){
+    const pad = 8;
+    const titleH = 14;
+    const topBuffer = 14; // 頂上の葉ラベルがタイトルと被らないための余白
+    const plotX = bx + pad;
+    const plotY = by + pad + titleH + topBuffer;
+    const plotW = bw - pad*2;
+    const plotH = bh - pad*2 - titleH - topBuffer;
+
+    ctx.fillStyle = '#fdfaf2';
+    ctx.fillRect(bx, by, bw, bh);
+    ctx.strokeStyle = '#e0d8c8';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(bx+0.5, by+0.5, bw-1, bh-1);
+
+    ctx.fillStyle = '#8b1a1a';
+    ctx.font = '600 9px "Source Sans 3",sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText('UNIVERSE #' + (t.universeId+1), bx+pad, by+pad+8);
+
+    function nodeXY(n){
+      const sx = plotX + n.x * plotW;
+      const sy = plotY + plotH - (n.depth/MAX_DEPTH) * plotH;
+      return [sx, sy];
+    }
+
+    // 枝(エッジ)
+    t.edges.forEach(([f,toi]) => {
+      const from = t.nodes[f], to = t.nodes[toi];
+      if(to.depth > reveal) return;
+      const [x1,y1] = nodeXY(from);
+      const [x2,y2] = nodeXY(to);
+      ctx.strokeStyle = '#1a5a30';
+      ctx.lineWidth = Math.max(0.8, 1.8 - to.depth * 0.10);
+      ctx.beginPath();
+      ctx.moveTo(x1,y1);
+      ctx.lineTo(x2,y2);
+      ctx.stroke();
+    });
+
+    // 葉ノード(子を持たないノード)
+    const hasChild = new Set();
+    t.edges.forEach(([f,_]) => hasChild.add(f));
+
+    // パス1: 絶滅×と、人間以外の生存緑丸
+    t.nodes.forEach((n,i) => {
+      if(n.depth > reveal) return;
+      if(hasChild.has(i)) return;
+      const [x,y] = nodeXY(n);
+      if(!n.alive){
+        ctx.strokeStyle = '#b0a090';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(x-2.5,y-2.5); ctx.lineTo(x+2.5,y+2.5);
+        ctx.moveTo(x+2.5,y-2.5); ctx.lineTo(x-2.5,y+2.5);
+        ctx.stroke();
+      } else if(n.depth === MAX_DEPTH && i !== t.humanIdx){
+        ctx.fillStyle = '#1a5a30';
+        ctx.beginPath();
+        ctx.arc(x, y, 2.8, 0, Math.PI*2);
+        ctx.fill();
+      }
+    });
+
+    // パス2: 人間の赤丸を最後に描画(最前面)。白ハロー+白フチラベルで視認性確保
+    if(t.humanIdx !== -1){
+      const h = t.nodes[t.humanIdx];
+      if(h.depth <= reveal && h.depth === MAX_DEPTH){
+        const [hx, hy] = nodeXY(h);
+        // 白ハロー
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(hx, hy, 6, 0, Math.PI*2);
+        ctx.fill();
+        // 赤丸
+        ctx.fillStyle = '#c4392a';
+        ctx.beginPath();
+        ctx.arc(hx, hy, 4, 0, Math.PI*2);
+        ctx.fill();
+        // ラベル(白フチ + 赤文字)
+        ctx.font = '700 11px "Source Sans 3",sans-serif';
+        const nearRight = (hx > bx + bw - 44);
+        const lx = nearRight ? hx - 8 : hx + 8;
+        const ly = hy + 4;
+        ctx.textAlign = nearRight ? 'right' : 'left';
+        ctx.lineWidth = 3.5;
+        ctx.strokeStyle = '#ffffff';
+        ctx.strokeText('ヒト?', lx, ly);
+        ctx.fillStyle = '#c4392a';
+        ctx.fillText('ヒト?', lx, ly);
+      }
+    }
+  }
+
+  function drawAll(reveal){
+    const {W,H} = setupCanvas();
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0,0,W,H);
+    const gap = 4;
+    const cellW = (W - gap*(GRID_COLS+1))/GRID_COLS;
+    const cellH = (H - gap*(GRID_ROWS+1))/GRID_ROWS;
+    trees.forEach((t,i) => {
+      const col = i % GRID_COLS;
+      const row = Math.floor(i / GRID_COLS);
+      const bx = gap + col*(cellW + gap);
+      const by = gap + row*(cellH + gap);
+      drawTreeBox(t, bx, by, cellW, cellH, reveal);
+    });
+    const c = document.getElementById('tapeGenOut');
+    if(c) c.textContent = 'gen = ' + reveal + ' / ' + MAX_DEPTH;
+  }
+
+  function regenerate(){
+    trees = [];
+    for(let i=0; i<UNIVERSES; i++){
+      trees.push(generateTree(i));
+    }
+  }
+
+  function reset(){
+    if(animHandle){cancelAnimationFrame(animHandle); animHandle=null;}
+    running = false;
+    currentDepth = 0;
+    regenerate();
+    drawAll(0);
+    updateBtnText();
+  }
+
+  function run(){
+    if(running) return;
+    if(currentDepth >= MAX_DEPTH){
+      regenerate();
+      currentDepth = 0;
+    }
+    running = true;
+    updateBtnText();
+    let last = performance.now();
+    const FRAME_MS = 220;
+    function tick(now){
+      if(!running) return;
+      if(now - last >= FRAME_MS){
+        currentDepth++;
+        drawAll(currentDepth);
+        last = now;
+        if(currentDepth >= MAX_DEPTH){
+          running = false;
+          updateBtnText();
+          return;
+        }
+      }
+      animHandle = requestAnimationFrame(tick);
+    }
+    animHandle = requestAnimationFrame(tick);
+  }
+
+  function updateBtnText(){
+    const btn = document.getElementById('tapeRun');
+    if(!btn) return;
+    if(running) btn.textContent = '⏸ 再生中…';
+    else if(currentDepth >= MAX_DEPTH) btn.textContent = '↻ もう一度(別のシード)';
+    else if(currentDepth > 0) btn.textContent = '▶ 続きを再生';
+    else btn.textContent = '▶ 再生(6つの平行宇宙)';
+  }
+
+  const runBtn = document.getElementById('tapeRun');
+  const rstBtn = document.getElementById('tapeReset');
+  if(runBtn) runBtn.addEventListener('click', () => {
+    if(running) return;
+    if(currentDepth >= MAX_DEPTH) reset();
+    run();
+  });
+  if(rstBtn) rstBtn.addEventListener('click', reset);
+  window.addEventListener('resize', () => drawAll(currentDepth));
+  reset();
+})();
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>

@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>どこまで削れば本質に届くのか——モンドリアンと還元主義 — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+a{color:inherit;text-decoration:none;}
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;margin-bottom:20px;}.cover h1 em{font-style:italic;color:#8b1a1a;}.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;align-items:center;gap:14px;}.cover-byline span+span::before{content:"·";margin-right:14px;color:#c8bfaa;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:6px;}.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}.cover-aside strong{color:#3d3020;font-weight:600;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}.scenario-inner::after{content:'';position:absolute;right:16px;top:30px;width:80px;height:80px;border:2px solid #c8bfaa;opacity:.25;pointer-events:none;}.scenario-inner::before{content:'';position:absolute;right:40px;top:54px;width:32px;height:32px;background:#c8bfaa;opacity:.18;pointer-events:none;}.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}.meta-item{display:flex;align-items:center;gap:10px;}.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}.difficulty-dots{display:flex;gap:4px;}.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}.dot.on{background:#8b1a1a;}.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}.meta-sep{width:1px;height:20px;background:#e0d8c8;}.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}.date-item{display:flex;align-items:center;gap:8px;}.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;}.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}.summary-text strong{font-weight:600;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}.article-main{padding:48px 0;}.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}.body-text strong{color:#1a1208;font-weight:600;}.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}.pull-q em{color:#8b1a1a;}.pull-q-orig{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;font-weight:300;color:#7a6a55;margin-top:10px;padding-left:14px;border-left:1px solid #c8bfaa;line-height:1.6;letter-spacing:.01em;}.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block.no-img{grid-template-columns:1fr;}.person-block-body{padding:16px 18px;background:#f3efe6;}.person-block:not(.no-img) .person-block-body{border-left:1px solid #c8bfaa;}.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}.person-block-wiki{margin-bottom:8px;}.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}.misconception-header{background:#3d3020;color:white;padding:11px 20px;}.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}.misconception-body{background:white;}.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}.misconception-item:last-child{border-bottom:none;}.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}.mis-label.wrong{color:#c4392a;}.mis-label.right{color:#1a5a30;}.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+.painting-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;}.painting-wrap img{width:100%;height:auto;display:block;}.painting-caption{padding:10px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;}.painting-caption strong{color:#1a1208;font-weight:600;}.painting-caption em{color:#8b1a1a;font-style:normal;}
+.painting-compare{margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:2px;}.painting-compare .painting-wrap{margin:0;}
+.painting-triple{margin:32px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;}.painting-triple .painting-wrap{margin:0;}.painting-triple img{aspect-ratio:1/1;object-fit:cover;object-position:center;}
+.diagram-wrap{margin:28px 0;overflow-x:auto;}.diagram-caption{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:8px;}
+.svg-fig{max-width:680px;margin:0 auto;display:block;}
+.timeline{margin:32px 0;position:relative;padding-left:24px;}.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}.tl-item{position:relative;margin-bottom:28px;}.tl-item:last-child{margin-bottom:0;}.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.culture-block{margin:28px 0;border:1px solid #c8bfaa;padding:20px 24px;background:#f3efe6;}.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:12px;}.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}.culture-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:4px;}.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}.ref-title a:hover{border-bottom-color:#8b1a1a;}.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}.sidebar-block:last-child{border-bottom:none;}.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}.sidebar-text strong{color:#3d3020;font-weight:600;}
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}.terminal-dots{display:flex;gap:6px;}.terminal-dot{width:12px;height:12px;border-radius:50%;}.terminal-dot.red{background:#ff5f57;}.terminal-dot.yellow{background:#febc2e;}.terminal-dot.green{background:#28c840;}.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}.t-input{color:#e8e4de;}.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}.t-output em{color:#e8c56a;font-style:normal;}.t-output strong{color:#ffffff;font-weight:500;}.t-exit .t-prompt{color:#555;}.t-exit .t-input{color:#555;}.t-exit .t-comment{color:#4a9e6a;}.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}.fade.on{opacity:1;transform:translateY(0);}
+@media(max-width:720px){.cover{grid-template-columns:1fr;padding:40px 20px 32px;}.cover-right{display:none;}.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.summary-box,.scenario{padding:0 20px;}.article{grid-template-columns:1fr;padding:0 20px;}.article-side{display:none;}.misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}.terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}.related{padding:32px 20px;}.related-grid{grid-template-columns:1fr;}.person-block{grid-template-columns:1fr;}.painting-compare{grid-template-columns:1fr;}.painting-triple{grid-template-columns:1fr;}.svg-fig{max-width:100%;}}
+
+/* REDUCTION SIMULATOR */
+.ix-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.ix-header{background:#1a1208;color:white;padding:11px 20px;}
+.ix-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.ix-body{padding:24px 20px;background:white;}
+.ix-scope{margin:0 0 20px;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}.ix-scope strong{color:#3d3020;font-weight:600;}
+.red-canvas-wrap{width:100%;max-width:420px;margin:0 auto 18px;aspect-ratio:2/3;position:relative;border:1px solid #c8bfaa;background:#faf8f3;overflow:hidden;}
+.red-canvas-wrap img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;opacity:0;transition:opacity .35s ease;}
+.red-canvas-wrap img.on{opacity:1;}
+.red-stage-lbl{position:absolute;top:8px;left:10px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#1a1208;background:#faf8f3;padding:3px 8px;border:1px solid #e0d8c8;pointer-events:none;letter-spacing:.04em;}
+.red-stage-num{position:absolute;top:8px;right:10px;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#8b1a1a;background:#faf8f3;padding:0 10px;border:1px solid #e0d8c8;line-height:1.3;pointer-events:none;}
+.red-slider-wrap{max-width:520px;margin:0 auto;}
+.red-slider{width:100%;appearance:none;background:transparent;margin:12px 0 4px;}
+.red-slider::-webkit-slider-runnable-track{height:4px;background:linear-gradient(to right,#4d6a3a 0%,#a89880 33%,#1a1208 66%,#8b1a1a 100%);border-radius:2px;}
+.red-slider::-webkit-slider-thumb{appearance:none;width:22px;height:22px;background:#8b1a1a;border:3px solid #faf8f3;border-radius:50%;margin-top:-9px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.25);}
+.red-slider::-moz-range-track{height:4px;background:linear-gradient(to right,#4d6a3a 0%,#a89880 33%,#1a1208 66%,#8b1a1a 100%);border-radius:2px;}
+.red-slider::-moz-range-thumb{width:18px;height:18px;background:#8b1a1a;border:3px solid #faf8f3;border-radius:50%;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.25);}
+.red-scale{display:flex;justify-content:space-between;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;letter-spacing:.04em;padding:0 4px;}
+.red-sublabel{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;text-align:center;margin:10px 0 16px;min-height:40px;line-height:1.7;}
+.red-sublabel strong{color:#1a1208;font-weight:600;}
+.red-btn-wrap{text-align:center;margin:14px 0 0;}
+.red-btn{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:.04em;color:#8b1a1a;background:white;border:1px solid #8b1a1a;padding:10px 22px;cursor:pointer;transition:all .18s;}
+.red-btn:hover{background:#8b1a1a;color:white;}
+.red-btn:disabled{color:#b0a090;border-color:#c8bfaa;background:#f3efe6;cursor:default;}
+.red-result{margin-top:20px;padding:18px 20px;background:#f3efe6;border-left:3px solid #8b1a1a;display:none;}
+.red-result.on{display:block;}
+.red-result-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.red-result-txt{font-family:'Source Serif 4',serif;font-size:15px;font-weight:300;color:#1a1208;line-height:1.8;}
+.red-result-txt strong{font-weight:600;}
+.red-result-txt em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;margin-top:12px;}
+
+/* SHARED HEADER */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){header.mh{padding:0 20px;}.menu-cols{grid-template-columns:1fr 1fr;}.s-box{margin:40px 16px 0;}.footer-inner{grid-template-columns:1fr 1fr;gap:24px;}.toc-back{padding:22px 20px;}}
+@media(max-width:520px){.menu-cols{grid-template-columns:1fr;}.footer-inner{grid-template-columns:1fr;}}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.painting-caption{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-box{display:none!important;}
+.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+</style>
+</head>
+<body>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<div id="prog"></div>
+
+<!-- COVER -->
+<div class="cover fade"><div class="cover-left"><p class="cover-kicker">科学と文化</p><h1>どこまで削れば<em>本質</em>に届くのか</h1><p class="cover-deck">1908年、オランダの画家が赤い樹を描いた。35年後、その同じ画家が辿り着いたのは直線と原色だけの世界だった。モンドリアン——「削る」という一つの問いを、画家が生涯をかけて画布の上で検証した史上最長の還元実験。</p><div class="cover-byline"><span>QUALIA JOURNAL</span><span>DEEP DIVE</span></div></div><div class="cover-right"><div class="est-card"><span class="est-label">Est.</span><span class="est-year">1930</span><p class="est-event">『コンポジションII（赤・青・黄）』完成。46×46cmの正方形カンヴァスに、黒線と三原色の矩形だけ。モンドリアン新造形主義の到達点。</p><p class="est-context">同年の世界：ガンジーが塩の行進（3月12日〜4月6日）で英国植民地支配へ非暴力不服従を宣言。世界恐慌が米国から欧州に波及し、1,350行の銀行が米国で破綻した。</p></div><p class="cover-aside">モンドリアンの画像は100年近く後の今、Webページのグリッドシステムにもミッフィーの造形にも流れ込んでいる。しかし<strong>「なぜ直線と原色だけで宇宙の本質に届くと信じられたのか」</strong>には、デザイン論だけでは答えられない何かが残る。</p></div></div>
+
+<!-- SCENARIO -->
+<div class="scenario fade"><div class="scenario-inner"><p>クローゼットを整理したことがあるだろう。着ない服を1着、また1着と抜いていく。半分になったとき、そこには「まだ自分の服」が残っている気がする。8割抜いたとき、残った5着が自分を代表している感覚すらある。さらに1着抜くと、何かが失われる。</p><p>人間の知性は「削ること」に強く惹かれる。ロゴデザインも、方程式の整理も、言葉を研ぐことも、すべて削る作業だ。削れば削るほど本質に近づくように感じる。</p><p>しかし削りすぎはどこから始まるのか。削っても残るものを本質と呼ぶなら、どこまで削ればそれに届くのか——その問いを、一人の画家が35年かけて画布の上で確かめた。</p></div></div>
+
+<!-- META BAR -->
+<div class="meta-bar fade"><div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div><span class="difficulty-text">中級 — 美術と哲学の予備知識は不要</span></div><div class="meta-sep"></div><div class="meta-item"><span class="meta-label">読了時間</span><span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 20 分</span></div><div class="meta-dates"><div class="date-item"><span class="meta-label">Published</span><span class="date-value">2026-04-17</span></div><div class="date-item"><span class="meta-label">Updated</span><span class="date-value">2026-04-17</span></div></div></div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade"><div class="summary-inner"><span class="summary-icon">要点</span><p class="summary-text">削れば削るほど「本質」に近づくのか。自分の手で具象画を段階的に削り、<strong>どこで「これはもう樹ではない」と感じるか</strong>を記録する。モンドリアンの実作品の段階と比較し、還元という操作の限界を考える。</p></div></div>
+
+<!-- ARTICLE -->
+<div class="article"><div class="article-main">
+
+<!-- 背景 -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">1908年の夏、オランダの画家が赤い樹を描いた。それはまだ、誰が見ても樹だった。</h2>
+
+<p class="body-text fade">1908年、36歳の<span class="tip" onclick="toggleTip(this)">ピート・モンドリアン<span class="tip-box"><strong>ピート・モンドリアン（1872–1944）</strong><br>オランダの画家。本名はピーテル・コルネリス・モンドリアーン。アムステルダム国立美術学校で古典的な絵画教育を受けた後、1911年にパリへ移り、キュビズムを経て完全な抽象へ進んだ。デ・スティル運動の中心人物。</span></span>はアムステルダムのアトリエで1本の樹を描いていた。古典的な油彩画の訓練を受けた彼は、すでに10年以上プロの画家として活動していたが、当時のオランダ美術界ではまだ無名だった。その絵——のちに『赤い樹（Avond; De rode boom）』と呼ばれる1枚——は、彼のキャリアの中で後戻りのできない転換点になる。</p>
+
+<div class="painting-wrap fade">
+<img src="img_mondrian_red_tree.jpg" alt="モンドリアン『赤い樹（Avond）』1908-10年" loading="lazy">
+<p class="painting-caption"><strong>ピート・モンドリアン『赤い樹（Avond; De rode boom）』</strong>（1908–10年）｜油彩・カンヴァス、70×99cm｜<em>クンストミュージアム・ハーグ蔵</em>｜モンドリアン還元実験の出発点。赤く燃える枝、捻れた幹、青い夕空——まだ誰が見ても樹だ。だがこのあと、彼は35年かけてこの樹から具象性を剥ぎ取っていく。</p>
+</div>
+
+<p class="body-text fade"><strong>この時点のモンドリアンは、まだ「削る画家」ではない。</strong>赤く燃える枝はゴッホ的な表現力に満ち、青く染まる夕空はフォーヴィスム的な色彩を持つ。モンドリアンは当時、<span class="tip" onclick="toggleTip(this)">神智学<span class="tip-box"><strong>神智学（Theosophy）</strong><br>19世紀後半にヘレナ・ブラヴァツキーが創始した神秘主義思想。宗教、哲学、科学を統合し、宇宙の背後にある普遍的な真理を探求することを掲げた。20世紀初頭の画家・音楽家に広範な影響を与えた——モンドリアンの他、カンディンスキー、マレーヴィチらも神智学の会員だった。</span></span>という神秘主義思想に深く傾倒しており、表面の現象の奥に「普遍的な調和」が隠れていると確信していた。この樹の絵が特別なのは、うまく描けているからではない——この1枚のあとに、<em>もう一つの樹</em>、<em>さらにもう一つの樹</em>、と続いていく連作の第一歩だからだ。彼は同じ主題を繰り返し描きながら、毎回少しずつ削っていった。</p>
+
+<div class="person-block no-img fade">
+<div class="person-block-body">
+<p class="person-block-name">ピート・モンドリアン</p>
+<p class="person-block-role">Pieter Cornelis Mondriaan / 1872–1944</p>
+<p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%94%E3%83%BC%E3%83%88%E3%83%BB%E3%83%A2%E3%83%B3%E3%83%89%E3%83%AA%E3%82%A2%E3%83%B3" target="_blank" rel="noopener">Wikipedia</a></p>
+<p class="person-block-desc">オランダ・アメルスフォールト生まれ。父親は厳格なカルヴァン派教師で、美術は職業として許されなかった。20歳で美術学校に入学、34歳で神智学協会に入会。1911年にパリへ移り住み、キュビズムに衝撃を受ける。以後35年間、「具象 → 幾何学的抽象 → 直線と原色のみの新造形主義 → ニューヨークでのブギウギ」へと一度も後戻りせずに還元を進めた。71歳のときに肺炎で死去、未完の『ヴィクトリー・ブギウギ』を残した。</p>
+</div>
+</div>
+
+<p class="body-text fade"><strong>「削ること」は、モンドリアンにとって技法ではなく信念だった。</strong>彼は神智学者の数学者<span class="tip" onclick="toggleTip(this)">シューンメイケルス<span class="tip-box"><strong>M.H.J.シューンメイケルス（1875–1944）</strong><br>オランダの神智学者・元カトリック司祭・数学者。1915年の著書『世界の新しい像（Het Nieuwe Wereldbeeld）』で「3つの本質的な色は黄・青・赤だけであり、他のすべての色はそこから派生する」と主張した。また、垂直と水平の直交こそが宇宙の根本構造だと論じた。モンドリアンはこの思想を絵画で実践した。</span></span>の思想に深く影響を受け、<em>現実のあらゆる形・色・線の背後に、宇宙の普遍的な構造が隠れている</em>と信じた。垂直は男性・精神、水平は女性・物質。この二つの交点に調和がある。三原色——黄・青・赤——こそが色の本質であり、他の色はすべて派生にすぎない。これは装飾的な好みではない。<strong>哲学的な仮説だった。</strong>そしてモンドリアンはその仮説を、35年間の絵画で検証した。</p>
+
+<div class="misconception fade">
+<div class="misconception-header"><p class="misconception-hl">読む前に確認 — よくある誤解</p></div>
+<div class="misconception-body">
+<div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">モンドリアンは「シンプル好き」のミニマリストだった</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">彼のスタイルは美的好みではなく哲学的信念。神秘主義思想（神智学）の実践として直線と原色に到達した。パリのアトリエは自ら黒テープと色紙でグリッドに仕立てた「宇宙の縮図」だった</p></div></div>
+<div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">直線と原色だけの絵はデザイン装飾の先駆</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">モンドリアンが描こうとしたのは「宇宙の本質」。垂直＝精神、水平＝物質、その交点に普遍の調和——というシューンメイケルスの神秘主義を画布上で証明する試み。装飾は結果にすぎない</p></div></div>
+<div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">35年かけて同じスタイルを磨いた</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">1908–43の35年で少なくとも6つの段階を通過している。具象 → キュビズム的分解 → ＋/−記号 → 色面とグリッド → 純粋新造形 → ブギウギ。彼は止まらず、最後は自分のルールすら自ら解放した</p></div></div>
+</div>
+</div>
+
+<p class="body-text fade">もう一度、上の『赤い樹』を見てほしい。曲線、厚塗り、赤と青の感情的な対比——そのどれもが、モンドリアンがこのあと35年かけて削ぎ落としていくものだ。具象から始まって、直線と原色だけの世界に到達するまで、画家自身が一段ずつ降りていった階段がある。次のセクションでは、その階段の各段を<em>あなたが降りてみる</em>。どこで「もう樹ではない」と感じるだろうか。</p>
+
+<!-- 体験 -->
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">還元スライダー——どこまで削れば、それは別物になるか</h2>
+
+<p class="body-text fade">下のキャンバスには1本の樹がある。スライダーを右に動かすと、樹は段階的に削減されていく。<strong>葉が落ち、枝が幾何学的に分解され、曲線が消え、直線だけになり、最後は矩形と三原色だけの構成になる。</strong>6段階、0から5まで。</p>
+
+<p class="body-text fade">どこかの段階で、あなたは「もう削りすぎだ」と感じるはずだ。その瞬間にボタンを押してほしい。あなたの境界点と、モンドリアンが35年かけて通過した段階を比較する。</p>
+
+<div class="ix-wrap fade">
+<div class="ix-header"><span class="ix-hl">✦ The Reduction — 還元スライダー</span></div>
+<div class="ix-body">
+<div class="ix-scope"><strong>このシミュレーションが扱う範囲：</strong>スライダー内の6枚は、還元の論理を1本の樹に圧縮して可視化した<strong>概念イメージ</strong>で、実在のモンドリアン作品ではない（実物はすぐ下に3点、記事中にさらに6点掲載）。モンドリアンは35年かけて複数の別々の主題（樹・教会・海・純粋構成）で並行して還元を進めており、<em>実際には『コンポジションII』（1930）は樹を突き詰めた先に生まれた作品ではなく、シューンメイケルスの哲学から直接導かれた別系統の作品である</em>。ここでは主題が何であれ同じ方向に収束していく削減の軸そのものを体験できるように、1本の樹で全プロセスを代表させている。各段階は実在の作品（0≈1908『赤い樹』、1≈1911『灰色の木』、2≈1913の解体期、3≈1915『桟橋と海』、4≈1917-18の初期新造形、5≈1930『コンポジションII』）におおよそ対応する。</div>
+<div class="red-canvas-wrap" id="redCanvasWrap">
+  <img src="stage_0_tree_natural.jpg" alt="Stage 0 — 具象" class="on" data-stage="0">
+  <img src="stage_1_tree_cubist.jpg" alt="Stage 1 — キュビズム化" data-stage="1" loading="lazy">
+  <img src="stage_2_tree_skeletal.jpg" alt="Stage 2 — 解体" data-stage="2" loading="lazy">
+  <img src="stage_3_plus_minus.jpg" alt="Stage 3 — ＋と−" data-stage="3" loading="lazy">
+  <img src="stage_4_grid_muted.jpg" alt="Stage 4 — 抑えたグリッド" data-stage="4" loading="lazy">
+  <img src="stage_5_neoplastic.jpg" alt="Stage 5 — 新造形" data-stage="5" loading="lazy">
+  <div class="red-stage-lbl" id="redStageLbl">具象</div>
+  <div class="red-stage-num" id="redStageNum">0</div>
+</div>
+<div class="red-slider-wrap">
+  <input type="range" min="0" max="5" value="0" class="red-slider" id="redSlider">
+  <div class="red-scale"><span>0 具象</span><span>3 ＋と−</span><span>5 新造形</span></div>
+  <p class="red-sublabel" id="redSublabel"><strong>具象</strong>　木としての自然形。葉・枝・幹がすべて揃っている</p>
+  <div class="red-btn-wrap">
+    <button class="red-btn" id="redBtn">ここで「削りすぎ」と感じた</button>
+  </div>
+  <div class="red-result" id="redResult">
+    <p class="red-result-lbl">あなたの離脱点</p>
+    <p class="red-result-txt" id="redResultTxt"></p>
+  </div>
+</div>
+</div>
+</div>
+<p class="ix-note fade">典型的な離脱点は段階2〜3付近（解体〜＋と−）。「まだ削り足りる」と「もう削りすぎ」の境界は、人によって1〜2段階ぶれる。モンドリアン本人は、どの段階でも止まらなかった——それだけが違いだ。</p>
+
+<p class="body-text fade"><strong>あなたが離脱した地点の先を、モンドリアンは実際の絵画で歩いた。</strong>以下の3点がそれぞれ概念段階1、2、3に対応する。樹が段階的に輪郭を失い、＋と−の記号になっていく過程が、画家本人の手で残されている。</p>
+
+<div class="painting-triple fade">
+<div class="painting-wrap">
+<img src="img_mondrian_gray_tree.jpg" alt="モンドリアン『灰色の木』1911年">
+<p class="painting-caption"><strong>『灰色の木（Gray Tree）』</strong>（1911年）｜<em>クンストミュージアム・ハーグ蔵</em>｜<em>段階1：キュビズム化</em>。パリでキュビズムに触れた直後。枝が幾何学的な面に分解されているが、まだ「木」と認識できる。</p>
+</div>
+<div class="painting-wrap">
+<img src="img_mondrian_apple_tree.jpg" alt="モンドリアン『花咲くリンゴの木』1912年">
+<p class="painting-caption"><strong>『花咲くリンゴの木（Blossoming Apple Tree）』</strong>（1912年）｜<em>クンストミュージアム・ハーグ蔵</em>｜<em>段階2：解体</em>。さらに抽象化。曲線が直線に近づき、木の輪郭がほぼ消える。輪郭線だけが残っている。</p>
+</div>
+<div class="painting-wrap">
+<img src="img_mondrian_pier_ocean.jpg" alt="モンドリアン『コンポジション10（桟橋と海）』1915年">
+<p class="painting-caption"><strong>『コンポジション10（桟橋と海）』</strong>（1915年）｜油彩・カンヴァス、85×108cm｜<em>クレラー＝ミュラー美術館蔵</em>｜<em>段階3：＋と−</em>。スヘーフェニンヘンの海で描いた。波と桟橋が、短い水平線と垂直線——＋と−の記号——に還元される。もう樹ではないし、海でもない。だが海の<em>リズム</em>はある。</p>
+</div>
+</div>
+
+<!-- なぜか -->
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">なぜ直線と原色だけで足りると信じられたのか</h2>
+
+<p class="body-text fade">キュビズムは対象を分解したが、捨てなかった。ギターは断片化されてもギターの破片が残っていた。そして<strong>1914年の第一次大戦勃発とともに、キュビズム運動そのものが事実上解体する</strong>。戦場で頭部を負傷したブラックは1917年まで絵筆を握れず、ピカソは同年のイタリア旅行でルネサンス絵画に触れ、以後ゆっくりと古典的人物画へ回帰していく。戦後のヨーロッパを覆った<em>「秩序への回帰」（rappel à l'ordre）</em>という潮流のなか、多くの前衛画家が「対象を壊すのはここまで」と判断したのだ。</p>
+
+<p class="body-text fade"><strong>モンドリアンは逆方向に歩いた。</strong>キュビズムが開いた「対象を解体する」という方向を<em>正しい</em>と信じ、止まるどころか<strong>「まだ足りない」と判断して、さらに削り続けた</strong>。彼の師はキュビズムではなく、<em>シューンメイケルス</em>だった。</p>
+
+<p class="body-text fade">シューンメイケルスは1915年に『世界の新しい像（Het Nieuwe Wereldbeeld）』を出版した。元カトリック司祭で、神智学者で、数学者だったこの男は、宇宙の根本構造について3つの命題を立てた。<strong>(1) 本質的な色は黄・青・赤の三つだけである。</strong>他のすべての色はこの三つから派生する。<strong>(2) 本質的な線の方向は垂直と水平の二つだけである。</strong>斜めの線は不安定で、偶然的な角度は本質的でない。<strong>(3) 垂直と水平の交点に、宇宙の普遍的調和が現れる。</strong></p>
+
+<div class="diagram-wrap fade">
+<svg class="svg-fig" viewBox="0 0 680 540" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8b1a1a"/></marker></defs>
+<text x="340" y="26" font-family="Playfair Display,serif" font-size="18" fill="#1a1208" font-weight="700" text-anchor="middle">還元の階層 — シューンメイケルスの三命題</text>
+<!-- Row 1: 色 -->
+<text x="20" y="78" font-family="Source Sans 3,sans-serif" font-size="18" fill="#8b1a1a" font-weight="600">① 色</text>
+<text x="150" y="95" font-family="Source Sans 3,sans-serif" font-size="16" fill="#3d3020" text-anchor="middle">現象（無数の色）</text>
+<circle cx="78" cy="123" r="12" fill="#5a8040"/><circle cx="114" cy="123" r="12" fill="#a06030"/><circle cx="150" cy="123" r="12" fill="#8060a0"/><circle cx="186" cy="123" r="12" fill="#30806c"/><circle cx="222" cy="123" r="12" fill="#e0a040"/>
+<circle cx="96" cy="153" r="12" fill="#4a6090"/><circle cx="132" cy="153" r="12" fill="#c84530"/><circle cx="168" cy="153" r="12" fill="#708030"/><circle cx="204" cy="153" r="12" fill="#68508a"/>
+<circle cx="114" cy="183" r="12" fill="#a85c70"/><circle cx="150" cy="183" r="12" fill="#3a6a78"/><circle cx="186" cy="183" r="12" fill="#b88a30"/>
+<path d="M265 153 L325 153" stroke="#8b1a1a" stroke-width="2.5" marker-end="url(#arr1)"/>
+<text x="545" y="95" font-family="Source Sans 3,sans-serif" font-size="16" fill="#3d3020" text-anchor="middle">本質（三原色）</text>
+<circle cx="480" cy="153" r="24" fill="#e8c43a"/><circle cx="545" cy="153" r="24" fill="#c03030"/><circle cx="610" cy="153" r="24" fill="#2060a0"/>
+<text x="480" y="202" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">黄</text>
+<text x="545" y="202" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">赤</text>
+<text x="610" y="202" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">青</text>
+<!-- Row 2: 線 -->
+<text x="20" y="248" font-family="Source Sans 3,sans-serif" font-size="18" fill="#8b1a1a" font-weight="600">② 線</text>
+<text x="150" y="265" font-family="Source Sans 3,sans-serif" font-size="16" fill="#3d3020" text-anchor="middle">現象（無数の方向）</text>
+<line x1="60" y1="295" x2="240" y2="345" stroke="#3d3020" stroke-width="1.6"/>
+<line x1="60" y1="345" x2="240" y2="295" stroke="#3d3020" stroke-width="1.6"/>
+<path d="M70 310 Q125 275 230 318" stroke="#3d3020" stroke-width="1.6" fill="none"/>
+<path d="M70 335 Q140 362 230 303" stroke="#3d3020" stroke-width="1.6" fill="none"/>
+<line x1="152" y1="285" x2="168" y2="358" stroke="#3d3020" stroke-width="1.6"/>
+<path d="M265 320 L325 320" stroke="#8b1a1a" stroke-width="2.5" marker-end="url(#arr1)"/>
+<text x="545" y="265" font-family="Source Sans 3,sans-serif" font-size="16" fill="#3d3020" text-anchor="middle">本質（垂直と水平）</text>
+<line x1="545" y1="292" x2="545" y2="362" stroke="#1a1208" stroke-width="5"/>
+<line x1="478" y1="327" x2="612" y2="327" stroke="#1a1208" stroke-width="5"/>
+<circle cx="545" cy="327" r="6" fill="#8b1a1a"/>
+<text x="545" y="284" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">垂直＝精神</text>
+<text x="618" y="330" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">水平＝物質</text>
+<!-- Row 3: 形 -->
+<text x="20" y="410" font-family="Source Sans 3,sans-serif" font-size="18" fill="#8b1a1a" font-weight="600">③ 形</text>
+<text x="150" y="428" font-family="Source Sans 3,sans-serif" font-size="16" fill="#3d3020" text-anchor="middle">現象（無数の形）</text>
+<circle cx="75" cy="478" r="22" fill="none" stroke="#3d3020" stroke-width="1.6"/>
+<polygon points="135,450 165,500 105,500" fill="none" stroke="#3d3020" stroke-width="1.6"/>
+<polygon points="205,450 211,471 233,471 215,484 221,504 205,492 189,504 195,484 177,471 199,471" fill="none" stroke="#3d3020" stroke-width="1.6"/>
+<path d="M260 460 Q285 448 294 472 Q298 495 275 500 Q254 495 255 478 Z" fill="none" stroke="#3d3020" stroke-width="1.6"/>
+<path d="M330 478 L388 478" stroke="#8b1a1a" stroke-width="2.5" marker-end="url(#arr1)"/>
+<text x="545" y="428" font-family="Source Sans 3,sans-serif" font-size="16" fill="#3d3020" text-anchor="middle">本質（矩形のみ）</text>
+<rect x="460" y="452" width="52" height="52" fill="none" stroke="#1a1208" stroke-width="2.8"/>
+<rect x="524" y="462" width="60" height="42" fill="none" stroke="#1a1208" stroke-width="2.8"/>
+<rect x="596" y="444" width="40" height="60" fill="none" stroke="#1a1208" stroke-width="2.8"/>
+</svg>
+<p class="diagram-caption">シューンメイケルスの3つの命題：色は3つに、線は2方向に、形は矩形に還元される。モンドリアンはこの命題を絵画で実践した——仮説を画布で証明する、という姿勢で。</p>
+</div>
+
+<p class="body-text fade"><strong>モンドリアンはこれを文字通り受け取った。</strong>1917年以降、彼の絵から斜めの線、曲線、第2次・第3次の色、形の多様性——そのすべてが消えていく。残るのは黒い線、白い面、黄・青・赤の矩形だけだ。下の2枚はその初期段階——現象から本質への橋渡しの瞬間を捉えた作品だ。</p>
+
+<div class="painting-compare fade">
+<div class="painting-wrap">
+<img src="img_mondrian_composition_bw_1917.jpg" alt="モンドリアン『コンポジション（白黒）』1917年">
+<p class="painting-caption"><strong>『コンポジション（白黒）』</strong>（1917年）｜<em>個人蔵</em>｜色が完全に削ぎ落とされた段階。白い背景に、黒い矩形が規則的ではなくバランスよく配置されている。まだ画面を縁取る黒線はない。</p>
+</div>
+<div class="painting-wrap">
+<img src="img_mondrian_colorplanes_1918.jpg" alt="モンドリアン『色面とグレーの線』1918年">
+<p class="painting-caption"><strong>『色面とグレーの線のコンポジション』</strong>（1918年）｜油彩・カンヴァス、49×60.5cm｜<em>個人蔵</em>｜色が戻ってきた。ただし鮮やかな三原色ではなく、薄い黄・青・ピンク。グレーの線がゆっくりと画面を分割している。まだ「完成形」ではない。</p>
+</div>
+</div>
+
+<div class="quote-block fade">
+<p class="quote-en">"I wish to approach truth as closely as is possible, and therefore I abstract everything until I arrive at the fundamental quality of objects."</p>
+<p class="quote-ja">私は可能な限り真理に近づきたい。だから対象の本質に至るまで、すべてを抽象化する。</p>
+<p class="quote-attr">— ピート・モンドリアン、手紙（H.P. ブレマーへ、1914年）</p>
+</div>
+
+<!-- 歴史 -->
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">35年の削減——1908年の樹から1944年の未完作まで</h2>
+
+<div class="timeline">
+<div class="tl-item highlight fade"><div class="tl-dot"></div><p class="tl-year">1908</p><p class="tl-title">オランダで『赤い樹』を描く</p><p class="tl-desc">36歳のモンドリアン、神智学協会に入会（1909年）する前夜。色は表現主義的、形は具象的。ここから35年の還元が始まる。</p></div>
+<div class="tl-item fade"><div class="tl-dot"></div><p class="tl-year">1911</p><p class="tl-title">パリへ移住、キュビズムに衝撃</p><p class="tl-desc">パリでピカソとブラックのキュビズムを見る。『灰色の木』『花咲くリンゴの木』で樹を段階的に幾何学化していく——だがキュビズムは「途中の駅」だった。</p></div>
+<div class="tl-item highlight fade"><div class="tl-dot"></div><p class="tl-year">1914–15</p><p class="tl-title">スヘーフェニンヘンの海で『桟橋と海』</p><p class="tl-desc">第一次大戦でオランダに足止めされた画家は、北海沿岸で波と桟橋を見つめ、それを＋と−の記号だけに還元する。曲線が画面から完全に消える瞬間。</p></div>
+<div class="tl-item fade"><div class="tl-dot"></div><p class="tl-year">1915</p><p class="tl-title">シューンメイケルス『世界の新しい像』刊行</p><p class="tl-desc">3つの本質色（黄・青・赤）と2つの本質方向（垂直・水平）という仮説が活字になる。モンドリアンはそれを画布で実践する「実験」と位置づけた。</p></div>
+<div class="tl-item highlight fade"><div class="tl-dot"></div><p class="tl-year">1917</p><p class="tl-title">デ・スティル運動を結成</p><p class="tl-desc">テオ・ファン・ドゥースブルフと共に雑誌『De Stijl』を創刊。「直線と原色で構成する純粋抽象」を運動の綱領にする。</p></div>
+<div class="tl-item fade"><div class="tl-dot"></div><p class="tl-year">1920</p><p class="tl-title">『新造形主義』宣言書をパリで発行</p><p class="tl-desc">自らの方法を<em>Néo-Plasticisme</em>（新造形主義）と命名。黒い直線、白の面、黄・青・赤の矩形——規則を明文化した。</p></div>
+<div class="tl-item highlight fade"><div class="tl-dot"></div><p class="tl-year">1929–30</p><p class="tl-title">『コンポジションII（赤・青・黄）』</p><p class="tl-desc">純粋新造形主義の完成形。正方形カンヴァスに三原色と白と黒——これ以上削るものはない、という到達点。</p></div>
+<div class="tl-item fade"><div class="tl-dot"></div><p class="tl-year">1938</p><p class="tl-title">ナチス台頭でロンドンへ避難、さらに1940年ニューヨークへ</p><p class="tl-desc">66歳で二度目の亡命。新しい街、新しい音楽が彼を待っていた。</p></div>
+<div class="tl-item highlight fade"><div class="tl-dot"></div><p class="tl-year">1942–43</p><p class="tl-title">『ブロードウェイ・ブギウギ』——自分のルールを解放する</p><p class="tl-desc">70歳のモンドリアン、ジャズクラブ「ミントンズ」でブギウギに魅せられる。作品から黒線が消え、無数の小さな色付き矩形が画面を埋める。<em>15年磨いた理論体系より、目の前の画面を信じる直感が勝った。最後の大飛翔。</em></p></div>
+<div class="tl-item fade"><div class="tl-dot"></div><p class="tl-year">1944</p><p class="tl-title">『ヴィクトリー・ブギウギ』を残して死去</p><p class="tl-desc">71歳、マンハッタンで肺炎により死去。未完の『ヴィクトリー・ブギウギ』はイーゼルの上に残された——まだ彼は削る途中だった。</p></div>
+</div>
+
+<div class="painting-wrap fade">
+<img src="img_mondrian_composition_no3_1929.jpg" alt="モンドリアン『コンポジションNo.III（赤・青・黄・黒）』1929年">
+<p class="painting-caption"><strong>『コンポジションNo.III（赤・青・黄・黒）』</strong>（1929年）｜油彩・カンヴァス、50×50.2cm｜<em>個人蔵</em>｜1929年の新造形主義作品。<em>画家はここに21年をかけてたどり着いた</em>。この先にはほとんど削る余地がない——だからこそ、次の10年で彼はまた動き始める。</p>
+</div>
+
+<div class="painting-wrap fade">
+<img src="img_mondrian_composition_rby.jpg" alt="モンドリアン『コンポジションII（赤・青・黄）』1930年">
+<p class="painting-caption"><strong>『コンポジションII（赤・青・黄）』</strong>（1930年）｜油彩・カンヴァス、46×46cm｜<em>チューリッヒ美術館蔵</em>｜モンドリアン新造形主義の到達点にして、教科書に載る一枚。黒線、白面、三原色——これ以上削れない、と彼自身が思った地点。<em>樹の連作は1913年で終わっており、この作品は樹を突き詰めた先に生まれたものではない</em>——シューンメイケルスの三原則から直接導かれた、自然の対象を持たない純粋構成だ。</p>
+</div>
+
+<!-- つまり -->
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">到達点の先で、画家は自分のルールを解放した</h2>
+
+<p class="body-text fade">1930年の『コンポジションII』で、モンドリアンは還元の到達点に着いた。黒線、白面、黄・青・赤。<em>これ以上何が削れるだろう。</em>ルールは完成している。あとはそのルールの中で組み合わせを変えるだけ——多くの画家はそこで止まる。モンドリアンも10年ほどそこに留まった。</p>
+
+<p class="body-text fade"><strong>ところが1940年、68歳の彼はニューヨークに渡って新しい音楽に出会う。</strong>ブギウギ——1930年代にシカゴで生まれ、ジャズクラブで繰り返しのベースラインに乗せて即興を積み重ねるピアノスタイル。友人に連れて行かれた<span class="tip" onclick="toggleTip(this)">ミントンズ・プレイハウス<span class="tip-box"><strong>ミントンズ・プレイハウス（Minton's Playhouse）</strong><br>ニューヨーク・ハーレムのジャズクラブ（1938年開業）。セロニアス・モンク、チャーリー・パーカー、ディジー・ガレスピーら、ビバップの原型を生んだジャムセッションの聖地。モンドリアンは亡命後、ここの常連になった。</span></span>で、モンドリアンは音楽の中に<em>自分が35年かけて削ぎ落としたはずのもの</em>——リズム、動き、偶然性——を再発見する。</p>
+
+<div class="painting-wrap fade">
+<img src="img_mondrian_broadway_boogie_woogie.jpg" alt="モンドリアン『ブロードウェイ・ブギウギ』1942-43年">
+<p class="painting-caption"><strong>『ブロードウェイ・ブギウギ（Broadway Boogie Woogie）』</strong>（1942–43年）｜油彩・カンヴァス、127×127cm｜<em>ニューヨーク近代美術館（MoMA）蔵</em>｜<em>モンドリアン晩年の大飛翔</em>。黒い線が消え、無数の小さな黄・赤・青・白の矩形が画面全体でリズムを刻む。マンハッタンの碁盤目、点滅する信号、ブギウギのベース——すべてが1枚に圧縮されている。</p>
+</div>
+
+<p class="body-text fade">『ブロードウェイ・ブギウギ』では、<strong>黒い区切り線が消えている。</strong>代わりに黄色いテープの連なりが画面を切り分け、その上に赤・青・白の小さな矩形が不規則な間隔で乗っている。画面は均質ではない——中央に密集があり、端にはまばらな配置がある。<em>モンドリアン自身が15年かけて立てた「黒線＋三原色」のルールが、画家本人の手で拡張されている。</em>彼は70歳にして、自分の到達点を自分で超えた。</p>
+
+<p class="body-text fade"><strong>このルール解放の瞬間を目撃していた友人がいる。</strong>アメリカの抽象画家<span class="tip" onclick="toggleTip(this)">シャルメイン・フォン・ヴィーガント<span class="tip-box"><strong>シャルメイン・フォン・ヴィーガント（1896–1985）</strong><br>アメリカの抽象画家。晩年のモンドリアンと親交があり、ニューヨークのアトリエに頻繁に出入りした。モンドリアンの制作プロセスを至近距離で記録した数少ない人物。</span></span>だ。彼女はモンドリアンが赤い面の中心に黄色い矩形を重ねようとするのを見て、驚いて口にした——「でもそれ、<em>あなたの理論に反しますよね?</em>」モンドリアンは少し眺めてから、こう答えた。<em>「うまくいくか? ……うん、うまくいく。」</em>それだけだった。15年間磨き上げた理論体系は、目の前の画面が「うまくいっている」という<strong>直感の一言</strong>に、あっさり譲った。</p>
+
+<div class="pull fade">
+<p class="pull-q">詩が完成することはない。ただ<em>放棄される</em>だけだ。</p>
+<p class="pull-q-orig">Un poème n'est jamais achevé, il est abandonné.</p>
+<p class="pull-attr">— ポール・ヴァレリー（Paul Valéry, 1871–1945）、モンドリアンと同時代の詩人・思想家</p>
+</div>
+
+<p class="body-text fade">これは後退ではない。<strong>モンドリアン最大の飛翔だった。</strong>「本質に到達した」と思う場所は、常にもう一段先からの視点では「まだ途中」だ。数学では公理系の完全性が<span class="tip" onclick="toggleTip(this)">ゲーデル<span class="tip-box"><strong>クルト・ゲーデル（1906–1978）</strong><br>オーストリア出身の論理学者。1931年に不完全性定理を発表し、十分に強力な形式的体系の中には、その体系内では証明も反証もできない命題が存在することを示した。「本質への完全な到達」という還元主義の前提に、論理の側から制約を課した定理。</span></span>によって1931年に限界が示された。物理学では素粒子標準模型が完成したあとにも新粒子探索が続いている。<em>底まで削った、と思うたびに、もう一層下が現れる。</em>モンドリアン最後の10年は、その事実を画布で示した実験だった。1944年、彼は『ヴィクトリー・ブギウギ』を描いている途中で肺炎に倒れる。未完。しかしそれは、還元という作業に「完成形」がないことを、奇しくも象徴している。</p>
+
+<div class="culture-block fade">
+<div class="culture-label">文化の中に流れ込んだもの</div>
+<div class="culture-item"><p class="culture-title">イヴ・サン・ローラン『モンドリアン・ドレス』（1965年）</p><p class="culture-desc">A字型のウール・ジャージーに黒線と赤・青・黄の矩形を配置した6着のドレス。新造形主義が高級ファッションに翻訳された瞬間。『ライフ』誌の表紙を飾り、還元の美学を20世紀後半に刻印した。</p></div>
+<div class="culture-item"><p class="culture-title">ディック・ブルーナ『ミッフィー』（1955年〜）</p><p class="culture-desc">ブルーナはデ・スティルの美学を児童書に翻訳した。黒い輪郭線、三原色＋白、水平と垂直の構図——ミッフィーの造形哲学はモンドリアンの系譜にある。</p></div>
+<div class="culture-item"><p class="culture-title">Webのグリッドシステム</p><p class="culture-desc">12カラムレイアウト、CSSグリッド、Bootstrap——現代ウェブデザインの骨格は、デ・スティルとバウハウスの「水平・垂直・矩形への還元」を直接引き継いでいる。あなたが今見ているこの記事のレイアウトも、その子孫だ。</p></div>
+<div class="culture-item"><p class="culture-title">ミニマリズム音楽（1960年代〜）</p><p class="culture-desc">スティーヴ・ライヒ、フィリップ・グラス、テリー・ライリーら——音楽の還元主義はモンドリアンが絵画で行ったことを、音で試みた。同じ音型の反復、和声の削減、リズムの最小化。</p></div>
+</div>
+
+<!-- 参考文献 -->
+<hr class="art-rule">
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+<div class="ref-list">
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">一次資料</span><span class="ref-year">1920</span></div><p class="ref-title"><a href="https://www.rkd.nl/en/explore/library/239725" target="_blank" rel="noopener">Le Néo-Plasticisme</a></p><p class="ref-author">Piet Mondrian — Éditions de l'Effort Moderne</p><p class="ref-desc">モンドリアン自身の宣言書。「なぜ直線と三原色なのか」を画家本人の言葉で読める。わずか14ページのパンフレット。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">理論書</span><span class="ref-year">1915</span></div><p class="ref-title"><a href="https://www.dbnl.org/tekst/scho058nieu01_01/" target="_blank" rel="noopener">Het Nieuwe Wereldbeeld</a></p><p class="ref-author">M.H.J. Schoenmaekers — C.A.J. van Dishoeck</p><p class="ref-desc">シューンメイケルスの神智学的宇宙論。モンドリアンに「三原色」「垂直と水平」を直接教えた本。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">展覧会カタログ</span><span class="ref-year">1994</span></div><p class="ref-title"><a href="https://www.nga.gov/features/mondrian/mondrian.html" target="_blank" rel="noopener">Piet Mondrian 1872–1944</a></p><p class="ref-author">Yve-Alain Bois, Joop Joosten ほか — National Gallery of Art</p><p class="ref-desc">ワシントン・ナショナル・ギャラリーとMoMAで開かれた大回顧展のカタログ。モンドリアン研究の標準文献。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">論考</span><span class="ref-year">2017</span></div><p class="ref-title"><a href="https://www.moma.org/collection/works/78682" target="_blank" rel="noopener">MoMA — Broadway Boogie Woogie</a></p><p class="ref-author">Museum of Modern Art — Online Collection</p><p class="ref-desc">MoMA所蔵の『ブロードウェイ・ブギウギ』の公式解説。X線分析で明らかになった制作プロセスまで含む。</p></div>
+</div>
+
+<div class="note-box fade"><strong>📌 この記事について</strong><br>モンドリアンの経緯はRKD（オランダ美術史研究所）、MoMA、クンストミュージアム・ハーグ、クレラー＝ミュラー美術館の公開資料と、ボワ編の1994年大回顧展カタログに基づいている。掲載絵画はすべてパブリックドメイン（モンドリアン1944年没）。シューンメイケルス思想のモンドリアンへの影響については一部の学者に異論があるが、本人の書簡と当時のデ・スティル運動の論考から、少なくとも重要な触媒であったことは確定している。体験コンテンツはモンドリアンの還元プロセスを概念的に示したものであり、実際の絵画の忠実な再現ではない。</div>
+
+<div class="signature fade">e. Tamaki</div>
+
+<div class="tags fade"><span class="tag" style="background:#8b1a1a;color:white;border-color:#8b1a1a;">科学と文化</span><span class="tag">美術史</span><span class="tag">モンドリアン</span><span class="tag">還元主義</span><span class="tag">デ・スティル</span></div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+<div style="position:sticky;top:70px;">
+<div class="sidebar-block fade"><p class="sidebar-label">Key Number</p><p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">35</p><p class="sidebar-text">モンドリアンが具象画から純粋新造形主義まで到達するのにかけた<strong>年数</strong>（1908–1943）。その先にさらに10年続けていたかもしれない。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">1910年代のオランダは<strong>中立国</strong>だった。第一次大戦でパリに戻れなくなった画家は、祖国で神智学者・哲学者と深い議論を重ねた。戦争が彼の還元を加速させた。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">イヴ・サン・ローラン『モンドリアン・ドレス』、ホワイト・ストライプスのアルバム『De Stijl』、映画『羊たちの沈黙』のハンニバルの書斎、ミッフィー、Webのグリッドシステム。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— 色の三原色<br>— 印象派と筆触分割<br>— キュビズムと多視点<br>— ゲーデルの不完全性定理</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">RKD、MoMA、クンストミュージアム・ハーグの公開資料と標準的な美術史文献に基づく。神智学とモンドリアンの関係は学者間で程度の解釈に幅がある。</p></div>
+</div>
+</div>
+</div><!-- /article -->
+
+<!-- TERMINAL -->
+<div class="terminal-label-wrap fade"><div class="terminal-label"><span class="terminal-label-text">▼ Internal Dialogue >> Active</span><div class="terminal-label-line"></div></div></div>
+<div class="terminal-wrap"><div class="terminal fade" id="terminalBlock"><div class="terminal-bar"><div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div><span class="terminal-title">after.sh — 読後の対話ログ（架空）</span></div><div class="terminal-body">
+<span class="t-sys" id="ts0">// session started — モンドリアンと還元主義</span>
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;モンドリアンってデザイナー的な感覚の画家だと思ってた</span></div>
+<span class="t-output" id="to1">ほぼ逆。<em>神秘主義の実践者</em>。直線と原色は美的選択じゃなく、宇宙の本質を描くための神智学的な装置。アトリエで黒テープを壁に貼りながら「垂直＝精神・水平＝物質」を毎日確かめていた。</span><hr class="t-divider">
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;三原色以外の色を使いたくならなかったのかな</span></div>
+<span class="t-output" id="to2">なった。だから最初の20年は緑や紫やグレーを使っている。でも<em>削るほど本質に近づく</em>と信じていた彼は、「まだ残っている色」を毎回疑った。1920年代に三原色だけに絞ったのは、「これ以上削れない」という判定の結果。</span><hr class="t-divider">
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ブロードウェイ・ブギウギで自分のルールを解放したのは、失敗じゃないの？</span></div>
+<span class="t-output" id="to3">失敗どころか、<strong>晩年の大飛翔</strong>。友人が「理論に反する」と指摘したら、モンドリアンは「<em>うまくいくか? うん、うまくいく</em>」と答えた。15年磨いた体系より、目の前の画面を信じる直感を選んだ瞬間。70歳で自分の完成形を自分で超える勇気の方が、すごい。</span><hr class="t-divider">
+<div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;還元主義って、いいことなの？</span></div>
+<span class="t-output" id="to4">道具としては強い。でも<em>「削り切れば本質に届く」という前提</em>には根拠がない。モンドリアンの35年は、還元が豊かな発見を生むことと、同時に「底」が見つからないことの両方を示している。<strong>削ることは進むこと。着くことではない。</strong></span><hr class="t-divider">
+<div class="t-line t-exit" id="tl5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# そんなに深い意味が込められていたのか</span></div>
+</div></div></div>
+
+<!-- RELATED -->
+<div class="related fade"><p class="related-label">次に読む</p><div class="related-grid">
+<a class="related-card" href="/cubism"><p class="related-card-tag">科学と文化 × 視覚</p><p class="related-card-title">なぜ絵画を壊したのか</p><p class="related-card-desc">モンドリアンが出発点にしたキュビズム——ピカソとブラックが遠近法を壊した5つの操作を、コーヒーカップで体験する。</p><p class="related-card-arrow">読む →</p></a>
+<a class="related-card" href="/color_primaries"><p class="related-card-tag">知覚・錯覚 × 視覚</p><p class="related-card-title">色の三原色はなぜ3つなのか</p><p class="related-card-desc">モンドリアンが宇宙の本質だと信じた赤・青・黄——その3色が「本質」に見えるのはなぜか。網膜の錐体細胞の話。</p><p class="related-card-arrow">読む →</p></a>
+</div></div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<script>
+// プログレスバー
+window.addEventListener('scroll',function(){var h=document.documentElement;var p=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;document.getElementById('prog').style.width=p+'%';});
+
+// フェードイン
+var fades=document.querySelectorAll('.fade');var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});},{threshold:0.08});fades.forEach(function(el){obs.observe(el);});
+
+// ツールチップ（トースト方式）
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ==== 還元スライダー（画像版・6段階） ====
+(function(){
+  var wrap=document.getElementById('redCanvasWrap');
+  if(!wrap) return;
+  var imgs=wrap.querySelectorAll('img[data-stage]');
+  var slider=document.getElementById('redSlider');
+  var stageLbl=document.getElementById('redStageLbl');
+  var stageNum=document.getElementById('redStageNum');
+  var subLbl=document.getElementById('redSublabel');
+  var btn=document.getElementById('redBtn');
+  var result=document.getElementById('redResult');
+  var resultTxt=document.getElementById('redResultTxt');
+
+  var stages=[
+    {lbl:'具象', sub:'<strong>具象</strong>　木としての自然形。葉・枝・幹がすべて揃っている（≈1908『赤い樹』の段階）'},
+    {lbl:'キュビズム化', sub:'<strong>キュビズム化</strong>　幹と枝が幾何学的な面に分解される（≈1911『灰色の木』）'},
+    {lbl:'解体', sub:'<strong>解体</strong>　樹が離散的なマークへ分解される。キャンバスの大部分が空になる（≈1913年頃の過渡期）'},
+    {lbl:'＋と−', sub:'<strong>＋と−</strong>　黒い水平・垂直の短いマークだけが残る（≈1915『桟橋と海』）'},
+    {lbl:'抑えたグリッド', sub:'<strong>抑えたグリッド</strong>　muted な矩形と黒線。まだ原色ではない（≈1917-18の初期新造形）'},
+    {lbl:'新造形', sub:'<strong>新造形</strong>　直線と原色だけの純粋構成（≈1930『コンポジションII』）'}
+  ];
+
+  function setStage(s){
+    imgs.forEach(function(img){
+      if(parseInt(img.dataset.stage,10)===s) img.classList.add('on');
+      else img.classList.remove('on');
+    });
+  }
+
+  function update(){
+    var s=parseInt(slider.value,10);
+    setStage(s);
+    stageLbl.textContent=stages[s].lbl;
+    stageNum.textContent=s;
+    subLbl.innerHTML=stages[s].sub;
+    if(result.classList.contains('on')){
+      result.classList.remove('on');
+      btn.disabled=false;
+      btn.textContent='ここで「削りすぎ」と感じた';
+    }
+  }
+
+  btn.addEventListener('click',function(){
+    var s=parseInt(slider.value,10);
+    var msg;
+    if(s===0) msg='<strong>段階 0：具象</strong>　まだ何も削っていない。これは多くの人の出発点で、モンドリアンの1908年の立ち位置。ここから彼の35年の実験が始まる。';
+    else if(s===1) msg='<em>段階 1：キュビズム化</em>　<strong>典型的な分岐点</strong>。ピカソとブラックもここで踏みとどまった。モンドリアンだけが突き抜けて行った。';
+    else if(s===2) msg='<em>段階 2：解体</em>　樹が亡霊になる境界で離脱。<strong>「対象を完全に手放す」のはここから先</strong>。モンドリアンは1913年頃にここを通過した。';
+    else if(s===3) msg='<em>段階 3：＋と−</em>　直線だけの世界で離脱。モンドリアンが1915年『桟橋と海』で到達した地点。まだ色は戻っていない。';
+    else if(s===4) msg='<em>段階 4：抑えたグリッド</em>　<strong>かなり還元に強い</strong>タイプ。モンドリアンが1917-18年の新造形主義初期に到達した地点と同じ。完成形の一歩手前。';
+    else msg='<em>段階 5：新造形</em>　到達点まで走り切った。モンドリアンが1930年『コンポジションII』で示した地点。<strong>ここで満足しないのが、彼の次の10年だった。</strong>';
+    resultTxt.innerHTML=msg+'<br><br>モンドリアンは1908年から1943年まで、<em>35年</em>かけて段階0から5まで歩いた。あなたの離脱点までは、彼には何年かかっただろう？';
+    result.classList.add('on');
+    btn.disabled=true;
+    btn.textContent='↓ 記録しました';
+  });
+
+  slider.addEventListener('input',update);
+  update();
+})();
+
+// ターミナルアニメーション
+var tseq=[{id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},{id:'tl2',delay:2400},{id:'to2',delay:3000},{id:'tl3',delay:4000},{id:'to3',delay:4600},{id:'tl4',delay:5600},{id:'to4',delay:6200},{id:'tl5',delay:7200}];
+var tS=false;tseq.forEach(function(s){var el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+var tob=new IntersectionObserver(function(entries){if(entries[0].isIntersecting&&!tS){tS=true;tseq.forEach(function(s){setTimeout(function(){var el=document.getElementById(s.id);if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}},s.delay);});}},{threshold:.2});
+var tb=document.getElementById('terminalBlock');if(tb)tob.observe(tb);
+
+// === SHARED HEADER JS ===
+function closeMenu(){document.getElementById('menuPanel').classList.remove('open');document.getElementById('menuBackdrop').classList.remove('open');}
+document.getElementById('burgerBtn').addEventListener('click',function(){document.getElementById('menuPanel').classList.add('open');document.getElementById('menuBackdrop').classList.add('open');});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+var sOverlay=document.getElementById('sOverlay');
+var sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',function(){sOverlay.classList.add('open');setTimeout(function(){sInput.focus();},80);});
+document.getElementById('sClose').addEventListener('click',function(){sOverlay.classList.remove('open');});
+sOverlay.addEventListener('click',function(e){if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  var q=this.value.trim(),ql=q.toLowerCase();
+  var res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">検索データを読み込み中...</p>';return;}
+  var hits=ARTICLES.filter(function(a){return a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql);});
+  res.innerHTML=hits.length
+    ?hits.map(function(a){return '<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>';}).join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="tip-backdrop" id="tipBackdrop"></div>
+<div class="tip-toast" id="tipToast">
+  <button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button>
+  <span class="tip-toast-title" id="tipToastTitle"></span>
+  <div class="tip-toast-body" id="tipToastBody"></div>
+</div>
+
+</body>
+</html>

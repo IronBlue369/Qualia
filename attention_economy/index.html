@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アテンション・エコノミー — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-ja{font-family:'Source Serif 4',serif;font-size:15px;color:#3d3020;line-height:1.7;margin-top:10px;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:0;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}
+.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;margin-bottom:8px;}
+.person-block-wiki a{color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#b0a090;line-height:1.6;margin-top:8px;padding-top:6px;border-top:1px solid #e0d8c8;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+.outcome{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;margin-top:6px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;}
+.outcome.lose{background:rgba(196,57,42,.08);color:#c4392a;border:1px solid rgba(196,57,42,.25);}
+.outcome.win{background:rgba(26,90,48,.08);color:#1a5a30;border:1px solid rgba(26,90,48,.25);}
+.step-summary{margin-top:2px;padding:16px 20px;background:#f3efe6;border:1px solid #c8bfaa;}
+.step-summary p{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;margin:0;line-height:1.8;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* ── FOOTER ── */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* SVG FIG */
+.svg-fig{max-width:680px;margin:28px auto;display:block;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* ── ATTENTION SIMULATOR ── */
+.sim-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:white;box-shadow:0 2px 8px rgba(60,40,20,0.04);}
+.sim-header{background:linear-gradient(135deg,#3d3020 0%,#2a1f12 100%);color:white;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #8b1a1a;}
+.sim-header-left{display:flex;align-items:center;gap:12px;}
+.sim-header-icon{width:28px;height:28px;border:1.5px solid #d4a35a;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:15px;color:#d4a35a;font-weight:700;}
+.sim-hl{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;}
+.sim-subtitle{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#c8bfaa;letter-spacing:.1em;margin-top:2px;}
+.sim-phase{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#d4a35a;letter-spacing:.12em;text-transform:uppercase;font-weight:600;border:1px solid #8b6a20;padding:4px 10px;border-radius:2px;}
+.sim-body{padding:26px 22px;}
+.sim-group-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;color:#8b1a1a;letter-spacing:.2em;text-transform:uppercase;margin:4px 0 10px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;grid-column:1/-1;display:flex;align-items:center;gap:10px;}
+.sim-group-label::before{content:"";display:inline-block;width:14px;height:1px;background:#8b1a1a;}
+.sim-inputs{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;margin-bottom:22px;}
+.sim-field{display:flex;flex-direction:column;gap:4px;}
+.sim-field label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#3d3020;letter-spacing:.06em;display:flex;justify-content:space-between;align-items:baseline;}
+.sim-bench{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:500;color:#a89880;letter-spacing:.05em;text-transform:none;}
+.sim-field input,.sim-field select{font-family:'Source Sans 3',sans-serif;font-size:15px;padding:9px 12px;border:1px solid #c8bfaa;background:#faf8f3;color:#1a1208;outline:none;transition:border-color .2s,background .2s;}
+.sim-field input:focus,.sim-field select:focus{border-color:#8b1a1a;background:white;}
+.sim-btn{display:inline-flex;align-items:center;gap:10px;font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:700;color:white;background:#1a1208;border:none;padding:15px 40px;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;transition:all .15s;margin-top:4px;box-shadow:0 2px 0 #8b1a1a;}
+.sim-btn:hover{background:#8b1a1a;box-shadow:0 2px 0 #1a1208;}
+.sim-btn:active{transform:translateY(1px);box-shadow:none;}
+.sim-btn-arrow{display:inline-block;font-size:16px;transition:transform .2s;}
+.sim-btn:hover .sim-btn-arrow{transform:translateX(3px);}
+.sim-result-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin:28px 0 12px;padding-top:18px;border-top:1px dashed #c8bfaa;display:flex;align-items:center;gap:10px;}
+.sim-result-head::before{content:"▸";color:#8b1a1a;}
+.sim-result{display:none;margin-top:24px;}
+.sim-chart{width:100%;height:48px;background:#f3efe6;border:1px solid #e0d8c8;display:flex;overflow:hidden;margin-bottom:14px;border-radius:2px;}
+.sim-bar{height:100%;display:flex;align-items:center;justify-content:center;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:white;letter-spacing:.04em;transition:width .6s ease;overflow:hidden;white-space:nowrap;padding:0 4px;}
+.sim-warning{display:none;margin:0 0 16px;padding:12px 16px;border-left:3px solid #8b1a1a;background:#fdf3f3;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#8b1a1a;line-height:1.7;}
+.sim-warning.show{display:block;}
+.sim-warning strong{display:block;font-weight:700;letter-spacing:.06em;margin-bottom:4px;font-size:11px;text-transform:uppercase;}
+.sim-warning ul{margin:0;padding-left:16px;}
+.sim-warning li{margin:2px 0;color:#3d3020;}
+.sim-warning li em{font-style:normal;font-weight:600;color:#8b1a1a;}
+.sim-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px 16px;margin-bottom:22px;font-family:'Source Sans 3',sans-serif;font-size:12px;}
+.sim-legend-item{display:flex;align-items:center;gap:8px;padding:6px 10px;background:#f3efe6;border-left:3px solid transparent;}
+.sim-legend-sw{display:inline-block;width:10px;height:10px;flex:0 0 10px;}
+.sim-legend-l{font-weight:600;color:#3d3020;}
+.sim-legend-v{margin-left:auto;color:#7a6a55;font-variant-numeric:tabular-nums;}
+.sim-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px;}
+.sim-stat{text-align:center;padding:14px 10px;background:#f3efe6;border:1px solid #e0d8c8;}
+.sim-stat-n{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#8b1a1a;display:block;margin-bottom:4px;}
+.sim-stat-l{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;color:#7a6a55;letter-spacing:.1em;text-transform:uppercase;}
+.sim-compare{margin-top:20px;border:1px solid #e0d8c8;overflow:hidden;}
+.sim-compare-head{background:#f3efe6;padding:10px 16px;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;}
+.sim-compare-row{display:flex;border-bottom:1px solid #e0d8c8;}
+.sim-compare-row:last-child{border-bottom:none;}
+.sim-compare-label{flex:0 0 100px;padding:10px 16px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#7a6a55;border-right:1px solid #e0d8c8;}
+.sim-compare-val{flex:1;padding:10px 16px;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;}
+.sim-compare-val:first-of-type{border-right:1px solid #e0d8c8;}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .meta-dates{margin-left:0;width:100%;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .svg-fig{max-width:100%;}
+  .sim-inputs{grid-template-columns:1fr;}
+  .sim-stats{grid-template-columns:1fr;}
+}
+@media(max-width:700px){
+  .svg-fig{max-width:100%;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.img-ph-desc,.img-ph-prompt-txt{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){
+  .toc-back{padding:22px 20px;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Special Report</p>
+    <h1>あなたの注意は、<em>競売</em>にかけられている</h1>
+    <p class="cover-deck">1971年、ひとりの経済学者が予言した。情報が溢れる世界では、希少資源は情報そのものではなく、それを受け取る側の「注意」になる、と。半世紀後、その予言は私たちの日常になった。</p>
+    <div class="cover-byline"><span>科学と文化</span><span>行動心理学</span><span>社会心理学</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1971</span>
+      <p class="est-event">ハーバート・サイモンが論文 "Designing Organizations for an Information-Rich World" で「情報の豊かさは注意の貧しさを生む」と定式化。</p>
+      <p class="est-context">同年、ニクソン大統領がドルと金の兌換を停止（ニクソン・ショック）。通貨は「信用」という抽象に移行した——注意もまた、抽象の通貨になる時代の幕開けだった。</p>
+    </div>
+    <p class="cover-aside"><strong>隣接トピック:</strong> スキナー箱（可変比率強化）、確証バイアス（フィルターバブル）、スキューモーフィズム（UIの認知操作）</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>朝、目が覚める。枕元のスマートフォンに手を伸ばす。ロック画面に並ぶ通知を上から順に確認する。メール、SNS、ニュースアプリ、クーポン。「あとでちゃんと読もう」と思いながらアプリを開く。気がつくと15分が過ぎている。まだベッドの中にいる。</p>
+    <p>この光景はあなただけのものではない。世界中の何十億人が、同じ朝を繰り返している。毎朝の最初の15分は、もはや自分の意思で始まらない。画面の向こう側にいる誰かが設計した導線に乗って、一日が動き出す。</p>
+    <p>あなたの注意は、あなたが思うよりずっと前から商品になっている。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 予備知識不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 18 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-14</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-14</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">あなたの1日に降り注ぐ「注意の入札」を可視化し、<strong>自分で選んだ時間と、選ばされた時間の比率</strong>を体験する。</p>
+  </div>
+</div>
+
+<!-- ═══════════ ARTICLE ═══════════ -->
+<div class="article">
+<div class="article-main">
+
+<!-- ══ 背景セクション ══ -->
+<div class="sec-rule fade">
+  <span class="sec-label">背景を知る</span>
+  <div class="sec-line"></div>
+</div>
+
+<h2 class="fade">誰も聞いていなかった予言</h2>
+
+<p class="body-text fade">1971年、<span class="tip" onclick="toggleTip(this)">ハーバート・サイモン<span class="tip-box"><strong>Herbert A. Simon（1916–2001）</strong><br>アメリカの政治学者・認知心理学者・経済学者。人間の合理性には限界があるとする「限定合理性」の理論でノーベル経済学賞を受賞。人工知能研究の先駆者でもある。</span></span>は、ジョンズ・ホプキンス大学出版の論集に短い論文を寄せた。タイトルは地味だ——「情報豊富な世界のための組織設計」。だが、この論文に書かれた一節は、半世紀後の私たちの日常を正確に描いている。</p>
+
+<div class="quote-block fade">
+  <p class="quote-en">"A wealth of information creates a poverty of attention and a need to allocate that attention efficiently among the overabundance of information sources that might consume it."</p>
+  <p class="quote-ja">「情報の豊かさは注意の貧しさを生み、溢れる情報源に対して注意を効率的に配分する必要を生じさせる。」</p>
+  <p class="quote-attr">— Herbert A. Simon, "Designing Organizations for an Information-Rich World" (1971)</p>
+</div>
+
+<p class="body-text fade">サイモンの論理は単純だった。情報が増えれば増えるほど、それを処理する側の資源——つまり人間の注意——が足りなくなる。経済学の基本原理として、希少な資源には価値が生まれる。だから<strong>注意こそが新しい希少資源になる</strong>。1971年の時点で、テレビのチャンネルは3つか4つ。インターネットは影も形もない。それでもサイモンには見えていた。</p>
+
+<!-- SVG: 情報量 vs 注意量 -->
+<svg class="svg-fig fade" viewBox="0 0 800 540" style="max-width:680px;margin:28px auto;display:block;">
+  <rect x="0" y="0" width="800" height="540" fill="#f3efe6" rx="4"/>
+  <text x="400" y="34" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" font-weight="700" fill="#3d3020" letter-spacing=".08em">情報量と注意の関係</text>
+  <!-- axes -->
+  <line x1="100" y1="60" x2="100" y2="400" stroke="#c8bfaa" stroke-width="1"/>
+  <line x1="100" y1="400" x2="720" y2="400" stroke="#c8bfaa" stroke-width="1"/>
+  <!-- Y label -->
+  <text x="30" y="230" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" transform="rotate(-90,30,230)">相対量</text>
+  <!-- X labels -->
+  <text x="160" y="424" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">1970</text>
+  <text x="310" y="424" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">1990</text>
+  <text x="460" y="424" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">2010</text>
+  <text x="620" y="424" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">2025</text>
+  <!-- info curve (exponential growth) -->
+  <path d="M160,360 Q310,340 460,220 T690,85" fill="none" stroke="#8b1a1a" stroke-width="2.5"/>
+  <text x="718" y="72" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="15" fill="#8b1a1a" font-weight="700">情報量 ↑</text>
+  <!-- attention line (flat — human attention is a fixed biological constant) -->
+  <line x1="160" y1="250" x2="680" y2="250" stroke="#3d3020" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <text x="718" y="242" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="15" fill="#3d3020" font-weight="700">注意の総量 —</text>
+  <!-- per-item attention (inverse decay) -->
+  <path d="M160,130 Q230,200 320,290 Q430,360 600,385 T690,390" fill="none" stroke="#b8860b" stroke-width="2.5"/>
+  <text x="718" y="380" text-anchor="end" font-family="Source Sans 3,sans-serif" font-size="15" fill="#b8860b" font-weight="700">1件に割ける注意 ↓</text>
+  <!-- Simon 1971 marker -->
+  <line x1="175" y1="60" x2="175" y2="400" stroke="#8b1a1a" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <circle cx="175" cy="360" r="5" fill="#8b1a1a"/>
+  <text x="185" y="80" font-family="Source Sans 3,sans-serif" font-size="14" fill="#8b1a1a" font-weight="700">1971</text>
+  <text x="185" y="98" font-family="Source Sans 3,sans-serif" font-size="14" fill="#8b1a1a">サイモンの予言</text>
+  <!-- annotation (moved below chart to avoid overlap) -->
+  <rect x="100" y="450" width="620" height="72" rx="3" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+  <text x="410" y="474" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020">情報は増え続けるが、注意の総量は生物学的に一定（1日 ≒ 16時間）。</text>
+  <text x="410" y="496" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020">だから1件あたりに割ける注意はどんどん薄まる。</text>
+  <text x="410" y="516" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#8b1a1a" font-weight="700">注意は希少資源になった。</text>
+</svg>
+
+<p class="body-text fade">だが、当時これを聞いている人間はほとんどいなかった。情報が足りないことが問題だった時代に、「情報が多すぎることが問題になる」と言われても、ぴんとくるはずがない。サイモンの予言が現実になるまでに、四半世紀がかかった。</p>
+
+<!-- 人物ブロック: Simon -->
+<div class="person-block fade"><!-- Photo: Rochester Institute of Technology, 1981 / Public Domain. Source: https://commons.wikimedia.org/wiki/File:Herbert_Simon_close-up_(cropped).jpg --><div class="person-block-img"><img src="./person_simon.jpg" alt="ハーバート・サイモン"></div>
+<div class="person-block-body">
+<p class="person-block-name">ハーバート・A・サイモン</p>
+<p class="person-block-role">Herbert Alexander Simon, 1916–2001</p>
+<p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%8F%E3%83%BC%E3%83%90%E3%83%BC%E3%83%88%E3%83%BB%E3%82%B5%E3%82%A4%E3%83%A2%E3%83%B3" target="_blank" rel="noopener">Wikipedia</a></p>
+<p class="person-block-desc">カーネギーメロン大学教授。「人間は完全に合理的には判断できない」とする限定合理性の理論で1978年ノーベル経済学賞を受賞。認知科学・人工知能・組織論など多分野を横断し、「情報の豊かさは注意の貧しさを生む」という一節で注意経済の概念を初めて定式化した。</p>
+<p class="person-block-credit">Photo: Rochester Institute of Technology, 1981 / Public Domain</p>
+</div></div>
+
+<hr class="art-rule">
+
+<h2 class="fade">通貨になった注意</h2>
+
+<p class="body-text fade">1997年、物理学者の<span class="tip" onclick="toggleTip(this)">マイケル・ゴールドハーバー<span class="tip-box"><strong>Michael Goldhaber</strong><br>理論物理学の博士号を持つアメリカの思想家。1990年代後半に「注意経済」の概念を独自に発展させ、貨幣に代わる新しい経済の通貨は人間の注意であると主張した。</span></span>が『Wired』誌に一篇の記事を発表した。タイトルは "Attention Shoppers!"——<span class="tip" onclick="toggleTip(this)">アテンション・ショッパーズ!<span class="tip-box"><strong>"Attention, shoppers!"</strong><br>アメリカのスーパーマーケットで店内放送が「ご来店のお客さまへお知らせいたします」と呼びかけるときの決まり文句。"Attention"を「ご注目ください」の意味と「注意そのもの」の意味に掛けたダブルミーニングで、消費社会のアイロニーが込められている。</span></span>。ゴールドハーバーはサイモンの洞察をさらに一歩押し進めた。新しい経済の通貨は金ではなく注意になる、と。</p>
+
+<div class="quote-block fade">
+  <p class="quote-en">"The currency of the New Economy won't be money, but attention — A radical theory of value."</p>
+  <p class="quote-ja">「新しい経済の通貨は金ではなく、注意になるだろう——価値についてのラディカルな理論。」</p>
+  <p class="quote-attr">— Michael Goldhaber, "Attention Shoppers!", Wired (1997)</p>
+</div>
+
+<p class="body-text fade">ゴールドハーバーの主張が鋭かったのは、インターネットの本質を見抜いた点にある。ネット上で情報は無限に複製できる。だからこそ情報そのものに経済的価値はなくなり、希少で有限な<strong>人間の注意</strong>だけが価値を持つ。広告モデルの正体はまさにこれだった。Googleは検索結果を無料で提供する。その代わりに、検索する人の注意を広告主に売る。Facebookはフィード上のつながりを無料で提供する。その代わりに、スクロールする人の注意を売る。</p>
+
+<!-- 人物ブロック: Goldhaber (画像なし) -->
+<div class="person-block fade" style="grid-template-columns:1fr;">
+<div class="person-block-body" style="border-left:none;">
+<p class="person-block-name">マイケル・ゴールドハーバー</p>
+<p class="person-block-role">Michael H. Goldhaber</p>
+<p class="person-block-desc">理論物理学者からメディア理論家に転じた異色の思想家。1997年の『Wired』誌記事で「注意経済」を独自の経済理論として展開。貨幣が不要になる未来まで予測したが、実際にはプラットフォーム企業が注意を貨幣に換金するビジネスモデルを確立した。2021年に『ニューヨーク・タイムズ』のインタビューで「自分の理論が現実になったことを恐ろしく思う」と語った。</p>
+</div></div>
+
+<!-- SVG: Hookモデル循環図 -->
+<svg class="svg-fig fade" viewBox="0 0 800 500" style="max-width:680px;margin:28px auto;display:block;">
+  <rect x="0" y="0" width="800" height="500" fill="#f3efe6" rx="4"/>
+  <text x="400" y="38" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" font-weight="600" fill="#7a6a55" letter-spacing=".1em">Hook モデル — 習慣形成の4段階</text>
+  <!-- boxes -->
+  <rect x="300" y="70" width="200" height="70" rx="4" fill="#8b1a1a"/>
+  <text x="400" y="100" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="18" fill="white" font-weight="600">① トリガー</text>
+  <text x="400" y="124" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#e8c8c8">通知・赤バッジ・振動</text>
+  <rect x="560" y="210" width="200" height="70" rx="4" fill="#3d3020"/>
+  <text x="660" y="240" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="18" fill="white" font-weight="600">② 行動</text>
+  <text x="660" y="264" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#c8bfaa">タップ・スワイプ・スクロール</text>
+  <rect x="300" y="350" width="200" height="70" rx="4" fill="#8b1a1a"/>
+  <text x="400" y="380" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="18" fill="white" font-weight="600">③ 可変報酬</text>
+  <text x="400" y="404" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#e8c8c8">いいね数・新着コンテンツ</text>
+  <rect x="40" y="210" width="200" height="70" rx="4" fill="#3d3020"/>
+  <text x="140" y="240" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="18" fill="white" font-weight="600">④ 投資</text>
+  <text x="140" y="264" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#c8bfaa">投稿・フォロー・プロフ設定</text>
+  <!-- arrows (① top → ② right → ③ bottom → ④ left → ① top) -->
+  <text x="520" y="160" font-family="Source Sans 3,sans-serif" font-size="28" fill="#8b1a1a" font-weight="700">↘</text>
+  <text x="520" y="350" font-family="Source Sans 3,sans-serif" font-size="28" fill="#8b1a1a" font-weight="700">↙</text>
+  <text x="260" y="350" font-family="Source Sans 3,sans-serif" font-size="28" fill="#8b1a1a" font-weight="700">↖</text>
+  <text x="260" y="160" font-family="Source Sans 3,sans-serif" font-size="28" fill="#8b1a1a" font-weight="700">↗</text>
+  <!-- center label -->
+  <text x="400" y="240" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#8b1a1a" font-weight="600">繰り返し</text>
+  <text x="400" y="262" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">（習慣の固着）</text>
+  <!-- Eyal credit -->
+  <text x="400" y="478" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#b0a090">Nir Eyal, Hooked (2014) に基づく</text>
+</svg>
+
+<!-- 誤解あるある -->
+<div class="misconception fade">
+  <div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+  <div class="misconception-body">
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <p class="mis-label wrong">誤解</p>
+        <p class="mis-text">「自分はSNSに依存していない。やめようと思えばいつでもやめられる」</p>
+      </div>
+      <div class="misconception-a">
+        <p class="mis-label right">実際は</p>
+        <p class="mis-text">通知音が鳴らなくても、無意識にスマホを確認する回数は平均205回/日。「やめられる」かどうかは問題の核心ではなく、「チェックしたくなる設計」が問題の核心である。</p>
+      </div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <p class="mis-label wrong">誤解</p>
+        <p class="mis-text">「広告が嫌なら有料版にすればいい。問題は解決する」</p>
+      </div>
+      <div class="misconception-a">
+        <p class="mis-label right">実際は</p>
+        <p class="mis-text">有料版でも無限スクロール、アルゴリズム推薦、通知は残る。注意を引き留める設計は広告モデルだけでなく、エンゲージメント指標そのものに組み込まれている。</p>
+      </div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <p class="mis-label wrong">誤解</p>
+        <p class="mis-text">「テレビ時代も同じことを言われていた。今さら騒ぐことではない」</p>
+      </div>
+      <div class="misconception-a">
+        <p class="mis-label right">実際は</p>
+        <p class="mis-text">テレビは放送時刻に縛られていたが、スマートフォンは24時間どこでもアクセスできる。さらにアルゴリズムが個人の嗜好を学習して注意を引く精度が桁違いに高い。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ══ 体験セクション ══ -->
+<div class="sec-rule fade">
+  <span class="sec-label">体験する</span>
+  <div class="sec-line"></div>
+</div>
+
+<h2 class="fade">あなたの注意の値段</h2>
+
+<p class="body-text fade">少しだけ予備知識が必要だ。広告業界には<strong>リアルタイム入札（RTB）</strong>という仕組みが実在する。あなたがウェブページを開いた瞬間から、そのページに表示される広告枠をめぐって、ミリ秒単位で複数の広告主が値段を競り合う。勝った広告主だけがあなたの視界に広告を出せる。これは比喩ではなく、毎日何十億回も本当に起きている。</p>
+
+<p class="body-text fade">同じ考え方を、広告だけでなく<em>あなたの1日全体</em>に拡張したらどうなるか。SNS、通知、動画、メール——それぞれがあなたの注意をめぐる「入札者」だと考える。以下のシミュレーターでは、この比喩で1日を分解してみる。数字を入力してほしい。よくわからなければデフォルト値のままでいい。平均的な成人の数字が入っている。</p>
+
+<!-- SIMULATOR -->
+<div class="sim-wrap fade" id="simBlock">
+  <div class="sim-header">
+    <div class="sim-header-left">
+      <span class="sim-header-icon">₳</span>
+      <div>
+        <div class="sim-hl">Attention Auction Simulator</div>
+        <div class="sim-subtitle">あなたの1日を「注意の入札」として可視化する</div>
+      </div>
+    </div>
+    <span class="sim-phase">Input → Visualize</span>
+  </div>
+  <div class="sim-body">
+    <div class="sim-inputs">
+      <div class="sim-group-label">1. 起きている時間</div>
+      <div class="sim-field">
+        <label>起床時刻<span class="sim-bench">平均 07:12</span></label>
+        <input type="time" id="simWake" value="07:00">
+      </div>
+      <div class="sim-field">
+        <label>就寝時刻<span class="sim-bench">平均 23:24</span></label>
+        <input type="time" id="simSleep" value="23:30">
+      </div>
+      <div class="sim-group-label">2. デジタル活動</div>
+      <div class="sim-field">
+        <label>SNS利用（分/日）<span class="sim-bench">平均 90</span></label>
+        <input type="number" id="simSns" value="90" min="0" max="720">
+      </div>
+      <div class="sim-field">
+        <label>動画視聴（分/日）<span class="sim-bench">平均 60</span></label>
+        <input type="number" id="simVideo" value="60" min="0" max="720">
+      </div>
+      <div class="sim-field">
+        <label>メール/チャット確認（分/日）<span class="sim-bench">平均 45</span></label>
+        <input type="number" id="simEmail" value="45" min="0" max="720">
+      </div>
+      <div class="sim-field">
+        <label>通知数（件/日）<span class="sim-bench">平均 46</span></label>
+        <input type="number" id="simNotif" value="46" min="0" max="500">
+      </div>
+    </div>
+    <button class="sim-btn" onclick="runSim()">計算する<span class="sim-btn-arrow">→</span></button>
+
+    <div class="sim-result" id="simResult">
+      <div class="sim-warning" id="simWarning"></div>
+      <!-- 24h bar chart -->
+      <p class="sim-result-head">あなたの24時間</p>
+      <div class="sim-chart" id="simChart"></div>
+      <div class="sim-legend" id="simLegend"></div>
+
+      <!-- Stats -->
+      <div class="sim-stats">
+        <div class="sim-stat">
+          <span class="sim-stat-n" id="statBids">—</span>
+          <span class="sim-stat-l">入札数/日</span>
+        </div>
+        <div class="sim-stat">
+          <span class="sim-stat-n" id="statChosen">—</span>
+          <span class="sim-stat-l">自分で選んだ</span>
+        </div>
+        <div class="sim-stat">
+          <span class="sim-stat-n" id="statValue">—</span>
+          <span class="sim-stat-l">注意の市場価値</span>
+        </div>
+      </div>
+
+      <!-- Comparison -->
+      <div class="sim-compare">
+        <div class="sim-compare-head">1971年との比較</div>
+        <div class="sim-compare-row">
+          <div class="sim-compare-label">入札者数</div>
+          <div class="sim-compare-val">1971年: 新聞1紙+ラジオ+TV 3局 ≈ <strong>5</strong></div>
+          <div class="sim-compare-val">現在: アプリ+Web+通知+広告 ≈ <strong id="statBidders">—</strong></div>
+        </div>
+        <div class="sim-compare-row">
+          <div class="sim-compare-label">1日の接触回数</div>
+          <div class="sim-compare-val">1971年: 朝刊1回+夕方ニュース ≈ <strong>3回</strong></div>
+          <div class="sim-compare-val">現在: <strong id="statTouches">—</strong></div>
+        </div>
+        <div class="sim-compare-row">
+          <div class="sim-compare-label">復帰コスト</div>
+          <div class="sim-compare-val">1971年: 新聞を閉じるだけ ≈ <strong>0分</strong></div>
+          <div class="sim-compare-val">現在: 通知割込み1件 ≈ <strong>25分</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="body-text fade">この数字を見て、驚く人もいれば「そんなものだろう」と思う人もいるだろう。だがどちらの反応であっても、ひとつの事実は変わらない。<strong>あなたの注意の大部分は、あなた自身ではなく、アルゴリズムと通知設計が割り振っている</strong>。1971年のサイモンが言った「注意を効率的に配分する必要」は、いつのまにか「あなたに代わって誰かが配分する仕組み」になった。</p>
+
+<hr class="art-rule">
+
+<!-- ══ メカニズムセクション ══ -->
+<div class="sec-rule fade">
+  <span class="sec-label">なぜそうなるか</span>
+  <div class="sec-line"></div>
+</div>
+
+<h2 class="fade">注意を奪う技術の三層構造</h2>
+
+<p class="body-text fade">なぜ私たちはスマートフォンから目を離せないのか。その答えは個人の意志力の問題ではなく、意志力を迂回するよう設計された技術にある。スタンフォード大学の<span class="tip" onclick="toggleTip(this)">B.J.フォッグ<span class="tip-box"><strong>B.J. Fogg</strong><br>スタンフォード大学行動デザイン研究所の創設者。コンピュータが人間の行動をどう変えるかを研究する「説得技術」の先駆者。Fogg行動モデル（B=MAP）を提唱した。</span></span>が2003年に提唱した<span class="tip" onclick="toggleTip(this)">説得技術<span class="tip-box"><strong>Persuasive Technology</strong><br>コンピュータやデジタル製品を使って、人の態度や行動を変えることを目的とする技術の総称。スマートフォンアプリの多くに応用されている。</span></span>のフレームワークをもとに、注意を奪うメカニズムを三層に分解する。</p>
+
+<!-- SVG: 説得技術 3層 (Fogg Model) -->
+<svg class="svg-fig fade" viewBox="0 0 800 420" style="max-width:680px;margin:28px auto;display:block;">
+  <rect x="0" y="0" width="800" height="420" fill="#f3efe6" rx="4"/>
+  <text x="400" y="34" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" font-weight="700" fill="#3d3020" letter-spacing=".08em">Fogg行動モデル — 行動を起こすための3条件</text>
+  <text x="400" y="54" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" fill="#7a6a55" letter-spacing=".08em">B=MAP（Behavior = Motivation × Ability × Prompt）</text>
+  <!-- 3 boxes -->
+  <rect x="30" y="78" width="240" height="260" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+  <rect x="30" y="78" width="240" height="48" rx="4" fill="#8b1a1a"/>
+  <text x="150" y="108" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="18" fill="white" font-weight="600">動機 (Motivation)</text>
+  <text x="150" y="156" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#3d3020" font-weight="600">不安・好奇心・社会的承認</text>
+  <text x="150" y="188" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#7a6a55">「みんな見ているかも」</text>
+  <text x="150" y="214" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#7a6a55">「見逃したくない」</text>
+  <text x="150" y="240" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#7a6a55">「いいねが来てるかも」</text>
+  <text x="150" y="276" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#8b1a1a" font-weight="700">→ FOMO</text>
+  <text x="150" y="320" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#b0a090">（取り逃し不安）</text>
+
+  <rect x="280" y="78" width="240" height="260" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+  <rect x="280" y="78" width="240" height="48" rx="4" fill="#3d3020"/>
+  <text x="400" y="108" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="18" fill="white" font-weight="600">能力 (Ability)</text>
+  <text x="400" y="156" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#3d3020" font-weight="600">行動の容易さを極限まで下げる</text>
+  <text x="400" y="188" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#7a6a55">スワイプ1回で閲覧</text>
+  <text x="400" y="214" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#7a6a55">タップ1回でいいね</text>
+  <text x="400" y="240" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#7a6a55">無限スクロール</text>
+  <text x="400" y="276" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#8b1a1a" font-weight="700">→ 摩擦ゼロ設計</text>
+  <text x="400" y="320" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#b0a090">（やめるほうが難しい）</text>
+
+  <rect x="530" y="78" width="240" height="260" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+  <rect x="530" y="78" width="240" height="48" rx="4" fill="#8b1a1a"/>
+  <text x="650" y="108" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="18" fill="white" font-weight="600">促し (Prompt)</text>
+  <text x="650" y="156" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#3d3020" font-weight="600">行動を引き起こすきっかけ</text>
+  <text x="650" y="188" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#7a6a55">プッシュ通知</text>
+  <text x="650" y="214" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#7a6a55">赤いバッジ（未読数）</text>
+  <text x="650" y="240" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#7a6a55">バイブレーション</text>
+  <text x="650" y="276" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#8b1a1a" font-weight="700">→ 割込みの自動化</text>
+  <text x="650" y="320" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#b0a090">（意識的な選択を迂回）</text>
+
+  <!-- bottom formula -->
+  <rect x="150" y="360" width="500" height="44" rx="4" fill="#1a1208"/>
+  <text x="400" y="388" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="17" fill="white" font-weight="600" letter-spacing=".06em">動機 × 能力 × 促し ＝ 行動の発生（注意の奪取）</text>
+</svg>
+
+<p class="body-text fade">この三つが同時に揃ったとき、人は「自分で選んだ」と感じながら、実際には<em>設計された行動</em>を取っている。動機がなければ通知を無視できる。行動が面倒なら途中でやめる。きっかけがなければそもそも始まらない。だがアプリの設計者は三つすべてを最大化するように製品を作り込む。</p>
+
+<p class="body-text fade">この設計が十数年にわたって効き続けた結果、何が起きたか。グロリア・マークの研究チームは2004年から2021年まで、オフィスワーカーが1つの画面に集中している時間を計測し続けた。結果は衝撃的だった。<strong>2004年には平均2分30秒あった集中持続時間が、2021年には47秒にまで縮んでいた</strong>。約3分の1。脳が「新しいもの」に耐えられる時間は、20年足らずで三分の一に縮退した。これは設計が勝ち続けた証拠であり、同時に、人間の認知が変形された証拠でもある。</p>
+
+<!-- SVG: 集中持続時間の推移 -->
+<svg class="svg-fig fade" viewBox="0 0 800 340" style="max-width:680px;margin:28px auto;display:block;">
+  <rect x="0" y="0" width="800" height="340" fill="#f3efe6" rx="4"/>
+  <text x="400" y="34" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" font-weight="700" fill="#3d3020" letter-spacing=".08em">1画面への平均集中持続時間の推移</text>
+  <text x="400" y="54" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" fill="#7a6a55">Gloria Mark チームによる17年間の計測（単位: 秒）</text>
+  <!-- baseline -->
+  <line x1="100" y1="260" x2="720" y2="260" stroke="#c8bfaa" stroke-width="1"/>
+  <!-- bar 1: 2004 — 150s -->
+  <rect x="160" y="110" width="100" height="150" fill="#3d3020"/>
+  <text x="210" y="100" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#3d3020" font-weight="700">2分30秒</text>
+  <text x="210" y="82" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">（150秒）</text>
+  <text x="210" y="284" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#3d3020" font-weight="600">2004</text>
+  <text x="210" y="306" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" fill="#7a6a55">スマホ以前</text>
+  <!-- bar 2: 2012 — 75s -->
+  <rect x="360" y="185" width="100" height="75" fill="#8b1a1a" opacity="0.85"/>
+  <text x="410" y="175" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#8b1a1a" font-weight="700">約1分15秒</text>
+  <text x="410" y="157" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">（75秒）</text>
+  <text x="410" y="284" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#3d3020" font-weight="600">2012</text>
+  <text x="410" y="306" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" fill="#7a6a55">スマホ普及期</text>
+  <!-- bar 3: 2021 — 47s -->
+  <rect x="560" y="213" width="100" height="47" fill="#8b1a1a"/>
+  <text x="610" y="203" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#8b1a1a" font-weight="700">47秒</text>
+  <text x="610" y="185" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">（−68.7%）</text>
+  <text x="610" y="284" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#3d3020" font-weight="600">2021</text>
+  <text x="610" y="306" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" fill="#7a6a55">SNS常時接続</text>
+  <!-- trend arrow -->
+  <path d="M270,160 Q410,180 550,225" fill="none" stroke="#8b1a1a" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="548,220 562,228 550,230" fill="#8b1a1a"/>
+</svg>
+
+<p class="body-text fade">47秒。これは、あなたが本を1段落読み終える前に、無意識に別の画面を見てしまうことを意味する。<em>「集中力が落ちた」のではない。集中できる構造が壊された</em>のだ。しかもこの劣化は、本人が気づかないうちに進む。注意経済が奪っているのは、日々の時間だけではなく、<strong>長時間ひとつのことを考えられる脳</strong>そのものである。</p>
+
+<!-- ステップ図解 -->
+<div class="steps-wrap fade">
+  <div class="steps-head">通知1件が奪う25分のメカニズム</div>
+  <div class="step-card" id="sc1">
+    <div class="step-hd" onclick="tog(1)">
+      <div class="step-nb">1</div>
+      <div class="step-tw"><p class="step-title">割り込み</p><p class="step-sub">通知が画面に表示される</p></div>
+      <span class="step-arr">▼</span>
+    </div>
+    <div class="step-body">
+      <p>スマートフォンのロック画面、またはアプリ内通知として表示される。この時点で作業中の思考は<strong>中断</strong>される。脳は新しい刺激に対して自動的に注意を向けるよう進化しており、意志力で抑えるのは極めて難しい。</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc2">
+    <div class="step-hd" onclick="tog(2)">
+      <div class="step-nb">2</div>
+      <div class="step-tw"><p class="step-title">文脈スイッチ</p><p class="step-sub">作業記憶がクリアされる</p></div>
+      <span class="step-arr">▼</span>
+    </div>
+    <div class="step-body">
+      <p>通知を確認した瞬間、脳の<span class="tip" onclick="toggleTip(this);event.stopPropagation();">ワーキングメモリ<span class="tip-box"><strong>Working Memory（作業記憶）</strong><br>今まさに取り組んでいる課題の情報を一時的に保持する脳の仕組み。容量が小さく、割り込みが入ると簡単に内容が失われる。</span></span>が上書きされる。直前まで考えていた「あの段落の続き」「あの数字の意味」は、短期記憶から押し出される。</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc3">
+    <div class="step-hd" onclick="tog(3)">
+      <div class="step-nb">3</div>
+      <div class="step-tw"><p class="step-title">注意残渣</p><p class="step-sub">元の作業に戻っても集中が戻らない</p></div>
+      <span class="step-arr">▼</span>
+    </div>
+    <div class="step-body">
+      <p>カリフォルニア大学アーバイン校の<span class="tip" onclick="toggleTip(this);event.stopPropagation();">グロリア・マーク<span class="tip-box"><strong>Gloria Mark</strong><br>カリフォルニア大学アーバイン校の情報学教授。デジタル環境における注意の中断と回復のメカニズムを20年以上研究。著書に『Attention Span』（2023）がある。</span></span>の研究によれば、中断後に元のタスクに完全に集中し直すまでに<em>平均25分23秒</em>かかる。通知の内容がたとえ2秒で読めるものでも、認知的な回復コストは同じだけかかる。</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc4">
+    <div class="step-hd" onclick="tog(4)">
+      <div class="step-nb">4</div>
+      <div class="step-tw"><p class="step-title">連鎖</p><p class="step-sub">1件の通知が次の行動を誘発する</p></div>
+      <span class="step-arr">▼</span>
+    </div>
+    <div class="step-body">
+      <p>通知を見た人の多くは「ついでに」他のアプリも確認する。メールを開いたらSNSも見る。SNSを見たらニュースも見る。<strong>1件の通知が平均3.2件の追加アクション</strong>を生むというデータもある。注意の流出は連鎖的に拡大する。</p>
+    </div>
+  </div>
+  <div class="step-summary">
+    <p><strong>1日46件の通知 × 25分 ＝ 約19時間分の認知コスト。</strong>もちろん実際には並行処理や無視もあるが、「通知は無料」という認識がいかに間違っているかを、この数字は示している。</p>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ══ 歴史セクション ══ -->
+<div class="sec-rule fade">
+  <span class="sec-label">たどる</span>
+  <div class="sec-line"></div>
+</div>
+
+<h2 class="fade">注意をめぐる半世紀</h2>
+
+<div class="timeline fade">
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1971</p>
+    <p class="tl-title">サイモンの定式化</p>
+    <p class="tl-desc">Herbert A. Simon が「情報の豊かさは注意の貧しさを生む」と書く。経済学として注意の希少性を初めて理論化。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1993</p>
+    <p class="tl-title">フランクの注意経済論</p>
+    <p class="tl-desc">ウィーン工科大学の Georg Franck が雑誌『Merkur』で注意の経済を社会理論として展開。貨幣と並ぶ「第二の経済循環」としての注意を論じた。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1997</p>
+    <p class="tl-title">"Attention Shoppers!"</p>
+    <p class="tl-desc">Michael Goldhaber が『Wired』誌で「新経済の通貨は金ではなく注意になる」と宣言。インターネット時代の到来を見据えた予言的記事。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2003</p>
+    <p class="tl-title">説得技術の理論化</p>
+    <p class="tl-desc">B.J. Fogg が『Persuasive Technology』を刊行。コンピュータが人の行動を変える仕組みを体系化。スタンフォード説得技術研究所を設立。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2014</p>
+    <p class="tl-title">Hooked モデル</p>
+    <p class="tl-desc">Nir Eyal が『Hooked』を刊行。トリガー→行動→可変報酬→投資の4段階で習慣を形成するモデルを提唱。Fogg研究室の影響を受けた弟子による実践的マニュアル。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2016</p>
+    <p class="tl-title">The Attention Merchants</p>
+    <p class="tl-desc">コロンビア大学の Tim Wu が19世紀の1セント新聞からFacebookまで、注意の売買の通史を描く。注意経済が市民社会に及ぼす影響を法学の視点から警告。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2018</p>
+    <p class="tl-title">Center for Humane Technology</p>
+    <p class="tl-desc">Tristan Harris らがCHT を設立。「人間性に配慮したテクノロジー」を提唱し、注意経済のビジネスモデルそのものを批判。元テック企業社員による内部告発として注目を集めた。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2020</p>
+    <p class="tl-title">The Social Dilemma</p>
+    <p class="tl-desc">Netflixドキュメンタリーが全世界で公開。元テック企業の幹部たちがアルゴリズムの設計意図を証言。注意経済の問題が一般層に広く知られるきっかけとなった。</p>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ══ つまりセクション ══ -->
+<div class="sec-rule fade">
+  <span class="sec-label">つまり</span>
+  <div class="sec-line"></div>
+</div>
+
+<h2 class="fade">入札の嵐のなかで</h2>
+
+<p class="body-text fade">サイモンの予言は、予言としてはもう終わっている。私たちはまさにその世界に住んでいる。情報は無限にあり、注意は有限で、その有限な注意をめぐって無数の企業が入札合戦を繰り広げている。</p>
+
+<div class="pull fade">
+  <p class="pull-q">"The currency of the New Economy won't be money, but <em>attention</em>."</p>
+  <p class="pull-ja">新しい経済の通貨は金ではなく、<em style="color:#8b1a1a;font-style:normal;font-weight:600;">注意</em>になるだろう。</p>
+  <p class="pull-attr">— Michael Goldhaber, 1997</p>
+</div>
+
+<p class="body-text fade">だが、ここで問題を「テクノロジー企業が悪い」と要約するのは簡単すぎる。注意を奪う設計はたしかに存在する。だがその設計が機能するのは、人間の脳が<span class="tip" onclick="toggleTip(this)">新奇性バイアス<span class="tip-box"><strong>新奇性バイアス（Novelty Bias）</strong><br>新しい情報や刺激に自動的に注意を向ける脳の傾向。進化的には生存に必要だったが、デジタル環境では無限の新着コンテンツに対して無防備になる。</span></span>を持っているからだ。新しい情報に反応するよう進化した脳を、無限に「新しいもの」を供給する環境に置いたとき、何が起きるか。答えは明らかだ。</p>
+
+<p class="body-text fade">問題の根は二重にある。<strong>設計者は注意を引く仕組みを作り、脳はその仕組みに反応するようにできている。</strong>どちらか一方だけを責めても、構造は変わらない。</p>
+
+<p class="body-text fade">そしてこの構造は、すでに個人の時間泥棒の話を越えて広がっている。エンゲージメント最大化のアルゴリズムは、最も注意を引きやすいコンテンツ——すなわち<strong>怒り・恐怖・分断</strong>——を優先的に配信する。マサチューセッツ工科大学の2018年の研究（Vosoughi et al., Science）は、Twitter上で<em>偽情報は真実の情報より約6倍速く1500人に到達する</em>ことを示した。アルゴリズムは正しさを選ばない。<strong>滞在時間を伸ばすもの</strong>を選ぶ。その結果、選挙、ワクチン、戦争、あらゆる公共議題の前提となる事実認識が、注意入札の副産物として歪んでいく。</p>
+
+<p class="body-text fade">2024年、社会心理学者のジョナサン・ハイトは『The Anxious Generation』のなかで、同じ構造が子どもの精神に与える帰結を記述した。スマートフォンを小学校高学年から日常的に手にした世代は、うつ・不安・自傷・自殺企図の発生率が2010年前後から急増している。とくに思春期の女子で顕著に跳ね上がった。ハイトはこれを「phone-based childhood（スマートフォンに依存した子ども時代）」と呼び、遊び・身体接触・直接の会話が注意経済のスクロールに置き換わった影響の大きさを警告した。</p>
+
+<!-- SVG: 実害の三層 -->
+<svg class="svg-fig fade" viewBox="0 0 800 280" style="max-width:680px;margin:28px auto;display:block;">
+  <rect x="0" y="0" width="800" height="280" fill="#f3efe6" rx="4"/>
+  <text x="400" y="34" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" font-weight="700" fill="#3d3020" letter-spacing=".08em">注意経済の被害は三層に広がる</text>
+  <!-- tier 1: 個人 -->
+  <rect x="50" y="70" width="220" height="160" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+  <rect x="50" y="70" width="220" height="40" rx="4" fill="#3d3020"/>
+  <text x="160" y="95" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="white" font-weight="700">① 個人</text>
+  <text x="160" y="135" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#3d3020" font-weight="600">時間と集中力の劣化</text>
+  <text x="160" y="163" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">1日5時間の画面時間</text>
+  <text x="160" y="185" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">集中持続 2分30秒→47秒</text>
+  <text x="160" y="207" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">通知1件=25分の復帰コスト</text>
+  <!-- arrow 1 -->
+  <text x="292" y="160" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="24" fill="#8b1a1a" font-weight="700">→</text>
+  <!-- tier 2: 社会 -->
+  <rect x="310" y="70" width="220" height="160" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+  <rect x="310" y="70" width="220" height="40" rx="4" fill="#8b1a1a"/>
+  <text x="420" y="95" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="white" font-weight="700">② 社会</text>
+  <text x="420" y="135" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#3d3020" font-weight="600">偽情報の加速と分断</text>
+  <text x="420" y="163" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">偽情報は真実の6倍速で拡散</text>
+  <text x="420" y="185" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">怒り・恐怖コンテンツの優先</text>
+  <text x="420" y="207" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">フィルターバブルの強化</text>
+  <!-- arrow 2 -->
+  <text x="552" y="160" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="24" fill="#8b1a1a" font-weight="700">→</text>
+  <!-- tier 3: 文明 -->
+  <rect x="570" y="70" width="220" height="160" rx="4" fill="white" stroke="#c8bfaa" stroke-width="1"/>
+  <rect x="570" y="70" width="220" height="40" rx="4" fill="#1a1208"/>
+  <text x="680" y="95" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="white" font-weight="700">③ 次世代・民主主義</text>
+  <text x="680" y="135" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#3d3020" font-weight="600">発達と公共議論の侵食</text>
+  <text x="680" y="163" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">ティーンの鬱・不安が倍増</text>
+  <text x="680" y="185" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">選挙・科学の前提が歪む</text>
+  <text x="680" y="207" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">遊び・会話・睡眠の喪失</text>
+  <!-- bottom note -->
+  <text x="400" y="258" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" fill="#b0a090" font-style="italic">2010年代半ば以降、被害の舞台は①から②③へ移っている。</text>
+</svg>
+
+<p class="body-text fade">注意経済は、もはや個人の生産性を削る話では<em>ない</em>。民主主義の前提、子どもの発達、公共的議論の健全性——そのすべてを賭金にして、毎秒の入札が続いている。サイモンが1971年に見ていた「希少資源としての注意」は、貨幣と違って<strong>社会全体の判断力の原資</strong>でもあった。それが先に涸れていけば、何を買うかを決める能力そのものが失われる。</p>
+
+<p class="body-text fade">では私たちに何ができるか。まず、自分の注意がどこに流れているかを知ること。先ほどのシミュレーターで見た数字を、もう一度思い出してほしい。「自分で選んだ」注意の割合は、思ったより少なかったはずだ。その差分が、設計によって奪われている注意の量だ。</p>
+
+<p class="body-text fade">次に、自分の側の設計を変える。通知は原則オフにし、重要な連絡だけに絞る。ロック画面の赤いバッジ（未読数）を消す。スマートフォンを寝室に持ち込まない。SNSアプリはアンインストールし、どうしても必要ならブラウザ版だけで開く——これだけで「促し（Prompt）」の大部分が消える。さらに、<strong>割込みのない時間を毎日まとまった単位で確保する</strong>。グロリア・マークが25年の研究を経てたどり着いた結論は単純だった。<em>集中は意志の問題ではなく、環境設計の問題である</em>。</p>
+
+<p class="body-text fade">注意経済そのものを止めることはできない。サイモンの予言が現実になったように、ゴールドハーバーの通貨の比喩も、もはや後戻りできない地点にある。だが、自分がどの入札に応じるかは、自分で選べる。金を何に使うかを選べるように、注意を何に使うかを選ぶ。それは、あなた自身の人生を取り戻すと同時に、<strong>社会がまだ共通の事実を持てる状態を保つこと</strong>でもある。</p>
+
+<!-- カルチャーブロック -->
+<div class="culture-block fade">
+  <p class="culture-label">作品への登場</p>
+  <div class="culture-item">
+    <p class="culture-title">Black Mirror "Nosedive"（S3E1, 2016）</p>
+    <p class="culture-desc">すべての人間が互いを5段階で評価し合う世界。社会的スコアが住居や航空券のランクを決め、人々は「注意と承認」を得るために感情を偽る。注意経済が社会信用スコアに結実した未来の戯画。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">The Social Dilemma（Netflix, 2020）</p>
+    <p class="culture-desc">Google、Facebook、Twitter の元幹部たちがカメラの前でアルゴリズムの設計意図を証言するドキュメンタリー。「ユーザーが商品であること」をプラットフォームの内側から告発した。監督 Jeff Orlowski。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">Tim Wu『The Attention Merchants』（2016）</p>
+    <p class="culture-desc">コロンビア大学法学教授が描く注意売買の通史。19世紀に Benjamin Day が「1セント新聞」を発明して以来、すべてのメディアが同じビジネスモデル——「無料コンテンツと引き換えに注意を売る」——を繰り返してきたことを示す。</p>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ══ 参考文献 ══ -->
+<div class="sec-rule fade">
+  <span class="sec-label">参考文献</span>
+  <div class="sec-line"></div>
+</div>
+
+<div class="ref-list">
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1971</span></div>
+    <p class="ref-title">Designing Organizations for an Information-Rich World</p>
+    <p class="ref-author">Herbert A. Simon</p>
+    <p class="ref-desc">Martin Greenberger 編『Computers, Communications, and the Public Interest』所収。注意の希少性を経済学の枠組みで初めて論じた論文。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">記事</span><span class="ref-year">1997</span></div>
+    <p class="ref-title"><a href="https://www.wired.com/1997/12/es-attention/" target="_blank" rel="noopener">Attention Shoppers!</a></p>
+    <p class="ref-author">Michael H. Goldhaber — Wired</p>
+    <p class="ref-desc">注意を新経済の通貨とする理論を一般向けに展開。インターネットの台頭を背景に、情報経済から注意経済への移行を予見した。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2003</span></div>
+    <p class="ref-title">Persuasive Technology: Using Computers to Change What We Think and Do</p>
+    <p class="ref-author">B.J. Fogg</p>
+    <p class="ref-desc">コンピュータによる行動変容の理論的基盤。Fogg行動モデル（B=MAP）を提唱し、後のアプリデザインの方法論に多大な影響を与えた。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2014</span></div>
+    <p class="ref-title">Hooked: How to Build Habit-Forming Products</p>
+    <p class="ref-author">Nir Eyal</p>
+    <p class="ref-desc">トリガー→行動→可変報酬→投資の4段階で習慣を形成するHookモデルを体系化。シリコンバレーの製品設計の教科書となった。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2016</span></div>
+    <p class="ref-title">The Attention Merchants: The Epic Scramble to Get Inside Our Heads</p>
+    <p class="ref-author">Tim Wu</p>
+    <p class="ref-desc">19世紀の新聞広告から現代のSNSまで、注意の商業化の通史。法学者の視点から注意経済が民主主義に及ぼすリスクを論じた。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2018</span></div>
+    <p class="ref-title"><a href="https://www.science.org/doi/10.1126/science.aap9559" target="_blank" rel="noopener">The spread of true and false news online</a></p>
+    <p class="ref-author">Soroush Vosoughi, Deb Roy, Sinan Aral — Science</p>
+    <p class="ref-desc">マサチューセッツ工科大学の研究チームが Twitter 上の12万件超のニュースカスケードを解析。偽情報は真実の情報よりはるかに速く、広く、深く拡散することを統計的に示した。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2023</span></div>
+    <p class="ref-title">Attention Span: A Groundbreaking Way to Restore Balance, Happiness and Productivity</p>
+    <p class="ref-author">Gloria Mark</p>
+    <p class="ref-desc">20年以上にわたる注意の中断研究をまとめた著作。通知割込み後の回復に平均25分かかること、集中持続時間が2004年の2分30秒から2021年の47秒に短縮したという知見の原典。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2024</span></div>
+    <p class="ref-title">The Anxious Generation: How the Great Rewiring of Childhood Is Causing an Epidemic of Mental Illness</p>
+    <p class="ref-author">Jonathan Haidt</p>
+    <p class="ref-desc">スマートフォンを日常的に手にした世代でうつ・不安・自殺企図が2010年代前半から急増した事実を大規模データで追跡し、「phone-based childhood」が子どもの発達を書き換えた仕組みを論じた。</p>
+  </div>
+</div>
+
+<!-- 信頼度ノート -->
+<div class="note-box fade">
+  <strong>📌 この記事について</strong><br>
+  本記事はサイモン（1971）の原著論文、Tim Wu（2016）の歴史的考察、Gloria Mark（2023）の実験データ、および Center for Humane Technology の公開資料に基づいている。統計データは Microsoft Work Trend Index 2025、各種スクリーンタイム調査からの引用。シミュレーターの計算式は概算であり、個人差が大きいため、傾向の把握を目的としたものである。
+</div>
+
+<!-- タグ -->
+<div class="tags fade">
+  <span class="tag">注意経済</span>
+  <span class="tag">行動デザイン</span>
+  <span class="tag">説得技術</span>
+  <span class="tag">スクリーンタイム</span>
+  <span class="tag">アルゴリズム</span>
+  <span class="tag">Herbert Simon</span>
+</div>
+
+<div class="signature fade">e. Tamaki</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">205</p>
+      <p class="sidebar-text">スマートフォンを確認する平均回数/日。前年比+42.3%。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1971年のサイモンの定式化から半世紀。注意は個人の認知資源から<strong>取引可能な商品</strong>へと変わった。GoogleとMetaの広告収益は年間合計3,000億ドルを超え、その大部分は人間の注意の売買で成り立っている。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">— Black Mirror "Nosedive"<br>— The Social Dilemma<br>— Tim Wu『The Attention Merchants』<br>— Nir Eyal『Hooked』→『Indistractable』</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— <a href="https://qualiajournal.com/skinner_box/" style="color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.25);">スキナー箱</a>（可変比率強化）<br>— <a href="https://qualiajournal.com/confirmation_bias/" style="color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.25);">確証バイアス</a>（フィルターバブル）<br>— <a href="https://qualiajournal.com/skeuomorphism/" style="color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.25);">スキューモーフィズム</a>（UIの認知操作）</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">チェックリスト</p>
+      <ul class="sidebar-check">
+        <li>シミュレーターで自分の数字を入力した</li>
+        <li>「自分で選んだ」割合を確認した</li>
+        <li>通知設定を見直す価値を考えた</li>
+      </ul>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">原著論文・学術書・公開データに基づく。シミュレーターの数値は概算。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- 人物ブロック: Harris（article外、ゾーンC前に配置しない。article-main内に置くべきだったが、レイアウト上ここでは省略し、歴史セクション内のタイムラインで紹介済み） -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// アテンション・エコノミー を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、通知を全部オフにすればいいの?</span></div>
+      <span class="t-output" id="to1">通知を消しても、無限スクロールは残る。アプリを消しても、次のアプリが来る。問題は<em>個々の設定</em>じゃなくて、<strong>注意が商品になっている構造</strong>そのもの。通知オフは対処療法としては悪くないけど、構造を知った上でやるのと知らずにやるのとでは意味が違う。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;サイモンは1971年に気づいてたのに、なんで50年もかかったの</span></div>
+      <span class="t-output" id="to2">情報が足りない時代に「情報が多すぎることが問題になる」と言われても、聞こえないんだよ。痛みを知る前に痛み止めの話をされても、ぴんとこないのと同じ。サイモンの予言は、<em>スマートフォンが発明されて初めて体感できる種類の予言</em>だった。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;自分の注意がいくらで売られてるか、正確に知る方法はある?</span></div>
+      <span class="t-output" id="to3">広告のCPM（1000回表示あたりの単価）がひとつの目安になる。日本のSNS広告のCPMはだいたい<em>300〜800円</em>。つまり、あなたがフィードをスクロールするたびに、0.3〜0.8円があなたの注意と引き換えに誰かの手に渡っている。安いと思うかもしれないけど、<strong>1日に数百回</strong>繰り返される。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ちょっとスマホの通知設定見てくるわ</span></div>
+      <span class="t-output" id="to4">いい判断だと思う。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl5">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# なるほどね</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/skinner_box/">
+      <p class="related-card-tag">行動心理学</p>
+      <p class="related-card-title">スキナー箱——あなたもレバーを押している</p>
+      <p class="related-card-desc">可変比率強化スケジュールが行動を支配する仕組み。SNSの「いいね」通知が、なぜスロットマシンと同じ原理で動くのか。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/confirmation_bias/">
+      <p class="related-card-tag">認知バイアス</p>
+      <p class="related-card-title">確証バイアス——都合のいい証拠を集める脳</p>
+      <p class="related-card-desc">アルゴリズムが確証バイアスを増幅し、フィルターバブルを形成する。注意経済の先にある「認知の閉じ込め」の構造。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ（トースト方式）
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ── ATTENTION SIMULATOR ──
+function runSim(){
+  const wake=document.getElementById('simWake').value;
+  const sleep=document.getElementById('simSleep').value;
+  const sns=parseInt(document.getElementById('simSns').value)||0;
+  const notif=parseInt(document.getElementById('simNotif').value)||0;
+  const video=parseInt(document.getElementById('simVideo').value)||0;
+  const email=parseInt(document.getElementById('simEmail').value)||0;
+
+  // calc waking hours
+  const [wH,wM]=wake.split(':').map(Number);
+  const [sH,sM]=sleep.split(':').map(Number);
+  let wakeMin=wH*60+wM, sleepMin=sH*60+sM;
+  if(sleepMin<=wakeMin) sleepMin+=1440;
+  let awakeMin=sleepMin-wakeMin;
+
+  // ── soft validation ──
+  const warnings=[];
+  const fmtH=m=>Math.floor(m/60)+'時間'+(m%60?(m%60)+'分':'');
+  if(wake===sleep){
+    warnings.push('起床時刻と就寝時刻が同じです。どちらかを修正してください。（起床16.5時間で仮計算します）');
+    awakeMin=990; // fallback default
+  }else if(awakeMin<60){
+    warnings.push('起床時間が<em>'+fmtH(awakeMin)+'</em>と極端に短いです。起床と就寝を入れ間違えている可能性があります。');
+  }else if(awakeMin>22*60){
+    warnings.push('起床時間が<em>'+fmtH(awakeMin)+'</em>と極端に長いです。時刻の入力を見直してください。');
+  }
+  const screenMin=sns+video+email;
+  if(screenMin>awakeMin){
+    warnings.push('デジタル活動の合計（<em>'+fmtH(screenMin)+'</em>）が起床時間（<em>'+fmtH(awakeMin)+'</em>）を超えています。数値を見直してください。');
+  }
+  // render warnings
+  const warnEl=document.getElementById('simWarning');
+  if(warnings.length){
+    warnEl.classList.add('show');
+    warnEl.innerHTML='<strong>入力の確認</strong><ul>'+warnings.map(w=>'<li>'+w+'</li>').join('')+'</ul>';
+  }else{
+    warnEl.classList.remove('show');
+    warnEl.innerHTML='';
+  }
+
+  const sleepMinutes=1440-awakeMin;
+  const freeMin=Math.max(0,awakeMin-screenMin);
+
+  // bids
+  const snsBids=Math.round(sns/2*3); // ~3 bids per 2 min of SNS
+  const notifBids=notif;
+  const videoBids=Math.round(video/5*2); // ~2 bids per 5 min of video (autoplay, reco)
+  const emailBids=Math.round(email/3); // ~1 bid per 3 min
+  const totalBids=snsBids+notifBids+videoBids+emailBids;
+
+  const chosenPct=0.15+Math.random()*0.1; // 15-25% chosen
+  const chosen=Math.round(totalBids*chosenPct);
+
+  // CPM value: Japan SNS CPM ~500 yen, assume 1 impression per bid
+  const valueYen=Math.round(totalBids*0.5);
+  const valueDollar=(valueYen/150).toFixed(2);
+
+  // chart
+  const chart=document.getElementById('simChart');
+  const legend=document.getElementById('simLegend');
+  chart.innerHTML='';
+  legend.innerHTML='';
+  const segments=[
+    {min:sns,color:'#8b1a1a',label:'SNS'},
+    {min:video,color:'#c4392a',label:'動画'},
+    {min:email,color:'#d4a35a',label:'メール/チャット'},
+    {min:freeMin,color:'#1a5a30',label:'自由時間'},
+    {min:sleepMinutes,color:'#3d3020',label:'睡眠'},
+  ];
+  segments.forEach(s=>{
+    if(s.min<=0)return;
+    const pctNum=s.min/1440*100;
+    const pct=pctNum.toFixed(1);
+    // bar
+    const bar=document.createElement('div');
+    bar.className='sim-bar';
+    bar.style.width=pct+'%';
+    bar.style.background=s.color;
+    // inline text only if bar is wide enough (>=12% ≈ 170min)
+    bar.textContent=pctNum>=12?s.label+' '+Math.round(s.min)+'分':'';
+    chart.appendChild(bar);
+    // legend entry (always shown, with minutes)
+    const item=document.createElement('div');
+    item.className='sim-legend-item';
+    item.style.borderLeftColor=s.color;
+    item.innerHTML='<span class="sim-legend-sw" style="background:'+s.color+';"></span><span class="sim-legend-l">'+s.label+'</span><span class="sim-legend-v">'+Math.round(s.min)+'分</span>';
+    legend.appendChild(item);
+  });
+
+  // stats
+  document.getElementById('statBids').textContent=totalBids+'件';
+  document.getElementById('statChosen').textContent=chosen+'件';
+  document.getElementById('statValue').textContent='¥'+valueYen+'/日';
+  document.getElementById('statBidders').textContent=Math.round(totalBids*0.4)+'以上';
+  document.getElementById('statTouches').textContent=Math.round(notif+sns/2+email/3)+'回以上';
+
+  document.getElementById('simResult').style.display='block';
+  document.getElementById('simResult').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},{id:'to4',delay:6200},
+  {id:'tl5',delay:7200},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>

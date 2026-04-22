@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBTIはなぜ科学者に嫌われるのか — Qualia Journal</title>
+<meta name="description" content="5週間後に再テストすると約半数が別タイプになる。スコアは二峰分布ではなく正規分布。それでも世界の何億人もが16文字の型に自分を重ねる。分類されたい衝動とその科学的限界を、自分のスコアで体験する。">
+<link rel="canonical" href="https://qualiajournal.com/mbti_science">
+<meta property="og:title" content="MBTIはなぜ科学者に嫌われるのか — Qualia Journal">
+<meta property="og:description" content="5週間後に再テストすると約半数が別タイプになる。スコアは二峰分布ではなく正規分布。それでも世界の何億人もが16文字の型に自分を重ねる。分類されたい衝動とその科学的限界を、自分のスコアで体験する。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/mbti_science">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MBTIはなぜ科学者に嫌われるのか — Qualia Journal">
+<meta name="twitter:description" content="5週間後に再テストすると約半数が別タイプになる。スコアは二峰分布ではなく正規分布。それでも世界の何億人もが16文字の型に自分を重ねる。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"MBTIはなぜ科学者に嫌われるのか","description":"5週間後に再テストすると約半数が別タイプになる。スコアは二峰分布ではなく正規分布。それでも世界の何億人もが16文字の型に自分を重ねる。","author":{"@type":"Organization","name":"Qualia Journal"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/mbti_science","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"科学と文化","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"MBTIはなぜ科学者に嫌われるのか"}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;align-items:center;gap:14px;}
+.cover-byline span+span::before{content:"·";margin-right:14px;color:#c8bfaa;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* SCENARIO */
+.scenario-wrap{max-width:900px;margin:0 auto;padding:40px 48px 0;}
+.scenario-inner{position:relative;padding:32px 36px;background:linear-gradient(135deg,#f3efe6 0%,#ede8dc 100%);border:1px solid #c8bfaa;}
+.scenario-inner::before{content:'';position:absolute;top:-1px;left:40px;right:40px;height:3px;background:#8b1a1a;}
+.scenario-inner::after{content:'';position:absolute;bottom:-1px;left:40px;right:40px;height:1px;background:#c8bfaa;}
+.scenario-num{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:rgba(139,26,26,.06);position:absolute;top:12px;right:24px;line-height:1;user-select:none;}
+.scenario-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
+.scenario-text.closing{font-style:normal;font-weight:400;color:#1a1208;margin-bottom:0;border-top:1px solid #c8bfaa;padding-top:14px;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;letter-spacing:.06em;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:180px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block.noimg{grid-template-columns:1fr;}
+.person-block-img{background:#ede8dc;display:flex;align-items:center;justify-content:center;padding:0;overflow:hidden;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-body{padding:18px 20px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block.noimg .person-block-body{border-left:none;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#b0a090;line-height:1.5;margin-top:8px;padding-top:8px;border-top:1px solid #e0d8c8;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* SVG FIG */
+.svg-fig{margin:28px auto;max-width:680px;background:white;border:1px solid #c8bfaa;padding:20px 16px;}
+.svg-fig svg{display:block;width:100%;height:auto;}
+.svg-fig-caption{margin-top:10px;padding-top:10px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;text-align:center;}
+.svg-fig.wide{max-width:none;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;color:#8b1a1a;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* ── FOOTER ── */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* INTERACTIVE: RETEST SIMULATOR — 1962 ETS 質問紙テーマ */
+.retest-exp{margin:36px 0 34px;position:relative;}
+.retest-sheet{
+  position:relative;background:#f5edd9;color:#2a2418;
+  background-image:repeating-linear-gradient(0deg,rgba(60,40,20,0) 0,rgba(60,40,20,0) 31px,rgba(60,40,20,0.035) 31px,rgba(60,40,20,0.035) 32px);
+  border:1px solid #2a2418;
+  box-shadow:3px 3px 0 #ede0c2,6px 6px 0 #e0d1ae,6px 6px 16px rgba(42,36,24,0.14);
+}
+.retest-sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:repeating-linear-gradient(90deg,#2a2418 0,#2a2418 6px,transparent 6px,transparent 10px);}
+.retest-sheet::after{content:"";position:absolute;bottom:0;left:0;right:0;height:4px;background:repeating-linear-gradient(90deg,#2a2418 0,#2a2418 6px,transparent 6px,transparent 10px);}
+.retest-phase{display:none;padding:0;}
+.retest-phase.active{display:block;}
+.sheet-head{padding:20px 24px 14px;border-bottom:1px dashed #6d5a3d;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:end;}
+.sheet-head-title{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.22em;color:#2a2418;text-transform:uppercase;line-height:1.5;}
+.sheet-head-title strong{color:#8b1a1a;}
+.sheet-head-sub{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.18em;color:#6d5a3d;margin-top:5px;text-transform:uppercase;}
+.sheet-head-meta{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:#2a2418;text-align:right;line-height:1.9;}
+.sheet-head-meta em{color:#8b1a1a;font-weight:700;font-style:normal;font-size:13px;letter-spacing:.14em;}
+.sheet-stamp{position:absolute;top:16px;right:24px;border:2px solid #8b1a1a;color:#8b1a1a;padding:4px 11px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;transform:rotate(-4deg);opacity:.82;background:rgba(245,237,217,0.3);pointer-events:none;line-height:1.3;}
+.sheet-stamp.pending{border:2.5px solid #c4392a;color:#c4392a;padding:6px 13px;font-size:14px;letter-spacing:.2em;transform:rotate(-5deg);opacity:.92;background:rgba(255,240,230,0.6);text-align:center;}
+.sheet-stamp.pending span{display:block;font-size:9px;letter-spacing:.16em;margin-top:2px;color:#8b1a1a;}
+.sheet-btn.big{padding:15px 34px;font-size:13px;letter-spacing:.18em;background:#8b1a1a;box-shadow:3px 3px 0 #c4392a;}
+.sheet-btn.big:hover:not(:disabled){background:#c4392a;box-shadow:2px 2px 0 #8b1a1a;}
+.sheet-footer.next-step{flex-direction:column;align-items:flex-start;gap:8px;}
+.next-step-note{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8b1a1a;letter-spacing:.04em;margin:0;line-height:1.5;font-weight:600;}
+.sheet-body{padding:22px 26px 26px;}
+.phase-intro{font-family:'Source Serif 4',serif;font-size:14px;font-weight:400;color:#3d3020;line-height:1.85;margin-bottom:18px;}
+.phase-intro em{color:#8b1a1a;font-style:italic;}
+.q-item{padding:14px 0 16px;border-bottom:1px dashed #c8b896;}
+.q-item:last-of-type{border-bottom:none;padding-bottom:4px;}
+.q-stem{font-family:'Source Serif 4',serif;font-size:15px;font-weight:500;color:#2a2418;line-height:1.7;margin-bottom:12px;display:flex;gap:12px;align-items:baseline;}
+.q-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:#8b1a1a;letter-spacing:.1em;min-width:56px;border-bottom:1px solid #8b1a1a;padding-bottom:2px;flex-shrink:0;text-align:center;}
+.q-scale{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-left:68px;}
+.q-opt{background:transparent;border:1px solid #6d5a3d;padding:10px 6px 8px;cursor:pointer;text-align:center;transition:all .12s;min-height:76px;display:flex;flex-direction:column;align-items:center;gap:6px;}
+.q-opt:hover{background:rgba(139,26,26,0.06);border-color:#8b1a1a;}
+.q-opt-mark{width:22px;height:22px;border:1.5px solid #2a2418;background:#faf5e6;position:relative;flex-shrink:0;}
+.q-opt.selected .q-opt-mark{border-color:#8b1a1a;}
+.q-opt.selected .q-opt-mark::before{content:"";position:absolute;top:3px;left:3px;right:3px;bottom:3px;background:#2a2418;}
+.q-opt-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;color:#3d3020;letter-spacing:.02em;line-height:1.45;}
+.q-opt.selected .q-opt-lbl{color:#8b1a1a;font-weight:700;}
+.q-opt-letter{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:#8b1a1a;letter-spacing:.1em;}
+.sheet-footer{margin-top:20px;padding-top:18px;border-top:1px dashed #6d5a3d;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.sheet-btn{appearance:none;background:#2a2418;color:#f5edd9;border:none;padding:11px 22px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .15s;}
+.sheet-btn:hover:not(:disabled){background:#8b1a1a;}
+.sheet-btn:disabled{background:#c8b896;color:#8a7a5a;cursor:not-allowed;}
+.sheet-btn.secondary{background:transparent;color:#2a2418;border:1px solid #2a2418;}
+.sheet-btn.secondary:hover{background:#2a2418;color:#f5edd9;}
+.sheet-progress{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:#6d5a3d;letter-spacing:.14em;text-transform:uppercase;margin-left:auto;}
+.sheet-progress strong{color:#8b1a1a;font-size:12px;}
+.interim-card{background:#faf5e6;border:1px solid #2a2418;padding:18px 20px;margin-bottom:16px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;}
+.interim-card-left{text-align:center;border-right:1px dashed #c8b896;padding-right:18px;}
+.interim-card-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;color:#8b1a1a;font-weight:700;text-transform:uppercase;margin-bottom:6px;}
+.interim-card-value{font-family:'JetBrains Mono',monospace;font-size:38px;font-weight:800;color:#2a2418;letter-spacing:.06em;line-height:1;margin-bottom:6px;}
+.interim-card-score{font-family:'JetBrains Mono',monospace;font-size:11px;color:#3d3020;letter-spacing:.06em;}
+.interim-card-right{font-family:'Source Serif 4',serif;font-size:13px;font-weight:400;color:#3d3020;line-height:1.75;}
+.interim-card-right strong{color:#2a2418;}
+.interim-note{background:#efe5c8;border-left:3px solid #8b1a1a;padding:12px 14px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:400;color:#3d3020;line-height:1.75;margin-bottom:16px;}
+.interim-note strong{color:#2a2418;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;}
+.office-panel{background:#faf5e6;border:2px double #2a2418;padding:0;margin-bottom:16px;position:relative;}
+.office-banner{background:#2a2418;color:#f5edd9;padding:9px 18px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;font-weight:700;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+.office-banner span:last-child{color:#e8c56a;}
+.office-body{padding:20px 22px 22px;}
+.result-verdict{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:#2a2418;margin-bottom:6px;line-height:1.45;letter-spacing:.03em;}
+.result-verdict em{color:#8b1a1a;font-style:normal;border-bottom:2px solid #8b1a1a;padding-bottom:1px;}
+.result-sub{font-family:'Source Serif 4',serif;font-size:13px;color:#3d3020;line-height:1.85;margin-bottom:20px;}
+.result-types{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin-bottom:18px;}
+.result-type-box{background:#f5edd9;border:1px solid #2a2418;padding:13px 10px;text-align:center;}
+.result-type-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.18em;color:#6d5a3d;text-transform:uppercase;margin-bottom:6px;}
+.result-type-val{font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:800;color:#8b1a1a;line-height:1;letter-spacing:.06em;margin:2px 0 6px;}
+.result-type-score{font-family:'JetBrains Mono',monospace;font-size:10px;color:#3d3020;letter-spacing:.06em;}
+.result-arrow{font-family:'JetBrains Mono',monospace;font-size:20px;color:#6d5a3d;align-self:center;font-weight:600;}
+.result-breakdown{background:#f5edd9;border:1px solid #2a2418;padding:14px 16px 12px;margin-bottom:0;}
+.result-breakdown-row{display:grid;grid-template-columns:80px 1fr 78px;gap:12px;align-items:center;padding:4px 0;}
+.result-axis{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#2a2418;letter-spacing:.08em;}
+.result-bar-wrap{position:relative;height:16px;background:#ede0c2;border:1px solid #2a2418;overflow:visible;}
+.result-bar-mid{position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:#2a2418;}
+.result-bar-mark{position:absolute;top:-3px;width:12px;height:22px;background:#8b1a1a;border:1px solid #2a2418;transform:translateX(-50%);transition:left .6s cubic-bezier(.22,1,.36,1);}
+.result-bar-mark.m2{background:#e8c56a;border-color:#6d1414;}
+.result-same{color:#1a5a30;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-align:center;letter-spacing:.12em;}
+.result-diff{color:#c4392a;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-align:center;letter-spacing:.12em;}
+.result-bar-legend{font-family:'JetBrains Mono',monospace;font-size:9px;color:#6d5a3d;margin-top:10px;line-height:1.55;letter-spacing:.04em;}
+.result-bar-legend em{color:#2a2418;font-style:normal;font-weight:700;}
+.result-data-box{background:#2a2418;color:#f5edd9;padding:16px 18px;margin-top:0;}
+.result-data-box h4{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.22em;color:#e8c56a;text-transform:uppercase;margin-bottom:10px;}
+.result-data-box p{font-family:'Source Serif 4',serif;font-size:13px;font-weight:400;line-height:1.85;margin-bottom:8px;}
+.result-data-box p:last-child{margin-bottom:0;}
+.result-data-box em{color:#e8c56a;font-style:normal;font-weight:600;}
+
+/* Distribution inline legend */
+.dist-legend{display:flex;justify-content:center;gap:18px;margin-top:8px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.dist-legend span{display:flex;align-items:center;gap:6px;}
+.dist-legend-swatch{width:14px;height:10px;display:inline-block;}
+
+/* 16タイプ 4×4 マトリクス */
+.type-matrix{margin:22px auto 0;max-width:680px;display:grid;grid-template-rows:auto repeat(4,auto);gap:0;border:1px solid #c8bfaa;background:#fdfaf2;font-family:'Source Sans 3',sans-serif;}
+.type-matrix-head{display:grid;grid-template-columns:110px repeat(4,1fr);background:#f3efe6;border-bottom:1px solid #c8bfaa;}
+.tmx-corner{border-right:1px solid #c8bfaa;}
+.tmx-col-lbl{padding:10px 6px;text-align:center;border-right:1px solid #e0d8c8;font-size:11px;color:#7a6a55;line-height:1.4;}
+.tmx-col-lbl:last-child{border-right:none;}
+.tmx-col-key{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:#8b1a1a;letter-spacing:.08em;}
+.tmx-col-sub{font-size:10px;color:#9a8b73;font-weight:300;}
+.tmx-row{display:grid;grid-template-columns:110px repeat(4,1fr);border-top:1px solid #e0d8c8;}
+.tmx-row:first-of-type{border-top:none;}
+.tmx-row-lbl{padding:14px 10px;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;flex-direction:column;justify-content:center;text-align:left;line-height:1.4;}
+.tmx-row-grp{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;letter-spacing:.01em;}
+.tmx-row-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:#8b1a1a;letter-spacing:.06em;font-weight:600;}
+.tmx-cell{padding:16px 8px;font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:500;color:#1a1208;text-align:center;letter-spacing:.04em;border-right:1px solid #e0d8c8;}
+.tmx-cell:last-child{border-right:none;}
+.tmx-row-nt{background:#fdfaf2;}
+.tmx-row-nf{background:#faf5e8;}
+.tmx-row-sj{background:#fdfaf2;}
+.tmx-row-sp{background:#faf5e8;}
+
+/* MBTI vs Big Five 比較カード */
+.compare-wrap{margin:30px 0 24px;}
+.compare-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;letter-spacing:.18em;color:#1a1208;text-align:center;margin-bottom:18px;text-transform:uppercase;}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.compare-card{background:#f3efe6;border:1px solid #c8bfaa;padding:22px 22px 20px;display:flex;flex-direction:column;}
+.compare-card.bigfive-card{background:#ede8dc;}
+.compare-card-head{padding-bottom:14px;border-bottom:1px solid #c8bfaa;margin-bottom:14px;}
+.compare-card-head h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#1a1208;margin:0 0 4px;letter-spacing:.02em;}
+.compare-sub{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.6;margin:0;}
+.compare-rows{display:flex;flex-direction:column;gap:7px;flex:1;}
+.compare-row{background:white;border:1px solid #e0d8c8;padding:10px 14px;display:grid;grid-template-columns:52px 1fr;column-gap:12px;row-gap:2px;align-items:center;}
+.compare-row.highlight{background:#fdf3d8;border:1.6px solid #8b1a1a;}
+.cmp-key{grid-column:1;grid-row:1;font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:#8b1a1a;text-align:center;white-space:nowrap;letter-spacing:0;}
+.cmp-val{grid-column:2;grid-row:1;font-family:'Source Sans 3',sans-serif;font-size:14px;color:#1a1208;font-weight:500;white-space:nowrap;}
+.cmp-note{grid-column:2;grid-row:2;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-weight:300;letter-spacing:.01em;white-space:nowrap;}
+.cmp-note.warn{color:#8b1a1a;font-weight:700;}
+.compare-row:has(.cmp-note) .cmp-key{grid-row:1 / span 2;align-self:center;}
+.compare-foot{margin-top:16px;padding-top:14px;border-top:1px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.7;}
+.compare-foot p{margin:4px 0;}
+.compare-foot p.cmp-warn{color:#c4392a;font-weight:600;}
+.compare-foot p.cmp-ok{color:#1a5a30;font-weight:600;}
+.compare-foot strong{color:#1a1208;}
+.compare-caption{margin-top:18px;padding:14px 18px;background:#f3efe6;border-left:3px solid #8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.85;font-weight:300;}
+.compare-caption strong{color:#1a1208;font-weight:600;}
+
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+  .toc-back{padding:22px 20px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .meta-dates{margin-left:0;width:100%;}
+  .summary-box{padding:0 20px;}
+  .scenario-wrap{padding:32px 20px 0;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:0;max-height:220px;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .svg-fig{max-width:100%;}
+  .result-types{grid-template-columns:1fr;gap:8px;}
+  .result-arrow{transform:rotate(90deg);margin:2px auto;}
+  .sheet-head{grid-template-columns:1fr;gap:8px;}
+  .sheet-head-meta{text-align:left;}
+  .sheet-stamp{top:auto;bottom:14px;right:16px;font-size:10px;}
+  .sheet-body{padding:20px 18px 22px;}
+  .q-stem{flex-direction:column;gap:4px;}
+  .q-num{min-width:auto;display:inline-block;align-self:flex-start;padding:2px 8px;}
+  .q-scale{grid-template-columns:1fr;gap:4px;margin-left:0;}
+  .q-opt{flex-direction:row;min-height:auto;padding:9px 12px;gap:12px;justify-content:flex-start;text-align:left;}
+  .q-opt-mark{margin-bottom:0;}
+  .q-opt-lbl{text-align:left;flex:1;}
+  .interim-card{grid-template-columns:1fr;gap:14px;}
+  .interim-card-left{border-right:none;border-bottom:1px dashed #c8b896;padding:0 0 14px;}
+  .result-breakdown-row{grid-template-columns:1fr;gap:6px;}
+  .type-matrix-head{grid-template-columns:74px repeat(4,1fr);}
+  .tmx-row{grid-template-columns:74px repeat(4,1fr);}
+  .tmx-row-lbl{padding:10px 6px;}
+  .tmx-row-grp{font-size:12px;}
+  .tmx-row-sub{font-size:9px;}
+  .tmx-col-lbl{padding:8px 2px;}
+  .tmx-col-key{font-size:11px;}
+  .tmx-col-sub{font-size:9px;}
+  .tmx-cell{padding:12px 2px;font-size:12px;letter-spacing:.02em;}
+  .compare-grid{grid-template-columns:1fr;gap:14px;}
+  .compare-card{padding:18px 18px 16px;}
+  .compare-card-head h3{font-size:20px;}
+  .compare-row{padding:9px 12px;grid-template-columns:48px 1fr;column-gap:10px;}
+  .cmp-key{font-size:14px;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text{overflow-wrap:anywhere;}
+.tip-box{display:none!important;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}
+.tip.open{background:#fdf3d8;}
+.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}
+.tip-toast.show{bottom:16px;}
+.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}
+.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}
+.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}
+.tip-toast-close:hover{color:#e8c56a;}
+.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}
+.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">性格心理学 × 科学論</p>
+    <h1>MBTIはなぜ<em>科学者に嫌われる</em>のか</h1>
+    <p class="cover-deck">5週間後に再テストすると、約半数が別のタイプに分類される。スコアは二峰分布ではなく正規分布を示す。それでも世界の何億人もが、4文字のラベルに自分を重ねている。分類されたい衝動と、その科学的限界の話。</p>
+    <div class="cover-byline"><span>科学と文化</span><span>性格心理学</span><span>批判的思考</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1962</span>
+      <p class="est-event">Educational Testing Service から初の公式 MBTI マニュアルが出版された年。イザベル・マイヤーズ母娘の 20 年にわたる独学の研究が、ようやく「世に出る道具」になった。</p>
+      <p class="est-context">同年、ジョン・グレンが米国人初の地球周回飛行を成功させ、10 月にはキューバ危機で世界が核戦争の縁に立った年。</p>
+    </div>
+    <p class="cover-aside"><strong>MBTI:</strong>Myers–Briggs Type Indicator の略。ユングの類型論を土台に、イザベル・ブリッグス・マイヤーズとその母キャサリンが設計した 4 軸 16 タイプの性格指標。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario-wrap fade">
+  <div class="scenario-inner">
+    <span class="scenario-num">G</span>
+    <p class="scenario-text">診断結果の画面に「INFJ」と表示された瞬間、私は少しだけ背筋が伸びた気がした。「希少な 1%」「深い洞察力」「理想主義者」。知らない誰かが私のことを言い当てている、と感じた。</p>
+    <p class="scenario-text">この感覚は私だけのものではない。SNS のプロフィール欄、マッチングアプリの自己紹介、就職面接の雑談。4 つのアルファベットは、もはや名前や出身地と同じ高さで語られている。</p>
+    <p class="scenario-text closing">ところが性格心理学者の大半は、MBTI を科学としては認めていない。なぜか。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 統計用語が少しだけ出る</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item"><span class="meta-label">Published</span><span class="date-value">2026-04-14</span></div>
+    <div class="date-item"><span class="meta-label">Updated</span><span class="date-value">2026-04-14</span></div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">人は自分を<strong>分類されたい</strong>生きものだ。この記事では、最も人気のある分類道具・MBTI が、なぜ科学者から厳しく扱われるのかを、自分自身のスコアで体験しながら確かめる。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ============ 背景 ============ -->
+  <div class="sec-rule fade">
+    <span class="sec-label">背景</span>
+    <div class="sec-line"></div>
+  </div>
+  <h2 class="fade">推理小説家が作った、世界最大の性格診断</h2>
+
+  <p class="body-text fade">1917 年、アメリカ・ミシガン州の静かな書斎で、ひとりの女性が書き物机に向かっていた。キャサリン・クック・ブリッグス。農学の学位を持つ、小説家志望の主婦である。彼女が書こうとしていたのは、娘の婚約者の人格描写だった。結婚を控えた娘のために、「人の性格をどうやって描けば本物に見えるか」という問いが、彼女の頭から離れなかった。そこへ、第一次大戦後の欧州から翻訳書が一冊届く。<span class="tip" onclick="toggleTip(this)">カール・ユング<span class="tip-box"><strong>カール・ユング (1875–1961)</strong><br>スイスの精神科医。フロイトの共同研究者だったが理論的に袂を分かち、集合的無意識・元型・内向/外向などの概念を提唱した。宗教学・神話学にも深く踏み込んだ。</span></span>『心理学的類型論』。外向と内向、思考と感情、感覚と直観。人の気質を軸の組み合わせで記述できる、という発想に、キャサリンは衝撃を受けた。書きかけの小説は、そこで止まった。</p>
+
+  <p class="body-text fade">20 年後、大学を政治学で卒業した娘イザベルが、母の研究を引き継いだ。1943 年、イザベルは 172 問の質問紙「Form A」を完成させる。専門の心理学教育も統計訓練も受けていない母娘が、独学で作った道具だった。そして 1962 年、Educational Testing Service が初の公式マニュアルを出版する。MBTI が「誰でも使える道具」として世に出た瞬間である。</p>
+
+  <!-- 人物ブロック: Isabel Briggs Myers -->
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="./person_isabel_myers.jpg" alt="イザベル・ブリッグス・マイヤーズの肖像写真">
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">Isabel Briggs Myers</p>
+      <p class="person-block-role">1897–1980 / MBTI 設計者 / <a href="https://ja.wikipedia.org/wiki/%E3%82%A4%E3%82%B6%E3%83%99%E3%83%AB%E3%83%BB%E3%83%96%E3%83%AA%E3%83%83%E3%82%B0%E3%82%B9%E3%83%BB%E3%83%9E%E3%82%A4%E3%83%A4%E3%83%BC%E3%82%BA" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(139,26,26,.3);">Wikipedia</a></p>
+      <p class="person-block-desc">スワースモア大学で政治学を専攻。心理学の正式な学位を持たないまま、母キャサリンから受け継いだユング型論の研究を独学で継続した。1928 年には推理小説コンテストで 7,500 ドルの賞金を獲得するほどの筆力を持つ作家でもあった。世界で最も多く受けられている性格診断は、推理小説家の手から生まれている。</p>
+      <p class="person-block-credit">Photo: Public Domain / Wikimedia Commons</p>
+    </div>
+  </div>
+
+  <!-- SVG: 4軸16タイプの構造 -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MBTIの4軸と16タイプ構造図">
+      <!-- タイトル -->
+      <text x="380" y="26" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="14" font-weight="600" fill="#1a1208" letter-spacing="2">MBTI 4 軸 16 タイプの構造</text>
+
+      <!-- 4軸の帯 -->
+      <g>
+        <!-- E/I -->
+        <rect x="40" y="60" width="680" height="46" fill="#f3efe6" stroke="#c8bfaa"/>
+        <text x="56" y="88" font-family="Playfair Display, serif" font-size="22" font-weight="700" fill="#8b1a1a">E</text>
+        <text x="86" y="88" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020">外向</text>
+        <line x1="370" y1="72" x2="370" y2="94" stroke="#1a1208" stroke-width="1"/>
+        <text x="380" y="86" font-family="Source Sans 3, sans-serif" font-size="15" fill="#7a6a55">エネルギーの向き</text>
+        <text x="674" y="88" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="end">内向</text>
+        <text x="700" y="88" font-family="Playfair Display, serif" font-size="22" font-weight="700" fill="#8b1a1a">I</text>
+
+        <!-- S/N -->
+        <rect x="40" y="116" width="680" height="46" fill="#f3efe6" stroke="#c8bfaa"/>
+        <text x="56" y="144" font-family="Playfair Display, serif" font-size="22" font-weight="700" fill="#8b1a1a">S</text>
+        <text x="86" y="144" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020">感覚</text>
+        <line x1="370" y1="128" x2="370" y2="150" stroke="#1a1208" stroke-width="1"/>
+        <text x="380" y="142" font-family="Source Sans 3, sans-serif" font-size="15" fill="#7a6a55">情報の取り方</text>
+        <text x="674" y="144" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="end">直観</text>
+        <text x="700" y="144" font-family="Playfair Display, serif" font-size="22" font-weight="700" fill="#8b1a1a">N</text>
+
+        <!-- T/F -->
+        <rect x="40" y="172" width="680" height="46" fill="#f3efe6" stroke="#c8bfaa"/>
+        <text x="56" y="200" font-family="Playfair Display, serif" font-size="22" font-weight="700" fill="#8b1a1a">T</text>
+        <text x="86" y="200" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020">思考</text>
+        <line x1="370" y1="184" x2="370" y2="206" stroke="#1a1208" stroke-width="1"/>
+        <text x="380" y="198" font-family="Source Sans 3, sans-serif" font-size="15" fill="#7a6a55">判断の基準</text>
+        <text x="674" y="200" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="end">感情</text>
+        <text x="700" y="200" font-family="Playfair Display, serif" font-size="22" font-weight="700" fill="#8b1a1a">F</text>
+
+        <!-- J/P -->
+        <rect x="40" y="228" width="680" height="46" fill="#f3efe6" stroke="#c8bfaa"/>
+        <text x="56" y="256" font-family="Playfair Display, serif" font-size="22" font-weight="700" fill="#8b1a1a">J</text>
+        <text x="86" y="256" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020">判断</text>
+        <line x1="370" y1="240" x2="370" y2="262" stroke="#1a1208" stroke-width="1"/>
+        <text x="380" y="254" font-family="Source Sans 3, sans-serif" font-size="15" fill="#7a6a55">外界との関わり方</text>
+        <text x="674" y="256" font-family="Source Sans 3, sans-serif" font-size="14" fill="#3d3020" text-anchor="end">知覚</text>
+        <text x="700" y="256" font-family="Playfair Display, serif" font-size="22" font-weight="700" fill="#8b1a1a">P</text>
+      </g>
+
+      <text x="380" y="300" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#7a6a55">4 つの二分軸の組み合わせ → 2 × 2 × 2 × 2 = 16 通り</text>
+    </svg>
+
+    <!-- 16 タイプ・4×4 マトリクス(HTML) -->
+    <div class="type-matrix">
+      <div class="type-matrix-head">
+        <div class="tmx-corner"></div>
+        <div class="tmx-col-lbl"><span class="tmx-col-key">I · J</span><br><span class="tmx-col-sub">内向・判断</span></div>
+        <div class="tmx-col-lbl"><span class="tmx-col-key">I · P</span><br><span class="tmx-col-sub">内向・知覚</span></div>
+        <div class="tmx-col-lbl"><span class="tmx-col-key">E · P</span><br><span class="tmx-col-sub">外向・知覚</span></div>
+        <div class="tmx-col-lbl"><span class="tmx-col-key">E · J</span><br><span class="tmx-col-sub">外向・判断</span></div>
+      </div>
+
+      <div class="tmx-row tmx-row-nt">
+        <div class="tmx-row-lbl"><span class="tmx-row-grp">Analysts</span><br><span class="tmx-row-sub">NT · 分析</span></div>
+        <div class="tmx-cell">INTJ</div>
+        <div class="tmx-cell">INTP</div>
+        <div class="tmx-cell">ENTP</div>
+        <div class="tmx-cell">ENTJ</div>
+      </div>
+
+      <div class="tmx-row tmx-row-nf">
+        <div class="tmx-row-lbl"><span class="tmx-row-grp">Diplomats</span><br><span class="tmx-row-sub">NF · 理想</span></div>
+        <div class="tmx-cell">INFJ</div>
+        <div class="tmx-cell">INFP</div>
+        <div class="tmx-cell">ENFP</div>
+        <div class="tmx-cell">ENFJ</div>
+      </div>
+
+      <div class="tmx-row tmx-row-sj">
+        <div class="tmx-row-lbl"><span class="tmx-row-grp">Sentinels</span><br><span class="tmx-row-sub">SJ · 管理</span></div>
+        <div class="tmx-cell">ISTJ</div>
+        <div class="tmx-cell">ISFJ</div>
+        <div class="tmx-cell">ESFJ</div>
+        <div class="tmx-cell">ESTJ</div>
+      </div>
+
+      <div class="tmx-row tmx-row-sp">
+        <div class="tmx-row-lbl"><span class="tmx-row-grp">Explorers</span><br><span class="tmx-row-sub">SP · 探索</span></div>
+        <div class="tmx-cell">ISTP</div>
+        <div class="tmx-cell">ISFP</div>
+        <div class="tmx-cell">ESFP</div>
+        <div class="tmx-cell">ESTP</div>
+      </div>
+    </div>
+
+    <p class="svg-fig-caption">4 つの二分軸の組み合わせで 16 タイプが生まれる。行は気質(N × T/F、S × J/P の 4 グループ)、列は I/E と J/P の組み合わせ。構造自体は美しく、整っている。問題はこのあとに出てくる。</p>
+  </div>
+
+  <!-- 誤解あるある -->
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解 — 科学的にどう扱われているか</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">「MBTI は心理学で広く使われているから、科学的に認められた診断なのだろう」</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">企業研修や自己啓発本では広く使われるが、査読付きの性格心理学研究ではほぼ採用されない。学術論文で標準的に使われるのは Big Five(ビッグファイブ)である。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">「タイプがあるということは、性格は 16 通りにはっきり分かれるということだ」</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">各軸のスコアは山が 2 つの二峰分布ではなく、中央に山が 1 つの<strong>正規分布</strong>を示す。大半の人はどちらの極でもなく「真ん中付近」に位置する。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">「自分の MBTI タイプは変わらない。核のような性質だから」</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">数週間後に同じテストを受けると、4 文字のうち 1 文字以上が変わる人が 3 割以上いる。軸のひとつを 5 週間後にもう一度測ると、<strong>約半数が別のタイプに分類される</strong>という報告もある。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 正規分布 vs 二峰分布 SVG -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="正規分布と二峰分布の比較図">
+      <text x="380" y="24" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="14" font-weight="600" fill="#1a1208" letter-spacing="2">タイプが「実在する」なら、スコアはこう分布するはず — 実際はそうなっていない</text>
+
+      <!-- 左: 二峰分布(タイプ理論が正しければこう) -->
+      <g>
+        <text x="180" y="56" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="14" font-weight="600" fill="#1a5a30">理論が正しいなら(二峰分布)</text>
+        <!-- 軸 -->
+        <line x1="40" y1="260" x2="320" y2="260" stroke="#1a1208" stroke-width="1.2"/>
+        <line x1="40" y1="80" x2="40" y2="260" stroke="#1a1208" stroke-width="1.2"/>
+        <!-- 二峰曲線(サンプリングで滑らかに) -->
+        <path d="M 40 257.0 L 44 256.2 L 48 255.0 L 52 253.1 L 56 250.2 L 60 246.1 L 64 240.2 L 68 232.5 L 72 222.5 L 76 210.1 L 80 195.6 L 84 179.4 L 88 162.2 L 92 144.9 L 96 129.0 L 100 115.5 L 104 105.8 L 108 100.7 L 112 100.7 L 116 105.8 L 120 115.5 L 124 129.0 L 128 144.9 L 132 162.2 L 136 179.4 L 140 195.6 L 144 210.1 L 148 222.4 L 152 232.5 L 156 240.2 L 160 246.0 L 164 250.2 L 168 253.0 L 172 254.7 L 176 255.7 L 180 256.0 L 184 255.7 L 188 254.7 L 192 253.0 L 196 250.2 L 200 246.0 L 204 240.2 L 208 232.5 L 212 222.4 L 216 210.1 L 220 195.6 L 224 179.4 L 228 162.2 L 232 144.9 L 236 129.0 L 240 115.5 L 244 105.8 L 248 100.7 L 252 100.7 L 256 105.8 L 260 115.5 L 264 129.0 L 268 144.9 L 272 162.2 L 276 179.4 L 280 195.6 L 284 210.1 L 288 222.5 L 292 232.5 L 296 240.2 L 300 246.1 L 304 250.2 L 308 253.1 L 312 255.0 L 316 256.2 L 320 257.0 L 320 258 L 40 258 Z"
+              fill="rgba(26,90,48,.14)" stroke="#1a5a30" stroke-width="1.8" stroke-linejoin="round"/>
+        <!-- 中央線 -->
+        <line x1="180" y1="100" x2="180" y2="260" stroke="#7a6a55" stroke-dasharray="3 3"/>
+        <!-- ラベル -->
+        <text x="110" y="280" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#8b1a1a" font-weight="700">I</text>
+        <text x="250" y="280" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#8b1a1a" font-weight="700">E</text>
+        <text x="180" y="296" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#7a6a55">カットライン</text>
+        <text x="180" y="318" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#3d3020">両極に集まり、中央は少ない</text>
+        <text x="180" y="340" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="12" fill="#7a6a55">→ タイプで分けることに意味がある</text>
+      </g>
+
+      <!-- 区切り線 -->
+      <line x1="380" y1="60" x2="380" y2="340" stroke="#c8bfaa" stroke-dasharray="4 4"/>
+
+      <!-- 右: 正規分布(実際の測定結果) -->
+      <g>
+        <text x="580" y="56" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="14" font-weight="600" fill="#8b1a1a">実際のデータ(正規分布)</text>
+        <!-- 軸 -->
+        <line x1="440" y1="260" x2="720" y2="260" stroke="#1a1208" stroke-width="1.2"/>
+        <line x1="440" y1="80" x2="440" y2="260" stroke="#1a1208" stroke-width="1.2"/>
+        <!-- 正規曲線(サンプリングで滑らかに) -->
+        <path d="M 440 257.0 L 444 256.7 L 448 256.2 L 452 255.7 L 456 255.0 L 460 254.2 L 464 253.1 L 468 251.8 L 472 250.2 L 476 248.3 L 480 246.1 L 484 243.4 L 488 240.2 L 492 236.6 L 496 232.5 L 500 227.7 L 504 222.5 L 508 216.6 L 512 210.1 L 516 203.1 L 520 195.6 L 524 187.7 L 528 179.4 L 532 170.9 L 536 162.2 L 540 153.5 L 544 144.9 L 548 136.7 L 552 129.0 L 556 121.8 L 560 115.5 L 564 110.1 L 568 105.8 L 572 102.6 L 576 100.7 L 580 100.0 L 584 100.7 L 588 102.6 L 592 105.8 L 596 110.1 L 600 115.5 L 604 121.8 L 608 129.0 L 612 136.7 L 616 144.9 L 620 153.5 L 624 162.2 L 628 170.9 L 632 179.4 L 636 187.7 L 640 195.6 L 644 203.1 L 648 210.1 L 652 216.6 L 656 222.5 L 660 227.7 L 664 232.5 L 668 236.6 L 672 240.2 L 676 243.4 L 680 246.1 L 684 248.3 L 688 250.2 L 692 251.8 L 696 253.1 L 700 254.2 L 704 255.0 L 708 255.7 L 712 256.2 L 716 256.7 L 720 257.0 L 720 258 L 440 258 Z"
+              fill="rgba(139,26,26,.12)" stroke="#8b1a1a" stroke-width="1.8" stroke-linejoin="round"/>
+        <!-- 中央線 -->
+        <line x1="580" y1="100" x2="580" y2="260" stroke="#7a6a55" stroke-dasharray="3 3"/>
+        <!-- ラベル -->
+        <text x="510" y="280" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#8b1a1a" font-weight="700">I</text>
+        <text x="650" y="280" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#8b1a1a" font-weight="700">E</text>
+        <text x="580" y="296" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#7a6a55">カットライン</text>
+        <text x="580" y="318" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#3d3020">真ん中に人が集中している</text>
+        <text x="580" y="340" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="12" fill="#7a6a55">→ 中央で切ると「ゆらぐ」人が大量に出る</text>
+      </g>
+    </svg>
+    <p class="svg-fig-caption">McCrae &amp; Costa (1989) ほかの報告では、MBTI の 4 軸すべてで実際のスコア分布は右図に近い。「I と E のあいだ」が最も人の多い場所なのに、そこに線を引いて二つに分けている。</p>
+  </div>
+
+  <!-- 引用: Adam Grant -->
+  <div class="quote-block fade">
+    <p class="quote-en">"The MBTI is astrology for nerds. Personality types are a myth, traits are on a continuum."</p>
+    <p class="quote-ja">「MBTI は理系のための占星術だ。性格タイプは神話で、特性は連続体の上にある。」</p>
+    <p class="quote-attr">— Adam Grant, ウォートン校組織心理学教授, 2018</p>
+  </div>
+
+  <!-- ============ 体験 ============ -->
+  <div class="sec-rule fade">
+    <span class="sec-label">体験</span>
+    <div class="sec-line"></div>
+  </div>
+  <h2 class="fade">あなたのスコアは、2 回で何文字ずれるか</h2>
+
+  <p class="body-text fade">ここまでの話を、自分の数字で確かめてみる。外向/内向(E/I)を測る簡易スケールを、<em>少し違う言い回しで</em>二度受けてもらう。ルールはこれだけだ。質問は一回目と二回目で同じ内容を、違う文脈から聞いている。本物の MBTI でも、質問表現が違うだけで「同じ軸」を何度も測っている。</p>
+
+  <p class="body-text fade">本来の MBTI はもっと多くの質問と 4 軸を使うが、ここでは再テスト不安定性の肌触りを掴むための縮小版だと思ってほしい。選んだ答えの中央(「どちらとも言えない」)にあなたのスコアが近ければ近いほど、次に同じテストを受けたときにタイプが変わる確率が上がる。それが、科学者が MBTI に冷淡な最大の理由である。</p>
+
+  <p class="body-text fade"><strong>この体験は、2 回続けて受けたときにだけ意味を持つ。</strong>1 回目の結果だけを見て閉じてしまうと、ただのミニ性格診断になる。1 回目と 2 回目のあいだに起きる「ズレ」こそが、この仕掛けの本体である。用紙は必ず 2 枚続けて受けてほしい。</p>
+
+  <!-- RETEST SIMULATOR — 1962 ETS 質問紙 -->
+  <div class="retest-exp fade">
+    <div class="retest-sheet">
+
+      <!-- Phase 1: Session 01 -->
+      <div class="retest-phase active" id="rp1">
+        <div class="sheet-head">
+          <div>
+            <div class="sheet-head-title">FORM <strong>MBTI—F</strong> &nbsp;·&nbsp; 簡易版 E—I スケール</div>
+            <div class="sheet-head-sub">REPRINT FOR QUALIA JOURNAL &nbsp;·&nbsp; FOR INSTRUCTIONAL USE</div>
+          </div>
+          <div class="sheet-head-meta">
+            SESSION <em>01</em><br>
+            RESPONDENT ID &nbsp; R—0142<br>
+            DATE &nbsp; ____ / ____
+          </div>
+        </div>
+        <div class="sheet-body">
+          <p class="phase-intro">以下 5 項目について、<em>今この瞬間の実感</em>にもっとも近い欄に ✗ を付けること。質問は全 5 件、回答の中断・訂正は可。</p>
+          <div id="t1Questions"></div>
+          <div class="sheet-footer">
+            <button class="sheet-btn" id="t1Next" onclick="finishRound(1)" disabled>▶ Submit Session 01</button>
+            <div class="sheet-progress">ITEMS &nbsp; <strong id="t1Progress">0</strong> / 5</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 1.5: Halfway — awaiting session 02 -->
+      <div class="retest-phase" id="rp15">
+        <div class="sheet-stamp pending">PENDING<br><span>SESSION 02 REQUIRED</span></div>
+        <div class="sheet-head">
+          <div>
+            <div class="sheet-head-title">HALFWAY &nbsp;·&nbsp; <strong>AWAITING SESSION 02</strong></div>
+            <div class="sheet-head-sub">中間地点 &nbsp;·&nbsp; この時点ではまだ何も判明していない</div>
+          </div>
+          <div class="sheet-head-meta">
+            RESPONDENT &nbsp; R—0142<br>
+            FORM &nbsp; MBTI—F
+          </div>
+        </div>
+        <div class="sheet-body">
+          <div class="interim-card">
+            <div class="interim-card-left">
+              <div class="interim-card-label">TENTATIVE &nbsp; E / I</div>
+              <div class="interim-card-value" id="t1TypeLabel">—</div>
+              <div class="interim-card-score">RAW <span id="t1ScoreLabel">0</span> / ±10</div>
+            </div>
+            <div class="interim-card-right">
+              これは <strong>仮の数字</strong> である。1 回分のスコアだけを見ても、この仕掛けが測ろうとしている「再テスト信頼性」は何も見えない。次の用紙に進んではじめて、結論が出る。
+            </div>
+          </div>
+          <div class="interim-note">
+            <strong>[NOTE &nbsp; 5-WEEK INTERVAL]</strong><br>
+            5 週間後という想定で、もう一度受けてもらう。MBTI の再テスト研究で標準的な間隔がこの長さだ。質問文は書き換えてあるが、測っているのは同じ「外向—内向」軸である。
+          </div>
+          <div class="sheet-footer next-step">
+            <button class="sheet-btn big" onclick="goPhase('rp2')">▶ Open Session 02 — 2 枚目へ</button>
+            <p class="next-step-note">← ここで止めると、この体験は何も返さない。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 2: Session 02 -->
+      <div class="retest-phase" id="rp2">
+        <div class="sheet-head">
+          <div>
+            <div class="sheet-head-title">FORM <strong>MBTI—F</strong> &nbsp;·&nbsp; 簡易版 E—I スケール</div>
+            <div class="sheet-head-sub">RETEST AFTER 5-WEEK INTERVAL &nbsp;·&nbsp; IDENTICAL CONSTRUCT</div>
+          </div>
+          <div class="sheet-head-meta">
+            SESSION <em>02</em><br>
+            RESPONDENT ID &nbsp; R—0142<br>
+            DATE &nbsp; ____ / ____
+          </div>
+        </div>
+        <div class="sheet-body">
+          <p class="phase-intro">質問の文面は異なるが、測定している特性は同じ。<em>一回目の回答を思い出そうとせず</em>、いまの実感で答えること。</p>
+          <div id="t2Questions"></div>
+          <div class="sheet-footer">
+            <button class="sheet-btn" id="t2Next" onclick="finishRound(2)" disabled>▶ Submit Session 02</button>
+            <div class="sheet-progress">ITEMS &nbsp; <strong id="t2Progress">0</strong> / 5</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 3: Scored -->
+      <div class="retest-phase" id="rp3">
+        <div class="sheet-stamp">SCORED</div>
+        <div class="sheet-head">
+          <div>
+            <div class="sheet-head-title">FINAL REPORT &nbsp;·&nbsp; SESSION 01 vs 02</div>
+            <div class="sheet-head-sub">採点結果 &nbsp;·&nbsp; 再テスト信頼性の判定</div>
+          </div>
+          <div class="sheet-head-meta">
+            RESPONDENT &nbsp; R—0142<br>
+            EVALUATOR &nbsp; SELF
+          </div>
+        </div>
+        <div class="sheet-body">
+          <div class="office-panel">
+            <div class="office-banner">
+              <span>◆ FOR OFFICE USE ONLY</span>
+              <span>SCORING SHEET</span>
+            </div>
+            <div class="office-body">
+              <p class="result-verdict" id="resultVerdict">—</p>
+              <p class="result-sub" id="resultSub">—</p>
+
+              <div class="result-types">
+                <div class="result-type-box">
+                  <p class="result-type-lbl">SESSION 01</p>
+                  <p class="result-type-val" id="rTypeA">—</p>
+                  <p class="result-type-score" id="rScoreA">—</p>
+                </div>
+                <div class="result-arrow">▶</div>
+                <div class="result-type-box">
+                  <p class="result-type-lbl">SESSION 02</p>
+                  <p class="result-type-val" id="rTypeB">—</p>
+                  <p class="result-type-score" id="rScoreB">—</p>
+                </div>
+              </div>
+
+              <div class="result-breakdown">
+                <div class="result-breakdown-row">
+                  <span class="result-axis">E / I AXIS</span>
+                  <div class="result-bar-wrap">
+                    <span class="result-bar-mid"></span>
+                    <span class="result-bar-mark" id="markA" style="left:50%;"></span>
+                    <span class="result-bar-mark m2" id="markB" style="left:50%;"></span>
+                  </div>
+                  <span id="axisStatus" class="result-same">—</span>
+                </div>
+                <p class="result-bar-legend"><em>□ 赤</em> = Session 01 の位置 &nbsp;/&nbsp; <em>■ 黄</em> = Session 02 の位置。中央の縦線が E/I の切替ライン(カットライン)。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-data-box">
+            <h4>▼ 実際の研究データと重ねる</h4>
+            <p><em>Howes &amp; Carskadon (1979)</em> は 117 名の大学生を 5 週間後に再テストし、同じ 4 文字タイプのまま残ったのは <em>49%</em> だったと報告した。</p>
+            <p><em>Pittenger (1993)</em> は複数研究をレビューして「再テスト間隔が短くても、最大で半数が別のタイプに分類される」と結論した。最新の公式テスト Form M でも、4 週間後に同じ 4 文字のまま残るのは <em>65%</em> ― 裏を返せば <em>35%</em> は別タイプになる。</p>
+            <p>カットラインの近くに立っている人ほど、このぐらつきの影響を強く受ける。たった今あなたが体験したのは、その縮小版である。</p>
+          </div>
+
+          <div class="sheet-footer">
+            <button class="sheet-btn secondary" onclick="resetRetest()">◀ Reset &amp; Refile</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ メカニズム ============ -->
+  <div class="sec-rule fade">
+    <span class="sec-label">メカニズム</span>
+    <div class="sec-line"></div>
+  </div>
+  <h2 class="fade">なぜ科学者は、この道具を嫌うのか</h2>
+
+  <p class="body-text fade">ひとつの批判だけなら、MBTI は生き残れただろう。問題は、性格測定のほぼ<strong>すべての軸</strong>で、科学的基準から外れる点が重なっていることだ。信頼性、妥当性、理論の検証可能性、そして<strong>より妥当な比較対象の存在</strong>。順に畳んでいく。</p>
+
+  <p class="body-text fade">まず、比較対象の話から。MBTI を科学の土俵に引きずり出したのは、<span class="tip" onclick="toggleTip(this)">Big Five<span class="tip-box"><strong>Big Five(ビッグファイブ)</strong><br>性格を 5 つの連続した因子(開放性・誠実性・外向性・協調性・神経症傾向)で記述するモデル。現在の性格心理学の標準的枠組み。</span></span>と呼ばれるまったく別系統の性格モデルだった。1930 年代、Gordon Allport と Henry Odbert は英語辞書から性格を表す語を約 4,500 語抜き出した。「人間が性格を表現する語彙には、性格の重要な次元がすべて刻印されているはずだ」という、後に<em>語彙仮説</em>と呼ばれる発想である。この語彙を数十年かけて、Raymond Cattell、Lewis Goldberg、そして Paul Costa と Robert McCrae が因子分析にかけ続けた結果、どの言語・どの文化で試しても、性格語は必ず 5 つの束に収束した。Big Five の 5 因子は、<strong>ユングの思索からではなく、人間の言葉そのものから浮かび上がってきた</strong>。</p>
+
+  <p class="body-text fade">Big Five が MBTI と根本的に違う点は三つある。第一に、<strong>モデルの出所が逆向き</strong>だ。MBTI はユングの類型論という理論から演繹された。Big Five は数十万人分のデータから帰納された。第二に、<strong>スコアの扱い方</strong>が違う。MBTI は中央値でばっさり二分して「E か I か」を決める。Big Five は各因子を連続したスペクトラムのまま扱い、「外向性スコア 62 パーセンタイル」のように相対位置で語る。二峰分布(山が二つ)ではなく正規分布(山が一つ)で性格が分布するという事実に、素直に沿っている。第三に、<strong>含まれる軸のセット</strong>が違う。MBTI の 4 軸は Big Five の 4 因子とそれぞれ強く相関する(E/I と外向性、S/N と開放性、T/F と協調性、J/P と誠実性)。ところが、Big Five で職務パフォーマンス・精神的健康・寿命との相関が最も強いとされる 5 番目の因子 ―― <strong>神経症傾向(Neuroticism)</strong> ―― に対応する軸が、MBTI には存在しない。不安の感じやすさ、ストレスへの耐性、気分の上下。「性格を語るなら外せない」とされる情動安定性の次元が、MBTI の地図からは丸ごと抜けている。</p>
+
+  <p class="body-text fade">学術誌で性格について書くとき、ほぼ例外なく使われるのは Big Five のほうだ。MBTI が学術論文で使われるのは、「MBTI の問題点を論じる論文」のときくらいしかない。両者の骨格を並べてみる。</p>
+
+  <!-- MBTI vs Big Five 比較カード(HTML版) -->
+  <div class="compare-wrap fade">
+    <div class="compare-title">MBTI と Big Five の構造比較</div>
+    <div class="compare-grid">
+      <!-- 左: MBTI -->
+      <div class="compare-card">
+        <div class="compare-card-head">
+          <h3>MBTI</h3>
+          <p class="compare-sub">ユングの類型論から<strong>演繹</strong>(1940s–)</p>
+        </div>
+        <div class="compare-rows">
+          <div class="compare-row">
+            <span class="cmp-key">E / I</span>
+            <span class="cmp-val">外向 ↔ 内向</span>
+          </div>
+          <div class="compare-row">
+            <span class="cmp-key">S / N</span>
+            <span class="cmp-val">感覚 ↔ 直観</span>
+          </div>
+          <div class="compare-row">
+            <span class="cmp-key">T / F</span>
+            <span class="cmp-val">思考 ↔ 感情</span>
+          </div>
+          <div class="compare-row">
+            <span class="cmp-key">J / P</span>
+            <span class="cmp-val">判断 ↔ 知覚</span>
+          </div>
+        </div>
+        <div class="compare-foot">
+          <p><strong>測定:</strong> 二分法(中央で強制的に二分)</p>
+          <p class="cmp-warn">▲ 神経症傾向に対応する軸が無い</p>
+        </div>
+      </div>
+
+      <!-- 右: Big Five -->
+      <div class="compare-card bigfive-card">
+        <div class="compare-card-head">
+          <h3>Big Five</h3>
+          <p class="compare-sub">語彙 × データから<strong>帰納</strong>(1930s–)</p>
+        </div>
+        <div class="compare-rows">
+          <div class="compare-row">
+            <span class="cmp-key">O</span>
+            <span class="cmp-val">開放性</span>
+            <span class="cmp-note">≒ MBTI の S / N</span>
+          </div>
+          <div class="compare-row">
+            <span class="cmp-key">C</span>
+            <span class="cmp-val">誠実性</span>
+            <span class="cmp-note">≒ MBTI の J / P</span>
+          </div>
+          <div class="compare-row">
+            <span class="cmp-key">E</span>
+            <span class="cmp-val">外向性</span>
+            <span class="cmp-note">≒ MBTI の E / I</span>
+          </div>
+          <div class="compare-row">
+            <span class="cmp-key">A</span>
+            <span class="cmp-val">協調性</span>
+            <span class="cmp-note">≒ MBTI の T / F</span>
+          </div>
+          <div class="compare-row highlight">
+            <span class="cmp-key">N</span>
+            <span class="cmp-val">神経症傾向</span>
+            <span class="cmp-note warn">MBTI に対応なし</span>
+          </div>
+        </div>
+        <div class="compare-foot">
+          <p><strong>測定:</strong> 連続スペクトラム(分位で表現)</p>
+          <p class="cmp-ok">▲ 職務・健康・寿命の予測力あり</p>
+        </div>
+      </div>
+    </div>
+    <p class="compare-caption">MBTI の 4 軸は、それぞれ Big Five の 4 因子と強く相関する。ただし、Big Five で最重要視される <strong>神経症傾向(N)</strong> に対応する軸が MBTI には無い。「胴体と腕の片方を診ないで受けた健康診断」と評される理由がここにある。</p>
+  </div>
+
+  <!-- STEPS: 致命的な4つの問題 -->
+  <div class="steps-wrap fade">
+    <div class="steps-head">科学者が挙げる主な問題</div>
+
+    <div class="step-card" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">1</div>
+        <div class="step-tw">
+          <div class="step-title">再テスト不安定性</div>
+          <div class="step-sub">5 週間後に約半数が別タイプになる</div>
+        </div>
+        <span class="step-arr">▼</span>
+      </div>
+      <div class="step-body">
+        <p>Howes &amp; Carskadon (1979) の追跡研究では、117 名の大学生のうち、5 週間後の再テストで同じ 4 文字タイプを維持したのは <em>49%</em> だった。Pittenger (1993) はこの結果を複数の追跡研究と合わせて検証し、<strong>再テスト間隔が短くても最大で半数が別タイプに振り分けられる</strong>と結論した。</p>
+        <p>新版 Form M でも 4 週間後に 4 文字が同じままなのは <em>65%</em>。気質が本当に「核」であるなら、数週間でここまで揺れないはずだ。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">2</div>
+        <div class="step-tw">
+          <div class="step-title">スコア分布が二峰ではない</div>
+          <div class="step-sub">タイプの「実在」を支えるデータが見つからない</div>
+        </div>
+        <span class="step-arr">▼</span>
+      </div>
+      <div class="step-body">
+        <p>MBTI の前提は「人は E か I、S か N のどちらかに属する」だ。これが正しければ、スコアの山は両極に 2 つ現れるはず(<strong>二峰分布</strong>)。ところが McCrae &amp; Costa (1989) 以降の測定結果は、4 軸のすべてで山がひとつの<strong>正規分布</strong>を示す。</p>
+        <p>つまり、人口の大半は「真ん中」に集まっていて、MBTI はその真ん中に引いた一本のカットラインによって、隣どうしの人を<em>反対側のタイプ</em>に分類している。これが 1 の不安定性の直接の原因でもある。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">3</div>
+        <div class="step-tw">
+          <div class="step-title">予測妥当性の不在</div>
+          <div class="step-sub">職務パフォーマンスを予測するエビデンスがない</div>
+        </div>
+        <span class="step-arr">▼</span>
+      </div>
+      <div class="step-body">
+        <p>1991 年、米国科学アカデミー(NAS)は MBTI について <em>"The popularity of this instrument in the absence of proven scientific worth is troublesome."</em>(科学的価値の証明がないままの人気は厄介である)と総括し、キャリアカウンセリングへの使用を推奨しないと結論した。</p>
+        <p>MBTI 自身の公式マニュアルにも「採用選考に使うべきでない」と書かれている。にもかかわらず、Fortune 100 企業の <em>約 88%</em> が過去に何らかの形で使用している ― この非対称が、批判の火種を尽きなくさせている。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc4">
+      <div class="step-hd" onclick="tog(4)">
+        <div class="step-nb">4</div>
+        <div class="step-tw">
+          <div class="step-title">神経症傾向の欠落</div>
+          <div class="step-sub">性格の重要軸が丸ごと抜け落ちている</div>
+        </div>
+        <span class="step-arr">▼</span>
+      </div>
+      <div class="step-body">
+        <p>Big Five で最も強い予測力を持つのは、じつは外向性ではなく「神経症傾向(Neuroticism)」だ。不安の感じやすさ、ストレスへの反応、気分の安定性。職務満足、人間関係、メンタルヘルスと最もよく相関する軸がこれである。</p>
+        <p>Adam Grant は 2013 年の批判記事で、この欠落を <em>"It's like a physical exam that ignores your torso and one of your arms."</em>(胴体と腕の片方を診ない健康診断のようなものだ)と評した。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- バーナム効果接続 -->
+  <p class="body-text fade">ここまで読むと、ひとつ素朴な疑問が残る。<em>では、なぜ多くの人が「自分のタイプに当てはまる」と感じるのか。</em>答えのかなりの部分は、すでに別の記事で扱っている。一般的で肯定的な記述を、自分だけに向けられた言葉だと感じてしまう。同じ文章を全員に渡しても、平均で 4.26 / 5.0 点の「的中度」を得られる。<a href="/barnum_effect" style="color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.3);">バーナム効果</a>という現象だ。MBTI のタイプ記述は、そのバーナム効果が最大限に効く密度と口調で書かれている。</p>
+
+  <!-- 引用: Robert Hogan -->
+  <div class="quote-block fade">
+    <p class="quote-en">"Most personality psychologists regard the MBTI as little more than an elaborate Chinese fortune cookie."</p>
+    <p class="quote-ja">「大半の性格心理学者は、MBTI を精巧な中華フォーチュンクッキー程度のものとしか見ていない。」</p>
+    <p class="quote-attr">— Robert Hogan, 性格心理学者</p>
+  </div>
+
+  <!-- 人物ブロック: Adam Grant -->
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="./person_adam_grant.jpg" alt="Adam Grant の講演中の写真">
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">Adam Grant</p>
+      <p class="person-block-role">ペンシルベニア大学ウォートン校 / 組織心理学者 / <a href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%80%E3%83%A0%E3%83%BB%E3%82%B0%E3%83%A9%E3%83%B3%E3%83%88" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(139,26,26,.3);">Wikipedia</a></p>
+      <p class="person-block-desc">現代で最も声の大きい MBTI 批判者のひとり。2013 年に Psychology Today に掲載した「MBTI, I'm breaking up with you」は、学術界と一般読者の両方に届いた稀有な批判記事になった。科学への忠実さと読みやすさを同じ文章に両立させる書き手である。</p>
+      <p class="person-block-credit">Photo: Michael Calabro / World Economic Forum (CC BY 2.0) · via <a href="https://commons.wikimedia.org/wiki/File:Adam_Grant_at_the_2023_World_Economic_Forum_(52693513408).jpg" style="color:inherit;text-decoration:underline;">Wikimedia Commons</a></p>
+    </div>
+  </div>
+
+  <!-- ============ 歴史 ============ -->
+  <div class="sec-rule fade">
+    <span class="sec-label">歴史</span>
+    <div class="sec-line"></div>
+  </div>
+  <h2 class="fade">ユングから韓国のブームまで — MBTI の一世紀</h2>
+
+  <div class="timeline fade">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1921</p>
+      <p class="tl-title">ユング『心理学的類型論』出版</p>
+      <p class="tl-desc">外向・内向、思考・感情、感覚・直観という軸が初めて体系化される。MBTI の土台となる発想だが、ユング本人は「人を 16 の箱に入れる」とは書いていない。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1943</p>
+      <p class="tl-title">イザベル・マイヤーズが Form A を完成</p>
+      <p class="tl-desc">172 問の質問紙。第二次大戦中、女性の職場適性を見る道具として普及しはじめる。心理学の専門家チームではなく、母娘の独学プロジェクトとして。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1962</p>
+      <p class="tl-title">ETS から初の公式マニュアル出版</p>
+      <p class="tl-desc">MBTI が「誰でも使える測定道具」として世に出た年。同年、世界はキューバ危機で核戦争の縁に立ち、ジョン・グレンが地球を三周した。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1975</p>
+      <p class="tl-title">CPP が出版権を取得し、商業化が加速</p>
+      <p class="tl-desc">Consulting Psychologists Press(のちの Myers-Briggs Company)が権利を取得。企業研修・自己啓発市場に乗り、80 年代以降フォーチュン 500 の多くが採用する。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1991</p>
+      <p class="tl-title">米国科学アカデミー(NAS)が批判的結論を発表</p>
+      <p class="tl-desc">報告書『In the Mind's Eye』で「科学的価値の証明がないままの人気は厄介」と結論。キャリアカウンセリングへの使用を推奨しないと明記した。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1993</p>
+      <p class="tl-title">Pittenger の批判論文</p>
+      <p class="tl-desc">「MBTI を測定した結果、基準に届かなかった」というタイトルの論文が、学術批判の標準的な引用文献になる。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2013</p>
+      <p class="tl-title">Adam Grant の Psychology Today 記事</p>
+      <p class="tl-desc">「MBTI, I'm breaking up with you」。学術的批判が初めて、一般読者に大規模に届いた瞬間。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2020 年代</p>
+      <p class="tl-title">韓国と日本での再流行</p>
+      <p class="tl-desc">コロナ禍の隔離と就活難の中、韓国では 19〜28 歳の 9 割が受験済みに。マッチングアプリのプロフィールの約 1/3 に 4 文字が記される。日本では 7-Eleven が「MyBTI グミ」を発売、血液型性格分類から 16 タイプへ関心が移る。科学的批判は最も強まり、同時に、最も多くの人が受けている。</p>
+    </div>
+  </div>
+
+  <!-- ============ つまり ============ -->
+  <div class="sec-rule fade">
+    <span class="sec-label">つまり</span>
+    <div class="sec-line"></div>
+  </div>
+  <h2 class="fade">分類の物語と、連続体の事実</h2>
+
+  <p class="body-text fade">ここまでの話を、あえて MBTI に不利な言葉ばかりで並べてきた。けれど、この記事の目的は「MBTI をやめさせること」ではない。性格心理学者がなぜ冷淡であり続けるのか、その<strong>理由を具体的に知っておくこと</strong>のほうが、おそらく実用的だ。知ったうえでなお楽しむことは、十分に両立する。仕組みを知ったマジシャンが、マジックを嫌いにならないのと同じ理由で。</p>
+
+  <p class="body-text fade">興味深いのは、2020 年代のこの状況のほうだ。<strong>米国科学アカデミーの警告(1991)、Pittenger のメタ分析(1993)、Adam Grant の公開批判(2013)</strong>と、性格心理学の側からの否定はすでに 30 年分積み重なっている。それが学術誌の外にまで届いた直後に、コロナ禍を挟んで、韓国・日本・中国のあいだでかつてない流行が起きた。<strong>批判が最も強い時期と、普及が最も進んだ時期が重なっている</strong>。分類されたい衝動は、根拠の強弱とは別の層で動いている。それは「自分をひとつの物語にまとめたい」という、<em>自己が作られていく途中でしか生まれない欲求</em>なのかもしれない。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">MBTI は<em>性格</em>を測っているのではなく、<em>分類されたいという衝動</em>を受け止める容器として機能している。</p>
+    <p class="pull-attr">— 本記事のまとめとして</p>
+  </div>
+
+  <!-- カルチャーブロック -->
+  <div class="culture-block fade">
+    <p class="culture-label">— 文化の中の MBTI</p>
+
+    <div class="culture-item">
+      <p class="culture-title">韓国の MBTI ブーム (2020 年代)</p>
+      <p class="culture-desc">コロナ禍で対面の交流が減るなか、「MZ 世代」(ミレニアル + Z 世代)のあいだで爆発的に広がった。19〜28 歳の約 9 割が受検済みで、ソウルのマッチングアプリでは全プロフィールの 1/3 に MBTI が記される。好まれる/避けられるタイプを明示する「MBTI フィルター」機能も登場した。</p>
+    </div>
+
+    <div class="culture-item">
+      <p class="culture-title">日本: 血液型から 16 タイプへ</p>
+      <p class="culture-desc">日本にはもともと、1970 年代から続く血液型性格分類の文化がある。2020 年代に入り、その役割を MBTI が部分的に引き継いだ。7-Eleven は「MyBTI グミ」として 16 種のキャンディを発売、自分のタイプを集めるためには最低でも 4 袋買う必要がある ― 消費と同化した分類。</p>
+    </div>
+
+    <div class="culture-item">
+      <p class="culture-title">Fortune 100 の 88% という数字</p>
+      <p class="culture-desc">米国フォーチュン 100 企業の約 88% が過去に MBTI を何らかの形で使用したとされる(出版元 The Myers-Briggs Company による自社発表)。世界の年間受検者数は推定 200 万人超、公式テスト 1 回 49.95 ドル。科学的評価と商業的浸透が、ここまで食い違う人文系の道具は稀である。</p>
+    </div>
+  </div>
+
+  <!-- ============ 参考文献 ============ -->
+  <div class="sec-rule fade">
+    <span class="sec-label">参考文献</span>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">批判論文</span><span class="ref-year">1993</span></div>
+      <p class="ref-title"><a href="https://psycnet.apa.org/record/1994-19274-001" target="_blank" rel="noopener">Measuring the MBTI...And Coming Up Short</a></p>
+      <p class="ref-author">David J. Pittenger</p>
+      <p class="ref-desc">MBTI の信頼性・妥当性を網羅的に検討した古典的批判論文。基本的な心理測定の基準を満たさないと結論づけ、以降の学術批判の基準点になった。</p>
+    </div>
+
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">比較論文</span><span class="ref-year">1989</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1111/j.1467-6494.1989.tb00759.x" target="_blank" rel="noopener">Reinterpreting the Myers-Briggs Type Indicator From the Perspective of the Five-Factor Model of Personality</a></p>
+      <p class="ref-author">Robert R. McCrae &amp; Paul T. Costa Jr.</p>
+      <p class="ref-desc">MBTI の 4 軸が Big Five の 4 因子に対応することを示し、同時に「神経症傾向」に対応する次元が MBTI にないことを指摘した重要な比較研究。</p>
+    </div>
+
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">公式報告書</span><span class="ref-year">1991</span></div>
+      <p class="ref-title"><a href="https://nap.nationalacademies.org/read/1580/chapter/1" target="_blank" rel="noopener">In the Mind's Eye: Enhancing Human Performance</a></p>
+      <p class="ref-author">Druckman &amp; Bjork (Eds.) / National Research Council</p>
+      <p class="ref-desc">米国科学アカデミーが MBTI を含む人材評価道具を検証した報告書。「科学的価値の証明がないままの人気は厄介である」と結論し、キャリアカウンセリングへの使用を推奨しないと明記した。</p>
+    </div>
+
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">追試研究</span><span class="ref-year">1979</span></div>
+      <p class="ref-title">A Five-Week Test-Retest Reliability Study of the Myers-Briggs Type Indicator</p>
+      <p class="ref-author">Ralph J. Howes &amp; Thomas G. Carskadon</p>
+      <p class="ref-desc">5 週間後の再テストで同じ 4 文字タイプを維持したのは 49% だったと報告。「MBTI の再テスト不安定性」の最も広く引用されるデータ源。</p>
+    </div>
+
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2019</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1111/spc3.12434" target="_blank" rel="noopener">Evaluating the Validity of Myers-Briggs Type Indicator Theory: A Teaching Tool and Window into Intuitive Psychology</a></p>
+      <p class="ref-author">Randy Stein &amp; Alexander B. Swan</p>
+      <p class="ref-desc">MBTI 理論を「既知の事実・データとの一致を欠き、検証可能性を欠き、内部矛盾を持つ」と体系的に論じた論文。教育現場で批判的思考を教える題材としての使い方も示す。</p>
+    </div>
+
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一般記事</span><span class="ref-year">2013</span></div>
+      <p class="ref-title"><a href="https://www.psychologytoday.com/us/blog/give-and-take/201309/goodbye-to-mbti-the-fad-wont-die" target="_blank" rel="noopener">Goodbye to MBTI, the Fad That Won't Die</a></p>
+      <p class="ref-author">Adam Grant / Psychology Today</p>
+      <p class="ref-desc">学術的批判を一般読者の言葉に翻訳した代表的な記事。「理系のための占星術」「胴体と腕を診ない健康診断」といった表現で、MBTI の問題を広く届けた。</p>
+    </div>
+  </div>
+
+  <!-- ============ 信頼度ノート ============ -->
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    再テストで約半数が別タイプになる、スコアは正規分布を示す、神経症傾向が欠けている — この記事の中心にある批判は、複数の査読付き論文と米国科学アカデミーの公式報告書に基づいている。一方で「MBTI が心理学的に無価値だ」とまでは主張していない。科学的な測定道具としては基準を満たさないが、自己理解や対話のきっかけとしての効用を否定する根拠もまた、ここでは扱っていない。科学の言葉と日常の実感のあいだで、どちらも棄てないで読んでほしい。
+  </div>
+
+  <div class="signature fade">e. Tamaki</div>
+
+  <!-- タグ -->
+  <div class="tags fade">
+    <span class="tag">性格心理学</span>
+    <span class="tag">科学論</span>
+    <span class="tag">分類</span>
+    <span class="tag">MBTI</span>
+    <span class="tag">Big Five</span>
+    <span class="tag">再現性</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">49%</p>
+      <p class="sidebar-text">Howes &amp; Carskadon (1979) が報告した、5 週間後の再テストで「同じ 4 文字タイプのまま」残った受検者の割合。残りの半数は、別のタイプに移った。</p>
+    </div>
+
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1962 年は、ケネディ政権下のキューバ危機の年。核戦争の瀬戸際で、世界が「自分たちは何者か」を問うていた時代に、<strong>16 の型</strong>という答えが静かに出版された。</p>
+    </div>
+
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">— 韓国バラエティ番組『MBTI Inside』(2021)<br>— 7-Eleven Japan『MyBTI グミ』(2024)<br>— Netflix 作品のキャラクター紹介<br>— マッチングアプリの標準項目</p>
+    </div>
+
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— <em>バーナム効果</em>(誰にでも当てはまる記述を自分だけのものと感じる)<br>— <em>Big Five</em>(ビッグファイブ)<br>— <em>確証バイアス</em>(「当たっている」と感じた瞬間に反証を探さなくなる)</p>
+    </div>
+
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">読んだあと考えたいこと</p>
+      <ul class="sidebar-check">
+        <li>自分の MBTI タイプを「核」として語っていないか</li>
+        <li>どの軸が中央付近に落ちているか</li>
+        <li>神経症傾向の強さは、自分の人生の何を説明しているか</li>
+      </ul>
+    </div>
+
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">🟢 批判部分は査読済み論文と NAS 報告書に基づく。「なお人気である」という社会現象の部分は複数の報道・統計に依拠。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue &gt;&gt; Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// MBTIはなぜ科学者に嫌われるのか を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;私 2 回でタイプ変わっちゃったんだけど</span></div>
+      <span class="t-output" id="to1">それ、珍しくないどころか<em>普通</em>だよ。Howes &amp; Carskadon の研究だと 5 週間後に約半分が別タイプになる。つまり「タイプが変わった人」こそが、MBTI の再現性の低さを自分の身体で体感した人ということになる。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ自分の INFJ は嘘ってこと？</span></div>
+      <span class="t-output" id="to2">嘘じゃない。ただ、<em>四文字のラベル</em>と<em>あなたという連続体</em>のあいだには、けっこう大きな隙間があるというだけ。「INFJ 寄り」とは言えても、INFJ という部屋に入居しているわけではない、というイメージが近い。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;Big Five やったほうがいい？</span></div>
+      <span class="t-output" id="to3">楽しむだけなら MBTI のままでいい。自分の傾向を<strong>仕事や健康の判断材料</strong>にしたいなら Big Five のほうが当てになる。特に神経症傾向の値を知っておくと、ストレスとの付き合い方を決めるときに効く。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;なんでこんなに流行ってるの、科学的に否定されてるのに</span></div>
+      <span class="t-output" id="to4">「<em>分類されたい</em>」という気持ちは、科学の正しさとは別の欲求だから。名前がつくと、自分の輪郭が少し濃くなった気がする。その気持ち自体は悪いものじゃないと思う。ただ、輪郭が濃く見えたぶんだけ、中身まで固まったと勘違いしやすい — そこだけ気をつけておけばいい。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl5">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# タイプの話、少し軽く扱えそう</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="/barnum_effect">
+      <p class="related-card-tag">社会心理学 × 占い</p>
+      <p class="related-card-title">バーナム効果と占いの心理学</p>
+      <p class="related-card-desc">MBTI のタイプ記述を「当たっている」と感じる仕組みのかなりの部分は、ここに書かれている。全員に同じ文章を渡して 4.26/5.0 点を出した実験の話。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="#">
+      <p class="related-card-tag">思想 × 分類</p>
+      <p class="related-card-title">構造主義 — 世界を軸で切り分ける誘惑</p>
+      <p class="related-card-desc">なぜ人は分類されたいのか、なぜ世界を軸で切り分けたくなるのか。MBTI の背後にあるのは、二十世紀の知的潮流そのものだ。</p>
+      <p class="related-card-arrow">近日公開</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// Fade in
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// Tooltip toast
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// Steps accordion
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ===== RETEST SIMULATOR =====
+// 各質問は E 寄りか I 寄りか + 配点配列。選択肢 5 段階 -2..+2 (E を +, I を -)
+const Q1=[
+  {stem:'知らない人が多い集まりに参加したあと、あなたの気分は？',axis:'E',labels:['ぐったり\n疲れる','やや疲れる','どちらとも言えない','少し楽しい','楽しくて\n元気が出る']},
+  {stem:'週末を一人で静かに過ごすことと、友人と出かけることのどちらが「充電」になる？',axis:'E',labels:['完全に\n一人','どちらかと\nいえば一人','半々','どちらかと\nいえば友人','完全に\n友人と']},
+  {stem:'会議で発言を求められる前に、話すことを頭の中で組み立てる方？',axis:'I',labels:['かなり\n組み立てる','やや\n組み立てる','ふつう','あまり\n組み立てない','ほとんど\nいきなり話す']},
+  {stem:'思いついたアイデアは、口に出して確かめたい方？頭の中で先に確かめたい方？',axis:'I',labels:['完全に\n頭の中','どちらかと\nいえば頭の中','半々','どちらかと\nいえば口に出す','完全に\n口に出す']},
+  {stem:'知らない人と偶然話すことになったとき、どう感じる？',axis:'E',labels:['とても\n疲れる','やや疲れる','どちらとも言えない','やや楽しい','とても楽しい']},
+];
+const Q2=[
+  {stem:'大人数のパーティーでは、時間が経つほど元気が増す方？',axis:'E',labels:['どんどん\n消耗する','やや消耗する','変わらない','やや元気が\n出る','どんどん\n元気が出る']},
+  {stem:'長時間の一人作業について、どう感じる？',axis:'I',labels:['苦にならず\nむしろ好き','わりと得意','ふつう','少し苦手','かなり苦手']},
+  {stem:'沈黙ができたとき、それを埋めたくなる？',axis:'E',labels:['まったく\n埋めたくない','あまり埋めたくない','どちらとも\n言えない','やや埋めたくなる','とても埋めたくなる']},
+  {stem:'他人と長く過ごしたあと、一人の時間が必要になる？',axis:'I',labels:['必ず必要','だいたい必要','時と場合による','あまり\n必要ない','まったく\n必要ない']},
+  {stem:'新しいコミュニティに入ったとき、自分から話しかける方？',axis:'E',labels:['まったく\n自分からは\nいかない','あまり\nいかない','半々','わりと\n自分からいく','積極的に\n自分からいく']},
+];
+
+let t1Scores=[],t2Scores=[];
+
+function buildQuestions(container,qs,round){
+  container.innerHTML='';
+  const letters=['A','B','C','D','E'];
+  qs.forEach((q,qi)=>{
+    const block=document.createElement('div');
+    block.className='q-item';
+    const stem=document.createElement('p');
+    stem.className='q-stem';
+    const num=document.createElement('span');
+    num.className='q-num';
+    num.textContent='ITEM '+String(qi+1).padStart(2,'0');
+    stem.appendChild(num);
+    stem.appendChild(document.createTextNode(q.stem));
+    block.appendChild(stem);
+    const scale=document.createElement('div');
+    scale.className='q-scale';
+    q.labels.forEach((lbl,li)=>{
+      const opt=document.createElement('div');
+      opt.className='q-opt';
+      const letter=document.createElement('div');
+      letter.className='q-opt-letter';
+      letter.textContent=letters[li];
+      const mark=document.createElement('div');
+      mark.className='q-opt-mark';
+      const lblEl=document.createElement('div');
+      lblEl.className='q-opt-lbl';
+      lblEl.textContent=lbl.replace(/\n/g,' / ');
+      opt.appendChild(letter);
+      opt.appendChild(mark);
+      opt.appendChild(lblEl);
+      const raw=li-2; // -2..+2
+      // axis E: +raw が E 寄り / axis I: 逆向きに解釈
+      const signed=(q.axis==='E')?raw:-raw;
+      opt.addEventListener('click',()=>{
+        block.querySelectorAll('.q-opt').forEach(o=>o.classList.remove('selected'));
+        opt.classList.add('selected');
+        const store=(round===1)?t1Scores:t2Scores;
+        store[qi]=signed;
+        updateNextBtn(round);
+      });
+      scale.appendChild(opt);
+    });
+    block.appendChild(scale);
+    container.appendChild(block);
+  });
+}
+
+function updateNextBtn(round){
+  if(round===1){
+    const done=t1Scores.filter(x=>x!==undefined).length;
+    document.getElementById('t1Progress').textContent=done;
+    document.getElementById('t1Next').disabled=(done!==Q1.length);
+  }else{
+    const done=t2Scores.filter(x=>x!==undefined).length;
+    document.getElementById('t2Progress').textContent=done;
+    document.getElementById('t2Next').disabled=(done!==Q2.length);
+  }
+}
+
+function sumScore(arr){return arr.reduce((a,b)=>a+b,0);}
+function scoreType(s){return s>=0?'E':'I';}
+
+function goPhase(id){
+  document.querySelectorAll('.retest-phase').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  // スクロールを体験の頭付近に寄せる
+  const exp=document.querySelector('.retest-exp');
+  if(exp){const r=exp.getBoundingClientRect();if(r.top<0)window.scrollTo({top:scrollY+r.top-60,behavior:'smooth'});}
+}
+
+function finishRound(round){
+  if(round===1){
+    const s=sumScore(t1Scores);
+    document.getElementById('t1TypeLabel').textContent=scoreType(s);
+    document.getElementById('t1ScoreLabel').textContent=(s>=0?'+':'')+s;
+    goPhase('rp15');
+  }else{
+    showResult();
+    goPhase('rp3');
+  }
+}
+
+function showResult(){
+  const s1=sumScore(t1Scores), s2=sumScore(t2Scores);
+  const t1=scoreType(s1), t2=scoreType(s2);
+  document.getElementById('rTypeA').textContent=t1;
+  document.getElementById('rTypeB').textContent=t2;
+  document.getElementById('rScoreA').textContent=(s1>=0?'+':'')+s1+' / ±10';
+  document.getElementById('rScoreB').textContent=(s2>=0?'+':'')+s2+' / ±10';
+
+  // 0..100% にマッピング。-10 → 0%、+10 → 100%
+  const pctA=Math.max(0,Math.min(100,((s1+10)/20)*100));
+  const pctB=Math.max(0,Math.min(100,((s2+10)/20)*100));
+  document.getElementById('markA').style.left=pctA+'%';
+  document.getElementById('markB').style.left=pctB+'%';
+
+  const same=(t1===t2);
+  const verdict=document.getElementById('resultVerdict');
+  const sub=document.getElementById('resultSub');
+  const axis=document.getElementById('axisStatus');
+
+  if(same){
+    const closeToCut=Math.min(Math.abs(s1),Math.abs(s2))<=2;
+    if(closeToCut){
+      verdict.innerHTML='同じタイプ、ただし<em>カットライン近く</em>。';
+      sub.textContent='2 回とも同じ E/I に分類されたが、スコアは中央付近にある。次に受けるとタイプが変わる可能性がある位置。';
+    }else{
+      verdict.innerHTML='2 回とも同じタイプ。';
+      sub.textContent='比較的はっきりと一方に寄っているケース。それでも、MBTI の 4 軸すべてで同じ傾向を示す人は全体の約半数にすぎない。';
+    }
+    axis.textContent='同一';
+    axis.className='result-same';
+  }else{
+    verdict.innerHTML='タイプが<em>変わった</em>。';
+    sub.textContent='1 回目と 2 回目で E/I が別になった。5 週間後の再テストで約半数の人に起きる現象の、縮小版があなたの身体で起きた。';
+    axis.textContent='別タイプ';
+    axis.className='result-diff';
+  }
+}
+
+function resetRetest(){
+  t1Scores=[];t2Scores=[];
+  const qa=document.getElementById('t1Questions');
+  const qb=document.getElementById('t2Questions');
+  qa.querySelectorAll('.q-opt.selected').forEach(o=>o.classList.remove('selected'));
+  qb.querySelectorAll('.q-opt.selected').forEach(o=>o.classList.remove('selected'));
+  document.getElementById('t1Next').disabled=true;
+  document.getElementById('t2Next').disabled=true;
+  document.getElementById('t1Progress').textContent='0';
+  document.getElementById('t2Progress').textContent='0';
+  goPhase('rp1');
+}
+
+// 初期化
+buildQuestions(document.getElementById('t1Questions'),Q1,1);
+buildQuestions(document.getElementById('t2Questions'),Q2,2);
+
+// Terminal animation
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2400},{id:'to2',delay:3000},
+  {id:'tl3',delay:4200},{id:'to3',delay:4800},
+  {id:'tl4',delay:6000},{id:'to4',delay:6600},
+  {id:'tl5',delay:7800},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">検索インデックスの読み込み中です。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プレビュー — 人類進化の図解 2方向</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{overflow-x:hidden;}
+body{background:#faf8f3;color:#3d3020;font-family:'Source Serif 4',serif;padding:48px 24px 80px;}
+.wrap{max-width:900px;margin:0 auto;}
+.preview-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin:48px 0 14px;display:flex;align-items:center;gap:12px;}
+.preview-label::after{content:'';flex:1;height:1px;background:#c8bfaa;}
+h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#1a1208;margin-bottom:18px;letter-spacing:-.01em;line-height:1.25;}
+.body-text{font-family:'Source Serif 4',serif;font-size:15px;line-height:1.85;color:#3d3020;border-left:2px solid #e0d8c8;padding-left:14px;margin-bottom:20px;overflow-wrap:anywhere;}
+
+/* --- OPTION 2: misconception two-column --- */
+.misconception{border:1px solid #c8bfaa;background:#f3efe6;padding:22px;margin:20px 0 56px;}
+.misc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;}
+.misc-col{background:#faf8f3;border:1px solid #e0d8c8;padding:18px;display:flex;flex-direction:column;min-width:0;}
+.misc-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.misc-col.wrong .misc-head{color:#b0a090;}
+.misc-col.right .misc-head{color:#8b1a1a;}
+.misc-body{font-family:'Source Serif 4',serif;font-size:14px;line-height:1.75;color:#3d3020;margin-top:14px;overflow-wrap:anywhere;}
+.mini-svg{width:100%;height:auto;display:block;}
+.march-wrap{position:relative;width:100%;padding:8px 4px;background:#faf8f3;}
+.march-img{width:100%;height:auto;display:block;}
+.march-x{position:absolute;inset:8px 4px;width:calc(100% - 8px);height:calc(100% - 16px);pointer-events:none;}
+.march-credit{display:block;margin-top:8px;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;}
+
+/* --- OPTION 3: cladogram --- */
+.clado-wrap{background:#faf8f3;border:1px solid #c8bfaa;padding:28px 20px 22px;margin:20px 0 56px;}
+.clado-cap{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-top:14px;text-align:center;line-height:1.6;}
+.svg-fig{max-width:820px;margin:0 auto;display:block;width:100%;height:auto;}
+
+/* --- OPTION 4: existing Wikimedia SVG + Japanese scaffolding --- */
+.wiki-fig{margin:20px 0 56px;}
+.fig-guide-top{background:#f3efe6;border:1px solid #c8bfaa;border-left:3px solid #8b1a1a;padding:16px 20px;margin-bottom:0;}
+.fig-guide-top-ttl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;display:block;}
+.fig-guide-top ul{list-style:none;padding:0;margin:0;}
+.fig-guide-top li{font-family:'Source Serif 4',serif;font-size:14px;line-height:1.8;color:#3d3020;padding-left:18px;position:relative;}
+.fig-guide-top li::before{content:'›';position:absolute;left:0;top:0;color:#8b1a1a;font-weight:700;}
+.fig-img-wrap{background:#faf8f3;border:1px solid #c8bfaa;border-top:none;padding:28px 20px 10px;text-align:center;}
+.fig-img{max-width:820px;width:100%;height:auto;display:block;margin:0 auto;}
+.fig-caption{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-top:14px;text-align:center;line-height:1.6;}
+.fig-caption a{color:#8b1a1a;border-bottom:1px dotted #8b1a1a;}
+.fig-highlight{background:#1a1208;color:#f3efe6;padding:18px 22px;margin-top:14px;border-left:3px solid #8b1a1a;}
+.fig-highlight-ttl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#d4a574;text-transform:uppercase;margin-bottom:8px;display:block;}
+.fig-highlight p{font-family:'Source Serif 4',serif;font-size:14.5px;line-height:1.85;color:#f3efe6;margin:0;}
+.fig-highlight strong{color:#ffcf7a;font-weight:600;}
+.fig-glossary{margin-top:18px;border:1px solid #c8bfaa;background:#faf8f3;}
+.fig-glossary-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;padding:12px 18px;border-bottom:1px solid #e0d8c8;background:#f3efe6;}
+.fig-glossary table{width:100%;border-collapse:collapse;}
+.fig-glossary tr{border-bottom:1px solid #f0ebe0;}
+.fig-glossary tr:last-child{border-bottom:none;}
+.fig-glossary th{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;font-style:italic;color:#1a1208;text-align:left;padding:10px 16px;width:28%;white-space:nowrap;}
+.fig-glossary td{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;padding:10px 14px;line-height:1.6;}
+.fig-glossary td.gl-read{color:#8b1a1a;font-weight:500;width:22%;white-space:nowrap;}
+.fig-glossary tr.us{background:#fdf4e7;}
+.fig-glossary tr.us th,.fig-glossary tr.us td{font-weight:600;}
+
+@media (max-width:700px){
+  .misc-grid{grid-template-columns:1fr;}
+  .svg-fig{max-width:100%;}
+  .fig-glossary th{width:36%;font-size:11px;}
+  .fig-glossary td{font-size:11px;padding:8px 10px;}
+  .fig-glossary td.gl-read{width:28%;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- =========================================
+       案 ② 誤解ブロックに×印で並べる
+       ========================================= -->
+  <div class="preview-label">案 ② 誤解ブロックに並べる</div>
+  <h2>よくある誤解 vs 実際</h2>
+  <p class="body-text">進化を語るとき、頭に真っ先に浮かぶ「一列行進」の絵——実はそれこそが、200年の誤解そのものだ。グールドが『フルハウス』で名指しで叩いたのも、まさにこの絵だった。</p>
+
+  <div class="misconception">
+    <div class="misc-grid">
+
+      <!-- LEFT: misconception with X -->
+      <div class="misc-col wrong">
+        <div class="misc-head">よくある誤解</div>
+        <div class="march-wrap">
+          <img src="./fig_march_of_progress.svg" alt="March of Progress: 猿人から現代人への一列行進" class="march-img">
+          <svg class="march-x" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none">
+            <g stroke="#8b1a1a" stroke-width="7" stroke-linecap="round" opacity="0.72">
+              <line x1="30" y1="20" x2="370" y2="140"/>
+              <line x1="370" y1="20" x2="30" y2="140"/>
+            </g>
+          </svg>
+        </div>
+        <div class="misc-body">「猿から人へ」の一列行進。1965年の挿絵から広まったこの図は、いまも進化の代名詞として流通している。だが直線的な進化も、「より高度なもの」への方向性も、生物学は認めていない。実際の人類史は枝分かれの茂みで、この絵のような一列の系譜は存在しない。<br><span class="march-credit">図版: M. Garde (Wikimedia Commons), CC BY-SA 3.0</span></div>
+      </div>
+
+      <!-- RIGHT: reality bushy tree -->
+      <div class="misc-col right">
+        <div class="misc-head">実際は</div>
+        <svg class="mini-svg" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" aria-label="茂み状の系統樹">
+          <g fill="none" stroke="#3d3020" stroke-width="1.8" stroke-linecap="round">
+            <path d="M40 150 L40 110 L220 110"/>
+            <path d="M85 110 L85 78"/>
+            <path d="M120 110 L120 60 L155 60"/>
+            <path d="M170 110 L170 38"/>
+            <path d="M220 110 L220 68 L265 68"/>
+            <path d="M245 68 L245 32"/>
+            <path d="M265 68 L265 48"/>
+          </g>
+          <!-- surviving branch -->
+          <path d="M220 110 L310 110 L310 22" fill="none" stroke="#8b1a1a" stroke-width="2.6" stroke-linecap="round"/>
+          <!-- extinction marks -->
+          <g fill="#faf8f3" stroke="#3d3020" stroke-width="1.6">
+            <circle cx="85" cy="78" r="5"/>
+            <circle cx="155" cy="60" r="5"/>
+            <circle cx="170" cy="38" r="5"/>
+            <circle cx="245" cy="32" r="5"/>
+            <circle cx="265" cy="48" r="5"/>
+          </g>
+          <!-- survivor dot -->
+          <circle cx="310" cy="22" r="6.5" fill="#8b1a1a"/>
+          <text x="322" y="26" font-family="Source Sans 3, sans-serif" font-size="14" fill="#8b1a1a" font-weight="600">現存種</text>
+          <!-- time axis -->
+          <line x1="40" y1="168" x2="370" y2="168" stroke="#b0a090" stroke-width="1"/>
+          <text x="40" y="180" font-family="Source Sans 3, sans-serif" font-size="11" fill="#b0a090">過去</text>
+          <text x="340" y="180" font-family="Source Sans 3, sans-serif" font-size="11" fill="#b0a090">現在</text>
+        </svg>
+        <div class="misc-body">実際の系統は茂みのように分岐し、枝のほとんどは絶滅で終わる。「現代人」は、剪定を生き延びて今日まで残っている1本の末端に過ぎない。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================
+       案 ③ ホミニン分岐ツリー(単独図版)
+       ========================================= -->
+  <div class="preview-label">案 ③ 人類(ホミニン)の分岐ツリー</div>
+  <h2>人類という「茂み」の中の一本</h2>
+  <p class="body-text">「ヒトは進化の到達点」という直線イメージは、人類史の内部にもうひと段ズームすると完全に崩れる。500万年で20種以上のホミニンが現れ、ほとんどは絶滅した。同時代に複数の人類種が地球を歩き回っていた時期さえある。</p>
+
+  <div class="clado-wrap">
+  <svg class="svg-fig" viewBox="0 0 820 460" xmlns="http://www.w3.org/2000/svg" aria-label="ホミニンの分岐ツリー">
+
+    <!-- legend -->
+    <g font-family="Source Sans 3, sans-serif" font-size="12" fill="#7a6a55">
+      <circle cx="70" cy="32" r="5" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+      <text x="82" y="36">絶滅した種</text>
+      <circle cx="200" cy="32" r="6" fill="#8b1a1a"/>
+      <text x="212" y="36" fill="#8b1a1a" font-weight="600">現存するのは1種のみ</text>
+    </g>
+
+    <!-- branches -->
+    <g fill="none" stroke="#3d3020" stroke-width="1.8" stroke-linecap="round">
+      <!-- root trunk -->
+      <path d="M60 260 L200 260"/>
+      <!-- Sahelanthropus -->
+      <path d="M90 260 L90 210 L150 210"/>
+      <!-- Ardipithecus -->
+      <path d="M170 260 L170 185 L260 185"/>
+      <!-- Australopithecus main -->
+      <path d="M200 260 L340 260"/>
+      <path d="M250 260 L250 230 L355 230"/>
+      <path d="M300 260 L300 245 L395 245"/>
+      <!-- Paranthropus (robust, extinct) -->
+      <path d="M340 260 L340 305 L525 305"/>
+      <path d="M400 305 L400 335 L505 335"/>
+      <!-- Homo lineage begins -->
+      <path d="M340 260 L435 260 L435 205"/>
+      <!-- H. habilis -->
+      <path d="M435 205 L510 205"/>
+      <!-- H. erectus (long lived) -->
+      <path d="M435 205 L560 205 L560 178 L650 178"/>
+      <!-- H. floresiensis (from erectus) -->
+      <path d="M585 205 L585 165 L690 165"/>
+      <!-- H. heidelbergensis -->
+      <path d="M560 178 L625 178 L625 140 L660 140"/>
+      <!-- Denisovan -->
+      <path d="M625 140 L625 130 L735 130"/>
+      <!-- Neanderthal -->
+      <path d="M660 140 L660 108 L745 108"/>
+    </g>
+
+    <!-- surviving sapiens branch (red) -->
+    <path d="M625 140 L625 82 L780 82" fill="none" stroke="#8b1a1a" stroke-width="2.8" stroke-linecap="round"/>
+
+    <!-- extinction circles -->
+    <g fill="#faf8f3" stroke="#3d3020" stroke-width="1.5">
+      <circle cx="150" cy="210" r="5"/>
+      <circle cx="260" cy="185" r="5"/>
+      <circle cx="355" cy="230" r="5"/>
+      <circle cx="395" cy="245" r="5"/>
+      <circle cx="525" cy="305" r="5"/>
+      <circle cx="505" cy="335" r="5"/>
+      <circle cx="510" cy="205" r="5"/>
+      <circle cx="650" cy="178" r="5"/>
+      <circle cx="690" cy="165" r="5"/>
+      <circle cx="735" cy="130" r="5"/>
+      <circle cx="745" cy="108" r="5"/>
+    </g>
+
+    <!-- labels for extinct -->
+    <g font-family="Source Sans 3, sans-serif" font-size="12" fill="#3d3020">
+      <text x="160" y="214">サヘラントロプス</text>
+      <text x="270" y="189">アルディピテクス</text>
+      <text x="365" y="234">A. アファレンシス(ルーシー)</text>
+      <text x="405" y="249">A. アフリカヌス</text>
+      <text x="535" y="309">パラントロプス・ボイセイ</text>
+      <text x="515" y="339">パラントロプス・ロブストゥス</text>
+      <text x="520" y="209">ホモ・ハビリス</text>
+      <text x="660" y="182">ホモ・エレクトゥス</text>
+      <text x="700" y="169">ホモ・フロレシエンシス</text>
+      <text x="745" y="134">デニソワ人</text>
+      <text x="755" y="112">ネアンデルタール人</text>
+    </g>
+
+    <!-- survivor: sapiens -->
+    <circle cx="780" cy="82" r="7" fill="#8b1a1a"/>
+    <text x="772" y="68" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="14" fill="#8b1a1a" font-weight="700">ホモ・サピエンス(私たち)</text>
+
+    <!-- time axis -->
+    <line x1="60" y1="400" x2="780" y2="400" stroke="#3d3020" stroke-width="1"/>
+    <g font-family="Source Sans 3, sans-serif" font-size="12" fill="#7a6a55">
+      <line x1="60" y1="400" x2="60" y2="406" stroke="#3d3020"/>
+      <text x="60" y="422" text-anchor="middle">700万年前</text>
+      <line x1="200" y1="400" x2="200" y2="406" stroke="#3d3020"/>
+      <text x="200" y="422" text-anchor="middle">500万年前</text>
+      <line x1="400" y1="400" x2="400" y2="406" stroke="#3d3030"/>
+      <text x="400" y="422" text-anchor="middle">300万年前</text>
+      <line x1="600" y1="400" x2="600" y2="406" stroke="#3d3020"/>
+      <text x="600" y="422" text-anchor="middle">100万年前</text>
+      <line x1="780" y1="400" x2="780" y2="406" stroke="#3d3020"/>
+      <text x="780" y="422" text-anchor="middle">現在</text>
+    </g>
+    <text x="420" y="444" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#b0a090" letter-spacing="0.12em">時間 →</text>
+
+  </svg>
+  <div class="clado-cap">※ 分岐点と年代は代表的なものを簡略化。実際にはさらに多数の枝と未発見種が存在する。</div>
+  </div>
+
+  <p class="body-text">直線ではなく茂み。到達点ではなく、たまたま剪定を生き延びた一本の末端。シミュレーターが示した「モードはバクテリア、ヒトは右端の裾の一枚」という構図が、人類の内部でもそのまま再現されている。</p>
+
+  <!-- =========================================
+       案 ④ 既存SVG(Wikimedia)+ 日本語スキャフォールド
+       ========================================= -->
+  <div class="preview-label">案 ④ 既存SVG + 解説スキャフォールド</div>
+  <h2>人類は茂みの一本——10 Myaからの系統樹</h2>
+  <p class="body-text">グールドの主張を、一枚の系統樹で見てみる。ヒトはサルから進化したのではない。1000万年前にいた共通祖先から、ヒトの系統も、チンパンジーの系統も、ゴリラの系統も、それぞれ別の方向へ枝分かれし、それぞれが独自の茂みを作った。そして大多数の枝は、絶滅で終わっている。</p>
+
+  <figure class="wiki-fig">
+
+    <!-- Reading guide (top) -->
+    <div class="fig-guide-top">
+      <span class="fig-guide-top-ttl">図の読み方</span>
+      <ul>
+        <li><strong>縦軸が時間</strong>。上が <strong>現在(0 Mya)</strong>、下が <strong>1000万年前(10 Mya)</strong>。樹は下から上へ伸びる</li>
+        <li>各系統は<strong>色付きの領域(川のような塊)</strong>として描かれている。領域の広がり=その時代に存在していた範囲</li>
+        <li>領域が<strong>途中で終わっている</strong>塊 = その時点で<strong>絶滅</strong>した系統</li>
+        <li>領域が<strong>上端(0の線)まで届いている</strong>塊 = <strong>現存する</strong>種(ヒト・チンパンジー・ゴリラなど)</li>
+        <li>枝の分かれ目 = 共通祖先から別の系統に分化したタイミング</li>
+      </ul>
+    </div>
+
+    <!-- The figure -->
+    <div class="fig-img-wrap">
+      <img src="./fig_hominini_lineage.svg" alt="ホミニニ(ヒト族)の系統樹、1000万年前から現在まで" class="fig-img">
+      <figcaption class="fig-caption">Dbachmann, <em>Hominini lineage</em>(Wikimedia Commons). Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Based on Stringer (2012).</figcaption>
+    </div>
+
+    <!-- Highlight callout -->
+    <div class="fig-highlight">
+      <span class="fig-highlight-ttl">注目ポイント</span>
+      <p>図の<strong>上寄り・左側</strong>にある <strong>Homo</strong> と書かれた領域を探してほしい。その内側に <strong>H. sapiens</strong>——これが私たちだ。図全体を見渡すと、<strong>上端の「0の線」(現在)まで届いている色の塊はほんのわずか</strong>でしかない。H. erectusもアウストラロピテクスもパラントロプスも、途中で終わっている。私たちはたどり着いたのではなく、たまたま剪定を生き延びた一本の末端にいる。</p>
+    </div>
+
+    <!-- Glossary table -->
+    <div class="fig-glossary">
+      <div class="fig-glossary-head">主要タクソンの読み方</div>
+      <table>
+        <tr class="us">
+          <th>H. sapiens</th>
+          <td class="gl-read">ホモ・サピエンス</td>
+          <td>私たち(現生人類)。約30万年前に登場</td>
+        </tr>
+        <tr>
+          <th>H. erectus</th>
+          <td class="gl-read">ホモ・エレクトゥス</td>
+          <td>最長寿のヒト属。約180万〜10万年前。絶滅</td>
+        </tr>
+        <tr>
+          <th>Homo</th>
+          <td class="gl-read">ホモ(ヒト属)</td>
+          <td>ハビリス・エレクトゥス・サピエンスなどを含む属</td>
+        </tr>
+        <tr>
+          <th>Australopithecus</th>
+          <td class="gl-read">アウストラロピテクス</td>
+          <td>約400〜200万年前の猿人。ルーシーの仲間。絶滅</td>
+        </tr>
+        <tr>
+          <th>Paranthropus</th>
+          <td class="gl-read">パラントロプス</td>
+          <td>頑丈型の猿人。約270〜120万年前。系統ごと絶滅</td>
+        </tr>
+        <tr>
+          <th>Ardipithecus</th>
+          <td class="gl-read">アルディピテクス</td>
+          <td>約580〜440万年前の初期ホミニン。絶滅</td>
+        </tr>
+        <tr>
+          <th>Sahelanthropus</th>
+          <td class="gl-read">サヘラントロプス</td>
+          <td>最古級の候補(約700万年前)。絶滅</td>
+        </tr>
+        <tr>
+          <th>Orrorin</th>
+          <td class="gl-read">オロリン</td>
+          <td>約600万年前。初期二足歩行の候補。絶滅</td>
+        </tr>
+        <tr>
+          <th>Pan</th>
+          <td class="gl-read">パン属</td>
+          <td>チンパンジーとボノボ。ヒトと最も近縁な現生の親戚</td>
+        </tr>
+        <tr>
+          <th>Gorilla</th>
+          <td class="gl-read">ゴリラ属</td>
+          <td>現生。約800万年前にヒトの系統と分岐</td>
+        </tr>
+        <tr>
+          <th>Hominini</th>
+          <td class="gl-read">ヒト族</td>
+          <td>ヒト亜族 + チンパンジー亜族を含む「族(tribe)」</td>
+        </tr>
+        <tr>
+          <th>Homininae</th>
+          <td class="gl-read">ヒト亜科</td>
+          <td>ヒト・チンパンジー・ゴリラを含む亜科</td>
+        </tr>
+        <tr>
+          <th>Australopithecina</th>
+          <td class="gl-read">アウストラロピテクス亜族</td>
+          <td>アウストラロピテクス属+パラントロプス属などをまとめた分類群</td>
+        </tr>
+      </table>
+    </div>
+
+  </figure>
+
+</div>
+</body>
+</html>

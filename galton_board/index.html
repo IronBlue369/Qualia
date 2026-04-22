@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>正規分布と「平均的な人間」 — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* SLIDE MENU */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* SEARCH */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* MASTHEAD */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-stat{border:1px solid #c8bfaa;padding:28px 24px;background:#f3efe6;text-align:center;margin-bottom:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:stretch;justify-content:center;padding:0;overflow:hidden;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-wiki{margin-top:8px;font-family:'Source Sans 3',sans-serif;font-size:11px;}
+.person-block-wiki a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid #c8bfaa;padding-bottom:1px;letter-spacing:.02em;}
+.person-block-wiki a:hover{border-bottom-color:#8b1a1a;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* SVG FIGURE */
+.svg-fig{margin:28px auto;display:block;max-width:680px;}
+.fig-caption{text-align:center;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:8px;margin-bottom:28px;letter-spacing:.02em;}
+
+/* GALTON BOARD SIMULATOR */
+.sim-wrap{margin:32px 0;border:1px solid #2a1f12;background:#1a1208;padding:0;box-shadow:0 6px 24px rgba(26,18,8,.25),0 1px 0 rgba(255,217,122,.04) inset;}
+.sim-header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid #2a1f12;background:#120c06;color:#e8c56a;}
+.sim-title{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;}
+.sim-title-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:#a8916b;letter-spacing:.1em;}
+.sim-canvas-wrap{background:#15100a;display:flex;justify-content:center;align-items:center;padding:0;position:relative;overflow:hidden;}
+.sim-canvas-wrap canvas{display:block;width:100%;max-width:720px;height:auto;}
+.sim-stats{padding:10px 20px;display:flex;gap:28px;flex-wrap:wrap;background:#120c06;color:#a8916b;font-family:'JetBrains Mono',monospace;font-size:11px;border-top:1px solid #2a1f12;border-bottom:1px solid #2a1f12;letter-spacing:.04em;}
+.sim-stat{display:flex;gap:6px;align-items:baseline;}
+.sim-stat-lbl{color:#6e5a3b;text-transform:uppercase;font-size:9px;letter-spacing:.16em;}
+.sim-stat-val{color:#e8c56a;font-weight:600;font-size:12px;}
+.sim-controls{padding:18px 20px 8px;background:#1a1208;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;}
+.sim-ctrl-group{}
+.sim-ctrl-lbl{display:flex;align-items:baseline;gap:10px;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.18em;color:#8a7a5c;text-transform:uppercase;margin-bottom:12px;}
+.sim-ctrl-hint{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:400;color:#6e5a3b;text-transform:none;letter-spacing:.02em;}
+.sim-btns{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.sim-btn{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;padding:13px 6px;background:linear-gradient(180deg,#3a2b18 0%,#26190d 100%);border:1px solid #6e5a3b;color:#ffd97a;cursor:pointer;transition:all .18s ease;letter-spacing:.03em;text-align:center;box-shadow:0 1px 0 rgba(255,217,122,.12) inset,0 2px 4px rgba(0,0,0,.3);}
+.sim-btn:hover{background:linear-gradient(180deg,#a02020 0%,#7a1515 100%);color:#ffe9c0;border-color:#b82828;transform:translateY(-2px);box-shadow:0 5px 14px rgba(160,32,32,.45),0 1px 0 rgba(255,217,122,.2) inset;}
+.sim-btn:active{transform:translateY(0);box-shadow:0 1px 3px rgba(0,0,0,.5) inset;}
+.sim-btn.reset{background:#2a1f12;color:#e0d0a8;border:1px solid #8a7a5c;padding:9px 22px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;box-shadow:0 1px 0 rgba(255,217,122,.08) inset;}
+.sim-btn.reset:hover{background:#8b1a1a;color:#ffe9c0;border-color:#c93030;transform:translateY(-1px);box-shadow:0 4px 12px rgba(139,26,26,.5);}
+.sim-note{margin:0;padding:12px 20px 18px;background:#120c06;border-top:1px solid #2a1f12;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8a7a5c;line-height:1.75;letter-spacing:.01em;}
+.sim-note strong{color:#e8c56a;font-weight:600;}
+.sim-slider-row{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+.sim-slider-row:last-child{margin-bottom:0;}
+.sim-slider-row label{font-family:'JetBrains Mono',monospace;font-size:10px;color:#8a7a5c;letter-spacing:.1em;min-width:78px;text-transform:uppercase;}
+.sim-slider-row input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:3px;background:#3d3020;outline:none;border-radius:2px;}
+.sim-slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;background:#e8c56a;border:2px solid #1a1208;border-radius:50%;cursor:pointer;box-shadow:0 0 0 1px #8a7a5c;transition:transform .12s;}
+.sim-slider-row input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.15);}
+.sim-slider-row input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#e8c56a;border:2px solid #1a1208;border-radius:50%;cursor:pointer;box-shadow:0 0 0 1px #8a7a5c;}
+.sim-slider-row .sim-val{font-family:'JetBrains Mono',monospace;font-size:12px;color:#e8c56a;min-width:36px;text-align:right;font-weight:600;}
+.sim-footer{padding:10px 20px 16px;background:#1a1208;border-top:1px solid #2a1f12;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+.sim-legend{display:flex;gap:18px;flex-wrap:wrap;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#8a7a5c;letter-spacing:.02em;}
+.sim-legend-item{display:flex;align-items:center;gap:6px;}
+.sim-legend-swatch{width:14px;height:3px;display:inline-block;border-radius:1px;}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:block;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .svg-fig{max-width:100%;}
+  .sim-controls{grid-template-columns:1fr;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){
+  .toc-back{padding:22px 20px;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Essay · Statistics</p>
+    <h1>正規分布と「<em>平均的な人間</em>」</h1>
+    <p class="cover-deck">釘に弾かれるだけの玉が、なぜ毎回同じ山を作るのか。「平均」という言葉の危うさと、それでも消えない秩序。</p>
+    <div class="cover-byline"><span>統計</span><span>確率</span><span>中心極限定理</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1873</span>
+      <p class="est-event">フランシス・ゴルトンが quincunx(後のゴルトン・ボード)を発案。二項分布が正規分布に収束する様子を、機械で初めて可視化した。翌 1874 年 2 月 27 日、王立研究所で公開実演。</p>
+      <p class="est-context">同年、ウィーン万博が開幕。米国ではジェイ・クック商会の破綻を引き金に「1873 年恐慌」が起き、長期不況の始まりとなった。日本は太陽暦を採用。</p>
+    </div>
+    <p class="cover-aside">「平均人 <strong>l'homme moyen</strong>」の概念自体は、1835 年にベルギーの天文学者アドルフ・ケトレーが先に提示していた。ゴルトンの機械は、それを証明する装置ではなく、<strong>問い直す</strong>装置になっていく。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>健康診断で身長を測られ、「170 センチ、平均より少し高いですね」と告げられる。体重も、血圧も、視力も。私たちはことあるごとに「平均」と比べられ、自分の位置を知らされる。</p>
+    <p>考えてみると、私たちは「平均」という言葉を、妙にリアルなものとして受け取っている。「平均的な日本人男性」「平均的な家計支出」。けれど、正確に平均どおりの人間など、実際には一人もいない。</p>
+    <p>それなのに、何十万人の身長をグラフにすれば、必ずあの<ruby>釣鐘型<rt>つりがねがた</rt></ruby>が現れる。誰もそこに立っていないはずの真ん中が、なぜ最も高く盛り上がるのか。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 数式は使わない</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 13 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-15</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-15</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">釘に弾かれるだけの玉が、毎回同じ山を作る。「平均的な人間」という言葉の危うさと、それでも現れる秩序を、<strong>1 球・100 球・1 万球</strong>のゴルトン・ボードで確かめる。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+<!-- ─── 背景 ─── -->
+<div class="sec-rule fade"><span class="sec-label">Background</span><span class="sec-line"></span></div>
+<h2 class="fade">「平均人」という発明</h2>
+
+<p class="body-text fade">クラスの身長分布、工場で作られたネジの長さ、射撃練習の着弾位置。測りたいものが違っても、グラフに描けば似たような形が現れる。真ん中が一番高く、左右に対称に裾を引く、あの<ruby>釣鐘型<rt>つりがねがた</rt></ruby>。これを<span class="tip" onclick="toggleTip(this)">正規分布<span class="tip-box"><strong>正規分布</strong>平均の周りに左右対称な<ruby>釣鐘型<rt>つりがねがた</rt></ruby>で分布する連続確率分布。測定誤差や身長など、「多数の小さな独立した揺らぎ」が重なる場面でよく現れる。ガウス分布とも呼ばれる。</span></span>と呼ぶ。</p>
+
+<p class="body-text fade">正規分布の形は、たった二つの数字で完全に決まる。山の中心を決める <ruby>μ<rt>ミュー</rt></ruby>（<em>平均</em>）と、山の横幅を決める <ruby>σ<rt>シグマ</rt></ruby>（<em>標準偏差</em>、ばらつきの大きさ）だ。どちらもギリシャ文字で、統計の世界ではこの二文字が平均とばらつきを表す標準記号として定着している。以下の図でも断りなく出てくるので、先にその正体を示しておく。</p>
+
+<!-- SVG 1: 正規分布の概念図 -->
+<svg class="svg-fig fade" viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bellFill" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#8b1a1a" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#8b1a1a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- axis -->
+  <line x1="60" y1="240" x2="640" y2="240" stroke="#7a6a55" stroke-width="1.2"/>
+  <!-- bell curve -->
+  <path d="M 80 240 C 200 240, 285 60, 340 60 C 395 60, 480 240, 620 240 Z" fill="url(#bellFill)"/>
+  <path d="M 80 240 C 200 240, 285 60, 340 60 C 395 60, 480 240, 620 240" stroke="#8b1a1a" stroke-width="2" fill="none"/>
+  <!-- mean line (split to avoid overlapping "68%" text) -->
+  <line x1="340" y1="60" x2="340" y2="155" stroke="#1a1208" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="340" y1="200" x2="340" y2="240" stroke="#1a1208" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="340" y="50" text-anchor="middle" font-family="Playfair Display, serif" font-size="16" font-weight="700" fill="#1a1208">μ（平均）</text>
+  <!-- SD markers -->
+  <line x1="235" y1="240" x2="235" y2="150" stroke="#7a6a55" stroke-width="1" stroke-dasharray="2 3"/>
+  <line x1="445" y1="240" x2="445" y2="150" stroke="#7a6a55" stroke-width="1" stroke-dasharray="2 3"/>
+  <line x1="170" y1="240" x2="170" y2="200" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="2 3"/>
+  <line x1="510" y1="240" x2="510" y2="200" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="2 3"/>
+  <!-- labels below axis -->
+  <text x="235" y="260" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">−1σ</text>
+  <text x="445" y="260" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">+1σ</text>
+  <text x="170" y="278" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#b0a090">−2σ</text>
+  <text x="510" y="278" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#b0a090">+2σ</text>
+  <!-- percentages -->
+  <text x="340" y="170" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="16" font-weight="600" fill="#8b1a1a">68%</text>
+  <text x="340" y="190" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">±1σ に入る</text>
+</svg>
+<p class="fig-caption">図 1. 正規分布。平均 μ を中心に、±1 標準偏差（σ）に約 68%、±2σ に約 95% が収まる。</p>
+
+<p class="body-text fade">この曲線を最初に「人間」に当てはめたのは、1835 年、ベルギーの天文学者<span class="tip" onclick="toggleTip(this)">アドルフ・ケトレー<span class="tip-box"><strong>Adolphe Quetelet（1796-1874）</strong>ベルギーの天文学者・数学者・統計学者。「平均人（l'homme moyen）」の概念を提唱し、統計学を社会科学に持ち込んだ最初の人物。BMI（Quetelet Index）の考案者でもある。</span></span>だった。彼はもともと、天文観測の誤差を処理する「誤差の法則」として、この曲線を扱っていた。同じ星を何度も観測すると、真の位置を中心に誤差が<ruby>釣鐘型<rt>つりがねがた</rt></ruby>に散らばる。ならば、人間の身長も、同じ法則に従うのではないか。</p>
+
+<div class="person-block fade">
+  <div class="person-block-img"><img src="./img_quetelet.jpg" alt="Adolphe Quetelet" onerror="this.style.display='none'"></div>
+  <div class="person-block-body">
+    <p class="person-block-name">Adolphe Quetelet</p>
+    <p class="person-block-role">1796-1874 · 天文学者／統計学者</p>
+    <p class="person-block-desc">ブリュッセル王立天文台を設立。1835 年『Sur l'homme et le développement de ses facultés（人間について）』で「平均人」の概念を提示し、統計学を社会に持ち込んだ最初の人物。後の BMI の基礎にもなる。</p>
+    <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%89%E3%83%AB%E3%83%95%E3%83%BB%E3%82%B1%E3%83%88%E3%83%AC%E3%83%BC" target="_blank" rel="noopener">Wikipedia</a></p>
+  </div>
+</div>
+
+<p class="body-text fade">ケトレーはスコットランド兵 5,738 人の胸囲を調べ、その分布が<ruby>釣鐘型<rt>つりがねがた</rt></ruby>を描くことを示した。天文観測と同じ曲線が、人体にも現れる。彼はここから大胆な一歩を踏み出す。では、<em>その平均値そのもの</em>を、一人の理想的な人間として扱ってみたらどうか。</p>
+
+<div class="quote-block fade">
+  <p class="quote-en">« L'homme moyen ... représente dans une nation tout ce qu'il y a de grand, de beau, et de bien. »</p>
+  <p class="quote-ja">平均人は、ある国民が持つすべての偉大なもの、美しいもの、善きものを体現している。</p>
+  <p class="quote-attr">— Adolphe Quetelet, <em>Sur l'homme</em> (1835)</p>
+</div>
+
+<p class="body-text fade">「平均的な日本人」「平均的な家計」という言い回しは、実はここから始まっている。ケトレー以前、平均値は単なる計算の副産物だった。ケトレー以後、平均値は一人の人物になった。</p>
+
+<p class="body-text fade">この発想を受け継いで、統計をさらに尖らせたのが、英国の<span class="tip" onclick="toggleTip(this)">フランシス・ゴルトン<span class="tip-box"><strong>Francis Galton（1822-1911）</strong>英国の統計学者・人類学者。ダーウィンの従兄弟。「回帰（regression）」「相関（correlation）」という統計用語を生み出した一方、1883 年に「優生学（eugenics）」を造語し、その創始者ともなった、毀誉褒貶のはげしい人物。</span></span>である。ゴルトンは平均からの<em>ずれ</em>に関心を持った。ばらつきは雑音ではなく、順位付けの根拠である、と。そして 1873 年、彼は小さな木の板に釘を打ち、真ん中の一点から玉を落とす装置を作る。</p>
+
+<div class="person-block fade">
+  <div class="person-block-img"><img src="./img_galton.jpg" alt="Francis Galton" onerror="this.style.display='none'"></div>
+  <div class="person-block-body">
+    <p class="person-block-name">Francis Galton</p>
+    <p class="person-block-role">1822-1911 · 統計学者／人類学者</p>
+    <p class="person-block-desc">ダーウィンの従兄弟。指紋識別、回帰分析、相関の概念を生み出した近代統計学の祖の一人。同時に 1883 年に「優生学」を造語し、その創始者にもなった。ゴルトン・ボードは彼の発明した教育装置。</p>
+    <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%A9%E3%83%B3%E3%82%B7%E3%82%B9%E3%83%BB%E3%82%B4%E3%83%AB%E3%83%88%E3%83%B3" target="_blank" rel="noopener">Wikipedia</a></p>
+  </div>
+</div>
+
+<div class="misconception fade">
+  <div class="misconception-header"><span class="misconception-hl">よくある誤解 vs 実際は</span></div>
+  <div class="misconception-body">
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <p class="mis-label wrong">✕ 誤解</p>
+        <p class="mis-text">「平均的な人間」は、最も多数派で、いわば<em>いちばん人間らしい</em>人間を指す。</p>
+      </div>
+      <div class="misconception-a">
+        <p class="mis-label right">○ 実際は</p>
+        <p class="mis-text">平均は分布の<em>重心</em>であって、実在する誰かを指しているわけではない。身長・体重・座高などを同時に平均にぴったり合わせた人間は、統計上ほぼ存在しない。</p>
+      </div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <p class="mis-label wrong">✕ 誤解</p>
+        <p class="mis-text">大量のデータを集めれば、どんなものでも釣鐘型の正規分布になる。</p>
+      </div>
+      <div class="misconception-a">
+        <p class="mis-label right">○ 実際は</p>
+        <p class="mis-text">正規分布が現れるのは、<em>たくさんの小さな原因がばらばらに足し合わさって 1 つの結果を決めている</em>ときだけだ。たとえば身長は、無数の遺伝子・栄養・ホルモン・環境の小さなズレが加算で効いて決まる——だから釣鐘型になる。ところが富や地震の規模、本の売上は違う。ひとつの巨大な要因（大ヒット、巨大地震、資産の掛け算的増加）が全体を支配してしまう。こういう分布は裾が分厚く、「平均」という言葉自体が意味を失う。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SVG 2: 68-95-99.7 ルール（累積範囲バー） -->
+<svg class="svg-fig fade" viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- ±1σ bar: 68.3% -->
+  <rect x="233" y="30" width="214" height="42" fill="#8b1a1a" fill-opacity=".38" stroke="#8b1a1a" stroke-width="1"/>
+  <text x="340" y="52" text-anchor="middle" font-family="Playfair Display, serif" font-size="19" font-weight="700" fill="#1a1208">68.3%</text>
+  <text x="340" y="67" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#3d3020">±1σ 以内</text>
+
+  <!-- ±2σ bar: 95.4% -->
+  <rect x="140" y="82" width="400" height="42" fill="#8b1a1a" fill-opacity=".22" stroke="#8b1a1a" stroke-width="1"/>
+  <text x="340" y="104" text-anchor="middle" font-family="Playfair Display, serif" font-size="19" font-weight="700" fill="#1a1208">95.4%</text>
+  <text x="340" y="119" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#3d3020">±2σ 以内(±1σ を含む)</text>
+
+  <!-- ±3σ bar: 99.7% -->
+  <rect x="80" y="134" width="520" height="42" fill="#8b1a1a" fill-opacity=".1" stroke="#8b1a1a" stroke-width="1"/>
+  <text x="340" y="156" text-anchor="middle" font-family="Playfair Display, serif" font-size="19" font-weight="700" fill="#1a1208">99.7%</text>
+  <text x="340" y="171" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#3d3020">±3σ 以内(±2σ を含む)</text>
+
+  <!-- axis -->
+  <line x1="80" y1="200" x2="600" y2="200" stroke="#7a6a55" stroke-width="1.2"/>
+  <!-- tick marks -->
+  <g stroke="#7a6a55" stroke-width="1">
+    <line x1="80" y1="198" x2="80" y2="206"/>
+    <line x1="140" y1="198" x2="140" y2="206"/>
+    <line x1="233" y1="198" x2="233" y2="206"/>
+    <line x1="340" y1="198" x2="340" y2="206"/>
+    <line x1="447" y1="198" x2="447" y2="206"/>
+    <line x1="540" y1="198" x2="540" y2="206"/>
+    <line x1="600" y1="198" x2="600" y2="206"/>
+  </g>
+  <!-- σ labels -->
+  <g font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">
+    <text x="80" y="222">−3σ</text>
+    <text x="140" y="222">−2σ</text>
+    <text x="233" y="222">−1σ</text>
+    <text x="340" y="222" fill="#1a1208" font-weight="700">μ</text>
+    <text x="447" y="222">+1σ</text>
+    <text x="540" y="222">+2σ</text>
+    <text x="600" y="222">+3σ</text>
+  </g>
+  <text x="340" y="255" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#7a6a55">この外側(±3σ より外)はわずか 0.3% しか存在しない</text>
+</svg>
+<p class="fig-caption">図 2. 68-95-99.7 ルール。正規分布なら、平均から ±1σ に 68.3%、±2σ に 95.4%、±3σ に 99.7% が入る。ここから外れる値は、全体の 0.3% しか存在しない。</p>
+
+<!-- ─── 体験 ─── -->
+<div class="sec-rule fade"><span class="sec-label">Experience</span><span class="sec-line"></span></div>
+<h2 class="fade">1 球から 1 万球へ</h2>
+
+<p class="body-text fade">では、実際に玉を落としてみよう。下のパネルは、ゴルトンが 1873 年に作った <span class="tip" onclick="toggleTip(this)"><em>quincunx</em><span class="tip-box"><strong>quincunx（クィンカンクス）</strong>ラテン語で「5 点」の意。古代ローマの貨幣単位（1 アス＝12 ウンキア、その 12 分の 5 硬貨の名称）に由来し、サイコロの 5 の目のように点を配置した紋様を指す語だった。ゴルトンは釘を千鳥格子——隣り合う段が互い違いに並ぶ五の目状——に打った装置に、この名をあてた。</span></span>——<strong>板の上に釘を三角形に打ち並べ、上の漏斗（ロート）から玉を 1 粒ずつ落とす装置</strong>——を、そのまま計算機の中に再現したものだ。玉は釘に当たるたびに左か右へ弾かれる。これを <em>n</em> 段くり返した後、底のビン（仕切られた箱）に積もっていく。各段での「左か右か」は、<span class="tip" onclick="toggleTip(this)">二項分布<span class="tip-box"><strong>二項分布</strong>成功確率 p の独立試行を n 回繰り返したとき、成功回数がどう分布するかを表す確率分布。コインを n 回投げて表が出た回数、などが典型例。釘に当たって左右に分岐するゴルトン・ボードの構造そのもの。</span></span>そのものの構造を持っている。</p>
+
+<p class="body-text fade">まず下のパネルの <strong>[ +1 球 ]</strong> を押してみてほしい。1 粒の玉がロートから落ちて、釘を弾かれながら降りていく。どのビンに入るかは、まったく予測がつかない。次に <strong>[ +100 球 ]</strong>——まだ偏りが大きく、真ん中が少し盛り上がる程度にしか見えない。そして <strong>[ +1,000 球 ]</strong>、<strong>[ +10,000 球 ]</strong>。そこで初めて、あの釣鐘型が姿を現す。一つ一つの玉の運命は偶然のはずなのに、全体としては寸分違わず同じ形になる。</p>
+
+<p class="body-text fade">さらに、スライダーで <strong>p(right)</strong>（右に行く確率）を動かしてみてほしい。偏らせれば山の中心位置は左右にずれる。だが——<strong>形そのものは崩れない</strong>。段数 <strong>n</strong> を変えれば山の幅も変わるが、やはり形は崩れない。これが中心極限定理が保証していることの、おそらく最も直接的な証拠だ。</p>
+
+<!-- GALTON BOARD SIMULATOR -->
+<div class="sim-wrap fade">
+  <div class="sim-header">
+    <span class="sim-title">Interactive · Galton Board</span>
+    <span class="sim-title-sub">quincunx · physics engine</span>
+  </div>
+  <div class="sim-canvas-wrap">
+    <canvas id="galtonCanvas" width="720" height="580"></canvas>
+  </div>
+  <div class="sim-stats">
+    <span class="sim-stat"><span class="sim-stat-lbl">BALLS</span><span class="sim-stat-val" id="gbStatN">0</span></span>
+    <span class="sim-stat"><span class="sim-stat-lbl">ROWS</span><span class="sim-stat-val" id="gbStatRows">12</span></span>
+    <span class="sim-stat"><span class="sim-stat-lbl">p(right)</span><span class="sim-stat-val" id="gbStatP">0.50</span></span>
+    <span class="sim-stat"><span class="sim-stat-lbl">LIVE</span><span class="sim-stat-val" id="gbStatLive">0</span></span>
+  </div>
+  <div class="sim-controls">
+    <div class="sim-ctrl-group">
+      <p class="sim-ctrl-lbl">Drop <span class="sim-ctrl-hint">— 玉を落とす。まず +1 から、次に +100 へ</span></p>
+      <div class="sim-btns">
+        <button class="sim-btn" id="gbDrop1">+1</button>
+        <button class="sim-btn" id="gbDrop100">+100</button>
+        <button class="sim-btn" id="gbDrop1000">+1,000</button>
+        <button class="sim-btn" id="gbDrop10000">+10,000</button>
+      </div>
+    </div>
+    <div class="sim-ctrl-group">
+      <p class="sim-ctrl-lbl">Parameters <span class="sim-ctrl-hint">— スライダーで偏りと段数を変える</span></p>
+      <div class="sim-slider-row">
+        <label for="gbProb">p(right)</label>
+        <input type="range" id="gbProb" min="20" max="80" value="50" step="1">
+        <span class="sim-val" id="gbProbVal">0.50</span>
+      </div>
+      <div class="sim-slider-row">
+        <label for="gbRows">rows n</label>
+        <input type="range" id="gbRows" min="5" max="16" value="12" step="1">
+        <span class="sim-val" id="gbRowsVal">12</span>
+      </div>
+    </div>
+  </div>
+  <div class="sim-footer">
+    <div class="sim-legend">
+      <span class="sim-legend-item"><span class="sim-legend-swatch" style="background:#e8c56a;"></span>実測（ビンの積み高）</span>
+      <span class="sim-legend-item"><span class="sim-legend-swatch" style="background:transparent;border-top:2px dashed #ea5c5c;height:0;"></span>理論曲線</span>
+      <span class="sim-legend-item"><span class="sim-legend-swatch" style="background:#f3efe6;"></span>落下中の玉</span>
+    </div>
+    <button class="sim-btn reset" id="gbReset">Reset</button>
+  </div>
+  <p class="sim-note">▸ <strong>+1</strong> と <strong>+100</strong> は全球を物理演算で可視化する。<strong>+1,000</strong> 以上では、先頭 150 球を物理演算で落としながら、残りを同じ二項分布乱数で高速に積む（n 万球をリアルタイム物理で捌くのは重い）。どちらも確率モデルは同一なので、最終的な分布の形は変わらない。</p>
+</div>
+
+<p class="body-text fade">装置を動かしているうちに、奇妙なことに気づく。玉は一粒も同じ経路を辿らない。なのに、最終的な山の形は、ほとんど変わらない。偶然と秩序が同居している、と言ってしまうと安っぽいが、本当にそう見える。この「同居」を数式で保証するのが、次に見る<em>中心極限定理</em>である。</p>
+
+<!-- ─── メカニズム ─── -->
+<div class="sec-rule fade"><span class="sec-label">Mechanism</span><span class="sec-line"></span></div>
+<h2 class="fade">なぜ釣鐘型が現れるのか</h2>
+
+<p class="body-text fade">ゴルトン・ボードを数学的に見ると、各釘は独立なコイン投げである。n 段の板を抜ける玉は、n 回のコイン投げの結果を位置に換算していることになる。ある場所に玉がたまる確率は、その場所に至る経路の数を、全経路数で割ったものだ。そしてこの「経路の数」の表こそが、小学校で誰もが目にしたあの三角形である。</p>
+
+<!-- SVG 3: Pascal's Triangle -->
+<svg class="svg-fig fade" viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+  <text x="340" y="24" text-anchor="middle" font-family="Playfair Display, serif" font-size="16" font-weight="700" fill="#1a1208">パスカルの三角形 — 各ビンに至る経路の数</text>
+  <g font-family="JetBrains Mono, monospace" font-size="15" fill="#3d3020" text-anchor="middle">
+    <!-- row 0 -->
+    <circle cx="340" cy="58" r="15" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="340" y="63">1</text>
+    <!-- row 1 -->
+    <circle cx="310" cy="100" r="15" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="310" y="105">1</text>
+    <circle cx="370" cy="100" r="15" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="370" y="105">1</text>
+    <!-- row 2 -->
+    <circle cx="280" cy="142" r="15" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="280" y="147">1</text>
+    <circle cx="340" cy="142" r="15" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="340" y="147">2</text>
+    <circle cx="400" cy="142" r="15" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="400" y="147">1</text>
+    <!-- row 3 -->
+    <circle cx="250" cy="184" r="15" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="250" y="189">1</text>
+    <circle cx="310" cy="184" r="15" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="310" y="189">3</text>
+    <circle cx="370" cy="184" r="15" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="370" y="189">3</text>
+    <circle cx="430" cy="184" r="15" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="430" y="189">1</text>
+    <!-- row 4 -->
+    <circle cx="220" cy="226" r="15" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="220" y="231">1</text>
+    <circle cx="280" cy="226" r="15" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="280" y="231">4</text>
+    <circle cx="340" cy="226" r="15" fill="#8b1a1a" stroke="#8b1a1a"/>
+    <text x="340" y="231" fill="#faf8f3" font-weight="700">6</text>
+    <circle cx="400" cy="226" r="15" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="400" y="231">4</text>
+    <circle cx="460" cy="226" r="15" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="460" y="231">1</text>
+  </g>
+  <!-- bar chart below showing 1 4 6 4 1 shape -->
+  <g>
+    <rect x="208" y="290" width="24" height="12" fill="#8b1a1a" fill-opacity=".3"/>
+    <rect x="268" y="268" width="24" height="34" fill="#8b1a1a" fill-opacity=".6"/>
+    <rect x="328" y="256" width="24" height="46" fill="#8b1a1a"/>
+    <rect x="388" y="268" width="24" height="34" fill="#8b1a1a" fill-opacity=".6"/>
+    <rect x="448" y="290" width="24" height="12" fill="#8b1a1a" fill-opacity=".3"/>
+  </g>
+  <text x="340" y="328" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">1 : 4 : 6 : 4 : 1 — 4 段のゴルトン・ボードで各ビンに落ちる確率の比</text>
+</svg>
+<p class="fig-caption">図 3. 4 段の板なら、真ん中のビンには 6 通りの経路がある。両端はそれぞれ 1 通りしかない。「真ん中に集中する」のは、経路の数がそこで最大になるからだ。</p>
+
+<p class="body-text fade">ところで——この三角形、小学校で見て以来あまり振り返ることもないのだが、少しだけ脇道に入って眺めておきたい。まず名前の話から。「パスカル」の名を冠しているが、パスカルがこれを発見したわけではない。中国では 11 世紀に<span class="tip" onclick="toggleTip(this)">賈憲（か けん）<span class="tip-box"><strong>賈憲（Jia Xian, 11 世紀）</strong>北宋の数学者。開平法・開立法の計算補助として、後に「楊輝三角」と呼ばれる三角形を図表にまとめた。原典は散逸したが、楊輝の著作に引用されて伝わった。</span></span>が、13 世紀には<span class="tip" onclick="toggleTip(this)">楊輝（よう き）<span class="tip-box"><strong>楊輝（Yang Hui, 1238-1298）</strong>南宋の数学者。『詳解九章算法』(1261) で賈憲の三角形を紹介し、中国ではこの三角形を「楊輝三角」と呼ぶ。</span></span>が、同じ三角形を論じている。インドでは紀元前のピンガラが、ペルシアでは 10 世紀の<span class="tip" onclick="toggleTip(this)">アル＝カラジ<span class="tip-box"><strong>al-Karaji（953-1029 頃）</strong>ペルシアの数学者。二項展開の係数としてこの三角形を扱い、数学的帰納法の萌芽も示した。</span></span>が、それぞれ独立に見つけている。ブレーズ・パスカルが 1654 年の『三角形について』でこれを体系的にまとめ、確率論の起点のひとつに据えたとき、西洋数学史の中心にその名前が刻まれた。</p>
+
+<p class="body-text fade">さて、4 段だけでは味気ないので、もう少し下まで書き下してみる。各段の両端は必ず 1、内側の各数は「すぐ上の左右の数の合計」で決まる——それだけの規則で、次の形が出る。</p>
+
+<!-- SVG: 10 rows Pascal's triangle (numbers, parity-colored) -->
+<svg class="svg-fig fade" id="pascalNumSvg" viewBox="0 0 680 440" xmlns="http://www.w3.org/2000/svg">
+  <text x="340" y="22" text-anchor="middle" font-family="Playfair Display, serif" font-size="16" font-weight="700" fill="#1a1208">パスカルの三角形 — 10 段（奇数は赤、偶数はグレー）</text>
+  <!-- numbers generated at runtime -->
+</svg>
+<p class="fig-caption">図 4. 10 段まで書き下したパスカルの三角形。あらかじめ、奇数を赤・偶数をグレーで色分けしておいた。</p>
+
+<p class="body-text fade">ちなみに——ここからが少し奇妙な話。赤（奇数）のセルだけを残して、灰色（偶数）を抜いていくと、思いがけない規則が見えてくる。10 段ではまだ気づきにくいが、32 段まで大きくするとはっきり現れる。</p>
+
+<!-- SVG: Sierpinski triangle from Pascal mod 2 -->
+<svg class="svg-fig fade" id="sierpinskiSvg" viewBox="0 0 680 440" xmlns="http://www.w3.org/2000/svg">
+  <text x="340" y="22" text-anchor="middle" font-family="Playfair Display, serif" font-size="16" font-weight="700" fill="#1a1208">パスカル三角形 mod 2 — 奇数のセルだけを塗る</text>
+  <!-- cells generated at runtime -->
+</svg>
+<p class="fig-caption">図 5. 32 段のパスカル三角形で、2 で割った余りが 1 の要素だけを塗った図。シェルピンスキー三角形と呼ばれるフラクタル——一つの三角形が自分と同じ形を内側に抱える自己相似の図形——が姿を現す。</p>
+
+<p class="body-text fade">これが偶然ではないことは、19 世紀に<span class="tip" onclick="toggleTip(this)">クンマー<span class="tip-box"><strong>Ernst Kummer（1810-1893）</strong>ドイツの数学者。1852 年、二項係数 C(n,k) が素数 p で何回割り切れるかは、n = k + (n-k) を p 進数で計算したときの「繰り上がりの回数」に等しいことを示した（クンマーの定理）。</span></span>と<span class="tip" onclick="toggleTip(this)">リュカ<span class="tip-box"><strong>Édouard Lucas（1842-1891）</strong>フランスの数学者。1878 年、C(n,k) mod p を n, k の p 進展開の各桁の二項係数の積で与える定理を証明（リュカの定理）。</span></span>が証明した。C(n, k) が奇数になるのは、<em>n と k を 2 進数で書いたとき、k の各桁の 1 が n の同じ桁にも 1 として現れる場合</em>——それに限る。二進数の桁構造と、「一つの塊が自分の内側に自分と同じ形を抱える」自己相似性が、ここで一本の線で繋がっている。ゴルトン・ボードの釘の上を歩く玉は、このフラクタル構造の上を歩いている、ともいえる。各段のコイン投げは 2 進数の 1 桁を決める操作であり、n 段を通り抜けた玉の位置は n 桁の 2 進数と同型だからだ。</p>
+
+<p class="body-text fade">——閑話休題。本題に戻ろう。</p>
+
+<p class="body-text fade">段数 n を大きくしていくと、パスカル三角形の最下段の並び（＝ゴルトン・ボードのビン分布）はどんどん滑らかになる。n を無限に大きくした極限で、完全な釣鐘型——正規分布——に収束する。これが<span class="tip" onclick="toggleTip(this)">中心極限定理<span class="tip-box"><strong>中心極限定理 (CLT)</strong>独立な確率変数の和（または平均）は、個々の分布によらず、試行回数が十分多ければ正規分布に近づく、という定理。1733 年のド・モアブル、1812 年のラプラスを経て、1901 年にリャプノフが現代形を証明した。</span></span>の主張だ。</p>
+
+<p class="body-text fade">数式で書くと、n 段・右確率 p のゴルトン・ボードで玉が落ちる位置（右に行った回数）は、平均 <em>np</em>、分散 <em>np(1−p)</em> の二項分布に従う。n が十分大きければ、これが平均 <em>np</em>、標準偏差 <em>√(np(1−p))</em> の正規分布で近似できる——ド・モアブルが 1733 年に示した結果である。ゴルトンの機械はこの数式を、ひと目で納得できる物体に置き換えたわけだ。</p>
+
+<!-- SVG 4: binomial to normal progression -->
+<svg class="svg-fig fade" viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg">
+  <text x="340" y="20" text-anchor="middle" font-family="Playfair Display, serif" font-size="16" font-weight="700" fill="#1a1208">段数 n を増やすと、釣鐘型に近づいていく</text>
+  <!-- n=4 -->
+  <g transform="translate(30,40)">
+    <text x="90" y="0" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="14" font-weight="600" fill="#8b1a1a">n = 4</text>
+    <line x1="10" y1="160" x2="170" y2="160" stroke="#7a6a55" stroke-width="1"/>
+    <rect x="20" y="150" width="20" height="10" fill="#8b1a1a"/>
+    <rect x="50" y="120" width="20" height="40" fill="#8b1a1a"/>
+    <rect x="80" y="100" width="20" height="60" fill="#8b1a1a"/>
+    <rect x="110" y="120" width="20" height="40" fill="#8b1a1a"/>
+    <rect x="140" y="150" width="20" height="10" fill="#8b1a1a"/>
+    <text x="90" y="180" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#7a6a55">粗い階段</text>
+  </g>
+  <!-- n=15 -->
+  <g transform="translate(250,40)">
+    <text x="90" y="0" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="14" font-weight="600" fill="#8b1a1a">n = 15</text>
+    <line x1="10" y1="160" x2="170" y2="160" stroke="#7a6a55" stroke-width="1"/>
+    <g fill="#8b1a1a">
+      <rect x="14" y="158" width="8" height="2"/>
+      <rect x="24" y="156" width="8" height="4"/>
+      <rect x="34" y="150" width="8" height="10"/>
+      <rect x="44" y="140" width="8" height="20"/>
+      <rect x="54" y="125" width="8" height="35"/>
+      <rect x="64" y="110" width="8" height="50"/>
+      <rect x="74" y="100" width="8" height="60"/>
+      <rect x="84" y="95" width="8" height="65"/>
+      <rect x="94" y="100" width="8" height="60"/>
+      <rect x="104" y="110" width="8" height="50"/>
+      <rect x="114" y="125" width="8" height="35"/>
+      <rect x="124" y="140" width="8" height="20"/>
+      <rect x="134" y="150" width="8" height="10"/>
+      <rect x="144" y="156" width="8" height="4"/>
+      <rect x="154" y="158" width="8" height="2"/>
+    </g>
+    <text x="90" y="180" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#7a6a55">釣鐘に近い</text>
+  </g>
+  <!-- n=50 smooth -->
+  <g transform="translate(470,40)">
+    <text x="90" y="0" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="14" font-weight="600" fill="#8b1a1a">n = 50</text>
+    <line x1="10" y1="160" x2="170" y2="160" stroke="#7a6a55" stroke-width="1"/>
+    <path d="M 14 160 Q 50 158 70 130 Q 85 95 90 90 Q 95 95 110 130 Q 130 158 166 160 Z" fill="#8b1a1a"/>
+    <text x="90" y="180" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#7a6a55">ほぼ滑らかな釣鐘</text>
+  </g>
+</svg>
+<p class="fig-caption">図 6. 二項分布は、n を大きくするほど正規分布に近づく。これを最初に厳密に証明したのは 1733 年のアブラーム・ド・モアブルだった。</p>
+
+<p class="body-text fade">大事なのは、中心極限定理が成り立つための条件だ。ひとつは<strong>独立性</strong>——各釘での跳ね返りは前後の釘と関係しない。もうひとつは、<strong>個々の寄与が十分小さい</strong>こと——一つの釘が玉の最終位置を決めてしまうようでは困る。この二つが揃っているとき、結果は必ず<ruby>釣鐘型<rt>つりがねがた</rt></ruby>に落ち着く。</p>
+
+<p class="body-text fade">もう少し噛み砕いてみる。玉の最終位置は、結局のところ「左右の決定」を <em>n</em> 回分合計した結果だ。釘一つひとつでの決定は、独立——前の釘がどう弾いたかは、次の釘の動作に影響しない——で、かつ、寄与が小さい——どの釘も、最終位置を ±<em>colGap</em>／2 しか動かせない。この「独立で小さな寄与の加算」という構造さえあれば、元の個々の確率変数がどんな分布でも構わない。コイン投げでも、歪んだ硬貨でも、連続的な揺らぎでも、十分な数を足し合わせれば必ず釣鐘型に収束する。これが中心極限定理の強力さだ。</p>
+
+<p class="body-text fade">身長が釣鐘型になるのは、身長が数え切れない小さな要因（無数の遺伝子、栄養、ホルモン、環境）の加算で決まるからだ。測定誤差が釣鐘型になるのも、誤差が無数の小さな揺らぎの合成だから。IQ スコア、血圧、気温の月平均、生まれたばかりの子牛の体重——ゴルトンの機械と同じ構造を裏に持つ現象なら、すべて釣鐘型になる。ゴルトン・ボードの釘は、それらの要因の<em>比喩</em>として機能している。</p>
+
+<p class="body-text fade">逆に、「独立で小さな加算」が壊れるとき、釣鐘型は現れない。一つの巨大な要因が結果を支配するとき——ベストセラー 1 冊が年間売上の大半を作る、マグニチュード 9 の地震が全地震エネルギーの大半を占める、少数の長者が国富の大半を持つ——そういう場面では、分布の裾が分厚くなり、正規分布で近似すると大きく外れる。要因どうしが強く相関しているとき（景気、疫病、金融危機の伝播）も、単純な加算では記述できなくなる。正規分布は、偶然を記述する<em>万能の</em>道具ではない。特定の構造——独立で小さな寄与の足し合わせ——を持った偶然にだけ、よく効く道具である。</p>
+
+<!-- ─── 歴史 ─── -->
+<div class="sec-rule fade"><span class="sec-label">History</span><span class="sec-line"></span></div>
+<h2 class="fade">釣鐘型が発見されるまで</h2>
+
+<div class="timeline fade">
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1733</p>
+    <p class="tl-title">De Moivre — 二項分布の正規近似</p>
+    <p class="tl-desc">フランス出身の数学者アブラーム・ド・モアブルが、コイン投げを多数回繰り返した場合の分布を正規曲線で近似できることを示す。英語版は 1738 年の『The Doctrine of Chances』第 2 版に収録。当時はほとんど注目されなかった。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1812</p>
+    <p class="tl-title">Laplace — 『確率の解析理論』で一般化</p>
+    <p class="tl-desc">ピエール=シモン・ラプラスが『Théorie analytique des probabilités』でド・モアブルの結果を発展させ、より広い条件下で同じ振る舞いが成り立つことを示した。この本で中心極限定理の原型が提示される。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1835</p>
+    <p class="tl-title">Quetelet — 平均人という発明</p>
+    <p class="tl-desc">アドルフ・ケトレーが『Sur l'homme』で「l'homme moyen（平均人）」の概念を提示。天文学の「誤差の法則」を人間に適用し、統計を社会科学に持ち込む。ここから「平均的な◯◯」という言い回しが広がっていく。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1873</p>
+    <p class="tl-title">Galton — quincunx を発案</p>
+    <p class="tl-desc">フランシス・ゴルトンが釘の板と玉でできた教育装置を発案。翌 1874 年 2 月 27 日、王立研究所で公開実演。中心極限定理が、はじめて<em>機械で目に見える</em>現象になった。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1889</p>
+    <p class="tl-title">Galton — 『Natural Inheritance』</p>
+    <p class="tl-desc">ゴルトンが 2 段型の quincunx を提案。親世代の分布を上段、子世代の分布を下段とすることで、遺伝における「平均への回帰」を可視化した。この装置から「回帰（regression）」という用語が生まれる。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1901</p>
+    <p class="tl-title">Lyapunov — 現代形の証明</p>
+    <p class="tl-desc">ロシアの数学者アレクサンドル・リャプノフが、特性関数を使って中心極限定理の一般形を厳密に証明。ここで中心極限定理は数学の定理として完成した。</p>
+  </div>
+</div>
+
+<!-- ─── つまり ─── -->
+<div class="sec-rule fade"><span class="sec-label">Synthesis</span><span class="sec-line"></span></div>
+<h2 class="fade">釣鐘型が届かない世界</h2>
+
+<p class="body-text fade">ここまでは、ゴルトン・ボードの物語である。だが話はこれで終わらない。中心極限定理は、私たちに何を保証してくれて、何を保証してくれないのか。20 世紀の終わりから 21 世紀にかけて、この問いを正面から突きつけた人物がいる。元デリバティブ・トレーダーで哲学的エッセイストの<strong>ナシム・ニコラス・タレブ</strong>だ。彼は世界を二つの「土地」に分けた。<span class="tip" onclick="toggleTip(this)"><em>Mediocristan</em><span class="tip-box"><strong>Mediocristan（メディオクリスタン）</strong>ラテン語の <em>mediocris</em>（中位）＋ ペルシャ語由来の <em>-stan</em>（〜の土地）を合わせたタレブの造語。個々の観測がどれも同程度の重みしか持たず、一つの外れ値が全体を大きく動かすことのない世界。身長・体重・IQ・測定誤差・試験点数などが住人。</span></span> と <span class="tip" onclick="toggleTip(this)"><em>Extremistan</em><span class="tip-box"><strong>Extremistan（エクストレミスタン）</strong>ラテン語の <em>extremus</em>（極端）＋ <em>-stan</em>。たった一つの観測が全体を支配しうる世界。富、株価、著書の売上、都市人口、地震のエネルギー、ウェブサイトのアクセス数などが住人。裾が「分厚い」分布——冪乗則・パレート分布・対数正規分布——で記述される。</span></span> である。</p>
+
+<div class="quote-block fade">
+  <p class="quote-en">"Mediocristan is where we must endure the tyranny of the collective, the routine, the obvious, and the predicted; Extremistan is where we are subjected to the tyranny of the singular, the accidental, the unseen, and the unpredicted."</p>
+  <p class="quote-ja">Mediocristan は、集団的なもの、日常的なもの、明白なもの、予測可能なものの専制に耐えなければならない土地。Extremistan は、単一のもの、偶発的なもの、見えないもの、予測不能なものの専制に服従させられる土地である。</p>
+  <p class="quote-attr">— Nassim Nicholas Taleb, <em>The Black Swan</em> (2007)</p>
+</div>
+
+<p class="body-text fade">身長が 3 メートルの人間は存在しない。平均身長を測り続ける限り、大きな外れ値が全体の平均を吹き飛ばすことはない。これが Mediocristan の安全性だ。だが、株価や世帯収入はそうではない。上位 1% の富豪が全体の平均を大きく歪める。地震は、小さな揺れが数千回起きても、一度のマグニチュード 9 ですべてが決まる。本の売上は、1 冊のベストセラーが、他の何千冊の総売上を上回る。これが Extremistan の本性である。</p>
+
+<p class="body-text fade">ここで当然の疑問が生まれる。富を稼ぐ人の日々の決断も、無数の小さな判断（仕入れ、交渉、投資、人脈）の積み重ねではないのか。だとすれば、これもまた「独立で小さな寄与の加算」として釣鐘型になるのでは——と。</p>
+
+<p class="body-text fade">答えは <em>No</em> だが、その理由を一言で言うと、<strong>「加算なのか、掛け算なのか」</strong>である。身長は加算だ。遺伝子・栄養・ホルモンの小さな貢献が足し算で合わさる。だが富は掛け算で動く。複利、事業の規模拡大、投資収益——X<sub>t+1</sub> = X<sub>t</sub>(1 + <em>r</em>) という式は、前の年の富に比例して次の年の富が決まることを意味する。掛け算を繰り返した結果は、正規分布ではなく<span class="tip" onclick="toggleTip(this)">対数正規分布<span class="tip-box"><strong>対数正規分布（log-normal distribution）</strong>X の対数 log(X) が正規分布に従うような連続確率分布。倍々に成長するプロセス（株価・企業規模・生物の体重など）の近似として広く用いられる。1931 年にフランスの統計学者ロベール・ジブラが「比例効果の法則（Gibrat's law）」として提示した。加算的プロセスが正規分布になるのと対称に、掛け算的プロセスは対数正規分布になる。</span></span>になり、裾は遥かに厚くなる。log を取って初めて釣鐘型が戻ってくる、という意味で、身長と富はそもそも同じ土俵に載っていない。</p>
+
+<p class="body-text fade">この「掛け算で動く」という土台の上に、さらに二つの事情が重なる。一つは、<strong>独立性の破れ</strong>。顧客が顧客を呼び、評判が評判を作る（<span class="tip" onclick="toggleTip(this)">マシュー効果<span class="tip-box"><strong>マシュー効果（Matthew effect）</strong>社会学者 Robert K. Merton が 1968 年に命名。新約聖書マタイ伝「持てる者はさらに与えられ、持たざる者は持つものまでも取り上げられる」に由来する。科学的成果の引用数、富、評判、ネットワークのハブ化などに広く見られる「勝者総取り」の正のフィードバック機構。</span></span>）。ひとつの成功は次の成功の確率を引き上げる——これはゴルトン・ボードの独立な釘とはまったく違う構造だ。掛け算に正のフィードバックが加わると、分布はさらに極端な形をとる（上位テールは<span class="tip" onclick="toggleTip(this)">べき乗則<span class="tip-box"><strong>べき乗則／パレート分布（power law / Pareto distribution）</strong>頻度 f が値 x に対して f ∝ x<sup>−α</sup> の形をとる、極度に不平等な分布。都市人口、地震のエネルギー、所得上位テール、書籍売上、ウェブサイトへの被リンク数などに現れる。イタリアの経済学者ヴィルフレド・パレートが 19 世紀末に所得分布の分析で見出し、マシュー効果や優先的選択などがその生成メカニズムとして知られる。</span></span>の形になりやすい）。もう一つは、<strong>巨大要因の存在</strong>。ベストセラー 1 冊、IPO 1 回、バイラル動画 1 本が、経済的帰結の大半を決めることがある。これは「個々の寄与が同程度に小さい」という中心極限定理のもう一つの要請（<span class="tip" onclick="toggleTip(this)">リンデベルグ条件<span class="tip-box"><strong>Lindeberg 条件</strong>中心極限定理が成立するための代表的な十分条件（1922 年、フィンランドの数学者ヤルル・リンデベルグが提示）。独立な確率変数の和が正規分布に収束するには、個々の変数の分散が全体分散に対して「無視できるほど小さい」こと——どの一つの変数も全体を支配しないこと——が要請される。単一の巨大な観測があると、この条件は崩れる。</span></span>）を破る。</p>
+
+<p class="body-text fade">まとめると、多要因の複雑な重なりは、釣鐘型が生まれるための<em>必要条件</em>ではあるが、<em>十分条件</em>ではない。<strong>加算で、独立で、どれも同程度に小さい</strong>——この三点が揃ったときだけ、釣鐘型が現れる。富はそのどれも満たしていない。そこが富と身長の、分かれ道だ。</p>
+
+<!-- SVG 5: Mediocristan vs Extremistan -->
+<svg class="svg-fig fade" viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg">
+  <!-- left: Mediocristan -->
+  <g transform="translate(30,30)">
+    <text x="140" y="0" text-anchor="middle" font-family="Playfair Display, serif" font-size="15" font-weight="700" fill="#1a5a30">Mediocristan（身長の分布）</text>
+    <line x1="10" y1="180" x2="270" y2="180" stroke="#7a6a55" stroke-width="1"/>
+    <!-- symmetric bell -->
+    <path d="M 20 180 C 80 180, 115 60, 140 60 C 165 60, 200 180, 260 180 Z" fill="#1a5a30" fill-opacity=".25" stroke="#1a5a30" stroke-width="2"/>
+    <line x1="140" y1="180" x2="140" y2="60" stroke="#1a1208" stroke-width="1" stroke-dasharray="3 3"/>
+    <text x="140" y="200" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">平均</text>
+    <text x="140" y="220" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#3d3020">裾は細い・最大値は平均の数倍まで</text>
+  </g>
+  <!-- right: Extremistan -->
+  <g transform="translate(360,30)">
+    <text x="140" y="0" text-anchor="middle" font-family="Playfair Display, serif" font-size="15" font-weight="700" fill="#8b1a1a">Extremistan（富の分布）</text>
+    <line x1="10" y1="180" x2="270" y2="180" stroke="#7a6a55" stroke-width="1"/>
+    <!-- power-law / long-tail shape -->
+    <path d="M 20 180 C 30 60, 45 60, 55 70 C 80 120, 110 165, 160 175 C 200 179, 240 180, 260 180 Z" fill="#8b1a1a" fill-opacity=".22" stroke="#8b1a1a" stroke-width="2"/>
+    <line x1="55" y1="180" x2="55" y2="70" stroke="#1a1208" stroke-width="1" stroke-dasharray="3 3"/>
+    <text x="55" y="200" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="14" fill="#7a6a55">中央値</text>
+    <circle cx="240" cy="150" r="4" fill="#8b1a1a"/>
+    <text x="258" y="154" font-family="Source Sans 3, sans-serif" font-size="13" fill="#8b1a1a">外れ値</text>
+    <text x="140" y="220" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#3d3020">裾が分厚い・一つの観測が全体を支配する</text>
+  </g>
+</svg>
+<p class="fig-caption">図 7. 同じ「分布」でも、振る舞いはまったく違う。右側は冪乗則（power law）に従う分布で、正規分布とは別種。「平均」という言葉の意味も別物になる。</p>
+
+<p class="body-text fade">ゴルトン・ボードの「救済」というのは、ここにある。装置の中では、どの釘もほぼ同じ重みで玉を弾く。これは<strong>独立で、個々の寄与が小さい</strong>という中心極限定理の条件を、物理的に強制している。だから必ず釣鐘型が出る。だが現実世界では、そもそもその条件を満たしているかどうかを<em>確かめる作業</em>が先に来なければならない。身長ならよい。富は駄目だ。</p>
+
+<p class="body-text fade">ケトレーの「平均人」は、こう言い換えられる。正規分布が成り立つ世界では、平均は確かに分布の重心として意味を持つ。ただしそれは<em>一人の人間</em>ではなく、あくまで集団のばらつきの中心点である。21 世紀に入って教育心理学者トッド・ローズは『The End of Average』で、個人を平均に合わせる設計——標準化された教室、平均体型を前提としたコックピット——がことごとく破綻してきた事例を並べた。平均人を作れば作るほど、誰もそこに一致しないことが明らかになっていった、と。</p>
+
+<div class="culture-block fade">
+  <p class="culture-label">文化への登場</p>
+  <div class="culture-item">
+    <p class="culture-title">米テレビ番組『The Price Is Right』の Plinko</p>
+    <p class="culture-desc">1983 年から続くロングセラー企画。出演者が円盤を板の上から落とすと、釘に弾かれて下部のスロットに落ちる。これはゴルトン・ボードそのもので、中央の高額賞金に向かって確率が集中するように設計されている。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">Nassim Nicholas Taleb『The Black Swan』(2007)</p>
+    <p class="culture-desc">ウォール街の元トレーダーが、金融工学が正規分布を前提にしていることを痛烈に批判した本。2008 年のリーマン・ショックは、まさに Extremistan の現象を Mediocristan の道具で扱おうとした帰結だったと論じられる。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">Todd Rose『The End of Average』(2016)</p>
+    <p class="culture-desc">ハーバード教育大学院の研究者による著作。1950 年代の米空軍がパイロット用コックピットを「平均体型」に合わせて設計したところ、適合者が全パイロットの 0 人だったという逸話から始まる。平均人批判の入門書として広く読まれる。</p>
+  </div>
+</div>
+
+<!-- ─── 参考文献 ─── -->
+<div class="sec-rule fade"><span class="sec-label">References</span><span class="sec-line"></span></div>
+<h2 class="fade">参考文献</h2>
+
+<div class="ref-list">
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1835</span></div>
+    <p class="ref-title"><a href="https://archive.org/details/surlhommeetledv07quetgoog" target="_blank" rel="noopener">Sur l'homme et le développement de ses facultés</a></p>
+    <p class="ref-author">Adolphe Quetelet</p>
+    <p class="ref-desc">「平均人（l'homme moyen）」の概念を提示した原典。天文学の誤差論を人間に適用した最初の体系的な試み。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1889</span></div>
+    <p class="ref-title"><a href="https://galton.org/books/natural-inheritance/" target="_blank" rel="noopener">Natural Inheritance</a></p>
+    <p class="ref-author">Francis Galton</p>
+    <p class="ref-desc">ゴルトン・ボードが一般向けに詳述された書。「回帰（regression）」の概念もここで提示される。全文がオンラインで読める。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2001</span></div>
+    <p class="ref-title"><a href="https://link.springer.com/article/10.1007/s003620100048" target="_blank" rel="noopener">The quincunx: history and mathematics</a></p>
+    <p class="ref-author">Stephen M. Stigler · <em>Statistical Papers</em></p>
+    <p class="ref-desc">quincunx の歴史を一次資料（書簡・講演記録）から丁寧に辿った論考。1873 年発案、1874 年公開の年号根拠。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2007</span></div>
+    <p class="ref-title"><a href="https://en.wikipedia.org/wiki/The_Black_Swan:_The_Impact_of_the_Highly_Improbable" target="_blank" rel="noopener">The Black Swan: The Impact of the Highly Improbable</a></p>
+    <p class="ref-author">Nassim Nicholas Taleb</p>
+    <p class="ref-desc">Mediocristan / Extremistan の対比を提示。金融や社会科学における正規分布の誤用を痛烈に批判する。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2016</span></div>
+    <p class="ref-title"><a href="https://www.harpercollins.com/products/the-end-of-average-todd-rose" target="_blank" rel="noopener">The End of Average</a></p>
+    <p class="ref-author">Todd Rose</p>
+    <p class="ref-desc">「平均人」を前提にした設計がどれほど個人を取りこぼしてきたかを、軍事・教育・医療の具体例から示した著作。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">Web</span><span class="ref-year">—</span></div>
+    <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Galton_board" target="_blank" rel="noopener">Galton board — Wikipedia</a></p>
+    <p class="ref-author">Wikipedia</p>
+    <p class="ref-desc">装置の構造、年号、歴史的背景、数学的記述がまとまっている。Plinko との比較にも触れている。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">Web</span><span class="ref-year">—</span></div>
+    <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Central_limit_theorem" target="_blank" rel="noopener">Central limit theorem — Wikipedia</a></p>
+    <p class="ref-author">Wikipedia</p>
+    <p class="ref-desc">De Moivre 1733 → Laplace 1812 → Lyapunov 1901 の系譜が要約されている。</p>
+  </div>
+</div>
+
+<div class="note-box fade">
+  <p><strong>📌 この記事について</strong><br>quincunx の発案年（1873 年）と公開実演日（1874 年 2 月 27 日）は、Stigler 2001 が書簡・講演記録から特定した日付に基づく。ケトレーの胸囲データは『Sur l'homme』第 2 巻に記載がある。「平均人」への批判は Todd Rose 2016 を、Mediocristan / Extremistan の概念は Taleb 2007 をそれぞれ主要な出典としている。中心極限定理の数式化は標準的な確率論の教科書による。</p>
+</div>
+
+<p class="signature">e. Tamaki</p>
+
+<div class="tags fade">
+  <span class="tag">統計</span>
+  <span class="tag">確率</span>
+  <span class="tag">正規分布</span>
+  <span class="tag">ゴルトン</span>
+  <span class="tag">中心極限定理</span>
+  <span class="tag">ケトレー</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">68%</p>
+      <p class="sidebar-text">どんな正規分布でも、<strong>±1 標準偏差</strong>の範囲に入るデータの割合は約 68%。平均・分散がいくらだろうと、この値は変わらない。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1835 年、ケトレーが『Sur l'homme』で<strong>平均人</strong>を提唱。1873 年、ゴルトンが <em>quincunx</em> を発案し、二項分布が正規分布に収束する様子を機械で可視化した。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">米 TV『The Price Is Right』の<strong>Plinko</strong>。タレブ『ブラック・スワン』。ローズ『The End of Average』。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— 誕生日のパラドックス<br>— ベンフォードの法則<br>— ギャンブラーの誤謬<br>— 生存者バイアス</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">年号は一次資料（書簡・原著）で確認済み。「平均人」批判の解釈は近年の研究（Todd Rose 2016, Taleb 2007）に依拠。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 正規分布と「平均的な人間」 を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、平均って何だったの?</span></div>
+      <span class="t-output" id="to1">分布の<em>重心</em>。釣鐘の一番高いところに一致することもあるけど、それは正規分布のときだけの話だ。富のような分布だと、平均と中央値は大きくズレる。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ「平均的な日本人」って言葉は使っちゃダメ?</span></div>
+      <span class="t-output" id="to2">身長や体重について言うぶんには、悪くない近似になる。年収や SNS フォロワー数で使うと、かなり人を取りこぼす。<em>どの尺度の話か</em>で分けて考えると、わりと見える。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ゴルトン・ボードで偏りを変えても釣鐘が崩れなかったのは不思議だった。</span></div>
+      <span class="t-output" id="to3">ピークの位置が動くだけで、形は同じ。これが中心極限定理の<em>強さ</em>で、同時に<em>怖さ</em>でもある。条件を満たしてさえいれば元の分布が何であれ正規分布に行く。逆に、条件を満たしていないのに当てはめると、痛い目を見る。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# なるほど、平均ってそういうことか</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/birthday_paradox/">
+      <p class="related-card-tag">数学・論理</p>
+      <p class="related-card-title">誕生日のパラドックス</p>
+      <p class="related-card-desc">23 人集まれば、誕生日が重なる人が現れる確率は 50% を超える。直感が外れる確率の話。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/benford_law/">
+      <p class="related-card-tag">数学・論理</p>
+      <p class="related-card-title">ベンフォードの法則</p>
+      <p class="related-card-desc">自然に集まる数字の先頭桁は、9 より 1 が圧倒的に多い。会計不正の発見にも使われる偏り。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレス
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+const termEl=document.getElementById('terminalBlock');
+if(termEl)tObs.observe(termEl);
+
+// SHARED HEADER JS
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">検索インデックスを読み込み中…</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+
+// ===== GALTON BOARD SIMULATOR (PHYSICS) =====
+(function(){
+  const cvs = document.getElementById('galtonCanvas');
+  if(!cvs) return;
+  const ctx = cvs.getContext('2d');
+  const W = cvs.width, H = cvs.height;
+
+  // --- physics constants ---
+  // Model: hybrid — free-fall between pegs, but at each peg contact the ball
+  // is deterministically routed left/right (probRight). This guarantees the
+  // binomial → normal distribution while keeping the motion physics-like.
+  const GRAVITY = 0.18;
+  const BALL_R = 4.6;
+  const PEG_R = 3.8;
+  const AIR_DRAG_X = 0.993;
+  const POST_HIT_VY = 0.95;     // downward velocity after a peg hit
+  const MAX_VX = 1.7;
+  const MAX_VY = 4.8;
+  const MAX_LIVE = 420;
+
+  // --- layout constants ---
+  const funnelTop = 6;
+  const funnelMouthY = 52;
+  const funnelHalfTop = 170;
+  const funnelHalfBot = 16;
+  const pegTop = funnelMouthY + 14;
+  const pegBottom = H * 0.70;
+  const binAreaTop = pegBottom + 8;
+  const binAreaHeight = H - binAreaTop - 8;
+
+  let nRows = 12;
+  let probRight = 0.5;
+  let bins = new Array(nRows+1).fill(0);
+  let totalBalls = 0;
+  let balls = [];   // active physics balls
+  let pending = 0;  // queue count of balls waiting to be spawned
+  let pegs = [];
+  let colGap, rowGap;
+  let vxMag = 1.0;       // horizontal velocity between pegs (inter-row)
+  let vxLastMag = 0.5;   // horizontal velocity after the last peg (to bin)
+
+  // UI refs
+  const elStatN = document.getElementById('gbStatN');
+  const elStatRows = document.getElementById('gbStatRows');
+  const elStatP = document.getElementById('gbStatP');
+  const elStatLive = document.getElementById('gbStatLive');
+
+  // pre-rendered peg sprite (for perf + nice shading)
+  let pegSprite = null;
+  function makePegSprite(){
+    const s = 16;
+    const off = document.createElement('canvas');
+    off.width = s; off.height = s;
+    const o = off.getContext('2d');
+    const cx = s/2, cy = s/2;
+    const grad = o.createRadialGradient(cx-1.2, cy-1.4, 0.4, cx, cy, PEG_R+0.4);
+    grad.addColorStop(0, '#f5deaa');
+    grad.addColorStop(0.4, '#d4a659');
+    grad.addColorStop(1, '#6e4c1f');
+    o.fillStyle = grad;
+    o.beginPath();
+    o.arc(cx, cy, PEG_R, 0, Math.PI*2);
+    o.fill();
+    // subtle outer rim
+    o.strokeStyle = 'rgba(0,0,0,.35)';
+    o.lineWidth = 0.6;
+    o.stroke();
+    pegSprite = {canvas: off, offset: s/2};
+  }
+
+  function layout(){
+    pegs = [];
+    rowGap = (pegBottom - pegTop) / (nRows + 1);
+    colGap = rowGap * 1.05;
+    const maxWidth = W - 50;
+    const neededWidth = colGap * (nRows + 1);
+    if(neededWidth > maxWidth){
+      colGap = maxWidth / (nRows + 1);
+    }
+    for(let r=1; r<=nRows; r++){
+      const y = pegTop + r * rowGap;
+      for(let c=0; c<=r-1; c++){
+        const x = W/2 + (c - (r-1)/2) * colGap;
+        pegs.push({x, y, flash: 0, row: r});
+      }
+    }
+    // --- Precompute inter-row vxMag ---
+    // Ball should travel colGap/2 during one rowGap of fall (peg-to-peg).
+    // rowGap = vy₀·t + ½·g·t²  →  t = (-vy₀ + √(vy₀² + 2g·rowGap))/g
+    const tInter = (-POST_HIT_VY + Math.sqrt(POST_HIT_VY*POST_HIT_VY + 2*GRAVITY*rowGap)) / GRAVITY;
+    // Average horizontal displacement factor with drag:
+    //  x(t) = vx₀ · (1 - DRAG^t) / (1 - DRAG)   (geometric sum)
+    const avgFactorInter = (1 - Math.pow(AIR_DRAG_X, tInter)) / (tInter * (1 - AIR_DRAG_X));
+    vxMag = (colGap * 0.525) / (tInter * avgFactorInter);   // +5% margin
+    if(vxMag > MAX_VX) vxMag = MAX_VX;
+
+    // --- Precompute last-peg → bin vxLastMag ---
+    // After the LAST row of pegs, the ball still needs to travel exactly
+    // colGap/2 horizontally (to land in the bin directly left or right of
+    // the peg), but the vertical fall is far longer than rowGap (pegs end
+    // at row nRows and bins lie below). If we kept using vxMag, the ball
+    // would overshoot by several bin widths. So use a reduced vxLastMag
+    // tuned for that specific fall distance.
+    const lastPegY = pegTop + nRows * rowGap;
+    const ballStartY = lastPegY - (BALL_R + PEG_R + 0.3);
+    const binBottomY = binAreaTop + binAreaHeight - BALL_R;
+    const fallDist = binBottomY - ballStartY;
+    // Fall time: accelerate under gravity until MAX_VY, then constant
+    const tToCap = (MAX_VY - POST_HIT_VY) / GRAVITY;
+    const yAtCap = POST_HIT_VY * tToCap + 0.5 * GRAVITY * tToCap * tToCap;
+    let tFall;
+    if(fallDist <= yAtCap){
+      tFall = (-POST_HIT_VY + Math.sqrt(POST_HIT_VY*POST_HIT_VY + 2*GRAVITY*fallDist)) / GRAVITY;
+    } else {
+      tFall = tToCap + (fallDist - yAtCap) / MAX_VY;
+    }
+    const avgFactorLast = (1 - Math.pow(AIR_DRAG_X, tFall)) / (tFall * (1 - AIR_DRAG_X));
+    vxLastMag = (colGap * 0.5) / (tFall * avgFactorLast);
+    if(vxLastMag > MAX_VX) vxLastMag = MAX_VX;
+    if(vxLastMag < 0.1) vxLastMag = 0.1;
+  }
+
+  function resetAll(){
+    bins = new Array(nRows+1).fill(0);
+    totalBalls = 0;
+    balls = [];
+    pending = 0;
+    pegs.forEach(p => p.flash = 0);
+  }
+
+  function spawnBall(){
+    // emerge from funnel mouth with tiny x jitter
+    balls.push({
+      x: W/2 + (Math.random()-0.5)*1.6,
+      y: funnelMouthY + 2,
+      vx: (Math.random()-0.5)*0.2,
+      vy: 0.6 + Math.random()*0.3,
+      trail: [],
+      lastPegIdx: -1,
+    });
+  }
+
+  function stepBall(b){
+    // integrate
+    b.vy += GRAVITY;
+    b.vx *= AIR_DRAG_X;
+    if(b.vy > MAX_VY) b.vy = MAX_VY;
+    if(b.vx > MAX_VX) b.vx = MAX_VX;
+    else if(b.vx < -MAX_VX) b.vx = -MAX_VX;
+    b.x += b.vx;
+    b.y += b.vy;
+
+    // side walls
+    const wallL = 4, wallR = W - 4;
+    if(b.x < wallL + BALL_R){ b.x = wallL + BALL_R; b.vx = Math.abs(b.vx) * 0.4; }
+    if(b.x > wallR - BALL_R){ b.x = wallR - BALL_R; b.vx = -Math.abs(b.vx) * 0.4; }
+
+    // check collision with pegs (near current y for speed)
+    for(let i=0; i<pegs.length; i++){
+      if(i === b.lastPegIdx) continue; // don't re-collide with same peg
+      const peg = pegs[i];
+      const dy = b.y - peg.y;
+      if(dy < -PEG_R - BALL_R - 2 || dy > PEG_R + BALL_R + 2) continue;
+      const dx = b.x - peg.x;
+      const dist2 = dx*dx + dy*dy;
+      const minD = BALL_R + PEG_R;
+      if(dist2 < minD * minD){
+        // Hybrid: on contact, deterministically route left/right by probRight.
+        // Place ball on top of peg and set velocity toward next peg column.
+        const dir = (Math.random() < probRight) ? 1 : -1;
+        // Place ball on top of peg, then launch horizontally.
+        //  - Inter-row:  vxMag      → ball travels colGap/2 in one rowGap
+        //  - Last row:   vxLastMag  → ball travels colGap/2 over full fall
+        //                              to the bin (much longer than rowGap)
+        // Without this distinction, the ball massively overshoots after
+        // leaving the last peg, and all balls pile up in the outer bins.
+        const isLastRow = (peg.row === nRows);
+        const mag = isLastRow ? vxLastMag : vxMag;
+        b.x = peg.x;
+        b.y = peg.y - (BALL_R + PEG_R + 0.3);
+        b.vx = dir * (mag + (Math.random()-0.5) * 0.04);
+        b.vy = POST_HIT_VY;
+        b.lastPegIdx = i;
+        peg.flash = 14;
+        break;
+      }
+    }
+
+    // trail
+    b.trail.push(b.x, b.y);
+    if(b.trail.length > 8) { b.trail.shift(); b.trail.shift(); }
+
+    // enter bin area → determine bin by x, stop
+    if(b.y >= binAreaTop + binAreaHeight - BALL_R){
+      const rel = (b.x - W/2) / colGap + nRows/2;
+      const idx = Math.max(0, Math.min(nRows, Math.round(rel)));
+      bins[idx]++;
+      totalBalls++;
+      return true;
+    }
+    return false;
+  }
+
+  // statistical (instant) resolution for mass batches
+  function instantBall(){
+    let col = 0;
+    for(let r=0; r<nRows; r++){
+      if(Math.random() < probRight) col++;
+      else col--;
+    }
+    const idx = Math.max(0, Math.min(nRows, Math.round((col + nRows)/2)));
+    bins[idx]++;
+    totalBalls++;
+  }
+
+  function addBalls(n){
+    if(n <= 1){
+      pending += n;
+      return;
+    }
+    // animate up to 150 balls with physics; statistical-resolve the rest
+    const animCap = Math.min(n, 150);
+    pending += animCap;
+    const rest = n - animCap;
+    if(rest > 0){
+      // Delay the bulk bar-fill until the first physics balls have started
+      // falling — otherwise bars appear before any ball is visible.
+      const baseSpeed = Math.max(20, Math.ceil(rest / 200));
+      let remaining = rest;
+      const start = Date.now();
+      setTimeout(() => {
+        const id = setInterval(() => {
+          // ramp up release rate over the first ~2 seconds so the bar growth
+          // visually tracks the falling balls rather than jumping instantly
+          const elapsed = (Date.now() - start) / 1000;
+          const ramp = Math.min(1, Math.max(0.12, (elapsed - 0.6) / 2));
+          const chunk = Math.max(1, Math.floor(baseSpeed * ramp));
+          const step = Math.min(chunk, remaining);
+          for(let i=0; i<step; i++) instantBall();
+          remaining -= step;
+          if(remaining <= 0) clearInterval(id);
+        }, 16);
+      }, 600);
+    }
+  }
+
+  // ====== DRAWING ======
+  function drawBg(){
+    // base
+    ctx.fillStyle = '#15100a';
+    ctx.fillRect(0, 0, W, H);
+    // subtle vignette
+    const g = ctx.createRadialGradient(W/2, H*0.6, 60, W/2, H*0.6, W*0.72);
+    g.addColorStop(0, 'rgba(232,197,106,0.04)');
+    g.addColorStop(1, 'rgba(0,0,0,0.45)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  function drawFunnel(){
+    const cx = W/2;
+    // funnel body
+    ctx.save();
+    const fx1 = cx - funnelHalfTop, fx2 = cx + funnelHalfTop;
+    const bx1 = cx - funnelHalfBot, bx2 = cx + funnelHalfBot;
+    // outer plate
+    ctx.beginPath();
+    ctx.moveTo(fx1, funnelTop);
+    ctx.lineTo(fx2, funnelTop);
+    ctx.lineTo(bx2, funnelMouthY);
+    ctx.lineTo(bx1, funnelMouthY);
+    ctx.closePath();
+    const fg = ctx.createLinearGradient(0, funnelTop, 0, funnelMouthY);
+    fg.addColorStop(0, '#3a2b18');
+    fg.addColorStop(1, '#1a1208');
+    ctx.fillStyle = fg;
+    ctx.fill();
+    // bevel lines
+    ctx.strokeStyle = '#6e4c1f';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(fx1 + 0.5, funnelTop + 0.5);
+    ctx.lineTo(bx1 + 0.5, funnelMouthY - 0.5);
+    ctx.moveTo(fx2 - 0.5, funnelTop + 0.5);
+    ctx.lineTo(bx2 - 0.5, funnelMouthY - 0.5);
+    ctx.stroke();
+    // inner shadow line at mouth
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.moveTo(bx1, funnelMouthY);
+    ctx.lineTo(bx2, funnelMouthY);
+    ctx.stroke();
+    // small label plate
+    ctx.fillStyle = '#a8916b';
+    ctx.font = "9px 'JetBrains Mono', monospace";
+    ctx.textAlign = 'center';
+    ctx.fillText('DROP', cx, funnelTop + 16);
+    ctx.restore();
+  }
+
+  function drawPegs(){
+    if(!pegSprite) makePegSprite();
+    for(const p of pegs){
+      ctx.drawImage(pegSprite.canvas, p.x - pegSprite.offset, p.y - pegSprite.offset);
+      if(p.flash > 0){
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, PEG_R + 3, 0, Math.PI*2);
+        ctx.strokeStyle = 'rgba(255,217,122,' + (p.flash/14) + ')';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        ctx.restore();
+        p.flash--;
+      }
+    }
+  }
+
+  function drawBins(){
+    // bottom plate
+    ctx.fillStyle = '#1f1710';
+    ctx.fillRect(0, binAreaTop, W, binAreaHeight + 6);
+    // subtle separator
+    ctx.strokeStyle = '#3d3020';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, binAreaTop + 0.5);
+    ctx.lineTo(W, binAreaTop + 0.5);
+    ctx.stroke();
+
+    const nBins = nRows + 1;
+    const usableH = binAreaHeight - 4;
+    const maxBin = Math.max(1, ...bins);
+    const bw = Math.max(4, colGap - 2);
+
+    // dividers
+    ctx.strokeStyle = 'rgba(168,145,107,0.18)';
+    ctx.lineWidth = 1;
+    for(let i=0; i<=nBins; i++){
+      const x = W/2 + (i - nBins/2) * colGap;
+      ctx.beginPath();
+      ctx.moveTo(x, binAreaTop + 2);
+      ctx.lineTo(x, binAreaTop + usableH);
+      ctx.stroke();
+    }
+
+    // bars (brass gradient)
+    for(let i=0; i<=nRows; i++){
+      const cx = W/2 + (i - nRows/2) * colGap;
+      const h = (bins[i]/maxBin) * usableH;
+      if(h <= 0) continue;
+      const y = binAreaTop + usableH - h + 2;
+      const g = ctx.createLinearGradient(0, y, 0, y + h);
+      g.addColorStop(0, '#f5deaa');
+      g.addColorStop(0.5, '#e8c56a');
+      g.addColorStop(1, '#9a7531');
+      ctx.fillStyle = g;
+      ctx.fillRect(cx - bw/2, y, bw, h);
+      // top highlight line
+      ctx.fillStyle = 'rgba(255,255,255,0.18)';
+      ctx.fillRect(cx - bw/2, y, bw, 1);
+    }
+  }
+
+  function drawTheoretical(){
+    if(totalBalls < 50) return;
+    const n = nRows;
+    const p = probRight;
+    const pmf = [];
+    let maxPmf = 0;
+    for(let k=0; k<=n; k++){
+      let logC = 0;
+      for(let i=1; i<=k; i++){ logC += Math.log(n - i + 1) - Math.log(i); }
+      const logPmf = logC + k*Math.log(p || 1e-12) + (n-k)*Math.log((1-p) || 1e-12);
+      const v = Math.exp(logPmf);
+      pmf.push(v);
+      if(v > maxPmf) maxPmf = v;
+    }
+    const maxBin = Math.max(1, ...bins);
+    const usableH = binAreaHeight - 4;
+    ctx.save();
+    ctx.strokeStyle = '#ea5c5c';
+    ctx.setLineDash([5, 3]);
+    ctx.lineWidth = 1.6;
+    ctx.shadowColor = 'rgba(234,92,92,.55)';
+    ctx.shadowBlur = 6;
+    ctx.beginPath();
+    // smooth curve across bin centers
+    const pts = [];
+    for(let k=0; k<=n; k++){
+      const cx = W/2 + (k - n/2) * colGap;
+      const relH = (pmf[k] / maxPmf) * usableH;
+      const yPos = binAreaTop + usableH - relH + 2;
+      pts.push([cx, yPos]);
+    }
+    ctx.moveTo(pts[0][0], pts[0][1]);
+    for(let i=1; i<pts.length; i++){
+      const [x2, y2] = pts[i];
+      const [x1, y1] = pts[i-1];
+      const xm = (x1 + x2) / 2;
+      const ym = (y1 + y2) / 2;
+      ctx.quadraticCurveTo(x1, y1, xm, ym);
+    }
+    ctx.lineTo(pts[pts.length-1][0], pts[pts.length-1][1]);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawBalls(){
+    for(const b of balls){
+      // trail
+      if(b.trail.length >= 4){
+        ctx.strokeStyle = 'rgba(243,239,230,0.25)';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(b.trail[0], b.trail[1]);
+        for(let i=2; i<b.trail.length; i+=2){
+          ctx.lineTo(b.trail[i], b.trail[i+1]);
+        }
+        ctx.stroke();
+      }
+      // ball body with radial gradient
+      const g = ctx.createRadialGradient(b.x-1, b.y-1.2, 0.4, b.x, b.y, BALL_R+0.6);
+      g.addColorStop(0, '#ffffff');
+      g.addColorStop(0.5, '#f3efe6');
+      g.addColorStop(1, '#8c8276');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, BALL_R, 0, Math.PI*2);
+      ctx.fill();
+    }
+  }
+
+  function drawOnboarding(){
+    if(totalBalls > 0 || balls.length > 0 || pending > 0) return;
+    ctx.save();
+    // dim overlay
+    ctx.fillStyle = 'rgba(21,16,10,0.68)';
+    ctx.fillRect(0, 0, W, H);
+    // top arrow — positioned right below the funnel mouth,
+    //            well above even the densest first-peg row
+    ctx.textAlign = 'center';
+    ctx.font = "11px 'Source Sans 3', sans-serif";
+    ctx.fillStyle = '#d4a659';
+    ctx.fillText('▲  ここ（ロート）から 1 粒ずつ玉が落ちる', W/2, funnelMouthY + 18);
+    // main message — centered vertically, far from pegs
+    ctx.font = "700 26px 'Playfair Display', serif";
+    ctx.fillStyle = '#e8c56a';
+    ctx.fillText('玉を落として始めよう', W/2, H/2 - 6);
+    // sub message
+    ctx.font = "13px 'Source Sans 3', sans-serif";
+    ctx.fillStyle = '#d4a659';
+    ctx.fillText('下のパネルで  [ +1 ] → [ +100 ] → [ +1,000 ]  と進めてみる', W/2, H/2 + 20);
+    // bin hint — inside the bin area itself, not in the peg zone
+    ctx.font = "11px 'Source Sans 3', sans-serif";
+    ctx.fillStyle = '#d4a659';
+    ctx.fillText('▼  落ちた玉はこの下のビンに積もる', W/2, binAreaTop + binAreaHeight/2 + 4);
+    ctx.restore();
+  }
+
+  function drawFrame(){
+    drawBg();
+    drawFunnel();
+    drawBins();
+    drawPegs();
+    drawTheoretical();
+    drawBalls();
+    drawOnboarding();
+  }
+
+  function loop(){
+    // spawn pending balls (respecting live cap)
+    while(pending > 0 && balls.length < MAX_LIVE){
+      pending--;
+      spawnBall();
+      // slight stagger: if many pending, release multiple per frame
+      if(pending > 50 && balls.length < MAX_LIVE && Math.random() < 0.7) continue;
+      if(pending > 10 && balls.length < MAX_LIVE && Math.random() < 0.35) continue;
+      break;
+    }
+    // step balls
+    const remain = [];
+    for(const b of balls){
+      if(!stepBall(b)) remain.push(b);
+    }
+    balls = remain;
+    drawFrame();
+
+    // update stats UI
+    if(elStatN) elStatN.textContent = totalBalls.toLocaleString();
+    if(elStatLive) elStatLive.textContent = balls.length;
+
+    requestAnimationFrame(loop);
+  }
+
+  // ===== Controls =====
+  document.getElementById('gbDrop1').addEventListener('click',()=>addBalls(1));
+  document.getElementById('gbDrop100').addEventListener('click',()=>addBalls(100));
+  document.getElementById('gbDrop1000').addEventListener('click',()=>addBalls(1000));
+  document.getElementById('gbDrop10000').addEventListener('click',()=>addBalls(10000));
+  document.getElementById('gbReset').addEventListener('click',resetAll);
+
+  const pSlider = document.getElementById('gbProb');
+  const pLabel = document.getElementById('gbProbVal');
+  pSlider.addEventListener('input',()=>{
+    probRight = parseInt(pSlider.value)/100;
+    pLabel.textContent = probRight.toFixed(2);
+    if(elStatP) elStatP.textContent = probRight.toFixed(2);
+  });
+
+  const nSlider = document.getElementById('gbRows');
+  const nLabel = document.getElementById('gbRowsVal');
+  nSlider.addEventListener('input',()=>{
+    nRows = parseInt(nSlider.value);
+    nLabel.textContent = nRows;
+    if(elStatRows) elStatRows.textContent = nRows;
+    layout();
+    resetAll();
+  });
+
+  makePegSprite();
+  layout();
+  loop();
+})();
+
+// ===== PASCAL'S TRIANGLE (10 rows, numbers + parity colors) =====
+(function(){
+  const svg = document.getElementById('pascalNumSvg');
+  if(!svg) return;
+  const NS = 'http://www.w3.org/2000/svg';
+  const nRows = 10;
+  const colW = 48, rowH = 36;
+  const offsetY = 58;
+  // build Pascal's triangle
+  const tri = [[1]];
+  for(let n=1; n<nRows; n++){
+    const row = [1];
+    for(let k=1; k<n; k++) row.push(tri[n-1][k-1] + tri[n-1][k]);
+    row.push(1);
+    tri.push(row);
+  }
+  for(let n=0; n<nRows; n++){
+    for(let k=0; k<=n; k++){
+      const x = 340 + (k - n/2) * colW;
+      const y = offsetY + n * rowH;
+      const t = document.createElementNS(NS, 'text');
+      t.setAttribute('x', x);
+      t.setAttribute('y', y);
+      t.setAttribute('text-anchor', 'middle');
+      t.setAttribute('font-family', 'JetBrains Mono, monospace');
+      t.setAttribute('font-size', '15');
+      t.setAttribute('font-weight', '600');
+      const isOdd = (tri[n][k] % 2 === 1);
+      t.setAttribute('fill', isOdd ? '#8b1a1a' : '#b0a090');
+      t.textContent = tri[n][k];
+      svg.appendChild(t);
+    }
+  }
+})();
+
+// ===== SIERPINSKI TRIANGLE FROM PASCAL'S TRIANGLE MOD 2 =====
+(function(){
+  const svg = document.getElementById('sierpinskiSvg');
+  if(!svg) return;
+  const NS = 'http://www.w3.org/2000/svg';
+  const nRows = 32;
+  const cellW = 16, cellH = 12;
+  const offsetY = 36;
+  for(let n=0; n<nRows; n++){
+    for(let k=0; k<=n; k++){
+      // C(n,k) is odd iff (n & k) === k  (Lucas' theorem, p=2)
+      if((n & k) === k){
+        const x = 340 - (n+1)*cellW/2 + k*cellW;
+        const y = offsetY + n*cellH;
+        const r = document.createElementNS(NS, 'rect');
+        r.setAttribute('x', x);
+        r.setAttribute('y', y);
+        r.setAttribute('width', cellW - 1);
+        r.setAttribute('height', cellH - 1);
+        r.setAttribute('fill', '#8b1a1a');
+        r.setAttribute('opacity', '0.85');
+        svg.appendChild(r);
+      }
+    }
+  }
+})();
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>

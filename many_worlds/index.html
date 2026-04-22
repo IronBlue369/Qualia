@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>観測のたびに、世界は分かれる — 多世界解釈 — Qualia Journal</title>
+<meta name="description" content="1957年、エヴェレットが示した『波動関数は収縮しない』という答え。その先に広がる、分岐する現実の物理学。">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* SLIDE MENU */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* SEARCH OVERLAY */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* MASTHEAD */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;min-width:0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;margin-top:48px;}
+.sec-rule:first-child{margin-top:0;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}
+.tip.open{background:#fdf3d8;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* MWI 3行要約カード */
+.mwi-card{margin:36px 0;padding:22px 26px;background:#1a1208;color:#faf8f3;border-left:4px solid #8b1a1a;}
+.mwi-card-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;color:#e8c56a;text-transform:uppercase;margin-bottom:16px;}
+.mwi-card-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;}
+.mwi-card-list li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:baseline;}
+.mwi-num{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#e8c56a;line-height:1;}
+.mwi-txt{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#f0e8d8;line-height:1.75;}
+.mwi-txt strong{color:white;font-weight:700;}
+@media (max-width:640px){.mwi-card{padding:18px 18px;}.mwi-txt{font-size:13px;}.mwi-num{font-size:20px;}}
+
+/* PERSON BLOCK (画像なし1カラム) */
+.person-block{margin:32px 0;display:grid;grid-template-columns:1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-body{padding:18px 22px;background:#f3efe6;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.85;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;margin-bottom:8px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.85;margin:14px 0 0;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* WORKS TABLE */
+.works-table{width:100%;border-collapse:collapse;margin:28px 0;font-family:'Source Sans 3',sans-serif;font-size:13px;table-layout:fixed;}
+.works-table col.c-name{width:26%;}
+.works-table col.c-motif{width:44%;}
+.works-table col.c-mwi{width:30%;}
+.works-table th{background:#3d3020;color:white;padding:10px 12px;font-weight:600;font-size:11px;letter-spacing:.06em;text-align:left;line-height:1.4;}
+.works-table td{padding:12px 12px;border-bottom:1px solid #e0d8c8;color:#3d3020;font-weight:300;line-height:1.65;vertical-align:top;word-wrap:break-word;overflow-wrap:anywhere;}
+.works-table tr:nth-child(even) td{background:#f3efe6;}
+.works-table td:first-child{font-weight:600;}
+.works-table td.off{color:#7a6a55;font-style:italic;}
+@media (max-width:640px){.works-table{display:block;}.works-table thead{display:none;}.works-table tbody,.works-table tr,.works-table td{display:block;width:100%;}.works-table tr{border:1px solid #c8bfaa;margin-bottom:10px;background:white;}.works-table tr:nth-child(even) td{background:transparent;}.works-table td{border-bottom:1px solid #f0ebe0;padding:10px 12px;}.works-table td:last-child{border-bottom:none;}.works-table td:before{display:block;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.12em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}.works-table td:nth-child(1):before{content:'作品名';}.works-table td:nth-child(2):before{content:'多世界的なモチーフ';}.works-table td:nth-child(3):before{content:'厳密にはMWIか？';}}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.85;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;line-height:1.4;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.85;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* SVG FIGURE */
+.svg-fig{margin:28px auto;text-align:center;max-width:680px;}
+.svg-fig-cap{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;line-height:1.7;margin-top:8px;text-align:center;}
+@media (max-width:700px){.svg-fig{max-width:100%;}}
+
+/* COMPARE GRID */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0;}
+.compare-panel{border:1px solid #c8bfaa;background:#f3efe6;padding:18px 18px 16px;}
+.compare-panel-tt{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.compare-panel-sub{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#8b1a1a;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;}
+.compare-panel-body{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.85;}
+@media(max-width:720px){.compare-grid{grid-template-columns:1fr;}}
+
+/* BRANCHING VISUALIZER */
+.sim-wrap{margin:36px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.sim-head{padding:14px 18px;background:#f3efe6;border-bottom:1px solid #c8bfaa;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.sim-head-tt{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#1a1208;letter-spacing:.04em;}
+.sim-head-phase{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.04em;color:#8b1a1a;}
+.sim-canvas-wrap{position:relative;background:#0d0d0d;padding:0;}
+.sim-canvas-wrap canvas{display:block;width:100%;height:auto;max-width:100%;aspect-ratio:680/380;}
+.sim-readout{position:absolute;top:34px;left:12px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#7a6a55;background:rgba(13,13,13,.85);padding:6px 10px;border:1px solid #2a2a2a;line-height:1.6;pointer-events:none;}
+.sim-controls{padding:16px 18px;background:#faf8f3;border-top:1px solid #e0d8c8;}
+.sim-btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.sim-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#3d3020;background:white;border:1px solid #c8bfaa;padding:8px 14px;cursor:pointer;letter-spacing:.04em;transition:all .18s;}
+.sim-btn:hover{background:#f3efe6;border-color:#8b1a1a;color:#8b1a1a;}
+.sim-btn.primary{background:#8b1a1a;border-color:#8b1a1a;color:white;}
+.sim-btn.primary:hover{background:#6e1414;}
+.sim-btn:disabled{opacity:.4;cursor:not-allowed;background:white;border-color:#e0d8c8;color:#b0a090;}
+.sim-btn:disabled:hover{background:white;border-color:#e0d8c8;color:#b0a090;}
+.sim-slider-row{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;margin-bottom:10px;}
+.sim-slider-label{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;letter-spacing:.04em;white-space:nowrap;}
+.sim-slider{width:100%;accent-color:#8b1a1a;}
+.sim-slider-val{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8b1a1a;min-width:54px;text-align:right;}
+.sim-check-row{display:flex;gap:14px;flex-wrap:wrap;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#3d3020;margin-top:8px;}
+.sim-check-row label{display:flex;align-items:center;gap:6px;cursor:pointer;}
+.sim-check-row input{accent-color:#8b1a1a;}
+.sim-hint{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.8;padding:12px 16px;background:#ede8dc;border-top:1px solid #c8bfaa;}
+.sim-hint strong{color:#8b1a1a;font-weight:600;}
+
+/* BACK-TO-TOC */
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){.toc-back{padding:22px 20px;}}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:block;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+
+/* OVERFLOW PROTECTION — 必須 */
+html,body{overflow-x:hidden;max-width:100%;}
+img,canvas,svg,video{max-width:100%;height:auto;}
+.t-line{min-width:0;}
+.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}
+.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.compare-panel-body{overflow-wrap:anywhere;}
+@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}
+
+/* TIP-TOAST — 必須: モバイル事故防止 */
+.tip-box{display:none!important;}
+.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}
+.tip-toast.show{bottom:16px;}
+.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}
+.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}
+.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}
+.tip-toast-close:hover{color:#e8c56a;}
+.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}
+.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Physics · Interpretation</p>
+    <h1>観測のたびに、<em>世界は分かれる</em></h1>
+    <p class="cover-deck">波動関数は収縮しない——。そう決めたとき、物理学に何が起きたか。1957年、二十代の大学院生がひとり、観測問題に別の答えを書いた。</p>
+    <div class="cover-byline"><span>物理・宇宙</span><span>量子力学の解釈</span><span>エヴェレット</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1957</span>
+      <p class="est-event">Hugh Everett III（ヒュー・エヴェレット3世）が博士論文要約「相対状態による量子力学の定式化」を <em>Reviews of Modern Physics</em> 誌で発表。</p>
+      <p class="est-context">同年10月、ソ連がスプートニク1号を打ち上げ冷戦の技術競争が激化。3月にEEC(欧州経済共同体)設立のローマ条約が調印された。</p>
+    </div>
+    <p class="cover-aside">論文は10年間ほとんど無視された。<strong>「多世界」という名前</strong>がついたのは1970年。名付け親はエヴェレット本人ではない。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>映画の中で、登場人物が「あの時、もし違う選択をしていたら」と呟く場面がある。それを見た瞬間、自分の胸のどこかが少し鈍く痛むことがある。</p>
+    <p>誰の記憶にも、「選ばなかった方」の短いシミュレーションが残っている。選んだ方が動き出した途端、選ばなかった方は静かに閉じる。それが当たり前だと、私たちは思っている。</p>
+    <p>物理学の一つの解釈は、閉じないと答える。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中上級 — 二重スリットの前提知識があると楽</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-14</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-14</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">観測した瞬間に片方が消えるのか、両方が残るのか。量子力学の「収縮しない」答えを、分岐するツリーを自分の手で育てながら体験する。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ─── 背景 ─── -->
+  <div class="sec-rule fade"><span class="sec-label">01 — Background</span><span class="sec-line"></span></div>
+  <h2 class="fade">観測されなかった結果は、どこに消えたのか</h2>
+
+  <p class="body-text fade"><a href="https://qualiajournal.com/double_slit/" style="color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.3);text-decoration:none;">二重スリット実験</a>の終わりに、ひとつの奇妙な事実が残った。光子を観測すると、二つあった可能性のうち片方が消える。観測しなければ、二つは干渉して縞模様になる。観測していないあいだ、光子は「ここにある」ではなく「ここにある可能性がこれだけ、あちらにある可能性がこれだけ」という<em>可能性の分布</em>として振る舞う。量子力学はこの分布を <span class="tip" onclick="toggleTip(this)">波動関数<span class="tip-box"><strong>波動関数（wave function、記号 ψ）</strong>　量子系がとりうる状態すべてを同時に重ね合わせて記述する数学的対象。位置・運動量などを測ったときの値は直接書かれておらず、各値が出る「振幅」の分布として書かれている。絶対値の二乗が、それぞれの測定結果が出る確率になる（Born則）。</span></span>——記号ではψ（プサイ）——と呼び、<span class="tip" onclick="toggleTip(this)">シュレーディンガー方程式<span class="tip-box"><strong>シュレーディンガー方程式</strong>　波動関数が時間とともにどう変化するかを記述する量子力学の基礎方程式。1926年にエルヴィン・シュレーディンガーが発表。ニュートンの運動方程式が古典力学の骨格であるのと同じ位置にある。</span></span>がその時間発展を書き下す。</p>
+
+  <p class="body-text fade">ところが、測定器を当てた瞬間にこの分布は急に一つの値に絞られる——ψ が「片方だけ」に切り替わる。これが<strong>波動関数の収縮</strong>と呼ばれる現象だ。方程式はそこで一度中断され、複数の可能性のうち一つが選ばれ、残りは忽然と消える。<span class="tip" onclick="toggleTip(this)">コペンハーゲン解釈<span class="tip-box"><strong>コペンハーゲン解釈</strong>　ボーアとハイゼンベルクを中心に1920年代後半に形成された量子力学の標準的解釈。観測によって波動関数が収縮し、一つの結果が選ばれると考える。量子系と観測者を別扱いする立場。</span></span>はそう説明する。しかしこの答えには、古くから厄介な穴がある。観測とは何か、誰が観測者か、なぜ方程式が途中で止まるのか——。</p>
+
+  <p class="body-text fade">1957年、プリンストン大の博士課程にいた26歳のHugh Everett III（ヒュー・エヴェレット3世）は、別の道を示した。方程式は止めない。収縮は起こさない。ただ一つだけ、認めればいい。<em>観測されなかった結果も、観測された結果と同じように続いている</em>——と。</p>
+
+  <!-- SVG: Copenhagen vs MWI -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="コペンハーゲン解釈と多世界解釈の対比">
+      <!-- 左パネル: コペンハーゲン -->
+      <rect x="10" y="10" width="335" height="400" fill="#f3efe6" stroke="#c8bfaa"/>
+      <text x="177.5" y="38" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" font-weight="700" fill="#8b1a1a">コペンハーゲン解釈</text>
+      <text x="177.5" y="58" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">波動関数は「収縮」する</text>
+
+      <!-- 測定前 -->
+      <text x="177.5" y="92" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" font-weight="600" fill="#3d3020">① 測定前（重ね合わせ）</text>
+      <circle cx="177.5" cy="128" r="24" fill="none" stroke="#1a1208" stroke-width="1.6"/>
+      <text x="177.5" y="135" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="20" fill="#1a1208">ψ</text>
+      <text x="177.5" y="172" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">|0⟩ と |1⟩ が共存</text>
+
+      <!-- 下矢印 -->
+      <line x1="177.5" y1="188" x2="177.5" y2="218" stroke="#1a1208" stroke-width="1.6" marker-end="url(#arr1)"/>
+      <text x="195" y="208" text-anchor="start" font-family="Source Sans 3,sans-serif" font-size="14" fill="#1a1208">測定</text>
+
+      <!-- 測定後 -->
+      <text x="177.5" y="244" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" font-weight="600" fill="#3d3020">② 測定後（一つに収縮）</text>
+      <rect x="105" y="266" width="54" height="36" fill="#1a1208"/>
+      <text x="132" y="289" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#fff" font-weight="700">0</text>
+      <text x="132" y="320" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#1a1208">残る結果</text>
+
+      <rect x="196" y="266" width="54" height="36" fill="none" stroke="#c8bfaa" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <text x="223" y="289" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#c8bfaa">1</text>
+      <text x="223" y="320" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#c4392a">消える</text>
+
+      <line x1="177.5" y1="348" x2="177.5" y2="348" stroke="#c8bfaa"/>
+      <text x="177.5" y="368" text-anchor="middle" font-family="Source Serif 4,serif" font-size="15" fill="#3d3020" font-style="italic">方程式は観測の瞬間に中断</text>
+      <text x="177.5" y="390" text-anchor="middle" font-family="Source Serif 4,serif" font-size="15" fill="#8b1a1a" font-style="italic">——片方が消える</text>
+
+      <!-- 右パネル: 多世界解釈 -->
+      <rect x="375" y="10" width="335" height="400" fill="#f3efe6" stroke="#c8bfaa"/>
+      <text x="542.5" y="38" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" font-weight="700" fill="#8b1a1a">多世界解釈</text>
+      <text x="542.5" y="58" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">波動関数は「分岐」するだけ</text>
+
+      <!-- 測定前 -->
+      <text x="542.5" y="92" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" font-weight="600" fill="#3d3020">① 測定前（重ね合わせ）</text>
+      <circle cx="542.5" cy="128" r="24" fill="none" stroke="#1a1208" stroke-width="1.6"/>
+      <text x="542.5" y="135" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="20" fill="#1a1208">ψ</text>
+      <text x="542.5" y="172" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">|0⟩ と |1⟩ が共存</text>
+
+      <!-- 分岐矢印 -->
+      <line x1="542.5" y1="188" x2="490" y2="218" stroke="#1a1208" stroke-width="1.6" marker-end="url(#arr2)"/>
+      <line x1="542.5" y1="188" x2="595" y2="218" stroke="#1a1208" stroke-width="1.6" marker-end="url(#arr2)"/>
+      <text x="542.5" y="208" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#1a1208">測定</text>
+
+      <!-- 測定後 二つの枝 -->
+      <text x="542.5" y="244" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" font-weight="600" fill="#3d3020">② 測定後（両方の枝が残る）</text>
+      <rect x="463" y="266" width="54" height="36" fill="#c4392a"/>
+      <text x="490" y="289" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#fff" font-weight="700">0</text>
+      <text x="490" y="320" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020">枝A に残る</text>
+
+      <rect x="568" y="266" width="54" height="36" fill="#3d6c8c"/>
+      <text x="595" y="289" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#fff" font-weight="700">1</text>
+      <text x="595" y="320" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020">枝B に残る</text>
+
+      <text x="542.5" y="368" text-anchor="middle" font-family="Source Serif 4,serif" font-size="15" fill="#3d3020" font-style="italic">方程式は止まらない</text>
+      <text x="542.5" y="390" text-anchor="middle" font-family="Source Serif 4,serif" font-size="15" fill="#8b1a1a" font-style="italic">——両方がそれぞれの枝に残る</text>
+
+      <defs>
+        <marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1a1208"/></marker>
+        <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1a1208"/></marker>
+      </defs>
+    </svg>
+    <p class="svg-fig-cap">同じ状況で、二つの解釈は別の筋書きを描く。左は結果が一つに「絞られる」と見なし、右は結果が二つに「分かれる」と見なす。ψ は波動関数の標準記号。</p>
+  </div>
+
+  <p class="body-text fade">これだけ聞けばSF的な思いつきに聞こえる。だが、エヴェレットの主張は正反対だった。余計なもの(収縮)を足しているのはコペンハーゲン側で、こちらは<strong>シュレーディンガー方程式をそのまま走らせているだけ</strong>——と。多い世界ではなく、少ない前提。それが彼の論文の骨格だった。</p>
+
+  <!-- シュレディンガーの猫 × 多世界解釈（Wikimedia Commons, CC0） -->
+  <figure class="fade" style="margin:32px 0;padding:0;">
+    <img src="./fig_mwi_cat.png" alt="シュレディンガーの猫を使った多世界解釈のコマ送り図：箱を開けた瞬間、宇宙が『生きた猫を見る枝』と『死んだ猫を見る枝』に分岐する" style="display:block;width:100%;max-width:640px;height:auto;margin:0 auto;border:1px solid #c8bfaa;background:#fff;">
+    <figcaption style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;margin-top:10px;text-align:center;padding:0 10px;">シュレディンガーの猫を使った多世界解釈の可視化。箱を開けた瞬間（波動関数が環境に漏れ出す瞬間）、宇宙は<em>「生きた猫を見る観測者の枝」</em>と<em>「死んだ猫を見る観測者の枝」</em>に分かれる。猫が二匹に増えたのではない——観測者ごと二つに分かれ、互いに相手から見えなくなった。<br><span style="font-size:10px;color:#b0a090;">Image: Christian Schirm / Wikimedia Commons (CC0)</span></figcaption>
+  </figure>
+
+  <!-- 誤解あるある -->
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解 — ほぐしておきたい</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q"><p class="mis-label wrong">よくある誤解</p><p class="mis-text">選択のたびに宇宙が分岐する。告白するかどうかを迷った夜、別の自分はもう片方を選んでいる。</p></div>
+        <div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">分岐が起きるのは<strong>量子的な測定イベント</strong>のとき。人間の意思決定は古典的な神経過程で、原則として新しい世界を生まない。脳の奥で量子イベントが効いていない限りは。</p></div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q"><p class="mis-label wrong">よくある誤解</p><p class="mis-text">すべての枝は同じ確率で存在する。「別の自分」は自分と同じだけリアルで、同じだけ多い。</p></div>
+        <div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text"><span class="tip" onclick="toggleTip(this)">Born則<span class="tip-box"><strong>Born則</strong>　波動関数の絶対値の二乗が、測定結果の確率を与えるという量子力学の規則。マックス・ボルンが1926年に提唱。多世界解釈では、これが各枝の「重み」になる。</span></span>によって枝ごとに重みが異なる。たいていの重みは少数の枝に偏って集まる。「ありうる」と「量的にある」は別のこと。</p></div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q"><p class="mis-label wrong">よくある誤解</p><p class="mis-text">並行宇宙はどこか別の場所に浮かんでいる。銀河の先に、もう一つの地球がある。</p></div>
+        <div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">すべての枝は<strong>一つの波動関数</strong>の内側にある。互いに干渉できなくなっただけで、別の空間に引っ越したわけではない。座標上の「別の場所」を探してもどこにもない。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 人物ブロック(画像なし1カラム) -->
+  <div class="person-block fade">
+    <div class="person-block-body">
+      <p class="person-block-name">Hugh Everett III（ヒュー・エヴェレット3世）</p>
+      <p class="person-block-role">Physicist · 1930–1982</p>
+      <p class="person-block-desc">プリンストン大の <span class="tip" onclick="toggleTip(this)">John A. Wheeler<span class="tip-box"><strong>John A. Wheeler（ジョン・ホイーラー）</strong>　アメリカの理論物理学者(1911–2008)。ブラックホール、量子情報、幾何力学で知られる。エヴェレットの博士論文指導教官で、彼の「相対状態(relative state)」という用語の名付け親。</span></span> のもとで相対状態の定式化を完成させ、1957年に論文を発表。しかし物理学界の反応は冷たく、1959年にコペンハーゲンでボーア本人を訪ねたものの完全な決裂に終わる。そのまま物理学を離れ、Pentagon の Weapons Systems Evaluation Group に移籍。核戦争シナリオ(SIOP)の計算機プログラムを主導した。喫煙、飲酒、肥満、鬱を抱え、51歳で心臓発作で死去。論文が「多世界解釈」として再評価されるのは、彼の死後のことだ。</p>
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-top:12px;"><a href="https://ja.wikipedia.org/wiki/%E3%83%92%E3%83%A5%E3%83%BC%E3%83%BB%E3%82%A8%E3%83%B4%E3%82%A7%E3%83%AC%E3%83%83%E3%83%88" target="_blank" rel="noopener" style="color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.3);text-decoration:none;">→ Wikipedia</a></p>
+    </div>
+  </div>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"The meeting was doomed from the beginning."</p>
+    <p class="quote-ja">「あの会合は、最初から終わっていた。」</p>
+    <p class="quote-attr">— ヒュー・エヴェレット3世、1959年コペンハーゲンでボーアと会った日々を振り返って</p>
+  </div>
+
+  <p class="body-text fade">ここまでで、エヴェレットが何を主張したかの骨格は揃った。次の体験に入る前に、<strong>多世界解釈</strong>——英語で <em>Many-Worlds Interpretation</em>、略して <strong>MWI</strong> ——がどういう立場かを、3行に畳んでおく。これを手に、下のツリーに進んでほしい。</p>
+
+  <div class="mwi-card fade">
+    <p class="mwi-card-label">MWIの主張（3行で言うと）</p>
+    <ol class="mwi-card-list">
+      <li><span class="mwi-num">①</span><span class="mwi-txt">波動関数は<strong>収縮しない</strong>。観測の前後で、同じシュレーディンガー方程式がずっと走り続ける。</span></li>
+      <li><span class="mwi-num">②</span><span class="mwi-txt">測定とは、観測者と観測対象が<strong>もつれる</strong>現象。観測者は外側から見る者ではなく、自分も波動関数の一部になる。</span></li>
+      <li><span class="mwi-num">③</span><span class="mwi-txt">すべての観測結果は、独立した<strong>枝として実在</strong>し続ける。どれか一つだけが本物で残りは消えた、という選別は起きない。</span></li>
+    </ol>
+  </div>
+
+  <!-- ─── 体験 ─── -->
+  <div class="sec-rule fade"><span class="sec-label">02 — Experience</span><span class="sec-line"></span></div>
+  <h2 class="fade">あなたの枝を、歩いてみる</h2>
+
+  <p class="body-text fade">ここから先は、読むのをやめて手を動かしてほしい。下の Canvas は、量子測定が1回起きるたびに、あなたが経験する世界が分岐していく様子を描く。根（左端の黄色い ψ）が観測前のあなた。右に伸びる線が、観測が起きたあとの世界。</p>
+
+  <p class="body-text fade">ボタンを押すたびに、世界は二つに分かれる。あなたは <span class="tip" onclick="toggleTip(this)">Born則<span class="tip-box"><strong>Born則</strong>　波動関数の絶対値の二乗が、測定結果の確率になる量子力学の規則。マックス・ボルンが1926年に提唱。多世界解釈では、この確率がそのまま各枝の「重み」になる。すべての枝は存在するが、重みは均等ではない。</span></span> に従って、自動でそのうちの片方に入る。もう一方の枝には、<em>別のあなた</em>が生きている。観測を重ねるほど、あなたの枝は細くなり、「別のあなた」の数は倍々に増える。</p>
+
+  <p class="body-text fade">気づいてほしいのは、<em>明るく残っているのがあなた、暗く沈んでいるのが別のあなた</em>という絵の意味だ。暗い枝は「消えた可能性」ではない。そこにいる別のあなたからは、今度はこちらが同じだけ暗く見えている。どちらの枝から見ても、自分の枝だけが唯一の現実に見える——MWIの肝は、この非対称の欠如にある。</p>
+
+  <!-- SIMULATOR -->
+  <div class="sim-wrap fade">
+    <div class="sim-head">
+      <span class="sim-head-tt">あなたの枝を歩く</span>
+      <span class="sim-head-phase" id="simPhase">観測前 · まだ世界は分岐していない</span>
+    </div>
+    <div class="sim-canvas-wrap">
+      <canvas id="simCanvas" width="680" height="380" aria-label="MWI 分岐のビジュアライザー"></canvas>
+      <div class="sim-readout" id="simReadout">depth: 0<br>枝: 1</div>
+    </div>
+    <div class="sim-controls">
+      <div class="sim-btn-row">
+        <button class="sim-btn primary" id="simMeasure">▶ 1回観測する</button>
+        <button class="sim-btn" id="simSwitch" disabled>↔ 別の自分に切り替える</button>
+        <button class="sim-btn" id="simReset">リセット</button>
+      </div>
+      <div class="sim-slider-row">
+        <span class="sim-slider-label">初期状態のバイアス <span style="font-weight:300;color:#b0a090;font-size:10px;">(|0⟩ と |1⟩ の振幅比)</span></span>
+        <input class="sim-slider" id="simBias" type="range" min="-40" max="40" value="0" step="1">
+        <span class="sim-slider-val" id="simBiasVal">|0⟩ 50%</span>
+      </div>
+      <div class="sim-check-row">
+        <label><input type="checkbox" id="simWeight" checked> <span class="tip" onclick="toggleTip(this)" style="color:#e8c56a;">Born則<span class="tip-box"><strong>Born則</strong>　波動関数の絶対値の二乗が、測定結果の確率になる量子力学の規則。マックス・ボルンが1926年に提唱。多世界解釈では、この確率が各枝の「重み（太さ）」として視覚化される。</span></span>の重みを線の太さに反映</label>
+      </div>
+    </div>
+    <div class="sim-hint" id="simHint"><strong>まだ始まっていない:</strong> 黄色い ψ はあなたの観測前の重ね合わせ状態。下の <em>▶ 1回観測する</em> を押すと、世界は分岐し、あなたは自動でどちらかの枝に入る。同時に「別のあなた」が、もう一方の枝で生まれる。</div>
+  </div>
+
+  <!-- ─── メカニズム ─── -->
+  <div class="sec-rule fade"><span class="sec-label">03 — Mechanism</span><span class="sec-line"></span></div>
+  <h2 class="fade">なぜ「分岐」が起きるように見えるのか</h2>
+
+  <p class="body-text fade">ここまで読んで違和感があるのは当然だ。波動関数が収縮しない——つまり、<strong>測定しても <span class="tip" onclick="toggleTip(this)">|0⟩ と |1⟩<span class="tip-box"><strong>|0⟩、|1⟩（ブラケット記法／ディラック記法）</strong>　量子状態を書くときの標準記法。ポール・ディラックが導入した。縦棒＋ラベル＋鉤括弧（⟩）でひとつの「状態ベクトル」を表し、量子系がとりうる基本状態を示す。コインの例で言えば「|表⟩」「|裏⟩」のような感覚。電子スピンなら |↑⟩ と |↓⟩、光子の偏光なら |水平⟩ と |垂直⟩。本文では話を単純にするため、|0⟩ と |1⟩ という2つの基本状態だけを考えている。</span></span> の両方の成分が ψ の中に残り続ける</strong>——というなら、なぜ実験者には一つの結果しか見えないのか。|0⟩ と |1⟩ のどちらも波動関数の中に居残っているのなら、実験者の目には <em>両方の目盛りが同時に見えている</em> ような気がしてもおかしくない。複数の結果が同時に知覚されてもよさそうなのに、実際にはそうならない。</p>
+
+  <p class="body-text fade">答えの鍵は、<span class="tip" onclick="toggleTip(this)">デコヒーレンス<span class="tip-box"><strong>デコヒーレンス</strong>　量子系が周囲の環境と無数の粒子レベルで絡まり合い、状態の位相関係が復元不可能になる過程。量子的な重ね合わせが、実質的に古典的な確率分布に見えるようになる仕組み。1970年代以降にZurekらが精密化した。</span></span>と呼ばれる過程にある。観測装置が量子系と相互作用すると、装置そのものが二つの状態に「絡まる」。そして装置がさらに空気や光や熱と触れた瞬間、膨大な数の粒子が巻き込まれ、二つの枝は互いに干渉できなくなる。片方から見てもう片方は、もう存在しないのと同じように振る舞う。</p>
+
+  <!-- SVG: decoherence 3 stages -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="デコヒーレンスの3段階">
+      <!-- 凡例（一番上に置く） -->
+      <g>
+        <rect x="10" y="10" width="700" height="36" fill="#faf8f3" stroke="#e0d8c8"/>
+        <text x="25" y="33" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">凡例：</text>
+        <circle cx="100" cy="28" r="10" fill="none" stroke="#1a1208" stroke-width="1.4"/>
+        <text x="100" y="32" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#1a1208">ψ</text>
+        <text x="118" y="32" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020">= 波動関数（量子系の状態）</text>
+        <rect x="320" y="20" width="16" height="16" fill="#3d3020"/>
+        <text x="344" y="32" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020">= 観測装置</text>
+        <circle cx="470" cy="28" r="3.5" fill="#7a6a55"/>
+        <text x="482" y="32" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020">= 環境の粒子（空気・光・熱）</text>
+      </g>
+
+      <!-- Stage 1 -->
+      <rect x="10" y="72" width="220" height="280" fill="#f3efe6" stroke="#c8bfaa"/>
+      <text x="120" y="94" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#8b1a1a" font-weight="700" letter-spacing="2">STAGE 1</text>
+      <text x="120" y="116" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#1a1208" font-weight="700">重ね合わせ</text>
+      <circle cx="120" cy="200" r="42" fill="none" stroke="#1a1208" stroke-width="1.8"/>
+      <circle cx="120" cy="200" r="26" fill="#8b1a1a" opacity=".5"/>
+      <circle cx="120" cy="200" r="14" fill="#3d6c8c" opacity=".6"/>
+      <text x="120" y="207" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="20" fill="#fff" font-weight="700">ψ</text>
+      <text x="120" y="282" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">|0⟩ と |1⟩ が</text>
+      <text x="120" y="302" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">一つの系の中で共存</text>
+      <text x="120" y="334" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="13" fill="#3d3020" font-style="italic">（まだ装置は触れていない）</text>
+
+      <!-- Arrow 1 -->
+      <line x1="236" y1="210" x2="256" y2="210" stroke="#1a1208" stroke-width="1.8" marker-end="url(#arrD)"/>
+
+      <!-- Stage 2 -->
+      <rect x="262" y="72" width="198" height="280" fill="#f3efe6" stroke="#c8bfaa"/>
+      <text x="361" y="94" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#8b1a1a" font-weight="700" letter-spacing="2">STAGE 2</text>
+      <text x="361" y="116" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#1a1208" font-weight="700">装置ともつれる</text>
+      <!-- 上の枝 -->
+      <circle cx="324" cy="168" r="18" fill="#8b1a1a"/>
+      <text x="324" y="173" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#fff" font-weight="600">0</text>
+      <line x1="344" y1="168" x2="374" y2="168" stroke="#1a1208" stroke-width="1.6" stroke-dasharray="2 2"/>
+      <rect x="376" y="150" width="36" height="36" fill="#3d3020"/>
+      <text x="394" y="173" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#fff" font-weight="600">A</text>
+      <!-- 下の枝 -->
+      <circle cx="324" cy="236" r="18" fill="#3d6c8c"/>
+      <text x="324" y="241" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#fff" font-weight="600">1</text>
+      <line x1="344" y1="236" x2="374" y2="236" stroke="#1a1208" stroke-width="1.6" stroke-dasharray="2 2"/>
+      <rect x="376" y="218" width="36" height="36" fill="#3d3020"/>
+      <text x="394" y="241" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#fff" font-weight="600">B</text>
+      <text x="361" y="300" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">装置も「Aを指す状態」と</text>
+      <text x="361" y="320" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">「Bを指す状態」に分かれる</text>
+
+      <!-- Arrow 2 -->
+      <line x1="466" y1="210" x2="486" y2="210" stroke="#1a1208" stroke-width="1.8" marker-end="url(#arrD)"/>
+
+      <!-- Stage 3 -->
+      <rect x="492" y="72" width="218" height="280" fill="#f3efe6" stroke="#c8bfaa"/>
+      <text x="601" y="94" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#8b1a1a" font-weight="700" letter-spacing="2">STAGE 3</text>
+      <text x="601" y="116" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#1a1208" font-weight="700">デコヒーレンス</text>
+      <!-- 上の枝 -->
+      <circle cx="536" cy="162" r="14" fill="#8b1a1a"/>
+      <text x="536" y="167" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#fff" font-weight="600">0</text>
+      <rect x="562" y="150" width="26" height="26" fill="#3d3020"/>
+      <text x="575" y="168" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#fff" font-weight="600">A</text>
+      <circle cx="610" cy="144" r="3.5" fill="#7a6a55"/>
+      <circle cx="626" cy="158" r="3.5" fill="#7a6a55"/>
+      <circle cx="642" cy="172" r="3.5" fill="#7a6a55"/>
+      <circle cx="660" cy="160" r="3.5" fill="#7a6a55"/>
+      <circle cx="678" cy="148" r="3.5" fill="#7a6a55"/>
+      <!-- 下の枝 -->
+      <circle cx="536" cy="250" r="14" fill="#3d6c8c"/>
+      <text x="536" y="255" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#fff" font-weight="600">1</text>
+      <rect x="562" y="238" width="26" height="26" fill="#3d3020"/>
+      <text x="575" y="256" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="12" fill="#fff" font-weight="600">B</text>
+      <circle cx="610" cy="234" r="3.5" fill="#7a6a55"/>
+      <circle cx="626" cy="248" r="3.5" fill="#7a6a55"/>
+      <circle cx="642" cy="262" r="3.5" fill="#7a6a55"/>
+      <circle cx="660" cy="250" r="3.5" fill="#7a6a55"/>
+      <circle cx="678" cy="238" r="3.5" fill="#7a6a55"/>
+      <!-- 仕切り線 -->
+      <line x1="498" y1="206" x2="708" y2="206" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="4 4"/>
+      <text x="601" y="300" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">情報が環境に拡散し、</text>
+      <text x="601" y="320" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" font-weight="700">上下の枝は互いに干渉できない</text>
+      <defs>
+        <marker id="arrD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1a1208"/></marker>
+      </defs>
+    </svg>
+    <p class="svg-fig-cap">量子系から装置へ、装置から環境へ——情報が漏れ出すごとに、二つの枝は相手を無視するようになる。これが「分岐して見える」の正体である。中央の ψ は「波動関数」を表す標準記号（ギリシャ文字プサイ、他の量子力学の記事でも同じ意味で登場する）。</p>
+  </div>
+
+  <p class="body-text fade">干渉できない二つの枝。片方に乗った観測者には、もう片方を感知する方法がない。感知できないもの——物理的に相互作用できないもの——は、その観測者の世界には存在しないのと等しい。<strong>消えたのではない。ただ、到達できなくなっただけ</strong>だ。</p>
+
+  <!-- Compare grid -->
+  <div class="compare-grid fade">
+    <div class="compare-panel">
+      <p class="compare-panel-tt">収縮はある</p>
+      <p class="compare-panel-sub">Copenhagen</p>
+      <p class="compare-panel-body">観測で方程式は中断される。一つの結果が残り、残りは消える。「観測者」と「量子系」は別扱い。<br><br><strong>足されるもの:</strong> 収縮の規則、観測者の特別な位置づけ</p>
+    </div>
+    <div class="compare-panel">
+      <p class="compare-panel-tt">収縮はない</p>
+      <p class="compare-panel-sub">Many-Worlds</p>
+      <p class="compare-panel-body">方程式は止まらない。すべての結果が各自の枝に残り、デコヒーレンスで互いに干渉できなくなる。観測者も波動関数の一部。<br><br><strong>足されるもの:</strong> なし(シュレーディンガー方程式のみ)</p>
+    </div>
+  </div>
+
+  <div class="steps-wrap fade">
+    <p class="steps-head">step by step — 測定から分岐まで</p>
+    <div class="step-card" id="sc1"><div class="step-hd" onclick="tog(1)"><div class="step-nb">1</div><div class="step-tw"><p class="step-title">重ね合わせ</p><p class="step-sub">量子系は複数の状態を同時に持っている</p></div><div class="step-arr">▾</div></div><div class="step-body"><p>量子系は <strong>α|0⟩ + β|1⟩</strong> のような線形結合として存在する。<em>|0⟩ と |1⟩ のどちらか</em>ではなく、両方が並んでいる。</p></div></div>
+    <div class="step-card" id="sc2"><div class="step-hd" onclick="tog(2)"><div class="step-nb">2</div><div class="step-tw"><p class="step-title">測定</p><p class="step-sub">観測装置が量子系と相互作用する</p></div><div class="step-arr">▾</div></div><div class="step-body"><p>測定装置が近づき、量子系と相互作用する。ここで<em>装置は中立の状態「まだ見てない」</em>だ。</p></div></div>
+    <div class="step-card" id="sc3"><div class="step-hd" onclick="tog(3)"><div class="step-nb">3</div><div class="step-tw"><p class="step-title">もつれ</p><p class="step-sub">装置の状態も二つに分かれる</p></div><div class="step-arr">▾</div></div><div class="step-body"><p>量子系と装置は一つの絡まった状態になる。<strong>α|0⟩|装置=A⟩ + β|1⟩|装置=B⟩</strong>。装置そのものが二つの状態に分かれる。</p></div></div>
+    <div class="step-card" id="sc4"><div class="step-hd" onclick="tog(4)"><div class="step-nb">4</div><div class="step-tw"><p class="step-title">デコヒーレンス</p><p class="step-sub">環境に情報が漏れ、干渉性が失われる</p></div><div class="step-arr">▾</div></div><div class="step-body"><p>装置は空気・光・熱と触れる。<em>情報は無数の粒子に刻まれ</em>、二つの枝の位相関係は現実的には二度と整わない。</p></div></div>
+    <div class="step-card" id="sc5"><div class="step-hd" onclick="tog(5)"><div class="step-nb">5</div><div class="step-tw"><p class="step-title">分岐</p><p class="step-sub">枝から枝は見えない</p></div><div class="step-arr">▾</div></div><div class="step-body"><p>どちらの枝の観測者からも、もう片方は<em>物理的に手が届かない</em>。それぞれが独立した「現実」として続いていく。消えたのではなく、届かなくなっただけ。</p></div></div>
+  </div>
+
+  <!-- ─── 歴史 ─── -->
+  <div class="sec-rule fade"><span class="sec-label">04 — History</span><span class="sec-line"></span></div>
+  <h2 class="fade">ある論文の、長い沈黙</h2>
+
+  <div class="timeline fade">
+    <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1925–1927</p><p class="tl-title">量子力学の誕生</p><p class="tl-desc">Heisenberg、Schrödinger、Bornらが量子力学の基礎を築く。Bornは同時に、波動関数の絶対値の二乗が確率を与える規則を提唱する。</p></div>
+    <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1932</p><p class="tl-title">von Neumannが測定問題を形式化</p><p class="tl-desc">『量子力学の数学的基礎』で、測定による「射影仮設(projection postulate)」が導入される。シュレーディンガー方程式は、観測の瞬間に中断されると明記。</p></div>
+    <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1957</p><p class="tl-title">エヴェレットの「相対状態」論文</p><p class="tl-desc">エヴェレットが <em>Reviews of Modern Physics</em> に短縮版を発表。もともとの呼称は "Correlation Interpretation"。ホイーラーが "relative state" と名付け直した。</p></div>
+    <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1959</p><p class="tl-title">コペンハーゲン訪問、決裂</p><p class="tl-desc">ホイーラーがエヴェレットをコペンハーゲンに送り込み、ボーア本人との対話を試みる。ボーア側のローゼンフェルトは後にエヴェレットを "undescribably stupid" と評した。エヴェレットは物理学研究に戻らなかった。</p></div>
+    <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1970</p><p class="tl-title">DeWittが「多世界」を広める</p><p class="tl-desc"><em>Physics Today</em> 9月号でDeWittが "Quantum Mechanics and Reality" を発表。「many-worlds」という呼称はここで定着する。10年以上の沈黙が終わる。</p></div>
+    <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1982</p><p class="tl-title">エヴェレット、51歳で死去</p><p class="tl-desc">心臓発作。喫煙、飲酒、肥満、鬱。論文が「古典」になる前に本人は亡くなった。遺体は遺言通り、ゴミとして処分された(火葬・墓なし)。</p></div>
+    <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1985</p><p class="tl-title">Deutschの量子チューリング機械</p><p class="tl-desc">David Deutschが量子計算の一般理論を定式化。多世界解釈の立場から「量子コンピュータは別の枝の計算能力を借りる装置」と論じる。</p></div>
+    <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2019</p><p class="tl-title">Sean Carroll『Something Deeply Hidden』</p><p class="tl-desc">一般向けにMWIを正面から擁護した書が刊行。同時期、Hossenfelderらによる批判も活発化し、「Born則の起源」をめぐる論争が続いている。</p></div>
+  </div>
+
+  <!-- ─── つまり ─── -->
+  <div class="sec-rule fade"><span class="sec-label">05 — Summary</span><span class="sec-line"></span></div>
+  <h2 class="fade">つまり、これは何の話か</h2>
+
+  <p class="body-text fade">多世界解釈は、「別のどこかに別の私がいる」という物語ではない。<strong>シュレーディンガー方程式を止めない</strong>という、方程式の節約についての話だ。止めないかわりに、観測されなかった結果も存在することを認めさせる。SF風の結論が、真面目な倹約から出てきてしまう——そこが不思議さの正体である。</p>
+
+  <p class="body-text fade">この解釈が最終的に正しいかどうかは、現時点で実験的に決着していない。コペンハーゲン、<span class="tip" onclick="toggleTip(this)">パイロット波<span class="tip-box"><strong>パイロット波（de Broglie–Bohm 理論）</strong>　粒子には「実際の位置」があり、それを波動関数が「水先案内人（pilot wave）」として導いているとする解釈。1927年ド・ブロイが原型を提示し、1952年ボームが復活させた。確率的に見える現象はすべて、隠れた初期位置の統計的ゆらぎで説明される。</span></span>、<span class="tip" onclick="toggleTip(this)">QBism<span class="tip-box"><strong>QBism（Quantum Bayesianism）</strong>　波動関数は「世界の状態」ではなく「観測者が抱く合理的な信念（ベイズ確率）」だと見なす解釈。2001年頃にFuchs、Caves、Schackらが提唱。測定結果は観測者にとっての情報更新で、「客観的な物理的収縮」は起きていないと考える。</span></span>、<span class="tip" onclick="toggleTip(this)">関係性解釈<span class="tip-box"><strong>関係性解釈（Relational Quantum Mechanics）</strong>　1996年にカルロ・ロヴェッリが提唱。物理量は「系そのもの」ではなく「ある観測者から見た別の系」についてのみ定義される、とする立場。絶対的な波動関数は存在せず、どの状態も「誰から見た状態か」が必ず付随する。</span></span>——他にも候補はあり、どれも同じ実験結果を予測する。「どの絵が正しいか」は、物理の問題でありながら、同時に<em>どの絵を綺麗と感じるか</em>の問題でもある。</p>
+
+  <div class="pull fade">
+    <p class="pull-q" style="font-style:italic;">"There are no wave-function collapses or classical realms. The apparatus itself evolves into a superposition, entangled with the state of the thing being observed."</p>
+    <p class="pull-q" style="margin-top:12px;">波動関数の収縮も、古典的な領域も、存在しない。観測装置そのものが重ね合わせへと発展し、観測される対象の状態ともつれていく。</p>
+    <p class="pull-attr">— Sean Carroll, <em>Something Deeply Hidden</em> (Dutton, 2019)</p>
+  </div>
+
+  <p class="body-text fade">映画が「もしも別の選択をしていたら」を描きたくなるのは、それが物理ではなく倫理の話だからだ。しかし物理の側も、偶然この物語と地続きの絵を描いてしまっている。選ばれなかった枝が本当に続いているかどうか、私たちには確かめる手段がない。確かめられないものは、ある意味、ないのと同じかもしれない。だが<em>ないと言い切るには、方程式を途中で止めなければならない</em>——その一点を、Everettは譲らなかった。</p>
+
+  <p class="body-text fade">「もしも別の選択をしていたら」を描きたい物語は、多世界解釈を発見した——あるいは逆に、多世界解釈を知らないまま同じ絵にたどり着いた。エヴェレットの論文を直接引いてはいなくても、この枠組みを借りている作品は驚くほど多い。代表的なものを並べてみると、MWIの「枝が並列に存在する」という骨格が、SF・映画・ゲームでどう変形されているかが見えてくる。</p>
+
+  <table class="works-table fade">
+    <colgroup><col class="c-name"><col class="c-motif"><col class="c-mwi"></colgroup>
+    <thead><tr><th>作品名</th><th>多世界的なモチーフ</th><th>厳密にはMWIか？</th></tr></thead>
+    <tbody>
+      <tr><td>エブリシング・エブリウェア・オール・アット・ワンス<br><span style="font-weight:300;font-size:11px;color:#b0a090;">映画 / 2022</span></td><td>別の選択をした自分たちが並列に存在し、主人公は他の枝の自分の能力を借りて戦う。</td><td>ほぼそのまま。「枝が同時に存在する」構造を倫理の話に畳んだ。</td></tr>
+      <tr><td>Rick and Morty<br><span style="font-weight:300;font-size:11px;color:#b0a090;">アニメ / 2013–</span></td><td>無限の宇宙を往復し、「どこかの宇宙では全て起きている」前提が笑いと虚無を生む。</td><td>MWI＋多元宇宙の混合。量子測定に限定せず、あらゆる可能性の枝として使う。</td></tr>
+      <tr><td>ドクター・ストレンジ／マルチバース・オブ・マッドネス<br><span style="font-weight:300;font-size:11px;color:#b0a090;">映画 / 2022</span></td><td>MCUの多元宇宙。「別の決断をした自分」の世界を行き来する。</td><td>MWI風の多元宇宙。MWIの「同じ波動関数内」という制約は外されている。</td></tr>
+      <tr><td>Dark<br><span style="font-weight:300;font-size:11px;color:#b0a090;">Netflix / 2017–2020</span></td><td>終盤、二つの並行する世界が同時に存在していたことが明かされる。</td><td>並行宇宙。時間ループと組み合わされ、MWIの本来の枝とは別種。</td></tr>
+      <tr><td>Coherence<br><span style="font-weight:300;font-size:11px;color:#b0a090;">映画 / 2013</span></td><td>彗星の通過中、家の中で「別の枝の自分たち」と遭遇する一夜。</td><td>MWI的。重ね合わせとデコヒーレンスが崩れた状態を家庭劇に縮小した稀な例。</td></tr>
+      <tr><td>The Man in the High Castle<br><span style="font-weight:300;font-size:11px;color:#b0a090;">小説 / ドラマ</span></td><td>第二次大戦で枢軸国が勝った世界と、連合国が勝った世界が並列に描かれる。</td><td>歴史改変もの。量子測定ではなく歴史分岐の物語で、MWIのアナロジー。</td></tr>
+      <tr><td>シュタインズ・ゲート<br><span style="font-weight:300;font-size:11px;color:#b0a090;">ゲーム / アニメ / 2009–</span></td><td>「世界線」を飛び移る物語。タイトルからも多世界が強く意識されている。</td><td class="off">作中で「MWIではない」と明言される。枝が独立に並ぶのではなく、「<span class="tip" onclick="toggleTip(this)">アトラクター場<span class="tip-box"><strong>アトラクター場（attractor field）</strong>　『シュタインズ・ゲート』の世界観で導入される架空の物理概念。似通った結末に収束する「引き寄せの領域」のことで、この領域の中にある限り、細かい選択が違っても世界は同じような結果に辿り着く。別のアトラクター場へ渡るには、世界線変動率を一定量動かす必要がある。MWI の「すべての枝が並立して実在する」絵とは異なり、収束点が設定された独自の多世界モデル。現実の物理学にこの概念はない。</span></span>」に吸い寄せられる独自設定。</td></tr>
+      <tr><td>Source Code<br><span style="font-weight:300;font-size:11px;color:#b0a090;">映画 / 2011</span></td><td>同じ8分を異なる分岐として何度もやり直す。最後に「別の枝が続いている」可能性を示唆する。</td><td>MWI的解釈を含む。作中の説明は曖昧で、多世界ととる余地を残してある。</td></tr>
+    </tbody>
+  </table>
+
+  <p class="body-text fade">表の右列が示すように、「多世界的な物語」と「MWIそのもの」は必ずしも一致しない。たとえば<strong>シュタインズ・ゲートは多世界の匂いを強く漂わせながら、劇中で明確にMWIを否定している</strong>——世界線は枝として並立するのではなく、「アトラクター場」に収束する別種の構造だ。一方で『エブリシング・エブリウェア・オール・アット・ワンス』のように、物理の枠をかなり忠実に借りた作品もある。エヴェレットが書いた1957年の論文は、本人の意図からはみ出して、世界中の物語の骨組みになった。</p>
+
+  <!-- ─── 参考文献 ─── -->
+  <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><span class="sec-line"></span></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原論文</span><span class="ref-year">1957</span></div>
+      <p class="ref-title"><a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.29.454" target="_blank" rel="noopener">"Relative State" Formulation of Quantum Mechanics</a></p>
+      <p class="ref-author">Hugh Everett III — <em>Reviews of Modern Physics</em>, Vol. 29, pp. 454–462</p>
+      <p class="ref-desc">相対状態定式化の原典。博士論文の短縮版として発表された。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">解説論文</span><span class="ref-year">1970</span></div>
+      <p class="ref-title"><a href="https://cqi.inf.usi.ch/qic/deWitt1970.pdf" target="_blank" rel="noopener">Quantum Mechanics and Reality</a></p>
+      <p class="ref-author">Bryce S. DeWitt — <em>Physics Today</em>, September 1970</p>
+      <p class="ref-desc">「多世界(many-worlds)」という呼称を世間に広めた解説記事。エヴェレットの論文が埋もれていた10年余の沈黙を終わらせた。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2010</span></div>
+      <p class="ref-title">The Many Worlds of Hugh Everett III</p>
+      <p class="ref-author">Peter Byrne — Oxford University Press</p>
+      <p class="ref-desc">エヴェレット本人の最も詳細な伝記。Pentagon時代の核戦争シナリオ計算の仕事まで含め、人生を総合的に描く。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2019</span></div>
+      <p class="ref-title">Something Deeply Hidden: Quantum Worlds and the Emergence of Spacetime</p>
+      <p class="ref-author">Sean Carroll — Dutton</p>
+      <p class="ref-desc">現代的MWI擁護の一般向け決定版。Born則を「自己位置づけの不確定性」から導く議論を紹介する。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">百科事典</span><span class="ref-year">2021</span></div>
+      <p class="ref-title"><a href="https://plato.stanford.edu/entries/qm-manyworlds/" target="_blank" rel="noopener">Many-Worlds Interpretation of Quantum Mechanics</a></p>
+      <p class="ref-author">Lev Vaidman — <em>Stanford Encyclopedia of Philosophy</em></p>
+      <p class="ref-desc">MWIに対する哲学的論点(Born則の起源、個人の同一性、確率の解釈)を整理した標準参照文献。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">記事</span><span class="ref-year">2018</span></div>
+      <p class="ref-title"><a href="https://www.quantamagazine.org/why-the-many-worlds-interpretation-has-many-problems-20181018/" target="_blank" rel="noopener">Why the Many-Worlds Interpretation Has Many Problems</a></p>
+      <p class="ref-author">Philip Ball — <em>Quanta Magazine</em></p>
+      <p class="ref-desc">MWIに対する主要な批判を整理した記事。Born則の導出、個人の同一性、存在論的コストの問題を扱う。</p>
+    </div>
+  </div>
+
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    多世界解釈は、量子力学の解釈の一つである。現在の実験技術ではコペンハーゲン解釈・パイロット波理論・QBismなど他の解釈と区別できない。本文はStanford哲学百科、Carroll書、Byrne伝記、エヴェレットの1957年論文、DeWittの1970年解説に基づいている。エヴェレット本人についての伝記的事実はByrneおよびScientific Americanの伝記記事に依拠した。
+  </div>
+
+  <div class="signature fade">e. Tamaki</div>
+
+  <div class="tags fade">
+    <span class="tag">量子力学</span>
+    <span class="tag">多世界解釈</span>
+    <span class="tag">観測問題</span>
+    <span class="tag">Everett</span>
+    <span class="tag">デコヒーレンス</span>
+    <span class="tag">物理・宇宙</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:10px;letter-spacing:-.02em;">2<span style="font-size:32px;vertical-align:top;">N</span></p>
+      <p class="sidebar-text">量子測定が <em>N</em> 回起きるたびに、互いに干渉できなくなる枝の数は指数的に増える。</p>
+    </div>
+    <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">ホイーラーがエヴェレットの論文を評価し、自らコペンハーゲンのボーアに見せに行った。ボーアは首を縦に振らず、論文は10年以上放置された。</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">— エブリシング・エブリウェア・オール・アット・ワンス<br>— Rick and Morty<br>— マーベル『ドクター・ストレンジ』<br>— クライトン『タイムライン』</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— 二重スリット実験<br>— シュレーディンガーの猫<br>— 量子もつれ<br>— 量子コンピューター</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">量子力学の解釈の一つ。実験での決着はついていない。</p></div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 多世界解釈 を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、他の自分はどこにいるの?</span></div>
+      <span class="t-output" id="to1">「どこか別の場所」ではないんだ。<em>同じ方程式</em>が記述する<em>同じ波動関数</em>の中に、互いに見えない枝として並んでいる。座標を探しても出てこない。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;重みって結局、確率なの?</span></div>
+      <span class="t-output" id="to2">古典的な「どちらか起きる」の確率とは違うね。すべての枝は存在する。ただ、<strong>ほとんどの重みはごく少数の枝に集中する</strong>。私たちが「確率」として感じるのは、その偏りのことだよ。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;私が選ばなかった方の自分は、いるの?</span></div>
+      <span class="t-output" id="to3">厳密には、いない。人間の決断は量子的な測定じゃないからね。でも、決断を引き起こした神経発火の奥のどこかに量子イベントがあって、それが分岐を起こしていたなら——<em>そこでは分かれている</em>。境目は、自分で思うより曖昧かもしれない。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# El Psy Kongroo</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/double_slit">
+      <p class="related-card-tag">物理・宇宙</p>
+      <p class="related-card-title">二重スリット実験</p>
+      <p class="related-card-desc">観測するだけで、粒子の振る舞いが変わる——この記事の出発点となる実験。</p>
+      <p class="related-card-arrow">← 前提を読む</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/quantum_computer">
+      <p class="related-card-tag">物理・宇宙</p>
+      <p class="related-card-title">量子コンピューターは「速い」のではない</p>
+      <p class="related-card-desc">「間違った答えを打ち消す」装置。Deutschは、これを「別の枝の計算を借りる装置」と解釈した。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ（トースト方式）
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+
+/* ============================================
+   BRANCHING TIMELINE TREE VISUALIZER
+   ============================================ */
+(function(){
+  const cv = document.getElementById('simCanvas');
+  if(!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = 680, H = 380;
+  cv.width = W; cv.height = H;
+  // High-DPI
+  const dpr = window.devicePixelRatio || 1;
+  if(dpr > 1){
+    cv.width = W * dpr; cv.height = H * dpr;
+    cv.style.width = W + 'px'; cv.style.height = H + 'px';
+    ctx.scale(dpr, dpr);
+  }
+
+  const MAX_DEPTH = 6;
+  let depth = 0;
+  let bias = 0; // -0.4 .. 0.4
+  let showWeight = true;
+  let selectedPath = null; // array of 0/1 or null
+
+  const btnMeasure = document.getElementById('simMeasure');
+  const btnReset = document.getElementById('simReset');
+  const btnSwitch = document.getElementById('simSwitch');
+  const sldBias = document.getElementById('simBias');
+  const lblBias = document.getElementById('simBiasVal');
+  const chkWeight = document.getElementById('simWeight');
+  const readout = document.getElementById('simReadout');
+  const phaseEl = document.getElementById('simPhase');
+  const hint = document.getElementById('simHint');
+
+  function p0(){ return 0.5 + bias; }
+  function leafWeights(d){
+    // all 2^d leaves with their products
+    const out = [];
+    const total = 1 << d;
+    const p_a = p0(), p_b = 1 - p0();
+    for(let i=0;i<total;i++){
+      let w = 1;
+      for(let k=0;k<d;k++){
+        const bit = (i >> (d-1-k)) & 1;
+        w *= bit === 0 ? p_a : p_b;
+      }
+      out.push(w);
+    }
+    return out;
+  }
+
+  function leafCoords(d){
+    // evenly spaced vertically at right-most column
+    const ys = [];
+    const n = 1 << d;
+    const top = 45, bot = H - 55;
+    if(n === 1){ ys.push(H/2); return ys; }
+    for(let i=0;i<n;i++){
+      ys.push(top + (bot - top) * (i / (n-1)));
+    }
+    return ys;
+  }
+
+  function computeNodePositions(d){
+    // returns depth-indexed positions. nodes[depth][index] = {x,y,weight}
+    const xLeft = 54, xRight = W - 120;
+    const nodes = [];
+    for(let k=0;k<=d;k++){
+      const n = 1 << k;
+      const arr = [];
+      const x = xLeft + (xRight - xLeft) * (k / Math.max(d,1));
+      const top = 45, bot = H - 55;
+      // weights at depth k
+      const p_a = p0(), p_b = 1 - p0();
+      for(let i=0;i<n;i++){
+        let w = 1;
+        for(let b=0;b<k;b++){
+          const bit = (i >> (k-1-b)) & 1;
+          w *= bit===0 ? p_a : p_b;
+        }
+        let y;
+        if(n === 1){ y = H/2; }
+        else { y = top + (bot - top) * (i / (n-1)); }
+        arr.push({x,y,w,index:i});
+      }
+      nodes.push(arr);
+    }
+    return nodes;
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // Background
+    ctx.fillStyle = '#0d0d0d';
+    ctx.fillRect(0,0,W,H);
+
+    const nodes = computeNodePositions(depth);
+
+    // ── ナラティブ帯（Canvas下部）───────────
+    // 読者の現状を常時2行で言葉にする。Canvas の下端 y = H-30〜H-10 に固定。
+    ctx.textAlign = 'center';
+    let narTop = '';
+    let narBot = '';
+    if(depth === 0){
+      narTop = 'あなたは ψ の中にいる。まだ世界は分岐していない。';
+      narBot = '「▶ 1回観測する」を押すと、世界は分岐する。';
+    } else if(depth === 1){
+      const myBit = selectedPath ? selectedPath[0] : 0;
+      const otherBit = 1 - myBit;
+      narTop = `世界は分岐した。あなたは |${myBit}⟩ を観測した枝にいる。`;
+      narBot = `もう一方の |${otherBit}⟩ の枝では、別のあなたが同じだけリアルに生きている。`;
+    } else {
+      const leavesN = 1 << depth;
+      const bitsStr = selectedPath ? '|' + selectedPath.join('') + '⟩' : '|?⟩';
+      narTop = `${depth} 回の観測で、波動関数は ${leavesN} 個の枝に分かれた。`;
+      narBot = `あなたはそのうち 1 つ（${bitsStr}）を生きている。残り ${leavesN - 1} 個の枝にも、別のあなたがいる。`;
+    }
+    ctx.fillStyle = '#faf8f3';
+    ctx.font = '600 12px "Source Serif 4", serif';
+    ctx.fillText(narTop, W/2, H - 26);
+    ctx.fillStyle = '#d0c0a0';
+    ctx.font = '11px "Source Serif 4", serif';
+    ctx.fillText(narBot, W/2, H - 10);
+
+    // 時間軸（ナラティブと干渉しない位置に小さく）
+    ctx.strokeStyle = '#2a2a2a';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(30,20); ctx.lineTo(W-30,20); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(W-36,16); ctx.lineTo(W-30,20); ctx.lineTo(W-36,24); ctx.stroke();
+    ctx.fillStyle = '#555';
+    ctx.font = '10px "JetBrains Mono", monospace';
+    ctx.textAlign = 'left';
+    ctx.fillText('time (測定回数) →', 34, 13);
+
+    // Determine selected path bits for dimming
+    const selBits = selectedPath; // array of 0/1 of length depth, or null
+
+    // Draw edges depth k -> k+1
+    for(let k=0;k<depth;k++){
+      const from = nodes[k], to = nodes[k+1];
+      for(let i=0;i<from.length;i++){
+        for(let b=0;b<2;b++){
+          const toIdx = i*2 + b;
+          const f = from[i], t = to[toIdx];
+          // edge weight = t.w
+          const w = t.w;
+          const thickness = showWeight ? (1.4 + 5.5 * w) : 2.0;
+          // alpha
+          let baseAlpha = showWeight ? (0.28 + 0.72 * w) : 0.72;
+          // on-path check
+          let onPath = false;
+          if(selBits){
+            // is edge on selected path?
+            // edge at depth k is the b-th branch of node index (i at depth k)
+            // target index toIdx. We need to check that selBits[0..k-1] matches i, and selBits[k] === b
+            let iFromSel = 0;
+            for(let kk=0;kk<k;kk++) iFromSel = (iFromSel<<1) | selBits[kk];
+            if(iFromSel === i && selBits[k] === b){ onPath = true; }
+          }
+          // color
+          let color;
+          if(selBits){
+            // off-path は淡く、ただし「枝として確かに存在する」ことが目で見える水準
+            color = onPath ? (b===0 ? '#c4392a' : '#3d6c8c') : (b===0 ? '#7a4a42' : '#4a5a6b');
+            ctx.globalAlpha = onPath ? baseAlpha : 0.55;
+          } else {
+            color = (b===0) ? '#c4392a' : '#3d6c8c';
+            ctx.globalAlpha = baseAlpha;
+          }
+          ctx.strokeStyle = color;
+          ctx.lineWidth = thickness;
+          ctx.beginPath();
+          ctx.moveTo(f.x, f.y);
+          // curve control
+          const mx = (f.x + t.x) / 2;
+          ctx.bezierCurveTo(mx, f.y, mx, t.y, t.x, t.y);
+          ctx.stroke();
+        }
+      }
+    }
+    ctx.globalAlpha = 1;
+
+    // Draw nodes
+    for(let k=0;k<=depth;k++){
+      const arr = nodes[k];
+      for(let i=0;i<arr.length;i++){
+        const n = arr[i];
+        // on-path check for this node
+        let onPath = true;
+        if(selBits){
+          let iFromSel = 0;
+          for(let kk=0;kk<k;kk++) iFromSel = (iFromSel<<1) | selBits[kk];
+          onPath = (iFromSel === i);
+        }
+        const radius = k===0 ? 9 : (k===depth ? 7 : 4);
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, radius, 0, Math.PI*2);
+        if(selBits && !onPath){
+          // 中継ノード・葉ノード（off-path）: 枝の存在を示す中間グレー
+          ctx.fillStyle = k===depth ? '#8a6f5e' : '#5a4e40';
+        } else if(k===0){
+          ctx.fillStyle = '#e8c56a';
+        } else if(k===depth){
+          // leaf: color by last bit
+          const lastBit = i & 1;
+          ctx.fillStyle = lastBit === 0 ? '#c4392a' : '#3d6c8c';
+        } else {
+          ctx.fillStyle = '#7a6a55';
+        }
+        ctx.fill();
+      }
+    }
+
+    // Root label
+    ctx.fillStyle = '#e8c56a';
+    ctx.font = '11px "Source Sans 3", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('ψ', nodes[0][0].x, nodes[0][0].y - 16);
+
+    // Leaf labels (only if depth <= 4) — 1行に状態ラベル + 重みを並べる
+    if(depth > 0 && depth <= 4){
+      const leaves = nodes[depth];
+      const lw = leafWeights(depth);
+      ctx.font = '10px "JetBrains Mono", monospace';
+      ctx.textAlign = 'left';
+      for(let i=0;i<leaves.length;i++){
+        let onPath = true;
+        if(selBits){
+          let iFromSel = 0;
+          for(let kk=0;kk<depth;kk++) iFromSel = (iFromSel<<1) | selBits[kk];
+          onPath = (iFromSel === i);
+        }
+        const dim = selBits && !onPath;
+        const bits = '|' + i.toString(2).padStart(depth,'0') + '⟩';
+        // 状態ラベル（off-path でも識別できる輝度まで引き上げる）
+        ctx.fillStyle = dim ? '#8a7b68' : '#c8c8c8';
+        ctx.fillText(bits, leaves[i].x + 14, leaves[i].y + 3);
+        // 重みを右隣に同じ行で
+        const bitsW = ctx.measureText(bits).width;
+        ctx.fillStyle = dim ? '#6a5d4c' : '#8a7755';
+        ctx.fillText(lw[i].toFixed(3), leaves[i].x + 14 + bitsW + 6, leaves[i].y + 3);
+      }
+    }
+
+    // Readout（簡潔に）
+    const leaves = 1 << depth;
+    const bTxt = bias === 0 ? 'なし' : (bias>0 ? '|0⟩ 寄り' : '|1⟩ 寄り');
+    readout.innerHTML = 'depth: ' + depth + '<br>枝: ' + leaves + '<br>bias: ' + bTxt;
+  }
+
+  // Born則に従って 2^d 個の葉からサンプリング
+  function sampleLeafByBorn(d){
+    const lw = leafWeights(d);
+    let r = Math.random();
+    for(let i=0;i<lw.length;i++){
+      r -= lw[i];
+      if(r <= 0) return i;
+    }
+    return lw.length - 1;
+  }
+
+  function updatePhase(){
+    const leavesN = 1 << depth;
+    // 状況ヘッダー
+    if(depth === 0){
+      phaseEl.textContent = '観測前 · まだ世界は分岐していない';
+    } else if(depth === 1){
+      phaseEl.textContent = '1 回の観測後 · 2 つの枝のうち 1 つがあなた';
+    } else {
+      phaseEl.textContent = `${depth} 回の観測後 · ${leavesN} 個の枝のうち 1 つがあなた`;
+    }
+    // ヒント文（状況ドリブン）
+    if(depth === 0){
+      hint.innerHTML = '<strong>まだ始まっていない:</strong> 黄色い ψ はあなたの観測前の重ね合わせ状態。下の <em>▶ 1回観測する</em> を押すと、世界は分岐し、あなたは自動でどちらかの枝に入る。同時に「別のあなた」が、もう一方の枝で生まれる。';
+    } else if(depth === 1){
+      hint.innerHTML = '<strong>世界が分岐した:</strong> 明るく残っているのが、あなたが経験している枝。暗く沈んでいるのが、別のあなたが経験している枝。暗い枝は<em>消えたのではない</em>——そちらから見ると、今度はこちらが暗く見えている。<em>↔ 別の自分に切り替える</em> を押すと、視点がその別のあなたに移る。';
+    } else if(depth < 4){
+      hint.innerHTML = `<strong>${depth} 回の観測後:</strong> あなたの枝は指数的に細く、別のあなたは倍々に増える。<em>↔ 別の自分に切り替える</em> で他の枝のあなたに視点を移すと、今いる枝が逆に暗くなる——どちらから見ても、自分の枝だけが唯一の現実に見える。これが MWI の核。さらに <em>▶ 1回観測する</em> を重ねるか、バイアススライダーで Born則 の偏りを見る。`;
+    } else {
+      hint.innerHTML = `<strong>${leavesN} 個の世界のうち、あなたは 1 つ:</strong> 残り ${leavesN-1} 個の枝すべてに、あなたと同じ ψ から分かれた別のあなたがいる。枝同士は互いに見えないが、消えたわけではない。<em>↔ 別の自分に切り替える</em> を何度か押して、他の「自分」の視点に入ってみる。バイアスをかけると、Born則 によって各枝の「重み」がどう偏るかも見える。`;
+    }
+    btnSwitch.disabled = depth < 1;
+  }
+
+  // 1回観測する: depth を1増やし、自動で「あなたの枝」を Born 則に従ってサンプル
+  btnMeasure.addEventListener('click', ()=>{
+    if(depth >= MAX_DEPTH) return;
+    depth++;
+    // 既存の selectedPath を延長するか、ゼロから取り直すか
+    // → 常に 現在の depth でのサンプルを取り直す（ユーザー体感上、どの枝も「新しい観測」で起こる）
+    const chosen = sampleLeafByBorn(depth);
+    const bits = [];
+    for(let k=0;k<depth;k++) bits.push((chosen >> (depth-1-k)) & 1);
+    selectedPath = bits;
+    if(depth === MAX_DEPTH){
+      btnMeasure.disabled = true;
+      btnMeasure.textContent = '▶ 最大深度に到達';
+    }
+    updatePhase();
+    draw();
+  });
+
+  btnReset.addEventListener('click', ()=>{
+    depth = 0;
+    selectedPath = null;
+    btnMeasure.disabled = false;
+    btnMeasure.textContent = '▶ 1回観測する';
+    updatePhase();
+    draw();
+  });
+
+  // 別の自分に切り替える: 現在の枝以外から Born 則サンプル
+  btnSwitch.addEventListener('click', ()=>{
+    if(depth < 1 || !selectedPath) return;
+    const total = 1 << depth;
+    if(total <= 1) return;
+    const currentIdx = selectedPath.reduce((a,b)=>a*2+b, 0);
+    let newIdx = currentIdx;
+    let tries = 0;
+    while(newIdx === currentIdx && tries < 24){
+      newIdx = sampleLeafByBorn(depth);
+      tries++;
+    }
+    if(newIdx === currentIdx){
+      // フォールバック: 他の枝から等確率で選ぶ
+      newIdx = (currentIdx + 1 + Math.floor(Math.random() * (total - 1))) % total;
+    }
+    const bits = [];
+    for(let k=0;k<depth;k++) bits.push((newIdx >> (depth-1-k)) & 1);
+    selectedPath = bits;
+    updatePhase();
+    draw();
+  });
+
+  sldBias.addEventListener('input', ()=>{
+    bias = parseInt(sldBias.value,10) / 100;
+    const pct0 = Math.round(p0() * 100);
+    const pct1 = 100 - pct0;
+    lblBias.textContent = '|0⟩ ' + pct0 + '% · |1⟩ ' + pct1 + '%';
+    updatePhase();
+    draw();
+  });
+
+  chkWeight.addEventListener('change', ()=>{
+    showWeight = chkWeight.checked;
+    draw();
+  });
+
+  // initial
+  lblBias.textContent = '|0⟩ 50% · |1⟩ 50%';
+  updatePhase();
+  draw();
+})();
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div>
+<div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div>
+</body>
+</html>

@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プラトンの洞窟の比喩 — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP (toast) */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;}
+.tip.open{background:#fdf3d8;}
+
+/* FIGURE */
+.fig-wrap{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.fig-wrap img{width:100%;display:block;}
+.fig-caption{padding:10px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.6;}
+.fig-caption .fig-credit{display:block;margin-top:4px;font-size:10px;color:#b0a090;letter-spacing:.04em;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8b1a1a;margin-bottom:6px;display:block;}
+.quote-label.quote-label-sub{color:#7a6a55;margin-top:14px;}
+.quote-gr{font-family:'Source Serif 4',serif;font-size:14px;font-style:normal;color:#1a1208;line-height:1.9;margin-bottom:10px;letter-spacing:.02em;}
+.quote-en{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:#3d3020;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+
+/* PERSON */
+.person-block{margin:32px 0;display:grid;grid-template-columns:160px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:6px;}
+.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;margin-bottom:8px;}
+.person-block-wiki a{color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.25);}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:6px;letter-spacing:.04em;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* SIMULATOR */
+.sim-wrap{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.sim-header{background:#1a1208;color:#e8e4de;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.sim-title{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#e8c56a;}
+.sim-phase-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;letter-spacing:.12em;}
+.sim-body{padding:20px;background:#faf8f3;}
+.sim-instruction{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.8;margin-bottom:14px;}
+.sim-instruction strong{color:#1a1208;font-weight:600;}
+.sim-canvas-wrap{background:#2a2015;border:1px solid #3d3020;position:relative;width:100%;aspect-ratio:3/2;overflow:hidden;}
+.sim-canvas-wrap canvas{display:block;width:100%;height:100%;}
+#threeCanvasHost{display:none;position:absolute;inset:0;width:100%;height:100%;}
+#threeCanvasHost.active{display:block;}
+#threeCanvasHost canvas{display:block;width:100%!important;height:100%!important;}
+#threeLoadingMsg{display:none;position:absolute;inset:0;align-items:center;justify-content:center;color:#e8c56a;font-family:'Source Sans 3',sans-serif;font-size:13px;background:rgba(26,18,8,0.85);z-index:2;}
+#threeLoadingMsg.show{display:flex;}
+
+/* 記事内インラインの3Dフィギュア */
+.three-figure{max-width:900px;margin:40px auto;}
+.three-figure-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:10px;letter-spacing:.02em;}
+.three-figure-frame{background:#2a2015;border:1px solid #3d3020;position:relative;overflow:hidden;aspect-ratio:16/9;width:100%;}
+.three-figure-frame.three-figure-wide{aspect-ratio:2/1;}
+.three-static-host{position:absolute;inset:0;width:100%;height:100%;}
+.three-static-host canvas{display:block;width:100%!important;height:100%!important;}
+.three-figure-labels{position:absolute;inset:0;pointer-events:none;}
+.three-label{position:absolute;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#faf8f3;background:rgba(26,18,8,0.75);padding:3px 8px;border:1px solid rgba(232,197,106,0.4);transform:translate(-50%,-50%);white-space:nowrap;letter-spacing:.02em;}
+.three-figure-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:14px;border-left:2px solid #c8bfaa;}
+.three-figure-caption strong{color:#1a1208;font-weight:600;}
+@media(max-width:720px){
+  .three-figure-frame.three-figure-wide{aspect-ratio:3/2;}
+  .three-label{font-size:10px;padding:2px 6px;}
+}
+.sim-controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.sim-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;padding:9px 16px;border:1px solid #c8bfaa;background:#faf8f3;color:#3d3020;cursor:pointer;transition:all .15s;}
+.sim-btn:hover:not(:disabled){border-color:#8b1a1a;background:#f3efe6;color:#8b1a1a;}
+.sim-btn.primary{background:#8b1a1a;border-color:#8b1a1a;color:white;}
+.sim-btn.primary:hover:not(:disabled){background:#6f1414;border-color:#6f1414;color:white;}
+.sim-btn:disabled{opacity:.4;cursor:not-allowed;}
+.sim-btn.selected{background:#f3efe6;border-color:#8b1a1a;color:#8b1a1a;}
+.sim-slider-row{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap;}
+.sim-slider-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;}
+.sim-slider{flex:1;min-width:140px;-webkit-appearance:none;appearance:none;height:3px;background:#c8bfaa;outline:none;}
+.sim-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:#8b1a1a;cursor:pointer;border:none;}
+.sim-slider::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#8b1a1a;cursor:pointer;border:none;}
+.sim-slider-val{font-family:'JetBrains Mono',monospace;font-size:12px;color:#3d3020;min-width:48px;text-align:right;}
+.sim-reveal{margin-top:14px;padding:14px 16px;background:#f3efe6;border-left:3px solid #8b1a1a;display:none;}
+.sim-reveal.show{display:block;}
+.sim-reveal p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.85;}
+.sim-reveal p strong{color:#1a1208;font-weight:600;}
+.sim-reveal p em{color:#8b1a1a;font-style:normal;font-weight:500;}
+.sim-phase-nav{display:flex;gap:4px;margin-top:16px;padding-top:14px;border-top:1px solid #e0d8c8;}
+.sim-phase-btn{flex:1;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;padding:10px 8px;border:1px solid #c8bfaa;background:#faf8f3;color:#7a6a55;cursor:pointer;transition:all .15s;}
+.sim-phase-btn.active{background:#1a1208;border-color:#1a1208;color:#e8c56a;}
+.sim-phase-btn:hover:not(.active){border-color:#8b1a1a;color:#8b1a1a;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CMP TABLE */
+.cmp-table{width:100%;margin:32px 0;border-collapse:collapse;border:1px solid #c8bfaa;}
+.cmp-table th{background:#3d3020;color:white;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:11px 14px;text-align:left;}
+.cmp-table td{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;padding:12px 14px;border-bottom:1px solid #e0d8c8;background:white;vertical-align:top;}
+.cmp-table tr:last-child td{border-bottom:none;}
+.cmp-table td:first-child{font-weight:600;color:#7a6a55;background:#f3efe6;width:120px;border-right:1px solid #e0d8c8;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:block;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{max-height:260px;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .cmp-table,.cmp-table thead,.cmp-table tbody,.cmp-table tr,.cmp-table td,.cmp-table th{display:block;width:100%;}
+  .cmp-table thead{display:none;}
+  .cmp-table td:first-child{width:100%;border-right:none;border-bottom:1px solid #e0d8c8;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.quote-gr,.tl-desc,.culture-desc,.sidebar-text,.fig-caption{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){.toc-back{padding:22px 20px;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- ZONE A: COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">思考実験・哲学</p>
+    <h1>壁に映る<em>影</em>を、<br>私たちは世界と呼んでいる。</h1>
+    <p class="cover-deck">紀元前375年ごろ、アテネ郊外のアカデメイアで、ひとりの哲学者が奇妙な思考実験を語った。地下の洞窟、縛られた囚人、壁にちらつく影。2400年後のいま、私たちはスマートフォンの画面を「影」と呼ばなかっただけかもしれない。</p>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>THOUGHT EXPERIMENT</span><span>ANCIENT PHILOSOPHY</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">c. 375 BC</span>
+      <p class="est-event">プラトンが『国家』第7巻で「洞窟の比喩」を記述。アカデメイア創設期にあたる。</p>
+      <p class="est-context">同時代、東方ではペルシア帝国がエジプト第29王朝に侵攻。ギリシアではコリントス戦争後のスパルタ覇権が揺らぎ、北方のマケドニアが台頭しはじめていた。</p>
+    </div>
+    <p class="cover-aside">原典はわずか<strong>6ページ</strong>の短い記述。この6ページが、西洋哲学2400年の「影」を作った。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>映画館から出て、外の光に目を細めた瞬間のあの感覚。さっきまで2時間、暗がりで食い入るように見ていた物語が、体のなかにまだ残っている。登場人物の声、街の匂い、別れの痛み。リアルだった。——でも画面に映っていたのは、フィルムの光が白いスクリーンに作った、ただの影だ。</p>
+    <p>私たちが「リアル」と呼ぶものの多くは、誰かが制作し、どこかの画面に映された影である。SNSのタイムライン、ニュース番組、YouTubeのおすすめ。直接見て確かめたわけではない。それでも私たちは、その影をもとに世界像を作っている。</p>
+    <p>その奇妙さを、2400年前に哲学にした人物がいる。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 哲学の前提知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item"><span class="meta-label">Published</span><span class="date-value">2026-04-17</span></div>
+    <div class="date-item"><span class="meta-label">Updated</span><span class="date-value">2026-04-17</span></div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">私たちが「世界」と呼んでいるものは、壁に映った影にすぎないかもしれない。<strong>2400年前にプラトンが提起したこの思考実験が、スマートフォンとアルゴリズムの時代になって予想外の鋭さで読み直されている。</strong>影から元の形を推測してみる体験を通して、認識のしくみそのものを揺さぶる。</p>
+  </div>
+</div>
+
+<!-- ZONE B: ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+<!-- S1: 背景 -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">紀元前4世紀のアテネ郊外に、ひとつの学園があった。</h2>
+
+<p class="body-text fade">紀元前387年頃、アテネの北西郊外——英雄アカデモスの名を冠した神域に近い一角に、ひとりの40歳の哲学者が私塾を開いた。この塾は創設地の名をとって<span class="tip" onclick="toggleTip(this)">アカデメイア<span class="tip-box"><strong>アカデメイア(Ἀκαδημία)</strong><br>プラトンがアテネ郊外に開いた学園。現代の「アカデミー(academy)」の語源。幾何学・算術・天文学・弁証法を中心に、紀元前387年頃から紀元後529年のユスティニアヌス帝による閉鎖まで、900年以上続いた。</span></span>と呼ばれ、のちに「学問の場」を指す普通名詞となる。塾を開いたのは、<strong>プラトン</strong>——ソクラテスの弟子で、その死から12年が過ぎた頃だった。</p>
+
+<div class="person-block fade">
+  <div class="person-block-img">
+    <img src="person_plato.jpg" alt="プラトンの大理石胸像" loading="lazy">
+  </div>
+  <div class="person-block-body">
+    <p class="person-block-name">プラトン(Πλάτων)</p>
+    <p class="person-block-role">紀元前427年頃〜前347年頃</p>
+    <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%97%E3%83%A9%E3%83%88%E3%83%B3" target="_blank" rel="noopener">Wikipedia</a></p>
+    <p class="person-block-desc">古代ギリシアの哲学者。ソクラテスの弟子、アリストテレスの師。アテネの名門貴族の家に生まれたが政治の道を断念し、哲学に生涯を捧げた。対話篇の形式で30篇以上を残し、その多くで師ソクラテスを主人公に据えている。中核思想である「イデア論」は、西洋哲学の2400年にわたる議論の出発点となった。</p>
+    <p class="person-block-credit">Photo: Marie-Lan Nguyen / Wikimedia Commons / CC BY 2.5(シラニオン作原型のローマ期模作)</p>
+  </div>
+</div>
+
+<p class="body-text fade">プラトンがアカデメイアで講じ、対話篇として書き残した代表作が『国家(Πολιτεία, ポリテイア)』である。全10巻におよぶこの大著は、表向きは「正義とは何か」を問うものだが、話の途中で認識論・教育論・芸術論へと縦横に広がっていく。ここで少し注意がいる——<strong>『国家』は一人称の対話篇で、語り手はプラトン本人ではなく、師ソクラテスである</strong>。プラトンは自分を登場させず、<em>亡き師の口を借りて自分の思想を述べる</em>という形式をとった。紀元前399年に民主政アテネに殺された師への哀悼と敬意の表れでもあり、同時に「これはあくまで対話である」という距離を保つための仕掛けでもある。</p>
+
+<p class="body-text fade">その第7巻の冒頭、ソクラテスはグラウコン(プラトン自身の実の兄で、『国家』では主要な対話相手として登場する)にこう切り出す——地下の洞窟に、人間たちが鎖につながれて暮らしている、という話だ。</p>
+
+<hr class="art-rule">
+<h2 class="fade">原文はおよそ6ページ。<span class="tip" onclick="toggleTip(this)">514a<span class="tip-box"><strong>ステファヌス番号(514a)</strong><br>プラトンの著作を参照するときに使う、世界共通の引用記法。1578年にアンリ・エティエンヌ(ラテン語名 Stephanus)が出版したプラトン全集のページ番号が <strong>514</strong>、そのページをさらに5等分した小区画(a・b・c・d・e)のうち先頭が <strong>a</strong>、という意味。<em>紀元前の年号ではない</em>。どの翻訳でも同じ場所を指せるように、ページ数ではなくこの番号で引用する。</span></span>から<span class="tip" onclick="toggleTip(this)">520a<span class="tip-box"><strong>520a</strong><br>同じくステファヌス番号。ページ520の冒頭を指す。514aから520aまでで、ちょうど5〜6ページ分。</span></span>まで。</h2>
+
+<div class="quote-block fade">
+  <p class="quote-label">古代ギリシア語原文</p>
+  <p class="quote-gr">ἰδὲ γὰρ ἀνθρώπους οἷον ἐν καταγείῳ οἰκήσει σπηλαιώδει, ἀναπεπταμένην πρὸς τὸ φῶς τὴν εἴσοδον καὶ κατὰ πᾶν τὸ σπήλαιον, ἐν ταύτῃ ἐκ παίδων ὄντας ἐν δεσμοῖς καὶ τὰ σκέλη καὶ τοὺς αὐχένας, ὥστε μένειν τε αὐτοὺς εἴς τε τὸ πρόσθεν μόνον ὁρᾶν...</p>
+  <p class="quote-label quote-label-sub">英訳(Benjamin Jowett, 1871)</p>
+  <p class="quote-en">"Behold! human beings living in an underground den, which has a mouth open towards the light and reaching all along the den; here they have been from their childhood, and have their legs and necks chained so that they cannot move, and can only see before them."</p>
+  <p class="quote-label quote-label-sub">日本語訳</p>
+  <p class="quote-ja">「ここに人間たちが、地下にある洞窟状の住まいのなかで暮らしているさまを、思い描いてほしい。この住まいには、光に向かって開かれた長い入口があり、その入口は洞窟全体の奥行きに等しい。そして人間たちは、子どものときからこの洞窟のなかで手足も首も縛られたまま暮らしていて、同じ場所から動くこともできず、前の方だけしか見られないでいる。」</p>
+  <p class="quote-attr">——プラトン『国家』第7巻 514a(藤沢令夫訳を参考に邦訳)</p>
+</div>
+
+<p class="body-text fade">プラトンが描く情景は、段階的に重ねられていく。読みすすめると、次のようなセットが少しずつ明かされる。</p>
+
+<!-- 図解①-A: 囚人の視野(ミニマルSVG) -->
+<div class="fade" style="margin:40px 0;">
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#3d3020;margin:0 0 12px 4px;">囚人の視野 — 首も足も鎖で縛られ、前の壁だけしか見られない</p>
+  <img src="./scene_prisoners_view.jpg" alt="洞窟に並ぶ3つの像(人形・壺・動物)のシルエット" style="max-width:680px;width:100%;display:block;margin:0 auto;border-radius:3px;">
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#6a5a42;margin:10px 4px 0;border-left:2px solid #c8bfaa;padding:4px 0 4px 12px;">囚人にとって、この「影」こそが世界のすべてだった。壁に映る3つの影は、担ぎ手が運ぶ像——<strong>人形・壺・動物</strong>(石や木で作られた像)——が火で投影されたもの。</p>
+</div>
+
+<p class="body-text fade">そして彼らの背後には——振り向けば見える場所には——まったく別の世界がある。だが鎖に縛られている限り、その存在は知りようがない。</p>
+
+<!-- 体験: 振り返る(影の側 ⇄ 実態の側) -->
+<div class="fade" style="margin:40px 0;">
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#3d3020;margin:0 0 12px 4px;">
+    <span id="taTitle">囚人の目に映っている世界</span>
+  </p>
+  <div style="position:relative;max-width:720px;width:100%;margin:0 auto;">
+    <img id="taImgShadow" src="./scene_cave_shadows_view.jpg" alt="壁に映る3つの影 — 囚人が見ている世界" style="width:100%;display:block;border-radius:3px;">
+    <img id="taImgReality" src="./scene_cave_reality_view.jpg" alt="低い壁と担ぎ手・像・火 — 実際に起きていること" style="width:100%;display:block;border-radius:3px;position:absolute;inset:0;opacity:0;transition:opacity 0.7s ease;">
+  </div>
+  <p id="taCaption" style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#6a5a42;margin:10px 4px 0;border-left:2px solid #c8bfaa;padding:4px 0 4px 12px;">壁に3つの影が揺れている。これが彼らにとっての世界のすべてだ。</p>
+  <div style="text-align:center;margin:16px 0 6px;">
+    <button id="taBtn" onclick="taToggle()" style="padding:11px 28px;font-size:14px;font-weight:600;background:#8b1a1a;color:#fff;border:none;cursor:pointer;border-radius:3px;font-family:'Source Sans 3',sans-serif;box-shadow:0 2px 8px rgba(139,26,26,0.25);">▷ 実際に起きていることを見る</button>
+  </div>
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8a7a62;margin:14px 12px 0;line-height:1.65;">
+    ※ 画像は演出のため原典と細部が異なる。<strong>(1)</strong> プラトン原典では担ぎ手の体は低い壁に完全に隠れ、頭上に掲げる像(人形)だけが壁の上に出る(人形劇の舞台と同じ構造)。本画像は担ぎ手の存在を読者に視認してもらうため、頭部まで見える構図にしている。<strong>(2)</strong> 火は原典では担ぎ手の歩く通路よりさらに後方かつ上方にあるとされる。本画像では構図を優先して担ぎ手の背後すぐに置いている。
+  </p>
+</div>
+<script>
+  function taToggle(){
+    var imgReality = document.getElementById('taImgReality');
+    var imgShadow = document.getElementById('taImgShadow');
+    var title = document.getElementById('taTitle');
+    var cap = document.getElementById('taCaption');
+    var btn = document.getElementById('taBtn');
+    var turned = imgReality.style.opacity === '1';
+    if(!turned){
+      imgReality.style.opacity = '1';
+      title.textContent = '実際に起きていること';
+      cap.innerHTML = '火と、頭上に掲げられた像(人形・壺・動物)。影を作っていたのは、これだった。<strong>鎖で縛られた囚人は、この光景を生涯見ることがない。</strong>';
+      btn.textContent = '◁ 影の側に戻る';
+    } else {
+      imgReality.style.opacity = '0';
+      title.textContent = '囚人の目に映っている世界';
+      cap.innerHTML = '壁に3つの影が揺れている。これが彼らにとっての世界のすべてだ。';
+      btn.textContent = '▷ 実際に起きていることを見る';
+    }
+  }
+</script>
+
+
+<p class="body-text fade">いま見たものを言葉でも押さえておく。<strong>囚人</strong>は振り向けないので前方の壁だけを見ている。背後には<strong>火</strong>が燃えていて、火と囚人のあいだには腰くらいの高さの<strong>通路の壁</strong>がある。その通路を、人々が<strong>像(人形)を壁の上に掲げて</strong>通り過ぎていく——ちょうど人形劇の舞台裏のように。火の光が像を照らし、その影が囚人の正面の壁に映る。これが仕組みのすべてだ。</p>
+
+<p class="body-text fade">囚人たちは生まれてからずっとこの状態で、振り向いたこともなければ、影以外のものを見たこともない。——ならば当然、彼らにとって「現実」は、あの壁にちらつく影である。影に名前をつけ、影と影の関係を語り、影の動きから「次に何が起こるか」を予測するコンテストを開く。これが、彼らにとっての知の全体だ。</p>
+
+<!-- 画像2: Saenredam版画 -->
+<div class="fig-wrap fade">
+  <img src="fig_saenredam_cave_1604.jpg" alt="ヤン・サーンレダム『プラトンの洞窟』1604年" loading="lazy">
+  <p class="fig-caption">ヤン・サーンレダム『プラトンの洞窟』(1604) ——コルネリス・ファン・ハルレムの原画をもとにした銅版画。右手の囚人たちが壁を向いて座り、背後の火と担ぎ手の行列が影を作っている構図が、プラトンの記述とぴたりと重なる。
+    <span class="fig-credit">National Gallery of Art, Washington, D.C. / CC0 1.0(Public Domain)</span>
+  </p>
+</div>
+
+<hr class="art-rule">
+
+<!-- S1.5: イデア論 -->
+<h2 class="fade">この比喩が指しているのは、<em>イデア論</em>という世界観だ。</h2>
+
+<p class="body-text fade">洞窟の比喩は、それだけ取り出すと「私たちの見ているものは影かもしれない」という一種の<span class="tip" onclick="toggleTip(this)">懐疑主義<span class="tip-box"><strong>懐疑主義(scepticism)</strong><br>私たちが何かを確実に知ることができるか疑う立場。古代ギリシアの<em>ピュロン</em>に始まり、近代では<em>デカルト</em>が「方法的懐疑」として体系化した。「感覚は信頼できるか」「確実な知は可能か」といった問いを中核とする。プラトン本人は懐疑主義者ではないが、洞窟の比喩だけを切り出すと懐疑主義的に読める、という意味。</span></span>に読める。だがプラトン自身にとっては、これは彼の中心思想——<strong>イデア論</strong>——の一部として書かれた。『国家』第6巻から第7巻にかけて、彼は<em><span class="tip" onclick="toggleTip(this)">太陽の比喩<span class="tip-box"><strong>太陽の比喩(Republic 506e-509c)</strong><br>第6巻の終盤で語られる比喩。物を見えるようにしているのは<em>太陽</em>であり、認識を可能にしているのは<em>善のイデア</em>である、という類比。太陽が可視界で果たす役割(光を与え、物を見えるようにする)を、善のイデアが可知界(思考の世界)で果たすと説く。三つの比喩の出発点。</span></span></em>・<em><span class="tip" onclick="toggleTip(this)">線分の比喩<span class="tip-box"><strong>線分の比喩(Republic 509d-511e)</strong><br>第6巻の最後に置かれる比喩。1本の線を2つに分け、さらに各部分を同じ比で分ける。下半分が「可視界」、上半分が「可知界」、それぞれをまた「影/実物」「数学的対象/イデア」に分ける。認識の4段階(①影像→②信念→③悟性的推論→④理性的直観)に対応する。この記事の下にある図がその視覚化。</span></span></em>・<em><span class="tip" onclick="toggleTip(this)">洞窟の比喩<span class="tip-box"><strong>洞窟の比喩(Republic 514a-520a)</strong><br>第7巻の冒頭に置かれる、この記事の主題そのもの。鎖で縛られた囚人が壁の影を世界のすべてだと思い込んでいる洞窟の情景を通して、認識の段階と教育(魂の向き変え)の意味を描いた寓話。三つの比喩の中で最も視覚的で、後世への影響が圧倒的に大きい。</span></span></em>という三つの比喩を連続して語る。どれも同じひとつの世界観を、違う角度から描いている。</p>
+
+<p class="body-text fade"><span class="tip" onclick="toggleTip(this)">イデア(ἰδέα)<span class="tip-box"><strong>イデア(ἰδέα / idea)</strong><br>プラトン哲学の中核概念。ギリシア語で「見えるもの」「姿」を意味する動詞「イデイン(見る)」から派生。英語のidea(観念)の語源だが、プラトンが言うイデアは頭のなかの観念ではなく、<em>事物の本当の姿・原型</em>。感覚で捉えられる個別のものの背後にあると想定される、非物質的・永遠・不変のもの。</span></span>とは、私たちが日常的に使う「理想」や「観念」ではない。プラトンにとってイデアは、<strong>事物の本当の姿、原型</strong>のことだ。目の前にある個々のリンゴは傷があったり色が違ったりするが、それらが「リンゴ」として認識できるのは、その背後に「リンゴのイデア」という原型があるからだ、と彼は考えた。個々のリンゴは、イデアの不完全な影にすぎない。</p>
+
+<!-- SVG: イデア論の構造 -->
+<div class="fade" style="margin:32px 0;">
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#3d3020;margin:0 0 12px 4px;">イデア論の構造 — 不完全な個々と、完全な原型</p>
+  <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" style="max-width:720px;width:100%;margin:0 auto;display:block;" aria-label="イデア論の図解 — 不完全な個々の円と、円のイデア">
+    <!-- 可知界エリア (上) -->
+    <rect x="20" y="20" width="760" height="195" fill="#faf4dc" stroke="#8b5500" stroke-width="1.5" rx="3"/>
+    <text x="400" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="17" font-weight="700" fill="#8b5500">可知界(イデアの世界)— 完全・永遠・不変</text>
+
+    <!-- 完璧な円 -->
+    <circle cx="400" cy="135" r="42" fill="none" stroke="#8b5500" stroke-width="3.5"/>
+    <text x="400" y="200" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="19" font-weight="700" fill="#5a4028">円のイデア</text>
+
+    <!-- 中央の矢印と注釈 -->
+    <text x="400" y="250" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="15" font-weight="600" fill="#8b1a1a">個々のものは、イデアの"不完全な影"</text>
+    <line x1="400" y1="262" x2="400" y2="298" stroke="#8b1a1a" stroke-width="2.5"/>
+    <polygon points="400,306 391,291 409,291" fill="#8b1a1a"/>
+
+    <!-- 可視界エリア (下) -->
+    <rect x="20" y="310" width="760" height="200" fill="#3d3020" stroke="#1a1208" stroke-width="1.5" rx="3"/>
+    <text x="400" y="345" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="17" font-weight="700" fill="#e8c56a">可視界(個々の世界)— 不完全・変化する</text>
+
+    <!-- 5つの異なる"円的"なもの — それぞれを具象化 -->
+
+    <!-- ① 鉛筆で描いた不完全な円(手描き風・やり直し跡つき) -->
+    <g transform="translate(125, 410)">
+      <path d="M -26 -4 Q -30 -18 -16 -26 Q 0 -30 14 -24 Q 28 -16 26 0 Q 24 16 12 24 Q -4 28 -18 22 Q -30 14 -26 -4 Z"
+            fill="none" stroke="#c8bfaa" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="M -14 -22 Q -4 -28 10 -24" fill="none" stroke="#c8bfaa" stroke-width="1.5" stroke-linecap="round" opacity="0.45"/>
+    </g>
+    <text x="125" y="464" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#c8bfaa">鉛筆で描いた円</text>
+
+    <!-- ② 月(塗り+クレーター) -->
+    <g transform="translate(262, 410)">
+      <circle r="26" fill="#e8dcb8"/>
+      <circle cx="-8" cy="-8" r="3.6" fill="#b0a070" opacity="0.55"/>
+      <circle cx="9" cy="4" r="3" fill="#b0a070" opacity="0.55"/>
+      <circle cx="-4" cy="11" r="2.2" fill="#b0a070" opacity="0.5"/>
+      <circle cx="12" cy="-11" r="1.8" fill="#b0a070" opacity="0.5"/>
+      <circle cx="-13" cy="5" r="1.5" fill="#b0a070" opacity="0.45"/>
+    </g>
+    <text x="262" y="464" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#c8bfaa">月</text>
+
+    <!-- ③ コップの底(上から見下ろす構図・縁+底面) -->
+    <g transform="translate(400, 412)">
+      <circle r="24" fill="none" stroke="#c8bfaa" stroke-width="3"/>
+      <circle r="20" fill="none" stroke="#c8bfaa" stroke-width="0.6" opacity="0.4"/>
+      <circle r="16" fill="none" stroke="#c8bfaa" stroke-width="1.2" opacity="0.55"/>
+    </g>
+    <text x="400" y="464" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#c8bfaa">コップの底</text>
+
+    <!-- ④ 波紋(広がる同心円・外側ほど薄く) -->
+    <g transform="translate(540, 412)">
+      <circle r="6" fill="none" stroke="#c8bfaa" stroke-width="2" opacity="0.95"/>
+      <circle r="14" fill="none" stroke="#c8bfaa" stroke-width="1.4" opacity="0.65"/>
+      <circle r="22" fill="none" stroke="#c8bfaa" stroke-width="1" opacity="0.38"/>
+      <circle r="30" fill="none" stroke="#c8bfaa" stroke-width="0.7" opacity="0.2"/>
+    </g>
+    <text x="540" y="464" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#c8bfaa">波紋</text>
+
+    <!-- ⑤ 皿(縁+内側の窪み) -->
+    <g transform="translate(680, 412)">
+      <circle r="32" fill="none" stroke="#c8bfaa" stroke-width="2.5"/>
+      <circle r="22" fill="none" stroke="#c8bfaa" stroke-width="1" opacity="0.6"/>
+    </g>
+    <text x="680" y="464" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#c8bfaa">皿</text>
+
+    <text x="400" y="492" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#e8c56a" font-style="italic">——どれも「円」として認識されるが、どれも完全ではない</text>
+  </svg>
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#6a5a42;margin:10px 4px 0;border-left:2px solid #c8bfaa;padding:4px 0 4px 12px;">目の前のどの円も、少し歪んでいたりサイズが違ったりする。それでも私たちは迷わず「これは円だ」と認識できる。プラトンは、その判断を可能にしているのは<strong>「円のイデア」という完全な原型</strong>があるからだ、と考えた。同じ構造は、リンゴでも、正義でも、美でも成り立つ——どれも、背後にある「〜のイデア」の<em>不完全な影</em>だ、という図式。</p>
+</div>
+
+<p class="body-text fade">この考え方は、プラトンの学派の後継者アリストテレスによって早くから批判されてきた。アリストテレスは「イデア」を感覚界から切り離すのではなく、個々の事物のなかに「形相(エイドス)」として内在させる立場をとった。この師弟の対立は、その後2400年の西洋哲学を貫く軸になる。</p>
+
+<!-- 画像3: ラファエロ『アテネの学堂』中央クロップ -->
+<div class="fig-wrap fade">
+  <img src="fig_school_of_athens_center.jpg" alt="ラファエロ『アテネの学堂』中央部(1509-1511)" loading="lazy">
+  <p class="fig-caption">ラファエロ『アテネの学堂』(1509-1511) ——ヴァチカン宮殿の壁画。中央のアーチの下に立つ2人の人物のうち、<strong>左がプラトン</strong>(『ティマイオス』を抱え、指を<em>天</em>に向ける)、<strong>右がアリストテレス</strong>(『ニコマコス倫理学』を持ち、手のひらを<em>地</em>に向けて押さえる)。イデア界(上)と現象界(下)、あるいは「真理は天上にある」と説く師と「真理は目の前のこの世界にある」と応じる弟子の対比が、一瞬の指の角度で描かれている。
+    <span class="fig-credit">Raphael, 1511 / Vatican, Apostolic Palace / Public Domain</span>
+  </p>
+</div>
+
+<h2 class="fade" style="margin-top:40px;">三つの比喩を、ひとつの図で見る。</h2>
+
+<p class="body-text fade">プラトンは第6巻の終わりで「線分の比喩」という図解的な説明を差し込んでいる。世界と認識を4段階に分けた、いわばプラトンの世界観の見取り図だ。</p>
+
+<!-- SVG: 線分の比喩 -->
+<div class="fade" style="margin:40px 0;overflow-x:auto;">
+<svg viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg" style="max-width:1200px;margin:0 auto;display:block;" aria-label="プラトン 線分の比喩">
+  <defs>
+    <marker id="arr-up" viewBox="0 0 10 10" refX="5" refY="0" markerWidth="10" markerHeight="10" orient="auto">
+      <path d="M 0 10 L 5 0 L 10 10 z" fill="#8b1a1a"/>
+    </marker>
+  </defs>
+
+  <!-- タイトル -->
+  <text x="600" y="42" text-anchor="middle" font-family="'Playfair Display',serif" font-size="28" font-weight="700" fill="#1a1208">線分の比喩 — プラトンの世界観の4段階</text>
+  <text x="600" y="72" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" fill="#7a6a55">1本の線を、下から上へ。下にゆくほど影、上にゆくほど本体。</text>
+
+  <!-- 4つの帯 -->
+  <!-- 最下段: ① 影像 -->
+  <rect x="360" y="585" width="400" height="95" fill="#3d3020" stroke="#1a1208" stroke-width="1"/>
+  <text x="560" y="628" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="25" font-weight="600" fill="#e8c56a">① 影像(εἰκασία)</text>
+  <text x="560" y="658" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" fill="#c8bfaa">壁の影・水面の映り・絵画</text>
+
+  <!-- ② 信念 -->
+  <rect x="360" y="460" width="400" height="125" fill="#8a7255" stroke="#5a4028" stroke-width="1"/>
+  <text x="560" y="505" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="25" font-weight="600" fill="white">② 信念(πίστις)</text>
+  <text x="560" y="535" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" fill="#f3efe6">感覚で捉える実物</text>
+  <text x="560" y="560" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="17" fill="#e8dcc0">(動物・植物・道具)</text>
+
+  <!-- ③ 悟性的推論 -->
+  <rect x="360" y="290" width="400" height="170" fill="#b89970" stroke="#8a7255" stroke-width="1"/>
+  <text x="560" y="335" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="25" font-weight="600" fill="#1a1208">③ 悟性的推論(διάνοια)</text>
+  <text x="560" y="368" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" fill="#3d3020">数学的対象・仮定に立つ知</text>
+  <text x="560" y="395" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="17" fill="#5a4028">(三角形そのもの、円そのもの…)</text>
+  <text x="560" y="428" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" font-style="italic" fill="#5a4028">感覚の図に頼るが、到達するのは抽象</text>
+
+  <!-- ④ 理性的直観 -->
+  <rect x="360" y="100" width="400" height="190" fill="#e8c56a" stroke="#8b5500" stroke-width="1"/>
+  <text x="560" y="145" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="25" font-weight="600" fill="#5a4028">④ 理性的直観(νόησις)</text>
+  <text x="560" y="178" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" fill="#3d3020">イデア・善のイデア</text>
+  <text x="560" y="205" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="17" fill="#5a4028">(美そのもの・正義そのもの)</text>
+  <text x="560" y="243" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="17" font-weight="600" font-style="italic" fill="#8b1a1a">↑ プラトンはここを「知」と呼ぶ</text>
+  <text x="560" y="268" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" font-style="italic" fill="#8b1a1a">仮定を捨て、原理そのものへ</text>
+
+  <!-- 左側: 世界区分 -->
+  <!-- 可視界側ブレース -->
+  <path d="M 340 460 L 330 460 L 330 680 L 340 680" stroke="#3d3020" stroke-width="2.5" fill="none"/>
+  <text x="290" y="555" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="22" font-weight="600" fill="#3d3020">可視界</text>
+  <text x="290" y="582" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="17" fill="#7a6a55">(目で見える世界)</text>
+  <text x="290" y="607" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#b0a090">影像①+実物②</text>
+
+  <!-- 可知界側ブレース -->
+  <path d="M 340 460 L 330 460 L 330 100 L 340 100" stroke="#3d3020" stroke-width="2.5" fill="none"/>
+  <text x="290" y="265" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="22" font-weight="600" fill="#8b5500">可知界</text>
+  <text x="290" y="292" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="17" fill="#7a6a55">(思考で捉える世界)</text>
+  <text x="290" y="317" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#b0a090">悟性③+直観④</text>
+
+  <!-- 可視界/可知界の境界線 — プラトンにとって最重要な分水嶺 -->
+  <line x1="325" y1="460" x2="780" y2="460" stroke="#8b1a1a" stroke-width="4"/>
+
+  <!-- 境界ラベル(右側に配置、2行) -->
+  <g transform="translate(830, 460)">
+    <rect x="-18" y="-36" width="276" height="72" fill="#faf8f3" stroke="#8b1a1a" stroke-width="1.5" rx="3"/>
+    <text x="120" y="-8" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" font-weight="700" fill="#8b1a1a">⚡ ここが最大の飛躍</text>
+    <text x="120" y="18" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-style="italic" fill="#8b1a1a">感覚 → 思考(魂の向き変え)</text>
+  </g>
+
+  <!-- 右側: 洞窟との対応 -->
+  <text x="840" y="88" font-family="'Source Sans 3',sans-serif" font-size="20" font-weight="700" fill="#8b1a1a">洞窟の比喩との対応</text>
+  <line x1="765" y1="628" x2="830" y2="628" stroke="#c8bfaa" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="840" y="635" font-family="'Source Sans 3',sans-serif" font-size="17" fill="#3d3020">壁に映る影(①)</text>
+  <line x1="765" y1="515" x2="830" y2="515" stroke="#c8bfaa" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="840" y="522" font-family="'Source Sans 3',sans-serif" font-size="17" fill="#3d3020">担ぎ手が運ぶ物(②)</text>
+  <line x1="765" y1="370" x2="830" y2="370" stroke="#c8bfaa" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="840" y="377" font-family="'Source Sans 3',sans-serif" font-size="17" fill="#3d3020">洞窟の外の物・影(③)</text>
+  <line x1="765" y1="180" x2="830" y2="180" stroke="#c8bfaa" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="840" y="187" font-family="'Source Sans 3',sans-serif" font-size="17" fill="#3d3020">太陽そのもの(④)</text>
+
+  <!-- 下部キャプション -->
+  <text x="600" y="730" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" font-style="italic" fill="#8b1a1a">下(①影像)から上(④理性的直観)へ — これがプラトンのいう「教育」の方向。</text>
+</svg>
+</div>
+
+<p class="body-text fade">補足を加えておく。この図の下から上への流れが、プラトンにとっての<strong>教育</strong>だ。彼は『国家』第7巻で、教育を「知識を外から魂に吹き込むこと」ではないと強調する。そうではなく、魂はすでに<em>視る力</em>を持っている——ただ正しくない方向(影)を向いているだけだ、と。教育の仕事は、その魂の向きを変えること。ギリシア語で<strong>periagōgē</strong>(ペリアゴーゲー、<em>振り返り・向き変え</em>)と呼ばれるこの動作が、洞窟の比喩で「縛られた囚人が振り向いて火を見る」場面と、図では「下から上へ段階を上がる」動きと、同じひとつの運動を指している。</p>
+
+<p class="body-text fade">線分の比喩で言う<strong>①「影像」から④「イデア」へ</strong>の上昇が、洞窟の比喩での<strong>「壁を向いた状態から太陽を直視する状態へ」</strong>の移動に対応する。つまり洞窟の比喩は、ただのSF的な思考実験ではなく、プラトンの認識論全体の圧縮版だったというわけだ。——プラトンがなぜ最後に「<em>太陽を直視する</em>」という、あえて肉眼では不可能な場面を描いたのかも、これで読める。彼にとって太陽は善のイデアの比喩であり、善のイデアこそが、あらゆる知の最終的な源泉だった。</p>
+
+<hr class="art-rule">
+<h2 class="fade">物語は、ひとりが鎖を解かれるところから動きだす。</h2>
+
+<p class="body-text fade">ここでプラトンは、ひとりの囚人が鎖を解かれ、立ち上がり、振り向くことを強制される、と仮定する。このとき、彼のなかで何が起こるか。プラトンは段階的に描いていく。</p>
+
+<div class="steps-wrap fade">
+  <p class="steps-head">囚人の旅路 — 洞窟の比喩の6段階</p>
+  <div class="step-card open" id="sc1"><div class="step-hd" onclick="tog(1)"><div class="step-nb">1</div><div class="step-tw"><div class="step-title">縛られた状態——影を実在と思い込む</div><div class="step-sub">出発点</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>首も足も縛られ、前方の壁だけを見ている。影の動きに名前をつけ、影どうしの関係を理解することが「知」のすべて。<em>他の可能性は、想像することすらできない</em>。</p></div></div>
+  <div class="step-card" id="sc2"><div class="step-hd" onclick="tog(2)"><div class="step-nb">2</div><div class="step-tw"><div class="step-title">振り向く——火と物に気づく</div><div class="step-sub">periagōgē(ペリアゴーゲー)</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>鎖を解かれ、首を回すことを強いられる。直接見る火はまぶしく、目が眩み、痛む。<strong>初めて見た「実物」は、影より不鮮明に見える</strong>。最初の反応は「影のほうが真実だ」と元の場所に戻りたがることだ。プラトンはこの「向き変え」をperiagōgē(魂の方向転換)と呼び、教育の本質と位置づけた。</p></div></div>
+  <div class="step-card" id="sc3"><div class="step-hd" onclick="tog(3)"><div class="step-nb">3</div><div class="step-tw"><div class="step-title">洞窟の外に引き出される——夜から朝へ</div><div class="step-sub">痛みと混乱</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>無理やり洞窟の外へ連れ出される。陽光は強すぎて、しばらく何も見えない。まず影を見、次に水面に映る像を見、それから物そのものを見られるようになる。<em>段階的に目が慣れていく</em>。</p></div></div>
+  <div class="step-card" id="sc4"><div class="step-hd" onclick="tog(4)"><div class="step-nb">4</div><div class="step-tw"><div class="step-title">空を見上げ、ついに太陽を見る</div><div class="step-sub">善のイデアとの遭遇</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>やがて夜の空、月、星々を見るようになり、最後に太陽そのものを直視できるようになる。プラトンはこの<strong>太陽を「善のイデア」の比喩</strong>として描く。太陽がすべてのものを見えるようにする光の源であるように、善のイデアはすべての知識と真実を成立させる根源である、と。</p></div></div>
+  <div class="step-card" id="sc5"><div class="step-hd" onclick="tog(5)"><div class="step-nb">5</div><div class="step-tw"><div class="step-title">洞窟に戻る——仲間に真実を伝える</div><div class="step-sub">教師の責務</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>真実を見た者は、洞窟に残る仲間のことを思い、戻る義務がある、とプラトンは書く。だが戻った彼は、もう影の動きを正確に予測できない(目が外の光に慣れて、暗がりでは逆に見えにくくなっている)。仲間からは<strong>「外に出たらバカになって帰ってきた」と笑われる</strong>。</p></div></div>
+  <div class="step-card" id="sc6"><div class="step-hd" onclick="tog(6)"><div class="step-nb">6</div><div class="step-tw"><div class="step-title">殺されかける——哲学者の悲劇</div><div class="step-sub">ソクラテスの影</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>もし彼が「きみたちが見ているのは影だ」と言い続けるなら、仲間は怒り、彼を殺そうとするだろう——とプラトンは書く。この結末に、<em>紀元前399年に死刑にされたソクラテス</em>の姿が重ねられていることは、古代から指摘されてきた。『国家』が書かれたのは、師の死から30年足らず後のことだ。</p></div></div>
+</div>
+
+<p class="body-text fade">この物語は「認識のアップグレードは痛みを伴う」という寓話として読むこともできるし、「民主政に殺された師への哀悼」として読むこともできる。だが一番よく引用されるのは、もっと単純なメッセージだ——<em>あなたが今「現実」だと思っているものは、壁に映った影かもしれない</em>。</p>
+
+<div class="misconception fade">
+  <div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+  <div class="misconception-body">
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">イデア論=「理想を目指せ」という道徳論</p></div>
+      <div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">「イデア」は理想や目標ではなく、<strong>事物の本当の姿・原型</strong>。私たちが見ている個々のリンゴは「リンゴのイデア」の不完全な影にすぎない、という<span class="tip" onclick="toggleTip(this)">存在論<span class="tip-box"><strong>存在論(ontology)</strong><br>「何が存在するか」「存在とは何か」を問う哲学の分野。<em>アリストテレス</em>が『形而上学』で「存在としての存在」の学と呼んで以来、西洋哲学の中心テーマのひとつ。「リンゴのイデアは本当に存在するのか」を真剣に問うのは存在論の仕事。</span></span>的な主張。</p></div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">洞窟=単なる「無知な大衆」の比喩</p></div>
+      <div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">プラトンは「教育によって大衆を啓蒙せよ」と書いているのではない。<strong>認識の仕組みそのもの</strong>——人間は誰しも、なんらかの影の体系のなかで世界を理解している——という普遍的な構造を論じている。</p></div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">「真理」は洞窟の外にあり、行けば見える</p></div>
+      <div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">原典で強調されるのは<strong>痛みと段階</strong>だ。光は最初まぶしすぎて見えない。水面の映像、物、星、と順を追って目が慣れる。「到達すれば完了」という話ではなく、向き変えの過程そのものが哲学だ、という話。</p></div>
+    </div>
+  </div>
+</div>
+
+<hr class="art-rule">
+
+<!-- S2: 体験する -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">影から、元の形が分かるか。</h2>
+
+<p class="body-text fade">プラトンの比喩を頭で理解するのと、「影だけを見て世界を組み立てる」ことの具体的な難しさを体で感じるのは別だ。ここでは3つのフェーズでそれを体験してみる。<strong>実際に影を見て、推測し、答え合わせをして、それでも情報が足りないことを確認する</strong>。</p>
+
+<!-- SIMULATOR -->
+<div class="sim-wrap fade" id="simWrap">
+  <div class="sim-header">
+    <span class="sim-title">影の残余 Simulator</span>
+    <span class="sim-phase-tag" id="simPhaseTag">Phase 1 of 3</span>
+  </div>
+  <div class="sim-body">
+    <p class="sim-instruction" id="simInstruction"><strong>壁に映る影だけが見えている。</strong>これを作っているのは、どんな形の物体だろうか。A・B・Cから直感で選んでみてほしい。</p>
+    <div class="sim-canvas-wrap">
+      <canvas id="shadowCanvas" width="600" height="400"></canvas>
+      <div id="threeCanvasHost"></div>
+      <div id="threeLoadingMsg"><span>3Dシーンを読み込んでいます…</span></div>
+    </div>
+    <div class="sim-controls" id="simControls">
+      <button class="sim-btn" data-choice="sphere" onclick="simPickObject('sphere')">A. 球</button>
+      <button class="sim-btn" data-choice="cylinder" onclick="simPickObject('cylinder')">B. 円柱</button>
+      <button class="sim-btn" data-choice="cone" onclick="simPickObject('cone')">C. 円錐</button>
+    </div>
+    <div class="sim-slider-row" id="simSliderRow" style="display:none;">
+      <span class="sim-slider-label">光源の角度</span>
+      <input type="range" class="sim-slider" id="simSlider" min="0" max="180" value="45">
+      <span class="sim-slider-val" id="simSliderVal">45°</span>
+    </div>
+    <div class="sim-reveal" id="simReveal"></div>
+    <div class="sim-phase-nav">
+      <button class="sim-phase-btn active" id="simPh1" onclick="simSetPhase(1)">1. 影から形</button>
+      <button class="sim-phase-btn" id="simPh2" onclick="simSetPhase(2)">2. 角度を変える</button>
+    </div>
+  </div>
+</div>
+
+<p class="body-text fade">Phase 1で気づくのは、<strong>ひとつの影から元の形は一意に決まらない</strong>ということだ。球も、真上から見た円柱も、底面から見た円錐も、同じ円形の影を壁に落とす。壁の前の囚人は、この3つを区別する手がかりを持っていない。Phase 2では、視点(光源の角度)を変えても、影から立体の情報は完全には戻ってこないことが分かる。</p>
+
+<!-- 影の正体を見る体験 -->
+<div class="fade" style="margin:40px 0;">
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#3d3020;margin:0 0 12px 4px;">影の正体 — 壁に映る「何か」は、実は…</p>
+  <div id="shadowReveal" style="position:relative;width:100%;aspect-ratio:16/10;max-height:560px;background:#000;border-radius:3px;overflow:hidden;box-shadow:0 4px 18px rgba(61,48,32,0.25);">
+    <div id="srImg" class="sr-before" style="position:absolute;inset:0;background-image:url(scene_shadow_chimera.jpg);background-repeat:no-repeat;background-size:cover;background-position:center;"></div>
+    <div id="srMask" style="position:absolute;inset:0;background:linear-gradient(to right, rgba(20,10,4,0) 0%, rgba(20,10,4,0) 35%, rgba(20,10,4,0.95) 60%, rgba(20,10,4,1) 100%);transition:opacity 1.3s ease;pointer-events:none;"></div>
+    <div style="position:absolute;top:0;left:0;right:0;padding:16px 20px 30px;background:linear-gradient(to bottom,rgba(0,0,0,0.7),rgba(0,0,0,0));color:#e8c56a;font-size:14px;line-height:1.6;text-align:center;pointer-events:none;font-weight:500;">
+      <span id="srCap">壁に映る、何かの影。</span>
+      <small id="srSub" style="display:block;color:#c8bfaa;font-weight:400;font-size:11px;margin-top:4px;">— 見ようとするほど、形を成してくる。</small>
+    </div>
+    <button id="srBtn" onclick="srToggle()" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);padding:11px 26px;font-size:14px;font-weight:600;background:#8b1a1a;color:#fff;border:none;cursor:pointer;border-radius:3px;box-shadow:0 4px 12px rgba(0,0,0,0.4);font-family:'Source Sans 3',sans-serif;">目を凝らす</button>
+    <div style="position:absolute;bottom:4px;right:8px;font-size:9px;color:#998;line-height:1.3;text-align:right;">Photo by <a href="https://www.flickr.com/photos/26445715@N00/50559661487" target="_blank" rel="noopener" style="color:#bba;text-decoration:none;">Mike Finn</a> / <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener" style="color:#bba;text-decoration:none;">CC BY 2.0</a>(暗色オーバーレイを加え改変)</div>
+  </div>
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#6a5a42;margin:10px 4px 0;border-left:2px solid #c8bfaa;padding:4px 0 4px 12px;">影が伝えるのは"輪郭"だけ。その輪郭が何によって作られているかは、振り向かない限り分からない。壁の前に縛られた囚人にとって、影は揺るぎない"実在"だ。</p>
+</div>
+<script>
+  function srToggle(){
+    var img=document.getElementById('srImg');
+    var mask=document.getElementById('srMask');
+    var btn=document.getElementById('srBtn');
+    var cap=document.getElementById('srCap');
+    var sub=document.getElementById('srSub');
+    if(img.classList.contains('sr-before')){
+      img.classList.remove('sr-before');img.classList.add('sr-after');
+      mask.style.opacity='0';
+      btn.textContent='影だけ見る';
+      cap.textContent='——組まれた、指だった。';
+      sub.textContent='— 壁に映っていた「何か」の正体は、ただ手を組み合わせた形にすぎない。';
+    } else {
+      img.classList.remove('sr-after');img.classList.add('sr-before');
+      mask.style.opacity='1';
+      btn.textContent='目を凝らす';
+      cap.textContent='壁に映る、何かの影。';
+      sub.textContent='— 見ようとするほど、形を成してくる。';
+    }
+  }
+</script>
+
+<hr class="art-rule">
+
+<!-- S3: メカニズム -->
+<div class="sec-rule fade"><span class="sec-label">なぜ情報が戻らないのか</span><div class="sec-line"></div></div>
+<h2 class="fade">3次元を2次元に落とすと、戻れない。</h2>
+
+<p class="body-text fade">影という現象の数学的な正体は、<strong>3次元の物体を2次元の平面に射影する</strong>ことだ。点(x, y, z)から高さ軸zを消して点(x, y)にする——それだけの単純な操作で、影は作られる。しかしこの操作は、情報の観点から見ると一方向の変換である。</p>
+
+<!-- SVG図解③: 情報の次元損失 -->
+<div class="fade" style="margin:32px 0;overflow-x:auto;">
+<svg viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg" style="max-width:820px;margin:0 auto;display:block;" aria-label="3次元から2次元への射影">
+  <text x="410" y="28" text-anchor="middle" font-family="'Playfair Display',serif" font-size="16" font-weight="700" fill="#8b1a1a">射影は情報を失う、一方向の操作</text>
+
+  <!-- 左: 3次元の物体(3つ) -->
+  <text x="180" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#3d3020">3次元(元の形)</text>
+  <!-- 球 -->
+  <ellipse cx="100" cy="130" rx="36" ry="36" fill="#f3efe6" stroke="#3d3020" stroke-width="1.5"/>
+  <ellipse cx="100" cy="130" rx="36" ry="10" fill="none" stroke="#b0a090" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="100" y="195" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="500" fill="#3d3020">球</text>
+  <!-- 円柱 -->
+  <ellipse cx="190" cy="108" rx="30" ry="9" fill="#f3efe6" stroke="#3d3020" stroke-width="1.5"/>
+  <path d="M 160 108 L 160 155 Q 160 164 190 164 Q 220 164 220 155 L 220 108" fill="#f3efe6" stroke="#3d3020" stroke-width="1.5"/>
+  <ellipse cx="190" cy="155" rx="30" ry="9" fill="none" stroke="#3d3020" stroke-width="1.5"/>
+  <text x="190" y="195" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="500" fill="#3d3020">円柱</text>
+  <!-- 円錐 -->
+  <path d="M 280 100 L 248 158 L 312 158 Z" fill="#f3efe6" stroke="#3d3020" stroke-width="1.5"/>
+  <ellipse cx="280" cy="158" rx="32" ry="9" fill="#f3efe6" stroke="#3d3020" stroke-width="1.5"/>
+  <text x="280" y="195" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="500" fill="#3d3020">円錐</text>
+
+  <!-- 矢印: 射影 -->
+  <path d="M 340 130 L 460 130" stroke="#8b1a1a" stroke-width="2" marker-end="url(#arr2)"/>
+  <text x="400" y="118" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#8b1a1a">射影</text>
+  <text x="400" y="150" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">z軸を落とす</text>
+
+  <defs>
+    <marker id="arr2" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b1a1a"/>
+    </marker>
+  </defs>
+
+  <!-- 右: 2次元の影(ひとつ) -->
+  <text x="620" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#3d3020">2次元(影)</text>
+  <rect x="500" y="80" width="240" height="150" fill="#e8dcc0" stroke="#c8bfaa" stroke-width="1"/>
+  <circle cx="620" cy="155" r="36" fill="#1a1208"/>
+  <text x="620" y="252" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">→ どれから来たのか、分からない</text>
+
+  <!-- 逆矢印は不可 -->
+  <path d="M 460 200 L 340 200" stroke="#c4392a" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="400" y="220" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#c4392a">逆は不可能 ✕</text>
+
+  <!-- 下部補足 -->
+  <rect x="40" y="290" width="740" height="38" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+  <text x="410" y="314" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#3d3020">同じ円の影を作れる3次元物体は、ここに描いた3つ以外にも無限に存在する。情報は圧倒的に失われている。</text>
+</svg>
+</div>
+
+<p class="body-text fade">一度捨てた情報は、基本的に取り戻せない。多数の3次元の物体が、同じひとつの2次元の影を作りうる。光源の角度を変えれば影の形は変わるが、それでも元の3次元の形を完全に再構成するのに必要な情報は、有限の観測回数では集まらない。これは数学的に証明できる事実で、<span class="tip" onclick="toggleTip(this)">医療画像のCT<span class="tip-box"><strong>CT(Computed Tomography)</strong><br>コンピュータ断層撮影。物体の周囲360度からX線投影を撮り、数学的な逆問題(ラドン変換の逆変換)を解いて3次元画像を再構成する技術。原理上、無限回の投影があれば完全再構成できる。1979年にノーベル生理学・医学賞を受賞した。</span></span>やMRIが、この情報損失を補うために360度の角度から撮影するのは、そのためだ。</p>
+
+<h2 class="fade" style="margin-top:40px;">プラトンの提案はもっと過激だった。</h2>
+
+<p class="body-text fade">プラトンは「影から元を推測する」作業をより洗練させよう、とは言っていない。彼の提案はもっとラジカルだ——<em>そもそも影を見ていた壁ではなく、自分の体ごと方向を変えて、光源のほうを見ろ</em>と言う。つまり認識を精密にするのではなく、認識の方向そのものを変えろ、と。この動作をプラトンは<strong>periagōgē(ペリアゴーゲー、魂の向き変え)</strong>と名づけ、教育の本質だと述べた。</p>
+
+<table class="cmp-table fade">
+  <thead>
+    <tr><th></th><th>情報科学的アプローチ</th><th>プラトン的アプローチ</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>前提</td><td>影の観測回数を増やせば復元できる</td><td>観測を増やしても壁を向いている限り限界がある</td></tr>
+    <tr><td>戦略</td><td>CTのように360度から撮る</td><td>体の方向を変え、光源そのものを見に行く</td></tr>
+    <tr><td>必要なもの</td><td>計算力と時間</td><td>鎖を解くこと、まぶしさに耐えること</td></tr>
+    <tr><td>痛み</td><td>ほぼない</td><td><em>本質的に痛みを伴う</em></td></tr>
+    <tr><td>評価</td><td>効率のよい近似</td><td>認識の質的なアップグレード</td></tr>
+  </tbody>
+</table>
+
+<p class="body-text fade">情報科学的に見れば、プラトンの提案は非効率で暴力的に映る。だが「<strong>何を疑い、どこを見るか</strong>」を根本から問い直すという意味で、この提案は2400年後のいまも生きている。私たちはSNSの影の集合を精密化する道具(レコメンド、フィルタ、検索アルゴリズム)を洗練させつづけているが、プラトンなら「壁を向いたまま観測を増やしても、太陽は見えない」と言うだろう。</p>
+
+<hr class="art-rule">
+
+<!-- S4: 歴史 -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">2400年をかけた影の旅</h2>
+
+<div class="timeline fade">
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">紀元前375年頃</p><p class="tl-title">プラトン『国家』第7巻</p><p class="tl-desc">アカデメイア創設期(前387年頃)から10年ほどの間に執筆されたとされる。全10巻中、第7巻の514a-520aに洞窟の比喩が位置する。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">前399年</p><p class="tl-title">ソクラテスの刑死</p><p class="tl-desc">「青少年を堕落させた」「神々を敬わなかった」などの罪状で、アテネ民主政がプラトンの師ソクラテスを死刑にした。洞窟から戻った者が殺されそうになる結末は、この事件の影を色濃く落としている。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">3世紀</p><p class="tl-title">新プラトン主義</p><p class="tl-desc">プロティノスらがプラトンの思想を神秘主義的に再解釈。「一者(ト・ヘン)」への魂の上昇という図式が、のちのキリスト教神学に吸収されていく。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">13世紀</p><p class="tl-title">中世スコラ哲学への吸収</p><p class="tl-desc">アウグスティヌスを通じて西方キリスト教世界に流入していたプラトン主義が、アリストテレス再発見とともにスコラ哲学の中核を形成。「感覚界と可知界の二分」という枠組みが西洋思想の基調となる。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1604年</p><p class="tl-title">ヤン・サーンレダムの版画</p><p class="tl-desc">オランダの銅版画家サーンレダムが、コルネリス・ファン・ハルレムの原画をもとに洞窟の比喩を視覚化。この作品が、後世の洞窟イメージの「決定版」として広く流通した。</p></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1931年</p><p class="tl-title">ハイデガー「プラトンの真理論」</p><p class="tl-desc">マルティン・ハイデガーがフライブルク大学の講義で洞窟の比喩を詳細に論じる(のちに同名の論文として刊行)。真理(ἀλήθεια)を「隠れからの開示」と読み替え、近代以降の真理観に疑問を投げかけた。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1958年</p><p class="tl-title">アーレント『人間の条件』</p><p class="tl-desc">ハンナ・アーレントがハイデガーの解釈を批判。プラトンは「自分のイデア論を政治に適用しようとした」のであり、政治思想として読むべきだと論じた。認識論 vs 政治論の対立軸が明確化する。</p></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1998-99年</p><p class="tl-title">『ダーク・シティ』『マトリックス』『トゥルーマン・ショー』</p><p class="tl-desc">わずか1年のあいだに、洞窟の比喩を下敷きにした3本の映画がほぼ同時に公開される。20世紀末のテクノロジー不安と重なり、プラトンの寓話が大衆文化に浸透した。</p></div>
+  <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2010年代</p><p class="tl-title">エコーチェンバーとフィルターバブル</p><p class="tl-desc">SNSのアルゴリズムが作る「自分の信念を補強する影だけが映る壁」が、洞窟の比喩で繰り返し語られるようになる。比喩は一度古典に昇格したあと、ふたたび現代的な語彙として流通しはじめた。</p></div>
+</div>
+
+<hr class="art-rule">
+
+<!-- S5: つまり -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">洞窟の外には、まだ出ていないほうがいい。</h2>
+
+<p class="body-text fade">プラトンの比喩がこれほど長く生き残ったのは、「影と実体」という単純な2項対立が、時代ごとに新しい衣装をまとって再登場できる便利な器だったからだ。中世では感覚界と神、近代では現象と物自体、20世紀末ではシミュレーションと現実、21世紀ではSNSとオフラインの出来事。壁と影と火の配置は同じで、名前だけが変わる。</p>
+
+<div class="pull fade">
+  <p class="pull-q" style="font-style:normal;font-family:'Source Serif 4','Times New Roman',serif;font-size:clamp(15px,1.9vw,18px);color:#5a4028;line-height:1.75;margin-bottom:14px;">οὐ τοῦ ἐμποιῆσαι αὐτῷ τὸ ὁρᾶν, ἀλλ' ὡς ἔχοντι μὲν αὐτό, οὐκ ὀρθῶς δὲ τετραμμένῳ οὐδὲ βλέποντι οἷ ἔδει, τοῦτο διαμηχανήσασθαι.</p>
+  <p class="pull-q">教育とは、魂に視る力を外から吹き込むことではない。<br>魂はすでにそれを持っている。ただ<em>正しくない方向を向いている</em>のを、<br>向きを変えさせること——それこそがその技術である。</p>
+  <p class="pull-attr">——プラトン『国家』第7巻 <span class="tip" onclick="toggleTip(this)">518d<span class="tip-box"><strong>518d(ステファヌス番号)</strong><br>ページ518のd段。洞窟の比喩の終盤、プラトン自身が比喩の意味を説明する場面にあたる。——<em>ステファヌス番号とは、1578年刊行のプラトン全集ページに基づく世界共通の引用記法(各ページをa〜eの5段に分ける)。詳しくは冒頭「514a」のツールチップ参照。</em></span></span>(藤沢令夫訳を参考に邦訳)</p>
+</div>
+
+<p class="body-text fade">映画『マトリックス』の最後、ネオはシミュレーションを「破壊」して外に出る。これはハリウッド的な<ruby>英雄譚<rt>えいゆうたん</rt></ruby>だが、プラトンの原典はもう少し静かだ。洞窟の住人は外に出ても殺される(あるいは笑われる)。出た者が偉くなるのでもなく、権力を得るのでもない。<strong>ただ「戻る義務」だけがある</strong>。真実を見た者は、影のなかに残る仲間のもとへ戻って、また笑われながら語りつづける。</p>
+
+<p class="body-text fade">プラトンの洞窟は、どこかの遠い場所にある話ではない。壁を向いて座っている私たちの、<em>いまの条件</em>そのものだ。影が悪なわけでもない——問題は、それが影だと知らずに眺めつづけることだ。自分がいま見ているものが、<strong>誰によって、どの火で、どんな壁に映されているか</strong>。その配置に気づいた瞬間、2400年前のこの比喩は役目を果たしたことになる。</p>
+
+<div class="culture-block fade">
+  <p class="culture-title">文化への浸透</p>
+  <p class="culture-desc">洞窟の比喩は、西洋芸術が「認識の境界」を描くときの雛型として機能してきた。映画では『トゥルーマン・ショー』(1998)、『マトリックス』(1999)、『ダーク・シティ』(1998)、『プレザントヴィル』(1998)、『アイランド』(2005)、『アス』(2019)、Netflixドラマ『1899』(2022)などが直接の系譜にある。『ダーク・シティ』は特に、記憶と環境の全てが作られた街という設定において、プラトンの洞窟をSFとして再構成した稀有な作品だ。哲学の外では、マーシャル・マクルーハン『メディアはマッサージである』(1967)、ジャン・ボードリヤール『シミュラークルとシミュレーション』(1981)、イーライ・パリサー『フィルター・バブル』(2011)といったメディア論の中核概念に、洞窟の比喩は形を変えて引き継がれている。</p>
+</div>
+
+<p class="body-text fade">21世紀の私たちは、常時オンラインの画面のなかで大半の時間を過ごしている。目の前で動いている影の体系(タイムライン、おすすめ、通知)を精密化するサービスが、これほど無料で大量に提供されたことは人類史上ない。プラトンの比喩は、この時代にこそ、そのままの形で読める古典になっている。</p>
+
+<p class="body-text fade">ただし、出口は明確ではない。洞窟を出れば即「真実」という単純な話ではなく、プラトンが描いたのは段階的な目の慣らしと、戻ったあとの笑いと、そして暴力の予感だった。——今夜、スマートフォンを置いて窓の外の空を見上げるとき、ほんの数分でいい。2400年前に書かれた「振り向く」という動作が、どれほど大きな飛躍を意味するのか、考えてみてほしい。</p>
+
+<hr class="art-rule">
+
+<!-- 参考文献 -->
+<div class="sec-rule fade"><span class="sec-label">参考文献</span><div class="sec-line"></div></div>
+
+<div class="ref-list">
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">原典</span><span class="ref-year">紀元前375年頃</span></div>
+    <p class="ref-title"><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0168:book%3D7" target="_blank" rel="noopener">Plato, Republic, Book 7(514a-520a)</a></p>
+    <p class="ref-author">Plato — Perseus Digital Library</p>
+    <p class="ref-desc">ギリシア語原文と英訳(ポール・ショリー訳)が対照できる学術リポジトリ。洞窟の比喩の該当箇所を前後の文脈とあわせて読める。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">日本語訳</span><span class="ref-year">1979</span></div>
+    <p class="ref-title"><a href="https://www.iwanami.co.jp/book/b247396.html" target="_blank" rel="noopener">『国家』(上・下)</a></p>
+    <p class="ref-author">プラトン(著)、藤沢令夫(訳)— 岩波文庫</p>
+    <p class="ref-desc">日本語圏でもっとも広く読まれる邦訳。厳密でありながら読みやすく、第7巻の訳注も充実している。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">研究書</span><span class="ref-year">2007</span></div>
+    <p class="ref-title"><a href="https://www.cambridge.org/core/books/cambridge-companion-to-platos-republic/" target="_blank" rel="noopener">The Cambridge Companion to Plato's Republic</a></p>
+    <p class="ref-author">G. R. F. Ferrari(編)— Cambridge University Press</p>
+    <p class="ref-desc">『国家』研究の標準的なコンパニオン。第7巻および洞窟の比喩に関する複数の論文が収録され、認識論的解釈と政治的解釈の対立も整理されている。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1947</span></div>
+    <p class="ref-title"><a href="https://www.iwanami.co.jp/book/b246058.html" target="_blank" rel="noopener">"Platons Lehre von der Wahrheit"(プラトンの真理論)</a></p>
+    <p class="ref-author">Martin Heidegger — 邦訳: 細谷貞雄訳(『道標』所収、岩波書店)</p>
+    <p class="ref-desc">1931-32年の講義をもとにしたハイデガーの論考。洞窟の比喩を手がかりに、真理(ἀλήθεια)の概念が古代ギリシアから近代にかけてどう変質したかを論じる。20世紀以降のプラトン解釈における重要文献。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">解説</span><span class="ref-year">常時更新</span></div>
+    <p class="ref-title"><a href="https://plato.stanford.edu/entries/plato-ethics-politics/" target="_blank" rel="noopener">Plato's Ethics and Politics in The Republic</a></p>
+    <p class="ref-author">Stanford Encyclopedia of Philosophy</p>
+    <p class="ref-desc">スタンフォード哲学百科事典の『国家』項目。洞窟の比喩を含む第7巻の議論が、倫理学・政治学の文脈で整理されている。査読付きで信頼性が高い。</p>
+  </div>
+</div>
+
+<div class="note-box fade">
+  <strong>📌 この記事について</strong><br>
+  原典は『国家』第7巻 514a-520a(藤沢令夫訳を参考にした邦訳、およびJowett英訳・Perseus所収のギリシア語原文に準拠)。執筆時期の「紀元前375年頃」は学界で比較的広く共有される推定で、正確な年月日は確定していない(380-370年の幅で諸説あり)。ソクラテスの刑死とプラトンの執筆の間の因果関係は古代から指摘されてきたが、直接的な言及は原典にはない。ハイデガー/アーレントの解釈の対立は、Arendt『人間の条件』および関連書簡に基づく。哲学的思考実験であり、実証的な「正解」は存在しない。
+</div>
+
+<div class="signature fade">e. Tamaki</div>
+
+<div class="tags">
+  <span class="tag">古代ギリシア哲学</span>
+  <span class="tag">プラトン</span>
+  <span class="tag">イデア論</span>
+  <span class="tag">認識論</span>
+  <span class="tag">洞窟の比喩</span>
+  <span class="tag">思考実験</span>
+  <span class="tag">教育論</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+<div style="position:sticky;top:70px;">
+  <div class="sidebar-block fade">
+    <p class="sidebar-label">Key Number</p>
+    <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">514</p>
+    <p class="sidebar-text">『国家』第7巻のステファヌス番号。洞窟の比喩は514aから始まり520aまで続く、わずか6ページの記述。</p>
+  </div>
+  <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">プラトンの師<strong>ソクラテス</strong>は、紀元前399年に民主政アテネによって死刑にされた。洞窟から戻った者が殺されそうになる比喩の結末は、師の死から24年ほど後に書かれた。</p></div>
+  <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">— 映画『マトリックス』(1999)<br>— 映画『トゥルーマン・ショー』(1998)<br>— 映画『ダーク・シティ』(1998)<br>— 映画『アス』(2019)<br>— Netflix『1899』(2022)<br>— ボードリヤール『シミュラークル』</p></div>
+  <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— 胡蝶の夢<br>— マリーの部屋<br>— シミュレーション仮説<br>— 水槽の脳<br>— 構造主義</p></div>
+  <div class="sidebar-block fade">
+    <p class="sidebar-label">振り向きチェック</p>
+    <ul class="sidebar-check">
+      <li>今日あなたが「現実」だと思った情報の何割が直接体験か?</li>
+      <li>SNSのタイムラインは「影の壁」になっていないか?</li>
+      <li>逆の意見を最後に聞いたのはいつか?</li>
+      <li>もし今の世界観が「影」だと分かったら、何を確かめに行くか?</li>
+    </ul>
+  </div>
+  <div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">原典『国家』が現存する古典的思考実験。解釈については認識論的読み(ハイデガーなど)と政治的読み(アーレントなど)で長年の論争があり、「正解」は存在しない。</p></div>
+</div>
+</div>
+
+</div><!-- /article -->
+
+<!-- ZONE C: TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// プラトンの洞窟の比喩 を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、プラトンは「本当の世界」が別にあると言いたかったの?</span></div>
+      <span class="t-output" id="to1">イデア界の話に踏み込むと急に神秘的になるんだけど、もっと手前で読んでもいい。<em>いま見てるものが全部じゃない</em>、ってだけでも比喩は成立してる。そこが2400年使いまわされてる理由。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;マトリックスとどう違うの? 結局シミュレーションでしょ</span></div>
+      <span class="t-output" id="to2">マトリックスは「シミュレーションを<strong>破壊</strong>して外に出る」。プラトンは「体の<strong>向き</strong>を変える」。外に出るんじゃなくて振り向く。この違いは地味だけど、わりと大きい。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;SNSも洞窟って言われるじゃん</span></div>
+      <span class="t-output" id="to3">アルゴリズムが見せる影の集合のなかで、影の精度を上げる競争をしてる、って感じだね。プラトンなら「壁を向いたまま観測を増やしても太陽は見えない」と言うだろうな。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;戻った人が笑われる、ってのが地味に怖い</span></div>
+      <span class="t-output" id="to4">あれが一番<em>生々しい</em>部分。真実を見た人が、見てない人から疎まれる。ソクラテスの刑死が背景にあると言われてる。哲学者のリスクの話でもある。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl5">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 影のなかにも、さらに影があるような気がする</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="/butterfly_dream">
+      <p class="related-card-tag">思考実験</p>
+      <p class="related-card-title">胡蝶の夢(荘子)</p>
+      <p class="related-card-desc">私は蝶の夢を見た人か、人の夢を見ている蝶か——プラトンとほぼ同時代、中国で生まれたもうひとつの「夢と現実」の物語。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="/mary_room">
+      <p class="related-card-tag">思考実験・哲学</p>
+      <p class="related-card-title">マリーの部屋</p>
+      <p class="related-card-desc">白黒の部屋で色の科学をすべて学んだ彼女は、初めて赤を見たとき、何を「知る」のか。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト方式)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+
+// ========== SHADOW SIMULATOR ==========
+(function(){
+  const canvas = document.getElementById('shadowCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const sim = { phase: 1, angle: 0, picked: null };
+
+  // 軽量な3D頂点定義(原点中心、サイズ~1)
+  function makeSphere(seg){
+    const verts=[]; const edges=[];
+    for(let i=0;i<=seg;i++){
+      const phi=Math.PI*i/seg;
+      for(let j=0;j<seg;j++){
+        const th=2*Math.PI*j/seg;
+        verts.push({x:Math.sin(phi)*Math.cos(th), y:Math.cos(phi), z:Math.sin(phi)*Math.sin(th)});
+      }
+    }
+    for(let i=0;i<seg;i++){
+      for(let j=0;j<seg;j++){
+        const a=i*seg+j, b=i*seg+((j+1)%seg), c=(i+1)*seg+j;
+        edges.push([a,b]); edges.push([a,c]);
+      }
+    }
+    return {verts,edges};
+  }
+  function makeCylinder(seg){
+    const verts=[]; const edges=[];
+    for(let j=0;j<seg;j++){
+      const th=2*Math.PI*j/seg;
+      verts.push({x:Math.cos(th), y:1, z:Math.sin(th)});
+    }
+    for(let j=0;j<seg;j++){
+      const th=2*Math.PI*j/seg;
+      verts.push({x:Math.cos(th), y:-1, z:Math.sin(th)});
+    }
+    for(let j=0;j<seg;j++){
+      const a=j, b=(j+1)%seg;
+      edges.push([a,b]);
+      edges.push([seg+a, seg+b]);
+      edges.push([a, seg+a]);
+    }
+    return {verts,edges};
+  }
+  function makeCone(seg){
+    const verts=[{x:0,y:1,z:0}];
+    for(let j=0;j<seg;j++){
+      const th=2*Math.PI*j/seg;
+      verts.push({x:Math.cos(th), y:-1, z:Math.sin(th)});
+    }
+    const edges=[];
+    for(let j=0;j<seg;j++){
+      edges.push([0, 1+j]);
+      edges.push([1+j, 1+((j+1)%seg)]);
+    }
+    return {verts,edges};
+  }
+  function makeLShape(){
+    // L字型: 縦の柱(c1) + 横の腕(c2)。部品分割で凹型の影を正しく出せるようにする
+    const c1 = cuboid(-0.2,0.2,-1,1,-0.2,0.2);
+    const c2 = cuboid(0.2,1.0,-1,-0.5,-0.2,0.2);
+    const off = c1.verts.length;
+    const verts = [...c1.verts, ...c2.verts];
+    const edges = [...c1.edges, ...c2.edges.map(e=>[e[0]+off, e[1]+off])];
+    // parts: 各部品は凸なので、影を個別に描画して重ねると正しい silhouette になる
+    return {verts, edges, parts:[c1, c2]};
+  }
+  function cuboid(x0,x1,y0,y1,z0,z1){
+    const verts = [
+      {x:x0,y:y0,z:z0},{x:x1,y:y0,z:z0},{x:x1,y:y1,z:z0},{x:x0,y:y1,z:z0},
+      {x:x0,y:y0,z:z1},{x:x1,y:y0,z:z1},{x:x1,y:y1,z:z1},{x:x0,y:y1,z:z1}
+    ];
+    const edges = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+    return {verts, edges};
+  }
+
+  const OBJECTS = {
+    sphere: makeSphere(10),
+    cylinder: makeCylinder(24),
+    cone: makeCone(24),
+    lshape: makeLShape()
+  };
+
+  function rotY(p,a){
+    const c=Math.cos(a), s=Math.sin(a);
+    return {x:p.x*c + p.z*s, y:p.y, z:-p.x*s + p.z*c};
+  }
+  function rotX(p,a){
+    const c=Math.cos(a), s=Math.sin(a);
+    return {x:p.x, y:p.y*c - p.z*s, z:p.y*s + p.z*c};
+  }
+
+  // Andrew's monotone chain convex hull
+  function convexHull(pts){
+    if(pts.length<3) return pts.slice();
+    const p = pts.slice().sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+    const cross = (O,A,B)=>(A[0]-O[0])*(B[1]-O[1])-(A[1]-O[1])*(B[0]-O[0]);
+    const lower=[];
+    for(const pt of p){
+      while(lower.length>=2 && cross(lower[lower.length-2],lower[lower.length-1],pt)<=0) lower.pop();
+      lower.push(pt);
+    }
+    const upper=[];
+    for(let i=p.length-1;i>=0;i--){
+      const pt=p[i];
+      while(upper.length>=2 && cross(upper[upper.length-2],upper[upper.length-1],pt)<=0) upper.pop();
+      upper.push(pt);
+    }
+    upper.pop(); lower.pop();
+    return lower.concat(upper);
+  }
+
+  // Projection: light from +Z, wall at Z=0. Shadow = (x, y).
+  function projectShadow(verts, yaw, pitch){
+    return verts.map(v=>{
+      const r1 = rotY(v, yaw);
+      const r2 = rotX(r1, pitch);
+      return [r2.x, -r2.y];
+    });
+  }
+
+  function drawShape(obj, yaw, pitch, cx, cy, scale, color){
+    ctx.save();
+    ctx.translate(cx, cy);
+    const projected = obj.verts.map(v=>{
+      const r1 = rotY(v, yaw);
+      const r2 = rotX(r1, pitch);
+      return {x: r2.x*scale, y: -r2.y*scale, z: r2.z};
+    });
+    ctx.strokeStyle = color || '#e8c56a';
+    ctx.lineWidth = 1.1;
+    for(const [a,b] of obj.edges){
+      ctx.beginPath();
+      ctx.moveTo(projected[a].x, projected[a].y);
+      ctx.lineTo(projected[b].x, projected[b].y);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+  function drawShadow(obj, yaw, pitch, cx, cy, scale, color){
+    // 凹型オブジェクトは部品分割で — 各部品の凸包を個別に描画して重ねる
+    if(obj.parts){
+      for(const part of obj.parts){
+        drawShadow(part, yaw, pitch, cx, cy, scale, color);
+      }
+      return;
+    }
+    ctx.save();
+    ctx.translate(cx, cy);
+    const pts = projectShadow(obj.verts, yaw, pitch).map(p=>[p[0]*scale, p[1]*scale]);
+    const hull = convexHull(pts);
+    ctx.fillStyle = color || '#0d0908';
+    ctx.beginPath();
+    hull.forEach((p,i)=>{ if(i===0) ctx.moveTo(p[0],p[1]); else ctx.lineTo(p[0],p[1]); });
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // Wall / background
+  function drawBg(){
+    ctx.fillStyle='#2a2015';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+  }
+  function drawWall(x,y,w,h){
+    const grd = ctx.createLinearGradient(x,y,x,y+h);
+    grd.addColorStop(0,'#5a4028');
+    grd.addColorStop(1,'#3a2818');
+    ctx.fillStyle=grd;
+    ctx.fillRect(x,y,w,h);
+    // 壁の縦筋
+    ctx.strokeStyle='rgba(0,0,0,0.15)';
+    ctx.lineWidth=1;
+    for(let i=0;i<6;i++){
+      const xx=x + (w/6)*i;
+      ctx.beginPath(); ctx.moveTo(xx,y); ctx.lineTo(xx,y+h); ctx.stroke();
+    }
+  }
+
+  // === Phase 1: 単一の影 ===
+  function drawPhase1(){
+    drawBg();
+    drawWall(50,40,500,320);
+    // 影(円形)
+    ctx.fillStyle='#0d0908';
+    ctx.beginPath();
+    ctx.arc(300,200,76,0,Math.PI*2);
+    ctx.fill();
+    // ラベル
+    ctx.font='500 13px "Source Sans 3",sans-serif';
+    ctx.fillStyle='#c8bfaa';
+    ctx.textAlign='center';
+    ctx.fillText('— 壁に映る影 —', 300, 30);
+    // 選択済みならマーク
+    if(sim.picked){
+      ctx.font='600 11px "Source Sans 3",sans-serif';
+      ctx.fillStyle='#e8c56a';
+      ctx.fillText('あなたの選択: '+({sphere:'A. 球',cylinder:'B. 円柱',cone:'C. 円錐'}[sim.picked]||''), 300, 380);
+    }
+  }
+
+  // === Phase 1 reveal: 3つの物体が同じ円の影を作る ===
+  // 設計: 全ての物体を軸Y(垂直)で立て、上からの光で円の影を作る。
+  // 自軸回転(yaw)で動きを出す。viewPitchで少し傾けて3/4ビュー。
+  function drawPhase1Reveal(){
+    drawBg();
+    const yaw = sim.animAngle || 0;
+    const viewPitch = -0.32; // 上からやや見下ろす3/4ビュー
+    const columns = [
+      {cx:130, label:'A. 球',   obj:'sphere'},
+      {cx:300, label:'B. 円柱', obj:'cylinder'},
+      {cx:470, label:'C. 円錐', obj:'cone'}
+    ];
+    ctx.textAlign='center';
+    for(const p of columns){
+      // ラベル
+      ctx.fillStyle='#e8c56a';
+      ctx.font='600 13px "Source Sans 3",sans-serif';
+      ctx.fillText(p.label, p.cx, 30);
+
+      // 3Dオブジェクト(軸=Y、垂直に立つ、yawで自軸回転)
+      drawShape(OBJECTS[p.obj], yaw, viewPitch, p.cx, 115, 46, '#e8c56a');
+
+      // 光の矢印(上から下)
+      ctx.strokeStyle='#e8c56a';
+      ctx.lineWidth=1.5;
+      ctx.beginPath();
+      ctx.moveTo(p.cx, 198);
+      ctx.lineTo(p.cx, 226);
+      ctx.stroke();
+      ctx.fillStyle='#e8c56a';
+      ctx.beginPath();
+      ctx.moveTo(p.cx-5, 222);
+      ctx.lineTo(p.cx+5, 222);
+      ctx.lineTo(p.cx, 231);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle='#b0a090';
+      ctx.font='400 10px "Source Sans 3",sans-serif';
+      ctx.fillText('光', p.cx+18, 217);
+
+      // 壁と円の影
+      drawWall(p.cx-70, 240, 140, 108);
+      ctx.fillStyle='#0d0908';
+      ctx.beginPath();
+      ctx.arc(p.cx, 294, 30, 0, Math.PI*2);
+      ctx.fill();
+
+      // 影ラベル
+      ctx.fillStyle='#c8bfaa';
+      ctx.font='500 11px "Source Sans 3",sans-serif';
+      ctx.fillText('影 = 円', p.cx, 370);
+    }
+    // 下部タイトル
+    ctx.fillStyle='#fff';
+    ctx.font='600 13px "Playfair Display",serif';
+    ctx.fillText('3つとも、軸方向から光が当たれば同じ円の影を作る。', 300, 392);
+  }
+
+  // === Phase 2: 角度を変える(L字型) ===
+  function drawPhase2(){
+    drawBg();
+    const yaw = (sim.angle/180) * Math.PI;
+    // 上: 3Dオブジェクト
+    ctx.fillStyle='#c8bfaa';
+    ctx.font='500 11px "Source Sans 3",sans-serif';
+    ctx.textAlign='center';
+    ctx.fillText('3Dオブジェクト(L字型)', 180, 30);
+    drawShape(OBJECTS.lshape, yaw, -0.25, 180, 180, 62, '#e8c56a');
+    // 右: 影(壁)
+    drawWall(360, 60, 220, 280);
+    ctx.fillStyle='#c8bfaa';
+    ctx.fillText('壁に映る影', 470, 50);
+    drawShadow(OBJECTS.lshape, yaw, -0.25, 470, 200, 62, '#0d0908');
+    // 矢印
+    ctx.strokeStyle='#8b1a1a';
+    ctx.lineWidth=1.5;
+    ctx.beginPath();
+    ctx.moveTo(260,200);
+    ctx.lineTo(350,200);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(350,200);
+    ctx.lineTo(342,195);
+    ctx.moveTo(350,200);
+    ctx.lineTo(342,205);
+    ctx.stroke();
+    ctx.fillStyle='#e8c56a';
+    ctx.font='700 14px "Source Sans 3",sans-serif';
+    ctx.fillText('射影', 305, 186);
+    // 下部: 角度表示
+    ctx.fillStyle='#c8bfaa';
+    ctx.font='400 11px "JetBrains Mono",monospace';
+    ctx.fillText('角度 = '+sim.angle+'°', 300, 370);
+  }
+
+  // === Phase 3 (Canvas 2D) は削除 — Three.js に移行 ===
+  // 旧Canvas版のdrawPhase3Before/Afterは機能せず、Three.jsが独立して描画する
+  function _unusedPhase3Before(){
+    // 囚人の視点: 暗い壁と3つの影だけ
+    ctx.fillStyle='#3a2818';
+    ctx.fillRect(80, 90, 440, 240);
+    // 壁の筋テクスチャ
+    ctx.strokeStyle='rgba(0,0,0,0.25)';
+    ctx.lineWidth=1;
+    for(let i=1;i<6;i++){
+      const x = 80 + (440/6)*i;
+      ctx.beginPath(); ctx.moveTo(x,90); ctx.lineTo(x,330); ctx.stroke();
+    }
+    // 3つの影(白シルエット)
+    ctx.fillStyle='#faf8f3';
+    // 影1: 人
+    ctx.beginPath(); ctx.arc(180, 165, 18, 0, Math.PI*2); ctx.fill();
+    ctx.fillRect(166, 183, 28, 66);
+    // 影2: 壺
+    ctx.beginPath(); ctx.ellipse(300, 210, 28, 40, 0, 0, Math.PI*2); ctx.fill();
+    // 影3: 動物
+    ctx.fillRect(410, 200, 60, 36);
+    ctx.fillRect(410, 236, 10, 24);
+    ctx.fillRect(460, 236, 10, 24);
+    ctx.beginPath(); ctx.arc(478, 194, 11, 0, Math.PI*2); ctx.fill();
+
+    // タイトル
+    ctx.fillStyle='#c8bfaa';
+    ctx.font='600 14px "Playfair Display",serif';
+    ctx.textAlign='center';
+    ctx.fillText('囚人が見ている世界', 300, 48);
+    ctx.font='400 12px "Source Sans 3",sans-serif';
+    ctx.fillStyle='#b0a090';
+    ctx.fillText('—— 3つの影だけがある', 300, 70);
+
+    // ヒント
+    ctx.fillStyle='#e8c56a';
+    ctx.font='500 12px "Source Sans 3",sans-serif';
+    ctx.fillText('↓ 「振り向く」ボタンを押してみる', 300, 370);
+  }
+
+  function _unusedPhase3After(){
+    // 振り向いた先の光景
+    // 光量(ラジアルグラデーション)
+    const fireX = 300, fireY = 180;
+    const glow = ctx.createRadialGradient(fireX, fireY, 10, fireX, fireY, 260);
+    glow.addColorStop(0, 'rgba(255,210,130,0.85)');
+    glow.addColorStop(0.35,'rgba(255,150,70,0.45)');
+    glow.addColorStop(1, 'rgba(255,120,50,0)');
+    ctx.fillStyle=glow;
+    ctx.fillRect(0,0,600,400);
+
+    // 遠景: 洞窟の外からの光(上奥)
+    const exitGrd = ctx.createRadialGradient(300, 30, 5, 300, 30, 70);
+    exitGrd.addColorStop(0,'rgba(220,230,245,0.7)');
+    exitGrd.addColorStop(1,'rgba(220,230,245,0)');
+    ctx.fillStyle=exitGrd;
+    ctx.beginPath();
+    ctx.ellipse(300, 30, 80, 35, 0, 0, Math.PI*2);
+    ctx.fill();
+    ctx.fillStyle='#b0a090';
+    ctx.font='400 10px "Source Sans 3",sans-serif';
+    ctx.textAlign='center';
+    ctx.fillText('↑ 遠くに洞窟の外', 300, 22);
+
+    // 火(中景)
+    ctx.fillStyle='#ff9a40';
+    ctx.beginPath();
+    ctx.arc(fireX, fireY, 22, 0, Math.PI*2);
+    ctx.fill();
+    ctx.fillStyle='#ffc880';
+    ctx.beginPath();
+    ctx.arc(fireX, fireY-4, 11, 0, Math.PI*2);
+    ctx.fill();
+    ctx.fillStyle='#e8c56a';
+    ctx.font='600 11px "Source Sans 3",sans-serif';
+    ctx.fillText('火(光源)', fireX, 140);
+
+    // 通路の壁(前景)
+    ctx.fillStyle='#2a1810';
+    ctx.fillRect(60, 260, 480, 56);
+    ctx.strokeStyle='#5a4028';
+    ctx.lineWidth=1.5;
+    ctx.strokeRect(60, 260, 480, 56);
+
+    // 通路壁の上の物・人形(3つ、シルエット)
+    ctx.fillStyle='#1a1208';
+    // 物1: 人形
+    ctx.beginPath(); ctx.arc(170, 240, 16, 0, Math.PI*2); ctx.fill();
+    ctx.fillRect(156, 256, 28, 14);
+    // 物2: 壺
+    ctx.beginPath(); ctx.ellipse(300, 240, 22, 32, 0, 0, Math.PI*2); ctx.fill();
+    // 物3: 動物
+    ctx.fillRect(400, 240, 58, 28);
+    ctx.fillRect(400, 268, 8, 4);
+    ctx.fillRect(450, 268, 8, 4);
+    ctx.beginPath(); ctx.arc(470, 232, 10, 0, Math.PI*2); ctx.fill();
+
+    ctx.fillStyle='#c8bfaa';
+    ctx.font='600 11px "Source Sans 3",sans-serif';
+    ctx.fillText('通路の壁 + 担ぎ手が運ぶ物', 300, 300);
+    ctx.font='400 10px "Source Sans 3",sans-serif';
+    ctx.fillStyle='#b0a090';
+    ctx.fillText('(これが壁に影を作っていた)', 300, 316);
+
+    // タイトル
+    ctx.fillStyle='#fff';
+    ctx.font='600 14px "Playfair Display",serif';
+    ctx.fillText('振り向いた先に見えたもの', 300, 48);
+    ctx.font='400 12px "Source Sans 3",sans-serif';
+    ctx.fillStyle='#e8c56a';
+    ctx.fillText('—— 影の「正体」が、ここにあった', 300, 70);
+
+    // 下部: 戻るヒント
+    ctx.fillStyle='#b0a090';
+    ctx.font='400 11px "Source Sans 3",sans-serif';
+    ctx.fillText('↓ 「もう一度見る」で前の視野に戻せる', 300, 380);
+  }
+
+  // === メイン描画 ===
+  // Phase 3 は Three.js(別モジュール)が担当。shadowCanvas は Phase 1/2 専用。
+  function render(){
+    if(sim.phase===1){
+      if(sim.picked===null){ drawPhase1(); }
+      else { drawPhase1Reveal(); }
+    } else if(sim.phase===2){
+      drawPhase2();
+    }
+    // Phase 3 は別モジュールで描画(Three.js)
+  }
+
+  // === アニメーションループ(Phase 1 リビール中のみ) ===
+  let animId = null;
+  function animTick(){
+    sim.animAngle = (sim.animAngle || 0) + 0.012;
+    if(sim.phase===1 && sim.picked!==null){
+      render();
+      animId = requestAnimationFrame(animTick);
+    } else {
+      animId = null;
+    }
+  }
+  function startAnim(){
+    if(animId) return;
+    if(sim.animAngle === undefined) sim.animAngle = 0;
+    animId = requestAnimationFrame(animTick);
+  }
+  function stopAnim(){
+    if(animId){ cancelAnimationFrame(animId); animId = null; }
+  }
+
+  // === UI状態切り替え ===
+  window.simSetPhase = function(n){
+    stopAnim();
+    sim.phase=n;
+    sim.picked=null;
+    sim.angle=0;
+    sim.animAngle=0;
+    // Phase tag
+    document.getElementById('simPhaseTag').textContent = 'Phase '+n+' of 3';
+    ['simPh1','simPh2'].forEach((id,i)=>{
+      document.getElementById(id).classList.toggle('active', i+1===n);
+    });
+    // Controls
+    const controls=document.getElementById('simControls');
+    const slider=document.getElementById('simSliderRow');
+    const reveal=document.getElementById('simReveal');
+    const instruction=document.getElementById('simInstruction');
+    reveal.classList.remove('show');
+    reveal.innerHTML='';
+    if(n===1){
+      controls.style.display='flex';
+      slider.style.display='none';
+      controls.innerHTML = '<button class="sim-btn" data-choice="sphere" onclick="simPickObject(\'sphere\')">A. 球</button><button class="sim-btn" data-choice="cylinder" onclick="simPickObject(\'cylinder\')">B. 円柱</button><button class="sim-btn" data-choice="cone" onclick="simPickObject(\'cone\')">C. 円錐</button>';
+      instruction.innerHTML='<strong>壁に映る影だけが見えている。</strong>これを作っているのは、どんな形の物体だろうか。A・B・Cから直感で選んでみてほしい。';
+    } else if(n===2){
+      controls.style.display='none';
+      slider.style.display='flex';
+      instruction.innerHTML='<strong>L字型の3D物体を、光源からの角度を変えて回してみる。</strong>壁の影が、角度ごとに全く違う形になることを確認してほしい。';
+      document.getElementById('simSlider').value=45;
+      document.getElementById('simSliderVal').textContent='45°';
+      sim.angle=45;
+      // 自動で解説を出す
+      setTimeout(()=>{
+        const r=document.getElementById('simReveal');
+        r.innerHTML='<p>ひとつの3Dオブジェクトから、無数に異なる影が出てくる。では逆はどうか——<em>ある影から、元のL字型を一意に復元できるだろうか?</em> 答えは否。同じ影を作れる3D形状は無限にあり、角度の情報を追加しても、足りない情報は常に残る。</p>';
+        r.classList.add('show');
+      },800);
+    }
+    render();
+  };
+
+  window.simPickObject = function(choice){
+    sim.picked = choice;
+    sim.animAngle = 0;
+    document.querySelectorAll('#simControls .sim-btn').forEach(b=>{
+      b.classList.toggle('selected', b.dataset.choice===choice);
+    });
+    const reveal=document.getElementById('simReveal');
+    const labels={sphere:'球',cylinder:'円柱',cone:'円錐'};
+    reveal.innerHTML='<p>あなたが選んだのは <strong>'+labels[choice]+'</strong>。でも——<em>球も、垂直に立てた円柱を真上から照らしたものも、円錐を真上から照らしたものも、すべて同じ円の影を作る</em>。ひとつの影からは、元の形を一意に決められない。画面を見てみてほしい(物体が回っているのは自軸回転。軸方向の光源なら、回っても影は円のまま)。</p>';
+    reveal.classList.add('show');
+    startAnim();
+    render();
+  };
+
+  document.getElementById('simSlider').addEventListener('input', function(){
+    sim.angle = parseInt(this.value);
+    document.getElementById('simSliderVal').textContent = sim.angle+'°';
+    render();
+  });
+
+  // 初期描画
+  render();
+})();
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},{id:'to4',delay:6200},
+  {id:'tl5',delay:7300},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+
+
+<div class="tip-backdrop" id="tipBackdrop"></div>
+<div class="tip-toast" id="tipToast">
+  <button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button>
+  <span class="tip-toast-title" id="tipToastTitle"></span>
+  <div class="tip-toast-body" id="tipToastBody"></div>
+</div>
+</body>
+</html>

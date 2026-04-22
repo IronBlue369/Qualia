@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>傍観者効果 — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-stat{border:1px solid #c8bfaa;padding:28px 24px;background:#f3efe6;text-align:center;margin-bottom:20px;}
+.cover-stat-n{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:8px;}
+.cover-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.6;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'?';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:160px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;font-style:italic;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* COMPARE TABLE (NYT vs 実際) */
+.compare-tbl{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.compare-head{display:grid;grid-template-columns:180px 1fr 1fr;background:#3d3020;color:#faf8f3;}
+.compare-head>div{padding:11px 16px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;}
+.compare-head>div:nth-child(2){border-left:1px solid #5a4530;color:#f0c080;}
+.compare-head>div:nth-child(3){border-left:1px solid #5a4530;color:#8fb090;}
+.compare-row{display:grid;grid-template-columns:180px 1fr 1fr;border-top:1px solid #e0d8c8;}
+.compare-row>div{padding:14px 16px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.7;}
+.compare-row>div:first-child{background:#f3efe6;font-weight:600;color:#1a1208;font-size:12px;letter-spacing:.04em;}
+.compare-row>div:nth-child(2){border-left:1px solid #e0d8c8;background:#fdf6ec;}
+.compare-row>div:nth-child(3){border-left:1px solid #e0d8c8;}
+.compare-row>div strong{color:#8b1a1a;font-weight:600;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;padding:0;overflow:hidden;min-height:100%;}
+.person-block-img img{width:100%;height:100%;min-height:100%;object-fit:cover;object-position:center top;display:block;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-wiki{margin-bottom:8px;}
+.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;transition:all .15s;}
+.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* SVG FIG */
+.svg-fig{max-width:680px;margin:28px auto;display:block;}
+@media(max-width:700px){.svg-fig{max-width:100%;}}
+
+/* INTERACTIVE — SLIDER (crowd size → help %) */
+.ix-card{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.ix-head{background:#1a1208;color:#faf8f3;padding:11px 20px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:10px;}
+.ix-head::before{content:'✦';color:#e8c56a;font-size:13px;}
+.ix-body{padding:24px 22px 20px;}
+.ix-prompt{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.8;margin-bottom:18px;}
+.ix-prompt strong{color:#8b1a1a;font-weight:600;}
+.slider-row{display:flex;align-items:center;gap:16px;margin-bottom:18px;}
+.slider-val{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:#8b1a1a;line-height:1;min-width:88px;text-align:right;font-variant-numeric:tabular-nums;}
+.slider-val-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#7a6a55;letter-spacing:.08em;}
+.slider-wrap{flex:1;display:flex;flex-direction:column;gap:6px;}
+.slider-wrap input[type=range]{width:100%;height:4px;-webkit-appearance:none;appearance:none;background:linear-gradient(90deg,#8b1a1a,#c8bfaa);outline:none;}
+.slider-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#1a1208;cursor:pointer;border:2px solid #faf8f3;box-shadow:0 0 0 1px #c8bfaa;}
+.slider-wrap input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#1a1208;cursor:pointer;border:2px solid #faf8f3;box-shadow:0 0 0 1px #c8bfaa;}
+.slider-ends{display:flex;justify-content:space-between;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;}
+.bar-chart{display:flex;flex-direction:column;gap:8px;margin-top:18px;padding-top:18px;border-top:1px solid #e0d8c8;}
+.bar-row{display:grid;grid-template-columns:72px 1fr 52px;align-items:center;gap:10px;}
+.bar-lbl{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-weight:400;}
+.bar-lbl.cur{color:#8b1a1a;font-weight:600;}
+.bar-track{height:22px;background:#f0ebe0;border:1px solid #e0d8c8;position:relative;}
+.bar-fill{height:100%;background:#c8bfaa;transition:width .3s;}
+.bar-row.cur .bar-fill{background:#8b1a1a;}
+.bar-num{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;font-variant-numeric:tabular-nums;font-weight:600;text-align:right;}
+.bar-chart-head{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;}
+.ix-note{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:16px;padding-top:12px;border-top:1px solid #e0d8c8;}
+
+/* Crowd visualizer (scene + pie + number) */
+.crowd-hero{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;margin-bottom:16px;padding:20px 22px;background:#f3efe6;border:1px solid #e0d8c8;align-items:center;}
+.crowd-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;letter-spacing:.08em;margin-bottom:6px;font-weight:600;}
+.crowd-stat-n{font-family:'Playfair Display',serif;font-size:60px;font-weight:900;color:#8b1a1a;line-height:1;font-variant-numeric:tabular-nums;}
+.crowd-stat-unit{font-size:28px;font-weight:700;margin-left:2px;}
+.crowd-stat-sub{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:8px;line-height:1.6;}
+.crowd-pie-wrap{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;}
+.crowd-pie{width:112px;height:112px;flex-shrink:0;}
+.crowd-pie-lbl{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.5;font-weight:600;letter-spacing:.04em;}
+.crowd-pie-val{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#8b1a1a;margin-top:4px;line-height:1;}
+.crowd-pie-sub{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:3px;font-weight:300;}
+.crowd-scene{width:100%;max-width:100%;margin:10px 0 18px;display:block;}
+
+/* Scene image block */
+.scene-img{margin:28px 0;border:1px solid #c8bfaa;background:#1a1208;overflow:hidden;}
+.scene-img img{display:block;width:100%;height:auto;}
+.scene-img-cap{padding:9px 16px;background:#f3efe6;border-top:1px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.6;}
+.scene-img-cap .credit{color:#b0a090;font-size:10px;margin-left:6px;}
+.scene-img-cap a{color:inherit;border-bottom:1px solid rgba(176,160,144,.4);}
+.scene-img-cap a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+
+/* Scene image inside phase interaction */
+.phase-body .scene-img{margin:0 0 16px;border-color:#3a2a1a;}
+.phase-body .scene-img-cap{background:#0d0d0d;border-top-color:#3a2a1a;color:#7a6a55;font-family:'JetBrains Mono',monospace;font-size:10px;}
+
+/* INTERACTIVE — 4 PHASES */
+.phase-wrap{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.phase-head{background:#1a1208;color:#faf8f3;padding:11px 20px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;}
+.phase-head-lbl::before{content:'▸ ';color:#e8c56a;}
+.phase-head-count{color:#b0a090;font-weight:400;}
+.phase-body{padding:24px 22px;}
+.phase-scene{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.phase-desc{font-family:'Source Serif 4',serif;font-size:15px;font-weight:400;color:#1a1208;line-height:1.85;margin-bottom:20px;padding:16px 18px;background:#0d0d0d;color:#c8c8c8;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;border-left:3px solid #8b1a1a;}
+.phase-desc em{color:#e8c56a;font-style:normal;}
+.phase-q{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:12px;letter-spacing:.02em;}
+.phase-opts{display:grid;grid-template-columns:1fr;gap:8px;}
+.phase-opt{border:1px solid #c8bfaa;background:#faf8f3;padding:12px 16px;text-align:left;font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;cursor:pointer;transition:all .15s;line-height:1.6;}
+.phase-opt:hover{border-color:#8b1a1a;background:#f3efe6;}
+.phase-opt.picked{border-color:#8b1a1a;background:#f3efe6;color:#1a1208;font-weight:600;}
+.phase-opt-n{display:inline-block;font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#8b1a1a;margin-right:10px;}
+
+.phase-result{padding:20px 22px;background:#f3efe6;border-top:1px solid #c8bfaa;}
+.phase-result-h{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#1a1208;margin-bottom:12px;}
+.phase-result p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.85;margin-bottom:10px;}
+.phase-result p strong{color:#8b1a1a;font-weight:600;}
+.phase-result p em{color:#1a1208;font-style:normal;font-weight:600;}
+.phase-compare{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:16px 0;border:1px solid #c8bfaa;}
+.phase-compare>div{padding:14px 16px;font-family:'Source Sans 3',sans-serif;font-size:12px;line-height:1.75;color:#3d3020;}
+.phase-compare>div:first-child{background:#fdf6ec;border-right:1px solid #c8bfaa;}
+.phase-compare>div:last-child{background:white;}
+.phase-compare-lbl{font-size:13px;font-weight:700;letter-spacing:.06em;margin-bottom:8px;display:block;}
+.phase-compare>div:first-child .phase-compare-lbl{color:#c4392a;}
+.phase-compare>div:last-child .phase-compare-lbl{color:#1a5a30;}
+
+.phase-next{display:inline-block;margin-top:14px;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;color:#faf8f3;background:#1a1208;padding:10px 18px;border:none;cursor:pointer;text-transform:uppercase;transition:background .2s;}
+.phase-next:hover{background:#8b1a1a;}
+
+.phase-hidden{display:none;}
+
+/* HISTORY TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / SIGNATURE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* ── FOOTER ── */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:0;max-width:100%;min-height:0;}
+  .person-block-img img{height:auto;object-fit:unset;min-height:0;max-height:280px;}
+  .compare-head,.compare-row{grid-template-columns:110px 1fr 1fr;}
+  .compare-head>div,.compare-row>div{padding:10px 12px;font-size:12px;}
+  .phase-compare{grid-template-columns:1fr;}
+  .phase-compare>div:first-child{border-right:none;border-bottom:1px solid #c8bfaa;}
+  .bar-row{grid-template-columns:60px 1fr 44px;}
+  .crowd-hero{grid-template-columns:1fr;gap:14px;padding:16px;}
+  .crowd-stat-n{font-size:48px;}
+  .crowd-pie{width:96px;height:96px;}
+  .crowd-pie-val{font-size:22px;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.phase-desc{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){.toc-back{padding:22px 20px;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">社会心理学</p>
+    <h1>38 人が見ていた、という<em>物語</em></h1>
+    <p class="cover-deck">効果は実験で繰り返し確かめられている。だがその名前の由来になった「38 人の目撃者」の事件は、新聞が作った誤報だった。事実と神話が同じ名前で流通した半世紀を、最初からほどいていく。</p>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>BIAS REPORT</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1968</span>
+      <p class="est-event">ラタネとダーリーが「責任拡散」を実験で示し、後に「傍観者効果」と呼ばれることになる現象が学術用語として誕生した年。</p>
+      <p class="est-context">同年の世界:マーティン・ルーサー・キング牧師暗殺、パリ五月革命、プラハの春とソ連軍侵攻、アポロ 8 号月軌道。社会の連帯と無関心が同時に問われた年だった。</p>
+    </div>
+    <p class="cover-aside">1964 年の事件から 60 年。効果は何百回も追試され、メタ分析も積み上がった。しかし <strong>「38 人が見殺しにした」という事件そのものの物語</strong>は、新聞が作った誤報のまま、半世紀近く検証されずに漂い続けた。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>駅のホームで、誰かがうずくまっている。酔っているのか、倒れたのか。周りには通勤客が何十人もいる。みんな視線を少しずつ落としている。私もスマホを見る。誰かが気づくだろう。きっと駅員が来る。</p>
+    <p>この場面は、誰にでも覚えがあるはずだ。「誰かが」という言葉には不思議な磁力があって、その「誰か」に自分が含まれていないことを、私たちは自動的に前提にしてしまう。</p>
+    <p>だが、その「誰か」は、最初から存在しない。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 予備知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-18</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-18</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">一つの事件を出発点にして生まれた効果が、出発点の方を誤報として残した。実在と神話を同時に引き受けながら、<strong>「誰かが動くはず」</strong>の自分をほどいていく。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ========== 背景セクション ========== -->
+  <div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+  <h2 class="fade">38 人が見ていた、という物語</h2>
+
+  <p class="body-text fade">1964 年 3 月 13 日、午前 3 時過ぎのニューヨーク市クイーンズ。<strong>キティ・ジェノヴィーズ</strong>(Kitty Genovese、女性、当時 28 歳、地元のバーでマネージャー)は、仕事から帰宅したところを、自宅アパート「モーブレー(Mowbray)」<strong>の前(路上駐車場側)</strong>でウィンストン・モーズリーという男にナイフで刺された。叫び声を聞いた住人が窓から怒鳴り、男は一度逃走する。負傷したキティは自力で建物の裏手に回り、<strong>裏口の廊下(建物共用のロビー状の空間)</strong>に倒れ込んだ。約 10 分後、男は戻ってきて裏口の廊下でキティを発見し、そこで再度襲った。彼女は致命傷を負い、搬送途中で死亡した。つまり<em>最初の襲撃は建物の表、二度目の襲撃は建物裏の廊下</em>——この位置の違いが、後の「誰が何を見たか」の話に効いてくる。犯人モーズリーは 29 歳、工員、前科なし、既婚で子どもが 3 人いた。</p>
+
+  <p class="body-text fade">事件の 2 週間後、『ニューヨーク・タイムズ』第一面にマーティン・ガンズバーグ記者の署名記事が載る。見出しは "<strong>37 Who Saw Murder Didn't Call the Police</strong>"(37 人の目撃者が殺人を見ながら警察に電話しなかった)。ただし本文では目撃者の数は <strong>38 人</strong>と書かれていて、見出しと本文で一人ずれている——これは NYT 側の単純な誤植で、以後の引用では 38 人の方が広まった。記事はこう書いた。「30 分にわたる襲撃の間、クイーンズの尊敬できる、法を守る市民 38 人が、殺人犯が女性を三度追って刺すのを見ていた」。誰一人として警察に電話しなかった、と。</p>
+
+  <p class="body-text fade">この記事は、社会心理学の教科書に引用され、「現代都市人の冷淡さ」を象徴する寓話になった。ラジオも映画もドラマも、事件の名前で無関心を名指しするようになる。誰も助けなかった、という物語は、あまりにも使いやすかった。</p>
+
+  <p class="body-text fade">本稿で以後「<strong>神話</strong>」と呼ぶのは、<em>この記事が流布させた「38 人が現場を目撃しながら、誰一人として動かずに女性を見殺しにした」という物語そのもの</em>を指す。実験で繰り返し確かめられている傍観者効果の<strong>学術概念(=効果)</strong>とは、以後ずっと分けて扱う。</p>
+
+  <p class="body-text fade">ただ、この記事には一つ問題があった。<strong>書かれたことの大半が、事実と一致していなかった。</strong></p>
+
+  <div class="compare-tbl fade">
+    <div class="compare-head">
+      <div>項目</div>
+      <div>NYT 1964 年 3 月 27 日</div>
+      <div>実際に起きたこと</div>
+    </div>
+    <div class="compare-row">
+      <div>目撃者の数</div>
+      <div><strong>38 人</strong>が「殺人を見ていた」</div>
+      <div>約 <strong>12 人</strong>が、断片的に音や姿を知覚</div>
+    </div>
+    <div class="compare-row">
+      <div>状況の認識</div>
+      <div>全員が「殺人だと理解していた」</div>
+      <div>大半は「夫婦喧嘩」「酔っ払いの口論」と解釈</div>
+    </div>
+    <div class="compare-row">
+      <div>警察への通報</div>
+      <div>誰一人として通報しなかった</div>
+      <div>少なくとも <strong>2 人</strong>が通報した記録が残る</div>
+    </div>
+    <div class="compare-row">
+      <div>現場への介入</div>
+      <div>誰も近づかなかった</div>
+      <div>隣人 <strong>ソフィア・ファラー</strong>が駆けつけ、最期まで抱きかかえた</div>
+    </div>
+    <div class="compare-row">
+      <div>視界の問題</div>
+      <div>記事は触れていない</div>
+      <div>建物の構造上、襲撃全体を見通せた住人はいなかった</div>
+    </div>
+  </div>
+
+  <p class="body-text fade">では、なぜこの誤報が残ったのか。都市部長エイブ・ローゼンタールは、事件から数日後、警察署長との昼食でこう聞かされた。「クイーンズの例の件、あれは語り草ものだ。目撃者が 38 人もいたんだぞ」。ローゼンタールはこの数字をそのまま記事のテーマに据えた。検証された数字ではなかった。</p>
+
+  <p class="body-text fade">のちに同僚記者がガンズバーグに問いただしている。「<em>目撃者が殺人だと認識していなかったことを、なぜ書かなかった?</em>」。答えは残っている。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"It would have ruined the story."</p>
+    <p class="quote-ja">物語が台無しになっただろうからね。</p>
+    <p class="quote-attr">— Martin Gansberg(NYT 記者、事件報道の執筆者)、同僚記者 Danny Meehan との私的な会話での発言。ドキュメンタリー『The Witness』(2015)で開示された</p>
+  </div>
+
+  <p class="body-text fade">38 という数字の根拠は、最後まで出てこなかった。物語を守るために事実の側が削られたのだ。</p>
+
+  <div class="scene-img fade">
+    <img src="./scene_kew_gardens_alley.jpg" alt="キュー・ガーデンズ LIRR 駅から Lefferts Boulevard へ抜ける通路。事件現場の一部を含む路地" loading="lazy">
+    <div class="scene-img-cap">キュー・ガーデンズ LIRR 駅から Lefferts Boulevard へ抜ける通路。事件現場を含む路地を、現在(2019 年撮影)から見た景色。<span class="credit">Photo: Union Turnpike / <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a> / <a href="https://commons.wikimedia.org/wiki/File:Site_of_the_murder_of_Kitty_Genovese_in_alleyway_from_Kew_Gardens_LIRR_station_to_Lefferts_Boulevard.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></span></div>
+  </div>
+
+  <hr class="art-rule">
+
+  <h2 class="fade">消された目撃者、名づけられた効果</h2>
+
+  <p class="body-text fade">事件には、NYT の記事から<strong>完全に抜け落ちた人物</strong>がいる。名前はソフィア・ファラー(Sophia Farrar)、36 歳、同じ Mowbray に住む親しい女性の友人(家族ではない、キティの友人)。二度目の襲撃の最中、別の住人グレタ・シュワルツが「下で誰か刺されている」と電話で伝え、それを受けたソフィアは<strong>夜中の建物裏口の廊下</strong>に走り込んだ。そこで血の滴るキティを抱きかかえ、救急車が到着するまで「<em>助けは来るわ</em>」と囁き続けた。最期の時間を一緒にいたのは、この一人だった。</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="./person_genovese.jpg" alt="キティ・ジェノヴィーズの 1961 年の写真" style="width:100%;height:auto;">
+    </div>
+    <div class="person-block-body">
+      <div class="person-block-name">キティ・ジェノヴィーズ</div>
+      <div class="person-block-role">Catherine "Kitty" Genovese (1935–1964)</div>
+      <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%AD%E3%83%86%E3%82%A3%E3%83%BB%E3%82%B8%E3%82%A7%E3%83%8E%E3%83%B4%E3%82%A3%E3%83%BC%E3%82%BA%E4%BA%8B%E4%BB%B6" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p class="person-block-desc">ニューヨーク市クイーンズ、キュー・ガーデンズのバーでマネージャーをしていた。1964 年 3 月 13 日、帰宅直後に自宅前で襲われ死亡。「傍観者効果」という学術用語は、彼女の死をめぐる誤った報道から生まれた。</p>
+    </div>
+  </div>
+
+  <div class="person-block fade" style="grid-template-columns:1fr;">
+    <div class="person-block-body" style="border-left:none;">
+      <div class="person-block-name">ソフィア・ファラー</div>
+      <div class="person-block-role">Sophia Farrar (1928–2020)</div>
+      <p class="person-block-desc">キティの隣人で友人。襲撃後、血の滴る廊下に駆け込み、救急車が来るまで彼女を抱きかかえて「助けは来るわ」と囁き続けた。NYT の記事には一度も登場しなかった。2016 年、NYT は公式に誤報を認め、そこで初めて彼女の名前が記事化された。92 歳で亡くなるまで、「無関心な隣人たち」の物語に反論し続けた。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">事件の 4 年後、二人の若い社会心理学者、<span class="tip">ジョン・ダーリーとビブ・ラタネ<span class="tip-box"><strong>John Darley &amp; Bibb Latané</strong>コロンビア大学とニューヨーク大学の若手研究者。事件の報道に強い違和感を持ち、「本当に人間は冷淡なのか、それとも状況の方に問題があるのか」を実験で切り分けようとした。二人は以後、傍観者効果の研究で生涯を知られることになる。</span></span>は、事件をきっかけに実験を始めた。彼らの問いは、教科書の寓話とは少しずれていた。「<em>一人ひとりが冷淡なのではなく、複数の人がいること自体が行動を止めているのではないか</em>」。</p>
+
+  <p class="body-text fade">二人の論文で、現象は初めて名前を得た。<span class="tip">責任拡散<span class="tip-box"><strong>Diffusion of responsibility</strong>周りに他の人がいるほど、「自分が動かなくてもいい」という感覚が強まる心理。人数で割られるのは責任感で、能力や情報ではない。</span></span>。そして、この概念の名前が、元の事件の物語と混ざって広まっていった。</p>
+
+  <!-- SVG 1: 3段階で固まった神話 (パターンA) -->
+  <svg class="svg-fig fade" viewBox="0 0 800 470" xmlns="http://www.w3.org/2000/svg" style="max-width:680px;">
+    <!-- zone labels -->
+    <text x="140" y="42" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="17" font-weight="600" fill="#7a6a55" letter-spacing="2">報道の段階</text>
+    <text x="400" y="42" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="17" font-weight="600" fill="#7a6a55" letter-spacing="2">実験の段階</text>
+    <text x="660" y="42" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="17" font-weight="600" fill="#7a6a55" letter-spacing="2">定着の段階</text>
+
+    <!-- Box 1 -->
+    <rect x="30" y="70" width="220" height="220" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="140" y="112" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="22" font-weight="700" fill="#1a1208">1964 年 3 月</text>
+    <text x="140" y="144" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="19" font-weight="600" fill="#8b1a1a">NYT「38 人」記事</text>
+    <text x="140" y="188" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#3d3020">検証なしの数字が</text>
+    <text x="140" y="212" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#3d3020">第一面に載る。</text>
+    <text x="140" y="246" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55">都市の無関心の</text>
+    <text x="140" y="270" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55">象徴に</text>
+
+    <!-- Arrow 1 -->
+    <text x="272" y="185" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="26" fill="#8b1a1a">→</text>
+
+    <!-- Box 2 -->
+    <rect x="290" y="70" width="220" height="220" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="400" y="112" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="22" font-weight="700" fill="#1a1208">1968 年</text>
+    <text x="400" y="144" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="19" font-weight="600" fill="#8b1a1a">ラタネ &amp; ダーリー</text>
+    <text x="400" y="188" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#3d3020">事件を出発点に</text>
+    <text x="400" y="212" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#3d3020">実験を設計。</text>
+    <text x="400" y="246" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55">「責任拡散」という</text>
+    <text x="400" y="270" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55">名前が生まれる</text>
+
+    <!-- Arrow 2 -->
+    <text x="532" y="185" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="26" fill="#8b1a1a">→</text>
+
+    <!-- Box 3 -->
+    <rect x="550" y="70" width="220" height="220" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="660" y="112" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="22" font-weight="700" fill="#1a1208">1970 年代〜</text>
+    <text x="660" y="144" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="19" font-weight="600" fill="#8b1a1a">教科書への定着</text>
+    <text x="660" y="188" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#3d3020">事件の記述と</text>
+    <text x="660" y="212" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#3d3020">実験結果が癒着。</text>
+    <text x="660" y="246" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55">「神話」と「効果」が</text>
+    <text x="660" y="270" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55">一つの物語に</text>
+
+    <!-- bottom note -->
+    <line x1="30" y1="340" x2="770" y2="340" stroke="#e0d8c8" stroke-width="1"/>
+    <text x="400" y="378" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55">名前の由来になった事件の<tspan fill="#8b1a1a" font-weight="600">細部</tspan>と、実験で確かめられた<tspan fill="#8b1a1a" font-weight="600">効果</tspan>は、別々に扱うべきだった。</text>
+    <text x="400" y="408" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55">だが、半世紀のあいだ、それは一つの塊として流通した。</text>
+  </svg>
+
+  <p class="body-text fade">神話は神話として、効果は効果として、別々に向き合う必要がある。まず <em>効果の方</em>から、手を動かして触ってみる。</p>
+
+  <!-- Interactive: Crowd Size — 3-layer visualizer -->
+  <div class="ix-card fade">
+    <div class="ix-head">Crowd Size — あなたが動く確率</div>
+    <div class="ix-body">
+      <p class="ix-prompt">目の前で緊急事態が起きている。あなた以外に <strong>n 人</strong>の傍観者がいるとき、あなたが動く確率・責任の割られ方・場面の見え方が、どう連動して変わるか。スライダーを動かすと 3 つが同時に更新される。</p>
+
+      <!-- Hero: big % + responsibility pie -->
+      <div class="crowd-hero">
+        <div>
+          <div class="crowd-stat-lbl">あなたが動く確率</div>
+          <div class="crowd-stat-n"><span id="bcn-pct">85</span><span class="crowd-stat-unit">%</span></div>
+          <div class="crowd-stat-sub">ダーリー&amp;ラタネ(1968)の実測に指数減衰モデルで内挿</div>
+        </div>
+        <div class="crowd-pie-wrap">
+          <svg class="crowd-pie" viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="52" fill="#e0d8c8"/>
+            <path id="piePath" d="M 60 8 A 52 52 0 1 1 59.99 8 Z" fill="#8b1a1a"/>
+            <circle cx="60" cy="60" r="32" fill="#f3efe6"/>
+            <text x="60" y="70" text-anchor="middle" font-family="'Playfair Display',serif" font-size="26" font-weight="700" fill="#8b1a1a" id="pieTopLabel">1/1</text>
+          </svg>
+          <div>
+            <div class="crowd-pie-lbl">あなたに割り当てられる責任</div>
+            <div class="crowd-pie-val"><span id="bcn-resp">100</span>%</div>
+            <div class="crowd-pie-sub">心理メカニズムとしての「割り算」の概念図</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene SVG -->
+      <svg class="crowd-scene" viewBox="0 0 800 210" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ground line -->
+        <line x1="20" y1="180" x2="780" y2="180" stroke="#c8bfaa" stroke-width="1.5"/>
+        <text x="20" y="202" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#b0a090">場面</text>
+
+        <!-- Victim (fallen figure — side view, head left, knees bent, arm raised) -->
+        <g transform="translate(70, 180)">
+          <text x="8" y="-104" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55">倒れている人</text>
+          <text x="8" y="-72" text-anchor="middle" font-family="'Playfair Display',serif" font-size="28" font-weight="700" fill="#8b1a1a">!</text>
+          <!-- Head -->
+          <circle cx="-26" cy="-12" r="8" fill="#8b1a1a"/>
+          <!-- Torso (head-to-hip, horizontal) -->
+          <line x1="-19" y1="-11" x2="8" y2="-10" stroke="#8b1a1a" stroke-width="6.5" stroke-linecap="round"/>
+          <!-- Upper arm (bent upward from shoulder) -->
+          <line x1="-14" y1="-13" x2="-10" y2="-30" stroke="#8b1a1a" stroke-width="4" stroke-linecap="round"/>
+          <!-- Forearm (hand reaching) -->
+          <line x1="-10" y1="-30" x2="2" y2="-26" stroke="#8b1a1a" stroke-width="4" stroke-linecap="round"/>
+          <!-- Other arm (limp, down toward ground) -->
+          <line x1="-10" y1="-8" x2="-18" y2="-2" stroke="#8b1a1a" stroke-width="4" stroke-linecap="round"/>
+          <!-- Upper leg 1 (bent, knee up) -->
+          <line x1="8" y1="-10" x2="22" y2="-22" stroke="#8b1a1a" stroke-width="5" stroke-linecap="round"/>
+          <!-- Lower leg 1 (from knee down to ground) -->
+          <line x1="22" y1="-22" x2="34" y2="-10" stroke="#8b1a1a" stroke-width="5" stroke-linecap="round"/>
+          <!-- Leg 2 (extended, slightly off ground) -->
+          <line x1="8" y1="-8" x2="36" y2="-4" stroke="#8b1a1a" stroke-width="5" stroke-linecap="round"/>
+        </g>
+
+        <!-- You (red stick figure) -->
+        <g transform="translate(230, 180)">
+          <text x="0" y="-104" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="17" font-weight="700" fill="#8b1a1a">あなた</text>
+          <circle cx="0" cy="-82" r="9" fill="#8b1a1a"/>
+          <line x1="0" y1="-73" x2="0" y2="-36" stroke="#8b1a1a" stroke-width="3.5"/>
+          <line x1="0" y1="-62" x2="-13" y2="-42" stroke="#8b1a1a" stroke-width="3"/>
+          <line x1="0" y1="-62" x2="13" y2="-42" stroke="#8b1a1a" stroke-width="3"/>
+          <line x1="0" y1="-36" x2="-10" y2="-4" stroke="#8b1a1a" stroke-width="3"/>
+          <line x1="0" y1="-36" x2="10" y2="-4" stroke="#8b1a1a" stroke-width="3"/>
+        </g>
+
+        <!-- Bystanders: 9 figures at x=320+i*52 (i=0..8) -->
+        <g class="bystander" id="by1" transform="translate(320, 180)" opacity="0" style="transition:opacity .3s;">
+          <circle cx="0" cy="-82" r="8" fill="#c8bfaa"/>
+          <line x1="0" y1="-74" x2="0" y2="-36" stroke="#c8bfaa" stroke-width="3"/>
+          <line x1="0" y1="-62" x2="-11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-62" x2="11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="-9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+        </g>
+        <g class="bystander" id="by2" transform="translate(372, 180)" opacity="0" style="transition:opacity .3s;">
+          <circle cx="0" cy="-82" r="8" fill="#c8bfaa"/>
+          <line x1="0" y1="-74" x2="0" y2="-36" stroke="#c8bfaa" stroke-width="3"/>
+          <line x1="0" y1="-62" x2="-11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-62" x2="11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="-9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+        </g>
+        <g class="bystander" id="by3" transform="translate(424, 180)" opacity="0" style="transition:opacity .3s;">
+          <circle cx="0" cy="-82" r="8" fill="#c8bfaa"/>
+          <line x1="0" y1="-74" x2="0" y2="-36" stroke="#c8bfaa" stroke-width="3"/>
+          <line x1="0" y1="-62" x2="-11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-62" x2="11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="-9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+        </g>
+        <g class="bystander" id="by4" transform="translate(476, 180)" opacity="0" style="transition:opacity .3s;">
+          <circle cx="0" cy="-82" r="8" fill="#c8bfaa"/>
+          <line x1="0" y1="-74" x2="0" y2="-36" stroke="#c8bfaa" stroke-width="3"/>
+          <line x1="0" y1="-62" x2="-11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-62" x2="11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="-9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+        </g>
+        <g class="bystander" id="by5" transform="translate(528, 180)" opacity="0" style="transition:opacity .3s;">
+          <circle cx="0" cy="-82" r="8" fill="#c8bfaa"/>
+          <line x1="0" y1="-74" x2="0" y2="-36" stroke="#c8bfaa" stroke-width="3"/>
+          <line x1="0" y1="-62" x2="-11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-62" x2="11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="-9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+        </g>
+        <g class="bystander" id="by6" transform="translate(580, 180)" opacity="0" style="transition:opacity .3s;">
+          <circle cx="0" cy="-82" r="8" fill="#c8bfaa"/>
+          <line x1="0" y1="-74" x2="0" y2="-36" stroke="#c8bfaa" stroke-width="3"/>
+          <line x1="0" y1="-62" x2="-11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-62" x2="11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="-9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+        </g>
+        <g class="bystander" id="by7" transform="translate(632, 180)" opacity="0" style="transition:opacity .3s;">
+          <circle cx="0" cy="-82" r="8" fill="#c8bfaa"/>
+          <line x1="0" y1="-74" x2="0" y2="-36" stroke="#c8bfaa" stroke-width="3"/>
+          <line x1="0" y1="-62" x2="-11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-62" x2="11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="-9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+        </g>
+        <g class="bystander" id="by8" transform="translate(684, 180)" opacity="0" style="transition:opacity .3s;">
+          <circle cx="0" cy="-82" r="8" fill="#c8bfaa"/>
+          <line x1="0" y1="-74" x2="0" y2="-36" stroke="#c8bfaa" stroke-width="3"/>
+          <line x1="0" y1="-62" x2="-11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-62" x2="11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="-9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+        </g>
+        <g class="bystander" id="by9" transform="translate(736, 180)" opacity="0" style="transition:opacity .3s;">
+          <circle cx="0" cy="-82" r="8" fill="#c8bfaa"/>
+          <line x1="0" y1="-74" x2="0" y2="-36" stroke="#c8bfaa" stroke-width="3"/>
+          <line x1="0" y1="-62" x2="-11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-62" x2="11" y2="-42" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="-9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+          <line x1="0" y1="-36" x2="9" y2="-4" stroke="#c8bfaa" stroke-width="2.5"/>
+        </g>
+      </svg>
+
+      <!-- Slider -->
+      <div class="slider-row">
+        <div>
+          <div class="slider-val-lbl">傍観者(あなた以外)</div>
+          <div class="slider-val"><span id="bcn">0</span><span style="font-size:18px;"> 人</span></div>
+        </div>
+        <div class="slider-wrap">
+          <input type="range" id="bcSlider" min="0" max="9" value="0" step="1">
+          <div class="slider-ends"><span>0 人(あなただけ)</span><span>9 人(計 10 人)</span></div>
+        </div>
+      </div>
+
+      <!-- Reference bar chart -->
+      <div class="bar-chart">
+        <div class="bar-chart-head">参照データ — 実験実測値 + 内挿</div>
+        <div class="bar-row" id="br0"><span class="bar-lbl">あなただけ</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div><span class="bar-num">85%</span></div>
+        <div class="bar-row" id="br1"><span class="bar-lbl">+1 人</span><div class="bar-track"><div class="bar-fill" style="width:66%"></div></div><span class="bar-num">66%</span></div>
+        <div class="bar-row" id="br2"><span class="bar-lbl">+2 人</span><div class="bar-track"><div class="bar-fill" style="width:51%"></div></div><span class="bar-num">51%</span></div>
+        <div class="bar-row" id="br4"><span class="bar-lbl">+4 人</span><div class="bar-track"><div class="bar-fill" style="width:31%"></div></div><span class="bar-num">31%</span></div>
+        <div class="bar-row" id="br9"><span class="bar-lbl">+9 人</span><div class="bar-track"><div class="bar-fill" style="width:9%"></div></div><span class="bar-num">9%</span></div>
+      </div>
+
+      <p class="ix-note">ダーリー &amp; ラタネ(1968)「てんかん発作」実験の実測値(単独 85% / +1 人 62% / +4 人 31%)を元に、指数減衰モデル <code>p = 85·e<sup>−0.25n</sup></code> で内挿。大きな % は動く確率、パイは「責任が 1/N に割れる」という責任拡散の概念図で、実測値ではなく心理メカニズムの視覚化。フィッシャーら(2011)のメタ分析(n=7,700、105 効果)でも、傍観者の増加が介入確率を下げる傾向は再現されている。なお現実の公共空間では別の力学が働く点については、記事後半で触れる。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">単独なら 85% が動く。他に 4 人いるだけで 31% に落ちる。9 人に増えると 10% を切る。人数で割られているのは、責任感だ。行動力でも、情報量でもない。ここまでは、<strong>事実として残っている効果</strong>の話になる。</p>
+
+
+  <!-- ========== 体験セクション ========== -->
+  <div class="sec-rule fade"><span class="sec-label">体験</span><div class="sec-line"></div></div>
+  <h2 class="fade">1964 年 3 月 13 日、あなたはモーブレーに住んでいる</h2>
+
+  <p class="body-text fade">次は、事件の夜を「内側」から体験してみる。あなたは 1964 年 3 月、キュー・ガーデンズのモーブレーアパートの住人だ。年齢も職業も、あなた自身のもので構わない。ただし、スマートフォンはない。窓から見えるのは中庭の一部だけ。あなたの部屋から 911 番までは、黒電話一本でつながっている。</p>
+
+  <p class="body-text fade">その夜、何かが聞こえる。<em>何をする?</em> この体験で重要なのは「正解を選ぶこと」ではなく、「なぜそう選んでしまうのか」を内側から見ることだ。</p>
+
+  <div class="phase-wrap fade" id="phaseWrap">
+    <div class="phase-head">
+      <span class="phase-head-lbl" id="phLbl">Phase 1 — 2:30 AM</span>
+      <span class="phase-head-count" id="phCount">1 / 4</span>
+    </div>
+
+    <!-- Phase 1 -->
+    <div class="phase-body" id="phBody1">
+      <div class="scene-img">
+        <img src="./scene_mowbray_night.jpg" alt="1964 年 3 月、午前 2:30 のニューヨークのアパートの寝室。窓から暗い中庭と街灯が見える、黒電話が置かれた夜景" loading="lazy">
+      </div>
+      <div class="phase-scene">窓の外から、何かが聞こえる</div>
+      <div class="phase-desc">&gt; 外で女性の叫び声が聞こえた気がする。<br>&gt; 内容は聞き取れない。言葉も半分夢の中。<br>&gt; 時計を見る — 午前 2:30 過ぎ。<br>&gt; 窓の外は暗い。ここはニューヨーク、金曜日の夜だ。<br>&gt; 酔っ払いの喧嘩かもしれない。<br>&gt; <em>何をする?</em></div>
+      <p class="phase-q">あなたの最初の行動は:</p>
+      <div class="phase-opts">
+        <button class="phase-opt" data-p="1" data-c="a"><span class="phase-opt-n">A</span>受話器を取り、911 に通報する</button>
+        <button class="phase-opt" data-p="1" data-c="b"><span class="phase-opt-n">B</span>窓際に寄って、耳を澄ます</button>
+        <button class="phase-opt" data-p="1" data-c="c"><span class="phase-opt-n">C</span>何でもない、と判断して寝直す</button>
+      </div>
+    </div>
+
+    <!-- Phase 2 (hidden) -->
+    <div class="phase-body phase-hidden" id="phBody2">
+      <div class="scene-img">
+        <img src="./scene_mowbray_night.jpg" alt="1964 年 3 月、午前 2:40 のニューヨークのアパートの寝室。窓外の中庭は変わらず街灯が灯る" loading="lazy">
+      </div>
+      <div class="phase-scene">数分後、静かになった。そして、また</div>
+      <div class="phase-desc" id="ph2Desc">&gt; <span id="ph2Lead">音は一度止んだ。</span><br>&gt; あなたが落ち着こうとしたその時、<br>&gt; また声がする。今度は廊下の方からだ。<br>&gt; うめき声のようにも、物音のようにも聞こえる。<br>&gt; 誰か他の住人も起きているはずだ。<br>&gt; <em>でも、誰も外に出てこない。</em></div>
+      <p class="phase-q">次の一手は:</p>
+      <div class="phase-opts">
+        <button class="phase-opt" data-p="2" data-c="a"><span class="phase-opt-n">A</span>やはり 911 を呼ぶ</button>
+        <button class="phase-opt" data-p="2" data-c="b"><span class="phase-opt-n">B</span>ガウンを羽織って廊下に出る</button>
+        <button class="phase-opt" data-p="2" data-c="c"><span class="phase-opt-n">C</span>他の誰かが対応するはずだ。もう寝る</button>
+      </div>
+    </div>
+
+    <!-- Phase 3 (hidden) - 結果比較 -->
+    <div class="phase-result phase-hidden" id="phBody3">
+      <p class="phase-result-h">あなたの選択と、実際の住人の分布</p>
+      <p>あなたは <strong id="yourChoice">A → A</strong> を選んだ。</p>
+      <p>実在した約 12 人の目撃者のうち、再調査で明らかになった行動の分布はこうなる:</p>
+      <div class="phase-compare">
+        <div>
+          <span class="phase-compare-lbl">何もしなかった</span>
+          約 8〜9 人。ほぼ全員が、聞こえたのを「喧嘩」「酔っ払い」と解釈。多くは一度しか音を聞いておらず、そのあと静かになったので寝直した。
+        </div>
+        <div>
+          <span class="phase-compare-lbl">何かを試みた</span>
+          少なくとも 2 人が警察に電話。うちカール・ロスは逡巡の末に通報。もう 1 人は父親に頼んで通報させた。ソフィア・ファラーは廊下に駆けつけた。
+        </div>
+      </div>
+      <p>「全員が無関心」ではなかった。<em>だが「全員が即時に動いた」でもなかった。</em>現実は、選択肢が重なりあった分布として残っている。</p>
+      <button class="phase-next" id="phNext3">次へ:物語の側に戻る →</button>
+    </div>
+
+    <!-- Phase 4 (hidden) - ネタばらし -->
+    <div class="phase-result phase-hidden" id="phBody4" style="background:#1a1208;color:#e8e4de;">
+      <p class="phase-result-h" style="color:#e8c56a;">同じ夜の、2 つの書き方</p>
+      <div class="phase-compare" style="border-color:#3a2a1a;">
+        <div style="background:#2a1d10;color:#e8c56a;border-right-color:#3a2a1a;">
+          <span class="phase-compare-lbl" style="color:#e8c56a;">NYT 1964 年版</span>
+          <span style="color:#e8e4de;">「尊敬できる市民 38 人が、30 分にわたり一人の女性が三度襲われるのを見ていたが、誰一人として警察に電話しなかった」。物語は完結していて、読みやすい。</span>
+        </div>
+        <div style="background:#1a1208;color:#e8e4de;">
+          <span class="phase-compare-lbl" style="color:#8fb090;">2007 年 / 2016 年の再調査</span>
+          約 12 人が<strong style="color:#fff;">断片</strong>だけ見聞きし、多くが状況を誤解し、少なくとも 2 人が通報し、1 人が駆けつけた。物語は完結しない。
+        </div>
+      </div>
+      <p style="color:#e8e4de;">もう一つ。<em style="color:#e8c56a;">あなたが見たのも、一つの窓の外だけだ。</em>事件の全体を見通せる位置にいた人は、実在の目撃者の中にも一人もいなかった。「全部を見て、それでも動かなかった 38 人」というのは、新聞の作った俯瞰の視点に過ぎない。</p>
+      <p style="color:#e8e4de;">効果は実在する。だが「誰もが冷淡で、わかっていて、見捨てた」という物語は、そこに嘘の俯瞰視点をつけ足したものだった。</p>
+    </div>
+  </div>
+
+
+  <!-- ========== メカニズムセクション ========== -->
+  <div class="sec-rule fade"><span class="sec-label">メカニズム</span><div class="sec-line"></div></div>
+  <h2 class="fade">なぜ人は動かなくなるか</h2>
+
+  <p class="body-text fade">ラタネとダーリーが実験で切り分けたメカニズムは、一つではない。彼らは「傍観者効果」を、4 つの心理が折り重なった結果として整理した。どれもが、日常の自分でも心当たりがある種類のものだ。</p>
+
+  <div class="steps-wrap fade">
+    <div class="step-card open" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">1</div>
+        <div class="step-tw"><div class="step-title">状況の解釈が曖昧になる</div><div class="step-sub">多元的無知 — Pluralistic ignorance</div></div>
+        <div class="step-arr">▾</div>
+      </div>
+      <div class="step-body">
+        <p>「これは緊急事態か?」を判断する時、人は<strong>周囲の他者の反応</strong>を参照する。誰かが慌てていれば「やはり大変なのだ」と確信し、誰も動いていなければ「大したことではないのかもしれない」と解釈を引き下げる。</p>
+        <p>問題は、周囲の人も同じことを<em>あなたに対してやっている</em>ことだ。全員が全員の冷静さを「大丈夫のサイン」として読み合い、誰も動かない。ラタネとダーリーの煙の部屋実験(1968)では、単独なら 75% が煙を報告したが、無反応な 2 人と同室だと 10% に落ちた。煙そのものは同じ量だった。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">2</div>
+        <div class="step-tw"><div class="step-title">責任が人数で割られる</div><div class="step-sub">責任拡散 — Diffusion of responsibility</div></div>
+        <div class="step-arr">▾</div>
+      </div>
+      <div class="step-body">
+        <p>一人しかいなければ、動くか動かないかはすべて自分の責任になる。4 人いれば、責任は 4 分の 1 に感じられる。<strong>責任は算数ではないのに、なぜか人数で割られる</strong>。</p>
+        <p>ダーリーとラタネ(1968)のてんかん発作実験では、単独なら 85% が助けを呼んだが、5 人のグループ条件では 31% に落ちた。助けなかった人たちが冷淡だったわけではない。実験後の聞き取りでは、多くが緊張と混乱の表情を見せていた。彼らは決めかねていたのだ。「自分が動いていいのか」を。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">3</div>
+        <div class="step-tw"><div class="step-title">勘違いで騒ぐのが怖い</div><div class="step-sub">評価懸念 — Evaluation apprehension</div></div>
+        <div class="step-arr">▾</div>
+      </div>
+      <div class="step-body">
+        <p>「もし私が飛び出して、ただの酔っ払いの喧嘩だったら」「通報したのに、何もなかったら恥ずかしい」。<strong>他人に見られているという感覚</strong>そのものが、行動を止める。</p>
+        <p>ここで厄介なのは、<em>動かない選択は、何もしなかったという形で他人に観察される</em>のに、それは恥の対象にならないことだ。動いて間違える方が、動かずに間違える方よりも、社会的に目立つ。人はその差に敏感で、敏感すぎる。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc4">
+      <div class="step-hd" onclick="tog(4)">
+        <div class="step-nb">4</div>
+        <div class="step-tw"><div class="step-title">行動にはコストがある</div><div class="step-sub">介入コスト — Arousal-cost model</div></div>
+        <div class="step-arr">▾</div>
+      </div>
+      <div class="step-body">
+        <p>介入には時間もお金も危険も含まれる。加害者と対峙することになるかもしれない。警察の事情聴取で 3 時間潰れるかもしれない。<strong>コストが身体的なほど、人は動きが鈍る</strong>のが標準的な結果として報告されている(ピリアビンら 1981)。</p>
+        <p>ただし、2011 年のフィッシャーらのメタ分析は、<em>本当に危険な場面や、加害者がその場にいる場面では、傍観者効果が弱まる</em>ことを示した。曖昧さが消えると、4 つの心理のうちの前半(解釈・責任)が機能しなくなるからだ。危険が明確なとき、人は意外と動く。</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">4 つの心理のうち、どれが効いているかはケースで違う。ただ、どれも「自分の性格」の問題ではなく<strong>状況の問題</strong>として記述されている点は共通している。あなたが昨日、駅のホームで目を逸らしたのは、あなたが冷たい人間だからではなく、4 つの歯車のどれかが回ったからだ。</p>
+
+  <p class="body-text fade">ここまでは「なぜ動かないか」の話だった。裏返して「<em>動いた側</em>」に目を向けると、別の風景が見える。フィルポットら(2019)の CCTV 解析では、ほぼすべての暴力事件に<strong>最初に動く 1 人</strong>が含まれていた。その 1 人を決める条件は、性別や年齢ではなく、<em>被害者との空間的な近さ、手にしている情報の量、そして「自分なら何かできる」という過去の経験</em>だった。傍観者効果が本当に強く作動するのは「誰も動かない」場面ではなく、<strong>「最初の 1 人が出ない」場面</strong>の方だ。最初の 1 人が現れさえすれば、周りは続く。ソフィア・ファラーが血の廊下に走り込んだ、あの最初の 1 人のことだ。</p>
+
+  <!-- SVG 2: Latane & Darley 1968 seizure study (パターンB 縦積み横バー) -->
+  <svg class="svg-fig fade" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" style="max-width:680px;">
+    <!-- Title -->
+    <text x="400" y="40" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="17" font-weight="600" fill="#1a1208">ダーリー &amp; ラタネ(1968)てんかん発作実験:グループ人数別の介入率</text>
+
+    <!-- X axis labels -->
+    <line x1="230" y1="340" x2="720" y2="340" stroke="#c8bfaa" stroke-width="1"/>
+    <text x="230" y="360" text-anchor="start" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">0%</text>
+    <text x="475" y="360" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">50%</text>
+    <text x="720" y="360" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">100%</text>
+    <text x="475" y="395" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">6 分以内に助けを呼んだ参加者の割合</text>
+
+    <!-- Row 1: Alone 85% -->
+    <text x="210" y="104" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="16" font-weight="600" fill="#1a1208">単独</text>
+    <text x="210" y="122" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">(1 人)</text>
+    <rect x="230" y="88" width="416.5" height="42" fill="#8b1a1a"/>
+    <text x="658" y="114" text-anchor="start" font-family="'Source Sans 3',sans-serif" font-size="18" font-weight="700" fill="#1a1208">85%</text>
+
+    <!-- Row 2: +1 62% -->
+    <text x="210" y="196" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="16" font-weight="600" fill="#1a1208">2 人条件</text>
+    <text x="210" y="214" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">(他に 1 人)</text>
+    <rect x="230" y="180" width="303.8" height="42" fill="#b0704a"/>
+    <text x="545" y="206" text-anchor="start" font-family="'Source Sans 3',sans-serif" font-size="18" font-weight="700" fill="#1a1208">62%</text>
+
+    <!-- Row 3: +4 31% -->
+    <text x="210" y="288" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="16" font-weight="600" fill="#1a1208">5 人条件</text>
+    <text x="210" y="306" text-anchor="end" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">(他に 4 人)</text>
+    <rect x="230" y="272" width="151.9" height="42" fill="#c8bfaa"/>
+    <text x="393" y="298" text-anchor="start" font-family="'Source Sans 3',sans-serif" font-size="18" font-weight="700" fill="#1a1208">31%</text>
+  </svg>
+
+
+  <!-- ========== 歴史セクション ========== -->
+  <div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+  <h2 class="fade">1964 から 2019 へ、55 年の訂正</h2>
+
+  <p class="body-text fade">以下の年表で、<span style="color:#8b1a1a;font-size:1.2em;vertical-align:-0.05em;">●</span> は事件と神話をめぐる主要な転換点、<span style="color:#c8bfaa;font-size:1.2em;vertical-align:-0.05em;">○</span> は関連する動きを示す。神話が作られた年と、それが訂正された年の間には、半世紀近くの距離がある。</p>
+
+  <div class="timeline fade">
+    <div class="tl-item highlight"><div class="tl-dot"></div>
+      <p class="tl-year">1964 年 3 月 13 日</p>
+      <p class="tl-title">キティ・ジェノヴィーズ殺害</p>
+      <p class="tl-desc">ニューヨーク市クイーンズのキュー・ガーデンズで、キティが帰宅途中に襲撃され死亡。逮捕された犯人ウィンストン・モーズリーは、動機として「女性を殺したかった」と供述した。</p>
+    </div>
+    <div class="tl-item highlight"><div class="tl-dot"></div>
+      <p class="tl-year">1964 年 3 月 27 日</p>
+      <p class="tl-title">NYT「38 人」記事</p>
+      <p class="tl-desc">マーティン・ガンズバーグの署名記事が第一面に。検証されないまま、都市編集者が昼食で聞いた数字がそのまま記事のテーマに据えられた。以後、事件は「現代人の無関心」の象徴になる。</p>
+    </div>
+    <div class="tl-item highlight"><div class="tl-dot"></div>
+      <p class="tl-year">1968 年</p>
+      <p class="tl-title">ラタネ &amp; ダーリー、責任拡散を実験で示す</p>
+      <p class="tl-desc">てんかん発作実験と煙の部屋実験の 2 本で、傍観者の人数が介入確率を下げることを定量化。事件を出発点にしたが、彼らの関心は「冷淡さ」ではなく「状況の力」にあった。</p>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">1970 年</p>
+      <p class="tl-title">『The Unresponsive Bystander』出版</p>
+      <p class="tl-desc">ラタネとダーリーが一連の実験を一般書にまとめて刊行。ここで "bystander effect" という呼称が学術の外にも広まり、教科書・メディアを通じてキティ事件の物語と癒着していく。</p>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">2004 年</p>
+      <p class="tl-title">NYT 自身による再検証記事</p>
+      <p class="tl-desc">事件 40 周年に、NYT のジム・ラゼンバーガー記者が元記事の問題点を列挙。38 という数字の根拠が存在しないことが、公の場で指摘された。</p>
+    </div>
+    <div class="tl-item highlight"><div class="tl-dot"></div>
+      <p class="tl-year">2007 年</p>
+      <p class="tl-title">マニング・レヴィン・コリンズ論文</p>
+      <p class="tl-desc">『American Psychologist』誌で、マニングら 3 人が一次資料から事件を再構築。「38 人の目撃者が非行動を観察した、という物語の証拠は存在しない」と結論。教科書の寓話が公式に否定された。</p>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">2011 年</p>
+      <p class="tl-title">フィッシャーらのメタ分析</p>
+      <p class="tl-desc">7,700 人超・105 の効果量を統合。傍観者効果自体は実在するが、状況が本当に危険だと認識されるほど、また加害者がその場にいるほど、効果は弱まる。「冷淡さ」ではなく「曖昧さ」が主因であることが確認された。</p>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">2015 年</p>
+      <p class="tl-title">ドキュメンタリー『The Witness』公開</p>
+      <p class="tl-desc">キティの弟ビル・ジェノヴィーズが、姉の最期の夜を再調査するドキュメンタリー。ソフィア・ファラーが初めて一般的な場に登場し、ガンズバーグ記者の「物語が台無しに」発言も公開された。</p>
+    </div>
+    <div class="tl-item"><div class="tl-dot"></div>
+      <p class="tl-year">2016 年</p>
+      <p class="tl-title">NYT 自身が公式訂正</p>
+      <p class="tl-desc">元記事の死亡記事的な訂正文を掲載。「目撃者の数と、彼らが知覚した内容について、元記事は著しく誇張していた」と記載。ソフィア・ファラーの名前が NYT で初めて肯定的に紙面に載った。</p>
+    </div>
+    <div class="tl-item highlight"><div class="tl-dot"></div>
+      <p class="tl-year">2019 年</p>
+      <p class="tl-title">フィルポットら、CCTV の実データを公開</p>
+      <p class="tl-desc">英・蘭・南アの 219 件の公共空間の暴力事件を CCTV で解析。9 割で少なくとも 1 人が介入しており、<em>むしろ傍観者が多いほど</em>誰かが動く確率が上がっていた。実験室の効果と、現実の公共空間では、同じ話が違う形をする。</p>
+    </div>
+  </div>
+
+
+  <!-- ========== つまりセクション ========== -->
+  <div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+  <h2 class="fade">効果は本物、物語は虚構、そして現場はまた別の顔</h2>
+
+  <p class="body-text fade">まとめる。<strong>傍観者効果は実在する</strong>。何百もの実験で、人数が介入を鈍らせることが再現されてきた。同時に、<strong>その名前の由来になった 38 人の物語は、新聞が作った誤報だった</strong>。効果と神話は、半世紀のあいだ一つの塊として流通した後、別々に見えるところまで来た。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">"The story, despite the absence of evidence, <em>continues to inhabit our introductory social psychology textbooks.</em>"</p>
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">その物語は、証拠がないにもかかわらず、社会心理学の入門書の中に住み続けている。</p>
+    <p class="pull-attr">— Rachel Manning, Mark Levine &amp; Alan Collins『American Psychologist』誌「38 人の目撃者という寓話」(2007)</p>
+  </div>
+
+  <p class="body-text fade">さらにもう一つ。2019 年のフィルポットらの CCTV 研究は、現実の公共空間では<em>傍観者が多いほど介入が起こりやすい</em>ことを示した。これは前半の実験結果と正反対に見えるが、理由はシンプルだ。<strong>総数が増えるほど「動く気になる人」が一人は含まれる確率が上がり、その一人が動くと周囲も続く</strong>。公共の暴力は、実験室のように状況が曖昧ではないことが多い——殴られている人がいる、誰かが叫んでいる、といった手がかりがはっきりしている。曖昧さの 4 つの心理(解釈・責任・評価・コスト)のうち前半が作動しないので、人数は逆に「動ける人」の頭数として働く。ストリートの現実は、実験室のレシピをそのまま投影できる場所ではない。</p>
+
+  <p class="body-text fade">ここで一度立ち止まる。では、半世紀漂った神話は完全に無意味だったのか。そうとも言い切れない。誤報は誤報として、<strong>「見過ごすな」という警告</strong>として心肺蘇生講習、市民救助教育、公共キャンペーンに組み込まれ、少なからず介入を促進してきた。事実として間違っていた物語が、<em>別の場面では人を動かした</em>——神話は悪、事実は善、という単純な図式で整理できるほど、物語の力は小さくない。だからこそ、訂正に 55 年かかったとも言える。訂正が済んだあとに残るのは、神話を捨てることではなく、<strong>「神話がどう効いていたか」を引き取ったうえで次を設計する</strong>責任の方だ。</p>
+
+  <p class="body-text fade">ではどうするか。知っているだけでは、効果は消えない。「傍観者効果を知っている人」も、次の朝、駅のホームで同じように視線を落とす。「知っている」と「動ける」の間には、もう一段の仕掛けが要る。</p>
+
+  <p class="body-text fade">なお、この心理は緊急事態だけの話ではない。<em>大人数の会議で誰も決めない、集団プロジェクトでタスクが宙に浮く、チーム医療で誰がリーダーか曖昧になる、オンラインでハラスメントを全員が見ているのに誰も止めない</em>——どれも同じ歯車が回っている。責任は人数で割られる、という性質は、どの場面でも変わらない。医療安全のマニュアルに「毎回、チームリーダーを声に出して指名する」という項目が入っているのは、この回転を止めるための設計だ。</p>
+
+  <p class="body-text fade">実験室で、また現場で、ある程度効果が確かめられている対処は 3 つある。一つ目は、<span class="tip">個人を名指しで呼ぶ<span class="tip-box"><strong>Point-and-call</strong>「誰か助けて」ではなく「赤いシャツの男性、救急車をお願いします」と特定の個人に指示する。責任が割り切れなくなる。医療現場やライフセービングの現場で標準化されている。</span></span>こと。倒れているのを見つけた側が「誰か」ではなく「赤いシャツの男性」と呼ぶだけで、責任が割り切れなくなる。</p>
+
+  <p class="body-text fade">二つ目は、<span class="tip">最初の一人役をあらかじめ決めておく<span class="tip-box"><strong>Pre-commitment</strong>緊急時にどう動くかを、事が起きる前に自分に対して約束しておく。ピストルの音を 1 回聞いたら上から逃げる、倒れている人を見つけたら声をかける、のように条件と行動を事前にひもづけておくと、実際の瞬間に考える負荷が下がる。</span></span>こと。<em>事前に自分とした約束</em>は、現場で考える負荷を減らす。「もし電車の中で人が倒れたら、私は声をかける」—— これを平常時に口に出しておくだけで、確率は上がる。</p>
+
+  <p class="body-text fade">三つ目は、<strong>自分が見ているのは常に断片である</strong>と先に知っておくこと。あなたの窓から見えるのは中庭の一部だけだ。全部を俯瞰できる視点は、新聞社の編集机にしか存在しない。断片しか持っていないのだから、「わからない」ことを即決で動かない理由にしない、という構えを用意しておく。</p>
+
+  <p class="body-text fade">ただし、どれも万能ではない。加害者と対峙する状況では、身を守ることの方が優先される場面もある。「動く」と「動かない」の間には、通報する、記録する、遠くから声をかけるなど、多くの中間の選択肢がある。3 つの仕掛けは「必ず動け」という指示ではなく、「4 つの心理のどれかを、ほんの少し外す」ための道具だ。</p>
+
+  <div class="culture-block fade">
+    <p class="culture-label">作品への登場</p>
+    <div class="culture-item">
+      <p class="culture-title">ドキュメンタリー『The Witness』(2015、James Solomon 監督)</p>
+      <p class="culture-desc">キティの弟ビル・ジェノヴィーズが、姉の死の夜を再検証する。証拠の収集、生存していた目撃者たちへの訪問、ソフィア・ファラーとの対面。「物語」の側が半世紀かけて作った輪郭を、ひとつずつ確かめ直していく。神話を壊す作業と、姉への個人的な弔いが同じ軌道を描く。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">『Girls』シーズン 5 第 7 話「Hello Kitty」(2016、リナ・ダナム制作)</p>
+      <p class="culture-desc">主要キャラクターたちがインタラクティブ演劇版のキティ・ジェノヴィーズ事件に参加する。観客として「見ている」ことと、「見捨てる」ことの違いが、舞台の仕掛けで揺さぶられる回。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">『Law &amp; Order: SVU』「41 Witnesses」(2016)</p>
+      <p class="culture-desc">傍観者効果をモチーフにした映画脚本『Bystander』を元にしたエピソード。41 という数字は、38 の物語に対する挑発的な返答として置かれている。</p>
+    </div>
+  </div>
+
+
+  <!-- ========== 参考文献 ========== -->
+  <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1968</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1037/h0025589" target="_blank" rel="noopener">Bystander intervention in emergencies: Diffusion of responsibility</a></p>
+      <p class="ref-author">John M. Darley &amp; Bibb Latané — Journal of Personality and Social Psychology</p>
+      <p class="ref-desc">「てんかん発作」実験を報告した原論文。単独 85% と 5 人条件 31% という数字は、ここから来ている。事件を出発点にしつつ、冷淡さを人数の問題に置き換えようとした元の動機が、短い文体で残っている。有料だが、大学図書館経由でアクセスできることが多い。</p>
+    </div>
+
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2007</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1037/0003-066X.62.6.555" target="_blank" rel="noopener">The Kitty Genovese murder and the social psychology of helping: The parable of the 38 witnesses</a></p>
+      <p class="ref-author">Rachel Manning, Mark Levine &amp; Alan Collins — American Psychologist</p>
+      <p class="ref-desc">一次資料を丹念に読み直して、事件の「38 人」が神話であることを学術の場で確定させた論文。事実の側に立って教科書の記述を覆していく文体が、読んでいて気持ちよく、怖い。傍観者効果について一本だけ先に読むなら、これがいい。</p>
+    </div>
+
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">メタ分析</span><span class="ref-year">2011</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1037/a0023304" target="_blank" rel="noopener">The bystander-effect: A meta-analytic review on bystander intervention in dangerous and non-dangerous emergencies</a></p>
+      <p class="ref-author">Peter Fischer ら — Psychological Bulletin</p>
+      <p class="ref-desc">7,700 人超を統合した決定版のメタ分析。効果は再現される一方で、状況が「本当に危険」だと読めたときには効果が弱まることを示した。「傍観者効果 = 冷淡さ」という単純な等式を、もう一段複雑にしてくれる。</p>
+    </div>
+
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2019</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1037/amp0000469" target="_blank" rel="noopener">Would I be helped? Cross-national CCTV footage shows that intervention is the norm in public conflicts</a></p>
+      <p class="ref-author">Richard Philpot ら — American Psychologist</p>
+      <p class="ref-desc">英・蘭・南アの 219 件の実際の暴力映像を解析した論文。9 割で誰かが介入していて、むしろ傍観者が多いほど介入確率が上がっていた。実験室の効果を、そのまま現実に投影するのは危ないことを教えてくれる一本。不穏な結果というよりは、希望の寄った結果が淡々と記録されている。</p>
+    </div>
+  </div>
+
+
+  <!-- ========== 信頼度ノート ========== -->
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    この記事は、Latané &amp; Darley(1968)、Manning, Levine &amp; Collins(2007)、Fischer ら(2011)、Philpot ら(2019)の一次文献と、NYT 自身による 2016 年の公式訂正を根拠にしている。「傍観者効果が実在する」と「名前の由来になった事件の物語が神話である」は、どちらも現在の学術的コンセンサスに属する。一方、約 12 人、少なくとも 2 人が通報、といった数字は再調査の途上の値で、今後も更新される可能性がある。
+  </div>
+
+  <!-- Signature -->
+  <div class="signature fade">e. Tamaki</div>
+
+  <!-- Tags -->
+  <div class="tags fade">
+    <span class="tag">傍観者効果</span>
+    <span class="tag">社会心理学</span>
+    <span class="tag">Kitty Genovese</span>
+    <span class="tag">責任拡散</span>
+    <span class="tag">多元的無知</span>
+    <span class="tag">報道と神話</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">約 12</p>
+      <p class="sidebar-text"><strong>実際の目撃者の数</strong>。NYT が掲げた 38 人という数字には、一次資料上の根拠がなかった。</p>
+    </div>
+    <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">1964 年 3 月のキティ・ジェノヴィーズ殺害をきっかけに、1968 年に <em>Latané &amp; Darley</em> が「責任拡散」を実験で示した。事件は語り継がれ、事件の物語は <em>2007 年</em>に学術的に訂正された。</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">ドキュメンタリー『The Witness』(2015)、リナ・ダナム『Girls』S5 E7「Hello Kitty」(2016)、『Law &amp; Order: SVU』「41 Witnesses」(2016)。</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— 同調圧力(アッシュ)<br>— ミルグラム実験<br>— 多元的無知<br>— 責任拡散</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">効果自体は多数の実験とメタ分析で再現。ただし古典的に語られてきた事件の物語は、一次資料の再検証によって大きく修正された。</p></div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue &gt;&gt; Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// session started — 傍観者効果を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ結局、傍観者効果って嘘だったの?</span></div>
+      <span class="t-output" id="to1">いや、効果そのものは今も生きている。実験で繰り返し確かめられているし、メタ分析でも残る。<em>嘘だったのは「38 人が見ていて、誰も動かなかった」という起源の物語のほう</em>。効果と神話は、別々に扱っていい。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ駅のホームで人が倒れていたら、自分は動けるようになる?</span></div>
+      <span class="t-output" id="to2">知っているだけでは動けない、というのが正直なところ。ただ、<em>助けは他の誰かが呼んでくれる前提で待たない</em>、という姿勢は練習できる。「赤いシャツの人、救急車を」と個人名指しで言う、みたいな小さい仕掛けで、責任の割り算が止まる。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;名指しで呼ぶって、本当にそんなので変わるの?</span></div>
+      <span class="t-output" id="to3">再現されている話。責任が「全員のもの」から「あなたのもの」に切り替わると、多元的無知も評価懸念も崩れやすい。ライフセービングや災害救護の教本にも、同じ方式がちゃんと載っている。<em>心の問題ではなくて、場の設計の問題として扱う</em>と、少し風景が変わる。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# おぼえとく</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/asch_conformity">
+      <p class="related-card-tag">社会心理学 × 同調</p>
+      <p class="related-card-title">同調圧力(アッシュの実験)</p>
+      <p class="related-card-desc">明らかに間違った答えに、人はなぜ合わせてしまうのか。傍観者効果と同じく、「他者の反応を参照する」心理の系譜。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/milgram_experiment">
+      <p class="related-card-tag">社会心理学 × 権威</p>
+      <p class="related-card-title">ミルグラム実験</p>
+      <p class="related-card-desc">権威の指示の下で、普通の人はどこまで行ってしまうのか。状況の力を、別の角度から記録した古典。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト方式)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.querySelectorAll('.tip').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();toggleTip(el);});});
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+
+// ── Crowd Size Visualizer (3-layer: number + pie + scene) ──
+(function(){
+  const slider=document.getElementById('bcSlider');
+  const out=document.getElementById('bcn');
+  const pct=document.getElementById('bcn-pct');
+  const resp=document.getElementById('bcn-resp');
+  const pieTopLabel=document.getElementById('pieTopLabel');
+  const piePath=document.getElementById('piePath');
+  const rowIds=['br0','br1','br2','br4','br9'];
+  const rowN=[0,1,2,4,9];
+
+  function computeP(n){
+    // p = 85 * e^(-0.25n), rounded. Fits Darley&Latané 1968 measured points: n=0→85%, n=1→66%, n=4→31%
+    return Math.round(85 * Math.exp(-0.25 * n));
+  }
+  function buildPiePath(total){
+    // pie slice from 12 o'clock going clockwise, covering 1/total of the circle
+    if(total<=1){
+      // full circle using two arcs
+      return 'M 60 8 A 52 52 0 1 1 60 112 A 52 52 0 1 1 60 8 Z';
+    }
+    const angle=(1/total)*2*Math.PI;
+    const x2=(60+52*Math.sin(angle)).toFixed(3);
+    const y2=(60-52*Math.cos(angle)).toFixed(3);
+    const large=angle>Math.PI?1:0;
+    return `M 60 60 L 60 8 A 52 52 0 ${large} 1 ${x2} ${y2} Z`;
+  }
+  function update(){
+    const n=parseInt(slider.value,10);
+    out.textContent=n;
+    const p=computeP(n);
+    pct.textContent=p;
+    const total=n+1;
+    resp.textContent=Math.round(100/total);
+    pieTopLabel.textContent='1/'+total;
+    piePath.setAttribute('d',buildPiePath(total));
+    // show/hide bystanders
+    for(let i=1;i<=9;i++){
+      const el=document.getElementById('by'+i);
+      if(el)el.setAttribute('opacity',i<=n?'1':'0');
+    }
+    // bar highlight (nearest measured)
+    let best=0,bestDist=99;
+    rowN.forEach((v,i)=>{const d=Math.abs(v-n);if(d<bestDist){bestDist=d;best=i;}});
+    rowIds.forEach((id,i)=>{
+      const el=document.getElementById(id);
+      if(!el)return;
+      el.classList.toggle('cur',i===best);
+    });
+  }
+  slider.addEventListener('input',update);
+  update();
+})();
+
+// ── 4 Phase Interaction ──
+(function(){
+  const picks={};
+  const lbls={1:'Phase 1 — 2:30 AM',2:'Phase 2 — 2:40 AM',3:'Phase 3 — 結果',4:'Phase 4 — 物語'};
+  const counts={1:'1 / 4',2:'2 / 4',3:'3 / 4',4:'4 / 4'};
+  function show(n){
+    for(let i=1;i<=4;i++){
+      const el=document.getElementById('phBody'+i);
+      if(!el)continue;
+      if(i===n)el.classList.remove('phase-hidden');
+      else el.classList.add('phase-hidden');
+    }
+    document.getElementById('phLbl').textContent=lbls[n];
+    document.getElementById('phCount').textContent=counts[n];
+  }
+  document.querySelectorAll('.phase-opt').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const p=parseInt(btn.dataset.p,10);
+      const c=btn.dataset.c;
+      picks[p]=c;
+      // mark picked
+      document.querySelectorAll('.phase-opt[data-p="'+p+'"]').forEach(b=>b.classList.remove('picked'));
+      btn.classList.add('picked');
+      // move to next phase
+      setTimeout(()=>{
+        if(p===1){
+          // vary phase 2 lead-in
+          const lead=document.getElementById('ph2Lead');
+          if(lead){
+            if(c==='a')lead.textContent='通報した直後、';
+            else if(c==='b')lead.textContent='耳を澄ませていると、';
+            else lead.textContent='一度はまた横になったが、';
+          }
+          show(2);
+        }else if(p===2){
+          // build your-choice label
+          const yc=document.getElementById('yourChoice');
+          if(yc)yc.textContent=(picks[1]||'?').toUpperCase()+' → '+(picks[2]||'?').toUpperCase();
+          show(3);
+        }
+      },280);
+    });
+  });
+  const nx=document.getElementById('phNext3');
+  if(nx)nx.addEventListener('click',()=>show(4));
+  show(1);
+})();
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>

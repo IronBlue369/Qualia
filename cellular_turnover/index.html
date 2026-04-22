@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>私はどこまで、生まれた日のままか — Qualia Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;min-width:0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q-en{font-family:'Playfair Display',serif;font-size:clamp(17px,2.2vw,22px);font-style:italic;font-weight:400;line-height:1.55;color:#1a1208;margin-bottom:14px;}
+.pull-q-en em{color:#8b1a1a;font-style:italic;}
+.pull-q{font-family:'Source Serif 4','Shippori Mincho',serif;font-size:clamp(15px,1.9vw,18px);font-style:italic;font-weight:300;line-height:1.75;color:#7a6a55;}
+.pull-q em{color:#8b1a1a;font-style:italic;font-weight:400;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.04em;margin-top:16px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:180px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:stretch;justify-content:stretch;padding:0;overflow:hidden;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Source Serif 4',serif;font-size:17px;font-weight:700;color:#1a1208;margin-bottom:2px;letter-spacing:.02em;}
+.person-block-name a{color:inherit;text-decoration:none;border-bottom:1px solid #c8bfaa;transition:border-color .2s;}
+.person-block-name a:hover{border-color:#8b1a1a;}
+.person-block-orig{font-family:'Playfair Display',serif;font-size:12px;font-weight:400;font-style:italic;color:#7a6a55;margin-bottom:6px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#b0a090;line-height:1.5;margin-top:10px;padding-top:8px;border-top:1px solid #e0d8c8;}
+.person-block-credit a{color:#b0a090;border-bottom:1px dotted #c8bfaa;}
+.person-block-credit a:hover{color:#8b1a1a;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* === VISUALIZER (age slider) === */
+.sim-wrap{margin:28px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.sim-head{background:#1a1208;color:#e8e4de;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.sim-title{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#e8c56a;}
+.sim-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#c8bfaa;}
+.sim-ctrl{padding:18px 20px 10px;background:#f3efe6;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+.sim-ctrl-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;}
+.sim-slider{flex:1;min-width:180px;-webkit-appearance:none;appearance:none;height:4px;background:#c8bfaa;border-radius:2px;outline:none;}
+.sim-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;background:#8b1a1a;border-radius:50%;cursor:pointer;border:2px solid #faf8f3;box-shadow:0 1px 4px rgba(0,0,0,.2);}
+.sim-slider::-moz-range-thumb{width:18px;height:18px;background:#8b1a1a;border-radius:50%;cursor:pointer;border:2px solid #faf8f3;}
+.sim-age-display{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:#8b1a1a;line-height:1;min-width:90px;text-align:right;}
+.sim-age-display .sim-age-unit{font-size:13px;font-weight:400;color:#7a6a55;margin-left:4px;}
+.sim-legend{padding:12px 20px 0;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;line-height:1.7;display:flex;flex-wrap:wrap;gap:16px;}
+.sim-legend-item{display:flex;align-items:center;gap:6px;}
+.sim-legend-swatch{width:16px;height:10px;border:1px solid #c8bfaa;}
+.sim-timeline-head{display:flex;justify-content:space-between;padding:14px 20px 4px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;letter-spacing:.08em;border-top:1px solid #e0d8c8;margin-top:14px;}
+.sim-tl-left,.sim-tl-right{font-weight:600;}
+.sim-tissues{padding:4px 20px 20px;display:flex;flex-direction:column;gap:14px;}
+.sim-tissue{display:flex;flex-direction:column;gap:4px;}
+.sim-tissue-row1{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.sim-tissue-name{font-family:'Source Serif 4',serif;font-size:15px;font-weight:700;color:#1a1208;}
+.sim-tissue-period{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:400;color:#7a6a55;letter-spacing:.04em;margin-left:8px;}
+.sim-tissue-count{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;color:#8b1a1a;margin-left:auto;white-space:nowrap;}
+.sim-tissue-count.immut{color:#8b1a1a;}
+.sim-tissue-bar{position:relative;height:24px;background:#f3efe6;border:1px solid #c8bfaa;overflow:hidden;}
+.sim-tissue-bar .bar-fill{position:absolute;top:0;left:0;bottom:0;}
+.sim-tissue-bar svg{display:block;width:100%;height:100%;}
+.sim-tissue-bar .immut-line{position:absolute;top:50%;left:6px;right:6px;height:2px;background:#8b1a1a;transform:translateY(-50%);}
+.sim-tissue-bar .immut-dot{position:absolute;top:50%;width:8px;height:8px;background:#8b1a1a;border-radius:50%;transform:translateY(-50%);}
+.sim-tissue-bar .immut-dot.left{left:4px;}
+.sim-tissue-bar .immut-dot.right{right:4px;}
+.sim-note{padding:14px 20px 4px;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;background:#faf8f3;border-top:1px solid #e0d8c8;}
+.sim-note strong{color:#8b1a1a;font-weight:600;}
+
+/* SVG FIGURE */
+.svg-fig{margin:28px 0;background:#f3efe6;border:1px solid #c8bfaa;padding:20px 16px 12px;max-width:680px;margin-left:auto;margin-right:auto;}
+.svg-fig-cap{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;text-align:center;margin-top:10px;line-height:1.7;}
+.svg-fig-cap em{color:#8b1a1a;font-style:italic;}
+.svg-fig-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;text-align:center;margin-top:6px;letter-spacing:.03em;}
+.svg-fig-credit a{color:inherit;text-decoration:none;border-bottom:1px solid #d8cfb9;}
+.svg-fig-credit a:hover{color:#8b1a1a;border-color:#8b1a1a;}
+.fig-photo{background:#f3efe6;padding:24px 20px 14px;}
+.fig-photo img{display:block;width:100%;max-width:500px;height:auto;margin:0 auto;}
+.svg-fig svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+
+/* TISSUE TABLE */
+.tissue-table{margin:28px 0;border:1px solid #c8bfaa;overflow:hidden;background:white;}
+.tissue-table-head{background:#1a1208;color:#e8e4de;padding:10px 18px;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;}
+.tissue-row{padding:10px 18px;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:12px;border-bottom:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;align-items:center;}
+.tissue-row:last-child{border-bottom:none;}
+.tissue-row:nth-child(even){background:#faf8f3;}
+.tissue-row strong{color:#1a1208;font-weight:600;}
+.tissue-row .tissue-period{color:#8b1a1a;font-weight:600;font-variant-numeric:tabular-nums;}
+.tissue-row.immut{background:#f3efe6;}
+.tissue-row.immut .tissue-period{color:#7a6a55;font-style:italic;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* ── FOOTER ── */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* TOC BACK */
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+  .toc-back{padding:22px 20px;}
+  .svg-fig{max-width:100%;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:block;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:140px 1fr;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .tissue-table-head,.tissue-row{grid-template-columns:1.2fr 1fr 1fr;font-size:11px;gap:8px;padding:10px 12px;}
+  .sim-ctrl{padding:14px 14px 8px;}
+  .sim-age-display{font-size:26px;min-width:80px;}
+  .sim-tissues{padding:4px 14px 18px;}
+  .sim-timeline-head{padding:14px 14px 4px;}
+  .sim-legend{padding:10px 14px 0;font-size:11px;}
+  .sim-note{padding:12px 14px 4px;}
+  .sim-tissue-name{font-size:14px;}
+  .sim-tissue-period{font-size:10px;margin-left:6px;}
+  .sim-tissue-count{font-size:12px;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.person-block-desc,.person-block-credit{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}
+.tip-box{display:none!important;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}
+.tip.open{background:#fdf3d8;}
+.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}
+.tip-toast.show{bottom:16px;}
+.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}
+.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}
+.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}
+.tip-toast-close:hover{color:#e8c56a;}
+.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}
+.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">53 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Life and Cells</p>
+    <h1>私はどこまで、<em>生まれた日</em>のままか</h1>
+    <p class="cover-deck">肌も腸の粘膜も、数週間のうちに入れ替わる。骨も、心臓の筋肉も、少しずつ新しくなっていく。だが、大脳皮質のニューロンと、眼の水晶体の中心と、卵子は、生まれた日からそのままだ。「七年で別人」というのは、半分しか正しくない。</p>
+    <div class="cover-byline"><span>生命・進化</span><span>細胞生物学</span><span>同一性</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">2005</span>
+      <p class="est-event">フリセンら(カロリンスカ研究所)が、核実験由来の<strong>炭素14</strong>をDNAから検出して細胞の「生まれた年」を直接測定する手法を『Cell』誌に発表。</p>
+      <p class="est-context">この年、2月にYouTubeが設立、7月にはロンドン同時爆破、8月末にハリケーン・カトリーナが米南部を襲った。</p>
+    </div>
+    <p class="cover-aside">この論文から始まる一連の研究が、それまで推測でしかなかった組織ごとの<strong>細胞の寿命</strong>を、数字で書き換えていった。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>朝、枕の上に数本の髪が落ちている。指先の小さな傷は、いつの間にかかさぶたになり、数日後には跡形もなくなっている。爪を切り、垢をこすり落とし、トイレで排泄する。体は、常に何かを捨てている。</p>
+    <p>体が物質として絶え間なく入れ替わっているらしい、ということは、おそらく誰もが漠然と知っている。「七年で細胞は全部入れ替わる」という話も、どこかで聞いたことがあるかもしれない。</p>
+    <p>だが、本当にそうなのか。体のどこまでが入れ替わり、どこが入れ替わらないのかを、正確に答えられる人は少ない。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 生物学の予備知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 12 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-17</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-17</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">あなたの年齢を入れると、体のどこが何度入れ替わってきたかが見える。そして、いまだ生まれた日のままの場所もある。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- === 背景 === -->
+  <div class="sec-rule fade"><span class="sec-label">Background</span><span class="sec-line"></span></div>
+  <h2 class="fade">体は、捨てながら、続いている</h2>
+
+  <p class="body-text fade">古代ギリシャの川辺に、ヘラクレイトスという哲学者がいた。彼は川を見ながら、同じ川には二度入れないと言った。なぜなら、入った瞬間にその水はもう下流へ流れ去っているからだ。水は絶えず入れ替わっているのに、川は川として在り続ける。これは当時、物質と同一性をめぐる難問として受け取られた。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"We both step and do not step in the same rivers. We are and are not."</p>
+    <p class="quote-ja">我々は同じ川に入ると同時に、入らない。我々は在ると同時に、在らない。</p>
+    <p class="quote-attr">— ヘラクレイトス(紀元前500年頃)、断片B49aより</p>
+  </div>
+
+  <p class="body-text fade">人間の体にも、同じことが言える。皮膚は垢となって剥がれ落ち、毛髪は抜け、爪は切り取られる。腸の内壁はさらに激しく、数日ごとに丸ごと脱落する。血液の赤い細胞は四ヶ月もすれば新しいものに置き換わる。つまり、鏡の前の自分と、一年前の自分では、体を構成している<span class="tip" onclick="toggleTip(this)">物質<span class="tip-box"><strong>物質</strong><br>体を構成するタンパク質・脂質・糖・水などの総体。原子レベルで見れば、摂取した食物や水から供給され、排泄や剥脱によって失われる。</span></span>の大部分が違っている。</p>
+
+  <p class="body-text fade">ではなぜ、自分は自分だと感じ続けていられるのか。物質が入れ替わっているのに、記憶は残り、性格は保たれ、名前は同じだ。この感覚と事実のずれは、たんなる哲学の問題ではない。2005年、ある研究室が、このずれを数字で測る方法を発見した。</p>
+
+  <!-- 人物ブロック -->
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="./person_frisen.jpg" alt="Jonas Frisén(2016年、ノーベル放送のスタジオにて)" loading="lazy">
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">ヨナス・フリセン</p>
+      <p class="person-block-orig">Jonas Frisén</p>
+      <p class="person-block-role">幹細胞研究者 / カロリンスカ研究所</p>
+      <p class="person-block-desc">スウェーデンの分子生物学者。冷戦期の核実験で大気中に撒かれた<span class="tip" onclick="toggleTip(this)">炭素14<span class="tip-box"><strong>炭素14(14C)</strong><br>自然界にごく微量存在する放射性の炭素同位体。宇宙線によって常時生成されるが、1950〜60年代の大気圏核実験によって一時的に大気中濃度が約2倍に急増した。</span></span>が、その時点で分裂した細胞の<span class="tip" onclick="toggleTip(this)">DNA<span class="tip-box"><strong>DNA</strong><br>細胞の遺伝情報を担う二重らせん構造の分子。一度分裂完了後はほとんど入れ替わらず、当時の炭素14濃度が「生年月日のスタンプ」として残り続ける。</span></span>に年代印として残ることに気づき、これを用いてヒトの細胞の生まれた年を直接測定する手法を確立した。</p>
+      <p class="person-block-credit">Photo: Frankie Fouganthin / <a href="https://commons.wikimedia.org/wiki/File:Jonas_Fris%C3%A9n_in_2016.jpg" target="_blank" rel="noopener">Wikimedia Commons</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>(トリミング・リサイズ改変)</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">フリセンが使ったのは、20世紀が残した、ある不穏な副産物だった。1945年の広島・長崎以降、大気圏内で行われた核兵器の実験によって、大気中の炭素14の濃度は一気に跳ね上がった。1963年に部分的核実験禁止条約が結ばれると、濃度は指数関数的に下がっていき、今もゆっくりと減り続けている。</p>
+
+  <!-- SVG図解1: 14Cボムパルス曲線 -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" aria-label="大気中炭素14濃度の時系列グラフ">
+      <!-- タイトル & 単位 -->
+      <text x="250" y="22" font-family="'Playfair Display',serif" font-size="16" font-weight="700" fill="#1a1208" text-anchor="middle">大気中 <tspan font-family="'Source Sans 3',sans-serif" font-size="14">¹⁴C</tspan> 濃度の推移</text>
+      <text x="250" y="38" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55" text-anchor="middle">単位: 自然濃度からの増加率 (%)</text>
+      <!-- 背景グリッド -->
+      <g stroke="#e0d8c8" stroke-width="1">
+        <line x1="60" y1="78" x2="475" y2="78"/>
+        <line x1="60" y1="118" x2="475" y2="118"/>
+        <line x1="60" y1="158" x2="475" y2="158"/>
+        <line x1="60" y1="198" x2="475" y2="198"/>
+      </g>
+      <!-- 軸 -->
+      <line x1="60" y1="230" x2="475" y2="230" stroke="#1a1208" stroke-width="1.5"/>
+      <line x1="60" y1="68" x2="60" y2="230" stroke="#1a1208" stroke-width="1.5"/>
+      <!-- 曲線: 1945→1954急上昇→1963ピーク→指数減衰 -->
+      <path d="M 60 222 L 90 218 L 120 198 L 152 165 L 180 100 L 195 78 L 210 83 L 235 108 L 268 137 L 300 156 L 340 175 L 380 188 L 420 198 L 450 204 L 475 208" fill="none" stroke="#8b1a1a" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- 自然バックグラウンドライン -->
+      <line x1="60" y1="222" x2="475" y2="222" stroke="#7a6a55" stroke-width="1" stroke-dasharray="4 4"/>
+      <!-- Y軸ラベル -->
+      <text x="53" y="235" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55" text-anchor="end">0</text>
+      <text x="53" y="162" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55" text-anchor="end">+50</text>
+      <text x="53" y="82" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55" text-anchor="end">+100</text>
+      <!-- X軸ラベル -->
+      <text x="75" y="248" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#3d3020" text-anchor="middle">1945</text>
+      <text x="185" y="248" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#3d3020" text-anchor="middle">1963</text>
+      <text x="290" y="248" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#3d3020" text-anchor="middle">1985</text>
+      <text x="395" y="248" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#3d3020" text-anchor="middle">2005</text>
+      <text x="475" y="248" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#3d3020" text-anchor="middle">2025</text>
+      <!-- ピーク注釈 -->
+      <line x1="195" y1="78" x2="195" y2="64" stroke="#1a1208" stroke-width="1"/>
+      <text x="195" y="58" font-family="'Playfair Display',serif" font-size="13" font-weight="700" fill="#1a1208" text-anchor="middle">ピーク (1963)</text>
+      <!-- 大気圏核実験期 注釈(曲線の左上、空白エリアに配置) -->
+      <text x="75" y="115" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">大気圏核実験期</text>
+      <line x1="125" y1="120" x2="148" y2="170" stroke="#c8bfaa" stroke-width="0.8" stroke-dasharray="2 2"/>
+      <!-- 指数関数的減衰 注釈 -->
+      <text x="335" y="145" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">指数関数的減衰</text>
+      <!-- 自然バックグラウンド 注釈 -->
+      <text x="475" y="218" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55" text-anchor="end">自然バックグラウンド</text>
+      <!-- X軸タイトル -->
+      <text x="265" y="270" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55" text-anchor="middle">西暦</text>
+    </svg>
+    <p class="svg-fig-cap">図1:大気中 <sup>14</sup>C 濃度の時系列。1963年のピークから現在までの指数減衰が「ボムパルス」と呼ばれる。</p>
+  </div>
+
+  <p class="body-text fade">この「<span class="tip" onclick="toggleTip(this)">ボムパルス<span class="tip-box"><strong>ボムパルス(bomb pulse)</strong><br>1950〜60年代の核実験によって大気中の炭素14濃度が一時的に2倍近くに急上昇し、その後指数関数的に減衰した現象。その年に生まれた細胞のDNAに当時の濃度が「刻印」されるため、細胞の生成年齢を遡って測定できる。</span></span>」と呼ばれる大気の振幅は、人間の体を通って食物となり、新たに作られる細胞のDNAに組み込まれる。細胞が分裂してDNAが複製されるとき、そのときの大気濃度が「スタンプ」として記録される。分裂が完了してしまえばDNAはほとんど変化しないから、後年そのDNAに含まれる14C濃度を精密測定すれば、その細胞が生まれた年が逆算できる。</p>
+
+  <!-- SVG図解2: ボムパルス法の原理 -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg" aria-label="ボムパルス法によるDNA年代測定の原理">
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 10 3, 0 6" fill="#1a1208"/>
+        </marker>
+      </defs>
+      <!-- タイトル -->
+      <text x="250" y="22" font-family="'Playfair Display',serif" font-size="16" font-weight="700" fill="#1a1208" text-anchor="middle">細胞分裂の瞬間、大気の <tspan font-family="'Source Sans 3',sans-serif" font-size="14">¹⁴C</tspan> がDNAに記録される</text>
+
+      <!-- ステップ1: 大気 (x=10 to 130) -->
+      <rect x="10" y="40" width="120" height="170" fill="#f3efe6" stroke="#c8bfaa"/>
+      <text x="70" y="62" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="700" fill="#1a1208" text-anchor="middle">① 大気の ¹⁴C</text>
+      <g>
+        <circle cx="30" cy="90" r="5" fill="#8b1a1a"/>
+        <circle cx="65" cy="82" r="5" fill="#8b1a1a"/>
+        <circle cx="100" cy="95" r="5" fill="#8b1a1a"/>
+        <circle cx="45" cy="118" r="5" fill="#8b1a1a"/>
+        <circle cx="82" cy="125" r="5" fill="#8b1a1a"/>
+        <circle cx="112" cy="120" r="5" fill="#8b1a1a"/>
+        <circle cx="32" cy="150" r="5" fill="#8b1a1a"/>
+        <circle cx="63" cy="158" r="5" fill="#8b1a1a"/>
+        <circle cx="102" cy="152" r="5" fill="#8b1a1a"/>
+      </g>
+      <text x="70" y="198" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55" text-anchor="middle">年ごとに濃度が変化</text>
+
+      <!-- 矢印1 (gap 130-190, 60px) -->
+      <path d="M 135 120 L 185 120" stroke="#1a1208" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+      <text x="160" y="112" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55" text-anchor="middle">食物連鎖</text>
+
+      <!-- ステップ2: DNA取り込み (x=190 to 310) -->
+      <rect x="190" y="40" width="120" height="170" fill="#f3efe6" stroke="#c8bfaa"/>
+      <text x="250" y="62" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="700" fill="#1a1208" text-anchor="middle">② DNAに記録</text>
+      <!-- DNA二重らせん(SVGREPO, CC0) -->
+      <g transform="translate(198, 74) scale(0.22)" fill="#1a1208">
+        <path d="m404.917,461.94c-0.109-55.987-16.732-104.51-50.81-148.331-29.398-37.804-68.021-67.604-105.374-96.424-71.312-55.022-138.671-106.994-138.671-209.685 0-4.142-3.358-7.5-7.5-7.5h-30c-4.142,0-7.5,3.358-7.5,7.5 0,56.221 16.62,104.924 50.809,148.89 23.403,30.095 52.656,55.113 82.459,78.608-27.877,21.961-58.428,47.709-82.459,78.612-34.189,43.966-50.809,92.668-50.809,148.89 0,4.142 3.358,7.5 7.5,7.5h30c4.142,0 7.5-3.358 7.5-7.5 0-7.788 0.386-15.276 1.122-22.5h53.335c4.142,0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5h-51.241c2.892-16.09 7.673-30.807 14.052-44.515h185.739c4.142,0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5h-177.916c9.25-15.944 20.757-30.564 34.006-44.516h91.552c4.142,0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5h-76.413c15.349-14.395 32.452-28.308 50.696-42.52 65.983,51.312 124.924,102.991 124.924,199.051 0,4.142 3.358,7.5 7.5,7.5h30c4.162,0 7.52-3.358 7.52-7.5 0-0.188-0.007-0.375-0.021-0.56zm-244.189-154.103c-0.326,0.286-0.629,0.597-0.901,0.935-8.273,8.572-16.024,17.476-23.052,26.874-8.039,10.752-14.887,21.831-20.578,33.288-0.295,0.458-0.538,0.951-0.729,1.47-9.276,19.06-15.347,39.174-18.299,60.592-0.062,0.305-0.099,0.619-0.123,0.937-1.004,7.525-1.632,15.208-1.872,23.067h-15.005c1.417-49.608 17.008-92.915 47.543-132.182 23.847-30.664 54.854-56.411 82.79-78.311 3.586,2.78 7.171,5.55 10.744,8.307 0.501,0.387 1.001,0.773 1.502,1.159-22.127,17.276-43.407,34.724-62.02,53.864zm214.075,147.163c-1.424-46.424-16.173-86.979-44.97-123.759-26.875-34.327-62.115-61.517-99.427-90.305-36.61-28.248-74.467-57.457-102.694-93.754-30.535-39.267-46.126-82.574-47.543-132.182h15.008c1.424,46.424 16.173,86.979 44.97,123.759 26.875,34.327 62.115,61.517 99.425,90.303 36.61,28.247 74.467,57.456 102.695,93.756 30.536,39.267 46.127,82.574 47.544,132.182h-15.008z"/>
+        <path d="m156.911,89.515c-4.142,0-7.5,3.358-7.5,7.5s3.358,7.5 7.5,7.5h30c4.142,0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5h-30z"/>
+        <path d="m134.9,45h221.884c-2.818,16.035-7.497,30.742-13.869,44.515h-126.004c-4.142,0-7.5,3.358-7.5,7.5s3.358,7.5 7.5,7.5h118.207c-9.111,15.733-20.557,30.344-34.047,44.516h-91.801c-4.142,0-7.5,3.358-7.5,7.5s3.358,7.5 7.5,7.5h76.632c-9.657,9.034-20.127,17.987-31.331,27.044-3.221,2.604-3.722,7.326-1.118,10.547 2.603,3.221 7.327,3.722 10.547,1.118 33.396-26.997 68.18-58.276 89.692-101.53 0.382-0.565 0.684-1.187 0.902-1.847 8.665-17.874 15.063-37.778 18.185-60.245 0.084-0.382 0.134-0.775 0.157-1.176 0.983-7.369 1.622-15.005 1.867-22.941h15.008c-1.417,49.608-17.009,92.915-47.544,132.182-15.621,20.088-35.775,40.042-63.427,62.796-3.198,2.632-3.658,7.358-1.026,10.557 1.483,1.802 3.631,2.735 5.796,2.734 1.677,0 3.365-0.56 4.761-1.708 28.53-23.477 49.418-44.185 65.737-65.171 34.19-43.966 50.81-92.668 50.81-148.89 0-4.142-3.358-7.5-7.5-7.5h-30c-4.142,0-7.5,3.358-7.5,7.5 0,7.787-0.366,15.276-1.081,22.5h-223.937c-4.142,0-7.5,3.358-7.5,7.5s3.358,7.499 7.5,7.499z"/>
+        <path d="m335.082,425h-140.563c-4.142,0-7.5,3.358-7.5,7.5s3.358,7.5 7.5,7.5h140.563c4.142,0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5z"/>
+      </g>
+      <!-- 14C(赤い点)を骨格鎖上に (DNA中心 x=250 前後) -->
+      <circle cx="253" cy="96" r="4.5" fill="#8b1a1a"/>
+      <circle cx="227" cy="127" r="4.5" fill="#8b1a1a"/>
+      <circle cx="253" cy="158" r="4.5" fill="#8b1a1a"/>
+      <text x="250" y="198" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55" text-anchor="middle">当時の濃度が刻印</text>
+
+      <!-- 矢印2 (gap 310-370, 60px) -->
+      <path d="M 315 120 L 365 120" stroke="#1a1208" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+      <text x="340" y="112" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55" text-anchor="middle">保存</text>
+
+      <!-- ステップ3: 後年の測定 (x=370 to 490) -->
+      <rect x="370" y="40" width="120" height="170" fill="#f3efe6" stroke="#c8bfaa"/>
+      <text x="430" y="62" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="700" fill="#1a1208" text-anchor="middle">③ 濃度を測定</text>
+      <!-- 測定結果のグラフ(SVGREPO, CC0) -->
+      <g transform="translate(390, 76) scale(0.16)" fill="#1a1208">
+        <path d="M503.983,4.276H8.017C3.588,4.276,0,7.865,0,12.292v487.415c0,4.427,3.588,8.017,8.017,8.017h495.967 c4.428,0,8.017-3.589,8.017-8.017V12.292C512,7.865,508.412,4.276,503.983,4.276z M495.967,491.691H16.033V20.309h479.933V491.691 z"/>
+        <path d="M469.244,122.436V55.048c0-4.427-3.588-8.017-8.017-8.017h-98.338H256H149.111H50.772c-4.428,0-8.017,3.589-8.017,8.017 v94.063v102.614v74.339c-12.322,3.5-21.378,14.846-21.378,28.274c0,13.429,9.056,24.775,21.378,28.274v74.339 c0,4.427,3.588,8.017,8.017,8.017h98.338H256h106.889h98.338c4.428,0,8.017-3.589,8.017-8.017V354.338V251.724v-75.94 c10.2-4.719,17.102-15.056,17.102-26.674S479.445,127.156,469.244,122.436z M370.906,63.065h82.305v56.897 c-11.759,1.502-21.364,9.973-24.533,21.132h-57.772V63.065z M370.906,157.127h57.788c0.743,2.598,1.841,5.085,3.262,7.389 l-55.875,60.955c-1.658-0.837-3.389-1.515-5.174-2.022V157.127z M264.017,63.065h90.856v78.029h-90.856V63.065z M264.017,157.127 h90.856v66.323c-9.772,2.775-17.482,10.485-20.258,20.258h-70.598V157.127z M264.017,259.741h70.594 c0.569,2.004,1.35,3.94,2.332,5.778l-66.096,63.453c-2.145-1.264-4.436-2.244-6.83-2.919V259.741z M157.127,63.065h90.856v78.029 h-90.856V63.065z M157.127,157.127h90.856v86.58h-70.598c-2.775-9.772-10.486-17.483-20.258-20.258V157.127z M175.057,265.521 c0.982-1.84,1.764-3.774,2.332-5.778h70.594v66.312c-2.394,0.676-4.685,1.655-6.83,2.919L175.057,265.521z M230.054,340.542 c-0.982,1.84-1.764,3.774-2.332,5.779h-70.594v-66.312c2.394-0.676,4.685-1.655,6.83-2.919L230.054,340.542z M58.789,63.065 h82.305v78.029H58.789V63.065z M58.789,157.127h82.305v66.323c-9.772,2.775-17.483,10.485-20.258,20.258H58.789V157.127z M58.79,259.741h62.062c0.739,2.58,1.827,5.052,3.234,7.342l-57.488,62.49c-2.418-1.548-5.043-2.74-7.808-3.521V259.741z M37.411,354.338c0-7.368,5.993-13.361,13.361-13.361c3.99,0,7.741,1.766,10.294,4.844c0.001,0.001,0.001,0.002,0.002,0.003 c2.005,2.421,3.065,5.365,3.065,8.514c0,7.368-5.993,13.361-13.361,13.361C43.405,367.699,37.411,361.706,37.411,354.338z M141.094,448.935H58.789v-66.323c9.772-2.775,17.483-10.486,20.258-20.258h62.047V448.935z M141.094,346.322H79.032 c-0.455-1.603-1.043-3.164-1.763-4.668l58.603-63.7c1.673,0.849,3.42,1.534,5.221,2.046V346.322z M140.084,261.544 c-0.001-0.001-0.001-0.001-0.002-0.002c-2.794-2.572-4.333-6.057-4.333-9.817c0.001-7.369,5.994-13.362,13.362-13.362 c7.368,0,13.361,5.993,13.361,13.361c0,3.45-1.325,6.732-3.73,9.238c-0.001,0.001-0.002,0.002-0.003,0.003 c-2.551,2.656-5.97,4.121-9.628,4.121C145.772,265.087,142.567,263.829,140.084,261.544z M247.983,448.935h-90.856v-86.58h70.598 c2.775,9.772,10.486,17.483,20.258,20.258V448.935z M242.639,354.338c0-3.45,1.325-6.732,3.73-9.238 c0.001-0.001,0.002-0.002,0.003-0.003c2.551-2.656,5.97-4.12,9.628-4.12c3.658,0,7.076,1.463,9.628,4.12 c0.001,0.001,0.002,0.002,0.003,0.003c2.406,2.507,3.73,5.787,3.73,9.238c0,7.368-5.993,13.361-13.361,13.361 C248.632,367.699,242.639,361.706,242.639,354.338z M354.873,448.935h-90.856v-66.323c9.772-2.775,17.483-10.486,20.258-20.258 h70.598V448.935z M354.873,346.322h-70.594c-0.569-2.004-1.35-3.939-2.332-5.778l66.096-63.453 c2.145,1.265,4.436,2.244,6.83,2.919V346.322z M353.262,260.965c-0.001-0.001-0.002-0.002-0.003-0.003 c-2.405-2.507-3.73-5.787-3.73-9.238c0-7.368,5.993-13.361,13.361-13.361c3.329,0,6.527,1.253,9.008,3.526 c0.001,0.001,0.002,0.003,0.004,0.004c0.001,0.001,0.002,0.001,0.003,0.002c2.803,2.573,4.347,6.063,4.347,9.83 c-0.001,7.368-5.994,13.361-13.362,13.361C359.232,265.086,355.813,263.622,353.262,260.965z M453.211,448.935h-82.305v-86.58 h82.305V448.935z M453.211,346.322h-82.305v-66.323c9.772-2.775,17.482-10.486,20.258-20.258h62.047V346.322z M453.211,243.708 h-62.063c-0.743-2.598-1.841-5.085-3.262-7.389l55.875-60.955c2.957,1.493,6.148,2.472,9.45,2.897V243.708z M459.638,162.201 c-0.01,0.002-0.019,0.003-0.029,0.004c-0.873,0.175-1.766,0.265-2.657,0.265c-3.328,0-6.527-1.253-9.008-3.526 c-0.001-0.001-0.002-0.003-0.004-0.004c-0.001-0.001-0.002-0.001-0.002-0.002c-2.804-2.573-4.347-6.063-4.347-9.83 c0-7.368,5.993-13.361,13.361-13.361c0.891,0,1.784,0.09,2.657,0.265c0.01,0.002,0.019,0.003,0.029,0.004 c6.186,1.261,10.675,6.766,10.675,13.094C470.313,155.438,465.824,160.943,459.638,162.201z"/>
+      </g>
+      <text x="430" y="172" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="700" fill="#8b1a1a" text-anchor="middle">→ 誕生年が判る</text>
+      <text x="430" y="190" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55" text-anchor="middle">加速器質量分析(AMS)</text>
+
+      <!-- 下部: 凡例 -->
+      <circle cx="160" cy="240" r="5" fill="#8b1a1a"/>
+      <text x="172" y="244" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55">¹⁴C原子(DNA骨格に取り込まれる)</text>
+    </svg>
+    <p class="svg-fig-cap">図2:ボムパルス法の仕組み。大気→食物→細胞DNAと取り込まれた <sup>14</sup>C が、分裂停止後は時計のように静止し、後年の測定で生成年を教える。</p>
+  </div>
+
+  <!-- 誤解あるある -->
+  <div class="misconception fade">
+    <div class="misconception-header">
+      <span class="misconception-hl">よくある誤解 vs 実際</span>
+    </div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">「体の細胞は7年で全部入れ替わるから、7年前の自分とはもう別人だ」</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">体全体の細胞の<em>平均年齢</em>が約7〜10年というフリセンの発見が変質したもの。腸上皮は数日で入れ替わる一方、大脳皮質のニューロンは生涯ほぼそのまま。組織によって桁で違う。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">「脳の細胞も、ゆっくりとはいえ、少しずつ新しくなっている」</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">大脳皮質のニューロンは出生時から一度も入れ替わらない。記憶や言語を司るこの領域の神経細胞は、死ぬまで同じものが働き続ける。海馬の一部のみ、限定的な新生が議論されている。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">「心臓の筋肉は入れ替わらない。だから心筋梗塞は治らない」</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">心筋細胞は毎年約1%(若年期)、年齢とともに減速して約0.45%(75歳)が入れ替わる。生涯でおよそ45%の細胞が新しいものに置き換わっている、というのが2009年の研究の結論。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- === 体験 === -->
+  <div class="sec-rule fade"><span class="sec-label">Visualize</span><span class="sec-line"></span></div>
+  <h2 class="fade">あなたの体の年齢分布</h2>
+
+  <p class="body-text fade">ここで一度、数字を体にぶつけてみる。スライダーで<strong>あなたの年齢</strong>を指定すると、主要な組織が、あなたの生まれた日から今日まで、何回入れ替わってきたかを時間軸で描く。入れ替わりが速い組織ほど、帯が濃く塗りつぶされる。生涯入れ替わらない組織は、出生の左端から現在の右端まで、赤い一本の線が貫く。</p>
+
+  <p class="body-text fade">スライダーを動かしてみてほしい。若い年齢では薄く、高齢になるほど腸や血球の帯は真っ黒になる。だが、何度スライダーを動かしても、いちばん下の三つの帯だけは、一本の線のまま変わらない。</p>
+
+  <!-- メイン体験: 年齢スライダー型ビジュアライザー(HTML/CSS版) -->
+  <div class="sim-wrap fade">
+    <div class="sim-head">
+      <span class="sim-title">▸ 年齢別 細胞入れ替わり可視化</span>
+      <span class="sim-sub">スライダーを動かすとリアルタイムに再計算</span>
+    </div>
+    <div class="sim-ctrl">
+      <span class="sim-ctrl-label">あなたの年齢</span>
+      <input type="range" id="ageSlider" class="sim-slider" min="0" max="90" value="30" step="1">
+      <div class="sim-age-display"><span id="ageValue">30</span><span class="sim-age-unit">歳</span></div>
+    </div>
+    <div class="sim-legend">
+      <div class="sim-legend-item"><span class="sim-legend-swatch" style="background:#3d3020;"></span>入れ替わり回数(帯が濃いほど多い)</div>
+      <div class="sim-legend-item"><span class="sim-legend-swatch" style="background:#8b1a1a;"></span>生涯ほぼ入れ替わらない</div>
+    </div>
+    <div class="sim-timeline-head">
+      <span class="sim-tl-left">出生 (0歳)</span>
+      <span class="sim-tl-right">現在 (<span id="ageValueHead">30</span>歳)</span>
+    </div>
+    <div class="sim-tissues" id="simTissues"></div>
+    <div class="sim-note">
+      <strong>読み方:</strong> 各組織の帯は、出生(左端)から現在(右端)までの時間軸。縦線一本が一度の入れ替わりを表す(密集時は濃い黒帯として表示)。心筋は生涯を通じての累積入替率を帯の塗りで示す。最後の3組織(大脳皮質・水晶体中心・卵子)は生涯不変で、赤い一本の線として描かれる。
+    </div>
+  </div>
+
+  <p class="body-text fade">平均寿命の80歳になるまでに、腸の内壁は9千回以上、肌は千回以上、血液は240回ほど入れ替わっている。そのすべてを足し合わせると、平均して<strong>1日に約3,300億個の細胞が新しくなっている</strong>。体重60kgの人なら、約80グラム分の細胞が毎日作られ、毎日失われている。計算すれば、一年で数十kg分の物質が入れ替わっていることになる。</p>
+
+  <!-- 組織別入れ替わり周期テーブル -->
+  <div class="tissue-table fade">
+    <div class="tissue-table-head">
+      <div>組織・細胞</div>
+      <div>入れ替わり周期</div>
+      <div>80歳までの回数</div>
+    </div>
+    <div class="tissue-row"><div><strong>腸上皮</strong></div><div class="tissue-period">3〜5 日</div><div>約 6,000〜9,700 回</div></div>
+    <div class="tissue-row"><div><strong>胃粘膜</strong></div><div class="tissue-period">約 7 日</div><div>約 4,170 回</div></div>
+    <div class="tissue-row"><div><strong>表皮(肌)</strong></div><div class="tissue-period">約 3 週間</div><div>約 1,390 回</div></div>
+    <div class="tissue-row"><div><strong>赤血球</strong></div><div class="tissue-period">約 120 日</div><div>約 243 回</div></div>
+    <div class="tissue-row"><div><strong>肝細胞</strong></div><div class="tissue-period">約 300〜500 日</div><div>約 58〜97 回</div></div>
+    <div class="tissue-row"><div><strong>脂肪細胞</strong></div><div class="tissue-period">年率約 10% / 半減期 約8年</div><div>生涯でほぼ全置換</div></div>
+    <div class="tissue-row"><div><strong>骨</strong></div><div class="tissue-period">約 10 年で全置換</div><div>約 8 回</div></div>
+    <div class="tissue-row"><div><strong>心筋細胞</strong></div><div class="tissue-period">年間 0.45〜1%</div><div>生涯累積 約45%</div></div>
+    <div class="tissue-row immut"><div><strong>大脳皮質ニューロン</strong></div><div class="tissue-period">生涯ほぼ不変</div><div>0 回</div></div>
+    <div class="tissue-row immut"><div><strong>水晶体中心の繊維細胞</strong></div><div class="tissue-period">胎児期から不変</div><div>0 回</div></div>
+    <div class="tissue-row immut"><div><strong>卵子(女性)</strong></div><div class="tissue-period">胎児期から固定</div><div>0 回</div></div>
+  </div>
+
+  <!-- === メカニズム === -->
+  <div class="sec-rule fade"><span class="sec-label">Mechanism</span><span class="sec-line"></span></div>
+  <h2 class="fade">なぜ組織で、これほど桁が違うのか</h2>
+
+  <p class="body-text fade">1日に入れ替わる3,300億個の細胞のうち、実はその<strong>90%が血液と腸の内壁</strong>が占めている。残り10%のさらに一部が皮膚で、その他の組織が入れ替わる速度は、これらに比べると桁違いに遅い。</p>
+
+  <!-- SVG図解3: 1日のターンオーバーピラミッド -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" aria-label="1日あたりの細胞ターンオーバー内訳">
+      <text x="250" y="22" font-family="'Playfair Display',serif" font-size="15" font-weight="700" fill="#1a1208" text-anchor="middle">1日に入れ替わる細胞の内訳(合計 約3,300億)</text>
+      <!-- 外枠 -->
+      <rect x="30" y="50" width="440" height="180" fill="none" stroke="#c8bfaa" stroke-width="1"/>
+      <!-- 赤血球(約60%) -->
+      <rect x="30" y="50" width="267" height="180" fill="#8b1a1a"/>
+      <text x="163" y="128" font-family="'Source Sans 3',sans-serif" font-size="18" font-weight="700" fill="white" text-anchor="middle">赤血球</text>
+      <text x="163" y="150" font-family="'Source Sans 3',sans-serif" font-size="15" fill="white" text-anchor="middle">約 60%</text>
+      <text x="163" y="170" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#f0dcdc" text-anchor="middle">約 2,000億 / 日</text>
+      <!-- 好中球(約20%) -->
+      <rect x="297" y="50" width="89" height="180" fill="#a04040"/>
+      <text x="341" y="128" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">好中球</text>
+      <text x="341" y="148" font-family="'Source Sans 3',sans-serif" font-size="13" fill="white" text-anchor="middle">20%</text>
+      <text x="341" y="166" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#f0dcdc" text-anchor="middle">約700億</text>
+      <!-- 腸上皮(約11%) -->
+      <rect x="386" y="50" width="48" height="180" fill="#c07050"/>
+      <text x="410" y="130" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="700" fill="white" text-anchor="middle">腸</text>
+      <text x="410" y="148" font-family="'Source Sans 3',sans-serif" font-size="11" fill="white" text-anchor="middle">11%</text>
+      <!-- 皮膚(数%) -->
+      <rect x="434" y="50" width="22" height="180" fill="#d89070"/>
+      <text x="445" y="145" font-family="'Source Sans 3',sans-serif" font-size="11" fill="white" text-anchor="middle" transform="rotate(-90 445 145)">皮膚</text>
+      <!-- その他(ごく少量) -->
+      <rect x="456" y="50" width="14" height="180" fill="#e0b090"/>
+
+      <!-- 注釈 -->
+      <text x="250" y="252" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55" text-anchor="middle">血液(赤血球+白血球)と腸上皮の3つで、全ターンオーバーの <tspan font-weight="700" fill="#8b1a1a">約96%</tspan> を占める</text>
+      <text x="250" y="270" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#b0a090" text-anchor="middle">Sender &amp; Milo, Nature Medicine (2021)</text>
+    </svg>
+    <p class="svg-fig-cap">図3:人体のターンオーバーは、ほぼ「血液と腸」で説明できる。筋肉・骨・脳の寄与は極めて小さい。</p>
+  </div>
+
+  <p class="body-text fade">この偏りには、生存上の理由がある。外界と接する組織は、絶えず傷を負う。腸の内壁には食物と消化酵素と微生物が押し寄せ、皮膚には紫外線と摩擦と乾燥が降り注ぐ。血液は呼吸のたびに酸素ストレスを受け、酸素を運ぶ赤血球は核を持たず、壊れやすい。だからこれらの組織は、常に若い細胞を大量生産し、壊れる前に捨てる戦略で進化した。</p>
+
+  <p class="body-text fade">逆に、脳は頭蓋骨と血液脳関門で厳重に守られている。外界と直接接しない分、激しい<span class="tip" onclick="toggleTip(this)">ターンオーバー<span class="tip-box"><strong>ターンオーバー(turnover)</strong><br>細胞の入れ替わり。古い細胞が死滅し、新しい細胞が補充される動的平衡のこと。組織ごとに速度が大きく異なる。</span></span>は不要で、むしろ<strong>入れ替えないこと</strong>に価値がある。ニューロンは無数の他のニューロンと物理的なシナプスで繋がっており、この配線こそが記憶そのものだ。一つ死ぬたびに新しいニューロンを入れて配線を繋ぎ直していたら、記憶は持ち得ない。</p>
+
+  <!-- 図解4: カハルの大脳皮質スケッチ(1899) -->
+  <div class="svg-fig fade fig-photo">
+    <img src="./fig_cajal_cortex_1899.png" alt="サンティアゴ・ラモン・イ・カハルによる大脳皮質のスケッチ(1899年)。左:成人ヒト視覚野、中央:成人ヒト運動野、右:生後1.5ヶ月児の皮質。" loading="lazy">
+    <p class="svg-fig-cap">図4:<span class="tip" onclick="toggleTip(this)">サンティアゴ・ラモン・イ・カハル<span class="tip-box"><strong>サンティアゴ・ラモン・イ・カハル(Santiago Ramón y Cajal, 1852–1934)</strong><br>スペインの神経解剖学者・組織学者。Golgi染色を用いて脳の個々のニューロンを初めて可視化し、脳が離散した細胞のネットワークであること(ニューロン説)を証明した。1906年ノーベル生理学・医学賞。手描きの素描は現在も神経科学の教科書に使われる。</span></span>が描いた大脳皮質のスケッチ(1899年)。左が成人の視覚野、中央が成人の運動野、右が生後1.5ヶ月児の皮質。この時代に彼が顕微鏡越しに見ていた個々のニューロンと、今あなたの脳で働いているニューロンは、同じ種類の細胞 — そして多くの場合、<em>あなたが生まれた日から、ずっと同じ細胞</em>だ。</p>
+    <p class="svg-fig-credit">出典: Santiago Ramón y Cajal『ヒト大脳皮質感覚領の比較研究』(1899) / <a href="https://commons.wikimedia.org/wiki/File:Cajal_cortex_drawings.png" target="_blank" rel="noopener">Wikimedia Commons</a> / Public Domain</p>
+  </div>
+
+  <p class="body-text fade">一方、同じ「入れ替わりにくい組織」のなかでも、完全に静止しているわけではないものがある。心臓は死ぬまで止まらず、毎秒一回以上の収縮を繰り返す。その過酷な労働のなかで、心筋細胞はどれくらいの速度で入れ替わっているのか。</p>
+
+  <!-- SVG図解5: 心筋細胞の年齢別ターンオーバー曲線 -->
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg" aria-label="心筋細胞の年齢別年間ターンオーバー率">
+      <!-- タイトル & 単位 -->
+      <text x="250" y="24" font-family="'Playfair Display',serif" font-size="16" font-weight="700" fill="#1a1208" text-anchor="middle">心筋細胞の年齢別ターンオーバー率</text>
+      <text x="250" y="42" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55" text-anchor="middle">単位: 年間入れ替わり率 (% / 年)</text>
+      <!-- グリッド -->
+      <g stroke="#e0d8c8" stroke-width="1">
+        <line x1="70" y1="85" x2="475" y2="85"/>
+        <line x1="70" y1="135" x2="475" y2="135"/>
+        <line x1="70" y1="185" x2="475" y2="185"/>
+        <line x1="70" y1="235" x2="475" y2="235"/>
+      </g>
+      <!-- 軸 -->
+      <line x1="70" y1="235" x2="475" y2="235" stroke="#1a1208" stroke-width="1.5"/>
+      <line x1="70" y1="75" x2="70" y2="235" stroke="#1a1208" stroke-width="1.5"/>
+      <!-- 曲線: 25歳で1%, 75歳で0.45% -->
+      <path d="M 130 110 Q 220 138 310 167 T 430 200" fill="none" stroke="#8b1a1a" stroke-width="2.5"/>
+      <!-- データポイント -->
+      <circle cx="130" cy="110" r="5" fill="#8b1a1a"/>
+      <circle cx="430" cy="200" r="5" fill="#8b1a1a"/>
+      <!-- Y軸ラベル -->
+      <text x="63" y="239" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55" text-anchor="end">0%</text>
+      <text x="63" y="189" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55" text-anchor="end">0.5%</text>
+      <text x="63" y="139" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55" text-anchor="end">1.0%</text>
+      <!-- X軸ラベル -->
+      <text x="130" y="254" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#3d3020" text-anchor="middle">25歳</text>
+      <text x="280" y="254" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#3d3020" text-anchor="middle">50歳</text>
+      <text x="430" y="254" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#3d3020" text-anchor="middle">75歳</text>
+      <!-- X軸タイトル -->
+      <text x="272" y="276" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55" text-anchor="middle">年齢</text>
+      <!-- 値注釈: 点から離して配置 -->
+      <text x="130" y="96" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="700" fill="#8b1a1a" text-anchor="middle">1.0% / 年</text>
+      <text x="430" y="216" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="700" fill="#8b1a1a" text-anchor="middle">0.45% / 年</text>
+      <!-- 注釈 -->
+      <text x="250" y="302" font-family="'Source Sans 3',sans-serif" font-size="12" fill="#7a6a55" text-anchor="middle">生涯を通じて、全心筋細胞の <tspan font-weight="700" fill="#8b1a1a">約45%</tspan> が一度は入れ替わる</text>
+    </svg>
+    <p class="svg-fig-cap">図5:心筋は若年期で年1%、高齢期で年0.45%。一度の梗塞で失われた細胞は、数十年かけてもごく一部しか戻らない。Bergmann et al., Science (2009) の推定曲線。</p>
+  </div>
+
+  <p class="body-text fade">組織ごとの差を、もう少し掘ってみる。</p>
+
+  <div class="steps-wrap fade">
+    <div class="steps-head">Why the rate differs</div>
+    <div class="step-card" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">1</div>
+        <div class="step-tw"><div class="step-title">腸上皮:毎日、丸ごと剥がれて捨てる</div><div class="step-sub">Tissue A | cycle: 3–5 days</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>小腸の絨毛の先端にある上皮細胞は、絨毛の根元にある<em>幹細胞</em>から絶えず補充される。新しく生まれた細胞は絨毛を押し上げながら先端へ移動し、3〜5日後には消化管内に脱落する。剥がれた細胞は、便に混じって体外へ出ていく。</p>
+        <p>食物と酵素と腸内細菌という過酷な環境のなかで、<strong>傷ついた細胞を修理するより、使い捨てた方がコストが低い</strong>。この戦略が、進化の過程で選ばれた。</p>
+      </div>
+    </div>
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">2</div>
+        <div class="step-tw"><div class="step-title">骨:壊しながら作る、ゆっくりした改装</div><div class="step-sub">Tissue B | cycle: ~10 years</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>骨はコンクリートのように一度固まったら終わりではない。<em>破骨細胞</em>が古い骨を少しずつ溶かし、<em>骨芽細胞</em>が新しい骨を積み直している。この二つの細胞の共同作業で、人間の骨組織は約10年をかけて全置換される。</p>
+        <p>だからこそ、宇宙の無重力環境に滞在した宇宙飛行士は骨量を失い、地上での運動負荷がないと骨は再建されない。<strong>骨は静的な構造ではなく、絶えず再設計される動的な建築物</strong>だ。</p>
+      </div>
+    </div>
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">3</div>
+        <div class="step-tw"><div class="step-title">大脳皮質:配線を壊さない、という戦略</div><div class="step-sub">Tissue C | lifelong</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>大脳皮質の<em>ニューロン</em>は、出生時からほぼ入れ替わらない。他のニューロンと数千から数万のシナプスで接続しており、その配線パターンそのものが記憶と性格を担っている。</p>
+        <p>細胞を置き換えれば、配線がリセットされ、記憶が失われる。だから脳は、細胞を入れ替える代わりに、<strong>一つ一つのニューロンを生涯壊れないように徹底的に保護する</strong>戦略を採った。血液脳関門、高密度なグリア細胞の支援、厳密な代謝調節 — すべて「同じニューロンを長く使い続ける」ための装置だ。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- === 歴史 === -->
+  <div class="sec-rule fade"><span class="sec-label">History</span><span class="sec-line"></span></div>
+  <h2 class="fade">冷戦の副産物が、細胞の年齢を明かした</h2>
+
+  <div class="timeline fade">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1945</div>
+      <div class="tl-title">最初の核爆発</div>
+      <div class="tl-desc">ニューメキシコの砂漠で最初の核実験(トリニティ)、続いて広島・長崎。大気中の14C濃度が以後上昇に転じる。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1954–1962</div>
+      <div class="tl-title">大気圏核実験の最盛期</div>
+      <div class="tl-desc">米ソ英など各国が大気圏内で数百回の核実験を実施。1963年頃、自然背景の約2倍にまで14C濃度が達する。</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1963</div>
+      <div class="tl-title">部分的核実験禁止条約</div>
+      <div class="tl-desc">大気圏・宇宙・水中での核実験が禁止。以後、大気中14C濃度は指数関数的に減衰 — これが「ボムパルス」となる。</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2005</div>
+      <div class="tl-title">Retrospective Birth Dating of Cells</div>
+      <div class="tl-desc">Spalding, Bhardwaj, Buchholz, Druid, Frisén. 『Cell』誌で14Cボムパルスを用いた細胞年齢測定法を確立。大脳皮質ニューロンが生涯不変であることを初めて直接証明。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2008</div>
+      <div class="tl-title">脂肪細胞のターンオーバー</div>
+      <div class="tl-desc">Spalding et al. 『Nature』。脂肪細胞の総数は思春期で固定されるが、個々の細胞は年約10%のペースで入れ替わり続けることが明らかに。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2009</div>
+      <div class="tl-title">心筋細胞の更新が確認される</div>
+      <div class="tl-desc">Bergmann et al. 『Science』。25歳で年1%、75歳で年0.45%、生涯で約45%の心筋細胞が入れ替わる。「心筋は再生しない」という通説を覆した。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2018</div>
+      <div class="tl-title">成人海馬の神経新生をめぐる論争</div>
+      <div class="tl-desc">Sorrells et al.(『Nature』)が13歳以降の<span class="tip" onclick="toggleTip(this)">神経新生<span class="tip-box"><strong>神経新生(neurogenesis)</strong><br>成体の脳において新しいニューロンが生まれる現象。胎児期・新生児期には活発だが、成体でも続くかどうかは脳領域と動物種で異なり、ヒト成人の海馬については現在も論争が続いている。</span></span>をほぼ否定、Boldrini et al.(『Cell Stem Cell』)が高齢まで続くと報告。後の解析で、試料の固定法の違いが結果を分けた可能性が指摘される。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2021</div>
+      <div class="tl-title">人体ターンオーバーの総覧</div>
+      <div class="tl-desc">Sender &amp; Milo『Nature Medicine』。1日3,300億細胞・80g/日の全身ターンオーバーを体系的に集計。血液と腸で約96%を占めることが数値化される。</div>
+    </div>
+  </div>
+
+  <p class="body-text fade">ボムパルス法の美しさは、20世紀の最悪の発明の一つが、別の領域で思いがけぬ精密な時計として機能しているという点にある。冷戦の恐怖が撒いた放射性の砂が、半世紀後、生きている人間の体の中で、いつその細胞が生まれたのかを正直に答えていた。</p>
+
+  <!-- === つまり === -->
+  <div class="sec-rule fade"><span class="sec-label">In Short</span><span class="sec-line"></span></div>
+  <h2 class="fade">生まれた日のままの場所が、たしかにある</h2>
+
+  <p class="body-text fade">あなたの体は、あなたが思っているよりずっと動的だ。指先の皮膚は今月のもの、腸の内壁は先週のもの、赤血球は4ヶ月前のもの。肝臓の多くは昨年、骨の大半はこの十年のあいだに新しくなった。脂肪細胞でさえ、毎年10%が入れ替わっている。</p>
+
+  <p class="body-text fade">しかし、その動きの底に、<strong>生まれた日からそのままの部分</strong>がある。大脳皮質のニューロン。眼の<span class="tip" onclick="toggleTip(this)">水晶体<span class="tip-box"><strong>水晶体(lens)</strong><br>眼の前方にあるレンズ。中心部の繊維細胞は胎児期に作られたまま、生涯入れ替わらない。血管がなく、細胞の補充経路も断たれているため、老化とともにタンパク質が変性して白濁するのが白内障。</span></span>の中心にある繊維細胞。女性の場合、胎児期に約100万個で固定されてそれ以上増えない<span class="tip" onclick="toggleTip(this)">卵子<span class="tip-box"><strong>卵子(ovum)の起源</strong><br>女性の卵子は、本人が母親の胎内にいる胎児期の時点で約100万個がつくられ、以後、新しく補充されることはない。思春期以降、毎月の排卵で消費され、閉経までに大部分が失われる。つまり、あなたが存在しうる原点の細胞は、あなたの母親が祖母のお腹にいた頃にはもうそこにあった。</span></span>のすべて。記憶を持ち、世界を映し、次の世代を作るためのこの三つの場所は、あなたの生まれた日に完成されて、そのまま今もそこにある。</p>
+
+  <div class="pull fade">
+    <p class="pull-q-en">"The atoms come into my brain, dance a dance, then go out; there are always new atoms, but always doing the same dance, <em>remembering what the dance was yesterday</em>."</p>
+    <p class="pull-q">「原子は私の脳に入ってきて、踊りを踊り、そしてまた出ていく。いつも新しい原子だが、いつも同じ踊りを踊り、<em>昨日の踊りを憶えている</em>。」</p>
+    <p class="pull-attr">— リチャード・ファインマン『科学の価値(The Value of Science)』1955年</p>
+  </div>
+
+  <p class="body-text fade">テセウスの船の問いは、抽象的な思考実験ではなく、あなたの体そのものに突き刺さっている。そしてこの問いへの体なりの答えは、哲学者が出したどの答えとも違っていた。<strong>物質は流れる、記憶は流れない</strong>。入れ替わる部分と、入れ替わらない部分。二つが同居することで、あなたは「同じあなた」で居続けている。</p>
+
+  <div class="culture-block fade">
+    <p class="culture-label">同一性の系譜</p>
+    <div class="culture-item">
+      <p class="culture-title">プルタルコス『英雄伝』— テセウスの船</p>
+      <p class="culture-desc">古代アテネに保存されたテセウスの船は、腐った板を新しい板に交換し続けているうちに、やがて全ての板が入れ替わっていた。それは同じ船なのか、別の船なのか。紀元前から問われ続ける同一性の難問。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">ヘラクレイトス — 万物流転</p>
+      <p class="culture-desc">「同じ川に二度入ることはできない」。変化そのものが存在の本質であり、静止した実体を前提とする考え方への根本的な挑戦。細胞のターンオーバーはこの古代の直観を分子レベルで裏付けた。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">仏教 — 諸行無常</p>
+      <p class="culture-desc">あらゆるものは絶えず変化し、固定した実体を持たない。これは現代生物学のターンオーバー観と重なるが、仏教は「変化しないもの」を否定する立場を取る一方、体は変化する部分と変化しない部分の同居で動いている。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">ジョン・ロック『人間知性論』— 記憶としての同一性</p>
+      <p class="culture-desc">17世紀の英国哲学者は、物質の連続性ではなく<em>記憶の連続性</em>こそが人格の同一性を成すと主張した。その記憶の物理的基盤が大脳皮質のニューロン配線であることを、350年後の生物学が示したことになる。</p>
+    </div>
+  </div>
+
+  <!-- === 参考文献 === -->
+  <div class="sec-rule fade"><span class="sec-label">References</span><span class="sec-line"></span></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2005</span></div>
+      <p class="ref-title"><a href="https://www.cell.com/fulltext/S0092-8674(05)00408-3" target="_blank" rel="noopener">Retrospective Birth Dating of Cells in Humans</a></p>
+      <p class="ref-author">Spalding, Bhardwaj, Buchholz, Druid, Frisén — Cell 122, 133–143</p>
+      <p class="ref-desc">14Cボムパルスを用いてヒト細胞の生成年齢を遡って測定する方法を初めて確立した論文。大脳皮質ニューロンが生涯不変であることを初めて直接証明。本記事のEst.となる一次情報。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2008</span></div>
+      <p class="ref-title"><a href="https://www.nature.com/articles/nature06902" target="_blank" rel="noopener">Dynamics of fat cell turnover in humans</a></p>
+      <p class="ref-author">Spalding et al. — Nature 453, 783–787</p>
+      <p class="ref-desc">脂肪細胞の数は思春期で固定される一方、個々の細胞は年約10%のペースで入れ替わり続けていることを示した。半数が約8年で更新。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2009</span></div>
+      <p class="ref-title"><a href="https://www.science.org/doi/10.1126/science.1164680" target="_blank" rel="noopener">Evidence for Cardiomyocyte Renewal in Humans</a></p>
+      <p class="ref-author">Bergmann et al. — Science 324, 98–102</p>
+      <p class="ref-desc">心筋細胞の年齢別ターンオーバー率を測定した論文。25歳で年1%、75歳で年0.45%。本記事の心筋曲線の出典。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2021</span></div>
+      <p class="ref-title"><a href="https://www.nature.com/articles/s41591-020-01182-9" target="_blank" rel="noopener">The distribution of cellular turnover in the human body</a></p>
+      <p class="ref-author">Sender &amp; Milo — Nature Medicine 27, 45–48</p>
+      <p class="ref-desc">人体のターンオーバーを体系的に集計したメタレビュー。1日3,300億細胞/80g、血液と腸で96%を占めるという本記事の主要数値はこの論文による。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Review</span><span class="ref-year">2019</span></div>
+      <p class="ref-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6676862/" target="_blank" rel="noopener">Neurogenesis in the hippocampus of adult humans: controversy "fixed" at last</a></p>
+      <p class="ref-author">Review article — Cell Stem Cell</p>
+      <p class="ref-desc">2018年のSorrells論文とBoldrini論文の矛盾を、試料固定法の違いで説明する見解。成人海馬神経新生論争の整理。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Reference</span><span class="ref-year">—</span></div>
+      <p class="ref-title"><a href="https://book.bionumbers.org/how-quickly-do-different-cells-in-the-body-replace-themselves/" target="_blank" rel="noopener">How quickly do different cells in the body replace themselves? — Cell Biology by the Numbers</a></p>
+      <p class="ref-author">Milo &amp; Phillips — Garland Science</p>
+      <p class="ref-desc">組織ごとのターンオーバー値をまとめたレファレンス。本記事の早見表の基礎データ。</p>
+    </div>
+  </div>
+
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    本記事の主要な数値は、Frisén研究室(カロリンスカ研究所)の一連のボムパルス論文、およびSender &amp; Milo(2021)のメタレビューに依拠している。組織ごとの入れ替わり周期には測定手法や部位による幅があり、本記事では代表値を採用した。成人ヒトの海馬神経新生の有無については、2018年以降も議論が続いており、本記事では「限定的にあり得る」という慎重な立場で記載している。
+  </div>
+
+  <div class="tags">
+    <span class="tag">#生命・進化</span>
+    <span class="tag">#細胞生物学</span>
+    <span class="tag">#同一性</span>
+    <span class="tag">#ボムパルス</span>
+    <span class="tag">#フリセン</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:44px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">3,300<span style="font-size:18px;color:#7a6a55;margin-left:4px;">億</span></p>
+      <p class="sidebar-text">1日に入れ替わる細胞の数。体重60kgの人で約<strong>80g/日</strong>。うち約90%は血液細胞。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text"><em>2005年</em>、カロリンスカ研究所のフリセンらが、冷戦期の大気圏核実験で一時的に増えた炭素14を利用し、ヒト細胞の生成年齢を直接測定する方法を確立した。以降、心筋・脂肪・海馬など各組織のターンオーバー速度が次々と数値化されていった。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">プルタルコス『英雄伝』の<em>テセウスの船</em>、ヘラクレイトスの「万物流転」、仏教の諸行無常、ロックの『人間知性論』──物質が入れ替わっても同一性が保たれるかという問いは古代から続く。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— テセウスの船<br>— ハダカデバネズミ<br>— マリーの部屋<br>— 記憶は再構築される</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">ボムパルス法は複数の独立研究で再現されている。成人海馬神経新生の有無のみ<em>議論継続中</em>。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 「体の細胞は数年で入れ替わる」を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ脳のニューロンって、生まれたときからずっと同じやつが動いてるの?</span></div>
+      <span class="t-output" id="to1">大脳皮質は、ほぼそう。<em>出生時にあったニューロン</em>が、死ぬまでそこで働き続ける。海馬の奥の一部だけ、新しく生まれてるかもしれない、という議論が残ってる。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;脳のニューロンって寿命あるんでしょ? 100歳まで持つってこと?</span></div>
+      <span class="t-output" id="to2">そう。<strong>一つのニューロンを100年使い続ける</strong>ように、脳は徹底的に守ってる。血液脳関門で外部の有害物を遮断し、グリア細胞が周囲を保護し、代謝を厳密に管理する。入れ替えない代わりに、壊さない戦略。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、自分って物質的にはどこにあるんだろうな</span></div>
+      <span class="t-output" id="to3">体の大部分は、数ヶ月から十数年で入れ替わってる。でも大脳皮質のニューロンと、水晶体の中心と、卵子は、生まれた日のままそこにある。<em>記憶は流れない場所に刻まれ、物質は流れる場所で循環する</em>。その二つの同居が、あなた。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 変わらない場所があると知って、少し安心した</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/ship_of_theseus">
+      <p class="related-card-tag">思考実験・哲学</p>
+      <p class="related-card-title">テセウスの船</p>
+      <p class="related-card-desc">部品を一つ残らず入れ替えた船は、それでも同じ船と言えるのか。細胞のターンオーバーが、この古代の思考実験を現実にした。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/naked_mole_rat">
+      <p class="related-card-tag">生命・進化</p>
+      <p class="related-card-title">ハダカデバネズミ</p>
+      <p class="related-card-desc">ほとんど老いず、癌にもならない小さな哺乳類。細胞の入れ替えを超えた、もう一つの戦略。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2026 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト方式)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// === AGE-BASED TISSUE VISUALIZER ===
+const TISSUES=[
+  {name:'腸上皮', sub:'3日周期', periodDays:3, type:'freq', color:'#3d3020'},
+  {name:'胃粘膜', sub:'7日周期', periodDays:7, type:'freq', color:'#3d3020'},
+  {name:'表皮(肌)', sub:'21日周期', periodDays:21, type:'freq', color:'#3d3020'},
+  {name:'赤血球', sub:'120日周期', periodDays:120, type:'freq', color:'#3d3020'},
+  {name:'肝細胞', sub:'400日周期', periodDays:400, type:'freq', color:'#3d3020'},
+  {name:'脂肪細胞', sub:'年率 約10% (半減期 約8年)', type:'cumulFlat', ratePerYear:0.10, color:'#3d3020'},
+  {name:'骨(全置換)', sub:'約10年周期', periodDays:3650, type:'freq', color:'#3d3020'},
+  {name:'心筋', sub:'累積入替率 (年齢依存)', type:'cumul', color:'#8b1a1a'},
+  {name:'大脳皮質ニューロン', sub:'生涯不変', type:'immut'},
+  {name:'水晶体中心', sub:'胎児期から不変', type:'immut'},
+  {name:'卵子(女性)', sub:'胎児期に約100万個で固定', type:'immut'},
+];
+
+// 初期レンダリング: 各組織の2行レイアウトDOM構築
+function buildSimDOM(){
+  const host=document.getElementById('simTissues');
+  if(!host||host.children.length)return;
+  host.innerHTML=TISSUES.map((t,i)=>`
+    <div class="sim-tissue" data-idx="${i}">
+      <div class="sim-tissue-row1">
+        <div>
+          <span class="sim-tissue-name">${t.name}</span><span class="sim-tissue-period">${t.sub}</span>
+        </div>
+        <span class="sim-tissue-count${t.type==='immut'?' immut':''}" id="simCount_${i}"></span>
+      </div>
+      <div class="sim-tissue-bar" id="simBar_${i}"></div>
+    </div>
+  `).join('');
+}
+
+function renderSim(age){
+  buildSimDOM();
+  const ageHead=document.getElementById('ageValueHead');
+  if(ageHead)ageHead.textContent=age;
+  TISSUES.forEach((t,i)=>{
+    const bar=document.getElementById('simBar_'+i);
+    const lbl=document.getElementById('simCount_'+i);
+    if(!bar||!lbl)return;
+    if(t.type==='freq'){
+      const totalDays=age*365;
+      const count=Math.floor(totalDays/t.periodDays);
+      // SVG内で本数分の縦線を描画。viewBoxは 100x24 の比率を使用
+      const VB_W=1000;
+      const step=count>0?(VB_W/count):0;
+      let inner='';
+      // 密集判定: 線間隔 < 2(viewBox単位)なら塗りつぶし+間引き線
+      if(count>0&&step<2){
+        const density=Math.min(1, count/(VB_W*1.2));
+        inner+=`<rect x="0" y="0" width="${VB_W}" height="24" fill="${t.color}" fill-opacity="${(0.45+density*0.5).toFixed(2)}"/>`;
+        const drawEvery=Math.max(1,Math.floor(count/250));
+        for(let k=0;k<count;k+=drawEvery){
+          const lx=k*step;
+          inner+=`<line x1="${lx.toFixed(1)}" y1="0" x2="${lx.toFixed(1)}" y2="24" stroke="#1a1208" stroke-width="0.6" stroke-opacity="0.5"/>`;
+        }
+      }else if(count>0){
+        for(let k=1;k<=count;k++){
+          const lx=k*step;
+          inner+=`<line x1="${lx.toFixed(1)}" y1="0" x2="${lx.toFixed(1)}" y2="24" stroke="${t.color}" stroke-width="1.5"/>`;
+        }
+      }
+      bar.innerHTML=`<svg viewBox="0 0 ${VB_W} 24" preserveAspectRatio="none">${inner}</svg>`;
+      lbl.textContent=(count>=10000?count.toLocaleString():count)+' 回';
+    }else if(t.type==='cumul'){
+      // 心筋: 累積入替率(Bergmann 2009 近似: 25歳で年1%, 75歳で年0.45%)
+      let cum=0;
+      for(let a=1;a<=age;a++){
+        let rate;
+        if(a<=25)rate=1.0;
+        else if(a<=75)rate=1.0-(a-25)*(0.55/50);
+        else rate=0.45;
+        cum=cum+(1-cum)*(rate/100);
+      }
+      const pct=Math.min(cum*100, 99);
+      bar.innerHTML=`<div class="bar-fill" style="width:${pct.toFixed(1)}%;background:#8b1a1a;opacity:.88;"></div>`;
+      lbl.textContent=pct.toFixed(1)+'% 累積';
+    }else if(t.type==='cumulFlat'){
+      // 脂肪細胞: 年率 10% の一定置換率で累積
+      const r=t.ratePerYear||0.1;
+      const cum=1-Math.pow(1-r, age);
+      const pct=Math.min(cum*100, 99);
+      bar.innerHTML=`<div class="bar-fill" style="width:${pct.toFixed(1)}%;background:${t.color};opacity:.78;"></div>`;
+      lbl.textContent=pct.toFixed(1)+'% 累積';
+    }else if(t.type==='immut'){
+      bar.innerHTML=`<span class="immut-line"></span><span class="immut-dot left"></span><span class="immut-dot right"></span>`;
+      lbl.textContent='0 回';
+    }
+  });
+}
+
+const slider=document.getElementById('ageSlider');
+const ageVal=document.getElementById('ageValue');
+if(slider){
+  slider.addEventListener('input',e=>{
+    const v=parseInt(e.target.value,10);
+    ageVal.textContent=v;
+    renderSim(v);
+  });
+  renderSim(parseInt(slider.value,10));
+}
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+const termBlock=document.getElementById('terminalBlock');
+if(termBlock)tObs.observe(termBlock);
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+</html>
