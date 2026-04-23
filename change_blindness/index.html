@@ -20,7 +20,7 @@
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"変化の見落とし（見えないゴリラ）","description":"目の前を黒いゴリラが堂々と横切る。なのに半数の人は気づかない。1999年の古典的実験と2024年の追試が突きつける、注意と知覚の境界線。","author":{"@type":"Organization","name":"Qualia Journal"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/change_blindness","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"変化の見落とし（見えないゴリラ）","description":"目の前を黒いゴリラが堂々と横切る。なのに半数の人は気づかない。1999年の古典的実験と2024年の追試が突きつける、注意と知覚の境界線。","author":{"@type":"Person","name":"e. Tamaki"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/change_blindness","inLanguage":"ja"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"知覚・錯覚","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"変化の見落とし（見えないゴリラ）"}]}</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://qualiajournal.com/articles.js" defer></script>
@@ -145,8 +145,10 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .step-body p em{color:#8b1a1a;font-style:normal;}
 .step-summary{margin-top:2px;padding:16px 20px;background:#f3efe6;border:1px solid #c8bfaa;}
 .step-summary p{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;margin:0;line-height:1.8;}
-.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
-.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-block{margin:28px 0 0;border-left:3px solid #c8bfaa;padding:16px 18px;background:#f3efe6;}
+.culture-block + .culture-block{margin-top:0;border-top:1px solid #e0d8c8;}
+.culture-block:last-of-type{margin-bottom:28px;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:7px;letter-spacing:.01em;}
 .culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
 .ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
 .ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
@@ -281,7 +283,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .rs-bar-fill.alt{background:#3d3020;}
 .rs-bar-val{flex:0 0 56px;text-align:right;font-family:'JetBrains Mono',monospace;font-weight:600;color:#3d3020;}
 .rs-bar-chance{position:absolute;top:-2px;bottom:-2px;width:2px;background:#7a6a55;opacity:.7;}
-.rs-bar-chance-lbl{position:absolute;top:-16px;transform:translateX(-50%);font-size:10px;color:#7a6a55;font-family:'JetBrains Mono',monospace;}
+.rs-bar-chance-lbl{position:absolute;top:-18px;transform:translateX(-50%);font-size:10px;color:#7a6a55;font-family:'JetBrains Mono',monospace;white-space:nowrap;background:#faf8f3;padding:0 4px;}
 
 /* RESPONSIVE */
 @media(max-width:720px){
@@ -469,7 +471,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <p class="est-event">レンシンク・オレーガン・クラーク「To See or Not to See」がPsychological Science誌に発表。チェンジ・ブラインドネスが定量的に研究可能な現象として確立した。</p>
       <p class="est-context">同年、IBMのディープ・ブルーがカスパロフを破り、ドリーが公表された前年。人間の知覚と機械の判断の境界が、別々の方向から問われ始めていた。</p>
     </div>
-    <p class="cover-aside">2年後にサイモンズらの「ゴリラ動画」が続き、25年後のナートカー2024では「見えなかった」人にも<strong>残余の感受性</strong>があると判明。「気づく」の定義そのものが、いま書き換えの途中にある。</p>
+    <p class="cover-aside">2年後にサイモンズらの「ゴリラ動画」が続き、25年後の<span class="tip" onclick="toggleTip(this)">ナートカー2024<span class="tip-box"><strong>ナートカー他 2024（eLife）</strong><br>ジョンズ・ホプキンス大学のマカエラ・ナートカーらが、約25,000人を対象にした5研究で、「気づかなかった」と報告した参加者の57%が対象の色・形・位置を偶然以上の精度で当てられると示した。「気づき」と「視覚情報の到達」が別の出来事である可能性を大規模に裏付けた研究。</span></span>では「見えなかった」人にも<strong>残余の感受性</strong>があると判明。「気づく」の定義そのものが、いま書き換えの途中にある。</p>
   </div>
 </div>
 
@@ -562,7 +564,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   <p class="quote-attr">— Christopher Chabris &amp; Daniel Simons, <em>The Invisible Gorilla</em>（2010）</p>
 </div>
 
-<p class="body-text fade">この実験には先駆者がいた。1970年代、心理学者ウルリック・ナイサーが、半透明に重ね合わせたバスケットボールの動画で「視覚的選択」を実演している。その後、1995年には<span class="tip" onclick="toggleTip(this)">ロナルド・レンシンク<span class="tip-box"><strong>Ronald A. Rensink</strong><br>ブリティッシュコロンビア大学心理学教授。「フリッカー法」「マッドスプラッシュ法」など、変化の見落としを定量的に測る実験パラダイムを確立した中心人物。</span></span>らが「フリッカー法」によって変化の見落とし（change blindness）を体系的に測定し始めていた。サイモンズとシャブリの動画は、これらの系譜の上に「素人にも一目でわかる衝撃」を与えた点で決定的だった。</p>
+<p class="body-text fade">この実験には先駆者がいた。1970年代、心理学者ウルリック・ナイサーが、半透明に重ね合わせたバスケットボールの動画で「視覚的選択」を実演している。その2年前の1997年には<span class="tip" onclick="toggleTip(this)">ロナルド・レンシンク<span class="tip-box"><strong>Ronald A. Rensink</strong><br>ブリティッシュコロンビア大学心理学教授。「フリッカー法」「マッドスプラッシュ法」など、変化の見落としを定量的に測る実験パラダイムを確立した中心人物。</span></span>らがフリッカー法によって変化の見落とし（change blindness）を定量的に測定する枠組みを確立していた。サイモンズとシャブリの動画は、これらの系譜の上に「素人にも一目でわかる衝撃」を与えた点で決定的だった。</p>
 
 <div class="svg-fig fade">
 <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
@@ -622,7 +624,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   <p class="fig-caption"><em>1999年、サイモンズとシャブリはこの課題を被験者192名に与えた。「白シャツチームのパス回数を数えてください」と——ただそれだけ。</em></p>
 </div>
 
-<p class="body-text fade">サイモンズとシャブリのゴリラ動画は著作権上、ブラウザに埋め込めない。未見なら <a href="https://www.youtube.com/watch?v=vJG698U2Mvo" target="_blank" rel="noopener" style="color:#8b1a1a;border-bottom:1px solid #8b1a1a;text-decoration:none;">公式動画（YouTube）</a> を先に観てほしい。一度知ると二度と体験できない、文字どおり一期一会の映像だ。ここでは、ゴリラ動画より2年早くチェンジ・ブラインドネスを世界に突きつけた<strong>レンシンクのフリッカー課題</strong>を再現する。</p>
+<p class="body-text fade">サイモンズとシャブリのゴリラ動画は、<strong>一度知ってしまうと二度と同じ体験はできない</strong>。本記事ではネタバレを避けるため動画を埋め込まず、未見の人向けに <a href="https://www.youtube.com/watch?v=vJG698U2Mvo" target="_blank" rel="noopener" style="color:#8b1a1a;border-bottom:1px solid #8b1a1a;text-decoration:none;">公式動画（YouTube）</a> のリンクだけ置いておく。先にそれを観てきてほしい。ここでは、ゴリラ動画より2年早くチェンジ・ブラインドネスを世界に突きつけた<strong>レンシンクのフリッカー課題</strong>を再現する。</p>
 <p class="body-text fade">ルールは単純だ。2枚の画像が灰色の幕を挟んで交互に表示される。2枚のどこかが1か所だけ違う。<strong>違いを見つけたら、そこをクリック（タップ）する</strong>。それだけ。全5ラウンド。</p>
 
 <div class="exp-wrap fade">
@@ -667,7 +669,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 </div>
 </div>
 
-<p class="body-text fade">灰色の幕がなければ、どの変化も一目でわかる。それなのに、幕が入った途端に見つからなくなる。これがフリッカー課題の核心であり、1997年にレンシンクが示したことだ。目の前の変化が消えるのではない。<strong>変化を捉えるために必要な「差分信号」が、幕によって奪われる</strong>。</p>
+<p class="body-text fade">灰色の幕がなければ、どの変化も一目でわかる。それなのに、幕が入った途端に見つからなくなる。これが<span class="tip" onclick="toggleTip(this)">フリッカー課題<span class="tip-box"><strong>フリッカー法 / フリッカー課題（Flicker Paradigm）</strong><br>Rensink et al. 1997が確立した変化検出の実験パラダイム。オリジナル画像と変更版を、短い灰色のマスク画面を挟んで交互に表示し続ける。マスクが局所的な「動き」の手がかりを遮断するため、注意を向けて走査しないと変化に気づけない。大きな変化でも検出に数十秒かかることが定量的に示された。</span></span>の核心であり、1997年にレンシンクが示したことだ。目の前の変化が消えるのではない。<strong>変化を捉えるために必要な「差分信号」が、幕によって奪われる</strong>。</p>
 
 <p class="body-text fade">2年後の1999年、サイモンズとシャブリは同じ問題を別の角度から突いた。バスケットボールのパスを数える課題に集中した被験者の約半数が、画面の真ん中を横切るゴリラに気づかなかった。条件によって40%から70%まで揺れるが、構造は同じだ。注意を一つに絞ると、それ以外が消える。</p>
 
@@ -682,20 +684,19 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <text x="170" y="76" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">N=192、課題：白チームのパス計数</text>
 <rect x="170" y="90" width="460" height="22" fill="#ede8dc" stroke="#d6cdb8"/>
 <rect x="170" y="90" width="247" height="22" fill="#8b1a1a"/>
-<text x="425" y="106" font-family="'JetBrains Mono',monospace" font-size="13" fill="#fff" font-weight="600">気づいた 54%</text>
-<text x="640" y="106" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="11" fill="#7a6a55"></text>
+<text x="410" y="106" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="13" fill="#fff" font-weight="600">気づいた 54%</text>
 
 <text x="170" y="138" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#3d3020">ドリュー他 2013（放射線科医24名）</text>
 <text x="170" y="156" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">CT画像にゴリラを挿入、結節を探す課題</text>
 <rect x="170" y="170" width="460" height="22" fill="#ede8dc" stroke="#d6cdb8"/>
 <rect x="170" y="170" width="78" height="22" fill="#8b1a1a"/>
-<text x="260" y="186" font-family="'JetBrains Mono',monospace" font-size="13" fill="#3d3020" font-weight="600">気づいた 17%</text>
+<text x="258" y="186" font-family="'JetBrains Mono',monospace" font-size="13" fill="#3d3020" font-weight="600">気づいた 17%</text>
 
 <text x="170" y="218" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#3d3020">ナートカー他 2024（約25,000名）</text>
 <text x="170" y="236" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">「気づかなかった」人にも色・形の弁別力</text>
 <rect x="170" y="250" width="460" height="22" fill="#ede8dc" stroke="#d6cdb8"/>
 <rect x="170" y="250" width="262" height="22" fill="#3d3020"/>
-<text x="441" y="266" font-family="'JetBrains Mono',monospace" font-size="13" fill="#fff" font-weight="600">残余感受性が確認された人 57%</text>
+<text x="425" y="266" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="12" fill="#fff" font-weight="600">残余感受性あり 57%</text>
 
 <text x="22" y="58" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">N=192</text>
 <text x="22" y="138" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">N=24</text>
@@ -743,38 +744,50 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <p class="body-text fade">人間の視覚野には、毎秒およそ10メガビットに相当する情報が網膜から流れ込んでくる。だが、意識に上るのはそのほんの一部だ。視覚野は<strong>限られた処理資源</strong>で大きすぎる入力を捌いており、何を意識まで届けるかは「注意」というシステムが決めている。</p>
 
 <div class="svg-fig fade">
-<svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
-<rect x="0" y="0" width="680" height="320" fill="#faf8f3"/>
+<svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="680" height="360" fill="#faf8f3"/>
 <text x="340" y="24" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#1a1208" font-weight="600">注意のスポットライト・モデル（Posner 1980）</text>
 
-<rect x="40" y="48" width="600" height="240" fill="#1a1208" stroke="#3d3020"/>
-
-<g opacity="0.5">
-  <circle cx="120" cy="100" r="14" fill="#7a6a55"/>
-  <circle cx="220" cy="130" r="14" fill="#7a6a55"/>
-  <circle cx="540" cy="110" r="14" fill="#7a6a55"/>
-  <circle cx="600" cy="200" r="14" fill="#7a6a55"/>
-  <circle cx="100" cy="240" r="14" fill="#7a6a55"/>
-  <text x="540" y="148" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">ゴリラ</text>
-</g>
-
 <defs>
-  <radialGradient id="spot" cx="0.5" cy="0.5" r="0.5">
-    <stop offset="0%" stop-color="#fff8d8" stop-opacity="0.85"/>
-    <stop offset="60%" stop-color="#fff8d8" stop-opacity="0.35"/>
-    <stop offset="100%" stop-color="#fff8d8" stop-opacity="0"/>
+  <linearGradient id="stageBg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#241a10"/>
+    <stop offset="100%" stop-color="#140c06"/>
+  </linearGradient>
+  <radialGradient id="spotGrad" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0%" stop-color="#fff4cc" stop-opacity="0.88"/>
+    <stop offset="55%" stop-color="#fff4cc" stop-opacity="0.32"/>
+    <stop offset="100%" stop-color="#fff4cc" stop-opacity="0"/>
   </radialGradient>
 </defs>
-<ellipse cx="340" cy="170" rx="135" ry="90" fill="url(#spot)"/>
+
+<rect x="40" y="48" width="600" height="222" fill="url(#stageBg)"/>
+
+<g opacity="0.32">
+  <circle cx="118" cy="100" r="14" fill="#c0a880"/>
+  <circle cx="220" cy="132" r="14" fill="#c0a880"/>
+  <circle cx="548" cy="104" r="14" fill="#c0a880"/>
+  <circle cx="590" cy="210" r="14" fill="#c0a880"/>
+  <circle cx="98" cy="228" r="14" fill="#c0a880"/>
+</g>
+<text x="548" y="138" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-style="italic" fill="#a6906f" opacity="0.85">ゴリラ</text>
+
+<ellipse cx="340" cy="165" rx="150" ry="88" fill="url(#spotGrad)"/>
+
 <g>
-  <circle cx="290" cy="160" r="14" fill="#faf8f3" stroke="#1a1208" stroke-width="2"/>
-  <circle cx="340" cy="200" r="14" fill="#faf8f3" stroke="#1a1208" stroke-width="2"/>
-  <circle cx="400" cy="150" r="14" fill="#faf8f3" stroke="#1a1208" stroke-width="2"/>
-  <circle cx="370" cy="170" r="6" fill="#faf8f3"/>
+  <circle cx="286" cy="154" r="15" fill="#faf8f3" stroke="#1a1208" stroke-width="1.4"/>
+  <circle cx="340" cy="202" r="15" fill="#faf8f3" stroke="#1a1208" stroke-width="1.4"/>
+  <circle cx="400" cy="144" r="15" fill="#faf8f3" stroke="#1a1208" stroke-width="1.4"/>
 </g>
 
-<text x="340" y="270" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#fff8d8" font-weight="600">スポットライト内：白チーム＝意識に届く</text>
-<text x="340" y="288" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#7a6a55">スポットライト外：ゴリラも他のオブジェクトも、意識の外側に置かれる</text>
+<line x1="170" y1="304" x2="510" y2="304" stroke="#c8bfaa" stroke-width="0.6"/>
+
+<circle cx="188" cy="322" r="7" fill="#faf8f3" stroke="#1a1208" stroke-width="1.2"/>
+<text x="204" y="320" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#1a1208" font-weight="600">スポットライト内</text>
+<text x="204" y="338" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">白チーム ＝ 意識に届く</text>
+
+<circle cx="392" cy="322" r="7" fill="#c0a880" opacity="0.55" stroke="#7a6a55" stroke-width="1"/>
+<text x="408" y="320" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#1a1208" font-weight="600">スポットライト外</text>
+<text x="408" y="338" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">ゴリラ・他オブジェクト ＝ 意識の外</text>
 </svg>
 <p class="fig-caption">視覚処理は均一ではない。注意の当たった狭い領域だけが鮮明に「見られ」、他は粗くフィルターされる。</p>
 </div>
@@ -840,7 +853,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="timeline fade">
   <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1958</p><p class="tl-title">ブロードベントの注意フィルター理論</p><p class="tl-desc">ドナルド・ブロードベントが「Perception and Communication」を発表。注意は「無関係な情報を初期段階でフィルターする装置」だと位置づけた。後の選択的注意研究の出発点。</p></div>
   <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1975</p><p class="tl-title">ナイサーの「選択的見ること」</p><p class="tl-desc">ウルリック・ナイサーが、半透明に重ねたバスケ動画と握手動画で「見ようとしないものは見えない」ことを実演。これがゴリラ動画の直接の祖先となる。</p></div>
-  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1997</p><p class="tl-title">レンシンク「To See or Not to See」</p><p class="tl-desc">ロナルド・レンシンク、J・ケビン・オレーガン、ジェームズ・クラークが Psychological Science に発表。2枚の画像のあいだに灰色画面を一瞬挟むだけで大きな変化が見えなくなることを実証。「変化の見落とし（change blindness）」が定量的に研究可能な現象になった。</p></div>
+  <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1997</p><p class="tl-title">レンシンク「To See or Not to See」</p><p class="tl-desc">ロナルド・レンシンク、J・ケヴィン・オリーガン、ジェームズ・クラークが Psychological Science に発表。2枚の画像のあいだに灰色画面を一瞬挟むだけで大きな変化が見えなくなることを実証。「変化の見落とし（change blindness）」が定量的に研究可能な現象になった。</p></div>
   <div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1998</p><p class="tl-title">サイモンズ＆レヴィン「ドア実験」</p><p class="tl-desc">道で会話中の研究者が、運搬中のドアに視界を遮られた隙に別人とすり替わる。15人中8人がすり替わりに気づかなかった。実験室の外でも変化の見落としが起きることを示した。</p></div>
   <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">1999</p><p class="tl-title">サイモンズ＆シャブリ「Gorillas in our midst」</p><p class="tl-desc">Perception誌に発表。バスケのパスを数える参加者192名のうち、約46%が画面を9秒間横切るゴリラに気づかなかった。古典中の古典となる。</p></div>
   <div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">2004</p><p class="tl-title">イグ・ノーベル賞（心理学）受賞</p><p class="tl-desc">「人々を笑わせ、その後で考えさせる」研究としてイグ・ノーベル賞を受賞。授賞式でもゴリラ動画が上映された。</p></div>
@@ -901,7 +914,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1999</span></div>
   <p class="ref-title"><a href="https://doi.org/10.1068/p281059" target="_blank" rel="noopener">Gorillas in Our Midst: Sustained Inattentional Blindness for Dynamic Events</a></p>
   <p class="ref-author">Daniel J. Simons &amp; Christopher F. Chabris — Perception, 28(9), 1059–1074</p>
-  <p class="ref-desc">原典そのもの。192人の参加者で4条件を比較し、半透明・不透明、難易度・対象団の色を変えた厳密な設計が記述されている。著者の<a href="http://www.chabris.com/Simons1999.pdf" target="_blank" rel="noopener">PDF版</a>が無料で読める。</p>
+  <p class="ref-desc">原典そのもの。192人の参加者で4条件を比較し、半透明・不透明、難易度・対象チームの服の色を変えた厳密な設計が記述されている。著者の<a href="http://www.chabris.com/Simons1999.pdf" target="_blank" rel="noopener">PDF版</a>が無料で読める。</p>
 </div>
 
 <div class="ref-item fade">
@@ -982,7 +995,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— D-01 色は存在しない<br>— D-02 チェッカーシャドウ錯視<br>— A-04 脳は予測機械<br>— E-01 確証バイアス</p>
+      <p class="sidebar-text">— 色は存在しない<br>— チェッカーシャドウ錯視<br>— 脳は予測機械<br>— 確証バイアス</p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">今日の知覚を振り返る</p>
@@ -1485,11 +1498,11 @@ tog(1);
     // Trial 1: center shape identification; probe top-left color
     (function(){
       const items=[
-        {pos:'center',shape:'triangle',color:'yellow',x:300,y:180,size:32},
-        {pos:'top-left',shape:'square',color:'green',x:130,y:90,size:24},
-        {pos:'top-right',shape:'circle',color:'red',x:470,y:90,size:24},
-        {pos:'bottom-left',shape:'circle',color:'blue',x:130,y:270,size:24},
-        {pos:'bottom-right',shape:'triangle',color:'red',x:470,y:270,size:24}
+        {pos:'center',shape:'triangle',color:'yellow',x:300,y:200,size:32},
+        {pos:'top-left',shape:'square',color:'green',x:130,y:110,size:24},
+        {pos:'top-right',shape:'circle',color:'red',x:470,y:110,size:24},
+        {pos:'bottom-left',shape:'circle',color:'blue',x:130,y:295,size:24},
+        {pos:'bottom-right',shape:'triangle',color:'red',x:470,y:295,size:24}
       ];
       return {
         instr:'画面<strong>中央</strong>にある図形の<strong>形</strong>を覚えてください。',
@@ -1505,14 +1518,14 @@ tog(1);
     // Trial 2: count red shapes; probe right-side largest shape
     (function(){
       const items=[
-        {pos:'tl',shape:'circle',color:'red',x:100,y:80,size:22},
-        {pos:'tc',shape:'square',color:'blue',x:260,y:100,size:22},
-        {pos:'tr',shape:'triangle',color:'red',x:440,y:80,size:22},
-        {pos:'cl',shape:'square',color:'green',x:160,y:200,size:22},
-        {pos:'c',shape:'circle',color:'yellow',x:320,y:190,size:22},
-        {pos:'cr',shape:'circle',color:'red',x:500,y:200,size:22},
-        {pos:'bl',shape:'triangle',color:'blue',x:180,y:290,size:22},
-        {pos:'br',shape:'square',color:'green',x:420,y:290,size:22}
+        {pos:'tl',shape:'circle',color:'red',x:100,y:100,size:22},
+        {pos:'tc',shape:'square',color:'blue',x:260,y:118,size:22},
+        {pos:'tr',shape:'triangle',color:'red',x:440,y:100,size:22},
+        {pos:'cl',shape:'square',color:'green',x:160,y:215,size:22},
+        {pos:'c',shape:'circle',color:'yellow',x:320,y:205,size:22},
+        {pos:'cr',shape:'circle',color:'red',x:500,y:215,size:22},
+        {pos:'bl',shape:'triangle',color:'blue',x:180,y:315,size:22},
+        {pos:'br',shape:'square',color:'green',x:420,y:315,size:22}
       ];
       return {
         instr:'<strong>赤い図形</strong>の個数を数えてください。',
@@ -1528,11 +1541,11 @@ tog(1);
     // Trial 3: identify color of top-right; probe left-side any color
     (function(){
       const items=[
-        {pos:'tl',shape:'circle',color:'blue',x:130,y:100,size:26},
-        {pos:'tr',shape:'square',color:'yellow',x:470,y:100,size:26},
-        {pos:'c',shape:'triangle',color:'green',x:300,y:200,size:28},
-        {pos:'bl',shape:'circle',color:'red',x:130,y:280,size:26},
-        {pos:'br',shape:'triangle',color:'blue',x:470,y:280,size:26}
+        {pos:'tl',shape:'circle',color:'blue',x:130,y:118,size:26},
+        {pos:'tr',shape:'square',color:'yellow',x:470,y:118,size:26},
+        {pos:'c',shape:'triangle',color:'green',x:300,y:215,size:28},
+        {pos:'bl',shape:'circle',color:'red',x:130,y:300,size:26},
+        {pos:'br',shape:'triangle',color:'blue',x:470,y:300,size:26}
       ];
       return {
         instr:'画面<strong>右上</strong>にある図形の<strong>色</strong>を覚えてください。',
@@ -1651,8 +1664,19 @@ tog(1);
   }
 
   function showResults(){
-    overlay.style.display='none';
     hud.style.display='none';
+    // ステージ上に「FINISH」オーバーレイを残す(真っ暗で終わる事故を防ぐ)
+    overlay.style.display='flex';
+    overlay.innerHTML='';
+    const badge=document.createElement('p');
+    badge.className='rs-overlay-title';
+    badge.innerHTML='<span style="display:block;font-family:\'Source Sans 3\',sans-serif;font-size:12px;font-weight:400;letter-spacing:.3em;color:#b0a090;margin-bottom:8px;">— ALL TRIALS COMPLETE —</span><span style="display:block;font-family:\'Playfair Display\',serif;font-size:44px;font-weight:700;letter-spacing:.16em;color:#e8c56a;line-height:1;">FINISH</span>';
+    overlay.appendChild(badge);
+    const sub=document.createElement('p');
+    sub.className='rs-overlay-text';
+    sub.innerHTML='<span style="display:block;margin-top:12px;font-size:12px;letter-spacing:.12em;color:#b0a090;">3 試行を終えました</span><span style="display:block;margin-top:6px;font-size:11px;color:#7a6a55;">結果は下に表示されます</span>';
+    overlay.appendChild(sub);
+
     const mainN=mainAnswers.filter(x=>x).length;
     const probeN=probeAnswers.filter(x=>x).length;
     const probePct=Math.round(probeN/3*100);
@@ -1663,17 +1687,23 @@ tog(1);
 
     let html='<strong>3試行、終了。</strong><br><br>';
     html+='<div class="rs-bar-row"><div class="rs-bar-label">メイン課題の正答率<small style="display:block;color:#7a6a55;font-size:11px;">注意を向けていた項目</small></div><div class="rs-bar-track"><div class="rs-bar-fill" style="width:'+Math.round(mainN/3*100)+'%"></div></div><div class="rs-bar-val">'+mainN+'/3</div></div>';
-    html+='<div class="rs-bar-row" style="margin-top:18px;"><div class="rs-bar-label"><strong>不意打ち質問の正答率</strong><small style="display:block;color:#7a6a55;font-size:11px;">「見ていなかった」項目</small></div><div class="rs-bar-track" style="overflow:visible;"><div class="rs-bar-fill alt" style="width:'+probePct+'%"></div><div class="rs-bar-chance" style="left:33%;"><span class="rs-bar-chance-lbl">偶然 33%</span></div></div><div class="rs-bar-val">'+probeN+'/3</div></div>';
+    html+='<div class="rs-bar-row" style="margin-top:26px;"><div class="rs-bar-label"><strong>不意打ち質問の正答率</strong><small style="display:block;color:#7a6a55;font-size:11px;">「見ていなかった」項目</small></div><div class="rs-bar-track" style="overflow:visible;"><div class="rs-bar-fill alt" style="width:'+probePct+'%"></div><div class="rs-bar-chance" style="left:33%;"><span class="rs-bar-chance-lbl">偶然 33%</span></div></div><div class="rs-bar-val">'+probeN+'/3</div></div>';
     html+='<br><p style="font-family:\'Source Sans 3\',sans-serif;font-size:14px;line-height:1.8;color:#3d3020;">'+comment+'</p>';
     html+='<br><p style="font-family:\'Source Sans 3\',sans-serif;font-size:13px;line-height:1.75;color:#7a6a55;">ナートカー他 2024（eLife、約25,000名）では、「見ていない」と報告した参加者の <strong style="color:#8b1a1a;">57%</strong> が、それでも対象の色・形・位置を偶然以上の精度で当てた。「気づく」と「視覚情報の到達」は別物かもしれない——この問いは、意識とクオリアの関係に直接刺さる。</p>';
     html+='<div style="margin-top:16px;text-align:center;"><button class="exp-btn-secondary" id="rsRetry">もう一度やる</button></div>';
-    resultEl.innerHTML=html;
-    resultEl.style.display='block';
-    document.getElementById('rsRetry').onclick=()=>{
-      curTrial=0;mainAnswers=[];probeAnswers=[];
-      resultEl.style.display='none';
-      showTrialInstr();
-    };
+    // 結果テーブルは 0.8 秒後にフェードインで表示
+    setTimeout(()=>{
+      resultEl.innerHTML=html;
+      resultEl.style.opacity='0';
+      resultEl.style.transition='opacity .6s ease';
+      resultEl.style.display='block';
+      requestAnimationFrame(()=>{ resultEl.style.opacity='1'; });
+      document.getElementById('rsRetry').onclick=()=>{
+        curTrial=0;mainAnswers=[];probeAnswers=[];
+        resultEl.style.display='none';
+        showTrialInstr();
+      };
+    }, 800);
   }
 
   startBtn.addEventListener('click',()=>{
@@ -1732,5 +1762,6 @@ sInput.addEventListener('input',function(){
 });
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
 </script>
-<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div></body>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div><!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6b7b629057d241878dda2a4f3169e5cb"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
 </html>
