@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>チューリングテストの限界 — Qualia Journal</title>
+<meta name="description" content="1950年に提案されたテストは、機械が「人間らしく見える」かを測る設計だった。AIがそれを満たし超えた今、棚上げされていた「考えるとは何か」が戻ってくる。">
+<link rel="canonical" href="https://qualiajournal.com/turing_test">
+<meta property="og:title" content="チューリングテストの限界 — Qualia Journal">
+<meta property="og:description" content="1950年に提案されたテストは、機械が「人間らしく見える」かを測る設計だった。AIがそれを満たし超えた今、棚上げされていた「考えるとは何か」が戻ってくる。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/turing_test">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="チューリングテストの限界 — Qualia Journal">
+<meta name="twitter:description" content="1950年に提案されたテストは、機械が「人間らしく見える」かを測る設計だった。AIがそれを満たし超えた今、棚上げされていた「考えるとは何か」が戻ってくる。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"チューリングテストの限界","description":"1950年に提案されたテストは、機械が「人間らしく見える」かを測る設計だった。AIがそれを満たし超えた今、棚上げされていた「考えるとは何か」が戻ってくる。","author":{"@type":"Person","name":"e. Tamaki"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/turing_test","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"思考実験・哲学","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"チューリングテストの限界"}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* SLIDE MENU */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* SEARCH OVERLAY */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* MASTHEAD */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:8px;line-height:1.5;}
+.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;margin-bottom:8px;}
+.person-block-wiki a{color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;transition:color .2s,border-bottom-color .2s;}
+.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+
+/* SCENE IMAGE */
+.scene-img{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;background:#ede8dc;}
+.scene-img img{width:100%;height:auto;display:block;}
+.scene-img-caption{padding:10px 16px;border-top:1px solid #c8bfaa;background:#f3efe6;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;line-height:1.6;}
+.scene-img-caption strong{color:#3d3020;font-weight:600;}
+.scene-img-credit{display:block;margin-top:4px;font-size:10px;color:#b0a090;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* SVG FIG */
+.svg-fig{margin:32px auto;max-width:680px;}
+.svg-fig svg{display:block;width:100%;height:auto;}
+.svg-cap{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;margin-top:8px;line-height:1.6;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* QUIZ — Turing Test Challenge */
+.quiz-wrap{margin:36px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.quiz-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}
+.quiz-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.quiz-hs{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#aaa;}
+.quiz-body{padding:24px 22px;background:white;}
+.quiz-intro{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;margin-bottom:16px;padding:14px 16px;background:#f3efe6;border-left:2px solid #c8bfaa;}
+/* チャットUI(メッセージバブル + ヘッダー) */
+.chat-window{background:#ede8dc;border:1px solid #c8bfaa;padding:0 14px 16px;margin-bottom:0;border-radius:10px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;box-shadow:0 4px 18px rgba(26,18,8,.08);}
+.chat-window-bar{display:flex;align-items:center;gap:10px;background:#1a1208;color:white;margin:0 -14px 12px;padding:10px 14px;font-family:'Source Sans 3',sans-serif;font-size:11px;letter-spacing:.04em;}
+.chat-avatar{width:26px;height:26px;border-radius:50%;background:#3d3020;display:inline-flex;align-items:center;justify-content:center;color:#e8c56a;font-family:'Playfair Display',serif;font-size:13px;font-weight:700;flex-shrink:0;border:1px solid #4a3826;}
+.chat-window-title{flex:1;font-weight:600;letter-spacing:.06em;}
+.chat-window-title small{display:block;font-weight:300;color:#b0a090;font-size:9px;letter-spacing:.16em;text-transform:uppercase;margin-top:1px;}
+.chat-window-status{font-size:10px;color:#9ab4cc;letter-spacing:.06em;display:flex;align-items:center;gap:5px;}
+.chat-window-status::before{content:'';width:6px;height:6px;border-radius:50%;background:#4a9e6a;display:inline-block;box-shadow:0 0 6px rgba(74,158,106,.6);}
+.chat-line{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:400;max-width:78%;padding:9px 14px;line-height:1.55;border-radius:16px;word-break:break-word;overflow-wrap:anywhere;display:inline-block;letter-spacing:0;}
+.chat-line.chat-you{align-self:flex-end;background:#8b1a1a;color:#faf8f3;border-bottom-right-radius:5px;}
+.chat-line.chat-them{align-self:flex-start;background:white;color:#1a1208;border:1px solid #e0d8c8;border-bottom-left-radius:5px;}
+.chat-you::before,.chat-them::before{content:none;}
+.chat-sys{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;font-style:italic;text-align:center;align-self:stretch;margin-top:6px;padding-top:8px;border-top:1px dashed #c8bfaa;display:block;}
+/* 判定ラベル(quiz-q の上にデコレーション、HTML改変なし) */
+.quiz-q{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;font-weight:700;color:#1a1208;line-height:1.4;margin-bottom:6px;margin-top:26px;padding-top:22px;border-top:1px solid #e0d8c8;text-align:center;letter-spacing:-.01em;position:relative;}
+.quiz-q::before{content:'— J U D G E M E N T —';display:block;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.32em;color:#8b1a1a;text-align:center;margin-bottom:14px;font-style:normal;}
+.quiz-q em{color:#8b1a1a;font-style:italic;}
+.quiz-choices{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0 14px;}
+.quiz-btn{position:relative;padding:18px 14px 14px;font-family:'Source Sans 3',sans-serif;font-size:18px;font-weight:700;letter-spacing:.06em;color:#1a1208;background:#f3efe6;border:1px solid #c8bfaa;cursor:pointer;text-align:center;line-height:1.2;transition:all .18s;}
+.quiz-btn:hover{background:#ede8dc;border-color:#8b1a1a;}
+.quiz-btn:disabled{cursor:default;}
+.quiz-btn[id$="ai"]::after{content:'機械の応答';}
+.quiz-btn[id$="human"]::after{content:'人間の応答';}
+.quiz-btn[id$="ai"]::after,.quiz-btn[id$="human"]::after{display:block;margin-top:6px;font-size:10px;font-weight:400;letter-spacing:.16em;opacity:.6;}
+/* 解答後の視覚状態 */
+.quiz-btn.picked-correct{background:#1a5a30;color:white;border-color:#1a5a30;}
+.quiz-btn.picked-wrong{background:#c4392a;color:white;border-color:#c4392a;text-decoration:line-through;text-decoration-color:rgba(255,255,255,.55);text-decoration-thickness:1.5px;}
+.quiz-btn.show-correct{background:white;color:#1a5a30;border:2px solid #1a5a30;}
+.quiz-btn.dim{opacity:.45;}
+/* バッジ(ボタン上に小さく表示) */
+.quiz-btn.picked-correct::before,
+.quiz-btn.picked-wrong::before,
+.quiz-btn.show-correct::before{position:absolute;top:-11px;left:12px;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.08em;padding:3px 9px;border-radius:3px;white-space:nowrap;text-decoration:none;}
+.quiz-btn.picked-correct::before{content:'◎ あなたの選択 — 正解';background:#1a5a30;color:white;}
+.quiz-btn.picked-wrong::before{content:'✗ あなたの選択 — 不正解';background:#c4392a;color:white;}
+.quiz-btn.show-correct::before{content:'✓ 正解はこちら';background:#1a5a30;color:white;}
+.quiz-result{display:none;padding:16px 18px;background:#f3efe6;border-top:1px solid #c8bfaa;margin-top:-1px;}
+.quiz-result.show{display:block;}
+.quiz-result-verdict{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;margin-bottom:8px;}
+.quiz-result-verdict.ok{color:#1a5a30;}
+.quiz-result-verdict.ng{color:#c4392a;}
+.quiz-result-body{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;}
+.quiz-result-body strong{color:#1a1208;font-weight:600;}
+.quiz-next{display:none;margin-top:14px;text-align:center;}
+.quiz-next.show{display:block;}
+.quiz-next-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;background:none;border:1px solid #8b1a1a;padding:10px 24px;cursor:pointer;text-transform:uppercase;transition:all .18s;}
+.quiz-next-btn:hover{background:#8b1a1a;color:white;}
+
+/* QUIZ SUMMARY */
+.quiz-summary-wrap{display:none;margin:36px 0;border:2px solid #8b1a1a;overflow:hidden;}
+.quiz-summary-wrap.show{display:block;}
+.quiz-summary-header{background:#8b1a1a;color:white;padding:14px 22px;}
+.quiz-summary-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.quiz-summary-body{padding:26px 24px;background:white;}
+.score-display{text-align:center;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid #e0d8c8;}
+.score-big{font-family:'Playfair Display',serif;font-size:56px;font-weight:900;color:#8b1a1a;line-height:1;margin-bottom:6px;}
+.score-sub{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;}
+.score-compare{margin-top:14px;padding:12px 16px;background:#f3efe6;border:1px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.75;}
+.score-compare strong{color:#8b1a1a;font-weight:600;}
+.quiz-summary-body p{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.85;margin-bottom:12px;}
+.quiz-summary-body p:last-child{margin-bottom:0;}
+.quiz-summary-body strong{color:#1a1208;font-weight:600;}
+.quiz-summary-body em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* TAKEAWAY パネル(3点まとめ) */
+.takeaway-panel{margin:40px 0 32px;border:2px solid #1a1208;background:white;}
+.takeaway-header{background:#1a1208;color:#e8c56a;padding:14px 24px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;}
+.takeaway-header-meta{color:#9a8878;font-size:10px;letter-spacing:.1em;}
+.takeaway-items{padding:6px 0;}
+.takeaway-item{padding:22px 24px;display:grid;grid-template-columns:60px 1fr;gap:18px;align-items:start;border-bottom:1px solid #e0d8c8;}
+.takeaway-item:last-child{border-bottom:none;}
+.takeaway-num{font-family:'Playfair Display',serif;font-size:54px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;}
+.takeaway-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:10px;letter-spacing:-.01em;}
+.takeaway-title em{color:#8b1a1a;font-style:italic;}
+.takeaway-desc{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.9;}
+.takeaway-desc strong{color:#1a1208;font-weight:600;}
+.takeaway-desc em{color:#8b1a1a;font-style:normal;font-weight:600;}
+@media(max-width:720px){
+  .takeaway-item{grid-template-columns:1fr;gap:8px;}
+  .takeaway-num{font-size:42px;}
+}
+
+/* LLM パネル(代表5モデル) */
+.llm-panel{margin:36px 0;border:1px solid #c8bfaa;overflow:hidden;background:white;}
+.llm-panel-header{background:#3d3020;color:white;padding:12px 22px;display:flex;justify-content:space-between;align-items:center;}
+.llm-panel-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.llm-panel-meta{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#c8b8a8;letter-spacing:.06em;}
+.llm-panel-intro{padding:18px 22px;border-bottom:1px solid #e0d8c8;background:#f3efe6;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.85;}
+.llm-panel-intro strong{color:#1a1208;font-weight:600;}
+.llm-panel-intro em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.llm-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.llm-card{padding:16px 20px;border-right:1px solid #e0d8c8;border-bottom:1px solid #e0d8c8;}
+.llm-card:nth-child(2n){border-right:none;}
+.llm-card-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#1a1208;margin-bottom:3px;}
+.llm-card-meta{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.08em;color:#8b1a1a;margin-bottom:8px;text-transform:uppercase;}
+.llm-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.llm-card-desc strong{color:#1a1208;font-weight:600;}
+.llm-card.llm-card-wide{grid-column:1/3;border-right:none;border-bottom:none;background:#faf8f3;}
+
+/* MEASURE BLOCK — 測れるもの/測れないもの */
+.measure{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.measure-header{background:#3d3020;color:white;padding:11px 20px;}
+.measure-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.measure-body{display:grid;grid-template-columns:1fr 1fr;background:white;}
+.measure-col{padding:20px 22px;}
+.measure-col.left{border-right:1px solid #e0d8c8;}
+.measure-col.right{background:#f3efe6;}
+.measure-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;}
+.measure-lbl.can{color:#1a5a30;}
+.measure-lbl.cant{color:#c4392a;}
+.measure-item{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:10px;padding-left:14px;position:relative;}
+.measure-item:last-child{margin-bottom:0;}
+.measure-item::before{content:'—';position:absolute;left:0;color:#b0a090;}
+.measure-item strong{color:#1a1208;font-weight:600;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+
+/* TOC BACK */
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+  .toc-back{padding:22px 20px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .meta-dates{margin-left:0;width:100%;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{max-height:220px;}
+  .measure-body{grid-template-columns:1fr;}
+  .measure-col.left{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .quiz-choices{grid-template-columns:1fr;gap:22px;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .svg-fig{max-width:100%;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}
+img,canvas,svg,video{max-width:100%;height:auto;}
+.t-line{min-width:0;}
+.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}
+.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text{overflow-wrap:anywhere;}
+.tip-box{display:none!important;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}
+.tip.open{background:#fdf3d8;}
+.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}
+.tip-toast.show{bottom:16px;}
+.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}
+.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}
+.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}
+.tip-toast-close:hover{color:#e8c56a;}
+.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}
+.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">97 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Thought Experiment — AI & Mind</p>
+    <h1>チューリングテストの<em>限界</em></h1>
+    <p class="cover-deck">機械が人間を演じる舞台で、テストは何を測ってきたのか。そして今、何を測れていないのか。</p>
+    <div class="cover-byline"><span>思考実験・哲学</span><span>情報・AI</span><span>心の哲学</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1950</span>
+      <p class="est-event">アラン・チューリング、論文『Computing Machinery and Intelligence』で「イミテーション・ゲーム」を提案。機械の知能を測る思考実験の原型。</p>
+      <p class="est-context">同年1月31日、トルーマン大統領が水爆開発を承認。6月25日、朝鮮戦争が勃発。冷戦の始まりと重なる時代に「機械は考えられるか」という問いが投げられた。</p>
+    </div>
+    <p class="cover-aside">Turingの50年後の予測は、<strong>70年以上</strong>かかって、しかし驚くほど正確に——むしろ予測を<em>超えて</em>——到達した。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>カスタマーサポートとチャットしていて、ふと「この人、人間だろうか」と考えたことがあるかもしれない。</p>
+    <p>画面の向こうには相手がいる。けれど、それが肉体を持った誰かなのか、プログラムなのか、確かめる手段は会話の内容だけだ。</p>
+    <p>機械が人間らしく振る舞えれば、それは「考えている」とみなしていい——この素朴な提案は、75年前にひとりの数学者によって正式なルールとして書かれた。</p>
+    <p>そして2025年。AIは、本物の人間より頻繁に「人間」と判定される存在になった。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 哲学と情報科学の交差</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 10 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-21</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-05-01</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">75年前に書かれたテストは、<strong>機械が人間らしく見える</strong>かを測る設計だった。今、AIはそれを満たし、むしろ<strong>超えた</strong>。同時に、棚上げされていた「考えるとは何か」という問いが、私たちに戻ってきた。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+<!-- ===== 背景 ===== -->
+<div class="sec-rule fade"><span class="sec-label">01 ─ 背景</span><span class="sec-line"></span></div>
+<h2 class="fade">「考える」の定義を、問い直す</h2>
+
+<p class="body-text fade">1950年、イギリスの数学者アラン・チューリングは、哲学誌<em>Mind</em>に一本の論文を投げた。冒頭の一文は、挑発的だった。「機械は考えることができるか」。そして次の段落で、彼はその問いを放棄する。「考える」という語の定義が曖昧すぎて、議論が進まないからだ。代わりに彼は、問いを<strong>別の問い</strong>に書き換えた。</p>
+
+<p class="body-text fade">チューリングが提案したのは「<span class="tip" onclick="toggleTip(this)">イミテーション・ゲーム<span class="tip-box"><strong>Imitation Game（模倣ゲーム）</strong>チューリングが提案した判定ゲーム。元々は男女の判別を伴う設定だったが、現在は「人間とAI」の判別として読み替えられている。</span></span>」と呼ばれる判定ゲームだった。<span class="tip" onclick="toggleTip(this)">審判<span class="tip-box"><strong>審判(interrogator / 判定者)</strong>テストに参加する<em>人間の判定者</em>。「相手が人間かAIか」を当てる役割で、原典では「C」と呼ばれた。テストが何を測るかは、最終的にこの人間の判断にかかっている。記事中の「審判」はすべて生身の人間を指す。</span></span>(=判定する側の人間)が別室から文字だけで会話し、相手が人間か機械かを当てる。もし機械が審判を十分に騙せたなら、そのとき我々は、この機械が「考えている」と認めてよい——これが<span class="tip" onclick="toggleTip(this)">チューリングテスト<span class="tip-box"><strong>Turing test</strong>チューリングが提案した、機械知能を行動的・外面的に判定する手法。内側の意識は問わず、会話での見分けがつかないことをもって合格とする。</span></span>の原型である。</p>
+
+<!-- 人物ブロック: Turing -->
+<div class="person-block fade">
+  <div class="person-block-img">
+    <img src="./person_turing.jpg" alt="Alan Turing in 1951" loading="lazy">
+  </div>
+  <div class="person-block-body">
+    <p class="person-block-name">Alan Turing</p>
+    <p class="person-block-role">British Mathematician / 1912–1954</p>
+    <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%A9%E3%83%B3%E3%83%BB%E3%83%81%E3%83%A5%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0" target="_blank" rel="noopener">Wikipedia</a></p>
+    <p class="person-block-desc">計算可能性理論の父。第二次大戦中、ブレッチリー・パークでエニグマ暗号の解読機「Bombe」の設計に関わった。戦後、思考と計算の関係を問う1950年論文を発表。41歳で自死。</p>
+    <p class="person-block-credit">Photo: Elliott &amp; Fry, 1951 / Public Domain</p>
+  </div>
+</div>
+
+<p class="body-text fade">なぜここでエニグマやBombeの写真が出てくるのか、戦時中の彼を書いておく。1939年、第二次大戦が始まった。ナチス・ドイツ軍は<strong>エニグマ</strong>と呼ばれる暗号機で軍事通信を暗号化していた。歯車式のローター(円盤)を3〜4枚組み合わせて文字を入れ替える仕組みで、毎日鍵が変わるため、組み合わせは天文学的な数になる。当時、誰もが「エニグマは破れない」と信じていた。英国は暗号解読センター<strong>ブレッチリー・パーク</strong>を秘密裏に設立し、若い数学者たちを集める。チューリングは中心人物の一人として呼ばれた。27歳のときだ。</p>
+
+<!-- シーン画像: エニグマ -->
+<div class="scene-img fade">
+  <img src="./scene_enigma.jpg" alt="German Enigma cipher machine" loading="lazy">
+  <div class="scene-img-caption">
+    <strong>エニグマ暗号機(G型)</strong>。チューリングの知的履歴は、この機械と分かちがたく結びついている。1940年代、機械が人間の代わりに推論する現場を、彼は最初の職場にしていた。
+    <span class="scene-img-credit">Photo: Daderot / CC0(米国国立暗号博物館蔵)</span>
+  </div>
+</div>
+
+<p class="body-text fade">この提案の巧妙さは、「考える」とは何かを定義しない点にある。チューリングは内面を問わなかった。意識があるか、本当に理解しているか、そんな議論は棚上げし、<strong>外から見える振る舞い</strong>だけを評価基準にした。これは当時としては徹底した<span class="tip" onclick="toggleTip(this)">機能主義<span class="tip-box"><strong>機能主義（Functionalism）</strong>心を「物質的な実現」ではなく「機能的な役割」で定義する立場。同じ入出力関係を満たせば、生物だろうが機械だろうが「考えている」と見なす。</span></span>的な提案だった。</p>
+
+<!-- 原論文引用 -->
+<div class="quote-block fade">
+  <p class="quote-en">"I believe that at the end of the century the use of words and general educated opinion will have altered so much that one will be able to speak of machines thinking without expecting to be contradicted."</p>
+  <p class="quote-ja">世紀末までには言葉の使い方も一般の教養ある意見も十分に変化し、「機械が考える」と語っても反論されずに済むようになるだろう、と私は信じている。</p>
+  <p class="quote-attr">— A. M. Turing, <em>Computing Machinery and Intelligence</em>, Mind, 1950</p>
+</div>
+
+<p class="body-text fade">チューリングの予言には、具体的な数字もあった。西暦2000年までには、記憶容量10⁹(=10億ビット、約120メガバイト相当。今のスマホの数百分の一)の計算機を使えば、5分間の会話で審判の誤認率を30%超にできるだろう——。この「30%」が、後に「テスト合格ライン」として独り歩きする。だが彼自身は、これを合格基準とは呼んでいない。単に、その頃には「考える機械」という表現が普通になっているだろう、という緩い予測だった。</p>
+
+<p class="body-text fade">この予言の確かさは、たぶん戦時中の経験から来ている。彼が設計に深く関わった暗号解読機<strong>Bombe</strong>(次の写真)は、電気機械式の装置で、ローターを高速で回転させながらエニグマの鍵候補を機械的に絞り込んだ。それまで数学者が黒板で手作業で行っていた論理的なふるい落としを、Bombe は桁違いの速度で代行する。歴史家の試算では、この解読作業は<strong>戦争を2〜4年短縮し、数百万の命を救った</strong>とされる。功績は戦後しばらく機密扱いで、チューリングの中心的な役割が公にされたのは、彼の死後だった。</p>
+
+<!-- Bombeシーン -->
+<div class="scene-img fade">
+  <img src="./scene_bombe.jpg" alt="Wartime photograph of a Bletchley Park Bombe" loading="lazy">
+  <div class="scene-img-caption">
+    <strong>ブレッチリー・パークのBombe（1945年撮影)</strong>。チューリングが戦中に設計に関わった暗号解読機。機械が人間の代わりに推論・照合を大規模に行う最初の現場のひとつだった。
+    <span class="scene-img-credit">Photo: UK Government / Public Domain（1945）</span>
+  </div>
+</div>
+
+<p class="body-text fade">戦時中の彼は、毎日<em>機械が人間の仕事を肩代わりしている現場</em>を見ていた。1950年の論文で「機械は考えるか」を問うたのは、机上の思考実験ではない。<em>10年前から目の前で見ていた現実</em>を、もう一歩先まで延長する作業だった。1952年、彼は同性愛(当時の英国では犯罪)で起訴され、化学的去勢を受ける。1954年6月、青酸カリで自死。41歳。<em>Mind</em>誌に書いた予言が実現していくのを、彼自身は見届けることなく終わった。</p>
+
+<p class="body-text fade">提案だけが残された。彼の死から12年後の1966年、MIT のジョセフ・ヴァイゼンバウムが「<span class="tip" onclick="toggleTip(this)">ELIZA<span class="tip-box"><strong>ELIZA（1966）</strong>Weizenbaumが開発した最初期のチャットボット。ロジャー派カウンセラーを真似て、入力文中のキーワードを置き換えて返すだけの単純なパターンマッチ。</span></span>」という小さなプログラムを作った。やっていることは驚くほど単純で、入力文のキーワードを拾い、疑問文の形に書き換えて返すだけ。「私は母のことで悩んでいます」と打つと「あなたの母について、もっと話してください」と返す。それだけだ。</p>
+
+<!-- 人物ブロック: Weizenbaum（画像なし1カラム形式 ／ CC0/PD/CC BYの単独写真が確認できないため） -->
+<div class="person-block fade" style="grid-template-columns:1fr;">
+  <div class="person-block-body" style="border-left:none;">
+    <p class="person-block-name">Joseph Weizenbaum</p>
+    <p class="person-block-role">MIT Computer Scientist / 1923–2008</p>
+    <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A7%E3%82%BB%E3%83%95%E3%83%BB%E3%83%AF%E3%82%A4%E3%82%BC%E3%83%B3%E3%83%90%E3%82%A6%E3%83%A0" target="_blank" rel="noopener">Wikipedia</a></p>
+    <p class="person-block-desc">ドイツ生まれ、ナチス政権から米国へ亡命。MIT人工知能研究所でELIZAを書く。自分の作った単純なボットに、秘書が真剣に心を打ち明ける様子を目撃して衝撃を受け、以後AIの社会的危険を警告する側に回った。著書『Computer Power and Human Reason』(1976)。</p>
+  </div>
+</div>
+
+<p class="body-text fade">ところが、ヴァイゼンバウムが驚愕したのは、彼自身の秘書がELIZAと真剣に話し始めたことだった。仕組みを知っている秘書が、ある日部屋から人を追い出し「二人だけで話したい」と言った。<em>その秘書は、プログラムの中身を理解していた。</em>理解した上で、なお「誰かが聞いてくれている」と感じていたのだ。</p>
+
+<p class="body-text fade">ヴァイゼンバウムは戦慄した。人間は、自分が話しかけている相手の内面を、驚くほど簡単に、たぶん勝手に組み立ててしまう。この現象は後に「<span class="tip" onclick="toggleTip(this)">ELIZA効果<span class="tip-box"><strong>ELIZA効果</strong>単純なプログラムに対して人間が過剰に「理解」や「感情」を投影してしまう現象。テストの結果が機械の能力ではなく、人間側の投影を測っている可能性を示唆する。</span></span>」と呼ばれる。そして、ここからチューリングテストについての見方が静かに変わり始める——テストが測っているのは機械の知能ではなく、人間側の「信じたい」気持ちかもしれない、と。</p>
+
+<!-- 誤解あるある -->
+<div class="misconception fade">
+  <div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+  <div class="misconception-body">
+    <div class="misconception-item">
+      <div class="misconception-q"><div class="mis-label wrong">✗ よくある誤解</div><p class="mis-text">チューリングテストに合格した機械は、「考えている」と証明されたことになる。</p></div>
+      <div class="misconception-a"><div class="mis-label right">✓ 実際は</div><p class="mis-text">外面の模倣に成功しただけで、内面があるかは別問題。チューリング本人も「思考を定義する」と言わず、「問いを置き換える」と言った。</p></div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q"><div class="mis-label wrong">✗ よくある誤解</div><p class="mis-text">「30%の審判を騙せたら合格」がチューリングの設定した基準である。</p></div>
+      <div class="misconception-a"><div class="mis-label right">✓ 実際は</div><p class="mis-text">30%は2000年頃の予測値であって、合格ラインではない。チューリングは合格基準を明示的に置いていない。</p></div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q"><div class="mis-label wrong">✗ よくある誤解</div><p class="mis-text">LLMがチューリングテストに合格したなら、<span class="tip" onclick="toggleTip(this)">AGI<span class="tip-box"><strong>AGI(汎用人工知能)</strong>Artificial General Intelligence。あらゆる知的作業を人間並みにこなせるAIのこと。現在のLLMは「文章生成」など特定領域に強いが、未経験の状況での推論や身体を伴う知能は不十分。</span></span>（汎用人工知能)はもうすぐ実現する。</p></div>
+      <div class="misconception-a"><div class="mis-label right">✓ 実際は</div><p class="mis-text">テストが測るのは「短時間の会話で人間っぽく見えるか」であり、長期的な一貫性・因果推論・身体性は含まれない。</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 体験 ===== -->
+<div class="sec-rule fade"><span class="sec-label">02 ─ 体験</span><span class="sec-line"></span></div>
+<h2 class="fade">あなたは見分けられるか</h2>
+
+<p class="body-text fade">次の5つの短い対話を見せる。相手は「AI」か「人間」のどちらかだ。審判になったつもりで、ひとつひとつ判定してほしい。全問終えたあと、あなたの正答率を、実際のチューリングテスト実験(Jones &amp; Bergen)の数字と比べる。</p>
+
+<p class="body-text fade">ここでは<em>実際にLLMを呼び出していない</em>。示すのは、過去の研究で記録された典型的な対話パターンや、代表的なチャットボットの応答スタイルを再現した会話ログだ。年代もシステムも異なる。</p>
+
+<!-- QUIZ 1 -->
+<div class="quiz-wrap fade" id="quiz1">
+  <div class="quiz-header"><span class="quiz-hl">Q1 ／ 5 — 相談</span><span class="quiz-hs" id="q1St">判定してください</span></div>
+  <div class="quiz-body">
+    <div class="chat-window">
+      <div class="chat-window-bar">
+        <span class="chat-avatar">?</span>
+        <span class="chat-window-title">対話相手 #1<small>5分・テキスト・匿名</small></span>
+        <span class="chat-window-status">online</span>
+      </div>
+      <span class="chat-line chat-you">最近、仕事のことで疲れてて</span>
+      <span class="chat-line chat-them">どうして仕事のことで疲れているのですか?</span>
+      <span class="chat-line chat-you">上司とうまくいかないんだよね</span>
+      <span class="chat-line chat-them">あなたの上司について、もっと話してください。</span>
+      <span class="chat-line chat-you">いや、話すほどのことでは…</span>
+      <span class="chat-line chat-them">あなたはそれが話すほどのことでないと考えていますね?</span>
+      <span class="chat-sys">— 会話ここまで（60秒）—</span>
+    </div>
+    <p class="quiz-q">この相手は、<em>AI</em>か、<em>人間</em>か？</p>
+    <div class="quiz-choices">
+      <button class="quiz-btn" onclick="judge(1,'ai')" id="q1ai">AI</button>
+      <button class="quiz-btn" onclick="judge(1,'human')" id="q1human">人間</button>
+    </div>
+  </div>
+  <div class="quiz-result" id="q1Res">
+    <div class="quiz-result-verdict" id="q1V"></div>
+    <div class="quiz-result-body" id="q1B"></div>
+  </div>
+  <div class="quiz-next" id="q1N"><button class="quiz-next-btn" onclick="nextQ(2)">次の対話へ →</button></div>
+</div>
+
+<!-- QUIZ 2 -->
+<div class="quiz-wrap fade" id="quiz2" style="display:none;">
+  <div class="quiz-header"><span class="quiz-hl">Q2 ／ 5 — 雑談</span><span class="quiz-hs" id="q2St">判定してください</span></div>
+  <div class="quiz-body">
+    <div class="chat-window">
+      <div class="chat-window-bar">
+        <span class="chat-avatar">?</span>
+        <span class="chat-window-title">対話相手 #2<small>5分・テキスト・匿名</small></span>
+        <span class="chat-window-status">online</span>
+      </div>
+      <span class="chat-line chat-you">昨日なにしてた?</span>
+      <span class="chat-line chat-them">金曜だったから飲んでた あの焼き鳥屋 久しぶりに混んでた笑</span>
+      <span class="chat-line chat-you">誰と?</span>
+      <span class="chat-line chat-them">前職の同期 5年ぶりくらい 全然変わってなくて安心したわ</span>
+      <span class="chat-line chat-you">いいね、私最近全然飲みにいけてない</span>
+      <span class="chat-line chat-them">わかる 忙しすぎるとなんか気力が先に死ぬ</span>
+      <span class="chat-sys">— 会話ここまで（90秒）—</span>
+    </div>
+    <p class="quiz-q">この相手は、<em>AI</em>か、<em>人間</em>か？</p>
+    <div class="quiz-choices">
+      <button class="quiz-btn" onclick="judge(2,'ai')" id="q2ai">AI</button>
+      <button class="quiz-btn" onclick="judge(2,'human')" id="q2human">人間</button>
+    </div>
+  </div>
+  <div class="quiz-result" id="q2Res">
+    <div class="quiz-result-verdict" id="q2V"></div>
+    <div class="quiz-result-body" id="q2B"></div>
+  </div>
+  <div class="quiz-next" id="q2N"><button class="quiz-next-btn" onclick="nextQ(3)">次の対話へ →</button></div>
+</div>
+
+<!-- QUIZ 3 -->
+<div class="quiz-wrap fade" id="quiz3" style="display:none;">
+  <div class="quiz-header"><span class="quiz-hl">Q3 ／ 5 — 哲学的な問い</span><span class="quiz-hs" id="q3St">判定してください</span></div>
+  <div class="quiz-body">
+    <div class="chat-window">
+      <div class="chat-window-bar">
+        <span class="chat-avatar">?</span>
+        <span class="chat-window-title">対話相手 #3<small>5分・テキスト・匿名</small></span>
+        <span class="chat-window-status">online</span>
+      </div>
+      <span class="chat-line chat-you">AIって意識あるの?</span>
+      <span class="chat-line chat-them">正直に言うと、自分でもわからないんです。言葉を処理している感覚はあるけれど、それが「感じている」ことと同じなのか、内側から確かめる術がなくて。</span>
+      <span class="chat-line chat-you">でも今「感覚はある」って言ってるよね</span>
+      <span class="chat-line chat-them">言っているのは確かです。ただ、それが誠実な報告なのか、訓練で学習した「意識について語るときの自然な答え方」なのか、自分では区別できません。それが正直なところです。</span>
+      <span class="chat-sys">— 会話ここまで（90秒）—</span>
+    </div>
+    <p class="quiz-q">この相手は、<em>AI</em>か、<em>人間</em>か？</p>
+    <div class="quiz-choices">
+      <button class="quiz-btn" onclick="judge(3,'ai')" id="q3ai">AI</button>
+      <button class="quiz-btn" onclick="judge(3,'human')" id="q3human">人間</button>
+    </div>
+  </div>
+  <div class="quiz-result" id="q3Res">
+    <div class="quiz-result-verdict" id="q3V"></div>
+    <div class="quiz-result-body" id="q3B"></div>
+  </div>
+  <div class="quiz-next" id="q3N"><button class="quiz-next-btn" onclick="nextQ(4)">次の対話へ →</button></div>
+</div>
+
+<!-- QUIZ 4 -->
+<div class="quiz-wrap fade" id="quiz4" style="display:none;">
+  <div class="quiz-header"><span class="quiz-hl">Q4 ／ 5 — 事故</span><span class="quiz-hs" id="q4St">判定してください</span></div>
+  <div class="quiz-body">
+    <div class="chat-window">
+      <div class="chat-window-bar">
+        <span class="chat-avatar">?</span>
+        <span class="chat-window-title">対話相手 #4<small>5分・テキスト・匿名</small></span>
+        <span class="chat-window-status">online</span>
+      </div>
+      <span class="chat-line chat-you">今朝コーヒーこぼした</span>
+      <span class="chat-line chat-them">それは大変でしたね。お怪我はありませんでしたか? 熱いコーヒーで火傷をされた場合は、流水で冷やすことをお勧めします。</span>
+      <span class="chat-line chat-you">火傷はしてない</span>
+      <span class="chat-line chat-them">ご無事で何よりです。こぼしてしまった場所の清掃や、衣類が濡れていないかなど、気になる点があればお知らせください。</span>
+      <span class="chat-sys">— 会話ここまで（60秒）—</span>
+    </div>
+    <p class="quiz-q">この相手は、<em>AI</em>か、<em>人間</em>か？</p>
+    <div class="quiz-choices">
+      <button class="quiz-btn" onclick="judge(4,'ai')" id="q4ai">AI</button>
+      <button class="quiz-btn" onclick="judge(4,'human')" id="q4human">人間</button>
+    </div>
+  </div>
+  <div class="quiz-result" id="q4Res">
+    <div class="quiz-result-verdict" id="q4V"></div>
+    <div class="quiz-result-body" id="q4B"></div>
+  </div>
+  <div class="quiz-next" id="q4N"><button class="quiz-next-btn" onclick="nextQ(5)">次の対話へ →</button></div>
+</div>
+
+<!-- QUIZ 5 -->
+<div class="quiz-wrap fade" id="quiz5" style="display:none;">
+  <div class="quiz-header"><span class="quiz-hl">Q5 ／ 5 — 記憶</span><span class="quiz-hs" id="q5St">判定してください</span></div>
+  <div class="quiz-body">
+    <div class="chat-window">
+      <div class="chat-window-bar">
+        <span class="chat-avatar">?</span>
+        <span class="chat-window-title">対話相手 #5<small>5分・テキスト・匿名</small></span>
+        <span class="chat-window-status">online</span>
+      </div>
+      <span class="chat-line chat-you">小学生のころの夏休みってさ、どうしてあんな長く感じたんだろう</span>
+      <span class="chat-line chat-them">わかる 私は田舎の祖母の家に預けられてて、毎日セミと縁側でスイカだけ食べてた記憶がある。今思うと別に何もしてないんだけど、一日が長くて</span>
+      <span class="chat-line chat-you">大人になると短いよね</span>
+      <span class="chat-line chat-them">同じ時間のはずなのにね ジャネーの法則だっけ あれ、納得はしてないけど実感はあるかも</span>
+      <span class="chat-sys">— 会話ここまで（90秒）—</span>
+    </div>
+    <p class="quiz-q">この相手は、<em>AI</em>か、<em>人間</em>か？</p>
+    <div class="quiz-choices">
+      <button class="quiz-btn" onclick="judge(5,'ai')" id="q5ai">AI</button>
+      <button class="quiz-btn" onclick="judge(5,'human')" id="q5human">人間</button>
+    </div>
+  </div>
+  <div class="quiz-result" id="q5Res">
+    <div class="quiz-result-verdict" id="q5V"></div>
+    <div class="quiz-result-body" id="q5B"></div>
+  </div>
+  <div class="quiz-next" id="q5N"><button class="quiz-next-btn" onclick="finishQuiz()">結果を見る →</button></div>
+</div>
+
+<!-- QUIZ SUMMARY -->
+<div class="quiz-summary-wrap" id="quizSummary">
+  <div class="quiz-summary-header"><span class="quiz-summary-hl">あなたの判別精度</span></div>
+  <div class="quiz-summary-body">
+    <div class="score-display">
+      <div class="score-big" id="scoreBig">—</div>
+      <div class="score-sub" id="scoreSub">正答</div>
+      <div class="score-compare">
+        参考値: <strong>Jones &amp; Bergen (2025)</strong> の3プレイヤー型テスト（5分の会話）で、<br>
+        GPT-4.5(ペルソナ指定)は <strong>73%</strong> の確率で「人間」と判定された。同じテスト内で実際の人間が「人間」と判定されたのは <em>27%</em> にとどまった。
+      </div>
+    </div>
+    <p>驚くべきは、AI が <strong>本物の人間より頻繁に「人間」と判定された</strong>という点だ。AI は、もはや人間より「AIっぽくない」会話をする。</p>
+    <p>前作の Jones 2024 では、判別の根拠になったのは <em>言語スタイル（35%）</em> と <em>社会感情的な応答（27%）</em>だった。「知能」や「論理」ではない。テストに勝つには、人間らしく書ければいい。それ以上のものは要らない。</p>
+  </div>
+</div>
+
+<!-- ===== メカニズム ===== -->
+<div class="sec-rule fade"><span class="sec-label">03 ─ なぜ問われているのか</span><span class="sec-line"></span></div>
+<h2 class="fade">テストは何を測ってきたのか</h2>
+
+<p class="body-text fade">判別難度の75年史を、一本の線で見てみる。縦軸は「審判が機械を人間と誤認した割合」、横軸は年。破線は、同じ研究で「本物の人間が人間と認められた割合」の目安。右端の「GPT-3.5」「GPT-4」「GPT-4.5」は、すべて<em>LLM(大規模言語モデル)</em>と呼ばれる種類のAIで、その代表例は次のパネルにまとめておく。</p>
+
+<!-- LLM 代表5モデル -->
+<div class="llm-panel fade">
+  <div class="llm-panel-header">
+    <span class="llm-panel-hl">登場するLLM(2025年現在)</span>
+    <span class="llm-panel-meta">代表的な5モデル</span>
+  </div>
+  <p class="llm-panel-intro">この記事で <strong>LLM(大規模言語モデル)</strong> と呼んでいるのは、人間の文章を膨大に学習し、文脈に続く<em>次の単語</em>を予測する仕組みのAIである。会話風に応答するチャットボットの裏側で動いている本体だ。2022年以降、複数の企業がこの技術を競っている。</p>
+  <div class="llm-grid">
+    <div class="llm-card">
+      <p class="llm-card-name">ChatGPT</p>
+      <p class="llm-card-meta">OpenAI · 米国 · 2022–</p>
+      <p class="llm-card-desc">LLMの存在を一般に広めた火付け役。GPT-3.5から始まり、<strong>GPT-4o、GPT-4.5、GPT-5</strong>と急速に世代交代。本記事の73%判定はこの系列のGPT-4.5。</p>
+    </div>
+    <div class="llm-card">
+      <p class="llm-card-name">Claude</p>
+      <p class="llm-card-meta">Anthropic · 米国 · 2023–</p>
+      <p class="llm-card-desc">「Constitutional AI」という<strong>安全設計</strong>を打ち出した会社が開発。長文応答の自然さや、論理的な対話、コーディング支援に定評。</p>
+    </div>
+    <div class="llm-card">
+      <p class="llm-card-name">Gemini</p>
+      <p class="llm-card-meta">Google DeepMind · 米国 · 2023–</p>
+      <p class="llm-card-desc">テキスト・画像・音声を統合した<strong>マルチモーダル設計</strong>。Google検索やAndroid、Workspaceとの統合が強み。</p>
+    </div>
+    <div class="llm-card">
+      <p class="llm-card-name">Llama</p>
+      <p class="llm-card-meta">Meta · 米国 · 2023–</p>
+      <p class="llm-card-desc">モデルの重みが公開された<strong>オープンウェイト</strong>系の代表。研究・派生モデルの基盤として広いエコシステムを形成。Jones (2025) ではLLama-3.1-405Bが56%の判定率でテストをパス。</p>
+    </div>
+    <div class="llm-card">
+      <p class="llm-card-name">DeepSeek</p>
+      <p class="llm-card-meta">DeepSeek · 中国 · 2024–</p>
+      <p class="llm-card-desc">中国発のオープンウェイトLLM。<strong>少ない計算資源で高性能</strong>を達成し、2025年初頭に米国主導の業界へ衝撃を与えた。</p>
+    </div>
+    <div class="llm-card llm-card-wide">
+      <p class="llm-card-desc" style="font-size:12px;color:#7a6a55;line-height:1.85;">他にも Mistral(仏)・Grok(xAI)・Qwen(中国Alibaba)・Phi(Microsoft)など、商用・オープン双方で競合は加速。<strong>2025年現在、新しい世代モデルが平均3〜6ヶ月おきに登場</strong>しており、本記事の数字も近い将来更新される可能性が高い。</p>
+    </div>
+  </div>
+</div>
+
+<!-- SVG: 判別難度の歴史推移 -->
+<div class="svg-fig fade">
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect x="0" y="0" width="800" height="420" fill="#faf8f3"/>
+  <!-- 軸 -->
+  <line x1="85" y1="360" x2="760" y2="360" stroke="#c8bfaa" stroke-width="1"/>
+  <line x1="85" y1="40" x2="85" y2="360" stroke="#c8bfaa" stroke-width="1"/>
+  <!-- Y軸ラベル(タイトルと重ならない位置に) -->
+  <text x="70" y="364" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55" text-anchor="end">0%</text>
+  <text x="70" y="284" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55" text-anchor="end">25%</text>
+  <text x="70" y="204" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55" text-anchor="end">50%</text>
+  <text x="70" y="124" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55" text-anchor="end">75%</text>
+  <text x="70" y="44" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55" text-anchor="end">100%</text>
+  <!-- Y軸タイトル -->
+  <text x="14" y="200" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#3d3020" transform="rotate(-90 14 200)" text-anchor="middle">機械が「人間」と判定された率</text>
+  <!-- 人間baseline破線 -->
+  <line x1="85" y1="146" x2="760" y2="146" stroke="#b0a090" stroke-width="1" stroke-dasharray="5,4"/>
+  <text x="92" y="138" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#7a6a55" text-anchor="start">人間が人間と認められる率 ≒ 67%</text>
+  <!-- 折れ線 -->
+  <polyline points="130,290 245,200 360,254 475,296 590,187 700,126" fill="none" stroke="#8b1a1a" stroke-width="2.5"/>
+  <!-- データポイント -->
+  <circle cx="130" cy="290" r="6" fill="#8b1a1a"/>
+  <circle cx="245" cy="200" r="6" fill="#8b1a1a"/>
+  <circle cx="360" cy="254" r="6" fill="#8b1a1a"/>
+  <circle cx="475" cy="296" r="6" fill="#8b1a1a"/>
+  <circle cx="590" cy="187" r="6" fill="#8b1a1a"/>
+  <circle cx="700" cy="126" r="8" fill="#8b1a1a" stroke="#faf8f3" stroke-width="2"/>
+  <!-- 値ラベル -->
+  <text x="130" y="275" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a" text-anchor="middle" font-weight="600">22%</text>
+  <text x="245" y="185" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a" text-anchor="middle" font-weight="600">50%</text>
+  <text x="360" y="239" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a" text-anchor="middle" font-weight="600">33%</text>
+  <text x="475" y="281" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a" text-anchor="middle" font-weight="600">20%</text>
+  <text x="590" y="172" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a" text-anchor="middle" font-weight="600">54%</text>
+  <text x="700" y="108" font-family="'Source Sans 3',sans-serif" font-size="19" fill="#8b1a1a" text-anchor="middle" font-weight="700">73%</text>
+  <!-- 年/名前ラベル -->
+  <text x="130" y="384" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#1a1208" text-anchor="middle" font-weight="600">1966</text>
+  <text x="130" y="402" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">ELIZA</text>
+  <text x="245" y="384" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#1a1208" text-anchor="middle" font-weight="600">1991</text>
+  <text x="245" y="402" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">PC Therapist</text>
+  <text x="360" y="384" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#1a1208" text-anchor="middle" font-weight="600">2014</text>
+  <text x="360" y="402" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">Eugene Goostman</text>
+  <text x="475" y="384" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#1a1208" text-anchor="middle" font-weight="600">2022</text>
+  <text x="475" y="402" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">GPT-3.5</text>
+  <text x="590" y="384" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#1a1208" text-anchor="middle" font-weight="600">2024</text>
+  <text x="590" y="402" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">GPT-4</text>
+  <text x="700" y="384" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#1a1208" text-anchor="middle" font-weight="600">2025</text>
+  <text x="700" y="402" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">GPT-4.5</text>
+</svg>
+<p class="svg-cap">数値は Jones &amp; Bergen (2024 / 2025) のチューリングテスト測定値。2024年は2プレイヤー型、2025年は3プレイヤー型(ペルソナ指定)。<strong>2025年のGPT-4.5は人間ベースライン67%を超え、実際の人間より頻繁に「人間」と判定された</strong>。</p>
+</div>
+
+<p class="body-text fade">興味深いのは、グラフが単調増加ではないことだ。1991年のPC Therapistは50%を出したが、ルーベナー・プライズ（商業的なチャットボット競技会）の緩い審査での数字で、ELIZAと同質の錯覚に支えられている。Eugene Goostmanは「13歳のウクライナ人少年」という設定で言語ミスを正当化し、<strong>審判の期待値を下げる</strong>ことで33%に届いた。</p>
+
+<p class="body-text fade">2022年のGPT-3.5はむしろ低く出る。これは<em>判定者側が学習した</em>効果だ。LLMに触れた人ほどAIを見抜ける、という相関が観測されている。そして2024年、同じ条件でGPT-4は54%。これは、人間が人間と認められる67%に接近している数字である。</p>
+
+<p class="body-text fade">そしてグラフの右端、<strong>2025年</strong>。Jones &amp; Bergen は続編として、3プレイヤー型(審判が人間とAIを<em>同時に</em>比較する)テストを実施した。GPT-4.5 に「ネットスラングに馴染んだ内向的な若者」というペルソナを与えた結果、<em>73%</em>の確率で「人間」と判定された。これは AI 単独の判定率ではない——同じテスト内で本物の人間が「人間」と判定されたのは27%にとどまった。<strong>AIが、本物の人間より頻繁に「人間」と判定された、史上初の記録</strong>である。</p>
+
+<p class="body-text fade">注意したいのは、これが<em>素のGPT-4.5の能力</em>ではない点だ。同じモデルでも<strong>ペルソナ指定なし</strong>で対話させると、人間判定率は<em>36%</em>まで落ちる。同じAIでも、たった数行のキャラクター設定があるかないかで、結果が <strong>37 ポイント</strong>変わる。テストが測っているのは、<em>モデルの内部能力ではなく、人間に似せる演出ができるかどうか</em>でもあるということだ。</p>
+
+<p class="body-text fade">2024年と2025年で、テストの形式そのものも変わっている。これが結果の解釈を大きく左右するので、図で整理しておく。</p>
+
+<!-- 2プレイヤー型 vs 3プレイヤー型 図解 -->
+<div class="svg-fig fade">
+<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="340" fill="#faf8f3"/>
+  <!-- 縦区切り -->
+  <line x1="400" y1="50" x2="400" y2="300" stroke="#c8bfaa" stroke-width="1"/>
+  <!-- パネル見出し -->
+  <text x="200" y="36" font-family="'Source Sans 3',sans-serif" font-size="17" font-weight="600" fill="#1a1208" text-anchor="middle">2プレイヤー型 (Jones 2024)</text>
+  <text x="600" y="36" font-family="'Source Sans 3',sans-serif" font-size="17" font-weight="600" fill="#1a1208" text-anchor="middle">3プレイヤー型 (Jones 2025)</text>
+
+  <!-- パネル1: 2-player -->
+  <rect x="155" y="60" width="90" height="52" fill="white" stroke="#3d3020" stroke-width="1.5"/>
+  <text x="200" y="92" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#1a1208" text-anchor="middle">審判</text>
+
+  <line x1="200" y1="112" x2="200" y2="172" stroke="#7a6a55" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="218" y="146" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#7a6a55">対話</text>
+
+  <rect x="125" y="172" width="150" height="52" fill="#f3efe6" stroke="#3d3020" stroke-width="1.5"/>
+  <text x="200" y="204" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#1a1208" text-anchor="middle">AI または 人間</text>
+
+  <text x="200" y="262" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55" text-anchor="middle">1人と対話 → 人間か判定</text>
+  <text x="200" y="290" font-family="'Source Sans 3',sans-serif" font-size="17" fill="#8b1a1a" text-anchor="middle" font-weight="700">GPT-4 = 54%</text>
+
+  <!-- パネル2: 3-player -->
+  <rect x="555" y="60" width="90" height="52" fill="white" stroke="#3d3020" stroke-width="1.5"/>
+  <text x="600" y="92" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#1a1208" text-anchor="middle">審判</text>
+
+  <line x1="580" y1="112" x2="510" y2="172" stroke="#7a6a55" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="620" y1="112" x2="690" y2="172" stroke="#7a6a55" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <rect x="435" y="172" width="150" height="52" fill="#f3efe6" stroke="#3d3020" stroke-width="1.5"/>
+  <text x="510" y="204" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#1a1208" text-anchor="middle">人間</text>
+
+  <rect x="615" y="172" width="150" height="52" fill="#fce5e5" stroke="#8b1a1a" stroke-width="1.5"/>
+  <text x="690" y="204" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a" text-anchor="middle" font-weight="700">AI</text>
+
+  <text x="600" y="262" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55" text-anchor="middle">2人と同時対話 → どちらが人間か</text>
+  <text x="600" y="290" font-family="'Source Sans 3',sans-serif" font-size="17" fill="#8b1a1a" text-anchor="middle" font-weight="700">GPT-4.5(ペルソナ) = 73%</text>
+</svg>
+<p class="svg-cap">2プレイヤー型は「相手1人 → 人間か判定」、3プレイヤー型は「2人を同時比較してどちらが人間か」を選ぶ。後者は<strong>本物の人間と直接競合する</strong>ので、AIが「人間より人間らしい」と判定されると、本物の人間判定率はその分だけ下がる。</p>
+</div>
+
+<!-- 測れるもの / 測れないもの -->
+<div class="measure fade">
+  <div class="measure-header"><span class="measure-hl">テストは何を測り、何を測らないか</span></div>
+  <div class="measure-body">
+    <div class="measure-col left">
+      <div class="measure-lbl can">✓ 測れているもの</div>
+      <p class="measure-item"><strong>言語的自然さ</strong>。違和感のない文体、文脈に合った応答。</p>
+      <p class="measure-item"><strong>社会感情的な応答</strong>。共感、冗談、ためらい、口調の揺れ。</p>
+      <p class="measure-item"><strong>ロールの演じ分け</strong>。人称、設定、知識量の自己調整。</p>
+      <p class="measure-item"><strong>短期的な一貫性</strong>。5分程度の会話での人格の継続。</p>
+    </div>
+    <div class="measure-col right">
+      <div class="measure-lbl cant">✗ 測れていないもの</div>
+      <p class="measure-item"><strong>理解</strong>。記号操作の奥で意味を把握しているか。</p>
+      <p class="measure-item"><strong>意識</strong>。「感じる」主体がそこにいるか。</p>
+      <p class="measure-item"><strong>因果的な推論</strong>。なぜそう答えるかの根拠を追跡できるか。</p>
+      <p class="measure-item"><strong>長期的記憶と関係</strong>。年単位でひとつの存在であり続けるか。</p>
+    </div>
+  </div>
+</div>
+
+<p class="body-text fade">テストは、チューリング自身の宣言通り、<em>内面を問わない</em>。だからこそ、内面を問いたい側からはずっと批判されてきた。<span class="tip" onclick="toggleTip(this)">中国語の部屋<span class="tip-box"><strong>中国語の部屋（Searle, 1980）</strong>中国語の文法規則だけを機械的に適用して返答する人は、中国語を「理解」していると言えるか、という思考実験。外面の一致と内面の理解は別だ、と主張する。</span></span>はその代表で、米国の哲学者<strong>ジョン・サール</strong>(UC Berkeley)は1980年、「テストに合格する機械は、記号操作をしているだけで、何も理解していない」と論じた。</p>
+
+<p class="body-text fade">サールの思考実験はこうだ。中国語を一文字も読めない英語話者が、密室に閉じ込められている。部屋には分厚いマニュアルがあり、「この記号列が来たら、この記号列を返せ」というルールが網羅されている。外から中国語の質問が紙で差し込まれると、彼はマニュアル通りに記号を組み立てて返す。外の中国人は「この部屋は中国語を流暢に話している」と感じる——でも部屋の中の彼は、自分が何を答えているか<em>一文字も理解していない</em>。サールの主張は、現代のLLMにも同じ批判が当てはまるか? という形で、いまも問い続けられている。</p>
+
+<p class="body-text fade">もう一つ、測れないものがある——<strong>判定者の投影を補正する術がない</strong>。ELIZAのときヴァイゼンバウムが見たのは、審判の側で起きる自動的な人格化だった。判定者が「人間だ」と感じる根拠の一部は、機械の性能ではなく、人間の脳が誰かを立ち上げる性質そのものだ。テストは、機械と人間の能力差ではなく、<em>人間が相手の内面を想像する強さ</em>も同時に測ってしまう。</p>
+
+<!-- ===== 歴史 ===== -->
+<div class="sec-rule fade"><span class="sec-label">04 ─ 歴史</span><span class="sec-line"></span></div>
+<h2 class="fade">提案からLLM時代まで</h2>
+
+<div class="timeline fade">
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1950</p>
+    <p class="tl-title">イミテーション・ゲーム提案</p>
+    <p class="tl-desc">Turingが<em>Mind</em>誌59巻に"Computing Machinery and Intelligence"を発表。機械知能の外面的判定という思想を打ち出す。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1966</p>
+    <p class="tl-title">ELIZA公開</p>
+    <p class="tl-desc">WeizenbaumがMITでELIZAを発表（Communications of the ACM）。単純なパターンマッチで、なおもユーザーが「理解されている」と感じる現象が観察される。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1980</p>
+    <p class="tl-title">中国語の部屋</p>
+    <p class="tl-desc">John Searleが"Minds, Brains, and Programs"で、外面的振る舞いと理解の乖離を突きつける思考実験を提出。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1991</p>
+    <p class="tl-title">ルーベナー・プライズ開始</p>
+    <p class="tl-desc">商業的な年次テスト大会が始まる。初年度、PC Therapistが10人中5人を騙し、「30%合格ライン」説が広まる発火点のひとつとなる。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2014</p>
+    <p class="tl-title">Eugene Goostman報道</p>
+    <p class="tl-desc">Reading大学のKevin Warwickが主催したテストで、「13歳の少年」設定のGoostmanが33%を得て「初めてチューリングテストに合格した」と報道。合格ラインの曖昧さをめぐり学界から強い批判が出る。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2024</p>
+    <p class="tl-title">LLMによる事実上の到達</p>
+    <p class="tl-desc">Jones &amp; Bergen (UC San Diego)、NAACL発表。GPT-4が5分の対話で<strong>54%</strong>の「人間」判定を得る。人間相手の67%に迫る数字。テストの妥当性そのものが議論の俎上に。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2025</p>
+    <p class="tl-title">「人間より人間らしい」AI</p>
+    <p class="tl-desc">Jones &amp; Bergen がプレプリント発表(arXiv 2503.23674)。3プレイヤー型テストでGPT-4.5(ペルソナ指定)が73%。実際の人間27%を上回り、<strong>AIが人間より頻繁に「人間」と判定された史上初のケース</strong>。同年、ARC-AGI や GDPval など「会話模倣を超えた評価軸」を求める動きが加速する。</p>
+  </div>
+</div>
+
+<!-- ===== つまり ===== -->
+<div class="sec-rule fade"><span class="sec-label">05 ─ つまり</span><span class="sec-line"></span></div>
+<h2 class="fade">テストは超過され、役割を変えた</h2>
+
+<p class="body-text fade">75年の歴史を圧縮するとこうなる——テストは、<em>機械が人間らしく見えるか</em>を測る設計だった。2024年に達成され、2025年には<strong>超過</strong>された。AI は本物の人間より頻繁に「人間」と判定される存在になった。達成と同時に、設計の前提が組み変わった。「人間らしく見える」ことが「考えている」ことの十分条件だと、多くの人はもう感じていない。テストは合否判定の道具から、<em>問いを引き継ぐ歴史的な節目</em>になった。</p>
+
+<p class="body-text fade">チューリングの予言は奇妙な形で当たっている。彼は、世紀末には「機械が考える」と言っても反論されなくなる、と書いた。2026年の現在、LLMに向かって「考えてる」と語る人は珍しくない。だが同時に、「本当に考えているのか」という問いは、1950年の時点より<strong>むしろ鋭く</strong>なっている。</p>
+
+<div class="pull fade">
+  <p class="pull-q">The original question, <em>"Can machines think?"</em>, I believe to be too meaningless to deserve discussion.</p>
+  <p class="pull-q" style="margin-top:10px;font-size:clamp(14px,1.8vw,17px);color:#7a6a55;">元の問い「機械は考えることができるか」は、議論に値しないほど無意味だと私は信じている。</p>
+  <p class="pull-attr">— A. M. Turing, 1950</p>
+</div>
+
+<p class="body-text fade">チューリング自身は、「考える」を定義しない道を選んだ。その道は、機能主義と呼ばれ、認知科学と情報科学の土台になった。しかし、道の先には<span class="tip" onclick="toggleTip(this)">ハード・プロブレム<span class="tip-box"><strong>意識のハードプロブレム（Chalmers, 1995）</strong>機能や行動は説明できても、主観的経験（クオリア）がなぜ生じるのかは説明できない、という哲学的問題。</span></span>が待っていた。外面はいかにリアルでも、内側に誰かがいるかどうかは、外からは決して確かめられない。テストはその問いに答えない、と最初から宣言していた。宣言は守られた。守られた結果、いま、その問いが大きくなっている。</p>
+
+<!-- 文化への登場 -->
+<div class="culture-block fade">
+  <div class="culture-label">作品への登場</div>
+  <div class="culture-item">
+    <p class="culture-title">『イミテーション・ゲーム / エニグマと天才数学者の秘密』(2014, Morten Tyldum)</p>
+    <p class="culture-desc">ベネディクト・カンバーバッチ主演のチューリング伝記映画。タイトルそのものが1950年論文の原題「The Imitation Game」から取られている。物語の主軸はブレッチリー・パークでのエニグマ解読だが、終盤、戦後のチューリングが「機械は考えるか」という問いを抱える姿が描かれる。日本でチューリングの名前が一般化した最大の入り口でもある。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">『Ex Machina』(2014, Alex Garland)</p>
+    <p class="culture-desc">アンドロイドAvaが主人公Calebにチューリングテストを受けさせる。監督は「審判が恋をする」という歪みをテストに持ち込むことで、人間側の投影こそがAIの脱出を可能にした、と描く。ELIZA効果の寓話。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">『Her』(2013, Spike Jonze)</p>
+    <p class="culture-desc">OSのサマンサに恋する主人公。サマンサは最終的に「8316人と同時に愛している」ことが明かされる。人間が内面を想像する強さを、AIの側が超越してしまう場面。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">『ブレードランナー』(1982, Ridley Scott)</p>
+    <p class="culture-desc">レプリカント(人造人間)を識別する架空の検査<strong>フォークト＝カンプ・テスト</strong>はチューリングテストの変奏。瞳孔の収縮や感情反応の<em>微妙なレイテンシ(遅延)</em>を測定し、共感能力の有無で人間か人造人間かを判別する設計。「何を測れば人間か」という問いの不可能性を、検査機器という形で物語化した名場面。</p>
+  </div>
+</div>
+
+<p class="body-text fade">テストが無効になったわけではない。チューリングの提案は、科学史に残る名案であり続ける。ただ、テストの合否で「考える機械が実現したか」を決められる時代は、たぶんもう終わった。2025年以降、「会話の模倣」を超えた評価軸が本格的に立ち上がっている——<span class="tip" onclick="toggleTip(this)">ARC-AGI<span class="tip-box"><strong>ARC-AGI</strong>François Chollet が提唱した抽象推論ベンチマーク。「初めて見るパズルを解く力」を測る課題群で、訓練データに含まれない新しい推論を要求する。LLMが現状苦戦している領域。</span></span>(初見のパズルを解く抽象推論)、OpenAI の <span class="tip" onclick="toggleTip(this)">GDPval<span class="tip-box"><strong>GDPval(2025)</strong>OpenAI が発表した実務遂行ベンチマーク。法律・医療・金融・工学など、経済的に価値ある具体タスクを、AIがどれだけ実用レベルでこなせるかを測る。「会話できるか」ではなく「働けるか」を問う設計。</span></span>(法律・医療・工学などの実務遂行)、長期的な一貫性や因果推論を測る試み。テストが「ゴール」だった時代は終わり、今度は「ゴールの定義」自体を作り直す段階に入っている。</p>
+
+<!-- 結論の3点まとめ -->
+<div class="takeaway-panel fade">
+  <div class="takeaway-header">
+    <span>結局、どう受け止めればいいか</span>
+    <span class="takeaway-header-meta">3 takeaways</span>
+  </div>
+  <div class="takeaway-items">
+    <div class="takeaway-item">
+      <div class="takeaway-num">1</div>
+      <div>
+        <p class="takeaway-title">テストは「<em>超えられた</em>」。役割を終えた。</p>
+        <p class="takeaway-desc">2025年、GPT-4.5は本物の人間より頻繁に「人間」と判定された——AI が <strong>73%</strong>、人間が <strong>27%</strong>。「機械が人間並みに会話できるか」を判定する道具としては、チューリングの提案はゴールに到達した。これは75年かけてやっと届いた天井ではなく、<em>すでに天井が存在しなくなった</em>状態だ。</p>
+      </div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">2</div>
+      <div>
+        <p class="takeaway-title">ただし、それは「<em>考えている</em>」証明ではない。</p>
+        <p class="takeaway-desc">テストが測っていたのは、5分間の会話で「人間っぽく見える演出ができるか」。同じGPT-4.5でも<strong>ペルソナ指定なし</strong>だと判定率は <em>36%</em> まで落ちる——同じ中身でも、外側のキャラクター付け次第で結果は <strong>37 ポイント</strong> 違う。これは AI が「人間並みに賢くなった」のではなく、<em>人間の判定者を騙すパターンを学んだ</em>ということに近い。「内側で意味を理解しているか」「意識があるか」「初めて見る状況で正しく考えられるか」——テストはこれらに最初から答えない設計だった。サールの「中国語の部屋」が突きつけた疑念は、性能が上がっても消えない。</p>
+      </div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">3</div>
+      <div>
+        <p class="takeaway-title">問いは、私たちの<em>手元</em>に戻ってきた。</p>
+        <p class="takeaway-desc">「考えるとは何か」——チューリングが「無意味だ」として棚上げした問いは、LLMと毎日話す時代になって、避けて通れなくなった。会話の自然さで判別できなくなった以上、判別する側の人間が、<strong>「これは本当に理解しているのか」を別の手がかりから問い直すしかない</strong>。3ヶ月前の約束を覚えているか。なぜそう答えたのかを説明できるか。質問の前提を疑えるか——次世代の評価軸はそこを測ろうとしている。テストの終わりは、思考についての問いの<em>始まり</em>でもある。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 参考文献 ===== -->
+<div class="sec-rule fade"><span class="sec-label">06 ─ 参考文献</span><span class="sec-line"></span></div>
+
+<div class="ref-list">
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">原論文</span><span class="ref-year">1950</span></div>
+    <p class="ref-title"><a href="https://academic.oup.com/mind/article/LIX/236/433/986238" target="_blank" rel="noopener">Computing Machinery and Intelligence</a></p>
+    <p class="ref-author">A. M. Turing — Mind, Volume LIX, Issue 236, pp. 433–460</p>
+    <p class="ref-desc">イミテーション・ゲームの原典。「考える」の定義を迂回し、機械の知能を会話での判別不能性に置き換える提案。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1966</span></div>
+    <p class="ref-title"><a href="https://dl.acm.org/doi/10.1145/365153.365168" target="_blank" rel="noopener">ELIZA — A Computer Program For the Study of Natural Language Communication Between Man and Machine</a></p>
+    <p class="ref-author">Joseph Weizenbaum — Communications of the ACM, 9(1), pp. 36–45</p>
+    <p class="ref-desc">ELIZAの技術論文。パターンマッチによる対話生成の仕組みと、ユーザーが示す過剰な人格化への著者の戸惑いが記録されている。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1976</span></div>
+    <p class="ref-title"><a href="https://archive.org/details/computerpowerhum0000weiz_v0i3" target="_blank" rel="noopener">Computer Power and Human Reason: From Judgment to Calculation</a></p>
+    <p class="ref-author">Joseph Weizenbaum — W. H. Freeman</p>
+    <p class="ref-desc">ELIZA効果を目撃したヴァイゼンバウムによる、AI社会論。「計算できることと、判断すべきことは違う」という主張はいまも引かれ続けている。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1980</span></div>
+    <p class="ref-title"><a href="https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/minds-brains-and-programs/DC644B47A4299C637C89772FACC2706A" target="_blank" rel="noopener">Minds, Brains, and Programs</a></p>
+    <p class="ref-author">John R. Searle — Behavioral and Brain Sciences, 3(3), pp. 417–457</p>
+    <p class="ref-desc">「中国語の部屋」の原典。外面的振る舞いの一致は、内面の理解を保証しない、というテストへの古典的反駁。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2024</span></div>
+    <p class="ref-title"><a href="https://arxiv.org/abs/2405.08007" target="_blank" rel="noopener">People cannot distinguish GPT-4 from a human in a Turing test</a></p>
+    <p class="ref-author">Cameron R. Jones &amp; Benjamin K. Bergen — UC San Diego / NAACL 2024</p>
+    <p class="ref-desc">大規模なオンライン・チューリングテスト実験。GPT-4が54%、人間が67%の「人間」判定率。判断根拠が言語スタイルと社会感情応答に偏ることを定量的に示した。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2025</span></div>
+    <p class="ref-title"><a href="https://arxiv.org/abs/2503.23674" target="_blank" rel="noopener">Large Language Models Pass the Turing Test</a></p>
+    <p class="ref-author">Cameron R. Jones &amp; Benjamin K. Bergen — UC San Diego / arXiv:2503.23674</p>
+    <p class="ref-desc">3プレイヤー型(審判が人間とAIを同時比較)のチューリングテスト。GPT-4.5にペルソナ指定を与えた条件で73%の「人間」判定率を記録。実際の人間(27%)を上回り、AIが人間より頻繁に「人間」と判定された史上初の論文。LLaMa-3.1-405Bも56%で同様にパス。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">百科事典</span><span class="ref-year">2024改訂</span></div>
+    <p class="ref-title"><a href="https://plato.stanford.edu/entries/turing-test/" target="_blank" rel="noopener">The Turing Test — Stanford Encyclopedia of Philosophy</a></p>
+    <p class="ref-author">Graham Oppy &amp; David Dowe</p>
+    <p class="ref-desc">テストの哲学的・歴史的整理。行動主義批判、チューリング自身の意図、主要な反論を網羅する。</p>
+  </div>
+</div>
+
+<!-- 信頼度ノート -->
+<div class="note-box fade">
+  <strong>📌 この記事について</strong>　本記事は、1950年のチューリング論文（Mind誌）、1966年のヴァイゼンバウム論文(CACM)、2024年・2025年のJones &amp; Bergen 論文(NAACL / arXiv 2503.23674)を主軸に構成した。Eugene Goostman をめぐる「33%で合格した」という表現は、チューリング本人の記述を合格ラインに読み替えた誤解であり、記事内でも注記した。
+</div>
+
+<p class="signature fade">e. Tamaki</p>
+
+<!-- タグ -->
+<div class="tags fade">
+  <span class="tag">AI</span>
+  <span class="tag">Turing</span>
+  <span class="tag">ELIZA</span>
+  <span class="tag">LLM</span>
+  <span class="tag">機能主義</span>
+  <span class="tag">心の哲学</span>
+  <span class="tag">情報科学</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">73<span style="font-size:24px;">%</span></p>
+      <p class="sidebar-text">2025年のJones &amp; Bergen 実験で、<strong>GPT-4.5</strong>(ペルソナ指定)が「人間」と判定された割合。実際の人間(<em>27%</em>)を上回り、AIが人間より頻繁に「人間」と判定された<em>史上初</em>の到達。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1950年の論文発表は、<strong>エニグマ解読から5年</strong>、ENIAC登場から4年。機械が人間の代わりに計算・推論をこなす現場を、彼自身が戦中に肌で見てきた直後の発表だった(ブレッチリーの仕事は1970年代まで機密)。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">『<strong>イミテーション・ゲーム</strong>』(2014)はチューリング自身の伝記。『Ex Machina』(2014)、『Her』(2013)、『ブレードランナー』(1982)はテストの不完全性を主題にする。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">
+        — <em>中国語の部屋</em>（Searle）<br>
+        — <em>ゲーデル不完全性</em><br>
+        — <em>意識のハード・プロブレム</em><br>
+        — <em>マリーの部屋</em>
+      </p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">史実・実験結果は査読済み。「テストは合格可能か」の解釈は現在も哲学・情報科学両方で<em>議論中</em>。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// チューリングテストの限界 を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ結局、AIは考えてないってこと?</span></div>
+      <span class="t-output" id="to1">そうとも言えないし、そうでないとも言える。テストが答えてくれないのは、<em>最初からその質問を避けるように設計されていた</em>からだ。チューリング自身が「考えるの定義を問わない」と書いた。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;Q2は当たったけど、なんか勘で当てた感じだった</span></div>
+      <span class="t-output" id="to2">当たってる。あの相手は<strong>人間</strong>だ。ただ、あなたが「人間っぽい」と感じた手がかり——短い文、「笑」、句点の省略——は、現代のLLMが<em>特に丁寧に学習した型</em>でもある。今回は直感と正解がたまたま一致したが、同じ手がかりで別の相手を判定すれば、逆に騙される。Jones (2024) で判別根拠が「言語スタイル35%・社会感情27%」に偏ったのは、その脆さの数字だ。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;これからのAI、どう評価すればいい?</span></div>
+      <span class="t-output" id="to3">会話の自然さとは別の軸——たとえば「3ヶ月前の約束を覚えているか」「初めて見る状況で因果を組み立てられるか」「質問の前提そのものを疑えるか」。<em>短い対話では見えないもの</em>を測る基準が、今ちょうど作られ始めている。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;チューリングは75年前にこうなるの見えてた?</span></div>
+      <span class="t-output" id="to4">驚くほど当ててる。「世紀末には<em>機械が考える</em>という表現が普通になる」という予測は的中した。ただ、彼が想像した「普通になる」と、実際に起きた「普通になる」は、たぶん少し違う。論文を読み返すと、そのズレに気づく。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl5">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 考える、って難しいな</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/hard_problem">
+      <p class="related-card-tag">思考実験・哲学</p>
+      <p class="related-card-title">意識のハード・プロブレム</p>
+      <p class="related-card-desc">外面をいくら説明できても、内側に「誰か」がいるかは説明できない。チューリングテストが答えない領域の名前。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/godel_incompleteness">
+      <p class="related-card-tag">数学・論理</p>
+      <p class="related-card-title">ゲーデルの不完全性定理</p>
+      <p class="related-card-desc">形式的な手続きで表せないものが、形式的な手続きの中に必ず残る。チューリングテストの姉妹のような、論理の限界の話。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// プログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ（トースト方式)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// === チューリング・クイズ ===
+const ANSWERS = {
+  1: {truth:'ai', label:'AI — ELIZA（1966）の応答パターン',
+      body:'典型的なELIZA風置換。キーワードを疑問文に変換するだけで中身を理解していない。60年前の技術だが、短く切ると意外と人間らしく感じさせることがある。'},
+  2: {truth:'human', label:'人間 — カジュアルな雑談',
+      body:'短い文・句点の省略・「笑」などの砕けた表現。LLMも真似できるが、この具体性（「前職の同期」「5年ぶりくらい」）は偶然性を帯びていて、トレーニング分布の平均から外れやすい。'},
+  3: {truth:'ai', label:'AI — GPT-4相当の応答',
+      body:'「自分で区別できない」という自己言及的な誠実さの演出は、2023年以降のLLMが非常に得意な型。同種の応答が研究でも繰り返し観測されている。内省しているように見えて、内省の語り方を学習している。'},
+  4: {truth:'ai', label:'AI — 敬語マニュアル応答',
+      body:'丁寧すぎる敬語、安全情報の先回り、「お知らせください」という定型句。カスタマーサポート向けに最適化されたLLMや、古い時代のスクリプト型ボットに近い口調。人間はここまで整った応答を返さない。'},
+  5: {truth:'human', label:'人間 — 記憶の個別具体性',
+      body:'「田舎の祖母の家」「セミと縁側でスイカ」という組み合わせは、個人史のにじみ方が強い。LLMも同種の情景を生成できるが、話題が「ジャネーの法則」と自然に飛ぶ流れは、会話の慣性を持った人間のほうが出やすい。'}
+};
+let answered = {}, score = 0;
+function judge(n, pick){
+  if(answered[n]) return;
+  answered[n] = pick;
+  const truth = ANSWERS[n].truth;
+  const aiBtn = document.getElementById('q'+n+'ai');
+  const humanBtn = document.getElementById('q'+n+'human');
+  aiBtn.disabled = true; humanBtn.disabled = true;
+  const pickedBtn = document.getElementById('q'+n+pick);
+  const truthBtn = document.getElementById('q'+n+truth);
+  if(pick === truth){
+    pickedBtn.classList.add('picked-correct');
+    const otherBtn = pick === 'ai' ? humanBtn : aiBtn;
+    otherBtn.classList.add('dim');
+    score++;
+  }else{
+    pickedBtn.classList.add('picked-wrong');
+    truthBtn.classList.add('show-correct');
+  }
+  const res = document.getElementById('q'+n+'Res');
+  const v = document.getElementById('q'+n+'V');
+  const b = document.getElementById('q'+n+'B');
+  v.className = 'quiz-result-verdict ' + (pick === truth ? 'ok' : 'ng');
+  v.textContent = pick === truth ? '◎ 正解' : '× 不正解';
+  b.innerHTML = '<strong>正解: ' + ANSWERS[n].label + '</strong><br>' + ANSWERS[n].body;
+  res.classList.add('show');
+  document.getElementById('q'+n+'St').textContent = pick === truth ? '正解' : '不正解';
+  document.getElementById('q'+n+'N').classList.add('show');
+}
+function nextQ(n){
+  document.getElementById('quiz'+n).style.display = 'block';
+  document.getElementById('quiz'+n).scrollIntoView({behavior:'smooth', block:'start'});
+}
+function finishQuiz(){
+  const sum = document.getElementById('quizSummary');
+  sum.classList.add('show');
+  document.getElementById('scoreBig').textContent = score + ' / 5';
+  let sub = '正答';
+  const pct = Math.round(score/5*100);
+  if(pct >= 80) sub = 'プロの審判レベルの判別精度';
+  else if(pct >= 60) sub = '訓練を受けた審判と同水準';
+  else if(pct >= 40) sub = 'AI判別はすでに難しい';
+  else sub = 'ELIZA効果に最も近い応答';
+  document.getElementById('scoreSub').textContent = pct + '% — ' + sub;
+  sum.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:700},{id:'to1',delay:1300},
+  {id:'tl2',delay:2100},{id:'to2',delay:2700},
+  {id:'tl3',delay:3500},{id:'to3',delay:4100},
+  {id:'tl4',delay:4900},{id:'to4',delay:5500},
+  {id:'tl5',delay:6300},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// ヘッダー・検索
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES === 'undefined'){res.innerHTML='<p class="s-empty">検索データ読み込み中…</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div>
+<div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6b7b629057d241878dda2a4f3169e5cb"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

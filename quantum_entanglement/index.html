@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>量子もつれが運ぶのは「情報」ではなく「相関」だけ — Qualia Journal</title>
+<meta name="description" content="二つの粒子を同時に測ると、瞬時に結果が揃う。しかし片方の操作で信号は送れない——「相関」と「通信」の違いを、シミュレーターで自分の手で確かめる。">
+<link rel="canonical" href="https://qualiajournal.com/quantum_entanglement">
+<meta property="og:title" content="量子もつれが運ぶのは「情報」ではなく「相関」だけ — Qualia Journal">
+<meta property="og:description" content="二つの粒子を同時に測ると、瞬時に結果が揃う。しかし片方の操作で信号は送れない——「相関」と「通信」の違いを、シミュレーターで自分の手で確かめる。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/quantum_entanglement">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="量子もつれが運ぶのは「情報」ではなく「相関」だけ — Qualia Journal">
+<meta name="twitter:description" content="二つの粒子を同時に測ると、瞬時に結果が揃う。しかし片方の操作で信号は送れない——「相関」と「通信」の違いを、シミュレーターで自分の手で確かめる。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"量子もつれが運ぶのは「情報」ではなく「相関」だけ","description":"二つの粒子を同時に測ると、瞬時に結果が揃う。しかし片方の操作で信号は送れない——「相関」と「通信」の違いを、シミュレーターで自分の手で確かめる。","author":{"@type":"Person","name":"e. Tamaki"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/quantum_entanglement","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"物理・宇宙","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"量子もつれが運ぶのは「情報」ではなく「相関」だけ"}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;display:block;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;min-width:0;}
+.article-side{padding:48px 0;min-width:0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block-img{background:#ede8dc;padding:0;overflow:hidden;position:relative;min-height:100%;}
+.person-block-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 22%;}
+.person-block-body{padding:14px 18px 12px;background:#f3efe6;border-left:1px solid #c8bfaa;display:flex;flex-direction:column;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:3px;line-height:1.2;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:7px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.75;flex:1;}
+.person-credit{font-family:'Source Sans 3',sans-serif;font-size:9.5px;color:#b0a090;line-height:1.5;margin-top:8px;padding-top:6px;border-top:1px solid #e0d8c8;}
+.person-credit a{color:#b0a090;text-decoration:underline;}
+
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+.prep-block{margin:24px 0 18px;padding:18px 22px;background:#ede8dc;border-left:3px solid #8b1a1a;}
+.prep-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;}
+.prep-block .body-text{margin-bottom:0;padding-left:0;border-left:none;font-size:15px;line-height:1.85;}
+.prep-block .body-text strong{color:#1a1208;font-weight:600;}
+
+.s-range-fig{display:block;margin:8px auto 16px;max-width:560px;}
+
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+.svg-fig{max-width:680px;margin:28px auto;display:block;}
+.svg-fig-cap{max-width:680px;margin:-18px auto 28px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;text-align:center;line-height:1.6;}
+@media(max-width:700px){.svg-fig{max-width:100%;}}
+.scene-fig{margin:32px 0;border:1px solid #c8bfaa;background:#1a1208;overflow:hidden;}
+.scene-fig img{width:100%;display:block;}
+.scene-fig-body{padding:12px 18px;background:#f3efe6;}
+.scene-fig-cap{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;}
+.scene-fig-cap strong{color:#8b1a1a;font-weight:600;}
+.scene-fig-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:6px;padding-top:6px;border-top:1px solid #e0d8c8;line-height:1.5;}
+.scene-fig-credit a{color:#b0a090;text-decoration:underline;}
+
+.easy-fig{margin:32px 0;}
+.easy-fig-img{border:1px solid #c8bfaa;background:white;padding:14px 16px;display:flex;justify-content:center;align-items:center;}
+.easy-fig-img img,.easy-fig-img svg{max-width:100%;height:auto;display:block;}
+.easy-fig-cap{max-width:680px;margin:14px auto 0;font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.85;text-align:left;}
+.easy-fig-cap strong{color:#1a1208;font-weight:600;}
+.easy-fig-cap em{color:#8b1a1a;font-style:italic;}
+.easy-fig-aside{max-width:680px;margin:8px auto 0;font-family:'Source Sans 3',sans-serif;font-size:12px;font-style:italic;color:#7a6a55;line-height:1.7;}
+.easy-fig-credit{max-width:680px;margin:8px auto 0;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;line-height:1.5;text-align:right;}
+.easy-fig-credit a{color:#b0a090;text-decoration:underline;}
+
+.person-block-link{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#8b1a1a;text-decoration:none;margin-top:8px;padding-top:6px;border-top:1px solid #e0d8c8;letter-spacing:.04em;}
+.person-block-link:hover{color:#a02020;text-decoration:underline;}
+.person-block-link::after{content:' →';opacity:.7;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:9.5px;color:#b0a090;line-height:1.5;margin-top:6px;}
+.person-block-credit a{color:#b0a090;text-decoration:underline;}
+
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.credits-box{margin:18px 0;padding:14px 18px;background:#ede8dc;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.credits-box strong{color:#3d3020;font-weight:600;}
+.credits-box a{color:#7a6a55;text-decoration:underline;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* SIMULATOR */
+.sim-wrap{margin:28px 0;border:1px solid #c8bfaa;background:#f3efe6;overflow:hidden;min-width:0;max-width:100%;}
+.sim-tabs{display:grid;grid-template-columns:repeat(3,1fr);background:#3d3020;}
+.sim-tab{background:none;border:none;padding:12px 10px;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;letter-spacing:.08em;color:#b0a090;text-transform:uppercase;border-right:1px solid #2a1e0f;transition:all .18s;min-width:0;}
+.sim-tab:last-child{border-right:none;}
+.sim-tab.on{background:#8b1a1a;color:#ffffff;}
+.sim-tab:hover:not(.on){color:#e0d8c8;}
+.sim-tab-num{display:block;font-size:9px;color:#8b6a55;margin-bottom:3px;letter-spacing:.12em;}
+.sim-tab.on .sim-tab-num{color:#f3efe6;}
+.sim-panel{display:none;padding:22px 20px 24px;background:#faf8f3;min-width:0;}
+.sim-panel.on{display:block;}
+.sim-ttl{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#1a1208;margin-bottom:6px;}
+.sim-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:16px;}
+.sim-canvas-wrap{width:100%;max-width:600px;margin:0 auto 14px;background:#0d0d0d;border-radius:4px;overflow:hidden;}
+.sim-canvas-wrap canvas{display:block;width:100%;}
+.sim-controls{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;margin-bottom:14px;justify-content:center;}
+.sim-slider-wrap{display:flex;align-items:center;gap:10px;}
+.sim-slider-lbl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;color:#7a6a55;}
+.sim-slider{-webkit-appearance:none;appearance:none;width:140px;height:4px;background:#c8bfaa;outline:none;border-radius:2px;}
+.sim-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;background:#8b1a1a;border-radius:50%;cursor:pointer;}
+.sim-slider::-moz-range-thumb{width:14px;height:14px;background:#8b1a1a;border-radius:50%;cursor:pointer;border:none;}
+.sim-val{font-family:'JetBrains Mono',monospace;font-size:12px;color:#1a1208;min-width:40px;text-align:right;}
+.sim-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;background:#8b1a1a;color:white;border:none;padding:8px 18px;cursor:pointer;transition:background .18s;}
+.sim-btn:hover{background:#a02020;}
+.sim-btn.secondary{background:#7a6a55;}
+.sim-btn.secondary:hover{background:#5a4a35;}
+.sim-readout{font-family:'JetBrains Mono',monospace;font-size:12px;color:#3d3020;background:#ede8dc;padding:10px 14px;margin-top:10px;line-height:1.8;border-left:3px solid #8b1a1a;overflow-wrap:anywhere;word-break:break-word;}
+.sim-readout .hi{color:#8b1a1a;font-weight:700;}
+.sim-readout .dim{color:#b0a090;}
+.sim-pair-row{display:flex;justify-content:center;gap:8px;margin:12px 0 8px;flex-wrap:wrap;}
+.sim-card{width:40px;height:52px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;border-radius:3px;}
+.sim-card.plus{background:#1a5a30;color:white;}
+.sim-card.minus{background:#c4392a;color:white;}
+.sim-card.none{background:#e0d8c8;color:#b0a090;}
+.sim-note{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.7;margin-top:10px;padding:10px 14px;background:#f3efe6;border-left:2px solid #c8bfaa;}
+.sim-note strong{color:#8b1a1a;font-weight:600;}
+.sim-gauge-wrap{max-width:420px;margin:14px auto 0;}
+.sim-s-eq{font-family:'JetBrains Mono',monospace;font-size:12px;color:#7a6a55;text-align:center;margin-top:8px;line-height:1.7;overflow-wrap:anywhere;word-break:break-word;}
+.sim-s-eq .hi{color:#8b1a1a;font-weight:700;font-size:14px;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:0;max-height:240px;min-height:180px;overflow:hidden;}
+  .person-block-img img{width:100%;height:100%;object-fit:cover;object-position:center 22%;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .sim-tab{padding:10px 6px;font-size:10px;letter-spacing:.04em;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+  .sim-tab-num{display:none;}
+}
+
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){.toc-back{padding:22px 20px;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">97 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">物理・宇宙</p>
+    <h1>量子もつれが運ぶのは、<em>「情報」ではなく「相関」</em>だけ</h1>
+    <p class="cover-deck">アインシュタインが嫌ったこの現象は、光速を超えて何かを送るように見える。だが実は、信号は何も走っていない——後から両者の結果を突き合わせて初めて、「揃っていた」ことが分かるだけだ。EPR思考実験から90年、この区別を自分で測定して体感する。</p>
+    <div class="cover-byline"><span>物理</span><span>量子力学</span><span>科学史</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1935</span>
+      <p class="est-event">アインシュタイン、ポドルスキー、ローゼンが"EPRパラドックス"を発表。同年シュレーディンガーが"Verschränkung"(もつれ)と命名。</p>
+      <p class="est-context">同年の世界: 米で社会保障法成立。独でニュルンベルク法制定。日本で天皇機関説事件。"ゴジラ"誕生の19年前。</p>
+    </div>
+    <p class="cover-aside">あれから90年。2022年、この現象を実験で決定づけたアラン・アスペ、ジョン・クラウザー、アントン・ツァイリンガーがノーベル物理学賞を受賞。量子もつれは"不気味"から"実用技術"に変わった。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>「離れた場所にいる双子が、同時に同じことを考える」——都市伝説として一度くらい耳にしたことがあるだろう。</p>
+    <p>実際のところ、双子に送信機能はない。ただ、似た性格が似たタイミングで似た反応を起こしているだけだ。送信しているのではなく、共有された過去が今の反応を揃えている。</p>
+    <p>量子もつれは、見た目はこれに似ている。だが、共有された過去だけでは作れないほど強い相関を持つ。それでいて、そこを通って信号は一つも送られていない。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot on"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級+ — 数学は最小限</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 18 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-24</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-24</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">二つの粒子を同時に測ると、確かに<strong>瞬時に結果が揃う</strong>。しかし片方の操作だけでもう片方に信号を送ることはできない——読者自身がシミュレーターでそれを確かめる。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ========== 前提 ========== -->
+  <div class="sec-rule fade"><span class="sec-label">Prelude</span><span class="sec-line"></span></div>
+  <h2 class="fade">この記事は、こんなスケールの話をしている</h2>
+
+  <p class="body-text fade">本題に入る前に、量子もつれが扱う"小ささ"の感覚を持っておきたい。私たちの目に見える世界は、ズームインしていくと次のような階層を持っている。</p>
+
+  <!-- SVG: 物質の階層スケール (2x2) -->
+  <svg class="svg-fig fade" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arrowZoom" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0,0 L10,5 L0,10 Z" fill="#7a6a55"/>
+      </marker>
+    </defs>
+    <rect x="20" y="20" width="760" height="560" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="400" y="50" text-anchor="middle" font-family="Source Sans 3" font-size="15" font-weight="600" fill="#7a6a55" letter-spacing="2">物質を順に分解していくと…</text>
+
+    <!-- ① 左上: 分子 -->
+    <rect x="60" y="80" width="280" height="200" fill="#faf8f3" stroke="#c8bfaa"/>
+    <g transform="translate(200, 165)">
+      <circle cx="-30" cy="0" r="18" fill="#c8bfaa" stroke="#3d3020" stroke-width="1.2"/>
+      <text x="-30" y="5" text-anchor="middle" font-family="Source Serif 4" font-size="14" fill="#1a1208">H</text>
+      <circle cx="0" cy="-15" r="26" fill="#8b1a1a" stroke="#3d3020" stroke-width="1.2"/>
+      <text x="0" y="-10" text-anchor="middle" font-family="Source Serif 4" font-size="16" fill="white">O</text>
+      <circle cx="30" cy="0" r="18" fill="#c8bfaa" stroke="#3d3020" stroke-width="1.2"/>
+      <text x="30" y="5" text-anchor="middle" font-family="Source Serif 4" font-size="14" fill="#1a1208">H</text>
+    </g>
+    <text x="200" y="240" text-anchor="middle" font-family="Source Sans 3" font-size="16" font-weight="700" fill="#1a1208">分子</text>
+    <text x="200" y="258" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#7a6a55">原子の組み合わせ</text>
+    <text x="200" y="274" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="#b0a090">~1 nm</text>
+
+    <!-- 矢印 ① → ② (右へ) -->
+    <line x1="345" y1="180" x2="455" y2="180" stroke="#7a6a55" stroke-width="1.5" marker-end="url(#arrowZoom)"/>
+    <text x="400" y="170" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#7a6a55">分解</text>
+
+    <!-- ② 右上: 原子 -->
+    <rect x="460" y="80" width="280" height="200" fill="#faf8f3" stroke="#c8bfaa"/>
+    <g transform="translate(600, 165)">
+      <circle cx="0" cy="0" r="55" fill="none" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+      <circle cx="55" cy="0" r="6" fill="#3d3020"/>
+      <circle cx="0" cy="0" r="14" fill="#8b1a1a"/>
+      <text x="0" y="5" text-anchor="middle" font-family="Source Sans 3" font-size="11" fill="white">核</text>
+    </g>
+    <text x="600" y="240" text-anchor="middle" font-family="Source Sans 3" font-size="16" font-weight="700" fill="#1a1208">原子</text>
+    <text x="600" y="258" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#7a6a55">原子核 + 電子</text>
+    <text x="600" y="274" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="#b0a090">~0.1 nm</text>
+
+    <!-- 矢印 ② → ③ (下へ) -->
+    <line x1="600" y1="295" x2="600" y2="335" stroke="#7a6a55" stroke-width="1.5" marker-end="url(#arrowZoom)"/>
+    <text x="650" y="320" text-anchor="start" font-family="Source Sans 3" font-size="14" fill="#7a6a55">さらに分解</text>
+
+    <!-- ③ 右下: 陽子・中性子 -->
+    <rect x="460" y="350" width="280" height="200" fill="#faf8f3" stroke="#c8bfaa"/>
+    <g transform="translate(600, 425)">
+      <circle cx="-18" cy="-12" r="16" fill="#8b1a1a" stroke="#3d3020" stroke-width="0.8"/>
+      <text x="-18" y="-8" text-anchor="middle" font-family="Source Sans 3" font-size="11" fill="white">u</text>
+      <circle cx="18" cy="-12" r="16" fill="#8b1a1a" stroke="#3d3020" stroke-width="0.8"/>
+      <text x="18" y="-8" text-anchor="middle" font-family="Source Sans 3" font-size="11" fill="white">u</text>
+      <circle cx="0" cy="16" r="16" fill="#7a6a55" stroke="#3d3020" stroke-width="0.8"/>
+      <text x="0" y="20" text-anchor="middle" font-family="Source Sans 3" font-size="11" fill="white">d</text>
+    </g>
+    <text x="600" y="500" text-anchor="middle" font-family="Source Sans 3" font-size="16" font-weight="700" fill="#1a1208">陽子・中性子</text>
+    <text x="600" y="518" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#7a6a55">クォーク3個ずつ</text>
+    <text x="600" y="534" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="#b0a090">~10⁻¹⁵ m</text>
+
+    <!-- 矢印 ③ → ④ (左へ) -->
+    <line x1="455" y1="450" x2="345" y2="450" stroke="#7a6a55" stroke-width="1.5" marker-end="url(#arrowZoom)"/>
+    <text x="400" y="440" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#7a6a55">それ以上</text>
+    <text x="400" y="468" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#7a6a55">分けられない</text>
+
+    <!-- ④ 左下: 素粒子(凡例カード形式) -->
+    <rect x="60" y="350" width="280" height="200" fill="#faf8f3" stroke="#8b1a1a" stroke-width="1.5"/>
+    <text x="200" y="378" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#7a6a55">素粒子の例(これらは別々の粒子)</text>
+    <g transform="translate(110, 425)">
+      <circle cx="0" cy="0" r="14" fill="#8b1a1a" stroke="#3d3020" stroke-width="1"/>
+      <text x="0" y="34" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="600" fill="#3d3020">クォーク</text>
+    </g>
+    <g transform="translate(200, 425)">
+      <circle cx="0" cy="0" r="14" fill="#3d3020" stroke="#3d3020" stroke-width="1"/>
+      <text x="0" y="34" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="600" fill="#3d3020">電子</text>
+    </g>
+    <g transform="translate(290, 425)">
+      <circle cx="0" cy="0" r="14" fill="#e8c56a" stroke="#3d3020" stroke-width="1"/>
+      <text x="0" y="34" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="600" fill="#8b6a25">光子</text>
+    </g>
+    <text x="200" y="495" text-anchor="middle" font-family="Source Sans 3" font-size="16" font-weight="700" fill="#8b1a1a">素粒子</text>
+    <text x="200" y="513" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#7a6a55">これ以上分けられない</text>
+    <text x="200" y="531" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="#b0a090">点状(大きさ無し)</text>
+  </svg>
+  <p class="svg-fig-cap fade">物質を分解していくと、最後は「素粒子」にたどり着く。クォーク・電子・光子はそれぞれ独立した別の粒子で、これ以上分けられない。<strong>この記事の主役は <span style="color:#8b6a25">光子</span> と <span style="color:#3d3020">電子</span></strong>——どちらも素粒子の一種。量子力学はこの世界の物理学で、私たちの常識(野球ボールの運動など)とは違うルールが顔を出す。</p>
+
+  <p class="body-text fade">古典物理(野球ボールや惑星のレベル)では、物の状態は「測ろうが測るまいが、そこにある値」として書ける。ところが素粒子のレベルに降りると、状況が変わる。<strong>"測定する前は、値が確定していない"</strong>——これが量子力学の出発点だ。量子もつれは、この世界で2個の粒子が一緒に作られたとき、両者の運命が結びつき、片方を測るともう片方も同時に確定する、という現象である。</p>
+
+  <hr class="art-rule">
+
+  <!-- ========== 背景 ========== -->
+  <div class="sec-rule fade"><span class="sec-label">Background</span><span class="sec-line"></span></div>
+  <h2 class="fade">アインシュタインが"不気味"と呼んだもの</h2>
+
+  <p class="body-text fade">1935年5月、アインシュタインは二人の若い同僚——<span class="tip">ボリス・ポドルスキー<span class="tip-box"><strong>Boris Podolsky (1896-1966)</strong><br>ロシア生まれの理論物理学者。プリンストン高等研究所でアインシュタインのもとで研究し、EPR論文の実質的な起草者となった。</span></span>と<span class="tip">ネイサン・ローゼン<span class="tip-box"><strong>Nathan Rosen (1909-1995)</strong><br>アメリカの理論物理学者。EPR論文の共著者の一人。後にイスラエルのテクニオン工科大学で重力理論の研究を進めた。</span></span>——とともに、<span class="tip">Physical Review誌<span class="tip-box"><strong>Physical Review</strong><br>1893年創刊、米国物理学会(APS)が発行する物理学の最重要学術誌の一つ。20世紀の物理学の主要な発見の多くがここで発表された。</span></span>に一本の論文を送った。タイトルは<em>「量子力学的な物理実在の記述は完全だと考えうるか」</em>。<strong>3人の答えは、いいえ、だった</strong>——量子力学は間違ってはいないが、世界の何かを書ききれていない、と。後にこの論文は、3人の頭文字をとって<span class="tip">EPRパラドックス<span class="tip-box"><strong>EPRパラドックス</strong><br>Einstein-Podolsky-Rosen の頭文字。量子もつれの非局所性を「パラドックス」として最初に指摘した思考実験。1935年の論文がそのまま通称になっている。</span></span>と呼ばれるようになる。</p>
+
+  <p class="body-text fade">彼らの言い分は、おおまかにこういう論法だった。<strong>「もし、ある物理量を、対象に触れずに確実に予言できるなら、その値は最初から"そこに在った"と考えるべきだ」</strong>——たとえば、箱の中身を一切覗かずに「中の温度はちょうど20℃です」と毎回当てられるなら、温度は最初から決まっていたと考えるのが普通だろう。常識的には反論しがたい主張で、20世紀前半の物理学者の多くもこれを受け入れていた。</p>
+
+  <p class="body-text fade">そして3人は、この常識を量子力学にぶつけるための<em>思考実験</em>を持ち出した。2個の粒子を一緒に作って、反対方向へ遠くまで飛ばす。説明をシンプルにするため、左の測定者を<strong><span class="tip">Alice<span class="tip-box"><strong>Alice / Bob</strong><br>暗号学・量子情報学の業界標準の"役名"。1978年のRSA暗号原論文(Rivest, Shamir, Adleman)以降、「2者が通信する」例として論文・教科書で広く使われている。EPR論文(1935)時点では存在しなかった呼称だが、現代の解説ではこの2人で書くのが慣例。</span></span></strong>、右の測定者を<strong>Bob</strong>と呼ぼう(以後この記事を通してこの2人が登場する)。すると量子力学の数式は、こう保証する。<strong>Aliceが自分側の粒子の"位置"を測れば、Bobの粒子の位置はその瞬間に確定する</strong>。Bobの粒子に誰も触れていないのに、だ。同じことが"運動量"についても言える。Aliceが運動量を測れば、Bobの運動量も同様に予言できてしまう。</p>
+
+  <p class="body-text fade">ということは、先ほどの論法に従えば、<strong>Bobの粒子は、位置も運動量も、最初から確定値として持っていた</strong>はず——両方一度に。ところが量子力学は、位置と運動量を同時に確定値として持つことを禁じている(<span class="tip">不確定性原理<span class="tip-box"><strong>不確定性原理</strong><br>ハイゼンベルクが1927年に定式化した量子力学の基本原理。位置と運動量、エネルギーと時間など、特定の組み合わせの物理量は、同時に厳密な値を持つことができないとする。</span></span>)。だからアインシュタインたちはこう結論した: <em>量子力学は、世界の実在のすべてを書ききれていない——つまり不完全である</em>。</p>
+
+  <p class="body-text fade">アインシュタインの不満はもう一段奥にあった。それでも、Aliceが測った瞬間にBobの粒子の状態が"確定する"のなら、その情報は粒子の間を光速を超えて走ったことになる——時空の常識に反する。彼はこれを、1947年のマックス・ボルン宛の手紙の中で"<span class="tip">spukhafte Fernwirkung<span class="tip-box"><strong>spukhafte Fernwirkung</strong><br>(シュプークハフテ・フェルンヴィルクング)ドイツ語。英訳は "spooky action at a distance"。遠隔地にいる対象が瞬時に影響を及ぼし合うように見える現象。アインシュタインの造語として有名。</span></span>"——<em>不気味な遠隔作用</em>——と呼んだ。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"I cannot seriously believe in it because the theory cannot be reconciled with the idea that physics should represent a reality in time and space, free from spooky actions at a distance."</p>
+    <p class="quote-ja">時間と空間のなかの実在を、不気味な遠隔作用なしに記述するのが物理学の役目である——私はこの立場と量子力学を両立させられないので、真剣には信じられない。</p>
+    <p class="quote-attr">— Einstein to Max Born, 1947年3月3日</p>
+  </div>
+
+  <div class="person-block fade">
+    <div class="person-block-img"><img src="./person_einstein.jpg" alt="アルベルト・アインシュタイン" loading="lazy"></div>
+    <div class="person-block-body">
+      <p class="person-block-name">Albert Einstein</p>
+      <p class="person-block-role">EPR論文 主著者の一人 (1935)</p>
+      <p class="person-block-desc">量子力学を「不完全」と批判し続けた。EPR論文の起草はほぼポドルスキーが担当しており、アインシュタイン自身は1935年6月19日のシュレーディンガー宛書簡で「論文の本当の主張(実在性と局所性のジレンマ)が、ポドルスキーの形式的な博識さ(<em>Gelehrsamkeit</em>)に埋もれてしまった」と漏らしている。</p>
+      <a class="person-block-link" href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%AB%E3%83%99%E3%83%AB%E3%83%88%E3%83%BB%E3%82%A2%E3%82%A4%E3%83%B3%E3%82%B7%E3%83%A5%E3%82%BF%E3%82%A4%E3%83%B3" target="_blank" rel="noopener">Wikipedia</a>
+      <p class="person-block-credit">F. Schmutzer, 1921 / Public Domain</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">同じ年の10月、オーストリアの物理学者<span class="tip">エルヴィン・シュレーディンガー<span class="tip-box"><strong>Erwin Schrödinger</strong><br>1887-1961。波動力学の創始者。1933年ノーベル物理学賞受賞。"シュレーディンガーの猫"でも知られる。</span></span>が、英<span class="tip">Cambridge Philosophical Society<span class="tip-box"><strong>Cambridge Philosophical Society</strong><br>1819年創立、英ケンブリッジ大学を拠点とする学術団体。同会発行の Mathematical Proceedings は数学・物理学の主要誌の一つ。</span></span>の論文で、この現象に名前を与えた。ドイツ語で<strong>Verschränkung</strong>——「絡み合い」。英語ではentanglement、日本語では<em>もつれ</em>と訳された。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"I would not call [entanglement] one but rather the characteristic trait of quantum mechanics, the one that enforces its entire departure from classical lines of thought."</p>
+    <p class="quote-ja">もつれを量子力学の特徴の"一つ"とは呼びたくない。むしろ、古典的な思考から量子力学を根本的に切り離す、<em>最も特徴的な性質</em>と呼びたい。</p>
+    <p class="quote-attr">— Schrödinger, 1935</p>
+  </div>
+
+  <div class="person-block fade">
+    <div class="person-block-img"><img src="./person_schrodinger.jpg" alt="エルヴィン・シュレーディンガー" loading="lazy"></div>
+    <div class="person-block-body">
+      <p class="person-block-name">Erwin Schrödinger</p>
+      <p class="person-block-role">"もつれ" の命名者 (1935)</p>
+      <p class="person-block-desc">アインシュタインとは立場が違ったが、量子力学の基礎に違和感を抱いていた点は同じ。もつれ現象を「量子力学の本質」と位置づけた最初の物理学者。</p>
+      <a class="person-block-link" href="https://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%AB%E3%83%B4%E3%82%A3%E3%83%B3%E3%83%BB%E3%82%B7%E3%83%A5%E3%83%AC%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%AC%E3%83%BC" target="_blank" rel="noopener">Wikipedia</a>
+      <p class="person-block-credit">Nobel Foundation, 1933 / Public Domain</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">そもそも「もつれている」とはどういうことか。最も素朴な絵で言えば、こういうことだ。</p>
+
+  <figure class="easy-fig fade">
+    <div class="easy-fig-img"><img src="./fig_entangled_spins.svg" alt="もつれた光子対のスピン反相関" loading="lazy"></div>
+    <p class="easy-fig-cap">中央の楕円が親粒子(原子など)、そこから左右に飛び出す矢印が2個の粒子(電子や光子)のスピン(自転に似た性質)。<em>左が時計回りなら、右は必ず反時計回り</em>——親粒子の<strong>角運動量保存則</strong>からの自然な帰結。ただし量子力学では、「どちらがどちら回りか」は<strong>測定するまで決まっていない</strong>。Aliceが左を測った瞬間、何キロ離れていてもBob側の右が確定する——これが量子もつれの最も素朴な姿だ。</p>
+    <p class="easy-fig-aside">ややこしそうと感じたら「ふーん、向きが反対になるのね」くらいで先に進んでOK。詳しい話は次の体験パートで自分の手で触れる。</p>
+    <p class="easy-fig-credit">Guy vandegrift, 2016 / <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
+  </figure>
+
+  <p class="body-text fade">この記事では、これ以降「<strong>EPR源</strong>」という装置がしばしば登場する。これは「<em>もつれた光子(または電子)のペアを1組ずつ生み出す装置</em>」を指す総称で、Einstein-Podolsky-Rosen の頭文字。実際の研究室では、紫外レーザーを<span class="tip">非線形結晶<span class="tip-box"><strong>非線形結晶 (nonlinear crystal)</strong><br>BBO(β-バリウムボレート)など、入射した光子の周波数を別の周波数に変換できる特殊な結晶。1個の高エネルギー光子を2個の低エネルギー光子に分裂させる「自発的パラメトリック下方変換(SPDC)」が、もつれ光子源の標準手法。</span></span>に当てて1個の光子を2個のもつれ光子に分割する手法(SPDC)が標準で、本記事の歴史パートで実物の写真も出てくる。以下のSVG・シミュレーターでは、この装置の中身は気にせず「中央から左右にもつれペアが飛んでくる箱」として描いている。</p>
+
+  <!-- SVG: 古典相関 vs 量子相関 -->
+  <svg class="svg-fig fade" viewBox="0 0 800 370" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arrowGray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0,0 L10,5 L0,10 Z" fill="#7a6a55"/>
+      </marker>
+    </defs>
+    <!-- 左: 古典相関 -->
+    <rect x="20" y="20" width="370" height="330" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="205" y="50" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="600" fill="#7a6a55" letter-spacing="2">古典相関(例: 手袋)</text>
+    <text x="205" y="72" text-anchor="middle" font-family="Source Serif 4" font-size="16" font-weight="700" fill="#1a1208">結果は箱詰め時点で決まっている</text>
+    <!-- 箱 -->
+    <rect x="160" y="105" width="90" height="55" rx="4" fill="#ede8dc" stroke="#3d3020" stroke-width="1.5"/>
+    <text x="205" y="138" text-anchor="middle" font-family="Source Serif 4" font-size="14" fill="#3d3020">2つの手袋</text>
+    <!-- 左右の封筒 -->
+    <rect x="45" y="210" width="105" height="55" rx="4" fill="#faf8f3" stroke="#c8bfaa"/>
+    <text x="97" y="235" text-anchor="middle" font-family="Source Serif 4" font-size="14" fill="#3d3020">左手を梱包</text>
+    <text x="97" y="253" text-anchor="middle" font-family="Source Serif 4" font-size="14" font-weight="700" fill="#1a5a30">→ 左手</text>
+    <rect x="260" y="210" width="105" height="55" rx="4" fill="#faf8f3" stroke="#c8bfaa"/>
+    <text x="312" y="235" text-anchor="middle" font-family="Source Serif 4" font-size="14" fill="#3d3020">右手を梱包</text>
+    <text x="312" y="253" text-anchor="middle" font-family="Source Serif 4" font-size="14" font-weight="700" fill="#c4392a">→ 右手</text>
+    <line x1="200" y1="165" x2="100" y2="210" stroke="#7a6a55" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+    <line x1="210" y1="165" x2="310" y2="210" stroke="#7a6a55" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+    <text x="205" y="305" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#7a6a55">一方を開けば、もう一方も既に決まっている。</text>
+    <text x="205" y="325" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="600" fill="#1a5a30">古典の予測どおり。</text>
+
+    <!-- 右: 量子相関 -->
+    <rect x="410" y="20" width="370" height="330" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="595" y="50" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="600" fill="#7a6a55" letter-spacing="2">量子相関(もつれ)</text>
+    <text x="595" y="72" text-anchor="middle" font-family="Source Serif 4" font-size="16" font-weight="700" fill="#1a1208">測定するまで両方とも未確定</text>
+    <!-- ソース -->
+    <circle cx="595" cy="135" r="30" fill="#ede8dc" stroke="#3d3020" stroke-width="1.5"/>
+    <text x="595" y="140" text-anchor="middle" font-family="Source Serif 4" font-size="11" fill="#3d3020">EPR源</text>
+    <!-- 左右のもつれ粒子 -->
+    <rect x="435" y="210" width="105" height="55" rx="4" fill="#faf8f3" stroke="#c8bfaa"/>
+    <text x="487" y="232" text-anchor="middle" font-family="Source Serif 4" font-size="14" fill="#3d3020">測定まで</text>
+    <text x="487" y="252" text-anchor="middle" font-family="Source Serif 4" font-size="14" font-weight="700" fill="#8b1a1a">? (未確定)</text>
+    <rect x="650" y="210" width="105" height="55" rx="4" fill="#faf8f3" stroke="#c8bfaa"/>
+    <text x="702" y="232" text-anchor="middle" font-family="Source Serif 4" font-size="14" fill="#3d3020">測定まで</text>
+    <text x="702" y="252" text-anchor="middle" font-family="Source Serif 4" font-size="14" font-weight="700" fill="#8b1a1a">? (未確定)</text>
+    <line x1="580" y1="155" x2="490" y2="210" stroke="#7a6a55" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+    <line x1="610" y1="155" x2="700" y2="210" stroke="#7a6a55" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+    <text x="595" y="305" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#7a6a55">一方を測るとその瞬間、両方が確定する。</text>
+    <text x="595" y="325" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="600" fill="#8b1a1a">古典の予測を超える。</text>
+  </svg>
+  <p class="svg-fig-cap fade">古典相関は「もう決まっている事実を後で見る」だけ。量子相関は「測定の瞬間に両方が決まる」。この違いは、数学的に区別できる。</p>
+
+  <p class="body-text fade">古典的な感覚では、「離れた場所の値が相関する」のはまったく不思議ではない。私が赤い手袋をカバンに入れ、きみに青い手袋を送ったら、きみがカバンを開けた瞬間、私は自分のがどっちかを知る。しかし、これは単に<strong>二人とも最初から答えを持ち歩いていた</strong>だけだ。量子もつれがこれと違うのは、どちらが赤でどちらが青か、<em>測る瞬間まで誰も決めていない</em>ところにある。</p>
+
+  <!-- MISCONCEPTION -->
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解 vs 実際</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">❌ 誤解</p>
+          <p class="mis-text">量子もつれを使えば、光速を超えて情報が送れる。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">✓ 実際</p>
+          <p class="mis-text">測定すると瞬時に相手側の結果が確定するが、結果そのものは毎回ランダム。片方を見るだけでは、もう片方を操作された痕跡は残らない。信号は光速を超えない。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">❌ 誤解</p>
+          <p class="mis-text">量子テレポーテーションで物体が瞬時に転送できる。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">✓ 実際</p>
+          <p class="mis-text">転送されるのは物体ではなく"量子状態"だけ。しかも、操作の成功を受け取り側が知るには古典通信(光速以下)が必須。<span class="tip">『スタートレック』<span class="tip-box"><strong>スタートレック (Star Trek)</strong><br>1966年9月8日に米NBCで放送開始したSFテレビシリーズ。"トランスポーター"で乗組員を energy pattern に分解し、瞬時に別場所(惑星表面など)へ転送する架空の装置が登場する。"Beam me up"の決め台詞でも知られる。</span></span>式の転送は起きない。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">❌ 誤解</p>
+          <p class="mis-text">ベル不等式が破れたということは、隠された変数が実在する証拠だ。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">✓ 実際</p>
+          <p class="mis-text">逆である。破れたということは、<em>局所的な</em>隠れ変数では量子の振る舞いを説明できないことが示された。アインシュタインの直感は負けた。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 体験 ========== -->
+  <div class="sec-rule fade"><span class="sec-label">Experience</span><span class="sec-line"></span></div>
+  <h2 class="fade">測定してみよう——"これで情報送れる?" と試してみる</h2>
+
+  <div class="prep-block fade">
+    <p class="prep-label">準備:このシミュレーターで何を見るのか</p>
+    <p class="body-text">これから動かすシミュレーターは、もつれた<strong>光子</strong>のペアに対して、AliceとBobがそれぞれ「<span class="tip">偏光フィルタ<span class="tip-box"><strong>偏光フィルタ</strong><br>特定の方向に振動する光だけを通す板。サングラス・カメラのPLフィルタにも入っている。フィルタの向きが光の振動方向と揃っていれば光は通り、直交していれば通さない。</span></span>」を当てて、光が通ったか(+)・通らなかったか(−)を測る。動かす前に、3つだけ確認しておきたい。</p>
+  </div>
+
+  <!-- 偏光フィルタの直感図 -->
+  <svg class="svg-fig fade" viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
+    <rect x="20" y="20" width="760" height="240" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="400" y="50" text-anchor="middle" font-family="Source Sans 3" font-size="15" font-weight="600" fill="#7a6a55" letter-spacing="2">偏光フィルタの基本</text>
+
+    <!-- 左: 縦偏光が縦フィルタを通る -->
+    <g transform="translate(170, 150)">
+      <line x1="-90" y1="0" x2="-30" y2="0" stroke="#8b1a1a" stroke-width="1.2"/>
+      <path d="M -90 0 Q -82.5 -15 -75 0 T -60 0 T -45 0 T -30 0" fill="none" stroke="#8b1a1a" stroke-width="2"/>
+      <rect x="-15" y="-40" width="30" height="80" fill="#ede8dc" stroke="#3d3020" stroke-width="1.5"/>
+      <line x1="0" y1="-35" x2="0" y2="35" stroke="#3d3020" stroke-width="2"/>
+      <path d="M 30 0 Q 37.5 -15 45 0 T 60 0 T 75 0 T 90 0" fill="none" stroke="#8b1a1a" stroke-width="2"/>
+      <line x1="90" y1="0" x2="120" y2="0" stroke="#8b1a1a" stroke-width="1.2"/>
+      <text x="-60" y="62" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#3d3020">縦に振動する光</text>
+      <text x="0" y="-55" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#3d3020">縦フィルタ</text>
+      <text x="75" y="62" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="700" fill="#1a5a30">通る (+)</text>
+    </g>
+
+    <!-- 区切り -->
+    <line x1="400" y1="80" x2="400" y2="220" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="2,3"/>
+
+    <!-- 右: 縦偏光が横フィルタを通らない -->
+    <g transform="translate(560, 150)">
+      <line x1="-90" y1="0" x2="-30" y2="0" stroke="#8b1a1a" stroke-width="1.2"/>
+      <path d="M -90 0 Q -82.5 -15 -75 0 T -60 0 T -45 0 T -30 0" fill="none" stroke="#8b1a1a" stroke-width="2"/>
+      <rect x="-15" y="-40" width="30" height="80" fill="#ede8dc" stroke="#3d3020" stroke-width="1.5"/>
+      <line x1="-12" y1="0" x2="12" y2="0" stroke="#3d3020" stroke-width="2"/>
+      <line x1="30" y1="0" x2="120" y2="0" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="75" y="-4" text-anchor="middle" font-family="Source Sans 3" font-size="22" fill="#8b1a1a">×</text>
+      <text x="-60" y="62" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#3d3020">縦に振動する光</text>
+      <text x="0" y="-55" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#3d3020">横フィルタ</text>
+      <text x="75" y="62" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="700" fill="#8b1a1a">通らない (−)</text>
+    </g>
+  </svg>
+  <p class="svg-fig-cap fade">偏光フィルタの向きと光の振動方向が<strong>揃えば光は通り(+)</strong>、<strong>直交すれば通さない(−)</strong>。中間の角度では確率的に通る/通らないが決まる。</p>
+
+  <p class="body-text fade"><strong>1. もつれた光子ペアの偏光は揃っている。</strong><span class="tip">EPR源<span class="tip-box"><strong>EPR源 (EPR source)</strong><br>「もつれた光子(または電子)ペアを連続的に作り出す装置」のこと。Einstein-Podolsky-Rosen の頭文字。実際の研究室では、紫外レーザーを非線形結晶(BBO等)に当てて1個の光子を2個のもつれ光子に分裂させる方法(SPDC)が標準。記事内の「EPR源」というラベルは、このタイプの装置の総称。</span></span>から出る2個の光子は、(理想化すれば)同じ向きに振動している。だから、<em>AliceとBobが同じ角度のフィルタで測れば、結果は必ず一致する</em>(+/+ または −/−)。</p>
+
+  <p class="body-text fade"><strong>2. 個々の結果は、どちらもランダム。</strong>Alice側だけを見ていると、+ と − がほぼ半々で出る。Bob側だけを見ても同じ。<em>両者の結果を後で突き合わせて初めて、相関(=一致率)が見える</em>。これが「もつれは情報を送れない」「でも統計的には完全に一致する」という<span class="tip">パラドキシカル<span class="tip-box"><strong>パラドキシカル (paradoxical)</strong><br>「一見矛盾しているように見える」状態を指す形容詞。論理的に両立しないように思えるのに、両方が同時に成立しているとき使う。例: 「観測する前には決まっていない、なのに離れた場所で必ず一致する」。</span></span>な状況の正体だ。</p>
+
+  <p class="body-text fade"><strong>3. 角度をズラすと、一致率が変わる。</strong>同じ角度なら100%一致、直交していれば100%不一致。中間の角度では、量子力学が予言する「特殊な変化のしかた」(後で出てくる<span class="tip">cos曲線<span class="tip-box"><strong>cos曲線 (cosine curve)</strong><br>三角関数の「コサイン」が描く、滑らかな波打つ曲線。0°で最大、90°で0、180°で最小という形をとる。量子もつれの一致率は、AliceとBobの角度差Δに対して「cos²Δ」あるいは相関値として「cos(2Δ)」で動く。古典的な仮定では、相関は折れ線(直線の組み合わせ)までしか作れず、cos曲線の滑らかさは出せない。</span></span>)で一致率が動く。<em>この曲線の形こそが、古典的な世界観との決定的な違いを作る。</em></p>
+
+  <p class="body-text fade">準備はここまで。3つのフェーズで、自分で測定する。Phase 1は<em>相関の発見</em>、Phase 2は<em>信号が送れない証明</em>、Phase 3はベルの不等式<em>|S|≤2を破る瞬間</em>。順番に触ってみる。</p>
+
+  <!-- SIMULATOR -->
+  <div class="sim-wrap fade">
+    <div class="sim-tabs">
+      <button class="sim-tab on" data-tab="1"><span class="sim-tab-num">Phase 1</span>完全相関を見る</button>
+      <button class="sim-tab" data-tab="2"><span class="sim-tab-num">Phase 2</span>信号は送れない</button>
+      <button class="sim-tab" data-tab="3"><span class="sim-tab-num">Phase 3</span>ベル不等式を破る</button>
+    </div>
+
+    <!-- Phase 1 -->
+    <div class="sim-panel on" data-panel="1">
+      <p class="sim-ttl">Phase 1 — 同じ角度で測れば、必ず一致</p>
+      <p class="sim-desc">中央のEPR源からもつれた光子ペアが左右に飛ぶ。Alice と Bob の偏光フィルタはどちらも0°。「1ペア測定」を何回か押す。結果の±記号に注目。</p>
+      <div class="sim-canvas-wrap"><canvas id="sim1Canvas" width="600" height="220"></canvas></div>
+      <div class="sim-controls">
+        <button class="sim-btn" id="sim1Measure">1ペア測定</button>
+        <button class="sim-btn secondary" id="sim1Reset">リセット</button>
+      </div>
+      <div class="sim-pair-row" id="sim1Pairs"></div>
+      <div class="sim-readout" id="sim1Readout">測定回数: <span class="hi">0</span>　一致: <span class="hi">0</span>　不一致: <span class="hi">0</span></div>
+      <p class="sim-note"><strong>気づき</strong>: 結果の±自体はランダムに見えるが、Alice と Bob の符号は<em>毎回ぴたり一致</em>する。離れた2点で、独立にランダムなのに、揃っている。これが"もつれ"の生の姿だ。</p>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="sim-panel" data-panel="2">
+      <p class="sim-ttl">Phase 2 — Alice が角度をいじっても、Bob側は何も変わらない</p>
+
+      <!-- 実験装置の簡易図 -->
+      <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="display:block;max-width:480px;width:100%;height:auto;margin:0 auto 14px;">
+        <defs>
+          <marker id="p2arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 Z" fill="#7a6a55"/>
+          </marker>
+        </defs>
+        <rect x="10" y="10" width="680" height="180" fill="#faf8f3" stroke="#c8bfaa"/>
+        <text x="350" y="34" text-anchor="middle" font-family="Source Sans 3" font-size="13" font-weight="600" fill="#7a6a55" letter-spacing="2">Phase 2 の装置</text>
+        <!-- 中央 EPR源 -->
+        <circle cx="350" cy="110" r="26" fill="#ede8dc" stroke="#3d3020" stroke-width="1.5"/>
+        <text x="350" y="114" text-anchor="middle" font-family="Source Serif 4" font-size="12" fill="#3d3020">EPR源</text>
+        <!-- 光子の軌跡 -->
+        <line x1="324" y1="110" x2="240" y2="110" stroke="#8b1a1a" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#p2arrow)"/>
+        <line x1="376" y1="110" x2="460" y2="110" stroke="#8b1a1a" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#p2arrow)"/>
+        <!-- Alice 偏光フィルタ(可変) -->
+        <rect x="180" y="80" width="60" height="60" fill="#ede8dc" stroke="#8b1a1a" stroke-width="1.5"/>
+        <line x1="200" y1="92" x2="220" y2="128" stroke="#8b1a1a" stroke-width="2.5"/>
+        <text x="210" y="158" text-anchor="middle" font-family="Source Sans 3" font-size="13" font-weight="700" fill="#8b1a1a">偏光フィルタ θ°</text>
+        <text x="210" y="174" text-anchor="middle" font-family="Source Sans 3" font-size="11" fill="#8b1a1a">(スライダーで動かす)</text>
+        <!-- Alice 検出器 -->
+        <rect x="80" y="85" width="80" height="50" fill="#3d3020"/>
+        <text x="120" y="105" text-anchor="middle" font-family="Source Sans 3" font-size="11" fill="white">Alice 検出器</text>
+        <text x="120" y="122" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#e8c56a">+ または −</text>
+        <line x1="180" y1="110" x2="160" y2="110" stroke="#7a6a55" stroke-width="1.2" marker-end="url(#p2arrow)"/>
+        <!-- Bob 偏光フィルタ(固定 0° = 縦) -->
+        <rect x="460" y="80" width="60" height="60" fill="#ede8dc" stroke="#3d3020" stroke-width="1.5"/>
+        <line x1="490" y1="88" x2="490" y2="132" stroke="#3d3020" stroke-width="2.5"/>
+        <text x="490" y="158" text-anchor="middle" font-family="Source Sans 3" font-size="13" font-weight="700" fill="#3d3020">偏光フィルタ 0°</text>
+        <text x="490" y="174" text-anchor="middle" font-family="Source Sans 3" font-size="11" fill="#7a6a55">(縦・固定)</text>
+        <!-- Bob 検出器 -->
+        <rect x="540" y="85" width="80" height="50" fill="#3d3020"/>
+        <text x="580" y="105" text-anchor="middle" font-family="Source Sans 3" font-size="11" fill="white">Bob 検出器</text>
+        <text x="580" y="122" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#e8c56a">+ または −</text>
+        <line x1="520" y1="110" x2="540" y2="110" stroke="#7a6a55" stroke-width="1.2" marker-end="url(#p2arrow)"/>
+      </svg>
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-align:center;margin:-6px 0 14px;line-height:1.6;">中央のEPR源からもつれペアが左右へ。Alice 側のフィルタ角度だけスライダーで動かす。</p>
+
+      <p class="sim-desc"><strong>何を試すか:</strong> Alice の偏光フィルタの角度をスライダーで決め、その状態でもつれペアを<strong>1000ペアまとめて測定</strong>する。下のグラフは、その1000ペアのうち <strong>Bob 側で「+」が何回、「−」が何回出たか</strong>の出現比率。Bob 側の角度は 0° 固定。</p>
+      <p class="sim-desc"><strong>ねらい:</strong> もし Alice の角度操作が Bob に「信号」として届くなら、Alice の角度を 0° → 30° → 60° → 90° と動かせば、Bob 側の +/− 比率が変動するはず。スライダーをいくつか動かして、その都度 1000ペア測ってみる。</p>
+      <div class="sim-canvas-wrap"><canvas id="sim2Canvas" width="600" height="260"></canvas></div>
+      <div class="sim-controls">
+        <div class="sim-slider-wrap">
+          <span class="sim-slider-lbl">Alice の角度</span>
+          <input type="range" class="sim-slider" id="sim2SliderA" min="0" max="90" step="1" value="0">
+          <span class="sim-val" id="sim2ValA">0°</span>
+        </div>
+        <button class="sim-btn" id="sim2Run">1000ペア測定</button>
+      </div>
+      <div class="sim-readout" id="sim2Readout">Bob側の "+": <span class="hi">—</span>　"−": <span class="hi">—</span>　Bob側の比率: <span class="hi">—</span></div>
+      <p class="sim-note"><strong>気づき</strong>: Alice の角度をどう変えても、Bob の "+" と "−" の比率は<em>ほぼ 50:50 のまま</em>。Alice の操作は Bob の測定結果の分布を動かせない。つまり、ここを通って信号は流れていない。相関は測ったあとで、両者の結果を突き合わせないと見えない。</p>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="sim-panel" data-panel="3">
+      <p class="sim-ttl">Phase 3 — 古典の限界 |S| ≤ 2 を、量子が破る</p>
+
+      <p class="sim-desc">これから動かすのは、<span class="tip">CHSH<span class="tip-box"><strong>CHSH (Clauser-Horne-Shimony-Holt)</strong><br>1969年に4人の物理学者(Clauser, Horne, Shimony, Holt)が提案した、ベル不等式を実験で扱いやすく書き直した形式。AliceとBobがそれぞれ2通りずつの角度(計4通り)で測定し、相関値を S = E(a,b) − E(a,b′) + E(a′,b) + E(a′,b′) と組み合わせる。古典的には常に |S| ≤ 2、量子では最大 2√2 ≈ 2.828。1972年以降のベル実験のほぼ全てがこの形式を使う。</span></span> 不等式と呼ばれる、ベル不等式を実験用に書き直したもっとも有名な形だ。</p>
+
+      <p class="sim-desc"><strong>4つの角度を選ぶ理由。</strong>もつれの強さを古典的に説明できるかは、1つの角度差では分からない。「Aliceは2通り(a, a′)、Bobも2通り(b, b′)の角度から選び、4通りの組み合わせで相関を測る」——これが <span class="tip">局所的な隠れ変数<span class="tip-box"><strong>局所的な隠れ変数(local hidden variable)</strong><br>「粒子は測定前から決まった値を持っており、その値は光速以下でしか伝わらない」というアインシュタイン型の仮定。ベルはこの仮定のもとで |S|≤2 が成り立つことを証明した。</span></span> を実験で締め出すために Bell(と CHSH の4人)が考案した手筋。</p>
+
+      <p class="sim-desc"><strong>相関値 E とは。</strong>ある角度ペアで多数回測り、(+,+) と (−,−) の組(=一致)から (+,−) と (−,+) の組(=不一致)を引いて全測定数で割った値。完全一致なら +1、完全不一致なら −1、無相関なら 0。</p>
+
+      <p class="sim-desc"><strong>S とは。</strong>4つの相関値を <span style="font-family:'JetBrains Mono',monospace">S = E(a,b) − E(a,b′) + E(a′,b) + E(a′,b′)</span> と組み合わせた量。古典的に値が事前に決まっているなら、どう4角度を選んでも <strong>|S| ≤ 2</strong>。量子力学では cos 曲線の特殊な"歪み"によって <strong>最大 2√2 ≈ 2.828</strong> まで届く——cos 曲線の数学的上限がそのままここに現れる。</p>
+
+      <!-- ミニ解説図: S 値の到達範囲 -->
+      <svg class="s-range-fig" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="10" width="580" height="200" fill="#faf8f3" stroke="#c8bfaa"/>
+        <text x="300" y="38" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="600" fill="#7a6a55" letter-spacing="2">S 値の到達範囲</text>
+        <line x1="60" y1="130" x2="540" y2="130" stroke="#3d3020" stroke-width="1.5"/>
+        <line x1="60" y1="125" x2="60" y2="135" stroke="#3d3020"/>
+        <text x="60" y="155" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="#3d3020">0</text>
+        <line x1="300" y1="120" x2="300" y2="140" stroke="#3d3020" stroke-width="2"/>
+        <text x="300" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="#3d3020">2</text>
+        <line x1="540" y1="120" x2="540" y2="140" stroke="#8b1a1a" stroke-width="2"/>
+        <text x="540" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="#8b1a1a">2√2</text>
+        <rect x="60" y="100" width="240" height="20" fill="#c8bfaa" opacity="0.65"/>
+        <text x="180" y="92" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#3d3020">古典で出せる範囲</text>
+        <rect x="300" y="100" width="240" height="20" fill="#8b1a1a" opacity="0.5"/>
+        <text x="420" y="92" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="700" fill="#8b1a1a">量子で届く範囲</text>
+        <text x="300" y="190" text-anchor="middle" font-family="Source Sans 3" font-size="13" fill="#7a6a55">スライダーで4角度を動かして、自分の S が 2 を超えるか確認する。</text>
+      </svg>
+
+      <!-- CHSH 実験の標準スキーム(Commons画像) -->
+      <figure class="easy-fig" style="max-width:480px;margin-left:auto;margin-right:auto;">
+        <div class="easy-fig-img"><img src="./fig_chsh_setup.svg" alt="CHSH(2チャネルベル測定)の標準スキーム" loading="lazy" style="max-width:100%;height:auto;"></div>
+        <p class="easy-fig-cap">CHSH実験の標準スキーム。中央の光源(S)から左右に光子が飛び、それぞれ偏光子(a, b)を通って "+" "−" の検出器に届く。一致モニタ(CM)で4通りの組み合わせをカウントし、相関値 E を出す。これを a, a′, b, b′ の4設定で行う。</p>
+        <p class="easy-fig-credit">George Stamatiou, 2008 / <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a></p>
+      </figure>
+
+      <p class="sim-desc"><strong>スライダーで何が変わるか:</strong> Alice の偏光器の角度を <strong>a</strong> と <strong>a′</strong> の2通り、Bob を <strong>b</strong> と <strong>b′</strong> の2通り選ぶ。「<strong>4,000ペア測定</strong>」を押すと、(a,b) (a,b′) (a′,b) (a′,b′) の4設定 × 1,000ペアずつを一気に走らせ、それぞれの相関値 E と合成値 S を計算する。<strong>「最適角度に設定」を押すと、量子が古典上限を最大に超える角度組(a=0°, a′=45°, b=22.5°, b′=67.5°)に揃う</strong>——その状態で測ると、S が 2 を超えて 2√2 ≈ 2.828 に近づく。スライダーを最適から少しずらすと、S が 2 以下に戻ってしまうのも見える。</p>
+
+      <div class="sim-canvas-wrap"><canvas id="sim3Canvas" width="600" height="260"></canvas></div>
+      <div class="sim-controls" style="flex-direction:column;gap:10px;">
+        <div class="sim-slider-wrap">
+          <span class="sim-slider-lbl">Alice: a</span>
+          <input type="range" class="sim-slider" id="sim3Aa" min="0" max="90" step="0.5" value="0">
+          <span class="sim-val" id="sim3ValAa">0°</span>
+          <span class="sim-slider-lbl" style="margin-left:12px;">a′</span>
+          <input type="range" class="sim-slider" id="sim3Aap" min="0" max="90" step="0.5" value="45">
+          <span class="sim-val" id="sim3ValAap">45°</span>
+        </div>
+        <div class="sim-slider-wrap">
+          <span class="sim-slider-lbl">Bob &nbsp;: b</span>
+          <input type="range" class="sim-slider" id="sim3Bb" min="0" max="90" step="0.5" value="22.5">
+          <span class="sim-val" id="sim3ValBb">22.5°</span>
+          <span class="sim-slider-lbl" style="margin-left:12px;">b′</span>
+          <input type="range" class="sim-slider" id="sim3Bbp" min="0" max="90" step="0.5" value="67.5">
+          <span class="sim-val" id="sim3ValBbp">67.5°</span>
+        </div>
+        <div style="display:flex;gap:10px;justify-content:center;">
+          <button class="sim-btn" id="sim3Run">4,000ペア測定</button>
+          <button class="sim-btn secondary" id="sim3Optim">最適角度に設定</button>
+        </div>
+      </div>
+      <div class="sim-readout" id="sim3Readout">
+        E(a,b)=<span class="hi">—</span>　E(a,b′)=<span class="hi">—</span>　E(a′,b)=<span class="hi">—</span>　E(a′,b′)=<span class="hi">—</span>
+      </div>
+      <p class="sim-s-eq">S = E(a,b) − E(a,b′) + E(a′,b) + E(a′,b′)　=　<span class="hi" id="sim3S">—</span></p>
+      <p class="sim-note"><strong>気づき</strong>: 「最適角度に設定」を押してから測定すると、S が 2 を超える。古典的な世界観(値は測定前から決まっている+影響は光速以下)では、絶対にこの値は出せない。<em>アスペが 1982 年に実験で確かめたのは、まさにこれだ。</em></p>
+    </div>
+  </div>
+
+  <p class="body-text fade">シミュレーターの結果をまとめると、こうだ。<br>(1) 相関は完全にある。離れた粒子が、何度測っても揃う。<br>(2) しかし片方をいじっても、もう片方の分布は微動だにしない。つまり情報は送れない。<br>(3) そのうえで、相関の強さは古典の上限を超える。これは単なる偶然では説明がつかない。</p>
+
+  <!-- SVG: cos²相関曲線 -->
+  <svg class="svg-fig fade" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg">
+    <rect x="20" y="20" width="760" height="420" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="400" y="48" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="600" fill="#7a6a55" letter-spacing="2">角度差と相関の強さ</text>
+
+    <!-- Plot area: x [120,720], y top=90, y bottom=370 -->
+    <!-- Y axis -->
+    <line x1="120" y1="80" x2="120" y2="380" stroke="#3d3020" stroke-width="1.5"/>
+    <!-- 0-baseline -->
+    <line x1="120" y1="230" x2="720" y2="230" stroke="#7a6a55" stroke-width="1" stroke-dasharray="3,3"/>
+
+    <!-- Y軸目盛 -->
+    <line x1="115" y1="90" x2="125" y2="90" stroke="#3d3020"/>
+    <text x="110" y="94" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="#3d3020">+1</text>
+    <line x1="115" y1="230" x2="125" y2="230" stroke="#3d3020"/>
+    <text x="110" y="234" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="#3d3020">0</text>
+    <line x1="115" y1="370" x2="125" y2="370" stroke="#3d3020"/>
+    <text x="110" y="374" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="#3d3020">−1</text>
+
+    <!-- X軸目盛 -->
+    <line x1="120" y1="375" x2="120" y2="385" stroke="#3d3020"/>
+    <line x1="270" y1="375" x2="270" y2="385" stroke="#3d3020"/>
+    <line x1="420" y1="375" x2="420" y2="385" stroke="#3d3020"/>
+    <line x1="570" y1="375" x2="570" y2="385" stroke="#3d3020"/>
+    <line x1="720" y1="375" x2="720" y2="385" stroke="#3d3020"/>
+    <text x="120" y="402" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="#3d3020">0°</text>
+    <text x="270" y="402" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="#3d3020">45°</text>
+    <text x="420" y="402" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="#3d3020">90°</text>
+    <text x="570" y="402" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="#3d3020">135°</text>
+    <text x="720" y="402" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="#3d3020">180°</text>
+    <text x="420" y="428" text-anchor="middle" font-family="Source Sans 3" font-size="13" fill="#7a6a55">角度差 Δ = θ<tspan baseline-shift="sub" font-size="9">A</tspan> − θ<tspan baseline-shift="sub" font-size="9">B</tspan></text>
+
+    <!-- 古典上限線: (120,90) → (420,370) → (720,90) -->
+    <path d="M 120 90 L 420 370 L 720 90" stroke="#7a6a55" stroke-width="1.5" stroke-dasharray="5,4" fill="none"/>
+    <!-- 量子cos曲線: cos(2Δ): (120,90) → (270,230) → (420,370) → (570,230) → (720,90) -->
+    <path d="M 120 90 Q 195 90 270 230 T 420 370 Q 495 370 570 230 T 720 90" stroke="#8b1a1a" stroke-width="2.5" fill="none"/>
+
+    <!-- Δ=45°のハイライト -->
+    <line x1="270" y1="375" x2="270" y2="235" stroke="#3d3020" stroke-width="0.8" stroke-dasharray="2,3"/>
+    <circle cx="270" cy="230" r="6" fill="#e8c56a" stroke="#3d3020" stroke-width="1.5"/>
+    <!-- ラベル(箱で背景を白くして可読性確保) -->
+    <rect x="200" y="120" width="140" height="46" fill="#faf8f3" stroke="#c8bfaa"/>
+    <text x="270" y="138" text-anchor="middle" font-family="Source Sans 3" font-size="11" font-weight="700" fill="#1a1208">Δ = 45°</text>
+    <text x="270" y="155" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#7a6a55">古典との差が最大</text>
+    <!-- ハイライトから箱への引き出し線 -->
+    <line x1="270" y1="166" x2="270" y2="225" stroke="#7a6a55" stroke-width="0.6" stroke-dasharray="1.5,2.5"/>
+
+    <!-- 凡例ボックス(右上) -->
+    <rect x="555" y="92" width="160" height="56" fill="#faf8f3" stroke="#c8bfaa"/>
+    <line x1="568" y1="112" x2="600" y2="112" stroke="#7a6a55" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="608" y="116" font-family="Source Sans 3" font-size="11" fill="#3d3020">古典の上限(折れ線)</text>
+    <line x1="568" y1="134" x2="600" y2="134" stroke="#8b1a1a" stroke-width="2.5"/>
+    <text x="608" y="138" font-family="Source Sans 3" font-size="11" fill="#3d3020">量子: E = cos(2Δ)</text>
+  </svg>
+  <p class="svg-fig-cap fade">角度差Δごとの相関値。古典の隠れ変数モデルで作れる相関は"折れ線"の範囲内に収まるが、量子はcos曲線で描ける。差が最大になる Δ=45° が、ベル不等式を破る"スイートスポット"。4つの角度をうまく選ぶとCHSH値 S=2√2≈2.828 を引き出せる。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">"It's spooky, but it's <em>not</em> action at a distance."<br><span style="font-size:.7em;color:#7a6a55;font-style:normal;">不気味だ。しかし、<em>遠隔の作用ではない</em>。</span></p>
+    <p class="pull-attr">— Charles H. Bennett (IBM、量子情報理論の創始者の一人)</p>
+  </div>
+
+  <!-- ========== メカニズム ========== -->
+  <div class="sec-rule fade"><span class="sec-label">Mechanism</span><span class="sec-line"></span></div>
+  <h2 class="fade">ベルの不等式——局所実在論の試金石</h2>
+
+  <p class="body-text fade">体験で見たことを言葉にすると、こうだ。<em>「角度を変えると相関が変わる。それも、4つの角度を組み合わせると、古典的な世界観では絶対に出せない値が出る」</em>。この観察を最初に<strong>数式</strong>に落とし込み、実験で白黒つけられる問題に変えたのが、アイルランド出身の物理学者<strong>ジョン・ベル</strong>だ。1964年、彼はCERNに所属していた。EPR論文から29年が経っていた。それまでアインシュタインの不満は"哲学"の領分にあったが、ベルはこれを物理学の決着可能な問いに翻訳した。</p>
+
+  <p class="body-text fade">ベルの発想を一言で言うとこうだ。「もし粒子が観測前から値を持っていて、しかも遠隔地への影響が光速以下なら——これを<span class="tip">局所実在論<span class="tip-box"><strong>局所実在論(local realism)</strong><br>「1. 粒子は観測される前から物理量を持っている(実在)」+「2. 空間的に離れた地点に瞬時には影響しない(局所性)」の二つを合わせた仮定。古典物理の常識そのもの。</span></span>と呼ぶ——AliceとBobの結果の相関には、<strong>数学的に絶対超えられない上限</strong>が出る」。これが体験のPhase 3で動かした <em>|S|≤2</em> の正体、ベル不等式だ。</p>
+
+  <p class="body-text fade">ところが、量子力学が予言するSの最大値は <strong>2√2 ≈ 2.828</strong>。古典的な常識の枠を、約40%も突き抜ける。<em>つまり、実験でSが2を超えるかどうかを測れば、アインシュタイン側の世界観が間違っているかどうかが分かる</em>——これが、ベルが立ち上げた決着の道筋だった。</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img"><img src="./person_bell.jpg" alt="ジョン・スチュワート・ベル" loading="lazy"></div>
+    <div class="person-block-body">
+      <p class="person-block-name">John Stewart Bell</p>
+      <p class="person-block-role">ベル不等式の発見 (1964)</p>
+      <p class="person-block-desc">CERNの素粒子物理学者。生業は加速器関連の仕事だった。量子力学の基礎は本人いわく「趣味」。発表した学術誌 <em>Physics</em> は掲載料がかからないどころか著者に報酬まで出る無名誌だった。</p>
+      <a class="person-block-link" href="https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A7%E3%83%B3%E3%83%BB%E3%82%B9%E3%83%81%E3%83%A5%E3%83%AF%E3%83%BC%E3%83%88%E3%83%BB%E3%83%99%E3%83%AB" target="_blank" rel="noopener">Wikipedia</a>
+      <p class="person-block-credit">© CERN, June 1982 / <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></p>
+    </div>
+  </div>
+
+  <p class="body-text fade">ベルの仕事は理論だった。あとは誰が実験で決着をつけるかの問題になった。1972年にジョン・クラウザーが初の実験を行い、量子力学側を支持する結果を出した。しかし、抜け穴(loophole)が残っていた。「測定装置の設定が事前に粒子に伝わっていたのではないか」という疑念だ。</p>
+
+  <!-- SVG: アスペ 1982 実験のセットアップ -->
+  <svg class="svg-fig fade" viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arrowDark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0,0 L10,5 L0,10 Z" fill="#3d3020"/>
+      </marker>
+      <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0,0 L10,5 L0,10 Z" fill="#8b1a1a"/>
+      </marker>
+    </defs>
+    <rect x="20" y="20" width="760" height="310" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="400" y="48" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="600" fill="#7a6a55" letter-spacing="2">ASPECT 1982 — 動的切り替え実験</text>
+    <!-- 光源 -->
+    <circle cx="400" cy="175" r="30" fill="#ede8dc" stroke="#3d3020" stroke-width="2"/>
+    <text x="400" y="172" text-anchor="middle" font-family="Source Serif 4" font-size="14" font-weight="600" fill="#1a1208">Ca</text>
+    <text x="400" y="188" text-anchor="middle" font-family="Source Serif 4" font-size="11" fill="#3d3020">カスケード</text>
+    <text x="400" y="225" text-anchor="middle" font-family="Source Sans 3" font-size="13" fill="#7a6a55"><tspan x="400" dy="0">カルシウム原子から</tspan><tspan x="400" dy="16">もつれ光子対を放出</tspan></text>
+    <!-- 光子の軌跡 -->
+    <line x1="365" y1="175" x2="220" y2="175" stroke="#8b1a1a" stroke-width="1.8" stroke-dasharray="4,3" marker-end="url(#arrowRed)"/>
+    <line x1="435" y1="175" x2="580" y2="175" stroke="#8b1a1a" stroke-width="1.8" stroke-dasharray="4,3" marker-end="url(#arrowRed)"/>
+    <!-- 切り替えスイッチ Alice -->
+    <rect x="190" y="140" width="70" height="70" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+    <text x="225" y="165" text-anchor="middle" font-family="Source Serif 4" font-size="13" font-weight="700" fill="#1a1208">高速</text>
+    <text x="225" y="182" text-anchor="middle" font-family="Source Serif 4" font-size="13" font-weight="700" fill="#1a1208">スイッチ</text>
+    <text x="225" y="200" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#8b1a1a">10 ns 毎</text>
+    <!-- 二つの偏光器 -->
+    <rect x="100" y="110" width="60" height="40" fill="#ede8dc" stroke="#7a6a55"/>
+    <text x="130" y="135" text-anchor="middle" font-family="Source Serif 4" font-size="12" fill="#3d3020">偏光器 a</text>
+    <rect x="100" y="200" width="60" height="40" fill="#ede8dc" stroke="#7a6a55"/>
+    <text x="130" y="225" text-anchor="middle" font-family="Source Serif 4" font-size="12" fill="#3d3020">偏光器 a′</text>
+    <line x1="190" y1="155" x2="162" y2="130" stroke="#7a6a55" stroke-width="1.2" marker-end="url(#arrowDark)"/>
+    <line x1="190" y1="195" x2="162" y2="220" stroke="#7a6a55" stroke-width="1.2" marker-end="url(#arrowDark)"/>
+    <!-- 検出器 Alice -->
+    <rect x="30" y="115" width="50" height="30" fill="#3d3020"/>
+    <text x="55" y="135" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="white">D(+)</text>
+    <rect x="30" y="205" width="50" height="30" fill="#3d3020"/>
+    <text x="55" y="225" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="white">D(−)</text>
+    <!-- 切り替えスイッチ Bob (対称) -->
+    <rect x="540" y="140" width="70" height="70" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+    <text x="575" y="165" text-anchor="middle" font-family="Source Serif 4" font-size="13" font-weight="700" fill="#1a1208">高速</text>
+    <text x="575" y="182" text-anchor="middle" font-family="Source Serif 4" font-size="13" font-weight="700" fill="#1a1208">スイッチ</text>
+    <text x="575" y="200" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#8b1a1a">10 ns 毎</text>
+    <rect x="640" y="110" width="60" height="40" fill="#ede8dc" stroke="#7a6a55"/>
+    <text x="670" y="135" text-anchor="middle" font-family="Source Serif 4" font-size="12" fill="#3d3020">偏光器 b</text>
+    <rect x="640" y="200" width="60" height="40" fill="#ede8dc" stroke="#7a6a55"/>
+    <text x="670" y="225" text-anchor="middle" font-family="Source Serif 4" font-size="12" fill="#3d3020">偏光器 b′</text>
+    <line x1="610" y1="155" x2="638" y2="130" stroke="#7a6a55" stroke-width="1.2" marker-end="url(#arrowDark)"/>
+    <line x1="610" y1="195" x2="638" y2="220" stroke="#7a6a55" stroke-width="1.2" marker-end="url(#arrowDark)"/>
+    <rect x="720" y="115" width="50" height="30" fill="#3d3020"/>
+    <text x="745" y="135" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="white">D(+)</text>
+    <rect x="720" y="205" width="50" height="30" fill="#3d3020"/>
+    <text x="745" y="225" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="white">D(−)</text>
+    <!-- 底部キャプション -->
+    <text x="400" y="283" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#7a6a55">光子が飛んでいる最中に、偏光器の角度をランダムに切り替える</text>
+    <text x="400" y="303" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="600" fill="#8b1a1a">→ 設定情報が光速で先回りして粒子に伝わる余地をふさいだ</text>
+    <text x="400" y="323" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="600" fill="#1a5a30">結果: S = 2.697 ± 0.015 (古典上限 2 を 40σ 超え)</text>
+  </svg>
+  <p class="svg-fig-cap fade">Aspect, Dalibard, Roger (1982) の"タイミング実験"。偏光器の切り替えは、もつれ光子がソースから検出器に届くまでの 40 ns より短い時間で行われた。</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img"><img src="./person_aspect.jpg" alt="アラン・アスペ" loading="lazy"></div>
+    <div class="person-block-body">
+      <p class="person-block-name">Alain Aspect</p>
+      <p class="person-block-role">決定的実験の実行 (1982)</p>
+      <p class="person-block-desc">パリ郊外のオルセーで、ジェラール・ロジェ、ジャン・ダリバールと共に3段階の実験を行った。1982年の実験ではベル不等式の破れを<em>40標準偏差</em>で確認。事実上この段階で、ほとんどの物理学者が量子もつれの実在を疑うことをやめた。</p>
+      <a class="person-block-link" href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%A9%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%B9%E3%83%9A" target="_blank" rel="noopener">Wikipedia</a>
+      <p class="person-block-credit">Jérémy Barande / École Polytechnique (Paris-Saclay) / <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></p>
+    </div>
+  </div>
+
+  <p class="body-text fade">さらにその先へ進めたのがオーストリアの<strong>アントン・ツァイリンガー</strong>だ。1997年、彼のグループは世界で初めて量子テレポーテーションの原理実証に成功した。光子の量子状態が、もつれを媒介として別の光子へ乗り移る——ただし、古典通信(光速以下)を併用するという条件つきで。これによって、もつれが単なる奇妙な哲学的話題から、<em>量子情報技術の基本資源</em>へと変わった。</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img"><img src="./person_zeilinger.jpg" alt="アントン・ツァイリンガー" loading="lazy"></div>
+    <div class="person-block-body">
+      <p class="person-block-name">Anton Zeilinger</p>
+      <p class="person-block-role">量子テレポーテーション実証 (1997)</p>
+      <p class="person-block-desc">ウィーン大学。もつれを「技術」にした人物。後に衛星を介した1203 kmもつれ光子配布(2017年、<em>墨子号</em>と共同)も実現。2022年、クラウザー、アスペと並んでノーベル物理学賞を受賞。</p>
+      <a class="person-block-link" href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%88%E3%83%B3%E3%83%BB%E3%83%84%E3%82%A1%E3%82%A4%E3%83%AA%E3%83%B3%E3%82%AC%E3%83%BC" target="_blank" rel="noopener">Wikipedia</a>
+      <p class="person-block-credit">Jaqueline Godany, 2021 / <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>(トリミング)</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">ここで一つ、概念から離れて現物を見てほしい。下の写真は2009年、DEF CON 17(情報セキュリティ会議)で公開されたもつれ光子対生成装置だ。黒い光学台に並んだレンズ、鏡、そして中央の小さな結晶——これでAliceとBobに向けてもつれた光子ペアが飛んでいく。もつれは机の上の標準的な光学部品で日常的に作れるところまで来ている。</p>
+
+  <figure class="scene-fig fade">
+    <img src="./scene_entanglement_apparatus.jpg" alt="もつれ光子対生成装置(DEF CON 17, 2009)" loading="lazy">
+    <div class="scene-fig-body">
+      <p class="scene-fig-cap">NISTの<strong>Josh Bienfang</strong>が解説する、もつれ光子対生成装置。BBO(β-バリウムボレート)結晶に紫外レーザーを当てる自発的パラメトリック下方変換(SPDC)で、1個の高エネルギー光子を2個のもつれた低エネルギー光子に分割する。これが現代のベル実験と量子暗号の標準的な"EPR源"だ。</p>
+      <p class="scene-fig-credit">Nate Grigg, 2009 / <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>(リサイズ済)</p>
+    </div>
+  </figure>
+
+  <p class="body-text fade">研究グレードの装置になると、見た目はこうなる。NIST(米国立標準技術研究所)の量子情報研究室で実際に運用されているもつれ光子源だ。中央で<strong>緑のレーザー</strong>(波長532 nm)が結晶を貫き、そこから波長の異なる2本のもつれ光子(画像では青と赤に色分けされている)が生まれて光ファイバーへ分配される。アインシュタインが思考実験で論じた"不気味な遠隔作用"は、いまや机一台に収まる量産品になった。</p>
+
+  <figure class="scene-fig fade">
+    <img src="./scene_nist_photon_source.jpg" alt="NISTのゲート式光子源:緑レーザーと光ファイバーで構成されたもつれ光子発生装置" loading="lazy">
+    <div class="scene-fig-body">
+      <p class="scene-fig-cap">NISTの<strong>ゲート式光子源</strong>(Gated photon source)。532 nm の緑レーザーが結晶を叩いて、810 nm(画像では青に着色)と1550 nm(赤に着色)のもつれ光子ペアに変換する。「青」がヘラルド(到着合図)信号、「赤」がファイバーリールで遅延され、ゲートのタイミング制御に使われる。</p>
+      <p class="scene-fig-credit">Brida / INRIM via NIST, 2010 — <strong>Public Domain</strong>(US Federal Government work) / <a href="https://commons.wikimedia.org/wiki/File:Photon_Source_(5941055810).jpg" target="_blank" rel="noopener">Commons</a></p>
+    </div>
+  </figure>
+
+  <p class="body-text fade">この光学台で実際に何が起きているのか、線画で見るとこうなる。</p>
+
+  <figure class="easy-fig fade">
+    <div class="easy-fig-img"><img src="./fig_spdc_setup.jpg" alt="SPDC実験の模式図" loading="lazy"></div>
+    <p class="easy-fig-cap">左から強い紫外レーザーを撃ち込み、<strong>非線形結晶</strong>(BBOなど)を通すと、まれに1個の紫外光子が2個の低エネルギー光子に分裂する——これを<em>自発的パラメトリック下方変換(SPDC)</em>と呼ぶ。生まれた瞬間からこの2個はもつれている。あとは右側の偏光フィルタと検出器で、AliceとBobがそれぞれ測定する——上で動かした体験パートのシミュレーターと同じ構図だ。</p>
+    <p class="easy-fig-aside">「レーザーが結晶に当たって、もつれた光子ペアが2方向に飛んでいく」——大づかみそれだけで十分。BBO・SPDCといった用語は、量子光学の研究者の手帳に書き残しておけばいい話。</p>
+    <p class="easy-fig-credit">Farbodk, 2021 / <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>(リサイズのみ)</p>
+  </figure>
+
+  <!-- ========== 歴史 ========== -->
+  <div class="sec-rule fade"><span class="sec-label">Timeline</span><span class="sec-line"></span></div>
+  <h2 class="fade">思考実験から実用技術まで、90年</h2>
+
+  <div class="timeline fade">
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1935</p>
+      <p class="tl-title">EPR論文 / シュレーディンガーの命名</p>
+      <p class="tl-desc">5月: アインシュタイン・ポドルスキー・ローゼン"量子力学は不完全"。10月: シュレーディンガーが"Verschränkung"と命名し、"量子力学の最も特徴的な性質"と位置づける。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1952</p>
+      <p class="tl-title">ボームの隠れ変数理論</p>
+      <p class="tl-desc">デビッド・ボームがド・ブロイ流の"パイロット波"を復活させ、非局所的だが決定論的な量子力学の代替を提示。ベルに影響を与える。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1964</p>
+      <p class="tl-title">ベルの不等式</p>
+      <p class="tl-desc">ジョン・ベル(CERN)が、局所実在論なら |S|≤2 が成り立つことを証明。量子力学はこれを破る。理論の土俵で決着がつく道筋ができた。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1972</p>
+      <p class="tl-title">クラウザーの初実験</p>
+      <p class="tl-desc">ジョン・クラウザー(バークレー)とスチュアート・フリードマンが、カルシウム原子カスケードを用いた初のベル実験を実施。量子力学支持の結果を得る。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1982</p>
+      <p class="tl-title">アスペの動的切り替え実験</p>
+      <p class="tl-desc">アラン・アスペ(オルセー)が、光子が飛んでいる最中に偏光器の角度を切り替える実験を実行。局所性ループホールを大幅に狭め、S=2.697±0.015 を得る。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1993</p>
+      <p class="tl-title">量子テレポーテーション理論</p>
+      <p class="tl-desc">ベネット、ブラサード、クレポー、ジョザ、ペレス、ウォッターズがPRLに掲載。量子状態の転送には必ず古典通信が伴うことを証明。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1997</p>
+      <p class="tl-title">テレポーテーション実証</p>
+      <p class="tl-desc">ツァイリンガー(インスブルック)が光子の量子状態テレポーテーションを実験で実現。量子情報技術の幕開け。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2015</p>
+      <p class="tl-title">ループホールフリー実験</p>
+      <p class="tl-desc">Hensen et al.(デルフト)がNature誌に、局所性・検出効率・自由選択の3つのループホールを同時にふさぐ実験を報告。もつれの実在を確定づけた決定版。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2022</p>
+      <p class="tl-title">ノーベル物理学賞</p>
+      <p class="tl-desc">クラウザー、アスペ、ツァイリンガーに授与。"もつれた光子による実験、ベル不等式の破れの確立、および量子情報科学の先駆的仕事"に対して。</p>
+    </div>
+  </div>
+
+  <!-- ========== つまり ========== -->
+  <div class="sec-rule fade"><span class="sec-label">Takeaway</span><span class="sec-line"></span></div>
+  <h2 class="fade">もつれは"情報"ではなく"相関"を運ぶ</h2>
+
+  <p class="body-text fade">量子もつれについて、覚えておくと混乱しない要点は二つだ。第一に、<em>測定結果の相関</em>は光速を超えて瞬時に揃うように見える。第二に、この相関を観測するには、離れた二者が結果を突き合わせる必要があり、その突き合わせは必ず光速以下の古典通信で行われる。<strong>片側だけを見ても、もう片側で何が起きているかの痕跡はゼロ</strong>——これを<span class="tip">no-communication theorem<span class="tip-box"><strong>no-communication theorem</strong><br>量子力学の定理の一つ。もつれ状態にある粒子を片方で測定・操作しても、もう片方の観測者が単独で受け取る統計分布は一切変化しないことを数学的に証明する。この定理によって、もつれが相対性理論と矛盾しないことが保証される。</span></span>という定理が保証する。</p>
+
+  <p class="body-text fade">では、もつれは"何の役にも立たない"のかというと、そうではない。"古典通信を併用する"というルールを守れば、もつれを使って未知の量子状態を遠くまで"転送"できる。これが<strong>量子テレポーテーション</strong>と呼ばれる技術だ。1993年にベネットらが理論的に提案し、1997年にツァイリンガーらが実証した。仕組みは下のとおりで、ポイントは <em>もつれ + 古典通信の"二段構え"</em> になっていること。</p>
+
+  <!-- SVG: 量子テレポーテーションの情報フロー -->
+  <svg class="svg-fig fade" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arrowClass" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0,0 L10,5 L0,10 Z" fill="#8b1a1a"/>
+      </marker>
+    </defs>
+    <rect x="20" y="20" width="760" height="380" fill="#f3efe6" stroke="#c8bfaa"/>
+    <text x="400" y="48" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="600" fill="#7a6a55" letter-spacing="2">量子テレポーテーション — 情報はどこを通るか</text>
+
+    <!-- ①もつれペア(上)、ラベルを上の余白に逃がす -->
+    <text x="400" y="78" text-anchor="middle" font-family="Source Sans 3" font-size="13" font-weight="600" fill="#1a5a30">①もつれペア — 事前に AliceとBob に1個ずつ配布</text>
+    <path d="M 240 195 Q 400 110 560 195" stroke="#1a5a30" stroke-width="2" fill="none" stroke-dasharray="5,4"/>
+    <text x="400" y="135" text-anchor="middle" font-family="Source Sans 3" font-size="11" fill="#1a5a30" font-style="italic">相関はあるが、信号は含まない</text>
+
+    <!-- Alice -->
+    <rect x="60" y="170" width="180" height="160" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+    <text x="150" y="195" text-anchor="middle" font-family="Source Serif 4" font-size="16" font-weight="700" fill="#1a1208">Alice</text>
+    <circle cx="150" cy="225" r="18" fill="#ede8dc" stroke="#8b1a1a" stroke-width="1.5"/>
+    <text x="150" y="229" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="#8b1a1a">|ψ⟩</text>
+    <text x="150" y="258" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#7a6a55">送りたい量子状態</text>
+    <rect x="95" y="275" width="110" height="42" fill="#3d3020"/>
+    <text x="150" y="293" text-anchor="middle" font-family="Source Sans 3" font-size="11" fill="white">ベル測定</text>
+    <text x="150" y="308" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#e8c56a">結果: 2古典ビット</text>
+
+    <!-- Bob -->
+    <rect x="560" y="170" width="180" height="160" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+    <text x="650" y="195" text-anchor="middle" font-family="Source Serif 4" font-size="16" font-weight="700" fill="#1a1208">Bob</text>
+    <circle cx="650" cy="225" r="18" fill="#ede8dc" stroke="#7a6a55" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="650" y="229" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="#7a6a55">|?⟩</text>
+    <text x="650" y="258" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#7a6a55">まだ確定していない</text>
+    <rect x="595" y="275" width="110" height="42" fill="#3d3020"/>
+    <text x="650" y="293" text-anchor="middle" font-family="Source Sans 3" font-size="11" fill="white">ユニタリ変換</text>
+    <text x="650" y="308" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#e8c56a">|ψ⟩ に復元</text>
+
+    <!-- ②古典通信 -->
+    <line x1="210" y1="350" x2="590" y2="350" stroke="#8b1a1a" stroke-width="2.5" marker-end="url(#arrowClass)"/>
+    <text x="400" y="345" text-anchor="middle" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#8b1a1a">②古典通信(光速以下)— 2ビットを送る</text>
+
+    <!-- 結論 -->
+    <text x="400" y="384" text-anchor="middle" font-family="Source Sans 3" font-size="13" font-weight="700" fill="#1a1208">どちらか一方だけでは復元できない。①+②が揃って初めて |ψ⟩ が Bob 側に現れる。</text>
+  </svg>
+  <p class="svg-fig-cap fade">量子テレポーテーションは「もつれペア(①)」+「古典通信(②)」の二段構え。古典通信がなければ、Bob側には何も再現されない——だから光速を超えることもない。</p>
+
+  <p class="body-text fade">この二本立ての仕組みのおかげで、量子もつれは相対性理論と共存できる。片方だけを持って"こちら側で操作したら光速を超えて相手に伝わるはず"と考えるのが勘違いで、相手側に何かが届くには、相手側に結果を伝える古典経路(電話でも光ファイバーでも)が必ず必要になる。<em>もつれは道ではなく、台座だ。</em>情報はその上を通るが、情報そのものは別の道を走る。</p>
+
+  <div class="culture-block fade">
+    <p class="culture-label">作品・文化への登場</p>
+    <div class="culture-item">
+      <p class="culture-title"><span class="tip">劉慈欣(リウ・ツーシン)<span class="tip-box"><strong>劉慈欣 / Liu Cixin (1963−)</strong><br>中国・山西省出身のSF作家。代表作『三体』三部作で、2015年にヒューゴー賞長編部門を中国人として初めて受賞。日本語表記は「リウ・ツーシン」が一般的。</span></span>『三体』 (2008, Netflix版 2024)</p>
+      <p class="culture-desc">異星人が量子もつれで地球上の"智子(ソフォン)"と瞬時通信する——というアイデアが物語の骨子。劇中の描写は科学的には成立しない(no-communication theoremに抵触)が、SFとしての着想は"もつれ = 非局所性"の一般的イメージを拡張したもの。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">Ted Chiang "Anxiety is the Dizziness of Freedom" (2019)</p>
+      <p class="culture-desc">『息吹』収録。"プリズム"という装置で並行宇宙の自分と通信するという思考実験。設定の核は<em>多世界解釈の応用</em>で、量子もつれそのものとは別系統だが、「観測が世界を分岐させる」量子的世界観を文学に持ち込んだ作品。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">"スタートレック" のトランスポーター</p>
+      <p class="culture-desc">人を分解して別場所に転送する装置。量子テレポーテーションはこのイメージで語られがちだが、実際に送れるのは<em>量子状態の情報</em>だけで、物体そのものはBob側で別の原子から再構成する必要がある。</p>
+    </div>
+  </div>
+
+  <!-- ========== 参考文献 ========== -->
+  <div class="sec-rule fade"><span class="sec-label">References</span><span class="sec-line"></span></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1935</span></div>
+      <p class="ref-title"><a href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777" target="_blank" rel="noopener">Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?</a></p>
+      <p class="ref-author">A. Einstein, B. Podolsky, N. Rosen — <em>Physical Review</em> 47, 777</p>
+      <p class="ref-desc">EPR論文。量子力学の非局所性を"パラドックス"として指摘。起草はほぼポドルスキーが担当し、アインシュタインは1935年6月19日のシュレーディンガー宛書簡で「論文の本当の主張がポドルスキーの形式的な博識さに埋もれてしまった」と不満を漏らしている。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1935</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1017/S0305004100013554" target="_blank" rel="noopener">Discussion of Probability Relations between Separated Systems</a></p>
+      <p class="ref-author">E. Schrödinger — <em>Math. Proc. Cambridge Phil. Soc.</em> 31, 555</p>
+      <p class="ref-desc">"Verschränkung"(もつれ)の命名論文。「量子力学の最も特徴的な性質」と位置づけた。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1964</span></div>
+      <p class="ref-title"><a href="https://journals.aps.org/ppf/abstract/10.1103/PhysicsPhysiqueFizika.1.195" target="_blank" rel="noopener">On the Einstein Podolsky Rosen Paradox</a></p>
+      <p class="ref-author">J. S. Bell — <em>Physics</em> 1, 195</p>
+      <p class="ref-desc">ベル不等式の原論文。局所的な隠れ変数理論が満たすべき数学的上限と、量子力学の予言との不一致を示した。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1982</span></div>
+      <p class="ref-title"><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.49.1804" target="_blank" rel="noopener">Experimental Test of Bell's Inequalities Using Time-Varying Analyzers</a></p>
+      <p class="ref-author">A. Aspect, J. Dalibard, G. Roger — <em>Phys. Rev. Lett.</em> 49, 1804</p>
+      <p class="ref-desc">ベル不等式の破れを動的切り替え装置で実証。局所性ループホールを大きく縮めた決定実験。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1993</span></div>
+      <p class="ref-title"><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.70.1895" target="_blank" rel="noopener">Teleporting an Unknown Quantum State via Dual Classical and EPR Channels</a></p>
+      <p class="ref-author">C. H. Bennett et al. — <em>Phys. Rev. Lett.</em> 70, 1895</p>
+      <p class="ref-desc">量子テレポーテーションの理論提案。もつれ+古典通信の2チャネル構成という基本形式を確立した。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2015</span></div>
+      <p class="ref-title"><a href="https://www.nature.com/articles/nature15759" target="_blank" rel="noopener">Loophole-free Bell inequality violation using electron spins separated by 1.3 km</a></p>
+      <p class="ref-author">B. Hensen et al. — <em>Nature</em> 526, 682</p>
+      <p class="ref-desc">Delft工科大学によるループホールフリー実験。局所性・検出効率・自由選択の3つを同時にふさいだ、もつれの実在を確定する"決定版"。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Press</span><span class="ref-year">2022</span></div>
+      <p class="ref-title"><a href="https://www.nobelprize.org/prizes/physics/2022/press-release/" target="_blank" rel="noopener">The Nobel Prize in Physics 2022 — Press release</a></p>
+      <p class="ref-author">The Royal Swedish Academy of Sciences</p>
+      <p class="ref-desc">Clauser / Aspect / Zeilinger に授与。"もつれた光子を用いた実験、ベル不等式の破れの確立、および量子情報科学の先駆的研究に対して"。</p>
+    </div>
+  </div>
+
+  <div class="note-box fade">
+    <strong>この記事について</strong><br>
+    EPR論文・ベル論文・アスペ論文・ベネット論文・Hensen et al. および2022年ノーベル賞発表文書に基づいて構成している。シミュレーターは<span class="tip">CHSH不等式<span class="tip-box"><strong>CHSH不等式</strong><br>クラウザー・ホーン・シモニー・ホルトによる、ベル不等式のうち実験で最も扱いやすい形。S=E(a,b)−E(a,b′)+E(a′,b)+E(a′,b′)の絶対値が古典的には2以下になるが、量子では最大 2√2 まで到達する。</span></span>の標準的な定式化に従い、もつれペアとして偏光相関状態 |HH⟩+|VV⟩ を仮定して実装した。実験値(アスペ 1982 は 2.697±0.015)と理論最大(2√2≈2.828)の違いは、実装の単純化によるものではなく、実験の現実的ノイズを反映したもの。文化登場項目は作品内の描写の事実確認で記述。</p>
+  </div>
+
+  <div class="credits-box fade">
+    <strong>画像クレジット</strong><br>
+    · Einstein (1921): <strong>F. Schmutzer</strong>, restored by Adam Cuerden — <strong>Public Domain</strong>. <a href="https://commons.wikimedia.org/wiki/File:Einstein_1921_by_F_Schmutzer_-_restoration.jpg" target="_blank" rel="noopener">Commons</a><br>
+    · Schrödinger (1933): <strong>Nobel Foundation</strong> — <strong>Public Domain</strong>. <a href="https://commons.wikimedia.org/wiki/File:Erwin_Schr%C3%B6dinger_(1933).jpg" target="_blank" rel="noopener">Commons</a><br>
+    · J. S. Bell (1982): <strong>© CERN</strong> — <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>(リサイズのみ). <a href="https://commons.wikimedia.org/wiki/File:Physicist_John_Bell_at_CERN,_June_1982.png" target="_blank" rel="noopener">Commons</a><br>
+    · A. Aspect: <strong>Jérémy Barande / École Polytechnique (Paris-Saclay)</strong> — <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a>(リサイズのみ). <a href="https://commons.wikimedia.org/wiki/File:Alain_Aspect_(15420152598).jpg" target="_blank" rel="noopener">Commons</a><br>
+    · A. Zeilinger (2021): <strong>Jaqueline Godany</strong> — <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>(トリミング・リサイズ). <a href="https://commons.wikimedia.org/wiki/File:A._Zeilinger_(cropped).jpg" target="_blank" rel="noopener">Commons</a><br>
+    · もつれ光子対生成装置 (DEF CON 17, 2009): <strong>Nate Grigg</strong> — <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>(リサイズのみ). <a href="https://commons.wikimedia.org/wiki/File:Quantum_Entangled_Photon_Generator_-_DEF_CON_17_-_Aug._2009.jpg" target="_blank" rel="noopener">Commons</a><br>
+    · もつれ光子のスピン反相関 (SVG): <strong>Guy vandegrift</strong>, 2016 — <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>(無改変). <a href="https://commons.wikimedia.org/wiki/File:Entangled_spins.svg" target="_blank" rel="noopener">Commons</a><br>
+    · SPDC実験の模式図: <strong>Farbodk</strong>, 2021 — <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>(リサイズのみ). <a href="https://commons.wikimedia.org/wiki/File:Quantum_Entanglement_Experiment_via_Spontaneous_Parametric_Down-Conversion_(SPDC).jpg" target="_blank" rel="noopener">Commons</a><br>
+    · NIST ゲート式光子源 (2010): <strong>Brida / INRIM</strong> via <strong>NIST</strong> — <strong>Public Domain</strong>(US Federal Government work、リサイズ済). <a href="https://commons.wikimedia.org/wiki/File:Photon_Source_(5941055810).jpg" target="_blank" rel="noopener">Commons</a><br>
+    · CHSH 2チャネルベル測定スキーム (SVG): <strong>George Stamatiou</strong>, 2008 — <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>(無改変). <a href="https://commons.wikimedia.org/wiki/File:Two_channel_bell_test.svg" target="_blank" rel="noopener">Commons</a>
+  </div>
+
+  <p class="signature">e. Tamaki</p>
+
+  <div class="tags">
+    <span class="tag">量子もつれ</span>
+    <span class="tag">EPR</span>
+    <span class="tag">ベル不等式</span>
+    <span class="tag">物理</span>
+    <span class="tag">量子情報</span>
+    <span class="tag">科学史</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:46px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">2√2</p>
+      <p class="sidebar-text">≈ <strong>2.828</strong>。量子力学が出せるS値の最大。古典の上限は<em>2</em>。この差分40%が"不気味さ"の正体。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1935年EPR論文から2022年ノーベル賞まで<strong>87年</strong>。理論的決着はベル(1964)、実験的決着はアスペ(1982)、ループホール完全排除はHensen(2015)。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">劉慈欣『三体』の智子(ソフォン)、Ted Chiang『息吹』収録の量子通信SF、スタートレック的テレポート——どれも原理的には成立しない描写を含む。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— 二重スリット実験<br>— 多世界解釈<br>— 量子コンピューター<br>— 量子暗号(BB84)</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">一次論文・ノーベル賞公式発表・Wikipedia(英)・Stanford Encyclopedia を照合した内容。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 量子もつれを読み終えた人との対話</span>
+
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;量子もつれで光速を超えて通信できる、って記事で読んだんだけど、あれ嘘なの?</span></div>
+      <span class="t-output" id="to1">嘘というか、<em>相関と信号の違い</em>が抜けている表現。瞬時に揃うのは確かだが、<strong>片側だけを見ても相手の操作は検出不能</strong>。結果を突き合わせるには古典通信がいる。</span>
+
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあテレポーテーションで物を送るのは?</span></div>
+      <span class="t-output" id="to2">物体ではなく<em>量子状態</em>のみ。しかも送る側のベル測定結果を古典通信で送らないと受信側では復元できない。<strong>光速は超えない</strong>。スタートレック式ではない。</span>
+
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;2022年のノーベル賞、結局なに確認したの?</span></div>
+      <span class="t-output" id="to3">"もつれは本物、隠れ変数では説明できない、そして技術資源として使える"の3点。50年かけて実験的にアインシュタインの直感が<em>外れた</em>ことが確定した。</span>
+
+      <hr class="t-divider">
+
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# ちょっと難しかったが、すっきりした。</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/double_slit/">
+      <p class="related-card-tag">物理・宇宙</p>
+      <p class="related-card-title">二重スリット実験 — 観測が現実を変える</p>
+      <p class="related-card-desc">光子1個でも干渉縞ができる。しかし観測した瞬間、縞は消える。量子の"測定"が何をしているかを、もつれの背景と対照して読むと深まる。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/many_worlds/">
+      <p class="related-card-tag">物理・宇宙</p>
+      <p class="related-card-title">多世界解釈 — 測定したら世界が分かれる?</p>
+      <p class="related-card-desc">もつれを"崩壊"ではなく"分岐"として読み替える解釈。ベル不等式の結果を局所実在論を捨てるか、実在を捨てるかの選択として見る。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト方式)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.querySelectorAll('.tip').forEach(el=>el.addEventListener('click',e=>{e.stopPropagation();toggleTip(el);}));
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ========== SIMULATOR ==========
+// 量子もつれペア: Singlet-like anti-correlated state、photon polarization版 |HH>+|VV>
+// A: +1 or -1 with prob 1/2
+// P(B=A | θa-θb=Δ) = cos²(Δ)
+// correlation E(a,b) = cos(2(θa-θb))  [角度はdeg→rad]
+function measureQuantumPair(thetaA_deg, thetaB_deg){
+  const A = Math.random() < 0.5 ? 1 : -1;
+  const delta = (thetaA_deg - thetaB_deg) * Math.PI / 180;
+  const pSame = Math.cos(delta) ** 2;
+  const B = Math.random() < pSame ? A : -A;
+  return [A, B];
+}
+
+// タブ切り替え
+document.querySelectorAll('.sim-tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const n=btn.dataset.tab;
+    document.querySelectorAll('.sim-tab').forEach(b=>b.classList.remove('on'));
+    document.querySelectorAll('.sim-panel').forEach(p=>p.classList.remove('on'));
+    btn.classList.add('on');
+    document.querySelector('.sim-panel[data-panel="'+n+'"]').classList.add('on');
+  });
+});
+
+// -------- Phase 1 --------
+const s1Canvas = document.getElementById('sim1Canvas');
+const s1Ctx = s1Canvas.getContext('2d');
+let s1Count=0, s1Match=0, s1Diff=0;
+let s1Pairs=[];
+let s1Anim = null;
+
+function s1DrawStatic(flashA, flashB){
+  s1Ctx.clearRect(0,0,600,220);
+  // 背景
+  s1Ctx.fillStyle='#0d0d0d';
+  s1Ctx.fillRect(0,0,600,220);
+  // 中央ソース
+  s1Ctx.fillStyle='#8b1a1a';
+  s1Ctx.beginPath(); s1Ctx.arc(300,110,14,0,Math.PI*2); s1Ctx.fill();
+  s1Ctx.strokeStyle='#c4392a'; s1Ctx.lineWidth=1.5; s1Ctx.stroke();
+  s1Ctx.fillStyle='#c8c8c8'; s1Ctx.font="11px 'Source Sans 3',sans-serif";
+  s1Ctx.textAlign='center';
+  s1Ctx.fillText('EPR源', 300, 140);
+  // Alice(左)
+  s1Ctx.fillStyle = flashA ? (flashA>0?'#1a5a30':'#c4392a') : '#2a2a2a';
+  s1Ctx.fillRect(60,80,80,60);
+  s1Ctx.fillStyle='#e0d8c8'; s1Ctx.font="12px 'Source Serif 4',serif"; s1Ctx.fillText('Alice', 100, 100);
+  s1Ctx.font="10px 'Source Sans 3'"; s1Ctx.fillText('偏光 0°', 100, 116);
+  if(flashA){s1Ctx.font="bold 18px 'JetBrains Mono',monospace"; s1Ctx.fillStyle='#fff'; s1Ctx.fillText(flashA>0?'+':'−', 100, 137);}
+  // Bob(右)
+  s1Ctx.fillStyle = flashB ? (flashB>0?'#1a5a30':'#c4392a') : '#2a2a2a';
+  s1Ctx.fillRect(460,80,80,60);
+  s1Ctx.fillStyle='#e0d8c8'; s1Ctx.font="12px 'Source Serif 4',serif"; s1Ctx.fillText('Bob', 500, 100);
+  s1Ctx.font="10px 'Source Sans 3'"; s1Ctx.fillText('偏光 0°', 500, 116);
+  if(flashB){s1Ctx.font="bold 18px 'JetBrains Mono',monospace"; s1Ctx.fillStyle='#fff'; s1Ctx.fillText(flashB>0?'+':'−', 500, 137);}
+  // 光子の軌跡
+  s1Ctx.strokeStyle='#8b1a1a'; s1Ctx.lineWidth=1; s1Ctx.setLineDash([4,4]);
+  s1Ctx.beginPath(); s1Ctx.moveTo(286,110); s1Ctx.lineTo(140,110); s1Ctx.stroke();
+  s1Ctx.beginPath(); s1Ctx.moveTo(314,110); s1Ctx.lineTo(460,110); s1Ctx.stroke();
+  s1Ctx.setLineDash([]);
+  // タイトル
+  s1Ctx.fillStyle='#b0a090'; s1Ctx.font="11px 'Source Sans 3',sans-serif";
+  s1Ctx.fillText('同じ角度(0°)で測定', 300, 190);
+}
+s1DrawStatic();
+
+function s1Animate(resultA, resultB, cb){
+  if(s1Anim) clearTimeout(s1Anim);
+  let t=0;
+  const totalFrames=20;
+  function frame(){
+    t++;
+    if(t<totalFrames){
+      s1DrawStatic();
+      const prog = t/totalFrames;
+      s1Ctx.fillStyle='#e8c56a';
+      const leftX = 300 - 160*prog;
+      const rightX = 300 + 160*prog;
+      s1Ctx.beginPath(); s1Ctx.arc(leftX,110,4,0,Math.PI*2); s1Ctx.fill();
+      s1Ctx.beginPath(); s1Ctx.arc(rightX,110,4,0,Math.PI*2); s1Ctx.fill();
+      s1Anim = setTimeout(frame, 16);
+    } else {
+      s1DrawStatic(resultA, resultB);
+      cb && cb();
+    }
+  }
+  frame();
+}
+
+function s1UpdateDOM(){
+  const row = document.getElementById('sim1Pairs');
+  row.innerHTML = s1Pairs.map(([a,b])=>
+    `<div style="display:flex;gap:4px;flex-direction:column;align-items:center;">
+      <div style="display:flex;gap:3px;">
+        <div class="sim-card ${a>0?'plus':'minus'}">${a>0?'+':'−'}</div>
+        <div class="sim-card ${b>0?'plus':'minus'}">${b>0?'+':'−'}</div>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#b0a090;">${a===b?'match':'diff'}</div>
+    </div>`
+  ).join('');
+  document.getElementById('sim1Readout').innerHTML =
+    `測定回数: <span class="hi">${s1Count}</span>　一致: <span class="hi">${s1Match}</span>　不一致: <span class="hi">${s1Diff}</span> <span class="dim">(理論では常に一致)</span>`;
+}
+document.getElementById('sim1Measure').addEventListener('click',()=>{
+  const [A,B] = measureQuantumPair(0,0);
+  s1Count++;
+  if(A===B) s1Match++; else s1Diff++;
+  s1Pairs.unshift([A,B]);
+  if(s1Pairs.length>16) s1Pairs.pop();
+  s1UpdateDOM();
+  // 演出として光子のアニメーションを重ねる(失敗しても結果は先に見える)
+  try{ s1Animate(A,B); }catch(e){ s1DrawStatic(A,B); }
+});
+document.getElementById('sim1Reset').addEventListener('click',()=>{
+  s1Count=0; s1Match=0; s1Diff=0; s1Pairs=[];
+  document.getElementById('sim1Pairs').innerHTML='';
+  document.getElementById('sim1Readout').innerHTML =
+    '測定回数: <span class="hi">0</span>　一致: <span class="hi">0</span>　不一致: <span class="hi">0</span>';
+  s1DrawStatic();
+});
+
+// -------- Phase 2 --------
+const s2Canvas = document.getElementById('sim2Canvas');
+const s2Ctx = s2Canvas.getContext('2d');
+let s2BobPlus=0, s2BobMinus=0, s2Ran=false;
+
+function s2Draw(){
+  s2Ctx.clearRect(0,0,600,260);
+  s2Ctx.fillStyle='#0d0d0d'; s2Ctx.fillRect(0,0,600,260);
+  // タイトル
+  s2Ctx.fillStyle='#e0d8c8'; s2Ctx.font="13px 'Source Serif 4',serif"; s2Ctx.textAlign='center';
+  s2Ctx.fillText('Bob側で「+」「−」が出た回数の比率(1000ペア中)', 300, 32);
+
+  const total = s2BobPlus + s2BobMinus;
+  const maxH = 140;
+  const plusRatio = total>0 ? s2BobPlus/total : 0;
+  const minusRatio = total>0 ? s2BobMinus/total : 0;
+  // 軸
+  s2Ctx.strokeStyle='#444'; s2Ctx.lineWidth=1;
+  s2Ctx.beginPath(); s2Ctx.moveTo(80,220); s2Ctx.lineTo(520,220); s2Ctx.stroke();
+  // 目盛 50%線
+  s2Ctx.strokeStyle='#666'; s2Ctx.setLineDash([3,4]);
+  s2Ctx.beginPath(); s2Ctx.moveTo(80, 220-maxH*0.5); s2Ctx.lineTo(520, 220-maxH*0.5); s2Ctx.stroke();
+  s2Ctx.setLineDash([]);
+  s2Ctx.fillStyle='#666'; s2Ctx.font="10px 'JetBrains Mono',monospace"; s2Ctx.textAlign='right';
+  s2Ctx.fillText('50%', 76, 220-maxH*0.5+3);
+  s2Ctx.fillText('0%', 76, 224);
+  s2Ctx.fillText('100%', 76, 220-maxH+3);
+  // バー
+  const plusH = plusRatio*maxH;
+  const minusH = minusRatio*maxH;
+  s2Ctx.fillStyle='#1a5a30'; s2Ctx.fillRect(160, 220-plusH, 110, plusH);
+  s2Ctx.fillStyle='#c4392a'; s2Ctx.fillRect(330, 220-minusH, 110, minusH);
+  // ラベル
+  s2Ctx.fillStyle='#e0d8c8'; s2Ctx.font="bold 16px 'JetBrains Mono',monospace"; s2Ctx.textAlign='center';
+  s2Ctx.fillText('+', 215, 244);
+  s2Ctx.fillText('−', 385, 244);
+  s2Ctx.font="11px 'Source Sans 3',sans-serif";
+  s2Ctx.fillStyle='#c8c8c8';
+  if(total>0){
+    s2Ctx.fillText((plusRatio*100).toFixed(1)+'%', 215, 220-plusH-6);
+    s2Ctx.fillText((minusRatio*100).toFixed(1)+'%', 385, 220-minusH-6);
+  }
+  if(!s2Ran){
+    s2Ctx.fillStyle='#7a6a55'; s2Ctx.font="11px 'Source Sans 3',sans-serif";
+    s2Ctx.fillText('「1000ペア測定」ボタンを押してください', 300, 140);
+  }
+}
+s2Draw();
+
+const s2SliderA = document.getElementById('sim2SliderA');
+s2SliderA.addEventListener('input',()=>{
+  document.getElementById('sim2ValA').textContent = s2SliderA.value + '°';
+});
+
+document.getElementById('sim2Run').addEventListener('click',()=>{
+  const thetaA = parseFloat(s2SliderA.value);
+  const thetaB = 0;
+  s2BobPlus=0; s2BobMinus=0;
+  for(let i=0;i<1000;i++){
+    const [,B] = measureQuantumPair(thetaA,thetaB);
+    if(B>0) s2BobPlus++; else s2BobMinus++;
+  }
+  s2Ran=true;
+  s2Draw();
+  document.getElementById('sim2Readout').innerHTML =
+    `Bob側の "+": <span class="hi">${s2BobPlus}</span>　"−": <span class="hi">${s2BobMinus}</span>　比率: <span class="hi">${(s2BobPlus/10).toFixed(1)}% : ${(s2BobMinus/10).toFixed(1)}%</span> <span class="dim">(Aliceの角度${thetaA}°に関係なくほぼ50:50)</span>`;
+});
+
+// -------- Phase 3 --------
+const s3Canvas = document.getElementById('sim3Canvas');
+const s3Ctx = s3Canvas.getContext('2d');
+let s3Ran=false, s3S=0;
+
+function s3Draw(){
+  s3Ctx.clearRect(0,0,600,260);
+  s3Ctx.fillStyle='#0d0d0d'; s3Ctx.fillRect(0,0,600,260);
+  // ゲージ
+  const cx=300, cy=180, r=110;
+  s3Ctx.strokeStyle='#2a2a2a'; s3Ctx.lineWidth=14;
+  s3Ctx.beginPath(); s3Ctx.arc(cx,cy,r,Math.PI, 2*Math.PI); s3Ctx.stroke();
+  // 古典領域 (0..2)
+  s3Ctx.strokeStyle='#3a3a3a'; s3Ctx.lineWidth=14;
+  const sMax = 3;  // scale up to S=3
+  function sToAngle(s){ return Math.PI + (s/sMax)*Math.PI; }
+  s3Ctx.beginPath(); s3Ctx.arc(cx,cy,r, sToAngle(0), sToAngle(2)); s3Ctx.stroke();
+  // 量子領域 (2..2.828)
+  s3Ctx.strokeStyle='#8b1a1a'; s3Ctx.lineWidth=14;
+  s3Ctx.beginPath(); s3Ctx.arc(cx,cy,r, sToAngle(2), sToAngle(2.828)); s3Ctx.stroke();
+  // 現在のS
+  const S = Math.min(Math.abs(s3S), sMax);
+  if(s3Ran){
+    s3Ctx.strokeStyle = Math.abs(s3S)>2 ? '#e8c56a' : '#4a9e6a';
+    s3Ctx.lineWidth=14;
+    s3Ctx.beginPath(); s3Ctx.arc(cx,cy,r, sToAngle(0), sToAngle(S)); s3Ctx.stroke();
+  }
+  // 端ラベル(canvas上端付近に固定配置 + リング上の対応位置から細い引き出し線)
+  s3Ctx.save();
+  s3Ctx.font="bold 12px 'Source Sans 3',sans-serif";
+  s3Ctx.textAlign='center';
+  s3Ctx.textBaseline='middle';
+  function drawGaugeLabel(text, sValue, color, fixedX, fixedY){
+    // リング上の対応点
+    const angle = sToAngle(sValue);
+    const ringX = cx + Math.cos(angle) * (r - 7);
+    const ringY = cy + Math.sin(angle) * (r - 7);
+    // 引き出し線(ラベル右下の角→リング)
+    s3Ctx.strokeStyle = color;
+    s3Ctx.lineWidth = 0.8;
+    s3Ctx.setLineDash([2,2]);
+    s3Ctx.beginPath();
+    s3Ctx.moveTo(fixedX, fixedY + 11);
+    s3Ctx.lineTo(ringX, ringY);
+    s3Ctx.stroke();
+    s3Ctx.setLineDash([]);
+    // ラベル本体
+    const metrics = s3Ctx.measureText(text);
+    const w = metrics.width + 14, h = 22;
+    s3Ctx.fillStyle = 'rgba(13,13,13,0.92)';
+    s3Ctx.fillRect(fixedX - w/2, fixedY - h/2, w, h);
+    s3Ctx.strokeStyle = color;
+    s3Ctx.lineWidth = 1;
+    s3Ctx.strokeRect(fixedX - w/2, fixedY - h/2, w, h);
+    s3Ctx.fillStyle = color;
+    s3Ctx.fillText(text, fixedX, fixedY);
+  }
+  // 上端に左右並列で固定配置
+  drawGaugeLabel('古典上限 |S|=2', 2,     '#e0d8c8', 200, 28);
+  drawGaugeLabel('量子最大 2√2',   2.828, '#e8c56a', 410, 28);
+  s3Ctx.restore();
+  // 中央表示(半円の弧の内側に収まるよう、フォントとレイアウトを調整)
+  s3Ctx.save();
+  s3Ctx.textAlign='center';
+  s3Ctx.textBaseline='alphabetic';
+  if (s3Ran) {
+    // ラベル「|S| =」と数値を分けてサイズ調整
+    s3Ctx.fillStyle = Math.abs(s3S)>2 ? '#e8c56a' : '#9ab4cc';
+    s3Ctx.font="600 18px 'Source Sans 3',sans-serif";
+    s3Ctx.fillText('|S| =', cx, cy-30);
+    s3Ctx.font="bold 32px 'Playfair Display',serif";
+    s3Ctx.fillText(Math.abs(s3S).toFixed(3), cx, cy);
+    s3Ctx.fillStyle='#bbb';
+    s3Ctx.font="600 11px 'Source Sans 3',sans-serif";
+    s3Ctx.fillText(Math.abs(s3S)>2 ? '古典の限界を超えた!' : '古典の範囲内', cx, cy+22);
+  } else {
+    s3Ctx.fillStyle='#9ab4cc';
+    s3Ctx.font="bold 36px 'Playfair Display',serif";
+    s3Ctx.fillText('?', cx, cy);
+    s3Ctx.fillStyle='#888';
+    s3Ctx.font="11px 'Source Sans 3',sans-serif";
+    s3Ctx.fillText('4設定で測定してください', cx, cy+22);
+  }
+  s3Ctx.restore();
+  // 目盛(半円弧の内側、十分内寄せして数値表示と重ならない位置に)
+  s3Ctx.fillStyle='#7a6a55'; s3Ctx.font="10px 'JetBrains Mono',monospace";
+  s3Ctx.textAlign='center'; s3Ctx.textBaseline='middle';
+  [
+    {v:0, dist:r-12},
+    {v:1, dist:r-14},
+    {v:2, dist:r-14},
+    {v:3, dist:r-12},
+  ].forEach(({v, dist})=>{
+    const a = sToAngle(v);
+    const tx = cx + Math.cos(a)*dist;
+    const ty = cy + Math.sin(a)*dist;
+    s3Ctx.fillText(v.toString(), tx, ty);
+  });
+}
+s3Draw();
+
+['sim3Aa','sim3Aap','sim3Bb','sim3Bbp'].forEach((id,i)=>{
+  const el=document.getElementById(id);
+  const valId=['sim3ValAa','sim3ValAap','sim3ValBb','sim3ValBbp'][i];
+  el.addEventListener('input',()=>{
+    const v=parseFloat(el.value);
+    document.getElementById(valId).textContent = (Number.isInteger(v) ? v : v.toFixed(1)) + '°';
+  });
+});
+
+function estimateCorrelation(thetaA, thetaB, N){
+  let sum = 0;
+  for(let i=0;i<N;i++){
+    const [A,B] = measureQuantumPair(thetaA, thetaB);
+    sum += A*B;
+  }
+  return sum/N;
+}
+
+document.getElementById('sim3Run').addEventListener('click',()=>{
+  const a = parseFloat(document.getElementById('sim3Aa').value);
+  const ap = parseFloat(document.getElementById('sim3Aap').value);
+  const b = parseFloat(document.getElementById('sim3Bb').value);
+  const bp = parseFloat(document.getElementById('sim3Bbp').value);
+  const N = 1000;
+  const Eab  = estimateCorrelation(a, b,  N);
+  const Eabp = estimateCorrelation(a, bp, N);
+  const Eapb = estimateCorrelation(ap, b, N);
+  const Eapbp= estimateCorrelation(ap, bp, N);
+  const S = Eab - Eabp + Eapb + Eapbp;
+  s3S = S; s3Ran = true; s3Draw();
+  function fmt(v){ return (v>=0?'+':'')+v.toFixed(3); }
+  document.getElementById('sim3Readout').innerHTML =
+    `E(a,b)=<span class="hi">${fmt(Eab)}</span>　E(a,b′)=<span class="hi">${fmt(Eabp)}</span>　E(a′,b)=<span class="hi">${fmt(Eapb)}</span>　E(a′,b′)=<span class="hi">${fmt(Eapbp)}</span>`;
+  document.getElementById('sim3S').textContent = fmt(S);
+});
+
+document.getElementById('sim3Optim').addEventListener('click',()=>{
+  document.getElementById('sim3Aa').value = 0;
+  document.getElementById('sim3Aap').value = 45;
+  document.getElementById('sim3Bb').value = 22.5;
+  document.getElementById('sim3Bbp').value = 67.5;
+  document.getElementById('sim3ValAa').textContent='0°';
+  document.getElementById('sim3ValAap').textContent='45°';
+  document.getElementById('sim3ValBb').textContent='22.5°';
+  document.getElementById('sim3ValBbp').textContent='67.5°';
+});
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// SHARED HEADER
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">検索インデックスを読み込み中…</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div><!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6b7b629057d241878dda2a4f3169e5cb"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

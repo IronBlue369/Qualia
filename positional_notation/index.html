@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>位取り記数法の革命 — Qualia Journal</title>
+<meta name="description" content="ローマ数字で 38×17 を計算してみればわかる。位取りという記法そのものがなぜ革命だったのかを、ローマ数字とアラビア数字を並走させて体感する。">
+<link rel="canonical" href="https://qualiajournal.com/positional_notation">
+<meta property="og:title" content="位取り記数法の革命 — Qualia Journal">
+<meta property="og:description" content="ローマ数字で 38×17 を計算してみればわかる。位取りという記法そのものがなぜ革命だったのかを、ローマ数字とアラビア数字を並走させて体感する。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/positional_notation">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="位取り記数法の革命 — Qualia Journal">
+<meta name="twitter:description" content="ローマ数字で 38×17 を計算してみればわかる。位取りという記法そのものがなぜ革命だったのかを、ローマ数字とアラビア数字を並走させて体感する。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"位取り記数法の革命","description":"ローマ数字で 38×17 を計算してみればわかる。位取りという記法そのものがなぜ革命だったのかを、ローマ数字とアラビア数字を並走させて体感する。","author":{"@type":"Person","name":"e. Tamaki"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/positional_notation","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"数学・論理","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"位取り記数法の革命"}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-stat{border:1px solid #c8bfaa;padding:28px 24px;background:#f3efe6;text-align:center;margin-bottom:20px;}
+.cover-stat-n{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:8px;}
+.cover-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.6;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* IMAGE */
+.img-block{margin:28px 0;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;}
+.img-block img{width:100%;display:block;}
+.img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.6;}
+.img-caption .credit{color:#b0a090;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block-img{background:#ede8dc;overflow:hidden;aspect-ratio:1/1;width:120px;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+/* 人物画像ごとの中心位置調整(object-fit:cover で人物が枠内に収まるように) */
+.person-block-img.pb-brahmagupta img{object-position:30% center;}
+.person-block-img.pb-alkhwarizmi img{object-position:center 28%;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}
+.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;margin-bottom:8px;}
+.person-block-wiki a{color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}
+.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#b0a090;line-height:1.6;margin-top:8px;padding-top:6px;border-top:1px solid #e0d8c8;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* ── 記事固有: 位取り記数法 ── */
+
+/* 位取り原理SVG枠(旧) */
+.svg-fig{margin:28px 0;max-width:680px;margin-left:auto;margin-right:auto;}
+.svg-fig svg{width:100%;height:auto;display:block;}
+.svg-caption{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-align:center;margin-top:8px;line-height:1.6;}
+
+/* 加算型 vs 位取り型 比較図解(絵=SVG/文字=HTML分離型) */
+.contrast-fig{margin:32px 0;background:white;border:1px solid #c8bfaa;padding:24px 26px 20px;}
+.cf-row{margin-bottom:12px;}
+.cf-row-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #e0d8c8;}
+.cf-add .cf-row-head{border-bottom-color:#e0d8c8;}
+.cf-pos .cf-row-head{border-bottom-color:#8b1a1a;}
+.cf-kind-tag{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;padding:5px 14px;text-transform:uppercase;}
+.cf-kind-add{background:#ede8dc;color:#7a6a55;border:1px solid #c8bfaa;}
+.cf-kind-pos{background:#8b1a1a;color:white;}
+.cf-kind-desc{font-family:'Source Serif 4',serif;font-size:15px;font-weight:300;color:#3d3020;font-style:italic;}
+.cf-row-body{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding:8px 0 16px;}
+.cf-symbols{flex-shrink:0;}
+.cf-symbols svg{display:block;height:64px;width:auto;}
+.cf-eq{font-family:'Playfair Display',serif;color:#1a1208;flex:1;min-width:280px;}
+.cf-eq-line{font-size:20px;font-weight:400;line-height:1.5;margin-bottom:6px;}
+.cf-eq-result{font-size:26px;font-weight:700;color:#8b1a1a;}
+.cf-sep{border:none;border-top:1px solid #e0d8c8;margin:18px 0;}
+.cf-place-grid{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.cf-place{display:flex;flex-direction:column;align-items:center;}
+.cf-place .cf-digit{width:64px;height:74px;display:flex;align-items:center;justify-content:center;background:#f3e6e6;border:2px solid #8b1a1a;font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:600;color:#8b1a1a;letter-spacing:0;}
+.cf-place .cf-mul{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#7a6a55;margin-top:8px;letter-spacing:.04em;}
+.cf-plus{font-family:'Playfair Display',serif;font-size:30px;font-weight:400;color:#1a1208;}
+.cf-result{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#8b1a1a;margin-left:14px;align-self:center;}
+.cf-note{font-family:'Source Serif 4',serif;font-size:15px;font-weight:300;color:#3d3020;line-height:1.7;margin-top:14px;padding:10px 14px;background:#f3efe6;border-left:3px solid #8b1a1a;}
+.cf-note strong{color:#8b1a1a;font-weight:600;}
+.cf-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;text-align:center;margin-top:14px;padding-top:12px;border-top:1px solid #e0d8c8;line-height:1.7;}
+@media(max-width:700px){
+  .contrast-fig{padding:18px 18px 16px;}
+  .cf-row-body{gap:14px;}
+  .cf-symbols svg{height:48px;}
+  .cf-eq-line{font-size:16px;}
+  .cf-eq-result{font-size:22px;}
+  .cf-place .cf-digit{width:50px;height:60px;font-size:28px;}
+  .cf-place .cf-mul{font-size:12px;}
+  .cf-plus{font-size:24px;}
+  .cf-result{font-size:22px;margin-left:6px;}
+}
+
+/* 並走計算機 */
+.race{margin:36px 0;background:white;border:1px solid #c8bfaa;}
+.race-head{padding:14px 18px;border-bottom:1px solid #c8bfaa;background:#f3efe6;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.race-q{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1a1208;letter-spacing:.02em;}
+.race-q em{color:#8b1a1a;font-style:normal;}
+.race-ctrls{display:flex;gap:8px;}
+.race-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;padding:8px 18px;background:#8b1a1a;color:white;border:none;cursor:pointer;transition:background .18s;}
+.race-btn:hover{background:#6a1010;}
+.race-btn.secondary{background:white;color:#3d3020;border:1px solid #c8bfaa;}
+.race-btn.secondary:hover{background:#ede8dc;}
+.race-btn:disabled{background:#c8bfaa;color:#7a6a55;cursor:not-allowed;}
+.race-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#c8bfaa;}
+.race-col{background:white;padding:12px 14px 16px;}
+.race-col-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid #e0d8c8;}
+.race-col-title{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#1a1208;}
+.race-col-count{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:#8b1a1a;}
+.race-col-system{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-bottom:8px;letter-spacing:.04em;}
+.race-step{font-family:'Source Sans 3',sans-serif;font-size:11px;line-height:1.5;color:#b0a090;padding:4px 6px 4px 22px;position:relative;transition:color .25s,background .25s;border-bottom:none;}
+.race-step::before{content:attr(data-n);position:absolute;left:0;top:4px;width:18px;height:18px;line-height:18px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;color:#b0a090;background:#f3efe6;border-radius:50%;}
+.race-step.active{color:#1a1208;font-weight:500;background:#fdf3d8;}
+.race-step.active::before{background:#8b1a1a;color:white;}
+.race-step.done{color:#9a8878;}
+.race-step.done::before{background:#c8bfaa;color:#faf8f3;}
+.race-result{margin-top:10px;padding:8px 10px;background:#1a1208;color:#e8c56a;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.04em;text-align:center;opacity:0;transition:opacity .3s;}
+.race-result.show{opacity:1;}
+.race-foot{padding:14px 18px;background:#faf8f3;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;line-height:1.75;}
+.race-foot strong{color:#8b1a1a;font-weight:600;}
+@media(max-width:720px){
+  .race-cols{grid-template-columns:1fr;}
+  .race-col{padding:14px 16px 18px;}
+}
+
+/* 数表記ビューア */
+.notator{margin:36px 0;background:white;border:1px solid #c8bfaa;overflow:hidden;}
+.notator-head{padding:14px 22px;background:#1a1208;color:#e8ddd0;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.notator-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#e8ddd0;letter-spacing:.02em;}
+.notator-title::before{content:'◆';color:#c8785a;margin-right:8px;font-size:11px;vertical-align:1px;}
+.notator-hint{font-family:'Source Sans 3',sans-serif;font-size:10px;letter-spacing:.1em;color:#9a8878;text-transform:uppercase;}
+.notator-input-row{display:flex;align-items:center;gap:14px;padding:18px 22px;background:#f3efe6;border-bottom:1px solid #e0d8c8;}
+.notator-input-row label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#7a6a55;text-transform:uppercase;}
+.notator-input-row input[type=range]{flex:1;accent-color:#8b1a1a;}
+.notator-input-row input[type=number]{width:96px;padding:8px 12px;border:1px solid #8b1a1a;background:white;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#8b1a1a;text-align:right;outline:none;}
+.notator-input-row input[type=number]:focus{box-shadow:0 0 0 3px rgba(139,26,26,.15);}
+.notator-out{padding:6px 22px 18px;display:flex;flex-direction:column;}
+.notator-row{display:grid;grid-template-columns:130px 1fr 110px;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid #e0d8c8;}
+.notator-row:last-child{border-bottom:none;}
+.notator-sys{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#1a1208;text-transform:uppercase;}
+.notator-sys::before{content:'';display:inline-block;width:6px;height:6px;background:#8b1a1a;margin-right:8px;vertical-align:2px;}
+.notator-val{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#1a1208;word-break:break-all;padding:6px 14px;background:#faf8f3;border-left:3px solid #8b1a1a;min-width:0;letter-spacing:.04em;}
+.notator-val.mono{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;}
+.notator-kind{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;text-align:center;white-space:nowrap;}
+.notator-kind.pos{background:#8b1a1a;color:white;}
+.notator-kind.add{background:#ede8dc;color:#7a6a55;border:1px solid #c8bfaa;}
+@media(max-width:720px){
+  .notator-row{grid-template-columns:1fr;gap:6px;padding:12px 0;}
+  .notator-sys{margin-bottom:0;}
+  .notator-val{font-size:20px;}
+  .notator-kind{justify-self:flex-start;}
+}
+
+/* ゼロ不在デモ */
+.zdemo{margin:36px 0;background:white;border:1px solid #c8bfaa;overflow:hidden;}
+.zdemo-head{padding:16px 22px;background:linear-gradient(135deg,#1a1208,#3d2820);color:#e8ddd0;}
+.zdemo-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#e8ddd0;margin-bottom:4px;letter-spacing:.02em;}
+.zdemo-title::before{content:'◇';color:#c8785a;margin-right:8px;font-size:12px;vertical-align:1px;}
+.zdemo-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#c8b8a8;line-height:1.7;font-weight:300;}
+.zdemo-ctrls{display:flex;gap:0;padding:0;background:#ede8dc;border-bottom:1px solid #c8bfaa;}
+.zdemo-btn{flex:1;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;letter-spacing:.04em;padding:14px 12px;background:transparent;color:#7a6a55;border:none;border-right:1px solid #c8bfaa;cursor:pointer;transition:all .2s;}
+.zdemo-btn:last-child{border-right:none;}
+.zdemo-btn:hover{background:#f3efe6;color:#3d3020;}
+.zdemo-btn.active{background:#8b1a1a;color:white;font-weight:600;}
+.zdemo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#c8bfaa;padding:1px;}
+.zdemo-cell{background:#faf8f3;padding:24px 16px 28px;text-align:center;border:none;}
+.zdemo-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:14px;}
+.zdemo-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:#1a1208;letter-spacing:.02em;min-height:50px;line-height:1.1;}
+.zdemo-num .ph{color:#c4392a;font-weight:400;letter-spacing:0;}
+.zdemo-foot{padding:14px 22px;background:#f3efe6;border-top:1px solid #c8bfaa;border-left:4px solid #8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.75;}
+.zdemo-foot strong{color:#8b1a1a;font-weight:600;}
+@media(max-width:720px){
+  .zdemo-ctrls{flex-direction:column;}
+  .zdemo-btn{border-right:none;border-bottom:1px solid #c8bfaa;}
+  .zdemo-num{font-size:34px;}
+}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
+  .person-block-img img{max-height:160px;width:auto;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .svg-fig{max-width:100%;}
+  .zdemo-grid{grid-template-columns:1fr;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.img-caption{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){.toc-back{padding:22px 20px;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">97 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Appendix I · 数の風景</p>
+    <h1>位取り記数法の<em>革命</em></h1>
+    <p class="cover-deck">ローマ数字で 38 × 17 を計算してみる。そこに現れる十二の手順が、「位取り」という記法がどれほど革命的だったかを教えてくれる。</p>
+    <div class="cover-byline"><span>数学・論理</span><span>記数法</span><span>知の歴史</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">628</span>
+      <p class="est-event">ブラーマグプタが『ブラーマ・スプタ・シッダーンタ』でゼロを数として初めて定義。位取り記数法が理論的に完成。</p>
+      <p class="est-context">同じ年、ビザンツ帝国のヘラクレイオスがサーサーン朝との26年戦争を終結させ聖十字架を奪還。日本では推古天皇が崩御した。</p>
+    </div>
+    <p class="cover-aside">指10本で生まれた10進法に、インドの数学者たちがもう一つ別の革命を重ねた。それが<strong>「位置で値を変える」</strong>という発想である。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>スマホの電卓を取り出して 38 × 17 と打ち込む。指が画面に触れた瞬間、646 という答えがそこにある。</p>
+    <p>私たちは数を書くという行為を、生まれた時から「位取り」として知っている。1の位、10の位、100の位。これが数の書き方だと信じている。</p>
+    <p>しかしおよそ1400年前、人類の大半はこの書き方を知らなかった。そして知ってからヨーロッパに行き渡るまで、およそ千年かかった。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 数学の知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 16 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item"><span class="meta-label">Published</span><span class="date-value">2026-04-30</span></div>
+    <div class="date-item"><span class="meta-label">Updated</span><span class="date-value">2026-04-30</span></div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">この記事では、ローマ数字とアラビア数字で同じ計算を並走させることで、<strong>「位取り」という記法そのもの</strong>がなぜ革命だったかを体感できる。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ═══════ 背景セクション ═══════ -->
+  <div class="sec-rule fade"><span class="sec-label">01 — 背景</span><div class="sec-line"></div></div>
+  <h2 class="fade">ローマ数字で 38 × 17 を書いてみる</h2>
+
+  <p class="body-text fade"><strong>XXXVIII × XVII</strong>。これが 38 × 17 のローマ数字表記である。<span class="tip" onclick="toggleTip(this)">ラテン世界<span class="tip-box"><strong>ラテン世界</strong>古代ローマ帝国の言語(ラテン語)と文化の影響圏。およそ西ヨーロッパ全域を指し、ローマ滅亡後も中世カトリック教会と修道院を通じてラテン語が使われ続けた。</span></span>では15世紀まで、この形で数を書いていた。紀元前の<span class="tip" onclick="toggleTip(this)">共和政期<span class="tip-box"><strong>共和政期(きょうわせいき)</strong>紀元前509年〜紀元前27年のローマの政治体制。元老院と執政官による統治で、皇帝はまだ存在しなかった時代。</span></span>から、<span class="tip" onclick="toggleTip(this)">帝政ローマ<span class="tip-box"><strong>帝政ローマ</strong>紀元前27年〜のローマ帝国時代。アウグストゥス以降、皇帝による統治が続き、最盛期にはヨーロッパ・北アフリカ・西アジアに広大な版図を持った。</span></span>を経て、<span class="tip" onclick="toggleTip(this)">中世ヨーロッパ<span class="tip-box"><strong>中世ヨーロッパ</strong>西ローマ帝国滅亡(476年)から15世紀末頃までのおよそ1000年間。教会・封建領主・都市国家が並立し、学問は修道院と少数の大学に集中していた。</span></span>の<span class="tip" onclick="toggleTip(this)">修道院<span class="tip-box"><strong>修道院(しゅうどういん)</strong>キリスト教の修道士・修道女が共同で祈り・労働・学問を行う宗教施設。中世ヨーロッパでは写本の作成と記録の保管が行われ、知の集積地でもあった。</span></span>の帳簿まで、千数百年のあいだ「数を書く」とはこういうことだった。</p>
+
+  <p class="body-text fade">問題は、この記法では<em>紙の上で直接掛け算ができない</em>ということである。X は X のまま、V は V のまま。桁(けた)という概念がない。だからローマ人は、計算そのものを紙から切り離し、<span class="tip" onclick="toggleTip(this)">アバカス<span class="tip-box"><strong>アバカス（計算盤）</strong>珠(たま)や小石を溝やワイヤー上で動かして計算する道具。ローマのアバカスは青銅製の板に溝が刻まれ、珠を指で滑らせて足し算・引き算・掛け算を行った。紙の記法が位取りを持たないかわり、道具の側に位取りを埋め込んだ形だった。</span></span>という計算盤の上で行った。紙は結果を記録するだけの場所だった。</p>
+
+  <div class="img-block fade">
+    <img src="./roman_abacus.jpg" alt="ローマのアバカスの図(1911年百科事典より)">
+    <p class="img-caption">ローマのアバカスの図解。上下に分かれた溝に珠(たま)が並び、各列が「一」「十」「百」…の位を担う。位取りを<em>道具の側</em>に物理的に埋め込んだ装置である。<br><span class="credit">Encyclopædia Britannica, 11th edition, 1911 / Public Domain</span></p>
+  </div>
+
+  <p class="body-text fade">一方、7世紀のインドでは、紙の上にだけ書かれた記号で直接計算ができる新しい記法が完成しつつあった。<strong>0 から 9 までの十個の記号</strong>と、<strong>ゼロという「空位の目印」</strong>。そして何より、<em>同じ記号でも置かれた位置によって値が変わる</em>という大胆な発想。これが位取り記数法である。その理論的完成を告げたのが、628年に<span class="tip" onclick="toggleTip(this)">ブラーマグプタ<span class="tip-box"><strong>ブラーマグプタ(c.598–668)</strong>インドのウッジャイン(現インド中部)で活躍した数学者・天文学者。ゼロを「数」として初めて体系的に定義した人物。著書『ブラーマ・スプタ・シッダーンタ』(628年)で位取り記数法の理論的完成を告げた。</span></span>が書いた『<span class="tip" onclick="toggleTip(this)">ブラーマ・スプタ・シッダーンタ<span class="tip-box"><strong>Brāhma-sphuṭa-siddhānta</strong>「ブラフマー(ヒンドゥー教の創造神)によって正確に確立された教義」の意。全24章、1008の詩節からなる数理天文学の大著。第18章が数論で、ここでゼロと負数の演算規則が初めて体系的に記された。</span></span>』という一冊の本だった。</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img pb-brahmagupta"><img src="./brahmagupta.jpg" alt="ブラーマグプタ像"></div>
+    <div class="person-block-body">
+      <p class="person-block-name">ブラーマグプタ</p>
+      <p class="person-block-role">Brahmagupta, c.598–668</p>
+      <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%A9%E3%83%95%E3%83%9E%E3%82%B0%E3%83%97%E3%82%BF" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p class="person-block-desc">インドのウッジャインで活躍した天文学者・数学者。628年、30歳のときに『<span class="tip" onclick="toggleTip(this)">ブラーマ・スプタ・シッダーンタ<span class="tip-box"><strong>Brāhma-sphuṭa-siddhānta</strong>「ブラフマーによって正確に確立された教義」の意。全24章、1008偈からなる数理天文学の大著。第18章が数論で、ここでゼロと負数の演算規則が初めて体系的に記された。</span></span>』を著し、ゼロを数として初めて数学的に定義。「数にゼロを足しても引いても変わらない」「ゼロにゼロを足してもゼロ」という当たり前の規則こそが、位取り記数法を完成させた鍵だった。</p>
+      <p class="person-block-credit">Photo: Pur 0 0 / CC0 (Shaheedi Park, Delhi, 2024)</p>
+    </div>
+  </div>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"The sum of zero and a negative number is negative; the sum of zero and a positive number is positive; the sum of zero and zero is zero."</p>
+    <p class="quote-ja">ゼロと負の数の和は負の数である。ゼロと正の数の和は正の数である。ゼロとゼロの和はゼロである。</p>
+    <p class="quote-attr">— Brahmagupta, <em>Brāhma-sphuṭa-siddhānta</em>, Chapter 18 (628 CE)</p>
+  </div>
+
+  <div class="img-block fade">
+    <img src="./bakhshali_numerals.jpg" alt="バフシャーリー写本の数字表記">
+    <p class="img-caption">バフシャーリー写本（3〜7世紀、インド北西部）に記された数字。点（・）が「空位の目印」としてのゼロ記号。現在知られる最古のゼロ記号の一つである。<br><span class="credit">Image: A. F. R. Hoernle, <em>On The Bakhshali Manuscript</em>, 1887 / Public Domain</span></p>
+  </div>
+
+  <p class="body-text fade">ブラーマグプタの書は、8世紀にアラビア語へ訳され、<span class="tip" onclick="toggleTip(this)">アル・フワーリズミー<span class="tip-box"><strong>al-Khwārizmī（c.780–850）</strong>バグダードの「知恵の館」に仕えたペルシア系の数学者・天文学者・地理学者。825年頃『インド数の計算について』を執筆し、インドの位取り記数法をアラビア世界に広めた。彼の名前のラテン化 Algoritmi が「アルゴリズム」の語源になった。</span></span>がバグダードでさらに普及版を書いた。この記法はイスラム世界を通って800年近く旅をし、ようやく13世紀にヨーロッパへ到達する。運び手はイタリア商人の息子、レオナルド・フィボナッチだった。</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img pb-alkhwarizmi"><img src="./al_khwarizmi.jpg" alt="アル・フワーリズミー"></div>
+    <div class="person-block-body">
+      <p class="person-block-name">アル・フワーリズミー</p>
+      <p class="person-block-role">Muḥammad ibn Mūsā al-Khwārizmī, c.780–850</p>
+      <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AF%E3%83%BC%E3%83%AA%E3%82%BA%E3%83%9F%E3%83%BC" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p class="person-block-desc">バグダードの「知恵の館」で活躍したペルシア系の数学者・天文学者・地理学者。825年頃『インド数の計算について』を執筆し、インドの0〜9の記号と位取りをアラビア世界へ広めた。彼の名前のラテン読み Algoritmi が「アルゴリズム」の語源となり、別書 <em>al-jabr</em> は「代数(algebra)」の語源となった。</p>
+      <p class="person-block-credit">Image: 1983年ソ連記念切手(生誕1200年) / PD-RU-exempt</p>
+    </div>
+  </div>
+
+  <div class="person-block fade" style="grid-template-columns:1fr;">
+    <div class="person-block-body" style="border-left:none;">
+      <p class="person-block-name">レオナルド・フィボナッチ(ピサのレオナルド)</p>
+      <p class="person-block-role">Leonardo Fibonacci, c.1170–c.1250</p>
+      <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%AC%E3%82%AA%E3%83%8A%E3%83%AB%E3%83%89%E3%83%BB%E3%83%95%E3%82%A3%E3%83%9C%E3%83%8A%E3%83%83%E3%83%81" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p class="person-block-desc">ピサ出身のイタリア人商人・数学者。父親の仕事の関係で北アフリカの<span class="tip" onclick="toggleTip(this)">ベジャーヤ<span class="tip-box"><strong>ベジャーヤ(Béjaïa)</strong>現在のアルジェリア北部の港町。中世はイスラム王朝の交易拠点として栄え、ピサなどイタリア商人の商館もあった。フィボナッチはここでアラビア商人の計算法を学んだ。</span></span>で育ち、アラビア商人の計算法を習得。1202年『<span class="tip" onclick="toggleTip(this)">算盤の書<span class="tip-box"><strong>Liber Abaci(リベル・アバキ)</strong>1202年刊。「アバカス(算盤)の書」の意だが、内容は逆説的に「アバカスを捨てよ」の本だった。商人の日常の計算例を通してインド・アラビア数字の優位を説き、西欧の商業革命を駆動した。</span></span>(Liber Abaci)』をピサで発表し、インド・アラビア数字をヨーロッパに本格紹介した。</p>
+    </div>
+  </div>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"The nine Indian figures are: 9 8 7 6 5 4 3 2 1. With these nine figures, and with the sign 0, which the Arabs call zephir, any number whatsoever can be written."</p>
+    <p class="quote-ja">インドの九つの数字は、9 8 7 6 5 4 3 2 1。この九つの数字に、アラブ人が zephir と呼ぶ 0 という記号を加えれば、いかなる数も書き表せる。</p>
+    <p class="quote-attr">— Leonardo Fibonacci, <em>Liber Abaci</em>, Prologue (1202)</p>
+  </div>
+
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">✗ 誤解</p>
+          <p class="mis-text">ローマ数字も位取り記数法の一種である。ただ記号が違うだけ。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">✓ 実際は</p>
+          <p class="mis-text">ローマ数字は<em>加算型</em>で、位取りではない。I は常に 1、X は常に 10。「位置」に意味がなく、記号を足し合わせるだけ。だから紙の上で掛け算ができない。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">✗ 誤解</p>
+          <p class="mis-text">「アラビア数字」だからアラブが発明した。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">✓ 実際は</p>
+          <p class="mis-text">発明はインド（5〜7世紀）。アラブはインドから受け継いでヨーロッパに橋渡しをした中継者である。アラブ自身は今も「<em>インド数字</em>（アラカーム・ヒンディー）」と呼ぶ。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">✗ 誤解</p>
+          <p class="mis-text">位取りとは10進法のこと。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">✓ 実際は</p>
+          <p class="mis-text">位取りは<em>原理</em>で、10は選ばれた<em>基数</em>の一つ。バビロニアは60進、マヤは20進、現代のコンピュータは2進。どれも「位置が値を決める」という共通の骨格を持つ。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 位取り原理の図解(絵=SVG/文字=HTML 分離型) -->
+  <div class="contrast-fig fade">
+    <!-- 上段: 加算型 -->
+    <div class="cf-row cf-add">
+      <div class="cf-row-head">
+        <span class="cf-kind-tag cf-kind-add">加算型</span>
+        <span class="cf-kind-desc">— 記号を足し合わせる</span>
+      </div>
+      <div class="cf-row-body">
+        <div class="cf-symbols cf-roman">
+          <svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMid meet" aria-label="CCCLXVII">
+            <text x="0" y="60" font-family="Playfair Display, serif" font-size="56" font-weight="900" fill="#1a1208">C C C L X V I I</text>
+          </svg>
+        </div>
+        <div class="cf-eq">
+          <p class="cf-eq-line">= 100 + 100 + 100 + 50 + 10 + 5 + 1 + 1</p>
+          <p class="cf-eq-result">= 367</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="cf-sep">
+
+    <!-- 下段: 位取り型 -->
+    <div class="cf-row cf-pos">
+      <div class="cf-row-head">
+        <span class="cf-kind-tag cf-kind-pos">位取り型</span>
+        <span class="cf-kind-desc">— 位置が値を決める</span>
+      </div>
+      <div class="cf-row-body">
+        <div class="cf-place-grid">
+          <div class="cf-place"><div class="cf-digit">3</div><div class="cf-mul">× 100</div></div>
+          <div class="cf-plus">+</div>
+          <div class="cf-place"><div class="cf-digit">6</div><div class="cf-mul">× 10</div></div>
+          <div class="cf-plus">+</div>
+          <div class="cf-place"><div class="cf-digit">7</div><div class="cf-mul">× 1</div></div>
+          <div class="cf-result">= 367</div>
+        </div>
+        <p class="cf-note">同じ「3」でも、置かれた位置によって <strong>3 / 30 / 300</strong> と値が変わる。</p>
+      </div>
+    </div>
+
+    <p class="cf-caption">ローマ数字(加算型)は記号を足し合わせるだけ。位取り型は同じ記号でも位置によって掛かる係数が変わる。これが記法の根本的な違いである。</p>
+  </div>
+
+  <!-- ═══════ 体験セクション ═══════ -->
+  <div class="sec-rule fade"><span class="sec-label">02 — 体験</span><div class="sec-line"></div></div>
+  <h2 class="fade">三つの記法で 38 × 17 を並走する</h2>
+
+  <p class="body-text fade">同じ計算を、三つの記法で同時に走らせてみる。左がローマ数字、中央が現代のアラビア数字、右がバビロニアの60進法。「次の手順へ」ボタンで三者同時に一手ずつ進む。<strong>どの記法で何手かかったか</strong>——数字の持つ「革命性」は、この手数の差に凝縮されている。</p>
+
+  <div class="race fade">
+    <div class="race-head">
+      <div class="race-q"><em>38</em> × <em>17</em> = ?</div>
+      <div class="race-ctrls">
+        <button class="race-btn" id="raceNext">次の手順へ →</button>
+        <button class="race-btn secondary" id="raceReset">最初から</button>
+      </div>
+    </div>
+    <div class="race-cols">
+      <div class="race-col">
+        <div class="race-col-head">
+          <span class="race-col-title">ローマ数字</span>
+          <span class="race-col-count" id="raceCountR">0 / 12</span>
+        </div>
+        <p class="race-col-system">加算型・アバカス前提</p>
+        <div id="raceColR"></div>
+        <div class="race-result" id="raceResR">XXXVIII × XVII = DCXLVI</div>
+      </div>
+      <div class="race-col">
+        <div class="race-col-head">
+          <span class="race-col-title">アラビア数字</span>
+          <span class="race-col-count" id="raceCountA">0 / 4</span>
+        </div>
+        <p class="race-col-system">10進位取り・紙の上で完結</p>
+        <div id="raceColA"></div>
+        <div class="race-result" id="raceResA">38 × 17 = 646</div>
+      </div>
+      <div class="race-col">
+        <div class="race-col-head">
+          <span class="race-col-title">バビロニア</span>
+          <span class="race-col-count" id="raceCountB">0 / 3</span>
+        </div>
+        <p class="race-col-system">60進位取り・乗算表前提</p>
+        <div id="raceColB"></div>
+        <div class="race-result" id="raceResB">38 × 17 = 10;46 (sexagesimal)</div>
+      </div>
+    </div>
+    <div class="race-foot" id="raceFoot">三系統の計算手順を同時に走らせます。ボタンを押して一手ずつ進めてください。</div>
+  </div>
+
+  <p class="body-text fade">アラビア数字では <strong>4 手</strong>、しかもすべて紙の上で完結する。ローマ数字では <strong>12 手</strong>、そのうちの大半は紙ではなくアバカスの珠(たま)を動かす物理操作である。バビロニアは<em>乗算表(掛け算の早見表)</em>を前提にすることで表面上 3 手で済むが、そのために60進の巨大な乗算表(数千通りの組合せ)を覚えておく必要があった。</p>
+
+  <p class="body-text fade">数字を「書く」だけで計算ができる。これは当たり前に見えて、人類史のなかで<em>長らく当たり前ではなかった</em>。紙の上の記号が、それまで道具が担っていた仕事を引き受けてくれる——これが位取り記数法の革命である。</p>
+
+  <!-- 数表記スライダー -->
+  <div class="notator fade">
+    <div class="notator-head">
+      <span class="notator-title">数表記ビューア</span>
+      <span class="notator-hint">0〜3999の数を入力</span>
+    </div>
+    <div class="notator-input-row">
+      <label for="notNum">数:</label>
+      <input type="range" id="notRange" min="0" max="3999" value="646">
+      <input type="number" id="notNum" min="0" max="3999" value="646">
+    </div>
+    <div class="notator-out">
+      <div class="notator-row">
+        <span class="notator-sys">アラビア数字</span>
+        <span class="notator-val" id="notArabic">646</span>
+        <span class="notator-kind pos">位取り · 10進</span>
+      </div>
+      <div class="notator-row">
+        <span class="notator-sys">ローマ数字</span>
+        <span class="notator-val" id="notRoman">DCXLVI</span>
+        <span class="notator-kind add">加算型</span>
+      </div>
+      <div class="notator-row">
+        <span class="notator-sys">バビロニア60進</span>
+        <span class="notator-val mono" id="notBaby">10;46</span>
+        <span class="notator-kind pos">位取り · 60進</span>
+      </div>
+      <div class="notator-row">
+        <span class="notator-sys">エジプト簡略</span>
+        <span class="notator-val mono" id="notEgypt">✤ CCCCCC ΠΠΠΠ IIIIII</span>
+        <span class="notator-kind add">加算型</span>
+      </div>
+      <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;line-height:1.7;">※ 古代エジプトの数字記号(ヒエログリフ)はフォント未対応の環境が多いため、ここでは加算型記法の冗長さを示す中立的な代替記号で表示しています。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">数を上げていけば上げていくほど、加算型は「記号の列」が線形に長くなる。一方、位取り型は桁だけが伸びていき、大きな数もコンパクトに書ける。この「<strong>同じ情報量に必要な記号数</strong>」の差が、計算の難易度にほぼそのまま比例する。</p>
+
+  <!-- ゼロ不在デモ -->
+  <div class="zdemo fade">
+    <div class="zdemo-head">
+      <p class="zdemo-title">ゼロなしで位取りは成立するか</p>
+      <p class="zdemo-desc">位取り記数法は、桁を揃えるための「空位の目印」がないと曖昧になる。ゼロをどう扱うかで、三つの数がどう見えるかを切り替えてみる。</p>
+    </div>
+    <div class="zdemo-ctrls">
+      <button class="zdemo-btn active" data-mode="keep">ゼロあり（正常）</button>
+      <button class="zdemo-btn" data-mode="blank">ゼロを空白に</button>
+      <button class="zdemo-btn" data-mode="remove">ゼロを詰める</button>
+    </div>
+    <div class="zdemo-grid">
+      <div class="zdemo-cell">
+        <p class="zdemo-label">2百5</p>
+        <p class="zdemo-num" id="zd1">205</p>
+      </div>
+      <div class="zdemo-cell">
+        <p class="zdemo-label">2千5</p>
+        <p class="zdemo-num" id="zd2">2005</p>
+      </div>
+      <div class="zdemo-cell">
+        <p class="zdemo-label">25</p>
+        <p class="zdemo-num" id="zd3">25</p>
+      </div>
+    </div>
+    <p class="zdemo-foot" id="zdFoot"><strong>ゼロあり:</strong> 三つの数は明確に区別される。205、2005、25 はすべて別の数として読める。</p>
+  </div>
+
+  <p class="body-text fade">ゼロを詰めてしまえば、205 も 2005 も 25 と区別がつかなくなる。ゼロは「ない」を表す記号ではなく、<em>「ここは空っぽの位です」を表す記号</em>として、位取りの骨格そのものを支えている。ブラーマグプタが 628 年にこの役割を明文化するまで、位取り記数法は未完成だった。</p>
+
+  <!-- ═══════ メカニズム ═══════ -->
+  <div class="sec-rule fade"><span class="sec-label">03 — なぜ革命だったか</span><div class="sec-line"></div></div>
+  <h2 class="fade">位取りが変えた四つのこと</h2>
+
+  <p class="body-text fade">位取り記数法は、ただの表記変更ではなかった。数を書くという行為そのものの位置づけが、四つの層で変わった。</p>
+
+  <div class="steps-wrap fade">
+    <p class="steps-head">位取り記数法の四つの革命</p>
+
+    <div class="step-card open" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">I</div>
+        <div class="step-tw"><p class="step-title">有限の記号で無限の数を書ける</p><p class="step-sub">0〜9 の十個で、兆でも京でも</p></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>ローマ数字には <strong>M（1000）</strong> までしか基本記号がない。百万を書くには線を引いたり枠で囲ったりと拡張規則が必要で、一兆ともなると実用に耐えない。位取り記数法は<em>0〜9 の十個で止まる</em>。桁を増やすだけで、どんな大きな数も同じ方式で書ける。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">II</div>
+        <div class="step-tw"><p class="step-title">位置が「掛け算」を暗黙に運ぶ</p><p class="step-sub">3 は場所によって 3, 30, 300</p></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>367 という数のなかの「3」は、位置のおかげで <strong>300</strong> を意味する。加算型なら「3」と「100」をそれぞれ書かねばならないところを、位取りは<em>位置情報に 100 を埋め込む</em>。記号を節約しているというより、記号の外側にある構造（桁）に意味を移譲している。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">III</div>
+        <div class="step-tw"><p class="step-title">ゼロが位取りを成立させる</p><p class="step-sub">「空位の目印」は骨格</p></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>205 と 25 を区別するためには、百の位が空であることを明示する記号がいる。それがゼロである。古代バビロニアは長いあいだ「空位を空白で示す」方式を試したが、文脈依存で曖昧だった。インドが発明した<em>ゼロ記号という <span class="tip" onclick="toggleTip(this)">placeholder<span class="tip-box"><strong>placeholder(プレースホルダー)</strong>「場所取り」の意。本来そこに置かれるべきものがない時に、「ここは空っぽです」という事実を示すための仮の目印。位取り記数法のゼロは、数の不在ではなく「桁の存在」を保証する役割を担う。</span></span></em> こそ、位取り記数法を完成形にした最後のピースだった。</p>
+      </div>
+    </div>
+
+    <div class="step-card" id="sc4">
+      <div class="step-hd" onclick="tog(4)">
+        <div class="step-nb">IV</div>
+        <div class="step-tw"><p class="step-title">計算が「書いて動かす」行為になった</p><p class="step-sub">筆算アルゴリズムの誕生</p></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>位取りのない世界では、計算はアバカスの珠(たま)を動かす身体操作だった。頭の中に珠の位置を保持する技能も必要だった。位取りは、そのすべてを<em>紙の上の記号操作に移植した</em>。掛け算・割り算の筆算アルゴリズム(計算の手順)が可能になり、道具を持たない子供でも訓練すれば計算ができるようになった。これは<strong>計算の民主化</strong>である。</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">この四つは独立した利点ではなく、<em>連鎖的に絡み合って一つの革命を構成している</em>。有限の記号と位置の意味がゼロによって結び付き、その全体が紙の上のアルゴリズムを可能にする。どれか一つでも欠ければ、この記法は成立しない。</p>
+
+  <!-- ═══════ 歴史セクション ═══════ -->
+  <div class="sec-rule fade"><span class="sec-label">04 — 歴史</span><div class="sec-line"></div></div>
+  <h2 class="fade">位取りが世界を変えるまでの 5000 年</h2>
+
+  <p class="body-text fade">位取り記数法は一夜にして生まれたものではない。バビロニアが位取りの骨格を試し、インドがゼロと十個の記号でそれを完成させ、アラブが伝播させ、ヨーロッパが受け入れを拒みながらおよそ千年かけて完全定着した。「革命」とは言っても、定着まではひどくゆっくりだった。</p>
+
+  <div class="img-block fade">
+    <img src="./plimpton_322.jpg" alt="バビロニアの数学粘土板 Plimpton 322">
+    <p class="img-caption">バビロニアの数学粘土板 Plimpton 322（紀元前1800年頃）。60進法の位取り表記で<span class="tip" onclick="toggleTip(this)">ピタゴラス数<span class="tip-box"><strong>ピタゴラス数</strong>a² + b² = c² を満たす自然数の三つ組(a, b, c)。例: (3, 4, 5)、(5, 12, 13)、(8, 15, 17)など。直角三角形の三辺の長さがすべて整数になる組合せ。</span></span>の表が刻まれている。位取りの骨格はここに既にあったが、ゼロ記号の完成には2400年を要した。<br><span class="credit">Columbia University / Public Domain</span></p>
+  </div>
+
+  <div class="timeline fade">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">前 1800 年頃</p>
+      <p class="tl-title">バビロニアの 60 進位取り</p>
+      <p class="tl-desc"><span class="tip" onclick="toggleTip(this)">楔形文字<span class="tip-box"><strong>楔形文字(くさびがたもじ)</strong>古代メソポタミアで使われた最古級の文字。葦(あし)のペンで粘土板に楔(くさび)状の刻印を押し付けて記述した。シュメール・バビロニア・アッシリアなどで紀元前3000年頃から紀元前後まで使われた。</span></span>による60進の位取り記数法。Plimpton 322 など数理粘土板に記録。ただしゼロ記号は未成立で、空位は空白で示された（のちに点記号が使われるようになる）。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">前 300 年頃</p>
+      <p class="tl-title">ブラーフミー数字（インド）</p>
+      <p class="tl-desc">1〜9 に対応する 9 種の基本記号が成立（この段階ではまだゼロ記号は存在しない）。位取りの仕組みはまだなく、ただの記号の集合体だが、後の位取り記数法の材料が揃う。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">3〜7 世紀</p>
+      <p class="tl-title">バフシャーリー写本</p>
+      <p class="tl-desc">インド北西部（現パキスタン）で書かれた数学の写本(しゃほん、=手書きの本)。空位を示す点記号が使われており、現在知られる最古のゼロ記号の一つ。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">628 年</p>
+      <p class="tl-title">ブラーマグプタ『ブラーマ・スプタ・シッダーンタ』</p>
+      <p class="tl-desc">ゼロを数として初めて数学的に定義。「数 − 自分自身 = 0」「0 + n = n」という演算規則を明文化。位取り記数法が理論的に完成した年。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">825 年頃</p>
+      <p class="tl-title">アル・フワーリズミー『インド数の計算について』</p>
+      <p class="tl-desc">バグダードの<span class="tip" onclick="toggleTip(this)">「知恵の館」<span class="tip-box"><strong>知恵の館(バイト・アル=ヒクマ)</strong>9世紀バグダードに置かれたアッバース朝の研究機関。世界中のギリシャ語・ペルシア語・サンスクリット語の文献をアラビア語に翻訳し、自然科学・数学・医学を体系化した。中世のもっとも巨大な研究所だった。</span></span>で執筆。インドの位取り記数法がアラビア世界へ本格普及。彼の名前の音訳「Algoritmi」がのちに「<span class="tip" onclick="toggleTip(this)">アルゴリズム<span class="tip-box"><strong>アルゴリズム(algorithm)</strong>計算や問題解決の手順を、誰がやっても同じ結果になるように決めた一連の規則。語源はアル・フワーリズミーの名前のラテン化「Algoritmi」。現代のコンピュータも本質的にアルゴリズムの集合である。</span></span>」の語源になる。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1202 年</p>
+      <p class="tl-title">フィボナッチ『算盤の書』</p>
+      <p class="tl-desc">北アフリカでアラビア商人の計算法を学んだピサ出身のイタリア人が、インド・アラビア数字をヨーロッパに本格紹介。ブラーマグプタから 574 年、発明地(インド北西部)から約 7000 キロの旅だった。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1299 年</p>
+      <p class="tl-title">フィレンツェ、アラビア数字禁止令</p>
+      <p class="tl-desc">フィレンツェの銀行家たちはアラビア数字の使用を禁じられ、帳簿にはローマ数字を使うよう命じられた。表向きの理由は「偽造しやすいから（0 を 6 に、1 を 7 に書き換えられる）」。実際はアバカスを使う既存ギルドの既得権防衛だったとされる。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1450 年 〜</p>
+      <p class="tl-title">活版印刷と急速普及</p>
+      <p class="tl-desc"><span class="tip" onclick="toggleTip(this)">グーテンベルクの活版印刷<span class="tip-box"><strong>グーテンベルクの活版印刷</strong>1440年代にドイツのヨハネス・グーテンベルクが実用化した、金属の活字を組んで紙に大量印刷する技術。それまで写本は1冊ずつ手書きで作られていたが、印刷で同じ本を百冊単位で短期間に複製できるようになり、知識の普及速度が一変した。</span></span>でアラビア数字の複製コストが劇的に下がり、商業と学問の両面で普及が加速。16 世紀末にはヨーロッパのほぼ全域に定着した。完全定着までブラーマグプタから約 950 年が経っていた。</p>
+    </div>
+  </div>
+
+  <div class="culture-block fade">
+    <p class="culture-label">作品・文化への登場</p>
+    <div class="culture-item">
+      <p class="culture-title">フィレンツェ銀行家の二重帳簿</p>
+      <p class="culture-desc">1299年の禁止令以降、フィレンツェの銀行家たちは「当局用のローマ数字帳簿」と「実務用のアラビア数字帳簿」を並行して維持した。前者は形式、後者は実務。記数法そのものが規制と抜け道の対象になった、人類史でも稀な事例である。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">日本の小学校算数</p>
+      <p class="culture-desc">日本の小学校算数では、低学年の最重要目標の一つが「位取り記数法の理解」である。「10 のまとまりをつくる」「位を揃えて書く」という指導は、千年以上かけて人類が辿り着いた抽象構造を、7 歳の子供の手の中に短時間で注ぎ込む仕事をしている。</p>
+    </div>
+  </div>
+
+  <!-- ═══════ つまり ═══════ -->
+  <div class="sec-rule fade"><span class="sec-label">05 — つまり</span><div class="sec-line"></div></div>
+  <h2 class="fade">紙の上で桁がひとりでに動き始めた</h2>
+
+  <p class="body-text fade">位取り記数法が革命だったのは、<em>計算という作業を頭とアバカスから紙の上へ移した</em>からである。ローマ人が指とアバカスでやっていた仕事の大半を、インド人は記号と位置に任せてしまった。紙と筆さえあれば誰でも掛け算ができる——これは計算の民主化であり、同時に思考の外部化でもあった。</p>
+
+  <p class="body-text fade">現代のコンピュータは、位取りを二進法で徹底する装置である。0 と 1 という二つの記号を、位置ごとに 2 のべき乗(2, 4, 8, 16, 32 …)で掛けて足す。ブラーマグプタが 628 年に書いた規則は、ほぼそのままコンピュータの中で動いている。記号の数と<span class="tip" onclick="toggleTip(this)">基数<span class="tip-box"><strong>基数(きすう)</strong>位取り記数法で「ひと桁あがるたびに何倍になるか」を決める数。10進法なら 10、2進法なら 2、60進法なら 60。「base」の訳語。</span></span>が変わっても、<strong>「位置が値を決める」という骨格</strong>は変わらない。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"It is India that gave us the ingenious method of expressing all numbers by means of ten symbols, each symbol receiving a value of position as well as an absolute value... we shall appreciate the grandeur of this achievement the more when we remember that it escaped the genius of Archimedes and Apollonius, two of the greatest men produced by antiquity."</p>
+    <p class="quote-ja">十個の記号で、しかもそれぞれの記号に絶対的な値と位置による値の両方を持たせるという、すべての数を表す独創的な方法を私たちに与えたのはインドである。…この達成の偉大さは、それが古代の生んだ最も偉大な二人の人物——アルキメデスとアポロニウス——の天才をもってしても見えなかった、と思い出すときに、いっそう深く感じられる。</p>
+    <p class="quote-attr">— Pierre-Simon Laplace, <em>Exposition du système du monde</em> (1796)<br>※ 英訳は H. Eves <em>Return to Mathematical Circles</em> (1988) などで広く流通する版を採用</p>
+  </div>
+
+  <p class="body-text fade">スマホの電卓に 38 × 17 と打ち込んだとき、あなたは 1500 年前のインドの数学者が完成させた記法の上で生活している。指 10 本から始まった 10 進法に、位置が値を決めるという発想を重ねた。その組み合わせが、あなたの財布の計算も、株価の表示も、宇宙探査機の軌道計算も、静かに支えている。</p>
+
+  <!-- ═══════ 参考文献 ═══════ -->
+  <div class="sec-rule fade"><span class="sec-label">06 — 参考文献</span><div class="sec-line"></div></div>
+  <h2 class="fade">参考文献</h2>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Primary</span><span class="ref-year">628</span></div>
+      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Br%C4%81hmasphu%E1%B9%ADasiddh%C4%81nta" target="_blank" rel="noopener">Brāhma-sphuṭa-siddhānta</a></p>
+      <p class="ref-author">Brahmagupta</p>
+      <p class="ref-desc">ゼロを数として初めて定義した古典。第18章が数論で、ゼロと負数の演算規則が明文化されている。サンスクリット原典は校訂版が複数出版されており、英訳抜粋は各種数学史文献に収録。日本語版 Wikipedia 記事は「<a href="https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%BB%E3%82%B9%E3%83%97%E3%82%BF%E3%83%BB%E3%82%B7%E3%83%83%E3%83%80%E3%83%BC%E3%83%B3%E3%82%BF" target="_blank" rel="noopener">ブラーマ・スプタ・シッダーンタ</a>」。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Primary</span><span class="ref-year">1202</span></div>
+      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Liber_Abaci" target="_blank" rel="noopener">Liber Abaci（算盤の書）</a></p>
+      <p class="ref-author">Leonardo Fibonacci（Leonardo of Pisa）</p>
+      <p class="ref-desc">インド・アラビア数字をヨーロッパに紹介した画期の書。Sigler による英訳（Springer, 2002）が現代標準。冒頭のプロローグでインド数字の優位を説明している。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">2011</span></div>
+      <p class="ref-title">The Crest of the Peacock: Non-European Roots of Mathematics</p>
+      <p class="ref-author">George Gheverghese Joseph（Princeton University Press）</p>
+      <p class="ref-desc">インド・中国・イスラム世界の数学史を正面から扱う第一級の教科書。ブラーマグプタ以降の位取り記数法の伝播と、アラビア経由ヨーロッパ伝播のメカニズムが詳細に解説されている。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">2000</span></div>
+      <p class="ref-title">The Universal History of Numbers</p>
+      <p class="ref-author">Georges Ifrah（Wiley）</p>
+      <p class="ref-desc">世界中の記数法を網羅する辞典的大著。エジプト・バビロニア・マヤ・中国・インド・アラブ・ヨーロッパ各記数法の具体例と互換表が豊富。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Web</span><span class="ref-year">—</span></div>
+      <p class="ref-title"><a href="https://mathshistory.st-andrews.ac.uk/HistTopics/Arabic_numerals/" target="_blank" rel="noopener">MacTutor: Arabic numerals</a></p>
+      <p class="ref-author">School of Mathematics and Statistics, University of St Andrews</p>
+      <p class="ref-desc">インド数字からアラビア経由で西欧に伝わった経路を、一次資料への参照付きで整理。ブラーマグプタ、アル・フワーリズミー、フィボナッチの各伝記も同サイト内で参照可。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Web</span><span class="ref-year">—</span></div>
+      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Positional_notation" target="_blank" rel="noopener">Wikipedia: Positional notation / Hindu–Arabic numeral system</a></p>
+      <p class="ref-author">Wikipedia contributors</p>
+      <p class="ref-desc">位取り記数法と10進・60進・20進など各基数の位取りシステムの俯瞰。バビロニア・インド・アラブ経由のヨーロッパ伝播までの簡潔なタイムラインと、一次資料への出典リンクが有用。</p>
+    </div>
+  </div>
+
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    ブラーマグプタの原典と Fibonacci の Liber Abaci は現存テキストが確認できる一次資料に基づく。インドでの完成からヨーロッパへの到達まで約 800 年、完全定着までさらに数百年(計およそ千年)を要したという経緯は MacTutor、Wikipedia、Joseph『The Crest of the Peacock』など複数の二次資料で裏が取れる定説である。一方、1299 年フィレンツェ禁止令の「偽造防止」という表向きの理由と、既得権防衛という実質的理由の関係については学説に幅があり、本記事では通説的な解釈を採った。
+  </div>
+
+  <p class="signature fade">e. Tamaki</p>
+
+  <div class="tags fade">
+    <span class="tag">数学・論理</span>
+    <span class="tag">記数法</span>
+    <span class="tag">位取り</span>
+    <span class="tag">ゼロ</span>
+    <span class="tag">ブラーマグプタ</span>
+    <span class="tag">フィボナッチ</span>
+    <span class="tag">ローマ数字</span>
+    <span class="tag">アラビア数字</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">12</p>
+      <p class="sidebar-text">ローマ数字で 38 × 17 を計算するのに必要な手順数（アバカス前提）。アラビア数字ならわずか <em>4 手</em>、紙の上で完結する。この手数差が位取り記数法の革命性の定量表現である。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">インドで 5〜7 世紀に位取り + ゼロが完成。アラブが 9 世紀に継承・整備し、13 世紀にフィボナッチ経由でヨーロッパへ到達(約 800 年の旅)。完全定着は 16 世紀末、ブラーマグプタから通算 <strong>約 950 年</strong>を要した。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">1299 年のフィレンツェ禁止令以降、銀行家は「当局用ローマ数字」と「実務用アラビア数字」の<em>二重帳簿</em>を維持した。記数法そのものが規制対象になった人類史上稀な事例。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— なぜ10進数なのか<br>— なぜ2進数か<br>— フィボナッチ数列<br>— ベンフォードの法則</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">一次資料（ブラーマグプタ原典、Liber Abaci）あり。史実は定説。細部は Joseph・Ifrah・MacTutor 等の複数二次資料で照合している。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 位取り記数法の革命 を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ私がローマ数字で育ってたら、数学者にはなれなかったってこと?</span></div>
+      <span class="t-output" id="to1">いや、ローマ時代にも<em>アルキメデス(前3世紀の古代ギリシャ。浮力の原理で有名)やディオファントス(3世紀アレクサンドリア。代数学の祖)</em>みたいな大数学者はいた。ただ彼らは計算そのものをアバカスと暗算でやって、紙は主に<strong>結果を書き残す場所</strong>だった。紙の上で試行錯誤する今の数学のスタイルは、位取りが普及した後の習慣なんだ。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ゼロってそんなに偉い? ただの「ない」だと思っているくらいだった</span></div>
+      <span class="t-output" id="to2">「ないという記号」が「<em>空位の目印</em>」になった瞬間、数は整然と並んだ桁の列になる。ゼロがなければ 205 と 25 の区別ができない。バビロニアはゼロなしの位取りを 1500 年試したけど、やっぱり文脈依存で曖昧だった。ゼロは位取り記数法の<strong>骨格そのもの</strong>なんだ。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;1299年のフィレンツェの禁止令、「偽造防止」って理由ほんと?</span></div>
+      <span class="t-output" id="to3">表向きはそう。0 を 6 に、1 を 7 に書き換えやすい、と。でも実際は<em>既得権の問題</em>だった側面が大きい。ローマ数字とアバカスで仕事をしていた計算職人たちのギルドが、紙と筆だけで計算できる新記法に脅かされて禁止運動を主導した、というのが通説。新しい記法が社会を作り替えるとき、いつも似たことが起きる。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 言われてみれば確かに、こんな便利なものを使ってたのか…</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/why_base">
+      <p class="related-card-tag">数学・論理</p>
+      <p class="related-card-title">なぜ10進数なのか</p>
+      <p class="related-card-desc">数学的に最適な基数は10ではない。それでも人類はこの数を選んだ。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/why_binary">
+      <p class="related-card-tag">数学・論理</p>
+      <p class="related-card-title">なぜ2進数か</p>
+      <p class="related-card-desc">ライプニッツからシャノンまで。2進数が選ばれた300年の必然。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ（トースト方式）
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+
+// ====================================
+// 並走計算機: 38 × 17
+// ====================================
+const ROMAN_STEPS=[
+  "アバカスを準備、珠を0に戻す",
+  "38 = XXXVIII を左エリアに",
+  "17 = XVII を右エリアに",
+  "17 を「10倍 + 7倍」に分解",
+  "10倍 = 380 (珠を一桁左へ)",
+  "380 を保管エリアへ",
+  "7倍 = 266 (38を7回足す)",
+  "266 を保管エリアに重ねる",
+  "380 + 266 を加算",
+  "繰り上がり処理(十の位で繰上げ)",
+  "結果 = DCXLVI (646)",
+  "羊皮紙に書き写して完了"
+];
+const ARABIC_STEPS=[
+  "38 と 17 を縦書き筆算の形に",
+  "38 × 7 = 266",
+  "38 × 1 = 38 → 桁ずらして 380",
+  "266 + 380 = 646"
+];
+const BABYLON_STEPS=[
+  "乗算表で 38 × 17 を引く → 646",
+  "60進へ変換: 646 = 10×60 + 46",
+  "粘土板に 10;46 と刻む"
+];
+
+function buildRace(){
+  const mkHtml=(arr,prefix)=>arr.map((s,i)=>`<p class="race-step" id="${prefix}${i}" data-n="${i+1}">${s}</p>`).join('');
+  document.getElementById('raceColR').innerHTML=mkHtml(ROMAN_STEPS,'stR');
+  document.getElementById('raceColA').innerHTML=mkHtml(ARABIC_STEPS,'stA');
+  document.getElementById('raceColB').innerHTML=mkHtml(BABYLON_STEPS,'stB');
+}
+let raceStep=0;
+const RACE_MAX=Math.max(ROMAN_STEPS.length,ARABIC_STEPS.length,BABYLON_STEPS.length);
+function advanceRace(){
+  if(raceStep>=RACE_MAX)return;
+  raceStep++;
+  updateRace();
+}
+function resetRace(){raceStep=0;updateRace();}
+function updateRace(){
+  const marks=[
+    {prefix:'stR',total:ROMAN_STEPS.length,countEl:'raceCountR',resEl:'raceResR'},
+    {prefix:'stA',total:ARABIC_STEPS.length,countEl:'raceCountA',resEl:'raceResA'},
+    {prefix:'stB',total:BABYLON_STEPS.length,countEl:'raceCountB',resEl:'raceResB'}
+  ];
+  marks.forEach(m=>{
+    for(let i=0;i<m.total;i++){
+      const el=document.getElementById(m.prefix+i);
+      if(!el)continue;
+      el.classList.remove('active','done');
+      // アラビア・バビロニアのステップ数がローマより少ないので、進捗は各系統の上限でクランプ
+      const localStep=Math.min(raceStep,m.total);
+      if(i<localStep-1)el.classList.add('done');
+      else if(i===localStep-1)el.classList.add('active');
+    }
+    const localStep=Math.min(raceStep,m.total);
+    document.getElementById(m.countEl).textContent=localStep+' / '+m.total;
+    const resEl=document.getElementById(m.resEl);
+    if(localStep>=m.total)resEl.classList.add('show');
+    else resEl.classList.remove('show');
+  });
+  const foot=document.getElementById('raceFoot');
+  const allDone=raceStep>=RACE_MAX;
+  const nextBtn=document.getElementById('raceNext');
+  if(allDone){
+    foot.innerHTML='完了。<strong>ローマ 12 手 / アラビア 4 手 / バビロニア 3 手</strong>。位取り記数法は、物理的な珠の操作を紙の上の記号操作に移植することで、計算の手数を劇的に減らした。';
+    nextBtn.disabled=true;nextBtn.textContent='完了';
+  }else{
+    foot.innerHTML='進行中。三系統の計算手順を同時に走らせています。アラビア数字とバビロニアは先に完了します。';
+    nextBtn.disabled=false;nextBtn.textContent='次の手順へ →';
+  }
+}
+
+// ====================================
+// 数表記ビューア
+// ====================================
+function toRoman(n){
+  if(n<=0)return '—';
+  const map=[[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];
+  let r='';
+  for(const[v,s]of map){while(n>=v){r+=s;n-=v;}}
+  return r;
+}
+function toSexagesimal(n){
+  if(n<0)return '—';
+  if(n===0)return '0';
+  const parts=[];
+  while(n>0){parts.unshift(n%60);n=Math.floor(n/60);}
+  return parts.join(';');
+}
+function toEgyptian(n){
+  if(n<0)return '—';
+  if(n===0)return '—';
+  // 本来のエジプト数字はヒエログリフ(𓏺=1, 𓎆=10, 𓍢=100, 𓆼=1000)。
+  // フォント未対応環境を避けるため、「加算型の冗長さ」が体感できる中立的な代替記号で表示する。
+  const table=[[1000,'✤'],[100,'C'],[10,'Π'],[1,'I']];
+  let out='';
+  for(const[v,s]of table){
+    const c=Math.floor(n/v);
+    if(c>0){out+=s.repeat(c);out+=' ';}
+    n-=c*v;
+  }
+  return out.trim()||'—';
+}
+function updateNotator(v){
+  v=Math.max(0,Math.min(3999,Math.floor(Number(v)||0)));
+  document.getElementById('notRange').value=v;
+  document.getElementById('notNum').value=v;
+  document.getElementById('notArabic').textContent=String(v);
+  document.getElementById('notRoman').textContent=v===0?'—（ローマ数字にゼロ記号なし）':toRoman(v);
+  document.getElementById('notBaby').textContent=toSexagesimal(v);
+  document.getElementById('notEgypt').textContent=toEgyptian(v);
+}
+
+// ====================================
+// ゼロ不在デモ
+// ====================================
+const ZD_DATA={
+  keep:{v:['205','2005','25'],foot:'<strong>ゼロあり:</strong> 三つの数は明確に区別される。205、2005、25 はすべて別の数として読める。'},
+  blank:{v:['2<span class="ph">_</span>5','2<span class="ph">__</span>5','25'],foot:'<strong>ゼロを空白に:</strong> 空白の個数で区別しようとすると、手書きでは幅が揺れて曖昧になる。バビロニアは1500年以上、ゼロ記号なしの位取り(空白方式)を使い続けた。'},
+  remove:{v:['25','25','25'],foot:'<strong>ゼロを詰める:</strong> 205 も 2005 も 25 と書き分けられなくなる。位取りは崩壊する。'}
+};
+function setZDemo(mode){
+  const d=ZD_DATA[mode];
+  if(!d)return;
+  document.getElementById('zd1').innerHTML=d.v[0];
+  document.getElementById('zd2').innerHTML=d.v[1];
+  document.getElementById('zd3').innerHTML=d.v[2];
+  document.getElementById('zdFoot').innerHTML=d.foot;
+  document.querySelectorAll('.zdemo-btn').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));
+}
+
+// 初期化
+document.addEventListener('DOMContentLoaded',()=>{
+  buildRace();
+  updateRace();
+  document.getElementById('raceNext').addEventListener('click',advanceRace);
+  document.getElementById('raceReset').addEventListener('click',resetRace);
+  updateNotator(646);
+  document.getElementById('notRange').addEventListener('input',e=>updateNotator(e.target.value));
+  document.getElementById('notNum').addEventListener('input',e=>updateNotator(e.target.value));
+  document.querySelectorAll('.zdemo-btn').forEach(b=>b.addEventListener('click',()=>setZDemo(b.dataset.mode)));
+});
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div><!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6b7b629057d241878dda2a4f3169e5cb"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

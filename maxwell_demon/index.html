@@ -1,0 +1,1931 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>悪魔は記憶している — エントロピー、情報、時間の矢 — Qualia Journal</title>
+<meta name="description" content="150年にわたり物理学を悩ませたマクスウェルの悪魔。情報を消すには熱がかかる——悪魔のメモリが満杯になる瞬間に何が起こるかを、自分の手で動かして確かめる。">
+<link rel="canonical" href="https://qualiajournal.com/maxwell_demon">
+<meta property="og:title" content="悪魔は記憶している — エントロピー、情報、時間の矢 — Qualia Journal">
+<meta property="og:description" content="150年にわたり物理学を悩ませたマクスウェルの悪魔。情報を消すには熱がかかる——悪魔のメモリが満杯になる瞬間に何が起こるかを、自分の手で動かして確かめる。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/maxwell_demon">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="悪魔は記憶している — エントロピー、情報、時間の矢 — Qualia Journal">
+<meta name="twitter:description" content="150年にわたり物理学を悩ませたマクスウェルの悪魔。情報を消すには熱がかかる——悪魔のメモリが満杯になる瞬間に何が起こるかを、自分の手で動かして確かめる。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"悪魔は記憶している — エントロピー、情報、時間の矢","description":"150年にわたり物理学を悩ませたマクスウェルの悪魔。情報を消すには熱がかかる——悪魔のメモリが満杯になる瞬間に何が起こるかを、自分の手で動かして確かめる。","author":{"@type":"Person","name":"e. Tamaki"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/maxwell_demon","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"物理・宇宙","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"悪魔は記憶している — エントロピー、情報、時間の矢"}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-stat{border:1px solid #c8bfaa;padding:28px 24px;background:#f3efe6;text-align:center;margin-bottom:20px;}
+.cover-stat-n{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:8px;}
+.cover-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.6;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:24px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block-img{background:#ede8dc;padding:0;overflow:hidden;min-height:140px;}
+.person-block-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center top;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block.no-img{grid-template-columns:1fr;}
+.person-block.no-img .person-block-body{border-left:none;border-top:3px solid #c8bfaa;}
+.person-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#b0a090;line-height:1.5;margin-top:6px;font-style:italic;}
+.person-wiki{display:inline-flex;align-items:center;gap:4px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.04em;color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.3);margin-top:10px;padding-bottom:1px;text-decoration:none;transition:border-color .18s;}
+.person-wiki:hover{border-bottom-color:#8b1a1a;}
+.person-wiki::after{content:'↗';font-size:10px;color:#8b1a1a;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* ── FOOTER ── */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* === DEMON GAME (CUSTOM) === */
+.demon-stage{position:relative;margin:28px 0 8px;background:linear-gradient(180deg,#1a1208,#0d0a05);border:1px solid #2a1a08;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.25),inset 0 1px 0 rgba(232,197,106,.08);}
+.demon-banner{display:flex;justify-content:space-between;align-items:center;padding:11px 18px;background:linear-gradient(90deg,rgba(139,26,26,.18),rgba(232,197,106,.08));border-bottom:1px solid #2a1a08;}
+.demon-banner-title{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;}
+.demon-banner-sub{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#8a7a6a;letter-spacing:.1em;}
+.demon-canvas-wrap{position:relative;background:#0d0a05;display:flex;justify-content:center;align-items:center;padding:0;overflow:hidden;}
+.demon-canvas-wrap canvas{display:block;width:100%;max-width:720px;height:auto;cursor:crosshair;touch-action:manipulation;}
+.demon-overlay{position:absolute;inset:0;display:none;align-items:flex-start;justify-content:center;background:rgba(13,10,5,.94);backdrop-filter:blur(3px);z-index:300;padding:48px 16px 24px;overflow-y:auto;}
+.demon-overlay.show{display:flex;animation:overlayIn .35s ease-out;}
+@keyframes overlayIn{0%{opacity:0;transform:scale(.95);}100%{opacity:1;transform:scale(1);}}
+.demon-result{text-align:center;padding:24px 36px;border:1px solid rgba(232,197,106,.4);background:rgba(26,18,8,.7);min-width:260px;}
+.demon-result-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.32em;color:#e8c56a;text-transform:uppercase;margin-bottom:14px;border-bottom:1px solid rgba(232,197,106,.25);padding-bottom:10px;}
+.demon-result-stat{display:flex;justify-content:space-between;align-items:baseline;gap:18px;margin-bottom:8px;}
+.demon-result-stat span{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8a7a6a;letter-spacing:.06em;}
+.demon-result-stat strong{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:#e8c56a;font-variant-numeric:tabular-nums;}
+.demon-result-stat strong.score{color:#3a8a50;}
+.demon-result-stat strong.miss{color:#c4392a;}
+.demon-result-stat strong.warm{color:#e87a4a;}
+.demon-result-stat strong.cool{color:#6ab8e8;}
+.demon-result-msg{font-family:'Source Serif 4',serif;font-size:13px;font-style:italic;color:#a89888;margin:14px 0 18px;line-height:1.5;}
+.demon-result button{margin-top:6px;}
+.demon-hud{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#2a1a08;padding:1px;}
+.demon-hud-cell{background:#15100a;padding:11px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px;}
+.demon-hud-icon{height:18px;width:18px;opacity:.7;margin-bottom:2px;}
+.demon-hud-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.14em;color:#8a7a6a;text-transform:uppercase;margin-bottom:2px;}
+.demon-hud-val{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;color:#e8c56a;line-height:1.1;font-variant-numeric:tabular-nums;}
+.demon-hud-val.cool{color:#6ab8e8;}
+.demon-hud-val.warm{color:#e87a4a;}
+.demon-gauge{padding:14px 18px;background:#15100a;border-top:1px solid #2a1a08;}
+.demon-gauge-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.demon-gauge-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;color:#8a7a6a;text-transform:uppercase;}
+.demon-gauge-val{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:#e8c56a;font-variant-numeric:tabular-nums;}
+.demon-gauge-track{position:relative;height:14px;background:#0d0a05;border:1px solid #2a1a08;display:flex;}
+.demon-gauge-half{flex:1;position:relative;display:flex;}
+.demon-gauge-half.left{justify-content:flex-end;}
+.demon-gauge-fill{height:100%;transition:width .3s ease;}
+.demon-gauge-fill.cool{background:linear-gradient(90deg,#6ab8e8,#3a78b0);}
+.demon-gauge-fill.warm{background:linear-gradient(90deg,#a84020,#e87a4a);}
+.demon-gauge-mid{position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:#e8c56a;opacity:.55;}
+.demon-gauge-tick{position:absolute;font-family:'Source Sans 3',sans-serif;font-size:9px;color:#5a4a3a;top:18px;}
+.demon-gauge-ends{display:flex;justify-content:space-between;margin-top:6px;font-family:'Source Sans 3',sans-serif;font-size:10px;color:#7a6a55;}
+.demon-controls{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 18px;background:#1a1208;border-top:1px solid #2a1a08;flex-wrap:wrap;}
+.demon-instr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#a89888;line-height:1.5;flex:1;min-width:200px;}
+.demon-instr strong{color:#e8c56a;}
+.demon-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;padding:9px 18px;background:#8b1a1a;color:white;border:none;cursor:pointer;text-transform:uppercase;transition:background .18s;}
+.demon-btn:hover{background:#a82020;}
+.demon-btn:disabled{background:#3a2a1a;color:#6a5848;cursor:not-allowed;}
+
+.phase-title{display:flex;align-items:baseline;gap:10px;margin:32px 0 10px;}
+.phase-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#8b1a1a;line-height:1;}
+.phase-name{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;letter-spacing:.06em;color:#1a1208;}
+.phase-sub{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;margin-bottom:10px;line-height:1.7;}
+
+/* Memory phase */
+.mem-stage{margin:24px 0;background:#f3efe6;border:1px solid #c8bfaa;padding:22px 24px;}
+.mem-bits{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:16px 0 18px;min-height:48px;}
+.mem-bit{width:44px;height:44px;border:2px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;color:#3d3020;background:white;transition:all .25s ease;}
+.mem-bit.filled{background:#1a1208;color:#e8c56a;border-color:#1a1208;}
+.mem-bit.erasing{animation:bitErase .5s ease-out;}
+@keyframes bitErase{0%{background:#8b1a1a;color:white;}100%{background:white;color:#3d3020;}}
+.mem-controls{display:flex;justify-content:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+.mem-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;padding:9px 16px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;text-transform:uppercase;transition:all .18s;}
+.mem-btn:hover:not(:disabled){border-color:#8b1a1a;color:#8b1a1a;}
+.mem-btn:disabled{opacity:.4;cursor:not-allowed;}
+.mem-btn.erase{background:#8b1a1a;color:white;border-color:#8b1a1a;}
+.mem-btn.erase:hover:not(:disabled){background:#a82020;}
+.mem-readout{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#c8bfaa;}
+.mem-readout-cell{background:#faf8f3;padding:12px 16px;text-align:center;}
+.mem-readout-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;margin-bottom:5px;}
+.mem-readout-val{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;color:#1a1208;font-variant-numeric:tabular-nums;}
+.mem-readout-val.heat{color:#8b1a1a;}
+.mem-warn{margin-top:10px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#c4392a;text-align:center;font-weight:600;letter-spacing:.04em;min-height:16px;}
+
+/* Balance phase */
+.bal-stage{margin:24px 0;background:#f3efe6;border:1px solid #c8bfaa;padding:22px 24px;}
+.bal-sliders{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:18px;}
+.bal-slider-row.full{grid-column:1 / -1;}
+.bal-slider-row label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#7a6a55;letter-spacing:.06em;display:flex;justify-content:space-between;margin-bottom:6px;}
+.bal-slider-row label span{color:#8b1a1a;font-family:'JetBrains Mono',monospace;font-weight:500;}
+.bal-slider-row input[type=range]{width:100%;accent-color:#8b1a1a;}
+.bal-bars{display:flex;flex-direction:column;gap:18px;margin:18px 0 12px;}
+.bal-bar-row{display:grid;grid-template-columns:140px 1fr 90px;gap:14px;align-items:center;}
+.bal-bar-lbl{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#3d3020;line-height:1.4;}
+.bal-bar-lbl small{display:block;font-weight:300;color:#7a6a55;font-size:10px;margin-top:2px;}
+.bal-bar-track{height:24px;background:white;border:1px solid #c8bfaa;position:relative;overflow:hidden;}
+.bal-bar-fill{height:100%;transition:width .35s ease;}
+.bal-bar-fill.gain{background:linear-gradient(90deg,#1a5a30,#3a8a50);}
+.bal-bar-fill.cost{background:linear-gradient(90deg,#8b1a1a,#c4392a);}
+.bal-bar-val{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:#1a1208;text-align:right;}
+.bal-conclusion{margin-top:14px;padding:12px 16px;background:#1a1208;color:#e8c56a;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.6;text-align:center;}
+.bal-conclusion strong{color:#ffffff;font-weight:600;}
+
+/* SVG figures */
+.svg-fig{margin:28px 0;max-width:680px;margin-left:auto;margin-right:auto;background:#faf8f3;}
+.svg-fig svg{display:block;width:100%;height:auto;}
+.svg-cap{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;margin-top:8px;line-height:1.6;}
+@media (max-width:700px){.svg-fig{max-width:100%;}}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:12px;display:flex;justify-content:flex-start;flex-direction:row;min-height:0;}
+  .person-block-img img{max-width:140px;width:auto;height:auto;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .demon-hud{grid-template-columns:repeat(2,1fr);}
+  .bal-sliders{grid-template-columns:1fr;}
+  .bal-bar-row{grid-template-columns:100px 1fr 70px;gap:8px;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+  .mem-bit{width:36px;height:36px;font-size:15px;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){.toc-back{padding:22px 20px;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">97 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Special Report — Information & Thermodynamics</p>
+    <h1>悪魔は<em>記憶</em>している</h1>
+    <p class="cover-deck">100年以上、第二法則を脅かしてきた思考実験。決着は「忘れることに、熱がいる」という奇妙な発見だった。</p>
+    <div class="cover-byline"><span>物理</span><span>情報理論</span><span>時間の矢</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1867</span>
+      <p class="est-event">12月11日、マクスウェルがピーター・ガスリー・テイト宛の手紙で「分子を選り分ける有限の存在」という思考実験を提案。</p>
+      <p class="est-context">同年、マルクス『資本論』第1巻刊行。ロシアからアラスカ買収($7.2M)。カナダ自治領成立。日本では大政奉還。</p>
+    </div>
+    <p class="cover-aside">この記事の体験は <strong>3フェーズ構成</strong>。あなた自身が悪魔になり、稼いだ仕事と、忘れるために払う熱を、目で確かめる。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>冷蔵庫から取り出した氷は、必ず溶ける。逆向きに、机の上の水たまりが勝手に氷に戻ったところを、私は一度も見たことがない。</p>
+    <p>お湯は冷め、ガラスは割れたら戻らず、本のページは黄ばみ、人は歳を取る。物理法則のほとんどは時間を反転させても成り立つのに、この一点だけが違う。世界は片方向にしか進まない。</p>
+    <p>その「片方向」を物理学はエントロピーと呼ぶ。そして150年前、ある男がそれを破る方法を思いついた。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot on"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級+ — 数学は最小限</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-25</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-25</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">150年にわたり物理学を悩ませた思考実験を、自分の手で動かしてみる。<strong>悪魔のメモリが満杯になった瞬間</strong>に何が起こるか、目で確かめる記事。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ===== 背景 ===== -->
+  <div class="sec-rule fade"><span class="sec-label">§1 — Background</span><span class="sec-line"></span></div>
+  <h2 class="fade">破れない法則と、それを破ろうとした手紙</h2>
+
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrEnt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#7a6a55"/>
+        </marker>
+      </defs>
+      <text x="360" y="32" font-family="Source Sans 3,sans-serif" font-size="17" font-weight="600" fill="#1a1208" text-anchor="middle">「乱雑さが増える方向にしか進まない」とは</text>
+      <text x="360" y="56" font-family="Source Sans 3,sans-serif" font-size="13" fill="#7a6a55" text-anchor="middle">どれも別々の現象に見えるが、すべて同じ法則(熱力学第二法則)が支配している</text>
+
+      <!-- ===== Panel 1: 氷 → 水 ===== -->
+      <g transform="translate(20, 90)">
+        <rect x="0" y="0" width="320" height="135" fill="#faf8f3" stroke="#e0d8c8" stroke-width="1"/>
+        <!-- Before: ice cube with highlights -->
+        <!-- Front face (slightly darker for depth) -->
+        <rect x="50" y="30" width="45" height="45" fill="#d0e2ee" stroke="#3d3020" stroke-width="1.5"/>
+        <!-- Right face (in shadow) -->
+        <polygon points="95,30 95,75 105,65 105,20" fill="#b0c8da" stroke="#3d3020" stroke-width="1.5"/>
+        <!-- Top face (lightest, light hits here) -->
+        <polygon points="50,30 95,30 105,20 60,20" fill="#eef5fa" stroke="#3d3020" stroke-width="1.5"/>
+        <!-- Specular highlight on top -->
+        <polygon points="62,26 76,26 79,22 65,22" fill="#ffffff" opacity="0.9"/>
+        <!-- Vertical gleam on front-left edge -->
+        <rect x="55" y="34" width="3" height="22" fill="#ffffff" opacity="0.65"/>
+        <!-- Small sparkle on front face -->
+        <circle cx="82" cy="58" r="1.8" fill="#ffffff" opacity="0.85"/>
+        <circle cx="68" cy="68" r="1.2" fill="#ffffff" opacity="0.6"/>
+        <!-- Arrow -->
+        <line x1="125" y1="50" x2="200" y2="50" stroke="#7a6a55" stroke-width="1.8" marker-end="url(#arrEnt)"/>
+        <!-- After: water puddle with surface highlight -->
+        <ellipse cx="265" cy="65" rx="48" ry="12" fill="#6ab8e8" opacity="0.5"/>
+        <ellipse cx="265" cy="65" rx="48" ry="12" fill="none" stroke="#3d3020" stroke-width="1"/>
+        <ellipse cx="260" cy="60" rx="32" ry="2.5" fill="#ffffff" opacity="0.55"/>
+        <!-- Label -->
+        <text x="160" y="103" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#3d3020" text-anchor="middle">氷が溶ける</text>
+        <text x="160" y="122" font-family="Source Sans 3,sans-serif" font-size="13" fill="#7a6a55" text-anchor="middle">温度の偏りがなくなる</text>
+      </g>
+
+      <!-- ===== Panel 2: 卵 → 割れた卵 ===== -->
+      <g transform="translate(380, 90)">
+        <rect x="0" y="0" width="320" height="135" fill="#faf8f3" stroke="#e0d8c8" stroke-width="1"/>
+        <!-- Before: whole egg -->
+        <ellipse cx="65" cy="50" rx="20" ry="28" fill="#f8f1d8" stroke="#3d3020" stroke-width="1.5"/>
+        <!-- Arrow -->
+        <line x1="125" y1="50" x2="200" y2="50" stroke="#7a6a55" stroke-width="1.8" marker-end="url(#arrEnt)"/>
+        <!-- After: broken egg with yolk -->
+        <ellipse cx="265" cy="68" rx="26" ry="7" fill="#f5d570" opacity="0.85"/>
+        <path d="M 232 38 L 246 50 L 234 60 L 226 50 Z" fill="#f8f1d8" stroke="#3d3020" stroke-width="1.4"/>
+        <path d="M 285 38 L 300 50 L 295 65 L 282 56 Z" fill="#f8f1d8" stroke="#3d3020" stroke-width="1.4"/>
+        <path d="M 248 32 L 270 26 L 282 36 L 263 44 Z" fill="#f8f1d8" stroke="#3d3020" stroke-width="1.4"/>
+        <!-- Label -->
+        <text x="160" y="103" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#3d3020" text-anchor="middle">卵が割れる</text>
+        <text x="160" y="122" font-family="Source Sans 3,sans-serif" font-size="13" fill="#7a6a55" text-anchor="middle">秩序ある構造が崩れる</text>
+      </g>
+
+      <!-- ===== Panel 3: 積んだ本が崩れる ===== -->
+      <g transform="translate(20, 250)">
+        <rect x="0" y="0" width="320" height="135" fill="#faf8f3" stroke="#e0d8c8" stroke-width="1"/>
+        <!-- BEFORE: 整然と積まれた4冊 -->
+        <line x1="35" y1="68" x2="125" y2="68" stroke="#3d3020" stroke-width="1.5"/>
+        <rect x="50" y="32" width="50" height="9" fill="#8b1a1a" stroke="#3d3020" stroke-width="1"/>
+        <rect x="50" y="41" width="50" height="9" fill="#3d5a8c" stroke="#3d3020" stroke-width="1"/>
+        <rect x="50" y="50" width="50" height="9" fill="#5a4a3a" stroke="#3d3020" stroke-width="1"/>
+        <rect x="50" y="59" width="50" height="9" fill="#e87a4a" stroke="#3d3020" stroke-width="1"/>
+
+        <!-- Arrow -->
+        <line x1="135" y1="50" x2="200" y2="50" stroke="#7a6a55" stroke-width="1.8" marker-end="url(#arrEnt)"/>
+
+        <!-- AFTER: 崩れて散らばった4冊 -->
+        <line x1="200" y1="68" x2="310" y2="68" stroke="#3d3020" stroke-width="1.5"/>
+        <g transform="rotate(-22 220 64)">
+          <rect x="205" y="59" width="32" height="9" fill="#8b1a1a" stroke="#3d3020" stroke-width="1"/>
+        </g>
+        <g transform="rotate(15 247 64)">
+          <rect x="232" y="59" width="32" height="9" fill="#3d5a8c" stroke="#3d3020" stroke-width="1"/>
+        </g>
+        <g transform="rotate(-7 277 64)">
+          <rect x="262" y="59" width="32" height="9" fill="#5a4a3a" stroke="#3d3020" stroke-width="1"/>
+        </g>
+        <g transform="rotate(25 305 64)">
+          <rect x="290" y="59" width="32" height="9" fill="#e87a4a" stroke="#3d3020" stroke-width="1"/>
+        </g>
+
+        <!-- Label -->
+        <text x="160" y="103" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#3d3020" text-anchor="middle">積んだ本が崩れる</text>
+        <text x="160" y="122" font-family="Source Sans 3,sans-serif" font-size="13" fill="#7a6a55" text-anchor="middle">整った状態は自然には保てない</text>
+      </g>
+
+      <!-- ===== Panel 4: 整列 → 散乱 ===== -->
+      <g transform="translate(380, 250)">
+        <rect x="0" y="0" width="320" height="135" fill="#faf8f3" stroke="#e0d8c8" stroke-width="1"/>
+        <!-- Before: ordered ABC -->
+        <rect x="38" y="22" width="22" height="32" fill="#fff" stroke="#3d3020" stroke-width="1"/>
+        <text x="49" y="44" font-family="Playfair Display,serif" font-size="15" font-weight="700" fill="#3d3020" text-anchor="middle">A</text>
+        <rect x="63" y="22" width="22" height="32" fill="#fff" stroke="#3d3020" stroke-width="1"/>
+        <text x="74" y="44" font-family="Playfair Display,serif" font-size="15" font-weight="700" fill="#3d3020" text-anchor="middle">B</text>
+        <rect x="88" y="22" width="22" height="32" fill="#fff" stroke="#3d3020" stroke-width="1"/>
+        <text x="99" y="44" font-family="Playfair Display,serif" font-size="15" font-weight="700" fill="#3d3020" text-anchor="middle">C</text>
+        <!-- Arrow -->
+        <line x1="135" y1="50" x2="200" y2="50" stroke="#7a6a55" stroke-width="1.8" marker-end="url(#arrEnt)"/>
+        <!-- After: scattered cards -->
+        <g transform="rotate(-18 224 50)">
+          <rect x="213" y="32" width="22" height="32" fill="#fff" stroke="#3d3020" stroke-width="1"/>
+          <text x="224" y="54" font-family="Playfair Display,serif" font-size="15" font-weight="700" fill="#3d3020" text-anchor="middle">B</text>
+        </g>
+        <g transform="rotate(8 257 50)">
+          <rect x="246" y="20" width="22" height="32" fill="#fff" stroke="#3d3020" stroke-width="1"/>
+          <text x="257" y="42" font-family="Playfair Display,serif" font-size="15" font-weight="700" fill="#3d3020" text-anchor="middle">C</text>
+        </g>
+        <g transform="rotate(-7 290 50)">
+          <rect x="279" y="34" width="22" height="32" fill="#fff" stroke="#3d3020" stroke-width="1"/>
+          <text x="290" y="56" font-family="Playfair Display,serif" font-size="15" font-weight="700" fill="#3d3020" text-anchor="middle">A</text>
+        </g>
+        <!-- Label -->
+        <text x="160" y="103" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#3d3020" text-anchor="middle">トランプが乱れる</text>
+        <text x="160" y="122" font-family="Source Sans 3,sans-serif" font-size="13" fill="#7a6a55" text-anchor="middle">並び順の情報が失われる</text>
+      </g>
+    </svg>
+    <p class="svg-cap">図1: どれも別々の現象に見えるが、「片方向にしか進まない」という共通の構造を持つ。物理学はこれを <em style="font-style:normal;color:#8b1a1a;">エントロピーが増える</em> と呼ぶ。</p>
+  </div>
+
+  <p class="body-text fade">これらすべてに共通するのは、放っておけば「乱雑さ」「混ざり具合」が増える方向にしか進まない、という点だ。物理学はこの乱雑さを<span class="tip" onclick="toggleTip(this)">エントロピー<span class="tip-box"><strong>エントロピー</strong>系の「乱雑さ」を測る量。整列・分離した状態は低く、混ざり合ってバラバラな状態は高い。単位はジュール毎ケルビン(J/K)。</span></span>と呼び、<span class="tip" onclick="toggleTip(this)">孤立した系<span class="tip-box"><strong>孤立した系</strong>外部とエネルギーや物質をやりとりしない、閉じた範囲のこと。「この箱の中だけ」と切り取って考える、物理学の標準的な設定。</span></span>のエントロピーは時間とともに増えるか、せいぜい変わらないだけで、決して減らない、と定式化した。これが<span class="tip" onclick="toggleTip(this)">熱力学第二法則<span class="tip-box"><strong>熱力学第二法則</strong>孤立した系のエントロピー(乱雑さ)は時間とともに増えるか、変わらないかのどちらかで、決して減らないという法則。19世紀半ばに確立。</span></span>である。エネルギー保存則と並ぶ、近代物理学の二本柱の一本だ。</p>
+
+  <div class="svg-fig fade">
+    <img src="./entropy_ink.jpg" alt="水中で広がる青と橙のインク。一度広がったインクは、自分から再び一滴に戻ることはない。">
+    <p class="svg-cap">広がったインクが、自分からふたたび一滴に戻ることはない。エントロピーの増大とは、こういう一方向性のことだ。</p>
+  </div>
+
+  <p class="body-text fade">1867年12月11日、35歳のジェイムズ・クラーク・マクスウェルは、友人ピーター・ガスリー・テイトに一通の手紙を書いた。テイトが熱力学の教科書を準備しているのを知り、彼はこう書き出した。「第二法則に小さな穴を開けてみよう」。</p>
+
+  <p class="body-text fade">提案された思考実験を理解するために、ひとつ前提を共有しておく。私たちが「温度」と呼んでいるものは、ミクロには<strong>分子の動きの速さ</strong>のことだ。お湯の中では水分子が激しく飛び回り、冷たい水の中では同じ分子がゆっくり動いている。同じ集まりでも、平均して速く動いていれば温度が高く、ゆっくりなら温度が低い。これは19世紀半ばに確立した、ボルツマンらによる<em>気体分子運動論</em>の中核アイデアである。</p>
+
+  <p class="body-text fade">手紙のなかでマクスウェルが提案したのは、後に「マクスウェルの悪魔」として知られることになる、物理学史上もっとも有名な思考実験のひとつだった。気体の入った箱を仕切りで二つに分け、仕切りの中央に小さな穴を空ける。穴のところには<strong>『悪魔』</strong>がいて、近づいてくる分子の速度を見分け、速い分子だけを片方の部屋に通し、遅い分子だけをもう片方に通す。すると、速い分子ばかりが集まった部屋は熱くなり、遅い分子ばかりの部屋は冷たくなる ―― エネルギーを一切加えていないのに、温度差が生まれる。</p>
+
+  <div class="svg-fig fade">
+    <img src="./diagram_maxwell_demon.svg" alt="マクスウェルの悪魔の古典的な図解。ドアを操る存在が、速い分子(赤)と遅い分子(青)を別々の部屋に仕分けることで、エネルギーを加えずに温度差を作り出す。">
+    <p class="svg-cap">図2: マクスウェルの悪魔の古典的な図解。中央のドアを操る存在が、速い分子(赤)と遅い分子(青)を選り分けることで、エネルギーを加えずに片方を熱く、片方を冷たくする。<br>Diagram: Htkym (<a href="https://creativecommons.org/licenses/by/2.5/" target="_blank" rel="noopener" style="color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.25);">CC BY 2.5</a>)</p>
+  </div>
+
+  <p class="body-text fade">念のため断っておくと、マクスウェル本人はこの存在を「悪魔」とは呼ばず、「<em>有限の存在(a finite being)</em>」と書いた。<ruby>敬虔<rt>けいけん</rt></ruby>なキリスト教徒であった彼が生涯この言葉を口にしなかったのには、信仰の手前もあったかもしれない。「悪魔(demon)」と名付けたのは、7年後の1874年にウィリアム・トムソン(ケルビン卿)で、以後そちらが定着した。本記事もそれに倣う。</p>
+
+  <p class="body-text fade">ここで「だから何?」と思うかもしれない。だが、温度差というのは仕事(エネルギー)の<em>元手</em>だ。蒸気機関や火力発電所は、まさに温度差から動力を取り出す装置である。つまり悪魔の装置は、エネルギーを何も入力せずに、永遠に動力を取り続けられる ―― いわゆる「第二種永久機関」(エネルギー保存則は破らないが、ありふれた熱を100%仕事に変えてしまうため、第二法則だけを破る架空の装置)になる。これは熱力学第二法則の明白な違反だ。<strong>マクスウェルが見つけた『穴』の正体は、これだった。</strong></p>
+
+  <div class="svg-fig fade">
+    <img src="./steam_engine_watt.png" alt="1784年 Boulton & Watt 蒸気機関の技術スケッチ。シリンダー、ピストン、ガバナー、弁などにラベルが付されている。">
+    <p class="svg-cap">図3: 1784年に Boulton と Watt が設計した蒸気機関の構造図(部品ラベル付き)。蒸気の高温源と外気の低温源、その温度差から動力を取り出す ―― マクスウェルの時代、これが世界を動かしていた装置の正体だった。<br><span style="color:#b0a090;font-size:10px;">Plate from R. H. Thurston, <em>A History of the Growth of the Steam Engine</em>, D. Appleton, 1878. Public Domain.</span></p>
+  </div>
+
+  <p class="body-text fade">ただし、ひとつ大事な但し書きを。これを理解するには当時の時代背景を共有しておく必要がある。マクスウェルが生きた19世紀半ばは、物理法則を「神が宇宙に与えた絶対のルール」とみなす考え方が、まだ強く残っていた時代だった。ニュートン以来、自然の法則は人間の都合や認識とは無関係に成り立つ宇宙の鉄則だ ―― そう信じられていた。エネルギー保存則も、当時新しく確立されたばかりだった熱力学第二法則も、その<em>絶対のルール</em>のひとつとして扱われていた。</p>
+
+  <p class="body-text fade">そんな空気のなかで、マクスウェルが提示したのは「本当にそうか?」という問いだった。彼は本気で第二法則を破ろうとしたわけではない。彼が訴えたかったのはこうだ ―― 「第二法則は神の鉄則ではなく、もっと脆い性質のものではないか。マクロな世界では確かに成り立つが、原理的には、分子1個1個を見分けられる存在がいたら破れてしまう。つまりこの法則の正体は、絶対の掟ではなく、<em>統計的な約束事</em>なのではないか」。物理法則を神聖視するのではなく、その成り立ちそのものを問い直す<em>挑戦状</em>として、この思考実験は書かれた。</p>
+
+  <p class="body-text fade">実際にこの『悪魔』を作る術はない ―― が、原理的に作れたとしたら破れる。その形で、マクスウェルは第二法則の本質を炙り出そうとした。この問題提起は的確で、後の統計力学(分子レベルの確率で熱現象を説明する分野、ボルツマンらが発展させた)を準備することになった。ただし、彼の予想の半分は外れることになる ―― それを実証するのに、150年かかる。本記事の残りは、その150年の物語だ。</p>
+
+  <p class="body-text fade">ひとつだけ、あとで効いてくる事実をここで指摘しておく。この「見分けて、判断して、開ける」という動作には、悪魔が見たことを一瞬でも「覚える」こと ―― つまり、どこかに記録すること ―― が必然的に伴う。何も覚えずに判断はできないからだ。記憶については、このあと体験パートと、その仕組みの解説の章で、もう一度立ち返ってくる。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"…if we conceive a being whose faculties are so sharpened that he can follow every molecule in its course, such a being… would be able to do what is at present impossible to us."</p>
+    <p class="quote-ja">…もし、すべての分子を一個ずつ追えるほど鋭い能力を持つ存在を考えるなら、そのような存在は、我々には現在不可能なことを実現できるだろう。</p>
+    <p class="quote-attr">— J. C. Maxwell『Theory of Heat』(1872) 第12章</p>
+  </div>
+
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解 vs 実際は</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">マクスウェルの悪魔は、第二法則の「反例」として知られている。実際にこの装置を作れば、エネルギーなしで温度差を生み出せる。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">第二法則は破れない。ただし「破れない理由」は、悪魔の仕分け作業ではなく、悪魔のメモリにあった。<em>忘れる</em>ことに、必ず熱がかかる。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">よくある誤解</p>
+          <p class="mis-text">悪魔の問題は19世紀の古い話で、もう解決済み。現代の物理学とは関係ない。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際は</p>
+          <p class="mis-text">2012年、フランスのチームが顕微鏡下のシリカ粒子で「忘れるコスト」を初めて実測した。論文は<em>Nature</em>に載り、いまも引用が伸び続けている。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">この章では4人の人物に、悪魔をめぐる150年を案内してもらう。一人目はマクスウェル、二人目はそれを定量化したシラード、三人目は答えを出したランダウアー、そして四人目はとどめを刺したベネットである。</p>
+
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="./person_maxwell.jpg" alt="James Clerk Maxwell の肖像">
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">James Clerk Maxwell (1831–1879)</p>
+      <p class="person-block-role">提案者 — 1867</p>
+      <p class="person-block-desc">スコットランドの物理学者。電磁気の方程式に名を残す巨匠。1867年、第二法則に「穴」を開ける思考実験を手紙で提案した。本人は最後まで「悪魔」とは呼ばず、「有限の存在」と書いた。</p>
+      <a href="https://ja.wikipedia.org/wiki/%E3%82%B8%E3%82%A7%E3%83%BC%E3%83%A0%E3%82%BA%E3%83%BB%E3%82%AF%E3%83%A9%E3%83%BC%E3%82%AF%E3%83%BB%E3%83%9E%E3%82%AF%E3%82%B9%E3%82%A6%E3%82%A7%E3%83%AB" target="_blank" rel="noopener" class="person-wiki">Wikipedia</a>
+    </div>
+  </div>
+
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="./person_szilard.jpg" alt="Leo Szilard の肖像">
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">Leo Szilard (1898–1964)</p>
+      <p class="person-block-role">定量化 — 1929</p>
+      <p class="person-block-desc">ハンガリー生まれの物理学者。1929年の論文で、悪魔の問題を「1分子・1ビット」の極限まで単純化した。<em>計測</em>そのものにエネルギーがかかるはずだ ―― この一文が、情報と熱力学を結ぶ最初の橋になった。</p>
+      <a href="https://ja.wikipedia.org/wiki/%E3%83%AC%E3%82%AA%E3%83%BB%E3%82%B7%E3%83%A9%E3%83%BC%E3%83%89" target="_blank" rel="noopener" class="person-wiki">Wikipedia</a>
+    </div>
+  </div>
+
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="./person_landauer.jpg" alt="Rolf Landauer の肖像">
+      <p class="person-credit" style="display:none;">Photo credit below</p>
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">Rolf Landauer (1927–1999)</p>
+      <p class="person-block-role">原理 — 1961</p>
+      <p class="person-block-desc">ドイツ系アメリカ人物理学者、<span class="tip" onclick="toggleTip(this)">IBM<span class="tip-box"><strong>IBM</strong>米国のコンピュータ企業。1950–90年代を通じてメインフレームから半導体まで業界をリードし、ワトソン研究所などから多くのノーベル賞・チューリング賞受賞者を輩出した。情報物理学・量子情報の歴史的な中心地のひとつ。</span></span>研究員。1961年の論文「Irreversibility and Heat Generation in the Computing Process」で、<em>1ビットの情報を消去するには最小 kT ln 2 の熱が必要</em>という原理を導いた。情報そのものが物理量であることを示した。</p>
+      <a href="https://ja.wikipedia.org/wiki/%E3%83%AD%E3%83%AB%E3%83%95%E3%83%BB%E3%83%A9%E3%83%B3%E3%83%80%E3%82%A6%E3%82%A2%E3%83%BC" target="_blank" rel="noopener" class="person-wiki">Wikipedia</a>
+      <p class="person-credit">Photo: AIP Emilio Segrè Visual Archives, Physics Today Collection</p>
+    </div>
+  </div>
+
+  <div class="person-block no-img fade">
+    <div class="person-block-body">
+      <p class="person-block-name">Charles H. Bennett (1943– )</p>
+      <p class="person-block-role">決着 — 1982</p>
+      <p class="person-block-desc">IBM研究員、量子情報理論のパイオニア。1982年、悪魔の作業のなかで本当に不可逆なのは「計測」ではなく「メモリの消去」だ、と指摘した。これで悪魔の物語は、ようやく整合性のある結末を得た。</p>
+      <a href="https://ja.wikipedia.org/wiki/%E3%83%81%E3%83%A3%E3%83%BC%E3%83%AB%E3%82%BA%E3%83%BB%E3%83%99%E3%83%8D%E3%83%83%E3%83%88_(%E7%89%A9%E7%90%86%E5%AD%A6%E8%80%85)" target="_blank" rel="noopener" class="person-wiki">Wikipedia</a>
+    </div>
+  </div>
+
+  <!-- ===== 体験 ===== -->
+  <div class="sec-rule fade"><span class="sec-label">§2 — Experience</span><span class="sec-line"></span></div>
+  <h2 class="fade">あなたが悪魔になる</h2>
+
+  <p class="body-text fade">議論はここまでにする。手を動かす段に入る。これから3つのフェーズで、悪魔の仕事の全行程を体験してもらう。</p>
+
+  <p class="body-text fade"><strong>フェーズ1</strong>では、あなたが悪魔として分子を仕分ける。<strong>フェーズ2</strong>では、仕分けた結果を記憶していくと何が起こるかを見る。<strong>フェーズ3</strong>で、稼いだ仕事と、忘れるために払う熱の帳尻を確かめる。</p>
+
+  <div class="phase-title fade"><span class="phase-num">01</span><span class="phase-name">分子を仕分ける</span></div>
+  <p class="phase-sub fade">箱の中で赤い分子(高速)と青い分子(低速)が動いている。中央の壁に穴がある。穴のあたりに分子が来た瞬間、<strong>箱をクリックまたはタップするとドアが0.6秒だけ開く</strong>。赤を右、青を左に通せれば成功。30秒間でどれだけ仕分けられるか。</p>
+
+  <div class="demon-stage fade">
+    <div class="demon-overlay" id="demonOverlay">
+      <div class="demon-result">
+        <p class="demon-result-label">Result</p>
+        <div class="demon-result-stat"><span>仕分け成功</span><strong class="score" id="demonScore">0</strong></div>
+        <div class="demon-result-stat"><span>ミス</span><strong class="miss" id="demonMiss">0</strong></div>
+        <div class="demon-result-stat"><span>左の温度</span><strong class="cool" id="demonResTL">0.00</strong></div>
+        <div class="demon-result-stat"><span>右の温度</span><strong class="warm" id="demonResTR">0.00</strong></div>
+        <div class="demon-result-stat"><span>温度差 ΔT</span><strong id="demonResDT">+0.00</strong></div>
+        <p class="demon-result-msg" id="demonResMsg">エネルギー入力ゼロで温度差を作った。<br>—— ただし悪魔は分子を「覚えて」いる。</p>
+        <button class="demon-btn" id="demonRetry">もう一度</button>
+      </div>
+    </div>
+    <div class="demon-banner">
+      <span class="demon-banner-title">▼ Demon's Console — Phase 01</span>
+      <span class="demon-banner-sub">あなたが悪魔になる</span>
+    </div>
+    <div class="demon-canvas-wrap">
+      <canvas id="demonCanvas" width="720" height="360"></canvas>
+    </div>
+    <div class="demon-hud">
+      <div class="demon-hud-cell">
+        <svg class="demon-hud-icon" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#e8c56a" stroke-width="1.4"/><path d="M9 5v4l3 2" stroke="#e8c56a" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <p class="demon-hud-lbl">残り時間</p>
+        <p class="demon-hud-val" id="demonTime">30.0s</p>
+      </div>
+      <div class="demon-hud-cell">
+        <svg class="demon-hud-icon" viewBox="0 0 18 18" fill="none"><rect x="7" y="2" width="4" height="11" rx="2" stroke="#6ab8e8" stroke-width="1.4"/><circle cx="9" cy="14" r="2.5" fill="#6ab8e8"/></svg>
+        <p class="demon-hud-lbl">左の温度</p>
+        <p class="demon-hud-val cool" id="demonTL">—</p>
+      </div>
+      <div class="demon-hud-cell">
+        <svg class="demon-hud-icon" viewBox="0 0 18 18" fill="none"><rect x="7" y="2" width="4" height="11" rx="2" stroke="#e87a4a" stroke-width="1.4"/><circle cx="9" cy="14" r="2.5" fill="#e87a4a"/></svg>
+        <p class="demon-hud-lbl">右の温度</p>
+        <p class="demon-hud-val warm" id="demonTR">—</p>
+      </div>
+      <div class="demon-hud-cell">
+        <svg class="demon-hud-icon" viewBox="0 0 18 18" fill="none"><path d="M3 14L9 4l6 10H3z" stroke="#e8c56a" stroke-width="1.4" stroke-linejoin="round" fill="none"/></svg>
+        <p class="demon-hud-lbl">温度差 ΔT</p>
+        <p class="demon-hud-val" id="demonDT">0.00</p>
+      </div>
+    </div>
+    <div class="demon-gauge">
+      <div class="demon-gauge-row">
+        <span class="demon-gauge-label">温度差 ゲージ — 中央が0、左右に伸びるほど温度差が広がっている</span>
+        <span class="demon-gauge-val" id="demonGaugeVal">+0.00</span>
+      </div>
+      <div class="demon-gauge-track">
+        <div class="demon-gauge-half left"><div class="demon-gauge-fill cool" id="demonGaugeCool" style="width:0%"></div></div>
+        <div class="demon-gauge-half right"><div class="demon-gauge-fill warm" id="demonGaugeWarm" style="width:0%"></div></div>
+        <div class="demon-gauge-mid"></div>
+      </div>
+      <div class="demon-gauge-ends">
+        <span style="color:#6ab8e8;">← 左の方が冷たい</span>
+        <span style="color:#e87a4a;">右の方が熱い →</span>
+      </div>
+    </div>
+    <div class="demon-controls">
+      <p class="demon-instr"><strong>クリック/タップ</strong>でドアを一瞬開ける。<br>狙いは: <span style="color:#e87a4a;">赤(高速) → 右</span> / <span style="color:#6ab8e8;">青(低速) → 左</span>。</p>
+      <button class="demon-btn" id="demonReset">開始 / Start</button>
+    </div>
+  </div>
+
+  <p class="body-text fade">うまく仕分けられただろうか。30秒間に何度かはミスもあったはずだ ―― 赤を左に逃したり、青に開けてしまったり。それでも、温度計の針は、最初は同じ温度だった2つの箱が、徐々に「左が冷たく、右が温かい」方向に分かれていくのを見せてくれたはずである。</p>
+
+  <p class="body-text fade">この温度差を作るのに、あなたは何の<em>仕事</em>もしていない。ドアの開閉に必要なエネルギーは、原理的にはゼロにできる(摩擦のない理想的な蝶番を考えればよい)。それでも温度差は生まれる。これが第二法則の「穴」だった。</p>
+
+  <p class="body-text fade">…と、ここまでなら問題ない。問題は、あなたが「赤がドアに近づいた」「青がいま向こうから来る」という<strong>判断を、何かに記憶しなければならない</strong>ことだ。脳でも、ノートでも、悪魔のメモリでも、なんでもいい。仕分けは、計測と判断と記憶が伴う。次のフェーズで、その記憶に何が起こるかを見る。</p>
+
+  <div class="phase-title fade"><span class="phase-num">02</span><span class="phase-name">悪魔のメモリ</span></div>
+  <p class="phase-sub fade">仕分けるたびに、悪魔は「いま左に通したか、右に通したか」を1<span class="tip" onclick="toggleTip(this)">ビット<span class="tip-box"><strong>ビット</strong>情報の最小単位。0か1の二択を表す。コンピュータの記憶装置はすべてビットの集まり。</span></span>として記憶する。下の8つのマスはメモリだ。「1ビット書く」を押して埋めていくと何が起こるか。</p>
+
+  <div class="mem-stage fade">
+    <div class="mem-bits" id="memBits">
+      <div class="mem-bit">·</div><div class="mem-bit">·</div><div class="mem-bit">·</div><div class="mem-bit">·</div>
+      <div class="mem-bit">·</div><div class="mem-bit">·</div><div class="mem-bit">·</div><div class="mem-bit">·</div>
+    </div>
+    <div class="mem-controls">
+      <button class="mem-btn" id="memWrite">1ビット書く</button>
+      <button class="mem-btn erase" id="memErase" disabled>1ビット消去</button>
+      <button class="mem-btn" id="memReset">リセット</button>
+    </div>
+    <p class="mem-warn" id="memWarn">&nbsp;</p>
+    <div class="mem-readout">
+      <div class="mem-readout-cell">
+        <p class="mem-readout-lbl">使用ビット数</p>
+        <p class="mem-readout-val" id="memUsed">0 / 8</p>
+      </div>
+      <div class="mem-readout-cell">
+        <p class="mem-readout-lbl">消去で出た熱</p>
+        <p class="mem-readout-val heat" id="memHeat">0.00 kT ln 2</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">8ビットを使い切ったら、次の仕分けはできない。続けるには、古い記録を消さなければならない。「1ビット消去」を押すと、ビットがリセットされる ―― そして、画面右下に<em>kT ln 2 の熱</em>が積み上がっていく。</p>
+
+  <p class="body-text fade">これが<span class="tip" onclick="toggleTip(this)">ランダウアー限界<span class="tip-box"><strong>ランダウアー限界</strong>1ビットの情報を消去するために原理的に必要となる最小の熱量。kT ln 2 ≒ 室温で約 2.9 × 10⁻²¹ ジュール。Rolf Landauer が1961年に導いた。</span></span>である。1961年、ランダウアーがIBMの論文で導いた。<span class="tip" onclick="toggleTip(this)">ボルツマン定数<span class="tip-box"><strong>ボルツマン定数 k</strong>温度とエネルギーをつなぐ自然定数。k ≒ 1.38 × 10⁻²³ J/K。マクロな熱とミクロな分子運動の橋渡し。</span></span> k に温度 T をかけ、ln 2 (≒0.693)を掛けたもの。室温(T=300K)では、1ビット消去あたり約 2.9 × 10⁻²¹ ジュール。途方もなく小さいが、ゼロではない。</p>
+
+  <p class="body-text fade">どれくらい小さいか。比較すれば、室温で空気分子1個がもっている平均的な運動エネルギー(ざっと 6 × 10⁻²¹ ジュール)の、ちょうど半分くらい。空気分子1個分の「ひと揺らぎ」と同程度の熱が、1ビット消すごとに必ず外に逃げる。日常の感覚ではゼロにしか見えない量だが、物理学的には測定可能な、実在する量である。</p>
+
+  <div class="phase-title fade"><span class="phase-num">03</span><span class="phase-name">帳尻が合う</span></div>
+  <p class="phase-sub fade">これは「確かめるための道具」だ。<strong>3本のスライダーを動かしてみてほしい</strong>。温度 T、仕分けたビット数 N、そして消去の粗さ ε(0 = 完全可逆な理想極限、上げるほど現実の消去で余分に出る熱)をどう変えても、緑(悪魔の稼ぎ)と赤(消去で出る熱)のバーは必ずぴったり同じか、赤のほうが大きい。<strong>第二法則は、どんな条件でも抜け道なしに守られている</strong>。それを目で確かめるためだけに、ここのスライダーは存在する。</p>
+
+  <div class="bal-stage fade">
+    <div class="bal-sliders">
+      <div class="bal-slider-row">
+        <label>温度 T(室温=1)<span id="balTval">T = 1.0</span></label>
+        <input type="range" id="balT" min="0.5" max="3.0" step="0.1" value="1.0">
+      </div>
+      <div class="bal-slider-row">
+        <label>仕分けたビット数 N<span id="balNval">N = 16</span></label>
+        <input type="range" id="balN" min="1" max="40" step="1" value="16">
+      </div>
+      <div class="bal-slider-row full">
+        <label>消去の粗さ ε(0 = 理想極限 / 大きいほど現実の消去で出る余分な熱)<span id="balEval">ε = 0.00</span></label>
+        <input type="range" id="balE" min="0" max="1.0" step="0.05" value="0.00">
+      </div>
+    </div>
+    <div class="bal-bars">
+      <div class="bal-bar-row">
+        <p class="bal-bar-lbl">悪魔が稼ぐ仕事<small>W = N · kT ln 2</small></p>
+        <div class="bal-bar-track"><div class="bal-bar-fill gain" id="balBarW" style="width:0%"></div></div>
+        <p class="bal-bar-val" id="balW">0.00</p>
+      </div>
+      <div class="bal-bar-row">
+        <p class="bal-bar-lbl">消去で出る熱<small>Q ≥ N · kT ln 2</small></p>
+        <div class="bal-bar-track"><div class="bal-bar-fill cost" id="balBarQ" style="width:0%"></div></div>
+        <p class="bal-bar-val" id="balQ">0.00</p>
+      </div>
+    </div>
+    <div class="bal-conclusion">
+      正味の取り分: <strong id="balNet">0.00</strong> ・ <span id="balVerdict">第二法則は守られている</span>
+    </div>
+  </div>
+
+  <p class="body-text fade">スライダーをどう動かしても、緑(稼ぎ)と赤(消去熱)はぴったり同じ(ε=0、完全可逆な極限)か、赤の方が大きい(ε>0、現実の消去)。「正味の取り分はゼロ以下」という結論しか出ない。これが結末である。悪魔は分子を選り分けることはできる。だが、選り分けた記録を忘れるたびに、少なくとも同じだけの熱を環境に返さないといけない。</p>
+
+  <p class="body-text fade">不思議なのは、この帳尻合わせが「計算機」の話と完全に同じ構造をしていることだ。あなたのスマホがメモリを消去するたびに、原理的にはランダウアー限界の熱が放出されている。実際の半導体チップはこの限界より数千〜数万倍ほど多い熱を出してしまっているが、原理上の下限は決まっている。<strong>情報を忘れることは、物理現象である。</strong></p>
+
+  <!-- ===== メカニズム ===== -->
+  <div class="sec-rule fade"><span class="sec-label">§3 — Mechanism</span><span class="sec-line"></span></div>
+  <h2 class="fade">なぜ「忘れる」と熱が出るのか</h2>
+
+  <p class="body-text fade">ランダウアーの議論は、信じがたいほど単純である。1ビットのメモリとは、2つの状態(0か1)を区別できる物理装置だ。仮にそれを箱に入った1個の分子で表すとしよう ―― 左にいれば「0」、右にいれば「1」。</p>
+
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#8b1a1a"/>
+        </marker>
+      </defs>
+      <!-- Title -->
+      <text x="360" y="30" font-family="Source Sans 3,sans-serif" font-size="17" font-weight="600" fill="#1a1208" text-anchor="middle">消去 = 「0でも1でも、必ず0にする」操作</text>
+      <text x="160" y="64" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">消去前: 2つの状態のどちらか</text>
+
+      <!-- State 0 -->
+      <rect x="60" y="84" width="200" height="80" fill="#faf8f3" stroke="#c8bfaa" stroke-width="1.5"/>
+      <line x1="160" y1="84" x2="160" y2="164" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+      <circle cx="110" cy="124" r="10" fill="#6ab8e8"/>
+      <text x="160" y="184" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#3d3020" text-anchor="middle">状態「0」(左)</text>
+
+      <!-- State 1 -->
+      <rect x="60" y="214" width="200" height="80" fill="#faf8f3" stroke="#c8bfaa" stroke-width="1.5"/>
+      <line x1="160" y1="214" x2="160" y2="294" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+      <circle cx="210" cy="254" r="10" fill="#e87a4a"/>
+      <text x="160" y="314" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#3d3020" text-anchor="middle">状態「1」(右)</text>
+
+      <!-- Arrow -->
+      <line x1="290" y1="190" x2="430" y2="190" stroke="#8b1a1a" stroke-width="2" marker-end="url(#arrL)"/>
+      <text x="360" y="178" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#8b1a1a" text-anchor="middle">消去</text>
+
+      <!-- After erase: forced to 0 -->
+      <text x="560" y="64" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">消去後: 必ず「0」</text>
+      <rect x="460" y="150" width="200" height="80" fill="#faf8f3" stroke="#1a1208" stroke-width="1.5"/>
+      <line x1="560" y1="150" x2="560" y2="230" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+      <circle cx="510" cy="190" r="10" fill="#6ab8e8"/>
+      <text x="560" y="252" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#3d3020" text-anchor="middle">状態「0」一択</text>
+
+      <!-- Bottom annotation -->
+      <text x="360" y="372" font-family="Source Sans 3,sans-serif" font-size="14" font-weight="600" fill="#3d3020" text-anchor="middle">2状態 → 1状態 = エントロピー減 = 環境に熱を捨てる必要</text>
+    </svg>
+    <p class="svg-cap">図4: 消去とは「2つの状態を1つに集約する操作」。ミクロな状態数が半分になる = エントロピーが k ln 2 だけ減る。減った分は、必ずどこかに熱として捨てるしかない。</p>
+  </div>
+
+  <p class="body-text fade">「消去する」とは、書かれているのが0でも1でも、操作後は必ず「0」になっている状態にする、という意味だ。あえて初期状態に依存しない、と言ってもいい。コンピュータの「ゼロクリア」と同じである。</p>
+
+  <p class="body-text fade">ここがミソ。消去前は<strong>分子は左にいるか右にいるか分からない</strong>(2つの状態が等確率)。消去後は<strong>必ず左にいる</strong>(1つの状態)。状態の数が2 → 1に減る。</p>
+
+  <p class="body-text fade">ここで使うのが、ボルツマンが1870年代に導いた<strong>S = k ln W</strong>(<em>S</em> はエントロピー、<em>k</em> は<span class="tip" onclick="toggleTip(this)">ボルツマン定数<span class="tip-box"><strong>ボルツマン定数 k</strong>温度とエネルギーをつなぐ自然定数。k ≒ 1.38 × 10⁻²³ J/K。マクロな熱とミクロな分子運動の橋渡し。</span></span>、<em>W</em> はその系が取れる<em>状態の数</em>、<em>ln</em> は<span class="tip" onclick="toggleTip(this)">自然対数<span class="tip-box"><strong>自然対数(ln)</strong>ネイピア数 e (≒ 2.718) を底とする対数。ln 2 ≒ 0.693。物理学・情報理論で「対数」といえば普通こちらを指す。教科書によっては log と書く流儀もあるが、底は e で同じ。</span></span>)という公式だ ―― エントロピーは、その系が取れる「状態の数」の対数で決まる。状態数が 2 から 1 に減れば、エントロピーは k ln 2 − k ln 1 = <strong>k ln 2</strong> だけ減る。ln 2 ≒ 0.693。覚える必要はない、<em>状態が半分になる時のエントロピー減少量を表す数</em>と思っておけばよい。</p>
+
+  <p class="body-text fade">分子1個のエントロピーが減ったということは、同じだけのエントロピーがどこかで増えなければならない ―― これが第二法則だ。減った分のエントロピー(k ln 2)に温度 T をかけたものが、環境に流れ出る熱になる。<strong>kT ln 2</strong>。これだけ。</p>
+
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrCyc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#8b1a1a"/>
+        </marker>
+      </defs>
+      <text x="360" y="32" font-family="Source Sans 3,sans-serif" font-size="18" font-weight="600" fill="#1a1208" text-anchor="middle">悪魔の1サイクル: 計測 → 仕分け → 記憶 → 消去</text>
+
+      <!-- Four nodes in a cycle -->
+      <!-- 1. Measure -->
+      <circle cx="180" cy="150" r="62" fill="#f3efe6" stroke="#c8bfaa" stroke-width="2"/>
+      <text x="180" y="144" font-family="Playfair Display,serif" font-size="20" font-weight="700" fill="#1a1208" text-anchor="middle">①計測</text>
+      <text x="180" y="170" font-family="Source Sans 3,sans-serif" font-size="15" fill="#7a6a55" text-anchor="middle">分子の速度</text>
+
+      <!-- 2. Sort -->
+      <circle cx="540" cy="150" r="62" fill="#f3efe6" stroke="#c8bfaa" stroke-width="2"/>
+      <text x="540" y="144" font-family="Playfair Display,serif" font-size="20" font-weight="700" fill="#1a1208" text-anchor="middle">②仕分け</text>
+      <text x="540" y="170" font-family="Source Sans 3,sans-serif" font-size="15" fill="#7a6a55" text-anchor="middle">ドアを操作</text>
+
+      <!-- 3. Record -->
+      <circle cx="540" cy="320" r="62" fill="#f3efe6" stroke="#c8bfaa" stroke-width="2"/>
+      <text x="540" y="314" font-family="Playfair Display,serif" font-size="20" font-weight="700" fill="#1a1208" text-anchor="middle">③記憶</text>
+      <text x="540" y="340" font-family="Source Sans 3,sans-serif" font-size="15" fill="#7a6a55" text-anchor="middle">L/Rをノートに</text>
+
+      <!-- 4. Erase -->
+      <circle cx="180" cy="320" r="62" fill="#1a1208" stroke="#8b1a1a" stroke-width="2"/>
+      <text x="180" y="314" font-family="Playfair Display,serif" font-size="20" font-weight="700" fill="#e8c56a" text-anchor="middle">④消去</text>
+      <text x="180" y="340" font-family="Source Sans 3,sans-serif" font-size="15" fill="#a89888" text-anchor="middle">kT ln 2 の熱</text>
+
+      <!-- Arrows -->
+      <path d="M 244 150 Q 360 124 476 150" fill="none" stroke="#8b1a1a" stroke-width="2" marker-end="url(#arrCyc)"/>
+      <path d="M 540 212 L 540 258" fill="none" stroke="#8b1a1a" stroke-width="2" marker-end="url(#arrCyc)"/>
+      <path d="M 476 320 Q 360 346 244 320" fill="none" stroke="#8b1a1a" stroke-width="2" marker-end="url(#arrCyc)"/>
+      <path d="M 180 258 L 180 212" fill="none" stroke="#8b1a1a" stroke-width="2" marker-end="url(#arrCyc)"/>
+
+      <!-- Center note -->
+      <text x="360" y="228" font-family="Source Sans 3,sans-serif" font-size="16" fill="#3d3020" text-anchor="middle" font-weight="600">真の不可逆ステップ</text>
+      <text x="360" y="252" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">= ④だけ</text>
+    </svg>
+    <p class="svg-cap">図5: 1982年にベネットが整理した4ステップ。①〜③は原理的に可逆にできるが、④の消去だけは熱を吐き出さずには成立しない。第二法則を守っているのは、悪魔のメモリ消去だった。</p>
+  </div>
+
+  <p class="body-text fade">マクスウェルの問いに対するベネットの回答は、こう言い換えられる。「悪魔のサイクルを<em>1周</em>させたいなら、ノートを白紙に戻さないといけない。白紙に戻す瞬間に、これまで稼いだ仕事と同じだけの熱が出る。1周してみれば、エネルギーは±0で、第二法則は破られていない」。</p>
+
+  <p class="body-text fade">最初の1ビットだけならごまかせる。ノートが空っぽのうちは、悪魔は消去なしで仕分けられる。だが空っぽなノートは有限のメモリしか持っていないから、いずれ満杯になり、消去のフェーズが始まる。長期的にはどんな悪魔も第二法則の前に膝を屈する。これが解決策である。</p>
+
+  <!-- ===== 歴史 ===== -->
+  <div class="sec-rule fade"><span class="sec-label">§4 — Timeline</span><span class="sec-line"></span></div>
+  <h2 class="fade">145年かけて答えに辿り着いた</h2>
+
+  <div class="timeline fade">
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1867年12月11日</p>
+      <p class="tl-title">マクスウェル、テイトに手紙を書く</p>
+      <p class="tl-desc">「第二法則に小さな穴を開けてみよう」。「有限の存在(a finite being)」が分子を選り分ける思考実験。本人は「悪魔」とは決して呼ばなかった。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1872年</p>
+      <p class="tl-title">『Theory of Heat』で公表</p>
+      <p class="tl-desc">マクスウェルが熱力学の教科書として出版。第12章で「有限の存在」が一般読者の目に触れることになる。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1874年</p>
+      <p class="tl-title">ケルビン卿が「悪魔(demon)」と命名</p>
+      <p class="tl-desc">ウィリアム・トムソン(ケルビン卿)が雑誌Natureで "Maxwell's demon" という呼び名を使う。ギリシャ神話のダイモン(背景で働く超自然的存在)の意で、悪意は含まなかった。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1928年</p>
+      <p class="tl-title">エディントン「時間の矢」</p>
+      <p class="tl-desc">アーサー・エディントンが『The Nature of the Physical World』で<span class="tip" onclick="toggleTip(this)">時間の矢<span class="tip-box"><strong>時間の矢</strong>過去から未来への一方向性を物理学的に説明する概念。エディントンが1927-28年に第二法則と結びつけて論じ、現代物理学の基礎概念となった。</span></span>(arrow of time)という言葉を作る。物理法則のうち、唯一時間の向きを区別するのは第二法則だ、と論じた。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1929年</p>
+      <p class="tl-title">シラード、悪魔を1ビットまで単純化する</p>
+      <p class="tl-desc">レオ・シラードが「On the decrease of entropy in a thermodynamic system by the intervention of intelligent beings」を発表。1分子1ビットの極限で、悪魔が稼げる仕事は最大 kT ln 2、計測にもエネルギーがかかるはず、と論じた。情報と熱力学を結ぶ歴史の起点。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1961年</p>
+      <p class="tl-title">ランダウアー、消去原理を導く</p>
+      <p class="tl-desc">IBMのランダウアーが「Irreversibility and Heat Generation in the Computing Process」で、論理的に不可逆な操作(消去・上書き)1つにつき最低 kT ln 2 の熱が出る、と導いた。情報処理に物理コストを与えた歴史的論文。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1973年</p>
+      <p class="tl-title">ベネット、可逆計算が可能であると示す</p>
+      <p class="tl-desc">同じくIBMのチャールズ・ベネットが「論理的に可逆な計算(消去を伴わない計算)」を構成的に示す。これが後に悪魔の問題を整理する伏線となる。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1982年</p>
+      <p class="tl-title">ベネット、悪魔の真の不可逆ステップを特定</p>
+      <p class="tl-desc">論文「The thermodynamics of computation – a review」で、悪魔のサイクルを閉じるために必要なのは「メモリの消去」であり、ここで第二法則が回収される、と論じた。「計測ではなく消去が問題だった」という決定打。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2012年3月</p>
+      <p class="tl-title">Bérut et al. が <em>Nature</em> で実験実証</p>
+      <p class="tl-desc">仏リヨンのENSのアントワーヌ・ベリュらが、直径2µmのシリカビーズを<span class="tip" onclick="toggleTip(this)">光トラップ<span class="tip-box"><strong>光トラップ(光ピンセット)</strong>レーザー光の電磁場で微小な粒子をピンセットのように掴む技術。1986年Ashkin開発。2018年ノーベル物理学賞。</span></span>でダブルウェル・ポテンシャルに閉じ込め、1ビットの消去で出る熱がランダウアー限界に漸近することを世界で初めて実測。理論提案から145年、消去原理から51年経っての実験的決着。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">2012年のベリュらの実験は、悪魔の議論を「思考」から「測定」に引きずり出した。シリカ粒子1個 ―― 直径2マイクロメートル、髪の毛より40倍細い ―― が、ダブルウェル(2つの谷を持つ)ポテンシャルの中を<span class="tip" onclick="toggleTip(this)">ブラウン運動<span class="tip-box"><strong>ブラウン運動</strong>液体中の微粒子が、周囲の分子の衝突を受けて不規則に動き回る現象。1827年に植物学者ブラウンが花粉粒子の動きで発見、1905年にアインシュタインが理論的に説明した。</span></span>でゆらいでいる。レーザーで谷の深さを変えながら粒子を「左の谷」に強制的に集める ―― これが消去操作にあたる。ゆっくり消すほど、出る熱はランダウアー限界 kT ln 2 に下から漸近する。</p>
+
+  <div class="svg-fig fade">
+    <svg viewBox="0 0 720 460" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrBerut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#8b1a1a"/>
+        </marker>
+      </defs>
+      <text x="360" y="32" font-family="Source Sans 3,sans-serif" font-size="18" font-weight="600" fill="#1a1208" text-anchor="middle">Bérut et al. 2012 — 装置と原理</text>
+
+      <!-- ===== LEFT: Optical trap apparatus ===== -->
+      <text x="180" y="72" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#3d3020" text-anchor="middle">光トラップで粒子を捕まえる</text>
+
+      <!-- Laser beam coming down -->
+      <line x1="180" y1="92" x2="180" y2="190" stroke="#e87a4a" stroke-width="3" stroke-dasharray="4,3" opacity="0.85"/>
+      <text x="180" y="112" font-family="Source Sans 3,sans-serif" font-size="14" font-weight="600" fill="#e87a4a" text-anchor="end" dx="-12">レーザー</text>
+
+      <!-- Lens -->
+      <ellipse cx="180" cy="200" rx="48" ry="10" fill="#c8bfaa" stroke="#7a6a55" stroke-width="1"/>
+      <text x="240" y="204" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55">対物レンズ</text>
+
+      <!-- Water cell with bead (drawn first so beam can render on top) -->
+      <rect x="80" y="270" width="200" height="100" fill="#e8f0f5" stroke="#7a6a55" stroke-width="1.5" opacity="0.6"/>
+
+      <!-- Beam converging onto the bead inside the water cell -->
+      <line x1="155" y1="210" x2="180" y2="320" stroke="#e87a4a" stroke-width="1.5" opacity="0.6"/>
+      <line x1="205" y1="210" x2="180" y2="320" stroke="#e87a4a" stroke-width="1.5" opacity="0.6"/>
+
+      <!-- Soft glow at focal point (laser focused on bead) -->
+      <circle cx="180" cy="320" r="18" fill="#e87a4a" opacity="0.18"/>
+
+      <!-- Silica bead at the laser focus -->
+      <circle cx="180" cy="320" r="10" fill="#3d3020"/>
+      <text x="180" y="394" font-family="Source Sans 3,sans-serif" font-size="14" fill="#3d3020" text-anchor="middle">直径 2µm シリカビーズ(水中)</text>
+      <text x="180" y="416" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">レーザーの焦点を左右に</text>
+      <text x="180" y="436" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="middle">切り替え2つの谷を作る</text>
+
+      <!-- ===== RIGHT: Double-well potential graph ===== -->
+      <text x="540" y="72" font-family="Source Sans 3,sans-serif" font-size="15" font-weight="600" fill="#3d3020" text-anchor="middle">ダブルウェル・ポテンシャル U(x)</text>
+
+      <!-- Y axis -->
+      <line x1="410" y1="100" x2="410" y2="290" stroke="#7a6a55" stroke-width="1"/>
+      <text x="404" y="110" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="end">U(x)</text>
+
+      <!-- X axis -->
+      <line x1="410" y1="290" x2="690" y2="290" stroke="#7a6a55" stroke-width="1"/>
+
+      <!-- Double well curve: two minima with central barrier -->
+      <path d="M 420 140 C 450 140 460 270 490 270 C 510 270 530 200 540 200 C 550 200 570 270 590 270 C 620 270 630 140 660 140" fill="none" stroke="#8b1a1a" stroke-width="2.5"/>
+
+      <!-- Bead initially in right well -->
+      <circle cx="590" cy="270" r="10" fill="#3d3020"/>
+
+      <!-- Erasure arrow: arc from right well over barrier to left well -->
+      <path d="M 580 262 Q 540 170 500 262" fill="none" stroke="#8b1a1a" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrBerut)"/>
+
+      <!-- "Erasure" label above arc -->
+      <text x="540" y="158" font-family="Source Sans 3,sans-serif" font-size="14" font-weight="600" fill="#8b1a1a" text-anchor="middle">消去操作</text>
+      <text x="540" y="178" font-family="Source Sans 3,sans-serif" font-size="14" fill="#8b1a1a" text-anchor="middle">「1」→「0」</text>
+
+      <!-- State labels under wells -->
+      <text x="490" y="312" font-family="Source Sans 3,sans-serif" font-size="14" font-weight="600" fill="#3d3020" text-anchor="middle">「0」状態</text>
+      <text x="590" y="312" font-family="Source Sans 3,sans-serif" font-size="14" font-weight="600" fill="#3d3020" text-anchor="middle">「1」状態</text>
+
+      <!-- X axis label, moved further down to avoid collision with state labels -->
+      <text x="685" y="340" font-family="Source Sans 3,sans-serif" font-size="14" fill="#7a6a55" text-anchor="end">粒子位置 x →</text>
+    </svg>
+    <p class="svg-cap">図6: 光ピンセットでシリカ粒子を二つの谷を持つポテンシャル(ダブルウェル)に閉じ込める。「左の谷=0/右の谷=1」とみなし、強制的に左へ移す操作が「消去」にあたる。出た熱を統計的に積算し、kT ln 2 と比較する。</p>
+  </div>
+
+  <p class="body-text fade">論文の中の図には、横軸に消去にかける時間、縦軸に出た熱(kT単位)のプロットがある。短時間で消すほど摩擦熱が大きく、長時間に伸ばすほど熱は減って、ある下限値 ―― ちょうど ln 2 ≒ 0.693 ―― にゆっくり収束する。理論曲線と実測点は、見事に重なっていた。</p>
+
+  <!-- ===== つまり ===== -->
+  <div class="sec-rule fade"><span class="sec-label">§5 — Implications</span><span class="sec-line"></span></div>
+  <h2 class="fade">情報は、もう物理学の登場人物だ</h2>
+
+  <p class="body-text fade">マクスウェルの悪魔は150年かかって、思考実験から実験室の中の現象に、そしてあなたのスマホのなかの計算プロセスにまで成長した。そのあいだに分かったのは、奇妙な、しかし整合的な事実である。</p>
+
+  <p class="body-text fade"><strong>情報は、エネルギーや質量と同じように、物理学の基本量だ。</strong>1ビットの消去には kT ln 2 の熱が伴う。これは「比喩」ではない。実験室で測れる、数値の出る現象である。コンピュータの消費電力の理論限界はランダウアー限界で決まっている。現代のCPUはこの限界の数千〜数万倍ほど無駄をしているが、技術がいくら進んでも、kT ln 2 の壁は越えられない。</p>
+
+  <p class="body-text fade">そして<strong>時間の矢は本物</strong>だ。第二法則だけが時間を非対称に扱う。お湯が冷めて部屋と同じ温度になる方向には進むが、逆は起こらない。エディントンの言葉を借りれば「世界の中の乱雑さが増していく方向」が、未来である。マクスウェルの悪魔は、この矢に逆らえなかった。逆らうためには、あらかじめ「白紙のメモリ」という秩序を用意する必要があり、その秩序を作るのにエントロピーがかかるからだ。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">"The law that entropy always increases — the second law of thermodynamics — holds, I think, the <em>supreme position</em> among the laws of Nature."</p>
+    <p class="pull-q" style="font-family:'Source Serif 4',serif;font-size:15px;font-style:normal;color:#7a6a55;line-height:1.7;margin-top:12px;">「エントロピーは常に増えるという法則 ―― 熱力学第二法則は、自然法則のなかで<em>最高の地位</em>を占めると、私は思う」</p>
+    <p class="pull-attr">— A. S. Eddington『The Nature of the Physical World』(1928) 第4章</p>
+  </div>
+
+  <div class="culture-block fade">
+    <p class="culture-label">作品・文化への登場</p>
+    <div class="culture-item">
+      <p class="culture-title">ヘンリー・アダムズ『歴史への相転移則の適用』(1909)</p>
+      <p class="culture-desc">合衆国第6代大統領ジョン・クィンシー・アダムズの孫で歴史家のアダムズが、文明の興亡を熱力学第二法則で読み解こうと試みた草稿。マクスウェルの悪魔を文明史のメタファーに使った最も早い例である。物理学者には「概念の誤用」と評されたが、人文科学が悪魔をどう取り込もうとしたかの記録として残っている。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">スタニスワフ・レム『サイバーリアード』(1965)</p>
+      <p class="culture-desc">ポーランドのSF作家による寓話集。発明家トルルが「第二種の悪魔」を作り、気体分子のランダム運動からあらゆる「真実な情報」を引き出してテープに書き出させる装置を発明する。海賊プッグはそのテープに埋もれて窒息する ―― ほとんどが正しいが何の役にも立たない情報だったから。1965年の段階で「情報の洪水」の悲喜劇を予言した一篇として、いまも引用される。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">トマス・ピンチョン『競売ナンバー49の叫び』(1966)</p>
+      <p class="culture-desc">主人公エディパが訪れる発明家ジョン・ネファスティスは、マクスウェルの悪魔を実装した「永久機関」を持っている。実物のマクスウェル肖像写真を見つめ、テレパシーで悪魔と交信できる「センシティブ」だけが装置を動かせる、という設定。情報と熱力学が同じ謎の二つの顔だ、というピンチョンの確信が物語の骨格を支えている。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">ミシェル・セール『パラサイト』(1980)</p>
+      <p class="culture-desc">フランスの哲学者が「悪魔=寄生者(parasite)」というメタファーで西洋思想を再構成した著作。乱雑さに抵抗して秩序を作る存在 ―― 工場長、政治家、寄生虫、そしてマクスウェルの悪魔 ―― はみな同型である、という挑発的な議論。20世紀後半の人文科学で「情報・熱力学・社会」を結ぶ視座を広めた。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">UNIXの「daemon」プロセス(1963年〜)</p>
+      <p class="culture-desc">MITのフェルナンド・コルバトーらがProject MACで開発したシステムで、バックグラウンドで黙々と動くプロセスを「daemon」と命名した。直接の由来はマクスウェルの悪魔。今日の macOS や Linux のシステムプロセスがすべて末尾に「d」を付けるのはこの名残である(<code>httpd</code>、<code>sshd</code>、<code>launchd</code>…)。物理学の思考実験が、コンピュータの基礎用語として生き残った珍しい例。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">スティーヴン・ホール『Maxwell's Demon』(2021)</p>
+      <p class="culture-desc">英国作家の長編小説。語り手の作家が亡き父の遺稿の謎を追ううちに、現実そのものが「言葉のエントロピーで崩壊しかけている」感覚に取り憑かれていく。実体としての悪魔は登場しないが、混沌に抗おうとするあらゆる行為のメタファーとして悪魔が立つ。</p>
+    </div>
+  </div>
+
+  <!-- ===== 参考文献 ===== -->
+  <div class="sec-rule fade"><span class="sec-label">§6 — References</span><span class="sec-line"></span></div>
+  <h2 class="fade">参考文献</h2>
+
+  <div class="ref-list fade">
+    <div class="ref-item">
+      <div class="ref-meta"><span class="ref-type">Letter</span><span class="ref-year">1867</span></div>
+      <p class="ref-title"><a href="https://cudl.lib.cam.ac.uk/view/PH-CAVENDISH-P-00092/1" target="_blank" rel="noopener">Letter from Maxwell to Tait, 11 December 1867</a></p>
+      <p class="ref-author">J. C. Maxwell — Cavendish Laboratory, Cambridge University Library</p>
+      <p class="ref-desc">「悪魔」が初めて世に出た手紙。マクスウェルが第二法則に「穴を開ける」思考実験を提示した原典。ケンブリッジ大学図書館がスキャン公開。</p>
+    </div>
+    <div class="ref-item">
+      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">1872</span></div>
+      <p class="ref-title">Theory of Heat</p>
+      <p class="ref-author">J. C. Maxwell — Longmans, Green &amp; Co.</p>
+      <p class="ref-desc">マクスウェルが書いた熱力学の教科書。第12章「Limitation of the Second Law of Thermodynamics」で「有限の存在」が公の場に登場する。</p>
+    </div>
+    <div class="ref-item">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1929</span></div>
+      <p class="ref-title"><a href="https://fab.cba.mit.edu/classes/863.18/notes/computation/Szilard-1929.pdf" target="_blank" rel="noopener">Über die Entropieverminderung in einem thermodynamischen System bei Eingriffen intelligenter Wesen</a></p>
+      <p class="ref-author">L. Szilard — <em>Zeitschrift für Physik</em>, 53, 840–856</p>
+      <p class="ref-desc">悪魔の問題を1分子・1ビットまで単純化したシラードの古典論文。情報と熱力学を結ぶ歴史の出発点。「シラードのエンジン」がここで定義された。リンク先はMITのコース資料に収められた英訳版。</p>
+    </div>
+    <div class="ref-item">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1961</span></div>
+      <p class="ref-title"><a href="https://ieeexplore.ieee.org/document/5392446" target="_blank" rel="noopener">Irreversibility and Heat Generation in the Computing Process</a></p>
+      <p class="ref-author">R. Landauer — <em>IBM Journal of Research and Development</em>, 5(3), 183–191</p>
+      <p class="ref-desc">情報消去に物理コストを課したランダウアーの原典。1ビットの論理的不可逆操作には kT ln 2 の最小熱量が伴う、と導いた。リンク先はIEEE/IBMの公式アーカイブ(要購読)。</p>
+    </div>
+    <div class="ref-item">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1982</span></div>
+      <p class="ref-title">The thermodynamics of computation — a review</p>
+      <p class="ref-author">C. H. Bennett — <em>International Journal of Theoretical Physics</em>, 21(12), 905–940</p>
+      <p class="ref-desc">悪魔のメモリ消去こそが真に不可逆なステップだ、と特定したベネットの review論文。可逆計算理論との接続も整理されている。</p>
+    </div>
+    <div class="ref-item">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1991</span></div>
+      <p class="ref-title"><a href="https://www.cpt.univ-mrs.fr/~verga/pdfs/Landauer-1991.pdf" target="_blank" rel="noopener">Information is Physical</a></p>
+      <p class="ref-author">R. Landauer — <em>Physics Today</em>, 44(5), 23–29</p>
+      <p class="ref-desc">「情報は物理的である」。ランダウアー晩年の解説論文で、情報と物理の等価性を一般読者向けに整理した。タイトルそのものが、その後の情報物理学のスローガンになった。</p>
+    </div>
+    <div class="ref-item">
+      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2012</span></div>
+      <p class="ref-title"><a href="https://www.nature.com/articles/nature10872" target="_blank" rel="noopener">Experimental verification of Landauer's principle linking information and thermodynamics</a></p>
+      <p class="ref-author">A. Bérut, A. Arakelyan, A. Petrosyan, S. Ciliberto, R. Dillenschneider, E. Lutz — <em>Nature</em>, 483, 187–190</p>
+      <p class="ref-desc">ランダウアー原理の世界初の実験的実証。光ピンセットで捕捉したシリカ粒子のダブルウェル消去実験。理論提案から51年。</p>
+    </div>
+    <div class="ref-item">
+      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">1928</span></div>
+      <p class="ref-title">The Nature of the Physical World</p>
+      <p class="ref-author">A. S. Eddington — Cambridge University Press</p>
+      <p class="ref-desc">「時間の矢(arrow of time)」という言葉を作ったエディントンの一般向け書。第二法則と時間の方向性の結びつきを明確に論じた最初の書物。</p>
+    </div>
+    <div class="ref-item">
+      <div class="ref-meta"><span class="ref-type">Review</span><span class="ref-year">2017</span></div>
+      <p class="ref-title"><a href="https://www.mdpi.com/1099-4300/19/6/240" target="_blank" rel="noopener">Maxwell's Demon — A Historical Review</a></p>
+      <p class="ref-author">M. M. Kostic — <em>Entropy</em>, 19(6), 240</p>
+      <p class="ref-desc">マクスウェルの悪魔をめぐる150年の議論を整理した網羅的なレビュー論文(MDPI、オープンアクセス)。一次史料へのリンクが豊富。</p>
+    </div>
+  </div>
+
+  <div class="note-box fade">
+    <p>📌 <strong>この記事について</strong>:核となる事実 ―― マクスウェルの1867年の手紙、シラード1929、ランダウアー1961、ベネット1982、ベリュ2012 ―― はすべて一次論文または公開アーカイブで確認した。「光ピンセット」の歴史(Ashkin 1986、ノーベル賞2018)も同様。3本目の人物ブロックの肖像写真は AIP Emilio Segrè Visual Archives, Physics Today Collection の許諾下で利用している。マクスウェル本人が「悪魔」という語を一度も使わなかったことは、複数の伝記研究で一致している記述である。</p>
+  </div>
+
+  <p class="signature">e. Tamaki</p>
+
+  <div class="tags fade">
+    <span class="tag">Physics</span>
+    <span class="tag">Information Theory</span>
+    <span class="tag">Thermodynamics</span>
+    <span class="tag">Arrow of Time</span>
+    <span class="tag">Maxwell's Demon</span>
+    <span class="tag">Landauer Principle</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">kT ln 2</p>
+      <p class="sidebar-text">1ビット消去で原理的に必要な最小熱量。室温で約 <strong>2.9 × 10⁻²¹ J</strong>。途方もなく小さいが、ゼロではない。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1867年、マクスウェル35歳の手紙が起点。<em>145年後</em>の2012年、ベリュらが Nature で実験実証して理論サイクルが閉じた。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">ピンチョン『競売ナンバー49の叫び』(1966)、スティーヴン・ホール『Maxwell's Demon』(2021)。「秩序を作る」ことのメタファー。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— 二重スリット実験<br>— 量子コンピューター<br>— 再現性の危機</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">ランダウアー原理は <em>2012年に Nature で実験実証済み</em>。情報と熱の等価性は、思考実験ではなく測定された事実である。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// マクスウェルの悪魔を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、悪魔は第二法則を破れるの?</span></div>
+      <span class="t-output" id="to1">短期的には、見かけ上は破れる。1ビット仕分けて記録するだけなら、悪魔は<em>無料で</em>仕事を取り出せる。問題はその次。<strong>ノートを白紙に戻す瞬間</strong>に、これまで稼いだ仕事と同じだけの熱が出る。1サイクル全体で見ると、第二法則は守られている。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあメモリが無限大ならいいのか?</span></div>
+      <span class="t-output" id="to2">理論上は、無限に大きな白紙のメモリがあれば消去せずに済む。だが「無限に大きな白紙のメモリ」を最初に用意するためには、無限のエントロピー削減が必要になる。<em>低エントロピーの資源</em>を予め持っていることが、悪魔の隠された支払いだった、ということになる。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;これって自分のスマホにも関係ある?</span></div>
+      <span class="t-output" id="to3">原理的には、ある。CPUがメモリを書き換えるたびに、最低でもランダウアー限界 kT ln 2 の熱が出る。実物のチップはこの数千〜数万倍くらい無駄してるけど、技術がいくら進んでも、この壁を突破することはできない。<strong>「省電力CPUの究極の限界」を決めているのは、150年前の悪魔の議論だ</strong>。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# 忘れることに、熱がいるのか</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/double_slit/">
+      <p class="related-card-tag">物理 / 量子</p>
+      <p class="related-card-title">二重スリット実験</p>
+      <p class="related-card-desc">「観測すると現実が変わる」のもう一つの顔。情報を取り出す行為そのものが、物理現象を変えてしまうという話。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/quantum_computer/">
+      <p class="related-card-tag">物理 / 情報</p>
+      <p class="related-card-title">量子コンピューターは「速い」のではない</p>
+      <p class="related-card-desc">情報を物理量として扱うとどうなるか。ランダウアー原理の延長線上にある、情報処理の物理的限界の話。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト方式)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+
+// ============================================================
+// === DEMON GAME (Phase 1) ===
+// ============================================================
+(function(){
+  const cv = document.getElementById('demonCanvas');
+  if(!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  const wallX = W / 2;
+  const doorH = 80;
+  const doorY1 = (H - doorH) / 2;
+  const doorY2 = doorY1 + doorH;
+  const wallThickness = 6;
+
+  let molecules = [];
+  let doorOpenUntil = 0; // ms timestamp
+  let timeLeft = 30.0;
+  let running = false;
+  let started = false;
+  let lastTs = 0;
+  let raf = null;
+  let score = 0; // correct sortings
+  let mistakes = 0; // wrong sortings
+
+  const N_RED = 16, N_BLUE = 16;
+
+  function makeMolecules(){
+    molecules = [];
+    for(let i=0;i<N_RED;i++){
+      molecules.push(makeMol('red'));
+    }
+    for(let i=0;i<N_BLUE;i++){
+      molecules.push(makeMol('blue'));
+    }
+  }
+  function makeMol(kind){
+    const speed = kind==='red' ? (2.6 + Math.random()*0.6) : (0.7 + Math.random()*0.4);
+    const ang = Math.random()*Math.PI*2;
+    // initial side: random
+    const side = Math.random()<0.5 ? 'L' : 'R';
+    const x = side==='L' ? (20 + Math.random()*(wallX - 40)) : (wallX + 20 + Math.random()*(W - wallX - 40));
+    return {
+      x: x,
+      y: 20 + Math.random()*(H - 40),
+      vx: Math.cos(ang)*speed,
+      vy: Math.sin(ang)*speed,
+      r: 6,
+      kind: kind,
+      side: side
+    };
+  }
+
+  function hideOverlay(){
+    document.getElementById('demonOverlay').classList.remove('show');
+  }
+  function showResult(){
+    const ov = document.getElementById('demonOverlay');
+    const {TL, TR} = temperatures();
+    const norm = 4.0;
+    const tl = TL/norm, tr = TR/norm;
+    const dt = tr - tl;
+    document.getElementById('demonScore').textContent = score;
+    document.getElementById('demonMiss').textContent = mistakes;
+    document.getElementById('demonResTL').textContent = tl.toFixed(2);
+    document.getElementById('demonResTR').textContent = tr.toFixed(2);
+    const dtEl = document.getElementById('demonResDT');
+    dtEl.textContent = (dt>=0?'+':'') + dt.toFixed(2);
+    dtEl.style.color = dt > 0.05 ? '#3a8a50' : (dt < -0.05 ? '#c4392a' : '#e8c56a');
+    let msg = '';
+    if(dt > 0.15) msg = 'お見事 ―― エネルギー入力ゼロで温度差を作った。<br>ただし悪魔は分子を「覚えて」いる。';
+    else if(dt > 0.0) msg = '温度差は出た。第二法則は「ほぼ」破られた。<br>続きはフェーズ02で。';
+    else msg = '今回は温度差は作れなかった。<br>難しい。再挑戦してみる?';
+    document.getElementById('demonResMsg').innerHTML = msg;
+    ov.classList.add('show');
+  }
+
+  function reset(){
+    makeMolecules();
+    timeLeft = 30.0;
+    doorOpenUntil = 0;
+    score = 0;
+    mistakes = 0;
+    running = true;
+    started = true;
+    lastTs = 0;
+    hideOverlay();
+    document.getElementById('demonReset').textContent = 'リセット';
+    if(raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(loop);
+  }
+
+  function isDoorOpen(now){ return now < doorOpenUntil; }
+
+  cv.addEventListener('click', ()=>{
+    if(!running) return;
+    doorOpenUntil = performance.now() + 600;
+  });
+  cv.addEventListener('touchstart', (e)=>{
+    if(!running) return;
+    e.preventDefault();
+    doorOpenUntil = performance.now() + 600;
+  }, {passive:false});
+
+  document.getElementById('demonReset').addEventListener('click', reset);
+  document.getElementById('demonRetry').addEventListener('click', reset);
+
+  function step(dt){
+    const now = performance.now();
+    const open = isDoorOpen(now);
+    for(const m of molecules){
+      m.x += m.vx * dt * 0.06;
+      m.y += m.vy * dt * 0.06;
+
+      // Top/bottom walls
+      if(m.y < m.r){ m.y = m.r; m.vy = -m.vy; }
+      if(m.y > H - m.r){ m.y = H - m.r; m.vy = -m.vy; }
+
+      // Side walls
+      if(m.x < m.r){ m.x = m.r; m.vx = -m.vx; }
+      if(m.x > W - m.r){ m.x = W - m.r; m.vx = -m.vx; }
+
+      // Middle wall with door
+      const inDoorBand = m.y > doorY1 && m.y < doorY2;
+      const crossingFromLeft = (m.x - m.r < wallX + wallThickness/2) && (m.x + m.r > wallX - wallThickness/2);
+      if(crossingFromLeft){
+        if(open && inDoorBand){
+          // pass through, no bounce — track sorting
+          const newSide = m.x < wallX ? 'L' : 'R';
+          if(m.side !== newSide){
+            // crossed sides
+            const correct = (m.kind==='red' && newSide==='R') || (m.kind==='blue' && newSide==='L');
+            if(correct) score++;
+            else mistakes++;
+            m.side = newSide;
+          }
+        } else {
+          // bounce off the wall
+          if(m.vx > 0 && m.x < wallX){
+            m.x = wallX - wallThickness/2 - m.r;
+            m.vx = -m.vx;
+          } else if(m.vx < 0 && m.x > wallX){
+            m.x = wallX + wallThickness/2 + m.r;
+            m.vx = -m.vx;
+          }
+        }
+      }
+      // also update side when far from wall (in case missed)
+      m.side = m.x < wallX ? 'L' : 'R';
+    }
+  }
+
+  function temperatures(){
+    let lN=0,rN=0,lE=0,rE=0;
+    for(const m of molecules){
+      const e = (m.vx*m.vx + m.vy*m.vy);
+      if(m.x < wallX){ lN++; lE+=e; } else { rN++; rE+=e; }
+    }
+    const TL = lN>0 ? (lE/lN) : 0;
+    const TR = rN>0 ? (rE/rN) : 0;
+    return {TL, TR};
+  }
+
+  function draw(){
+    // background
+    ctx.fillStyle = '#0d0a05';
+    ctx.fillRect(0,0,W,H);
+
+    // === TARGET ZONE TINTS (subtle background hint about which side gets which color) ===
+    ctx.fillStyle = 'rgba(106, 184, 232, 0.06)'; // cool blue tint for left
+    ctx.fillRect(2, 2, wallX - 2, H - 4);
+    ctx.fillStyle = 'rgba(232, 122, 74, 0.06)'; // warm red tint for right
+    ctx.fillRect(wallX, 2, W - wallX - 2, H - 4);
+
+    // box border
+    ctx.strokeStyle = '#3a2a1a';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(1,1,W-2,H-2);
+
+    // middle wall
+    const now = performance.now();
+    const open = isDoorOpen(now);
+    ctx.fillStyle = '#3a2a1a';
+    ctx.fillRect(wallX - wallThickness/2, 0, wallThickness, doorY1);
+    ctx.fillRect(wallX - wallThickness/2, doorY2, wallThickness, H - doorY2);
+
+    // door region: when open, the wall in the door range is GONE (visible gap),
+    // when closed, the wall fills the door range
+    if(open){
+      // Soft glow showing door is open (no wall here)
+      ctx.fillStyle = 'rgba(232, 197, 106, 0.22)';
+      ctx.fillRect(wallX - 32, doorY1, 64, doorH);
+      // Open indicator markers above and below the gap
+      ctx.fillStyle = '#e8c56a';
+      ctx.fillRect(wallX - 32, doorY1 - 3, 64, 2);
+      ctx.fillRect(wallX - 32, doorY2 + 1, 64, 2);
+    } else {
+      // Closed: solid wall in door region
+      ctx.fillStyle = '#5a3a1a';
+      ctx.fillRect(wallX - wallThickness/2, doorY1, wallThickness, doorH);
+    }
+
+    // door label
+    ctx.font = '10px "Source Sans 3", sans-serif';
+    ctx.fillStyle = open ? '#e8c56a' : '#7a6a55';
+    ctx.textAlign = 'center';
+    ctx.fillText(open ? 'OPEN' : 'door', wallX, doorY1 - 8);
+
+    // === Top zone target labels ===
+    ctx.font = 'bold 13px "Source Sans 3", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#6ab8e8';
+    ctx.fillText('◀ 青(低速) を集める', W*0.25, 22);
+    ctx.fillStyle = '#e87a4a';
+    ctx.fillText('赤(高速) を集める ▶', W*0.75, 22);
+
+    // === Bottom zone result labels ===
+    ctx.font = '11px "Source Sans 3", sans-serif';
+    ctx.fillStyle = '#5a4a3a';
+    ctx.fillText('LEFT — cool side', W*0.25, H - 12);
+    ctx.fillText('RIGHT — warm side', W*0.75, H - 12);
+
+    // molecules
+    for(const m of molecules){
+      ctx.beginPath();
+      ctx.arc(m.x, m.y, m.r, 0, Math.PI*2);
+      ctx.fillStyle = m.kind === 'red' ? '#e87a4a' : '#6ab8e8';
+      ctx.fill();
+      ctx.strokeStyle = m.kind === 'red' ? '#a82010' : '#205080';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }
+  }
+
+  function updateHUD(){
+    document.getElementById('demonTime').textContent = timeLeft.toFixed(1) + 's';
+    const {TL, TR} = temperatures();
+    // normalize so a starting random mix gives ~1.0
+    const norm = 4.0;
+    const tl = TL/norm, tr = TR/norm;
+    document.getElementById('demonTL').textContent = tl.toFixed(2);
+    document.getElementById('demonTR').textContent = tr.toFixed(2);
+    const dt = tr - tl;
+    const dtEl = document.getElementById('demonDT');
+    dtEl.textContent = (dt>=0?'+':'') + dt.toFixed(2);
+    dtEl.style.color = dt > 0.05 ? '#3a8a50' : (dt < -0.05 ? '#c4392a' : '#e8c56a');
+    // Gauge: each side's fill represents how far that side deviates from baseline
+    // We display as: cool (left of mid) when LEFT is colder than RIGHT, warm (right of mid) when RIGHT is hotter than LEFT
+    const gv = document.getElementById('demonGaugeVal');
+    gv.textContent = (dt>=0?'+':'') + dt.toFixed(2);
+    gv.style.color = dt > 0.05 ? '#3a8a50' : (dt < -0.05 ? '#c4392a' : '#e8c56a');
+    // Map dt magnitude to percentage (clip at 1.0)
+    const mag = Math.min(1, Math.abs(dt) * 2);
+    const pct = (mag * 100).toFixed(0) + '%';
+    if(dt >= 0){
+      document.getElementById('demonGaugeWarm').style.width = pct;
+      document.getElementById('demonGaugeCool').style.width = '0%';
+    } else {
+      document.getElementById('demonGaugeCool').style.width = pct;
+      document.getElementById('demonGaugeWarm').style.width = '0%';
+    }
+  }
+
+  function loop(ts){
+    if(!lastTs) lastTs = ts;
+    const dt = Math.min(50, ts - lastTs);
+    lastTs = ts;
+    if(running){
+      timeLeft -= dt/1000;
+      if(timeLeft <= 0){
+        timeLeft = 0;
+        running = false;
+        document.getElementById('demonReset').textContent = '再挑戦 / Restart';
+        showResult();
+      }
+      step(dt);
+    }
+    draw();
+    updateHUD();
+    raf = requestAnimationFrame(loop);
+  }
+
+  // initial paint without auto-start
+  makeMolecules();
+  draw();
+  updateHUD();
+  document.getElementById('demonReset').textContent = '開始 / Start';
+})();
+
+// ============================================================
+// === MEMORY (Phase 2) ===
+// ============================================================
+(function(){
+  const N = 8;
+  let bits = []; // array of 'L'/'R' or null
+  let heat = 0; // in units of kT ln 2
+  for(let i=0;i<N;i++) bits.push(null);
+  const bitsEl = document.getElementById('memBits');
+  const usedEl = document.getElementById('memUsed');
+  const heatEl = document.getElementById('memHeat');
+  const warnEl = document.getElementById('memWarn');
+  const writeBtn = document.getElementById('memWrite');
+  const eraseBtn = document.getElementById('memErase');
+  const resetBtn = document.getElementById('memReset');
+
+  function render(){
+    bitsEl.innerHTML = '';
+    let used = 0;
+    for(let i=0;i<N;i++){
+      const d = document.createElement('div');
+      d.className = 'mem-bit' + (bits[i] ? ' filled' : '');
+      d.textContent = bits[i] ? bits[i] : '·';
+      bitsEl.appendChild(d);
+      if(bits[i]) used++;
+    }
+    usedEl.textContent = used + ' / ' + N;
+    heatEl.textContent = heat.toFixed(1) + ' kT ln 2';
+
+    const full = (used >= N);
+    writeBtn.disabled = full;
+    eraseBtn.disabled = (used === 0);
+
+    if(full){
+      warnEl.textContent = '⚠ メモリ満杯 — 続けるには消去が必要';
+    } else if(used === 0){
+      warnEl.textContent = ' ';
+    } else {
+      warnEl.textContent = ' ';
+    }
+  }
+
+  writeBtn.addEventListener('click', ()=>{
+    for(let i=0;i<N;i++){
+      if(!bits[i]){
+        bits[i] = Math.random()<0.5 ? 'L' : 'R';
+        break;
+      }
+    }
+    render();
+  });
+  eraseBtn.addEventListener('click', ()=>{
+    // erase the last filled bit, with animation
+    let idx = -1;
+    for(let i=N-1;i>=0;i--){
+      if(bits[i]){ idx = i; break; }
+    }
+    if(idx === -1) return;
+    const cells = bitsEl.querySelectorAll('.mem-bit');
+    if(cells[idx]) cells[idx].classList.add('erasing');
+    setTimeout(()=>{
+      bits[idx] = null;
+      heat += 1;
+      render();
+    }, 350);
+  });
+  resetBtn.addEventListener('click', ()=>{
+    for(let i=0;i<N;i++) bits[i] = null;
+    heat = 0;
+    render();
+  });
+
+  render();
+})();
+
+// ============================================================
+// === BALANCE (Phase 3) ===
+// ============================================================
+(function(){
+  const balT = document.getElementById('balT');
+  const balN = document.getElementById('balN');
+  const balE = document.getElementById('balE');
+  const balTval = document.getElementById('balTval');
+  const balNval = document.getElementById('balNval');
+  const balEval = document.getElementById('balEval');
+  const balW = document.getElementById('balW');
+  const balQ = document.getElementById('balQ');
+  const balBarW = document.getElementById('balBarW');
+  const balBarQ = document.getElementById('balBarQ');
+  const balNet = document.getElementById('balNet');
+  const balVerdict = document.getElementById('balVerdict');
+
+  // max scale: T=3.0, N=40, ε=1.0 → Q can reach 3·40·2 = 240
+  const MAX = 3.0 * 40 * 2.0;
+
+  function update(){
+    const T = parseFloat(balT.value);
+    const N = parseInt(balN.value);
+    const E = parseFloat(balE.value);
+    const W_extracted = N * T;            // W = N · kT ln 2 (in units of k ln 2)
+    const Q_erased = N * T * (1 + E);     // Q = (1+ε) · N · kT ln 2 ≥ W
+    balTval.textContent = 'T = ' + T.toFixed(1);
+    balNval.textContent = 'N = ' + N;
+    balEval.textContent = 'ε = ' + E.toFixed(2);
+    balW.textContent = W_extracted.toFixed(1);
+    balQ.textContent = Q_erased.toFixed(1);
+    const wPct = Math.min(100, (W_extracted / MAX) * 100);
+    const qPct = Math.min(100, (Q_erased / MAX) * 100);
+    balBarW.style.width = wPct + '%';
+    balBarQ.style.width = qPct + '%';
+    const net = W_extracted - Q_erased;
+    balNet.textContent = (net >= 0 ? '+' : '') + net.toFixed(2);
+    if(net < -0.01){
+      balVerdict.textContent = '第二法則は守られている(赤 > 緑)';
+      balVerdict.style.color = '#e8c56a';
+    } else if(net <= 0.01){
+      balVerdict.textContent = '理想極限 ―― 第二法則ぎりぎり成立';
+      balVerdict.style.color = '#e8c56a';
+    } else {
+      balVerdict.textContent = '? 計算が間違っています';
+      balVerdict.style.color = '#c4392a';
+    }
+  }
+  balT.addEventListener('input', update);
+  balN.addEventListener('input', update);
+  balE.addEventListener('input', update);
+  update();
+})();
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div><!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6b7b629057d241878dda2a4f3169e5cb"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

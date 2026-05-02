@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>シェリングの分居モデル — 寛容なのに街は分かれていく — Qualia Journal</title>
+<meta name="description" content="全員が寛容な選好しか持たない社会でも、マクロの分断は勝手に立ち上がる。1971年シェリングの分居モデルを盤上で動かし、創発する分断を確かめる。">
+<link rel="canonical" href="https://qualiajournal.com/schelling_segregation">
+<meta property="og:title" content="シェリングの分居モデル — 寛容なのに街は分かれていく — Qualia Journal">
+<meta property="og:description" content="全員が寛容な選好しか持たない社会でも、マクロの分断は勝手に立ち上がる。1971年シェリングの分居モデルを盤上で動かし、創発する分断を確かめる。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/schelling_segregation">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="シェリングの分居モデル — 寛容なのに街は分かれていく — Qualia Journal">
+<meta name="twitter:description" content="全員が寛容な選好しか持たない社会でも、マクロの分断は勝手に立ち上がる。1971年シェリングの分居モデルを盤上で動かし、創発する分断を確かめる。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"シェリングの分居モデル — 寛容なのに街は分かれていく","description":"全員が寛容な選好しか持たない社会でも、マクロの分断は勝手に立ち上がる。1971年シェリングの分居モデルを盤上で動かし、創発する分断を確かめる。","author":{"@type":"Person","name":"e. Tamaki"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/schelling_segregation","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"数学・論理","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"シェリングの分居モデル — 寛容なのに街は分かれていく"}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;flex-wrap:wrap;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;display:block;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:6px;}
+.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;margin-bottom:8px;}
+.person-block-wiki a{color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;transition:color .15s,border-color .15s;}
+.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:8px;letter-spacing:.03em;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* SVG FIG */
+.svg-fig{margin:28px 0;text-align:center;}
+.svg-fig svg{max-width:680px;width:100%;height:auto;display:block;margin:0 auto;}
+.svg-caption{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;line-height:1.6;margin-top:8px;text-align:center;padding:0 16px;}
+
+/* NB FIG STACK (Moore neighborhood, 1-column) */
+.nb-fig-stack{margin:32px 0;display:flex;flex-direction:column;gap:14px;}
+.nb-fig-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:700;letter-spacing:.06em;color:#1a1208;text-transform:uppercase;text-align:center;margin-bottom:6px;}
+.nb-fig-stack svg{display:block;width:100%;max-width:600px;height:auto;margin:0 auto;background:#faf8f3;border:1px solid #e0d8c8;}
+.nb-fig-stack .svg-caption{margin-top:6px;}
+
+/* CS FIG STACK (cascade, 1-column with vertical arrows) */
+.cs-fig-stack{margin:32px 0;display:flex;flex-direction:column;align-items:center;gap:6px;}
+.cs-fig-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:700;letter-spacing:.06em;color:#1a1208;text-transform:uppercase;text-align:center;margin-bottom:6px;}
+.cs-fig-stack svg{display:block;width:100%;max-width:600px;height:auto;background:#faf8f3;border:1px solid #e0d8c8;}
+.cs-arrow-down{font-family:'Source Sans 3',sans-serif;font-size:32px;color:#8b1a1a;font-weight:700;line-height:1;margin:0;}
+.cs-fig-stack .svg-caption{margin-top:8px;}
+
+/* CB GRID FIG (4-panel checkerboard) */
+.cb-grid-fig{margin:32px 0;}
+.cb-fig-head{text-align:center;margin-bottom:18px;}
+.cb-fig-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:700;letter-spacing:.06em;color:#1a1208;margin-bottom:4px;text-transform:uppercase;}
+.cb-fig-sub{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;}
+.cb-grid-2x2{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;}
+.cb-card{background:#f3efe6;border:1px solid #c8bfaa;padding:14px 14px 16px;text-align:center;}
+.cb-card svg{display:block;margin:0 auto;width:100%;max-width:280px;height:auto;}
+.cb-card-step{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;color:#8b1a1a;text-transform:uppercase;margin-bottom:6px;}
+.cb-card-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;margin-bottom:12px;}
+@media(max-width:600px){
+  .cb-grid-2x2{grid-template-columns:1fr;}
+}
+
+/* MINI SIM (rule-learning small board) */
+.minisim{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.minisim-head{background:#3d3020;color:white;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.minisim-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.minisim-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:#9ab4cc;letter-spacing:.06em;}
+.minisim-body{padding:20px;background:#f3efe6;display:flex;justify-content:center;}
+.minisim-body svg{display:block;width:100%;max-width:340px;height:auto;}
+.minisim-stats{background:#0d0d0d;color:#c8c8c8;padding:9px 18px;display:flex;flex-wrap:wrap;gap:18px;font-family:'JetBrains Mono',monospace;font-size:11px;}
+.minisim-controls{padding:12px 18px;background:white;display:flex;flex-wrap:wrap;gap:12px;align-items:center;border-top:1px solid #e0d8c8;}
+.minisim-controls .sim-btn{flex-shrink:0;}
+.minisim-status{flex:1;min-width:240px;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin:0;}
+.minisim-status strong{color:#8b1a1a;font-weight:600;}
+.minisim-guide{padding:14px 18px;background:white;border-top:1px solid #e0d8c8;}
+.minisim-guide-title{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:6px;}
+.minisim-guide-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.7;}
+.minisim-guide-text strong{font-weight:600;color:#1a1208;}
+.minisim-legend{display:inline-flex;align-items:center;gap:6px;margin-right:12px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.minisim-legend span.dot-amber{display:inline-block;width:14px;height:14px;border-radius:50%;background:#c68a3e;}
+.minisim-legend span.dot-teal{display:inline-block;width:14px;height:14px;border-radius:50%;background:#3e8a8a;}
+.minisim-legend span.dot-unsat{display:inline-block;width:14px;height:14px;border-radius:50%;background:#c68a3e;border:2px solid #ff5555;box-sizing:content-box;}
+.minisim-legend span.dot-empty{display:inline-block;width:14px;height:14px;background:#1a1a2e;border:1px solid #2a2a3e;}
+.minisim-legends{padding:10px 18px;background:#faf8f3;display:flex;flex-wrap:wrap;align-items:center;gap:10px;border-top:1px solid #e0d8c8;}
+
+/* REAL-FIG GRID (HOLC + Fischer) — 1-column stack for clarity */
+.real-fig-grid{margin:24px 0 28px;display:flex;flex-direction:column;gap:18px;}
+.real-fig{margin:0;border:1px solid #c8bfaa;background:white;overflow:hidden;display:grid;grid-template-columns:1fr 280px;}
+.real-fig img{display:block;width:100%;height:100%;object-fit:cover;background:#1a1208;}
+.real-fig figcaption{padding:18px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;background:#f3efe6;border-left:1px solid #c8bfaa;display:flex;flex-direction:column;justify-content:center;}
+.real-fig figcaption strong{color:#1a1208;font-weight:600;}
+.real-fig-license{display:block;font-size:10px;color:#b0a090;margin-top:10px;letter-spacing:.02em;}
+.real-fig-license a{color:#b0a090;text-decoration:underline;}
+@media(max-width:700px){
+  .real-fig{grid-template-columns:1fr;}
+  .real-fig figcaption{border-left:none;border-top:1px solid #c8bfaa;}
+}
+
+/* VISUAL REF (animated GIF) */
+.visual-ref{margin:24px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;max-width:520px;margin-left:auto;margin-right:auto;}
+.visual-ref-img{background:#f3efe6;padding:18px;display:flex;justify-content:center;}
+.visual-ref-img img{display:block;max-width:100%;width:auto;max-height:340px;}
+.visual-ref-caption{padding:13px 16px 14px;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;background:#f3efe6;border-top:1px solid #c8bfaa;}
+.visual-ref-caption strong{color:#1a1208;font-weight:600;}
+.visual-ref-license{display:block;font-size:10px;color:#b0a090;margin-top:6px;letter-spacing:.02em;}
+.visual-ref-license a{color:#b0a090;text-decoration:underline;}
+
+/* SCHELLING SIMULATOR */
+.sim-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.sim-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}
+.sim-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.sim-hl-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:#9ab4cc;letter-spacing:.06em;}
+.sim-canvas-wrap{position:relative;background:#14141e;display:flex;align-items:center;justify-content:center;padding:18px;}
+.sim-canvas-wrap canvas{display:block;width:480px;height:480px;max-width:100%;image-rendering:pixelated;}
+.sim-stats{background:#0d0d0d;color:#c8c8c8;padding:10px 20px;display:flex;flex-wrap:wrap;gap:20px;font-family:'JetBrains Mono',monospace;font-size:11px;border-bottom:1px solid #2a2a2a;}
+.sim-stat{display:flex;align-items:center;gap:6px;}
+.sim-stat-lbl{color:#666;letter-spacing:.06em;}
+.sim-stat-val{color:#e8c56a;font-weight:500;min-width:40px;}
+.sim-guide{padding:16px 20px;background:white;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;}
+.sim-guide-title{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.sim-guide-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.7;}
+.sim-guide-text strong{font-weight:600;color:#1a1208;}
+.sim-presets{padding:14px 20px;background:#f3efe6;display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-bottom:1px solid #c8bfaa;}
+.sim-presets-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;color:#7a6a55;text-transform:uppercase;margin-right:4px;}
+.preset-btn{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:400;padding:6px 14px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;transition:all .15s;line-height:1.3;}
+.preset-btn:hover{border-color:#8b1a1a;color:#8b1a1a;}
+.preset-btn.active{background:#1a1208;color:#e8e4de;border-color:#1a1208;}
+.sim-controls{padding:14px 20px;background:white;display:flex;flex-wrap:wrap;gap:20px;align-items:center;}
+.sim-ctrl-group{display:flex;flex-direction:column;gap:4px;flex:1;min-width:200px;}
+.sim-ctrl-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;color:#b0a090;text-transform:uppercase;}
+.sim-ctrl-row{display:flex;align-items:center;gap:10px;}
+.sim-ctrl-row input[type=range]{flex:1;cursor:pointer;accent-color:#8b1a1a;}
+.sim-ctrl-val{font-family:'JetBrains Mono',monospace;font-size:12px;color:#3d3020;min-width:42px;text-align:right;}
+.sim-btn{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;padding:6px 16px;border:1px solid #c8bfaa;background:white;color:#3d3020;cursor:pointer;text-transform:uppercase;}
+.sim-btn:hover{border-color:#8b1a1a;color:#8b1a1a;}
+.sim-btn.primary{background:#8b1a1a;color:white;border-color:#8b1a1a;}
+.sim-btn.primary:hover{background:#a82a2a;}
+.sim-note{padding:8px 20px 12px;background:white;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;line-height:1.6;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* ── FOOTER ── */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+
+/* TOC BACK */
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+  .toc-back{padding:22px 20px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .meta-dates{margin-left:0;width:100%;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:0;justify-content:flex-start;flex-direction:row;aspect-ratio:3/2;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .sim-presets{flex-direction:column;align-items:stretch;}
+  .sim-controls{flex-direction:column;align-items:stretch;}
+  .sim-canvas-wrap canvas{width:100%;height:auto;aspect-ratio:1/1;}
+  .svg-fig{max-width:100%;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+
+html,body{overflow-x:hidden;max-width:100%;}
+img,canvas,svg,video{max-width:100%;height:auto;}
+.sim-canvas-wrap{max-width:100%;}
+.t-line{min-width:0;}
+.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}
+.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text{overflow-wrap:anywhere;}
+.tip-box{display:none!important;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}
+.tip.open{background:#fdf3d8;}
+.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}
+.tip-toast.show{bottom:16px;}
+.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}
+.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}
+.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}
+.tip-toast-close:hover{color:#e8c56a;}
+.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}
+.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">97 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Emergence / 創発</p>
+    <h1>寛容なのに、街は<em>分かれていく</em></h1>
+    <p class="cover-deck">「隣人の三割が自分と同じ属性ならそれでいい」。誰も排他的でないのに、盤上では色が勝手にまとまっていく。個人の選好とマクロの結果のあいだに、単純な一致などない。</p>
+    <div class="cover-byline"><span>社会科学</span><span>複雑系</span><span>創発</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1971</span>
+      <p class="est-event">トーマス・シェリングが <em>Dynamic Models of Segregation</em> を <em>Journal of Mathematical Sociology</em> に発表。手動のコイン盤面から社会科学の古典が生まれた年。</p>
+      <p class="est-context">この年、Pentagon Papers がニューヨーク・タイムズに流出。Intel が世界初のマイクロプロセッサ <em>4004</em> を発表し、計算機の時代が始まる。</p>
+    </div>
+    <p class="cover-aside">分居(=住み分け)モデルは、シェリングが飛行機の中でグラフ用紙に X と O を書きながら思いついた。計算機には頼らなかった。<strong>盤上に米国硬貨2種(ペニー1¢=銅色 / ダイム10¢=銀色)を並べただけ</strong>で、分断の自発的発生を示した。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>引越し先の内見に立ち会うとき、自分では意識していないつもりでも、隣人の雰囲気をどこかで測っている。似た暮らしをしている人が、少しはこの界隈にいるだろうか——そんな小さな確認を、気配で済ませている。</p>
+    <p>それは差別ではない。少なくとも、そう自分で思う範囲のことだ。隣人が誰であろうと構わない、ただ「完全に孤立はしたくない」だけだ。子育て世代なら同世代が、単身者なら単身の階が、外国語話者なら母語の通じる家族が、どこかに一組でもいればいい。人は、その程度には選好を持っている。</p>
+    <p>そのごくわずかな選好が、街全体を色分けする。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 数学の知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 11 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-19</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-19</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">全員が<ruby>穏当<rt>おんとう</rt></ruby>な選好しか持たない社会でも、マクロの分断は<strong>勝手に立ち上がる</strong>。個人の意図を集計しても、集団の結果は予測できない——盤上でそれを実際に動かして確かめる。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+<!-- ================== -->
+<!-- S1: 背景            -->
+<!-- ================== -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">寛容な個人たちが生む、不寛容な街</h2>
+
+<p class="body-text fade">都市の地図を属性ごとに色分けしてみると、人々はかたまっている。米国の人種別居住区が典型で、白人の街と黒人の街がはっきり分かれている。日本でも、外国人労働者の集住地、富裕層の住む高級住宅街、若い単身者が集まる駅近の街——粒度の差はあるが、似た現象は世界中の都市にある。こうした分断を見ると、私たちはつい「住民のなかに強い差別意識を持つ人がいるから」「誰かが他者を排除しているから」と考えたくなる。実際、そういう力が働いている都市は多い。けれど 1971 年、経済学者トーマス・シェリングが格子紙とコインだけで示したのは、それとは別のことだった。「隣人の三割ほどが自分と同じ属性ならそれでいい」——そんな極めて<span class="tip" onclick="toggleTip(this)"><ruby>穏当<rt>おんとう</rt></ruby><span class="tip-box"><strong>穏当 (おんとう)</strong>おだやかで、ほどほどの程度。極端ではないこと。「穏当な選好」とは、強い差別意識ではなく「同じ仲間がほんの少しは近くにいてほしい」程度の控えめな好みのこと。</span></span>な選好の持ち主ばかりを集めても、社会は勝手に色分けを始める。意図なく、しかし急速に。</p>
+
+<p class="body-text fade"><em>「誰も強く差別していないなら、街は穏やかに混ざるはずだ」</em>——この素朴な期待は、シェリングの盤面の前であっけなく崩れる。彼の発見が私たちから奪うのは、結論ではない。安心感のほうだ。これは<span class="tip" onclick="toggleTip(this)">創発<span class="tip-box"><strong>創発 (Emergence)</strong>個々の要素が単純なルールで相互作用することで、要素単体では説明できない秩序やパターンが全体として立ち現れる現象。</span></span>の典型例で、ミクロの動機からマクロの結果が直接予測できない、という事実だけが残る。</p>
+
+<div class="person-block fade">
+  <div class="person-block-img">
+    <img src="./person_schelling.jpg" alt="Thomas C. Schelling">
+  </div>
+  <div class="person-block-body">
+    <p class="person-block-name">Thomas C. Schelling</p>
+    <p class="person-block-role">Economist / 1921–2016</p>
+    <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%BC%E3%83%9E%E3%82%B9%E3%83%BB%E3%82%B7%E3%82%A7%E3%83%AA%E3%83%B3%E3%82%B0" target="_blank" rel="noopener">Wikipedia</a></p>
+    <p class="person-block-desc">カリフォルニア生まれ。マーシャルプラン、ホワイトハウスを経て、Harvard 大学で 32 年間教鞭をとった。代表作『紛争の戦略』(1960) は核抑止のゲーム理論的分析。1971 年の分居モデルは、核戦略研究の合間に生まれた副業的研究だった。2005 年 <span class="tip" onclick="toggleTip(this)">ノーベル経済学賞<span class="tip-box"><strong>ノーベル経済学賞</strong>正式名称は「アルフレッド・ノーベル記念スウェーデン国立銀行経済学賞」。1968 年にスウェーデン国立銀行が創設し、ノーベル財団が運営する。</span></span>を Robert Aumann と共同受賞。</p>
+    <p class="person-block-credit">Photo: New America / CC BY 2.0</p>
+  </div>
+</div>
+
+<div class="misconception fade">
+  <div class="misconception-header"><span class="misconception-hl">✦ よくある誤解 vs 実際は</span></div>
+  <div class="misconception-body">
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <div class="mis-label wrong">よくある誤解</div>
+        <p class="mis-text">街が分断されるのは、住民のなかに強い差別主義者がいるからだ。差別さえなくなれば分離も消える。</p>
+      </div>
+      <div class="misconception-a">
+        <div class="mis-label right">実際は</div>
+        <p class="mis-text">強い差別がなくても、「三割ほど同じ属性がいてほしい」という<ruby>穏当<rt>おんとう</rt></ruby>な選好だけで、完全な分離は起きる。攻撃的な意図はモデルに一切登場しない。</p>
+      </div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <div class="mis-label wrong">よくある誤解</div>
+        <p class="mis-text">住民がもっと寛容になれば、分離は滑らかに消えていく。</p>
+      </div>
+      <div class="misconception-a">
+        <div class="mis-label right">実際は</div>
+        <p class="mis-text">寛容度を一割まで下げても、小さな同色のかたまりは残る。完全にランダムな混ざり合いを積極的に望まない限り、分離はデフォルトで発生する。</p>
+      </div>
+    </div>
+    <div class="misconception-item">
+      <div class="misconception-q">
+        <div class="mis-label wrong">よくある誤解</div>
+        <p class="mis-text">モデルは住宅分離を十分に説明する。経済や制度は副次的要因だ。</p>
+      </div>
+      <div class="misconception-a">
+        <div class="mis-label right">実際は</div>
+        <p class="mis-text">現実の住宅分離は、所得格差・住宅価格・歴史的な赤線引き(redlining)など、モデルに含まれない要因が大きい。シェリング自身もモデルの射程を謙虚に限定していた。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cb-grid-fig fade">
+  <div class="cb-fig-head">
+    <p class="cb-fig-title">シェリング 1971 — 盤上のコイン実験</p>
+    <p class="cb-fig-sub">8×8 盤面 / ●=ペニー(1¢) / ○=ダイム(10¢) / 同色2/4以下なら移動</p>
+  </div>
+  <div class="cb-grid-2x2">
+    <!-- Card 1 -->
+    <div class="cb-card">
+      <p class="cb-card-step">Step 1</p>
+      <p class="cb-card-title">初期配置</p>
+      <svg viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg" aria-label="初期配置">
+        <rect fill="#f3efe6" stroke="#c8bfaa" stroke-width="1" x="0" y="0" width="168" height="168"/>
+        <g fill="none" stroke="#d8ceb8" stroke-width=".8">
+          <line x1="21" y1="0" x2="21" y2="168"/><line x1="42" y1="0" x2="42" y2="168"/>
+          <line x1="63" y1="0" x2="63" y2="168"/><line x1="84" y1="0" x2="84" y2="168"/>
+          <line x1="105" y1="0" x2="105" y2="168"/><line x1="126" y1="0" x2="126" y2="168"/>
+          <line x1="147" y1="0" x2="147" y2="168"/>
+          <line x1="0" y1="21" x2="168" y2="21"/><line x1="0" y1="42" x2="168" y2="42"/>
+          <line x1="0" y1="63" x2="168" y2="63"/><line x1="0" y1="84" x2="168" y2="84"/>
+          <line x1="0" y1="105" x2="168" y2="105"/><line x1="0" y1="126" x2="168" y2="126"/>
+          <line x1="0" y1="147" x2="168" y2="147"/>
+        </g>
+        <g>
+          <circle cx="10.5" cy="10.5" r="7" fill="#3d3020"/><circle cx="52.5" cy="10.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="73.5" cy="10.5" r="7" fill="#3d3020"/><circle cx="115.5" cy="10.5" r="7" fill="#3d3020"/>
+          <circle cx="157.5" cy="10.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="31.5" cy="31.5" r="7" fill="#3d3020"/><circle cx="94.5" cy="31.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="136.5" cy="31.5" r="7" fill="#3d3020"/>
+          <circle cx="10.5" cy="52.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/><circle cx="52.5" cy="52.5" r="7" fill="#3d3020"/>
+          <circle cx="73.5" cy="52.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/><circle cx="115.5" cy="52.5" r="7" fill="#3d3020"/>
+          <circle cx="157.5" cy="52.5" r="7" fill="#3d3020"/>
+          <circle cx="31.5" cy="73.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="94.5" cy="73.5" r="7" fill="#3d3020"/><circle cx="136.5" cy="73.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="10.5" cy="94.5" r="7" fill="#3d3020"/><circle cx="52.5" cy="94.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="115.5" cy="94.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/><circle cx="157.5" cy="94.5" r="7" fill="#3d3020"/>
+          <circle cx="31.5" cy="115.5" r="7" fill="#3d3020"/><circle cx="73.5" cy="115.5" r="7" fill="#3d3020"/>
+          <circle cx="94.5" cy="115.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="136.5" cy="115.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="10.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="52.5" cy="136.5" r="7" fill="#3d3020"/><circle cx="115.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="157.5" cy="136.5" r="7" fill="#3d3020"/>
+          <circle cx="73.5" cy="157.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="136.5" cy="157.5" r="7" fill="#3d3020"/>
+        </g>
+      </svg>
+    </div>
+    <!-- Card 2 -->
+    <div class="cb-card">
+      <p class="cb-card-step">Step 2</p>
+      <p class="cb-card-title">数ステップ後</p>
+      <svg viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg" aria-label="数ステップ後">
+        <rect fill="#f3efe6" stroke="#c8bfaa" stroke-width="1" x="0" y="0" width="168" height="168"/>
+        <g fill="none" stroke="#d8ceb8" stroke-width=".8">
+          <line x1="21" y1="0" x2="21" y2="168"/><line x1="42" y1="0" x2="42" y2="168"/>
+          <line x1="63" y1="0" x2="63" y2="168"/><line x1="84" y1="0" x2="84" y2="168"/>
+          <line x1="105" y1="0" x2="105" y2="168"/><line x1="126" y1="0" x2="126" y2="168"/>
+          <line x1="147" y1="0" x2="147" y2="168"/>
+          <line x1="0" y1="21" x2="168" y2="21"/><line x1="0" y1="42" x2="168" y2="42"/>
+          <line x1="0" y1="63" x2="168" y2="63"/><line x1="0" y1="84" x2="168" y2="84"/>
+          <line x1="0" y1="105" x2="168" y2="105"/><line x1="0" y1="126" x2="168" y2="126"/>
+          <line x1="0" y1="147" x2="168" y2="147"/>
+        </g>
+        <g>
+          <circle cx="10.5" cy="10.5" r="7" fill="#3d3020"/><circle cx="31.5" cy="10.5" r="7" fill="#3d3020"/><circle cx="73.5" cy="10.5" r="7" fill="#3d3020"/><circle cx="115.5" cy="10.5" r="7" fill="#3d3020"/>
+          <circle cx="52.5" cy="31.5" r="7" fill="#3d3020"/><circle cx="94.5" cy="31.5" r="7" fill="#3d3020"/><circle cx="136.5" cy="31.5" r="7" fill="#3d3020"/>
+          <circle cx="115.5" cy="52.5" r="7" fill="#3d3020"/><circle cx="157.5" cy="52.5" r="7" fill="#3d3020"/>
+          <circle cx="94.5" cy="73.5" r="7" fill="#3d3020"/>
+          <circle cx="10.5" cy="94.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="52.5" cy="94.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="31.5" cy="115.5" r="7" fill="#3d3020"/><circle cx="73.5" cy="115.5" r="7" fill="#3d3020"/>
+          <circle cx="115.5" cy="115.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="136.5" cy="115.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="10.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="52.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="94.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="136.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="73.5" cy="157.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="115.5" cy="157.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="157.5" cy="157.5" r="7" fill="#3d3020"/>
+        </g>
+      </svg>
+    </div>
+    <!-- Card 3 -->
+    <div class="cb-card">
+      <p class="cb-card-step">Step 3</p>
+      <p class="cb-card-title">さらに進行</p>
+      <svg viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg" aria-label="さらに進行">
+        <rect fill="#f3efe6" stroke="#c8bfaa" stroke-width="1" x="0" y="0" width="168" height="168"/>
+        <g fill="none" stroke="#d8ceb8" stroke-width=".8">
+          <line x1="21" y1="0" x2="21" y2="168"/><line x1="42" y1="0" x2="42" y2="168"/>
+          <line x1="63" y1="0" x2="63" y2="168"/><line x1="84" y1="0" x2="84" y2="168"/>
+          <line x1="105" y1="0" x2="105" y2="168"/><line x1="126" y1="0" x2="126" y2="168"/>
+          <line x1="147" y1="0" x2="147" y2="168"/>
+          <line x1="0" y1="21" x2="168" y2="21"/><line x1="0" y1="42" x2="168" y2="42"/>
+          <line x1="0" y1="63" x2="168" y2="63"/><line x1="0" y1="84" x2="168" y2="84"/>
+          <line x1="0" y1="105" x2="168" y2="105"/><line x1="0" y1="126" x2="168" y2="126"/>
+          <line x1="0" y1="147" x2="168" y2="147"/>
+        </g>
+        <g>
+          <circle cx="10.5" cy="10.5" r="7" fill="#3d3020"/><circle cx="31.5" cy="10.5" r="7" fill="#3d3020"/><circle cx="52.5" cy="10.5" r="7" fill="#3d3020"/><circle cx="73.5" cy="10.5" r="7" fill="#3d3020"/>
+          <circle cx="10.5" cy="31.5" r="7" fill="#3d3020"/><circle cx="31.5" cy="31.5" r="7" fill="#3d3020"/><circle cx="52.5" cy="31.5" r="7" fill="#3d3020"/><circle cx="94.5" cy="31.5" r="7" fill="#3d3020"/>
+          <circle cx="115.5" cy="31.5" r="7" fill="#3d3020"/><circle cx="136.5" cy="31.5" r="7" fill="#3d3020"/>
+          <circle cx="73.5" cy="52.5" r="7" fill="#3d3020"/><circle cx="115.5" cy="52.5" r="7" fill="#3d3020"/><circle cx="136.5" cy="52.5" r="7" fill="#3d3020"/>
+          <circle cx="94.5" cy="73.5" r="7" fill="#3d3020"/>
+          <circle cx="10.5" cy="94.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="31.5" cy="115.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="52.5" cy="115.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="73.5" cy="115.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="115.5" cy="115.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="136.5" cy="115.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="10.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="31.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="52.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="94.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="115.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="136.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="73.5" cy="157.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="94.5" cy="157.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+        </g>
+      </svg>
+    </div>
+    <!-- Card 4 -->
+    <div class="cb-card">
+      <p class="cb-card-step">Step 4</p>
+      <p class="cb-card-title">収束後</p>
+      <svg viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg" aria-label="収束後">
+        <rect fill="#f3efe6" stroke="#c8bfaa" stroke-width="1" x="0" y="0" width="168" height="168"/>
+        <g fill="none" stroke="#d8ceb8" stroke-width=".8">
+          <line x1="21" y1="0" x2="21" y2="168"/><line x1="42" y1="0" x2="42" y2="168"/>
+          <line x1="63" y1="0" x2="63" y2="168"/><line x1="84" y1="0" x2="84" y2="168"/>
+          <line x1="105" y1="0" x2="105" y2="168"/><line x1="126" y1="0" x2="126" y2="168"/>
+          <line x1="147" y1="0" x2="147" y2="168"/>
+          <line x1="0" y1="21" x2="168" y2="21"/><line x1="0" y1="42" x2="168" y2="42"/>
+          <line x1="0" y1="63" x2="168" y2="63"/><line x1="0" y1="84" x2="168" y2="84"/>
+          <line x1="0" y1="105" x2="168" y2="105"/><line x1="0" y1="126" x2="168" y2="126"/>
+          <line x1="0" y1="147" x2="168" y2="147"/>
+        </g>
+        <g>
+          <circle cx="10.5" cy="10.5" r="7" fill="#3d3020"/><circle cx="31.5" cy="10.5" r="7" fill="#3d3020"/><circle cx="52.5" cy="10.5" r="7" fill="#3d3020"/><circle cx="73.5" cy="10.5" r="7" fill="#3d3020"/><circle cx="94.5" cy="10.5" r="7" fill="#3d3020"/>
+          <circle cx="10.5" cy="31.5" r="7" fill="#3d3020"/><circle cx="31.5" cy="31.5" r="7" fill="#3d3020"/><circle cx="52.5" cy="31.5" r="7" fill="#3d3020"/><circle cx="73.5" cy="31.5" r="7" fill="#3d3020"/><circle cx="94.5" cy="31.5" r="7" fill="#3d3020"/>
+          <circle cx="10.5" cy="52.5" r="7" fill="#3d3020"/><circle cx="31.5" cy="52.5" r="7" fill="#3d3020"/><circle cx="52.5" cy="52.5" r="7" fill="#3d3020"/><circle cx="73.5" cy="52.5" r="7" fill="#3d3020"/><circle cx="94.5" cy="52.5" r="7" fill="#3d3020"/>
+          <circle cx="10.5" cy="73.5" r="7" fill="#3d3020"/><circle cx="31.5" cy="73.5" r="7" fill="#3d3020"/><circle cx="52.5" cy="73.5" r="7" fill="#3d3020"/>
+          <circle cx="115.5" cy="94.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="136.5" cy="94.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="157.5" cy="94.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="94.5" cy="115.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="115.5" cy="115.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="136.5" cy="115.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="157.5" cy="115.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="94.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="115.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="136.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="157.5" cy="136.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="94.5" cy="157.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="115.5" cy="157.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="136.5" cy="157.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+          <circle cx="157.5" cy="157.5" r="7" fill="#faf8f3" stroke="#3d3020" stroke-width="1.5"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <p class="svg-caption">図1. シェリング 1971 年論文の盤上実験の再現イメージ。Step 1 のランダムな混在から、Step 4 の完全に色分けされた状態へ。各コインは「周囲の同色が半数未満なら別の空マスに移る」とだけ決めている。誰も相手を追い出していない。</p>
+</div>
+
+<p class="body-text fade">コインを動かしているのは、ただ一つの規則だけだ。それなのに、盤の上では明らかに「同色のかたまり」が立ち上がってくる。シェリング自身、この発見の意味を、論文の冒頭でこう要約している——</p>
+
+<div class="quote-block fade">
+  <p class="quote-en">"This is an abstract study of the interactive dynamics of discriminatory individual choices… The systemic effects are found to be overwhelming: there is no simple correspondence of individual incentive to collective results."</p>
+  <p class="quote-ja">これは差別的な個人選択の相互作用を抽象的に扱う研究である。……見出されるシステム的影響は圧倒的だ——個人の動機と集団的結果のあいだには、単純な対応関係など存在しない。</p>
+  <p class="quote-attr">— Thomas C. Schelling, <em>Dynamic Models of Segregation</em> (1971)</p>
+</div>
+
+<p class="body-text fade">モデルは驚くほど簡素だ。格子の各マスに住民(二色のどちらか)または空き地を置く。住民は周囲 8 マス、いわゆる<span class="tip" onclick="toggleTip(this)">ムーア<ruby>近傍<rt>きんぼう</rt></ruby><span class="tip-box"><strong>ムーア近傍 (Moore neighborhood)</strong>格子状の空間で、あるマスを囲む上下左右と斜めの計 8 マスを「近傍(きんぼう)」とみなす定義。斜めを除いた 4 マスだと「フォン・ノイマン近傍」と呼ぶ。</span></span>を見渡し、そのうち居住者のうち同色の比率を計算する。比率が「寛容度」と呼ばれる<span class="tip" onclick="toggleTip(this)"><ruby>閾値<rt>いきち</rt></ruby><span class="tip-box"><strong>閾値 (いきち)</strong>ある量を超えるか超えないかで、結果がガラッと変わる境目の値。寛容度が「閾値」とは、住民が「これより少なければ引越す、これ以上なら留まる」と判断する境目の数値のこと。</span></span>を下回れば、その住民は空きマスへ引っ越す。たったそれだけの規則で、シェリングは盤上を動かした。計算機も統計も使わず、自宅の食卓で。</p>
+
+<div class="nb-fig-stack fade">
+  <p class="nb-fig-title">ムーア近傍での同色率 ≥ 寛容度 ならその場に留まる</p>
+
+  <!-- Case A: satisfied -->
+  <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" aria-label="Case A: 寛容度 30% で同色率 50% — 満足">
+    <style>
+      .nbA-case{font-family:'Source Sans 3',sans-serif;font-size:22px;fill:#1a1208;font-weight:700;}
+      .nbA-eq{font-family:'Source Sans 3',sans-serif;font-size:20px;fill:#3d3020;}
+      .nbA-num{font-family:'JetBrains Mono',monospace;font-size:24px;fill:#8b1a1a;font-weight:700;}
+      .nbA-verdict-ok{font-family:'Source Sans 3',sans-serif;font-size:21px;fill:#1a5a30;font-weight:700;}
+    </style>
+    <rect width="600" height="320" fill="#faf8f3"/>
+    <!-- Grid 3x3, cell 80px, total 240x240 at (40,40) -->
+    <g transform="translate(40,40)">
+      <rect x="0"   y="0"   width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="80"  y="0"   width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="160" y="0"   width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="0"   y="80"  width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="80"  y="80"  width="80" height="80" fill="#fde8cb" stroke="#c8bfaa"/>
+      <rect x="160" y="80"  width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="0"   y="160" width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="80"  y="160" width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="160" y="160" width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <!-- Agents -->
+      <circle cx="40"  cy="40"  r="26" fill="#c68a3e"/>
+      <circle cx="120" cy="40"  r="26" fill="#3e8a8a"/>
+      <!-- (200,40) empty -->
+      <circle cx="40"  cy="120" r="26" fill="#3e8a8a"/>
+      <circle cx="120" cy="120" r="30" fill="#c68a3e" stroke="#8b1a1a" stroke-width="3"/>
+      <circle cx="200" cy="120" r="26" fill="#c68a3e"/>
+      <!-- (40,200) empty -->
+      <circle cx="120" cy="200" r="26" fill="#c68a3e"/>
+      <circle cx="200" cy="200" r="26" fill="#3e8a8a"/>
+      <!-- Highlight border on top -->
+      <rect x="80" y="80" width="80" height="80" fill="none" stroke="#8b1a1a" stroke-width="3"/>
+    </g>
+    <!-- Right side labels -->
+    <g transform="translate(310,80)">
+      <text x="0" y="0" class="nbA-case">Case A — 寛容度 30%</text>
+      <text x="0" y="60" class="nbA-eq">同色 3 / 居住 6 = <tspan class="nbA-num">50%</tspan></text>
+      <text x="0" y="130" class="nbA-verdict-ok">✓ 30% ≤ 50%</text>
+      <text x="0" y="160" class="nbA-verdict-ok">→ その場に留まる</text>
+    </g>
+  </svg>
+
+  <!-- Case B: unsatisfied -->
+  <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" aria-label="Case B: 寛容度 30% で同色率 14% — 引越す">
+    <style>
+      .nbB-case{font-family:'Source Sans 3',sans-serif;font-size:22px;fill:#1a1208;font-weight:700;}
+      .nbB-eq{font-family:'Source Sans 3',sans-serif;font-size:20px;fill:#3d3020;}
+      .nbB-num{font-family:'JetBrains Mono',monospace;font-size:24px;fill:#8b1a1a;font-weight:700;}
+      .nbB-verdict-ng{font-family:'Source Sans 3',sans-serif;font-size:21px;fill:#c4392a;font-weight:700;}
+    </style>
+    <rect width="600" height="320" fill="#faf8f3"/>
+    <g transform="translate(40,40)">
+      <rect x="0"   y="0"   width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="80"  y="0"   width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="160" y="0"   width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="0"   y="80"  width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="80"  y="80"  width="80" height="80" fill="#fde8cb" stroke="#c8bfaa"/>
+      <rect x="160" y="80"  width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="0"   y="160" width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="80"  y="160" width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="160" y="160" width="80" height="80" fill="#f3efe6" stroke="#c8bfaa"/>
+      <circle cx="40"  cy="40"  r="26" fill="#3e8a8a"/>
+      <circle cx="120" cy="40"  r="26" fill="#3e8a8a"/>
+      <circle cx="200" cy="40"  r="26" fill="#3e8a8a"/>
+      <circle cx="40"  cy="120" r="26" fill="#3e8a8a"/>
+      <circle cx="120" cy="120" r="30" fill="#c68a3e" stroke="#8b1a1a" stroke-width="3"/>
+      <!-- (200,120) empty -->
+      <circle cx="40"  cy="200" r="26" fill="#3e8a8a"/>
+      <circle cx="120" cy="200" r="26" fill="#3e8a8a"/>
+      <circle cx="200" cy="200" r="26" fill="#c68a3e"/>
+      <!-- Highlight border on top -->
+      <rect x="80" y="80" width="80" height="80" fill="none" stroke="#8b1a1a" stroke-width="3"/>
+    </g>
+    <g transform="translate(310,80)">
+      <text x="0" y="0" class="nbB-case">Case B — 寛容度 30%</text>
+      <text x="0" y="60" class="nbB-eq">同色 1 / 居住 7 ≈ <tspan class="nbB-num">14%</tspan></text>
+      <text x="0" y="130" class="nbB-verdict-ng">✗ 30% &gt; 14%</text>
+      <text x="0" y="160" class="nbB-verdict-ng">→ 別の空マスへ引越す</text>
+    </g>
+  </svg>
+
+  <p class="svg-caption">図2. 中央(太枠)の「自分」が周囲 8 マスの居住者を見て、同色率を計算する。閾値以上なら満足、未満なら引越し。</p>
+</div>
+
+<hr class="art-rule">
+
+<!-- ================== -->
+<!-- S2: 体験            -->
+<!-- ================== -->
+<div class="sec-rule fade"><span class="sec-label">体験</span><div class="sec-line"></div></div>
+<h2 class="fade">盤上で、分断が立ち上がる</h2>
+
+<p class="body-text fade">言葉で読むのと、目の前で動くのとでは、納得の深さがちがう。ただし、いきなり大きな盤を走らせると、何が起きているのか目で追えない。まずは <strong>7×7 の小さな盤</strong>で、ルールを 1 手ずつ追って体に入れる。それから、本物のスケールに進む。</p>
+
+<!-- MINI SIM (7x7 step-by-step rule learner) -->
+<div class="minisim fade">
+  <div class="minisim-head">
+    <span class="minisim-hl">▼ ルール理解用 — ミニ盤面</span>
+    <span class="minisim-sub">7×7 / 寛容度 30% 固定</span>
+  </div>
+  <div class="minisim-guide">
+    <p class="minisim-guide-title">遊びかた</p>
+    <p class="minisim-guide-text">赤枠で囲われている住民が「<strong>不満な人</strong>」——周囲 8 マスのうち、同色が 30% に届いていない。<strong>「次の1手」</strong>を押すと、不満な住民が空マスへ引っ越す。誰も不満でなくなれば収束。それまで何手かかるか見てほしい。</p>
+  </div>
+  <div class="minisim-body">
+    <svg id="miniSimSvg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-label="ミニ Schelling 盤面 7x7">
+      <rect width="280" height="280" fill="#14141e"/>
+    </svg>
+  </div>
+  <div class="minisim-legends">
+    <span class="minisim-legend"><span class="dot-amber"></span>住民A</span>
+    <span class="minisim-legend"><span class="dot-teal"></span>住民B</span>
+    <span class="minisim-legend"><span class="dot-empty"></span>空マス</span>
+    <span class="minisim-legend"><span class="dot-unsat"></span>不満な住民(同色&lt;30%)</span>
+  </div>
+  <div class="minisim-stats">
+    <div class="sim-stat"><span class="sim-stat-lbl">step</span><span class="sim-stat-val" id="miniStep">0</span></div>
+    <div class="sim-stat"><span class="sim-stat-lbl">不満</span><span class="sim-stat-val" id="miniUnsat">—</span></div>
+    <div class="sim-stat"><span class="sim-stat-lbl">満足</span><span class="sim-stat-val" id="miniSat">—</span></div>
+  </div>
+  <div class="minisim-controls">
+    <button class="sim-btn primary" id="miniNext">▶ 次の1手</button>
+    <button class="sim-btn" id="miniReset">最初に戻す</button>
+    <p class="minisim-status" id="miniStatus">読み込み中…</p>
+  </div>
+</div>
+
+<p class="body-text fade">ルールが体に入ったら、規模を 30×30 に上げて、寛容度を自分で動かしてみる。<strong>最初に試してほしいのは、寛容度 30% のまま「再生」を押すこと</strong>だ。十数ステップで、ランダムに混ざっていた点がかたまりに分かれていく。それから<em>寛容度を 10% まで下げる</em>。「同じ仲間が一人でもいればほぼ満足」という、ほとんど寛容極まる設定だ——それでも、小さな色の島は残る。</p>
+
+<!-- SCHELLING SIMULATOR -->
+<div class="sim-wrap fade">
+  <div class="sim-header">
+    <span class="sim-hl">✦ Schelling Segregation Model</span>
+    <span class="sim-hl-sub">30 × 30 grid / 2 colors</span>
+  </div>
+  <div class="sim-canvas-wrap">
+    <canvas id="schCanvas" width="480" height="480"></canvas>
+  </div>
+  <div class="sim-stats">
+    <div class="sim-stat"><span class="sim-stat-lbl">step</span><span class="sim-stat-val" id="schStep">0</span></div>
+    <div class="sim-stat"><span class="sim-stat-lbl">満足率</span><span class="sim-stat-val" id="schSat">—</span></div>
+    <div class="sim-stat"><span class="sim-stat-lbl">平均同色近隣</span><span class="sim-stat-val" id="schSame">—</span></div>
+    <div class="sim-stat"><span class="sim-stat-lbl">分離指数</span><span class="sim-stat-val" id="schSeg">—</span></div>
+  </div>
+  <div class="sim-guide">
+    <p class="sim-guide-title">このシミュレーターで確認できること</p>
+    <p class="sim-guide-text">丸ひとつひとつが「住民」——二色のどちらかの属性を持つ。各住民は周囲 8 マスを見渡し、<strong>同色が寛容度の割合以上いるなら留まる</strong>。未満なら、ランダムな空マスへ引っ越す。寛容度 30% で再生すると、意図なくしてクラスタが成長するのが見える。</p>
+  </div>
+  <div class="sim-presets">
+    <span class="sim-presets-label">プリセット寛容度</span>
+    <button class="preset-btn" data-tol="10" onclick="schPreset(this)">10%</button>
+    <button class="preset-btn active" data-tol="30" onclick="schPreset(this)">30%</button>
+    <button class="preset-btn" data-tol="50" onclick="schPreset(this)">50%</button>
+    <button class="preset-btn" data-tol="70" onclick="schPreset(this)">70%</button>
+  </div>
+  <div class="sim-controls">
+    <div class="sim-ctrl-group">
+      <span class="sim-ctrl-label">寛容度 — 同色がこの割合以上なら満足</span>
+      <div class="sim-ctrl-row">
+        <input type="range" id="schTol" min="0" max="100" value="30">
+        <span class="sim-ctrl-val" id="schTolVal">30%</span>
+      </div>
+    </div>
+    <button class="sim-btn primary" id="schPlay">▶ 再生</button>
+    <button class="sim-btn" id="schStep1">1ステップ</button>
+    <button class="sim-btn" id="schReset">リセット</button>
+  </div>
+  <p class="sim-note">Schelling (1971) の概念を 30×30 格子で再現した簡易実装。各ステップで不満な住民を一括で空マスへ移す。<strong>分離指数</strong>は 0=完全混合、1 に近いほど分離。現実の住宅分離の定量予測ではなく、創発のデモンストレーション。</p>
+</div>
+
+<p class="body-text fade">このシミュレーターで、少なくとも三つの発見が待っている。一つ、<strong>寛容度およそ 30%(=約 1/3)が<span class="tip" onclick="toggleTip(this)">ティッピングポイント<span class="tip-box"><strong>ティッピングポイント (Tipping point)</strong>ある量が少しずつ変化する途中で、ある閾値を超えた瞬間に系の状態が不連続に変わる臨界点。寛容度およそ 1/3 を境に、街の見え方が「ほぼ混在」から「ほぼ分離」へ急に切り替わる。</span></span></strong>で、これを超えると分離は加速する。二つ、寛容度 10% でも部分的に色が固まるが、寛容度 0%(同色がゼロでも構わない)にするとランダム配置のまま動かない。三つ、<strong>寛容度 70% では誰も満足できない</strong>。「まわりの 7 割が同じでなければ嫌だ」と全員が思うと、どの配置にも不満が残り、盤は収束しない。</p>
+
+<div class="svg-fig fade">
+  <svg viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg" aria-label="寛容度と分離指数の関係図">
+    <style>
+      .ph-axis{stroke:#c8bfaa;stroke-width:1;fill:none;}
+      .ph-axis-lbl{font-family:'Source Sans 3',sans-serif;font-size:14px;fill:#3d3020;font-weight:600;}
+      .ph-tick{font-family:'JetBrains Mono',monospace;font-size:13px;fill:#7a6a55;}
+      .ph-curve{fill:none;stroke:#8b1a1a;stroke-width:2.5;}
+      .ph-fill{fill:#8b1a1a;opacity:.1;}
+      .ph-grid{stroke:#e0d8c8;stroke-width:.8;fill:none;}
+      .ph-note{font-family:'Source Sans 3',sans-serif;font-size:14px;fill:#1a1208;font-weight:600;}
+      .ph-annot{font-family:'Source Sans 3',sans-serif;font-size:14px;fill:#7a6a55;}
+      .ph-tipping{stroke:#8b1a1a;stroke-width:1.5;stroke-dasharray:4,3;fill:none;}
+    </style>
+    <rect x="0" y="0" width="760" height="400" fill="#faf8f3"/>
+
+    <!-- Axes -->
+    <g transform="translate(80,60)">
+      <!-- grid -->
+      <g class="ph-grid">
+        <line x1="0" y1="60" x2="600" y2="60"/>
+        <line x1="0" y1="120" x2="600" y2="120"/>
+        <line x1="0" y1="180" x2="600" y2="180"/>
+        <line x1="0" y1="240" x2="600" y2="240"/>
+        <line x1="120" y1="0" x2="120" y2="300"/>
+        <line x1="240" y1="0" x2="240" y2="300"/>
+        <line x1="360" y1="0" x2="360" y2="300"/>
+        <line x1="480" y1="0" x2="480" y2="300"/>
+        <line x1="600" y1="0" x2="600" y2="300"/>
+      </g>
+      <!-- Tipping marker -->
+      <line class="ph-tipping" x1="200" y1="-12" x2="200" y2="300"/>
+      <text x="200" y="-22" class="ph-annot" fill="#8b1a1a" font-weight="700" text-anchor="middle" font-size="15">ティッピングポイント ≈ 1/3</text>
+
+      <!-- Area under curve -->
+      <path class="ph-fill" d="M0,270 L20,268 L40,265 L60,260 L80,250 L100,230 L120,200 L140,160 L160,110 L180,70 L200,40 L220,25 L240,18 L260,15 L280,18 L300,25 L320,35 L340,50 L360,70 L380,95 L400,125 L420,160 L440,200 L460,235 L480,255 L500,265 L520,268 L540,270 L560,272 L580,272 L600,272 L600,300 L0,300 Z"/>
+      <!-- Curve -->
+      <path class="ph-curve" d="M0,270 L20,268 L40,265 L60,260 L80,250 L100,230 L120,200 L140,160 L160,110 L180,70 L200,40 L220,25 L240,18 L260,15 L280,18 L300,25 L320,35 L340,50 L360,70 L380,95 L400,125 L420,160 L440,200 L460,235 L480,255 L500,265 L520,268 L540,270 L560,272 L580,272 L600,272"/>
+
+      <!-- Axes lines -->
+      <line class="ph-axis" x1="0" y1="0" x2="0" y2="300"/>
+      <line class="ph-axis" x1="0" y1="300" x2="600" y2="300"/>
+
+      <!-- X ticks -->
+      <g>
+        <line class="ph-axis" x1="0" y1="300" x2="0" y2="306"/><text x="0" y="322" class="ph-tick" text-anchor="middle">0%</text>
+        <line class="ph-axis" x1="120" y1="300" x2="120" y2="306"/><text x="120" y="322" class="ph-tick" text-anchor="middle">20%</text>
+        <line class="ph-axis" x1="240" y1="300" x2="240" y2="306"/><text x="240" y="322" class="ph-tick" text-anchor="middle">40%</text>
+        <line class="ph-axis" x1="360" y1="300" x2="360" y2="306"/><text x="360" y="322" class="ph-tick" text-anchor="middle">60%</text>
+        <line class="ph-axis" x1="480" y1="300" x2="480" y2="306"/><text x="480" y="322" class="ph-tick" text-anchor="middle">80%</text>
+        <line class="ph-axis" x1="600" y1="300" x2="600" y2="306"/><text x="600" y="322" class="ph-tick" text-anchor="middle">100%</text>
+      </g>
+      <!-- Y ticks -->
+      <g>
+        <line class="ph-axis" x1="-6" y1="0" x2="0" y2="0"/><text x="-12" y="5" class="ph-tick" text-anchor="end">1.0</text>
+        <line class="ph-axis" x1="-6" y1="60" x2="0" y2="60"/><text x="-12" y="65" class="ph-tick" text-anchor="end">0.8</text>
+        <line class="ph-axis" x1="-6" y1="120" x2="0" y2="120"/><text x="-12" y="125" class="ph-tick" text-anchor="end">0.6</text>
+        <line class="ph-axis" x1="-6" y1="180" x2="0" y2="180"/><text x="-12" y="185" class="ph-tick" text-anchor="end">0.4</text>
+        <line class="ph-axis" x1="-6" y1="240" x2="0" y2="240"/><text x="-12" y="245" class="ph-tick" text-anchor="end">0.2</text>
+        <line class="ph-axis" x1="-6" y1="300" x2="0" y2="300"/><text x="-12" y="305" class="ph-tick" text-anchor="end">0.0</text>
+      </g>
+      <!-- Axis labels -->
+      <text x="300" y="350" class="ph-axis-lbl" text-anchor="middle">寛容度(%)</text>
+      <g transform="translate(-54,150) rotate(-90)"><text x="0" y="0" class="ph-axis-lbl" text-anchor="middle">分離指数</text></g>
+
+      <!-- Annotations -->
+      <text x="50" y="280" class="ph-annot">混ざったまま</text>
+      <text x="540" y="265" class="ph-annot">誰も落ち着けない</text>
+    </g>
+  </svg>
+  <p class="svg-caption">図3. 寛容度を横軸に、収束後の分離指数を縦軸に取ると、閾値 1/3 付近で鋭く立ち上がる。少しの差で結果が大きく変わる、典型的な<span class="tip" onclick="toggleTip(this)">ティッピングポイント<span class="tip-box"><strong>ティッピングポイント</strong>ある量が少しずつ変化するうち、ある閾値を越えた瞬間に系の状態が不連続に変わる臨界点。</span></span>。</p>
+</div>
+
+<p class="body-text fade">走らせたあとで気づくのは、そこには「悪意」という変数がどこにもないことだ。プログラムに書かれているのは、「自分の周りの 30% だけは確保したい」という、あまりに控えめな一文に過ぎない。それでも、結果は完全に色分けされた盤になる。<em>個人の選好を集計しても、集団の結果にはたどり着かない</em>。</p>
+
+<hr class="art-rule">
+
+<!-- ================== -->
+<!-- S3: なぜか          -->
+<!-- ================== -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">三割の選好が、完全分離に増幅する理由</h2>
+
+<p class="body-text fade">結果を見たあとなら、過程は驚くほどわかりやすい。<strong>一人の引越しが、次の住民を引越させる</strong>。それだけのことだ。ただし、その連鎖が止まるポイントは非対称で、分離側には向かいやすく、再統合側には向かいにくい。</p>
+
+<div class="cs-fig-stack fade">
+  <p class="cs-fig-title">ひとつの引越しが、次の引越しを呼ぶ</p>
+
+  <!-- Step 1 -->
+  <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" aria-label="Step 1: 不満な住民が発生">
+    <style>
+      .cs1-step{font-family:'Playfair Display',serif;font-size:22px;fill:#8b1a1a;font-weight:700;}
+      .cs1-eq{font-family:'Source Sans 3',sans-serif;font-size:20px;fill:#3d3020;}
+      .cs1-num{font-family:'JetBrains Mono',monospace;font-size:22px;fill:#8b1a1a;font-weight:700;}
+      .cs1-act{font-family:'Source Sans 3',sans-serif;font-size:21px;fill:#c4392a;font-weight:700;}
+    </style>
+    <text x="300" y="28" class="cs1-step" text-anchor="middle">① 不満な住民が発生</text>
+    <g transform="translate(40,50)">
+      <rect x="0"   y="0"   width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="60"  y="0"   width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="120" y="0"   width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="0"   y="60"  width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="60"  y="60"  width="60" height="60" fill="#fde8cb" stroke="#c8bfaa"/>
+      <rect x="120" y="60"  width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="0"   y="120" width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="60"  y="120" width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="120" y="120" width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <circle cx="30"  cy="30"  r="20" fill="#3e8a8a"/>
+      <circle cx="90"  cy="30"  r="20" fill="#3e8a8a"/>
+      <circle cx="150" cy="30"  r="20" fill="#3e8a8a"/>
+      <circle cx="30"  cy="90"  r="20" fill="#3e8a8a"/>
+      <circle cx="90"  cy="90"  r="24" fill="#c68a3e" stroke="#8b1a1a" stroke-width="3"/>
+      <circle cx="150" cy="90"  r="20" fill="#3e8a8a"/>
+      <circle cx="30"  cy="150" r="20" fill="#3e8a8a"/>
+      <circle cx="90"  cy="150" r="20" fill="#3e8a8a"/>
+      <circle cx="150" cy="150" r="20" fill="#c68a3e"/>
+      <!-- Highlight border on top -->
+      <rect x="60" y="60" width="60" height="60" fill="none" stroke="#8b1a1a" stroke-width="3"/>
+    </g>
+    <g transform="translate(270,100)">
+      <text x="0" y="0" class="cs1-eq">同色 1 / 居住 8 = <tspan class="cs1-num">13%</tspan></text>
+      <text x="0" y="60" class="cs1-act">✗ 閾値 30% 未満</text>
+      <text x="0" y="92" class="cs1-act">→ 引越しを決める</text>
+    </g>
+  </svg>
+
+  <div class="cs-arrow-down">▼</div>
+
+  <!-- Step 2 -->
+  <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" aria-label="Step 2: 空マスへ引越す">
+    <style>
+      .cs2-step{font-family:'Playfair Display',serif;font-size:22px;fill:#8b1a1a;font-weight:700;}
+      .cs2-desc{font-family:'Source Sans 3',sans-serif;font-size:20px;fill:#3d3020;}
+      .cs2-sub{font-family:'Source Sans 3',sans-serif;font-size:17px;fill:#7a6a55;}
+    </style>
+    <text x="300" y="28" class="cs2-step" text-anchor="middle">② 空マスへ引越す</text>
+    <g transform="translate(40,50)">
+      <rect x="0"   y="0"   width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="60"  y="0"   width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="120" y="0"   width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="0"   y="60"  width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="60"  y="60"  width="60" height="60" fill="#f3efe6" stroke="#c8bfaa" stroke-dasharray="4,3"/>
+      <rect x="120" y="60"  width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="0"   y="120" width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="60"  y="120" width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="120" y="120" width="60" height="60" fill="#fde8cb" stroke="#c8bfaa"/>
+      <circle cx="30"  cy="30"  r="20" fill="#3e8a8a"/>
+      <circle cx="90"  cy="30"  r="20" fill="#3e8a8a"/>
+      <circle cx="150" cy="30"  r="20" fill="#3e8a8a"/>
+      <circle cx="30"  cy="90"  r="20" fill="#3e8a8a"/>
+      <circle cx="150" cy="90"  r="20" fill="#3e8a8a"/>
+      <circle cx="30"  cy="150" r="20" fill="#3e8a8a"/>
+      <circle cx="90"  cy="150" r="20" fill="#3e8a8a"/>
+      <circle cx="150" cy="150" r="24" fill="#c68a3e" stroke="#8b1a1a" stroke-width="3"/>
+      <!-- Highlight border on top -->
+      <rect x="120" y="120" width="60" height="60" fill="none" stroke="#8b1a1a" stroke-width="3"/>
+    </g>
+    <g transform="translate(270,100)">
+      <text x="0" y="0" class="cs2-desc">同色のそばへ移動</text>
+      <text x="0" y="40" class="cs2-sub">中央のマスが空いた</text>
+      <text x="0" y="64" class="cs2-sub">(点線で表示)</text>
+    </g>
+  </svg>
+
+  <div class="cs-arrow-down">▼</div>
+
+  <!-- Step 3 -->
+  <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" aria-label="Step 3: 連鎖する次の不満">
+    <style>
+      .cs3-step{font-family:'Playfair Display',serif;font-size:22px;fill:#8b1a1a;font-weight:700;}
+      .cs3-desc{font-family:'Source Sans 3',sans-serif;font-size:20px;fill:#3d3020;}
+      .cs3-act{font-family:'Source Sans 3',sans-serif;font-size:21px;fill:#c4392a;font-weight:700;}
+    </style>
+    <text x="300" y="28" class="cs3-step" text-anchor="middle">③ 連鎖する次の不満</text>
+    <g transform="translate(40,50)">
+      <rect x="0"   y="0"   width="60" height="60" fill="#fde8cb" stroke="#c8bfaa"/>
+      <rect x="60"  y="0"   width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="120" y="0"   width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="0"   y="60"  width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="60"  y="60"  width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="120" y="60"  width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="0"   y="120" width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="60"  y="120" width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <rect x="120" y="120" width="60" height="60" fill="#f3efe6" stroke="#c8bfaa"/>
+      <circle cx="30"  cy="30"  r="24" fill="#3e8a8a" stroke="#8b1a1a" stroke-width="3"/>
+      <circle cx="90"  cy="30"  r="20" fill="#3e8a8a"/>
+      <circle cx="150" cy="30"  r="20" fill="#3e8a8a"/>
+      <circle cx="30"  cy="90"  r="20" fill="#c68a3e"/>
+      <circle cx="90"  cy="90"  r="20" fill="#c68a3e"/>
+      <circle cx="150" cy="90"  r="20" fill="#3e8a8a"/>
+      <circle cx="30"  cy="150" r="20" fill="#c68a3e"/>
+      <circle cx="90"  cy="150" r="20" fill="#3e8a8a"/>
+      <circle cx="150" cy="150" r="20" fill="#3e8a8a"/>
+      <!-- Highlight border on top -->
+      <rect x="0" y="0" width="60" height="60" fill="none" stroke="#8b1a1a" stroke-width="3"/>
+    </g>
+    <g transform="translate(270,100)">
+      <text x="0" y="0" class="cs3-desc">別の住民が不満に</text>
+      <text x="0" y="60" class="cs3-act">→ また引越す</text>
+      <text x="0" y="92" class="cs3-act">→ 連鎖が続く</text>
+    </g>
+  </svg>
+
+  <p class="svg-caption">図4. 一つの引越しは、残された側と受け入れ側の両方で近隣構成を変える。それが次の住民を動かす。</p>
+</div>
+
+<div class="steps-wrap fade">
+  <p class="steps-head">分離が増幅される仕組み</p>
+  <div class="step-card open" id="sc1">
+    <div class="step-hd" onclick="tog(1)">
+      <div class="step-nb">1</div>
+      <div class="step-tw"><div class="step-title">局所的な判定しかしない</div><div class="step-sub">住民は周囲 8 マスしか見えない</div></div>
+      <div class="step-arr">▼</div>
+    </div>
+    <div class="step-body"><p>住民が考えているのは、街全体の色構成でも、自分の街がどう見えるかでもない。<strong>目の前の 8 マス</strong>だけだ。これは人間の認知にも近い——通勤電車の中で、車両全体の人口構成を数える人はいない。すぐ隣にいる人の気配だけで判断する。この局所性こそが、グローバルなパターンを無意識に作り出す。</p></div>
+  </div>
+  <div class="step-card" id="sc2">
+    <div class="step-hd" onclick="tog(2)">
+      <div class="step-nb">2</div>
+      <div class="step-tw"><div class="step-title">非対称な移動</div><div class="step-sub">分離には行きやすく、再混合には行きにくい</div></div>
+      <div class="step-arr">▼</div>
+    </div>
+    <div class="step-body"><p>住民が引越すとき、同色が多い場所を目指す。だが、<em>同色が多い場所にわざわざ少数側が飛び込む</em>圧力はどこにも働いていない。誰も「もっと混ざりたい」とは思っていないからだ。結果として移動の矢印はすべて同色のかたまりへ向かう。分離はモデルの安定状態で、再統合はそうではない。</p></div>
+  </div>
+  <div class="step-card" id="sc3">
+    <div class="step-hd" onclick="tog(3)">
+      <div class="step-nb">3</div>
+      <div class="step-tw"><div class="step-title">カスケードの連鎖</div><div class="step-sub">一つの引越しが次の引越しを呼ぶ</div></div>
+      <div class="step-arr">▼</div>
+    </div>
+    <div class="step-body"><p>住民 A が引越すと、A が居た場所の近隣たちの同色比率が下がる。今度はその中の誰かが不満になり、次に引越す。A が越した先では逆に同色が増える——満足した住民が生まれるが、それはもう動かない。<strong>動けるのは不満だけ</strong>で、不満は分離を深める方向にしか向かわない。</p></div>
+  </div>
+  <div class="step-card" id="sc4">
+    <div class="step-hd" onclick="tog(4)">
+      <div class="step-nb">4</div>
+      <div class="step-tw"><div class="step-title">臨界点での不連続</div><div class="step-sub">1/3 を境にシステムが別モードに</div></div>
+      <div class="step-arr">▼</div>
+    </div>
+    <div class="step-body"><p>寛容度が 30% を少し下回る領域では、初期のランダム配置は「ちょうどよく落ち着く」。同色がすでに十分そばにあるからだ。しかし 30% を超えると、初期配置で不満になる住民が臨界数に達し、カスケードが止まらなくなる。<em>個人の閾値の数値が 5% 変わるだけで、街の見え方が劇的に変わる</em>——これがティッピングの正体だ。</p></div>
+  </div>
+</div>
+
+<div class="pull fade">
+  <p class="pull-q">"There is no simple correspondence of <em>individual incentive to collective results</em>."</p>
+  <p style="font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;padding-left:12px;border-left:1px solid #c8bfaa;">個人の動機と集団的結果のあいだに、単純な対応関係など存在しない。</p>
+  <p class="pull-attr">— Thomas C. Schelling, <em>Dynamic Models of Segregation</em> (1971)</p>
+</div>
+
+<hr class="art-rule">
+
+<!-- ================== -->
+<!-- S4: 歴史           -->
+<!-- ================== -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">食卓のコインから、ノーベル賞まで</h2>
+
+<div class="timeline fade">
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1969</p>
+    <p class="tl-title">"Models of Segregation" (AER)</p>
+    <p class="tl-desc">シェリングが分居モデルの原型を <em>American Economic Review</em> に発表。一次元の「線分上の移動」モデルを初めて提示した。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1971</p>
+    <p class="tl-title">"Dynamic Models of Segregation" (JMS)</p>
+    <p class="tl-desc">二次元盤上のモデルを <em>Journal of Mathematical Sociology</em> に発表。13×16 盤面にペニーとダイムを置き、「同色半数未満なら移動」という規則だけで色分けが起きることを示した。論文は手計算ベース。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1978</p>
+    <p class="tl-title">『Micromotives and Macrobehavior』</p>
+    <p class="tl-desc">一般読者向けの著書。分居モデルをふくむ複数の創発的現象(なぜ教室は後ろから席が埋まるか、など)を平易に解説。ミクロとマクロの乖離をテーマ化。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">1990年代〜</p>
+    <p class="tl-title">エージェントベースモデルの古典に</p>
+    <p class="tl-desc">計算機能力の向上により、数千〜数万エージェントでの再現が可能に。NetLogo の標準教材に採用され、<span class="tip" onclick="toggleTip(this)">エージェントベースモデル<span class="tip-box"><strong>エージェントベースモデル (ABM)</strong>個々の主体(エージェント)に単純な行動規則を与え、多数のエージェントの相互作用をシミュレートして全体挙動を観察する研究手法。複雑系科学の中心的な道具。</span></span>を学ぶ最初の例として世界中で使われる。</p>
+  </div>
+  <div class="tl-item highlight">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2005</p>
+    <p class="tl-title">ノーベル経済学賞</p>
+    <p class="tl-desc">Robert Aumann と共同で受賞。受賞理由は「紛争と協力についての我々の理解を、ゲーム理論分析を通じて深めたことに対して」。分居モデルは主たる理由ではなく、核抑止ゲーム理論が中心だったが、広く知られることになった契機でもある。</p>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <p class="tl-year">2018</p>
+    <p class="tl-title">ノーベルメダルの競売</p>
+    <p class="tl-desc">シェリング没後(2016 年没)、遺族は彼のノーベル賞メダルを 18.7 万ドルで競売にかけた。落札額の全額は、公民権擁護団体 <em>Southern Poverty Law Center</em>(公益訴訟・ヘイト団体監視等を行う米国の非営利)に寄付された。</p>
+  </div>
+</div>
+
+<div class="visual-ref fade">
+  <div class="visual-ref-img">
+    <img src="./sim_emergence.gif" alt="シェリング分居モデルのアニメーション可視化">
+  </div>
+  <p class="visual-ref-caption">
+    <strong>動くシェリングモデル</strong> — 209 フレームのアニメーション。ランダム配置から分離パターンが立ち上がる過程を、フレーム単位で見られる。本記事内のシミュレーターと同じルールから、同じ形が出る。
+    <span class="visual-ref-license">Gerian2 / CC BY-SA 4.0</span>
+  </p>
+</div>
+
+<hr class="art-rule">
+
+<!-- ================== -->
+<!-- S5: つまり          -->
+<!-- ================== -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">分断を誰かの悪意で説明し尽くすな。しかし免罪もするな</h2>
+
+<p class="body-text fade">モデルから現実に視線を戻すと、別の事実が見える。1937 年、米国連邦住宅機関(HOLC)は都市の地区を A〜D に格付けし、黒人住民の多い地区を D(赤=融資不適)に塗った。<strong>「赤線引き(redlining)」</strong>と呼ばれるこの制度差別が消えても、73 年後の都市はほぼ同じ形で分かれている——<em>個人の選好だけでは生まれなかったが、個人の選好だけでも持続している</em>。</p>
+
+<div class="real-fig-grid fade">
+  <figure class="real-fig">
+    <img src="./redlining_chicago_1937.jpg" alt="1937 年シカゴの HOLC 住宅安全地図(赤線引き)">
+    <figcaption>
+      <strong>1937, シカゴ</strong> — 米国住宅所有者貸付公社(HOLC)が作成した「住宅安全」地図。赤(D)に塗られた地区は黒人住民の多い地区で、住宅ローン審査から実質的に排除された。<strong>個人の選好ではなく、制度として</strong>分離が刻まれた瞬間。
+      <span class="real-fig-license">HOLC, 1937 / Public Domain</span>
+    </figcaption>
+  </figure>
+  <figure class="real-fig">
+    <img src="./fischer_chicago_2010.jpg" alt="2010 年シカゴの人種別居住分布(Erica Fischer による)">
+    <figcaption>
+      <strong>2010, シカゴ</strong> — 国勢調査ベースの人種別居住分布。各点 25 人(赤=白、青=黒、緑=アジア系、橙=ヒスパニック)。1937 年の赤線地図と、73 年後の点描マップは、ほとんど同じ形で分かれている。
+      <span class="real-fig-license">E. Fischer + © OpenStreetMap / CC BY-SA 2.0</span>
+    </figcaption>
+  </figure>
+</div>
+
+<p class="body-text fade">差別を計算するのは簡単だ。誰かが、誰かを排除したがっている——そういう仮定を置けば、街の色分けは自然に説明できる。シェリングの発見の鋭さは、<strong>その仮定を置かなくても</strong>同じ結果が出ると示したことにある。マクロの現象がミクロの悪意を意味するとは限らない。</p>
+
+<p class="body-text fade">だが裏返しに、マクロの分断を見て「住民はみんなそこまで悪くない」と安堵するのも早い。個々の<ruby>穏当<rt>おんとう</rt></ruby>な選好は、意図なく増幅する。そして増幅された結果は、それ自体が新しい環境になる——<em>分断された街で育った子は、分断を当たり前の背景にして選好を形成する</em>。フィードバックは閉じる。</p>
+
+<div class="culture-block fade">
+  <p class="culture-label">✦ モデルの射程と、その外側</p>
+  <div class="culture-item">
+    <p class="culture-title">現実の分離はモデルよりはるかに複雑</p>
+    <p class="culture-desc">住宅価格の差、赤線引き(redlining)と呼ばれる歴史的な融資差別、学区・治安・交通の偏り、強制移住の歴史。現実の住宅分離にはこれらが重層的に重なる。分居モデルはそのうち「個人選好だけでも十分な分離が起きる」と示した基層の話であって、上にある層を消したわけではない。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">モデルは分離を説明するが、再統合は説明しない</p>
+    <p class="culture-desc">いったん収束した盤面は、寛容度をどれだけ上げてももとのランダム配置には戻らない。住民が「もっと混ざりたい」と積極的に望むのでない限り、分離は安定平衡。この非可逆性は、現実の政策が「混合住宅」のような能動的介入を必要とする理由と響き合う。</p>
+  </div>
+  <div class="culture-item">
+    <p class="culture-title">シェリング自身はモデルの射程に慎重だった</p>
+    <p class="culture-desc">1971 年論文の冒頭でシェリングは、これが「分離を説明する唯一のモデル」ではないと明言している。没後、遺族が彼のノーベルメダルを公民権団体 Southern Poverty Law Center への寄付に充てたことは、モデルを「個人の責任ではない」と読ませるためのものではない、というシェリング家の姿勢の表明とも読める。</p>
+  </div>
+</div>
+
+<p class="body-text fade">だからこの記事が伝えたいのは、次の二つが両立するという一点だ——<em>個人はみな<ruby>穏当<rt>おんとう</rt></ruby>でありうる。そして社会は、それでも分かれる</em>。</p>
+
+<hr class="art-rule">
+
+<!-- ================== -->
+<!-- S6: 参考文献        -->
+<!-- ================== -->
+<div class="sec-rule fade"><span class="sec-label">参考文献</span><div class="sec-line"></div></div>
+
+<div class="ref-list">
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">原典論文</span><span class="ref-year">1971</span></div>
+    <p class="ref-title"><a href="https://www.tandfonline.com/doi/abs/10.1080/0022250X.1971.9989794" target="_blank" rel="noopener">Dynamic Models of Segregation</a></p>
+    <p class="ref-author">Thomas C. Schelling — <em>Journal of Mathematical Sociology</em>, Vol.1, pp.143–186</p>
+    <p class="ref-desc">本記事の出発点。二次元盤上のモデルを手計算で解析した原典。冒頭で「個人の動機と集団的結果の単純な対応はない」と宣言している。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">著書</span><span class="ref-year">1978</span></div>
+    <p class="ref-title">Micromotives and Macrobehavior</p>
+    <p class="ref-author">Thomas C. Schelling — W. W. Norton</p>
+    <p class="ref-desc">一般読者向け。分居モデルをふくむ複数の創発現象を平易に扱う。ミクロとマクロの乖離を、シェリングが最もわかりやすく論じた書。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">後続研究</span><span class="ref-year">2008</span></div>
+    <p class="ref-title"><a href="https://www.pnas.org/doi/10.1073/pnas.0708155105" target="_blank" rel="noopener">Understanding the social context of the Schelling segregation model</a></p>
+    <p class="ref-author">W. A. V. Clark, M. Fossett — <em>PNAS</em>, 105(11), 4109–4114</p>
+    <p class="ref-desc">モデルが現実の住宅分離にどう接続するかを検証。経済要因を組み込むとモデルの振る舞いがどう変わるかを議論。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">経済学論文</span><span class="ref-year">2008</span></div>
+    <p class="ref-title"><a href="https://academic.oup.com/qje/article-abstract/123/1/177/1889797" target="_blank" rel="noopener">Tipping and the Dynamics of Segregation</a></p>
+    <p class="ref-author">D. Card, A. Mas, J. Rothstein — <em>Quarterly Journal of Economics</em>, 123(1), 177–218</p>
+    <p class="ref-desc">アメリカの国勢調査データで「ティッピング」を実証的に検出した研究。シェリングの概念が現実データに現れることを示した。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">公式資料</span><span class="ref-year">2005</span></div>
+    <p class="ref-title"><a href="https://www.nobelprize.org/prizes/economic-sciences/2005/popular-information/" target="_blank" rel="noopener">The Prize in Economic Sciences 2005 — Popular Information</a></p>
+    <p class="ref-author">The Royal Swedish Academy of Sciences</p>
+    <p class="ref-desc">ノーベル経済学賞 2005 の公式解説。Aumann と Schelling の業績が並列に解説されている。分居モデルは一節のみだが、ゲーム理論の広がりの中に位置づけられる。</p>
+  </div>
+</div>
+
+<div class="note-box fade">
+  <strong>📌 この記事について</strong><br>
+  原典 Schelling (1971) に加え、Clark & Fossett (2008) の後続研究、ノーベル財団公式資料、Royal Swedish Academy of Sciences のプレスリリース、Harvard Gazette の訃報を参照した。記事内のシミュレーターは原論文の思想を 30×30 格子で視覚化した簡易実装であり、特定データの定量的再現ではない。現実の住宅分離には経済要因・制度要因・歴史的経緯が大きく関わり、モデル単独で現象を説明し切ることはできない——これは Schelling 自身の立場でもある。
+</div>
+
+<div class="signature fade">e. Tamaki</div>
+
+<div class="tags fade">
+  <span class="tag">創発</span>
+  <span class="tag">分断</span>
+  <span class="tag">社会科学</span>
+  <span class="tag">エージェントベースモデル</span>
+  <span class="tag">ゲーム理論</span>
+  <span class="tag">ノーベル経済学賞</span>
+  <span class="tag">複雑系</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">1/3</p>
+      <p class="sidebar-text">寛容度の<em>ティッピングポイント</em>。閾値がおよそ 33% を超えると、初期ランダム配置は<strong>完全分離</strong>へ急に切り替わる。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1971 年、シェリングは手動で盤上にペニーとダイムを並べ、格子紙の上で住民を一つずつ動かした。<strong>計算機を使わずに</strong>創発の古典を作り出した一本の論文。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text"><em>NetLogo</em> の標準教材として世界中で教えられる。行動経済学・複雑系科学の入り口となる、最短で動く創発モデル。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— <em>ボイド</em>(群れの創発)<br>— <em>自己組織化臨界</em>(砂山モデル)<br>— <em>同調圧力</em>(集団が個を曲げる)<br>— <em>ライフゲーム</em>(単純ルールからの秩序)</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">原典 1971 年論文およびノーベル財団公式資料に基づく。記事内シミュレーターは教育目的で簡略化している。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// シェリング分居モデルを読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;寛容度1割でも分断するって、本当?</span></div>
+      <span class="t-output" id="to1">本当だ。条件にもよるが、ランダム配置から始めても、「まわりに同じ属性が一人でもいれば満足」という程度の設定で、なお<em>小さな同色のかたまり</em>は残りやすい。均質に混ざった分布自体が、動的には不安定なんだ。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ街の分断は誰のせいでもないってこと?</span></div>
+      <span class="t-output" id="to2">そうじゃない。モデルが示すのは<strong>「個人の選好だけで説明できる部分がある」</strong>という一面で、現実には経済や制度や歴史がその上に重なっている。シェリング本人もそれを混同していない。「誰も悪くない」と読むのは、モデルの誤用。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;寛容度 70% にしたら盤が延々動き続けたよ</span></div>
+      <span class="t-output" id="to3">そう、あれは誰も満足できなくなった状態だ。「まわりの 7 割以上が同じでないと嫌だ」と全員が思うと、どの配置にも不満が残る。<em>分離する前にまず、共存そのものが成立しない</em>。全員が少しずつ寛容であることは、社会が収束するための下限条件なんだ。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# ん〜、簡単な話じゃないな</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/boids">
+      <p class="related-card-tag">創発</p>
+      <p class="related-card-title">ボイド — 群れはルール3つで飛ぶ</p>
+      <p class="related-card-desc">「分離・整列・結合」の3行で、鳥の群れは中央指揮官なしに統一感を持つ。創発クラスタの入り口。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/self_organized_criticality">
+      <p class="related-card-tag">複雑系</p>
+      <p class="related-card-title">自己組織化臨界</p>
+      <p class="related-card-desc">書類の山が崩れるのと、地震と、神経の発火は、同じ形をしている。系は自発的に臨界点へ向かう。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト方式)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+
+// === SCHELLING SEGREGATION SIMULATOR ===
+(function(){
+  const cvs=document.getElementById('schCanvas');
+  if(!cvs)return;
+  const ctx=cvs.getContext('2d');
+  const N=30;
+  const EMPTY=0.10;
+  let W,H;
+  let grid=new Array(N*N).fill(0);
+  let tolerance=0.30;
+  let playing=false;
+  let stepN=0;
+  let timer=null;
+
+  function resize(){
+    const rect=cvs.parentElement.getBoundingClientRect();
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    const side=Math.min(rect.width-36, 480);
+    W=cvs.width=Math.floor(side*dpr);
+    H=cvs.height=Math.floor(side*dpr);
+    cvs.style.width=side+'px';
+    cvs.style.height=side+'px';
+    cvs.style.imageRendering='auto';
+  }
+
+  function init(){
+    grid=new Array(N*N).fill(0);
+    for(let i=0;i<N*N;i++){
+      const r=Math.random();
+      if(r<EMPTY) grid[i]=0;
+      else if(r<EMPTY+(1-EMPTY)/2) grid[i]=1;
+      else grid[i]=2;
+    }
+    stepN=0;
+  }
+
+  function sameRatio(idx){
+    const r=Math.floor(idx/N), c=idx%N;
+    const me=grid[idx];
+    if(me===0) return -1;
+    let total=0, same=0;
+    for(let dr=-1;dr<=1;dr++){
+      for(let dc=-1;dc<=1;dc++){
+        if(dr===0&&dc===0)continue;
+        const rr=r+dr, cc=c+dc;
+        if(rr<0||rr>=N||cc<0||cc>=N)continue;
+        const v=grid[rr*N+cc];
+        if(v!==0){total++; if(v===me)same++;}
+      }
+    }
+    if(total===0) return 1;
+    return same/total;
+  }
+
+  function tick(){
+    const unsat=[];
+    const empties=[];
+    for(let i=0;i<grid.length;i++){
+      if(grid[i]===0){ empties.push(i); continue; }
+      const r=sameRatio(i);
+      if(r<tolerance) unsat.push(i);
+    }
+    for(let i=empties.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [empties[i],empties[j]]=[empties[j],empties[i]];
+    }
+    for(let i=unsat.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [unsat[i],unsat[j]]=[unsat[j],unsat[i]];
+    }
+    const k=Math.min(unsat.length, empties.length);
+    for(let i=0;i<k;i++){
+      const from=unsat[i], to=empties[i];
+      grid[to]=grid[from];
+      grid[from]=0;
+    }
+    stepN++;
+    return unsat.length;
+  }
+
+  function stats(){
+    let a=0,b=0,sat=0,total=0,sameSum=0,count=0;
+    let aSame=0,aTotal=0,bSame=0,bTotal=0;
+    for(let i=0;i<grid.length;i++){
+      if(grid[i]===0) continue;
+      total++;
+      const r=sameRatio(i);
+      if(r>=tolerance) sat++;
+      sameSum+=r; count++;
+      if(grid[i]===1){a++; aSame+=r; aTotal++;}
+      else {b++; bSame+=r; bTotal++;}
+    }
+    const avgSame=count? sameSum/count : 0;
+    const seg=Math.max(0, (avgSame-0.5)*2);
+    return {
+      satisfy: total? sat/total : 0,
+      same: avgSame,
+      seg: seg,
+    };
+  }
+
+  function draw(){
+    const cell=W/N;
+    ctx.fillStyle='#14141e';
+    ctx.fillRect(0,0,W,H);
+    for(let i=0;i<grid.length;i++){
+      const rr=Math.floor(i/N), cc=i%N;
+      const x=cc*cell, y=rr*cell;
+      if(grid[i]===0) continue;
+      const color = grid[i]===1 ? '#c68a3e' : '#3e8a8a';
+      ctx.fillStyle=color;
+      const pad=cell*0.09;
+      ctx.beginPath();
+      ctx.arc(x+cell/2, y+cell/2, cell/2-pad, 0, Math.PI*2);
+      ctx.fill();
+    }
+    const s=stats();
+    document.getElementById('schStep').textContent=stepN;
+    document.getElementById('schSat').textContent=Math.round(s.satisfy*100)+'%';
+    document.getElementById('schSame').textContent=Math.round(s.same*100)+'%';
+    document.getElementById('schSeg').textContent=s.seg.toFixed(2);
+  }
+
+  function stopPlay(){
+    playing=false;
+    document.getElementById('schPlay').textContent='▶ 再生';
+    if(timer){ clearTimeout(timer); timer=null; }
+  }
+
+  function loop(){
+    const moved=tick();
+    draw();
+    if(moved===0 || stepN>=300){ stopPlay(); return; }
+    if(playing) timer=setTimeout(loop, 160);
+  }
+
+  window.addEventListener('resize',()=>{ resize(); draw(); });
+  resize();
+  init();
+  draw();
+
+  document.getElementById('schPlay').addEventListener('click',()=>{
+    if(playing){ stopPlay(); return; }
+    playing=true;
+    document.getElementById('schPlay').textContent='■ 停止';
+    loop();
+  });
+  document.getElementById('schStep1').addEventListener('click',()=>{
+    stopPlay();
+    tick();
+    draw();
+  });
+  document.getElementById('schReset').addEventListener('click',()=>{
+    stopPlay();
+    init();
+    draw();
+  });
+  const tolSlider=document.getElementById('schTol');
+  const tolVal=document.getElementById('schTolVal');
+  tolSlider.addEventListener('input',()=>{
+    tolerance=tolSlider.value/100;
+    tolVal.textContent=tolSlider.value+'%';
+    document.querySelectorAll('.preset-btn[data-tol]').forEach(b=>{
+      b.classList.toggle('active', parseInt(b.dataset.tol,10) === parseInt(tolSlider.value,10));
+    });
+    draw();
+  });
+  window.schPreset=function(btn){
+    tolSlider.value=btn.dataset.tol;
+    tolerance=parseInt(btn.dataset.tol,10)/100;
+    tolVal.textContent=btn.dataset.tol+'%';
+    document.querySelectorAll('.preset-btn[data-tol]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    draw();
+  };
+})();
+
+// === MINI SCHELLING SIMULATOR (7x7, step-by-step rule learner) ===
+(function(){
+  const svg=document.getElementById('miniSimSvg');
+  if(!svg)return;
+  const SVG_NS='http://www.w3.org/2000/svg';
+  const N=7;
+  const CELL=40; // viewBox 280 = 7*40
+  const TOL=0.30;
+  // Designed initial config: near-mixed with rough A/B halves.
+  // Tolerance 30% で初期不満 8 人、3〜6 手で収束する。
+  // 1 = A (amber), 2 = B (teal), 0 = empty.
+  const INIT=[
+    1,1,2,2,2,2,0,
+    1,1,1,1,2,2,2,
+    1,0,1,2,1,2,2,
+    1,2,1,1,2,2,0,
+    0,1,2,1,2,1,2,
+    1,1,1,0,2,2,2,
+    1,1,2,1,2,2,2,
+  ];
+  let grid=INIT.slice();
+  let step=0;
+
+  function sameRatio(idx){
+    const r=Math.floor(idx/N), c=idx%N;
+    const me=grid[idx];
+    if(me===0)return -1;
+    let total=0,same=0;
+    for(let dr=-1;dr<=1;dr++){
+      for(let dc=-1;dc<=1;dc++){
+        if(dr===0&&dc===0)continue;
+        const rr=r+dr,cc=c+dc;
+        if(rr<0||rr>=N||cc<0||cc>=N)continue;
+        const v=grid[rr*N+cc];
+        if(v!==0){total++; if(v===me)same++;}
+      }
+    }
+    if(total===0)return 1;
+    return same/total;
+  }
+  function isUnsat(i){
+    if(grid[i]===0)return false;
+    return sameRatio(i)<TOL;
+  }
+
+  function render(){
+    // Wipe everything except the background rect
+    while(svg.childNodes.length>0){
+      svg.removeChild(svg.firstChild);
+    }
+    const bg=document.createElementNS(SVG_NS,'rect');
+    bg.setAttribute('width','280');
+    bg.setAttribute('height','280');
+    bg.setAttribute('fill','#14141e');
+    svg.appendChild(bg);
+
+    for(let i=0;i<grid.length;i++){
+      const r=Math.floor(i/N), c=i%N;
+      const x=c*CELL, y=r*CELL;
+      const cell=document.createElementNS(SVG_NS,'rect');
+      cell.setAttribute('x',x+1);
+      cell.setAttribute('y',y+1);
+      cell.setAttribute('width',CELL-2);
+      cell.setAttribute('height',CELL-2);
+      cell.setAttribute('fill','#1a1a2e');
+      cell.setAttribute('stroke','#23233a');
+      svg.appendChild(cell);
+      if(grid[i]!==0){
+        const circ=document.createElementNS(SVG_NS,'circle');
+        circ.setAttribute('cx',x+CELL/2);
+        circ.setAttribute('cy',y+CELL/2);
+        circ.setAttribute('r',CELL/2-6);
+        circ.setAttribute('fill', grid[i]===1?'#c68a3e':'#3e8a8a');
+        if(isUnsat(i)){
+          circ.setAttribute('stroke','#ff5555');
+          circ.setAttribute('stroke-width','2.6');
+        }
+        svg.appendChild(circ);
+      }
+    }
+
+    let unsatN=0,satN=0;
+    for(let i=0;i<grid.length;i++){
+      if(grid[i]===0)continue;
+      if(isUnsat(i))unsatN++;else satN++;
+    }
+    document.getElementById('miniStep').textContent=step;
+    document.getElementById('miniUnsat').textContent=unsatN+'人';
+    document.getElementById('miniSat').textContent=satN+'人';
+    const status=document.getElementById('miniStatus');
+    const next=document.getElementById('miniNext');
+    if(unsatN===0){
+      status.innerHTML='<strong>✓ 全員満足。</strong>'+step+' 手で同色のかたまりに収束した。「最初に戻す」でやり直せる。';
+      next.setAttribute('disabled','disabled');
+      next.style.opacity='0.4';
+      next.style.cursor='not-allowed';
+    }else{
+      status.innerHTML='赤枠の住民(<strong>'+unsatN+'人</strong>)は同色が 30% 未満で不満。「次の1手」を押すと空マスへ引っ越す。';
+      next.removeAttribute('disabled');
+      next.style.opacity='';
+      next.style.cursor='';
+    }
+  }
+
+  function nextStep(){
+    const unsat=[],empties=[];
+    for(let i=0;i<grid.length;i++){
+      if(grid[i]===0){empties.push(i); continue;}
+      if(isUnsat(i))unsat.push(i);
+    }
+    if(unsat.length===0)return;
+    for(let i=empties.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [empties[i],empties[j]]=[empties[j],empties[i]];
+    }
+    for(let i=unsat.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [unsat[i],unsat[j]]=[unsat[j],unsat[i]];
+    }
+    const k=Math.min(unsat.length, empties.length);
+    for(let i=0;i<k;i++){
+      const from=unsat[i], to=empties[i];
+      grid[to]=grid[from];
+      grid[from]=0;
+    }
+    step++;
+    render();
+  }
+
+  function reset(){
+    grid=INIT.slice();
+    step=0;
+    render();
+  }
+
+  document.getElementById('miniNext').addEventListener('click',nextStep);
+  document.getElementById('miniReset').addEventListener('click',reset);
+  render();
+})();
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div>
+<div class="tip-toast" id="tipToast">
+  <button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button>
+  <span class="tip-toast-title" id="tipToastTitle"></span>
+  <div class="tip-toast-body" id="tipToastBody"></div>
+</div>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6b7b629057d241878dda2a4f3169e5cb"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

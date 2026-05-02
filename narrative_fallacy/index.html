@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ナラティブの誤謬 — Qualia Journal</title>
+<meta name="description" content="乱数から生まれたチャートに、あなたは必ず物語を読み取る。2007年タレブが名づけた、私たちの認知の癖。">
+<link rel="canonical" href="https://qualiajournal.com/narrative_fallacy">
+<meta property="og:title" content="ナラティブの誤謬 — Qualia Journal">
+<meta property="og:description" content="乱数から生まれたチャートに、あなたは必ず物語を読み取る。2007年タレブが名づけた、私たちの認知の癖。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/narrative_fallacy">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ナラティブの誤謬 — Qualia Journal">
+<meta name="twitter:description" content="乱数から生まれたチャートに、あなたは必ず物語を読み取る。2007年タレブが名づけた、私たちの認知の癖。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"ナラティブの誤謬","description":"乱数から生まれたチャートに、あなたは必ず物語を読み取る。2007年タレブが名づけた、私たちの認知の癖。","author":{"@type":"Person","name":"e. Tamaki"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/narrative_fallacy","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"認知バイアス","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"ナラティブの誤謬"}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* SLIDE MENU */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* SEARCH OVERLAY */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* MASTHEAD */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;align-items:center;gap:14px;}
+.cover-byline span+span::before{content:"·";margin-right:14px;color:#c8bfaa;}
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;display:block;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* SCENARIO */
+.scenario-wrap{max-width:900px;margin:0 auto;padding:40px 48px 0;}
+.scenario-inner{position:relative;padding:32px 36px;background:linear-gradient(135deg,#f3efe6 0%,#ede8dc 100%);border:1px solid #c8bfaa;}
+.scenario-inner::before{content:'';position:absolute;top:-1px;left:40px;right:40px;height:3px;background:#8b1a1a;}
+.scenario-num{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:rgba(139,26,26,.06);position:absolute;top:12px;right:24px;line-height:1;user-select:none;}
+.scenario-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
+.scenario-text.closing{font-style:normal;font-weight:400;color:#1a1208;margin-bottom:0;border-top:1px solid #c8bfaa;padding-top:14px;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block-img{background:#ede8dc;display:block;padding:0;overflow:hidden;min-height:180px;}
+.person-block-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:70% 30%;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:4px;}
+.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;margin-bottom:8px;}
+.person-block-wiki a{color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}
+.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:300;color:#b0a090;margin-top:6px;line-height:1.5;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+.step-summary{margin-top:2px;padding:16px 20px;background:#f3efe6;border:1px solid #c8bfaa;}
+.step-summary p{font-family:'Source Sans 3',sans-serif;font-size:14px;color:#3d3020;margin:0;line-height:1.8;}
+
+/* CULTURE */
+.culture-stack{margin:28px 0;border-left:3px solid #c8bfaa;background:#f3efe6;}
+.culture-stack .culture-block{margin:0;border-left:none;padding:16px 20px;background:transparent;}
+.culture-stack .culture-block+.culture-block{border-top:1px solid #e0d8c8;}
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS / SIGNATURE */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{list-style:none;padding:0;margin:0;}
+.sidebar-check li{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;padding:8px 0;border-bottom:1px dotted #e0d8c8;}
+.sidebar-check li:last-child{border-bottom:none;}
+.sidebar-check li::before{content:'□ ';color:#8b1a1a;font-weight:600;}
+
+/* SVG FIG WRAPPER */
+.svg-fig{max-width:680px;margin:32px auto;display:block;}
+.svg-fig-cap{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;margin-top:-8px;margin-bottom:32px;line-height:1.6;}
+@media(max-width:720px){.svg-fig{max-width:100%;}}
+
+/* TABLE COMPARE */
+.tbl-compare{margin:32px 0;width:100%;border-collapse:collapse;border:1px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:13px;background:white;}
+.tbl-compare th{background:#3d3020;color:white;padding:10px 14px;text-align:left;font-weight:600;letter-spacing:.08em;font-size:11px;text-transform:uppercase;}
+.tbl-compare td{padding:12px 14px;border-top:1px solid #e0d8c8;color:#3d3020;font-weight:300;line-height:1.7;vertical-align:top;}
+.tbl-compare tr:nth-child(even) td{background:#faf8f3;}
+.tbl-compare td.raw{font-family:'JetBrains Mono',monospace;font-size:12px;color:#7a6a55;}
+.tbl-compare td.story{font-family:'Source Serif 4',serif;font-size:14px;color:#1a1208;font-style:italic;}
+@media(max-width:720px){.tbl-compare th,.tbl-compare td{padding:10px 10px;font-size:12px;}}
+
+/* ===== CHART SIMULATOR ===== */
+.sim-wrap{margin:36px 0;border:1px solid #c8bfaa;overflow:hidden;background:white;}
+.sim-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}
+.sim-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.sim-phase{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#aaa;}
+.sim-canvas-wrap{padding:14px 12px 6px;background:#faf8f3;border-bottom:1px solid #e0d8c8;}
+.sim-canvas-wrap canvas{display:block;width:100%;max-width:100%;height:auto;}
+.sim-axis-note{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;text-align:center;padding:0 0 10px;letter-spacing:.06em;}
+.sim-body{padding:22px 24px;}
+.sim-instr{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:16px;}
+.sim-instr em{color:#8b1a1a;font-style:italic;font-weight:400;}
+.sim-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.sim-choice{padding:12px 16px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:400;color:#1a1208;background:#f3efe6;border:1px solid #c8bfaa;cursor:pointer;text-align:left;line-height:1.5;transition:all .15s;}
+.sim-choice small{display:block;font-weight:300;font-size:11px;color:#7a6a55;margin-top:3px;}
+.sim-choice:hover{background:#ede8dc;border-color:#8b1a1a;}
+.sim-choice.selected{background:#1a1208;color:white;border-color:#1a1208;}
+.sim-choice.selected small{color:#c8bfaa;}
+#simPhase2{display:none;}
+.sim-reveal{font-family:'Source Serif 4',serif;font-size:15px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:16px;padding:14px 18px;background:#fdf3d8;border-left:3px solid #8b1a1a;}
+.sim-reveal strong{color:#8b1a1a;font-weight:600;}
+.sim-reveal em{color:#1a1208;font-style:italic;}
+.sim-btn-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.sim-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;color:white;background:#3d3020;border:none;padding:10px 20px;cursor:pointer;text-transform:uppercase;transition:background .18s;}
+.sim-btn:hover{background:#8b1a1a;}
+.sim-btn.alt{background:none;color:#8b1a1a;border:1px solid #8b1a1a;}
+.sim-btn.alt:hover{background:#8b1a1a;color:white;}
+.sim-regen-count{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.sim-phase3{display:none;padding:18px 22px;background:#f3efe6;border-top:1px solid #c8bfaa;}
+.sim-you-saw-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:6px;}
+.sim-you-saw-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;margin-bottom:8px;font-style:italic;}
+.sim-you-saw-desc{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;margin-bottom:10px;}
+.sim-you-saw-desc strong{color:#1a1208;font-weight:600;}
+.sim-you-saw-desc em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* ===== GUESS QUIZ (random vs random) ===== */
+.quiz-wrap{margin:36px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.quiz-header{background:#1a1208;color:white;padding:11px 20px;display:flex;justify-content:space-between;align-items:center;}
+.quiz-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.quiz-hs{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#aaa;}
+.quiz-body{padding:22px 22px 26px;background:white;}
+.quiz-q{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.6;margin-bottom:16px;text-align:center;}
+.quiz-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.quiz-pair-btn{border:1px solid #c8bfaa;background:#faf8f3;padding:10px;cursor:pointer;transition:border-color .15s,background .15s;text-align:center;}
+.quiz-pair-btn:hover{border-color:#8b1a1a;background:#f3efe6;}
+.quiz-pair-btn.selected{border-color:#8b1a1a;background:#fdf3d8;}
+.quiz-pair-btn canvas{display:block;width:100%;height:auto;background:#faf8f3;}
+.quiz-pair-btn .pair-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;color:#1a1208;margin-top:6px;letter-spacing:.08em;}
+.quiz-reveal{display:none;padding:16px 18px;background:#f3efe6;border-top:1px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;}
+.quiz-reveal.show{display:block;}
+.quiz-reveal strong{color:#1a1208;font-weight:600;}
+.quiz-reveal em{color:#8b1a1a;font-style:normal;font-weight:600;}
+@media(max-width:520px){.quiz-pair{grid-template-columns:1fr;}}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:48px auto 0;padding:0 48px;display:flex;align-items:center;gap:12px;}
+.terminal-label{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.1em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:16px auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#fff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px 64px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.related-card{display:block;border:1px solid #c8bfaa;padding:24px 20px;text-decoration:none;transition:border-color .2s,background .2s;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:12px;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;color:#8b1a1a;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:none;}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+  .toc-back{padding:22px 20px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;gap:24px;}
+  .cover-right{display:none;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{padding:0 0 48px;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:12px;}
+  .summary-box,.scenario-wrap,.terminal-wrap,.terminal-label-wrap,.related{padding-left:20px;padding-right:20px;}
+  .scenario-inner{padding:24px 20px;}
+  .scenario-num{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
+  .person-block-img img{max-width:180px;}
+  .related-grid{grid-template-columns:1fr;}
+  .sim-choices{grid-template-columns:1fr;}
+  .meta-dates{margin-left:0;width:100%;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+
+/* OVERFLOW GUARD & TOOLTIP TOAST */
+html,body{overflow-x:hidden;max-width:100%;}
+img,canvas,svg,video{max-width:100%;height:auto;}
+.t-line{min-width:0;}
+.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}
+.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.person-block-desc{overflow-wrap:anywhere;}
+.tip-box{display:none!important;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}
+.tip.open{background:#fdf3d8;}
+.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}
+.tip-toast.show{bottom:16px;}
+.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}
+.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}
+.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}
+.tip-toast-close:hover{color:#e8c56a;}
+.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}
+.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+</style>
+</head>
+<body>
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">97 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<div id="prog"></div>
+
+<!-- ===== ZONE A ===== -->
+<div class="cover fade">
+<div>
+<p class="cover-kicker">認知バイアス</p>
+<h1>乱数が<em>物語</em>を<br>語り始めるとき</h1>
+<p class="cover-deck">2007年、ベイルートからニューヨークへ渡ったトレーダーは、一冊の本でこう言った。「人間は事実の列を、事実の列のまま受け取ることができない」——それは心理学ではなく、彼が金融市場で10年以上かけて見てきた現実の記録だった。</p>
+<div class="cover-byline"><span>QUALIA JOURNAL</span><span>COGNITIVE BIAS</span><span>NARRATIVE</span></div>
+</div>
+<div class="cover-right">
+<div class="est-card">
+<span class="est-label">Est.</span>
+<span class="est-year">2007</span>
+<p class="est-event">ナシム・タレブが『ブラック・スワン——極めてありえない出来事の衝撃』を刊行(4月17日、Random House)。第6章で「ナラティブの誤謬」を命名し、学術的にもこの語が定着する契機となる。</p>
+<p class="est-context">この年の世界——1月9日、アップルが初代iPhoneを発表(発売は6月29日)。2月、サブプライム住宅ローンの延滞率が急上昇し、翌2008年のリーマン破綻へと繋がる。</p>
+</div>
+<p class="cover-aside">『ブラック・スワン』は翌2008年の金融危機を「予言した本」として世界的ベストセラーになり、『サンデー・タイムズ』は「第二次世界大戦後に最も影響力のあった12冊」に本書を選んだ。</p>
+</div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario-wrap fade"><div class="scenario-inner"><span class="scenario-num">~</span>
+<p class="scenario-text">株価チャートを見ているとき、あなたは必ず何かを読み取っている。上昇トレンドのはじまり、頭と肩の形、下降三角形、二番天井——。画面に並んでいるのは数字の列にすぎないのに、いつの間にか自分が物語を語り始めている。</p>
+<p class="scenario-text">これは相場だけの話ではない。ニュースを読むとき、誰かの行動を説明するとき、自分の半生を振り返るとき。あらゆる場面で同じことが起きている。事実を受け取っているつもりで、実は物語を書き込んでいる。</p>
+<p class="scenario-text closing">この癖には名前がある。そして、それを乱数のチャートを前にして初めて言語化した人物がいる。</p>
+</div></div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+<div class="meta-item"><span class="meta-label">難易度</span><div class="difficulty-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span class="difficulty-text">初〜中級 — 数学の知識は不要</span></div><div class="meta-sep"></div>
+<div class="meta-item"><span class="meta-label">読了時間</span><span class="read-time"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>約 14 分</span></div>
+<div class="meta-dates"><div class="date-item"><span class="meta-label">Published</span><span class="date-value">2026-04-24</span></div><div class="date-item"><span class="meta-label">Updated</span><span class="date-value">2026-04-24</span></div></div></div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade"><div class="summary-inner"><span class="summary-icon">要点</span><p class="summary-text">この記事では、完全に無意味な数字の列から、あなた自身がどれほど<strong>自動的に物語を作り出してしまうか</strong>を、インタラクティブな体験で確かめる。知識としてではなく、自分の手の動きとして気づくことに意味がある。</p></div></div>
+
+<!-- ===== ZONE B ===== -->
+<div class="article">
+<div class="article-main">
+
+<!-- ─── S1: 背景 ─── -->
+<div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+<h2 class="fade">ニューヨーク、2007年4月。ある本が出る</h2>
+
+<p class="body-text fade">マンハッタンの書店に一冊のハードカバーが並んだのは、2007年4月17日のことだった。著者はレバノン北部アミウン出身の元デリバティブ・トレーダー、ナシム・ニコラス・タレブ。副題は「極めてありえない出来事の衝撃」。装丁には、一羽だけ墨で塗られた黒い白鳥の姿があった。</p>
+
+<div class="person-block fade">
+<div class="person-block-img"><img src="./person_taleb.jpg" alt="ナシム・ニコラス・タレブ(TED2008登壇時)" loading="lazy"></div>
+<div class="person-block-body"><p class="person-block-name">ナシム・ニコラス・タレブ</p><p class="person-block-role">Nassim Nicholas Taleb, 1960–</p><p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Nassim_Nicholas_Taleb" target="_blank" rel="noopener">Wikipedia</a></p><p class="person-block-desc">レバノン系アメリカ人の元デリバティブ・トレーダー、数理統計学者、エッセイスト。パリ大学博士、ウォートンMBA。1987年ブラックマンデーを含む稀な暴落で大きな利益を上げた経歴を持ち、のちにリスク工学者へ転じた。『まぐれ』『ブラック・スワン』『アンチフラジャイル』など全5巻の思索集『Incerto』で知られる。</p>
+<p class="person-block-credit">Photo: Steve Jurvetson / CC BY 2.0 (via Wikimedia Commons)</p></div>
+</div>
+
+<p class="body-text fade">タレブがこの本で攻撃したのは、予測不可能な出来事に直面したとき人間が必ず行う、ある所作だった——<em>それを事後的に「予測できた」物語に書き換える</em>という所作である。9.11のあと、リーマンのあと、株価暴落のあと、私たちは必ず「10個の兆候を見逃していた」と知る。兆候は、たいてい暴落が起きた後にしか見えない。</p>
+
+<p class="body-text fade">タレブはこれに名前を与えた。<strong>ナラティブの<ruby>誤謬<rt>ごびゅう</rt></ruby>(the narrative fallacy)</strong>——事実の連なりをそのまま見つめることができず、論理的な矢印を強引に差し込んでしまう、人間の認知の癖である。</p>
+
+<div class="quote-block fade">
+<p class="quote-en">"The narrative fallacy addresses our limited ability to look at sequences of facts without weaving an explanation into them, or, equivalently, forcing a logical link, an arrow of relationship, upon them."</p>
+<p class="quote-ja">ナラティブの誤謬が扱っているのは、事実の連なりをそのまま見つめることができず、説明を織り込んでしまう——あるいは論理的なつながり、関係性の矢を強引に差し込んでしまう、という人間の限界である。</p>
+<p class="quote-attr">— Nassim Nicholas Taleb, <em>The Black Swan</em> (2007), Chapter 6</p>
+</div>
+
+<p class="body-text fade">タレブの文章はどこか挑発的だ。学者の落ち着きはない。原文を読むと、この男は市場で身銭を切ってきた人間の語気で書いていると分かる。そして、だからこそ彼の診断には説得力がある。——<span class="tip" onclick="toggleTip(this)">因果<span class="tip-box"><strong>因果(causation)</strong><br>原因と結果の関係。「AだからBが起きた」という時間と関係性の結びつき。心理学では、人間が相関のある出来事に自動的に因果関係を読み込みやすいことが繰り返し示されてきた。</span></span>がない場所に、人間は因果を見てしまう。パターンがない場所に、パターンを見出してしまう。それが強みとして働く場面は確かにある。だが、重要な判断を歪める場面のほうが、ずっと多い。</p>
+
+<!-- 誤解あるある -->
+<div class="misconception fade">
+<div class="misconception-header"><span class="misconception-hl">読む前に確認 — よくある誤解</span></div>
+<div class="misconception-body">
+<div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">「物語を作るのは悪いこと」</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">物語化は複雑な世界を扱う効率的な戦略。だが、重要な判断では歪みになる。</p></div></div>
+<div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">「自覚すれば防げる」</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">自覚しても効果は限定的。<span class="tip" onclick="toggleTip(this)">反証主義<span class="tip-box"><strong>反証主義(ポパー的訓練)</strong><br>哲学者カール・ポパー(Karl Popper, 1902–1994)が提唱した科学哲学。「仮説は反証できる形で立てよ、そして支持する証拠より反証しうる証拠を探せ」とする。確証バイアスやナラティブの誤謬への古典的な処方箋として挙げられるが、訓練を受けた科学者でも日常の思考では引き込まれることが繰り返し示されている。</span></span>を叩き込まれた科学者でも引き込まれる。</p></div></div>
+<div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">「詳細な物語ほど信頼できる」</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">逆。詳細を足すと確率は下がるのに、物語は<span class="tip" onclick="toggleTip(this)">もっともらしく<span class="tip-box"><strong>連言錯誤(Conjunction Fallacy)</strong><br>Tversky &amp; Kahneman (1983)。「A」より「AかつB」のほうが確率が高いと誤判断する現象。「銀行員のリンダ」問題で有名。</span></span>見える。</p></div></div>
+</div></div>
+
+<!-- SVG図解1: 「事実の列」→「物語」の変換 -->
+<svg class="svg-fig fade" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="figTitle1">
+<title id="figTitle1">事実の列から物語への変換</title>
+<defs><marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8b1a1a"/></marker></defs>
+<!-- 左ブロックタイトル -->
+<text x="130" y="28" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#7a6a55" font-weight="600" letter-spacing="0.1em">INPUT:事実の列</text>
+<rect x="25" y="44" width="245" height="260" fill="#faf8f3" stroke="#c8bfaa" stroke-width="1.2"/>
+<g font-family="JetBrains Mono,monospace" font-size="18" fill="#3d3020">
+<text x="42" y="84">・Aが起きた</text>
+<text x="42" y="126">・Bが起きた</text>
+<text x="42" y="168">・Cが起きた</text>
+<text x="42" y="210">・Dが起きた</text>
+<text x="42" y="252">・Eが起きた</text>
+</g>
+<text x="147" y="288" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="14" fill="#b0a090" font-style="italic">因果関係なし</text>
+<!-- 矢印左 -->
+<path d="M278 175 L 340 175" stroke="#8b1a1a" stroke-width="2.2" fill="none" marker-end="url(#arr1)"/>
+<!-- 中央: 脳の処理 -->
+<g transform="translate(348,92)">
+<circle cx="80" cy="82" r="74" fill="#fdf3d8" stroke="#8b1a1a" stroke-width="2"/>
+<text x="80" y="62" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#8b1a1a" font-weight="600">脳</text>
+<text x="80" y="88" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#1a1208" font-weight="600">因果の矢を</text>
+<text x="80" y="110" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#1a1208" font-weight="600">差し込む</text>
+</g>
+<!-- 矢印右 -->
+<path d="M515 175 L 580 175" stroke="#8b1a1a" stroke-width="2.2" fill="none" marker-end="url(#arr1)"/>
+<!-- 右: 物語 -->
+<text x="740" y="28" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="16" fill="#8b1a1a" font-weight="600" letter-spacing="0.1em">OUTPUT:物語</text>
+<rect x="590" y="44" width="290" height="260" fill="#f3efe6" stroke="#8b1a1a" stroke-width="2"/>
+<g font-family="Source Serif 4,serif" font-size="17" fill="#1a1208" font-style="italic">
+<text x="610" y="92">Aだから Bが起き、</text>
+<text x="610" y="134">Bゆえに Cへと繋がり、</text>
+<text x="610" y="176">Cが Dを生み、</text>
+<text x="610" y="218">だから Eは必然だった。</text>
+</g>
+<text x="735" y="280" text-anchor="middle" font-family="Source Sans 3,sans-serif" font-size="15" fill="#7a6a55" font-style="italic">「わかった」という感覚</text>
+</svg>
+<p class="svg-fig-cap fade">事実の列が脳を通ると、必ず因果関係の矢印が差し込まれる。これが「わかった」と感じる正体だ</p>
+
+<p class="body-text fade">タレブの診断は、認知心理学の世界でも無視できなかった。4年後の2011年、<span class="tip" onclick="toggleTip(this)">ダニエル・カーネマン<span class="tip-box"><strong>Daniel Kahneman(1934–2024)</strong><br>イスラエル系アメリカ人心理学者。プロスペクト理論で2002年ノーベル経済学賞。著書『ファスト&スロー』は累計数百万部のベストセラー。</span></span>は『ファスト&スロー』の第19章「理解の錯覚」を、タレブの概念からそのまま始めた。この章だけが、本書の中で明らかに<em><span class="tip" onclick="toggleTip(this)">Talebian<span class="tip-box"><strong>Talebian(タレブ的)</strong><br>ナシム・タレブの思考スタイルを形容する英語の造語。不確実性・ランダム性・反脆弱性を中心に置き、アカデミックな平明さより挑発的な断定と実務家視点を好む論調を指す。カーネマン『ファスト&スロー』の書評家たちが第19章を評してこの語を使った。</span></span></span>な空気を帯びている——と書評家は書いた。タレブが市場で気づいたことを、カーネマンは実験室の言葉に翻訳した。</p>
+
+<hr class="art-rule">
+
+<!-- ─── S2: 体験 ─── -->
+<div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+<h2 class="fade">乱数のチャートから、あなたは何を読み取るか</h2>
+
+<p class="body-text fade">ここから先は、説明を読むより、自分の手で試したほうが速い。下に一本のチャートが描かれている。これは株価に見える。チャートパターンを学んだ人なら何か読み取れそうに感じる。だがこのデータは、標準正規分布からサンプリングした増分をただ足し合わせただけの——<em>完全な乱数の累積</em>だ。</p>
+
+<p class="body-text fade">30日分だけ表示する。ここから次の30日でどうなるか、あなたの目で予測してみてほしい。正解を当てるためではない。<em>なぜその選択肢を選んだのか</em>——そちらの方に、今回の核心がある。</p>
+
+<!-- ===== チャートシミュレーター ===== -->
+<div class="sim-wrap fade" id="simBlock">
+<div class="sim-header"><span class="sim-hl">✦ Random Walk Experiment — Phase <span id="simPhaseN">1</span>／3</span><span class="sim-phase" id="simPhaseLabel">予測フェーズ</span></div>
+<div class="sim-canvas-wrap"><canvas id="simCanvas" width="620" height="260"></canvas></div>
+<div class="sim-axis-note" id="simAxisNote">── Day 1 から Day 30 までを表示中 ──</div>
+<div class="sim-body">
+
+<div id="simPhase1">
+<p class="sim-instr">このチャートから、<em>次の30日(Day 31〜60)</em>はどうなると予測するか。<br>最も自然に感じる筋書きを一つ選んでほしい。</p>
+<div class="sim-choices">
+<button class="sim-choice" data-choice="up" onclick="simChoose('up')">📈 上昇が続く<small>強いトレンドが形成されている</small></button>
+<button class="sim-choice" data-choice="down" onclick="simChoose('down')">📉 下落に転じる<small>天井を打って反転する</small></button>
+<button class="sim-choice" data-choice="v" onclick="simChoose('v')">🔁 V字回復<small>一度下げてから戻す</small></button>
+<button class="sim-choice" data-choice="double" onclick="simChoose('double')">🔻 ダブルトップ崩壊<small>二度天井を試し、下に割れる</small></button>
+<button class="sim-choice" data-choice="range" onclick="simChoose('range')">═ 横ばい(レンジ)<small>このあたりで揉み合う</small></button>
+</div>
+</div>
+
+<div id="simPhase2">
+<div class="sim-reveal">
+<strong>種明かし。</strong>&nbsp;このチャートは最初から最後まで、標準正規分布から引いた増分を60回足し合わせただけの<em>ランダムウォーク</em>だ。意味も、流れも、支持線も、トレンドも、ない。
+<br><br>
+下のボタンを何度か押してみてほしい。押すたびに<strong>完全に別の乱数</strong>が走る。毎回、チャートは「何かの物語」に見えるはずだ——<em>それが、あなたの脳が走っている方向</em>である。
+</div>
+<div class="sim-btn-row">
+<button class="sim-btn" onclick="simRegen()">🎲 別の乱数で再生成</button>
+<button class="sim-btn alt" onclick="simShowSelfRef()">あなたが見た物語 →</button>
+<span class="sim-regen-count" id="simRegenCount">再生成: 0 回</span>
+</div>
+</div>
+
+</div>
+
+<div class="sim-phase3" id="simPhase3">
+<p class="sim-you-saw-lbl">あなたが見た物語</p>
+<p class="sim-you-saw-name" id="simNarrativeName"></p>
+<p class="sim-you-saw-desc" id="simNarrativeDesc"></p>
+</div>
+</div>
+
+<p class="body-text fade">乱数から生まれたチャートに「ヘッド・アンド・ショルダー」「ダブルトップ」「三角保ち合い」——テクニカル分析の教科書に載っている形が、あなたは必ずどれか一つ(あるいはいくつも)見たはずだ。専門家でなくても見える。むしろ、専門家ほどよく見える。これが、タレブが<em>身銭を切って</em>気づいた現実だった。相場で起きているチャートパターンの大半は、乱数からでも同じ頻度で現れる。</p>
+
+<!-- Quiz: ランダム vs ランダム -->
+<p class="body-text fade">もう一つ試してほしい。下の二つのチャートのうち、<em>どちらがより「実在の株価らしく」見えるか</em>選んでほしい。3問ある。直感で答えてかまわない。</p>
+
+<div class="quiz-wrap fade" id="quizBlock">
+<div class="quiz-header"><span class="quiz-hl">✦ Chart Guessing — どちらが実在の株価か？</span><span class="quiz-hs" id="quizStatus">Question 1／3</span></div>
+<div class="quiz-body">
+<p class="quiz-q" id="quizQ">どちらのチャートが、実在の株価のように見えますか？</p>
+<div class="quiz-pair">
+<div class="quiz-pair-btn" data-side="A" onclick="quizPick('A')"><canvas id="quizCanvasA" width="280" height="140"></canvas><p class="pair-label">チャート A</p></div>
+<div class="quiz-pair-btn" data-side="B" onclick="quizPick('B')"><canvas id="quizCanvasB" width="280" height="140"></canvas><p class="pair-label">チャート B</p></div>
+</div>
+<div class="quiz-reveal" id="quizReveal"></div>
+</div></div>
+
+<div class="pull fade">
+<p class="pull-q" style="font-style:italic;font-size:clamp(16px,2.1vw,20px);margin-bottom:10px;">"A compelling narrative fosters an illusion of inevitability."</p>
+<p class="pull-q">説得力ある物語は、<em>必然性の錯覚</em>を育てる。</p>
+<p class="pull-attr">— Daniel Kahneman, <em>Thinking, Fast and Slow</em> (2011), Ch. 19「理解の錯覚」</p>
+</div>
+
+<hr class="art-rule">
+
+<!-- ─── S3: なぜか ─── -->
+<div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+<h2 class="fade">脳は、なぜ物語を必要とするのか</h2>
+
+<p class="body-text fade">ナラティブの<ruby>誤謬<rt>ごびゅう</rt></ruby>は単一の現象ではない。少なくとも三つの層が重なって作動している。上の層から順に見ていくと、なぜ自覚だけでは防ぎきれないのかが分かる。</p>
+
+<div class="steps-wrap fade">
+<p class="steps-head">ナラティブの誤謬が作動する三つの層</p>
+<div class="step-card" id="sc1"><div class="step-hd" onclick="tog(1)"><div class="step-nb">1</div><div class="step-tw"><div class="step-title">パターン検出</div><div class="step-sub">Apophenia / Pattern Detection</div></div><div class="step-arr">▼</div></div><div class="step-body"><p><span class="tip" onclick="toggleTip(this)">アポフェニア<span class="tip-box"><strong>Apophenia</strong><br>1958年、ドイツ人精神科医 Klaus Conrad が統合失調症初期の特徴として記述したドイツ語造語。のちに健常者の認知一般に拡張され、「無関係な事物に関連を見出す」傾向を指す語として定着した。</span></span>——無関係な刺激に関係を読み込む傾向。雲に顔を見る、乱数の点列に線を引く、ルーレットの出目に波を見る。これは欠陥ではない。天敵の影をいち早く察知できた祖先が生き延びた、進化的な贈り物だ。</p><p><strong>問題は、</strong>雲と天敵を区別する装置が、「関係が<em>ない</em>」という結論を出すのが極端に苦手なことだ。ないものを「ない」と見るより、あるかもしれないと見るほうが安全だった。だから今も、ないものが見える。</p></div></div>
+<div class="step-card" id="sc2"><div class="step-hd" onclick="tog(2)"><div class="step-nb">2</div><div class="step-tw"><div class="step-title">因果の差し込み</div><div class="step-sub">Causal Imputation</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>検出されたパターンに、脳は自動的に「AだからB」の矢を差し込む。ベルギーの心理学者<span class="tip" onclick="toggleTip(this)">ミショットの1946年の実験<span class="tip-box"><strong>Michotte の因果知覚実験(1946)</strong><br>アルベール・ミショット(Albert Michotte, 1881–1965)が著書『因果の知覚(La perception de la causalité)』で報告した一連の実験。画面上で動く点Aが静止している点Bに接触した瞬間、BがAと同じ方向へ動き出す——このだけの刺激を見ただけで、ほぼ全員の被験者が「AがBを押した」と報告した。接触から動きまで数百ミリ秒の時間差を入れると、この因果感覚は消える。推論ではなく、知覚レベルで因果が立ち上がる証拠として古典となっている。</span></span>が示したように、二つの点が接触して動くだけで、人間は「押した」「追いかけた」という因果を<em>知覚</em>する。推論ではなく、知覚レベルで因果が立ち上がる。止めようがない。</p><p><strong>実用上の意味：</strong>ニュース見出し「インフレ懸念で株価下落」は、多くの場合、下落が<em>先に</em>起き、編集者がその後に「懸念」の物語を選んだ結果だ。だが見出しを読む私たちには、因果の順序はもう見えない。</p></div></div>
+<div class="step-card" id="sc3"><div class="step-hd" onclick="tog(3)"><div class="step-nb">3</div><div class="step-tw"><div class="step-title">事後の一貫性化</div><div class="step-sub">Retrospective Coherence</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>結果を見た後、それに合うように過去の記憶を編集し直す。カーネマン『ファスト&スロー』第19章が詳しく論じた現象で、結果を知ったあとの「振り返り」では、偶然は偶然に見えなくなる。起きたことが必然に見え、起きなかった別のシナリオは想起されにくくなる。</p><p><strong>これは、</strong>当サイトでも扱っている<a href="/hindsight_bias" style="color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.3);">後知恵バイアス</a>と隣接する。ナラティブの<ruby>誤謬<rt>ごびゅう</rt></ruby>は、後知恵バイアスを支える<em>物語装置</em>だと言ってもいい。</p></div></div>
+<div class="step-summary"><p>三つの層は独立に走りながら互いを強化する。パターンを見て、因果を差し込み、結果に合わせて記憶を書き換える。あなたが物語を「発見した」と感じるとき、実際には物語が<em>あなたの中で三回組み立てられている</em>。</p></div>
+</div>
+
+<!-- テーブル: 事実 vs 物語 -->
+<table class="tbl-compare fade">
+<thead><tr><th>事実の列(脳に届くもの)</th><th>物語(脳が出力するもの)</th></tr></thead>
+<tbody>
+<tr><td class="raw">2007-01-09: iPhoneが発表された</td><td class="story">スマートフォン時代の幕開け</td></tr>
+<tr><td class="raw">2007-02: サブプライム延滞率が上昇</td><td class="story">金融危機の「最初の兆候」</td></tr>
+<tr><td class="raw">2007-04-17: 『ブラック・スワン』刊行</td><td class="story">リーマン破綻を「予言」した本</td></tr>
+<tr><td class="raw">2008-09-15: リーマン破綻</td><td class="story">前兆を見逃した愚か者たち</td></tr>
+</tbody>
+</table>
+<p class="svg-fig-cap fade">左の事実は、どれも2008年以前には「2008年への道」に見えなかった。右の物語は、2008年のあとに出来上がった</p>
+
+<hr class="art-rule">
+
+<!-- ─── S4: 歴史 ─── -->
+<div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+<h2 class="fade">概念の系譜——パターン錯覚から<ruby>誤謬<rt>ごびゅう</rt></ruby>の命名まで</h2>
+
+<div class="timeline fade">
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1697</p><p class="tl-title">オランダ探検家、オーストラリアで黒い白鳥に遭遇</p><p class="tl-desc">それまで欧州では「白鳥は白い」が定義だった。タレブの書名の寓話的起源。「ありえないと信じたものが、実在した」。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1946</p><p class="tl-title">ミショット『因果の知覚』</p><p class="tl-desc">接触する二つの点を見ただけで、人間は因果を知覚する。「推論」ではなく「知覚」レベルで物語が立ち上がる証拠。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">1958</p><p class="tl-title">コンラート、"apophenia" を造語</p><p class="tl-desc">ドイツ人精神科医クラウス・コンラートが、統合失調症初期に見られる「意味の氾濫」を記述した語。のちに健常者の認知にも拡張された。</p></div>
+<div class="tl-item"><div class="tl-dot"></div><p class="tl-year">2001</p><p class="tl-title">タレブ『まぐれ』(Fooled by Randomness)</p><p class="tl-desc">思索集『Incerto』シリーズの第一作で、タレブが一般読者に向けて書いた最初の書。運と実力を取り違える市場の心理を論じる。ナラティブ概念の萌芽が随所に。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">2007</p><p class="tl-title">タレブ『ブラック・スワン』刊行(4月17日)</p><p class="tl-desc">第6章で「ナラティブの誤謬」を明示的に命名。翌2008年のリーマン破綻を受け、本書は世界的ベストセラーに。</p></div>
+<div class="tl-item highlight"><div class="tl-dot"></div><p class="tl-year">2011</p><p class="tl-title">カーネマン『ファスト&スロー』第19章</p><p class="tl-desc">「理解の錯覚」の章で、タレブの概念を実験心理学の言葉に翻訳。チャプター全体が明示的に『ブラック・スワン』を参照する。</p></div>
+</div>
+
+<hr class="art-rule">
+
+<!-- ─── S5: つまり ─── -->
+<div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+<h2 class="fade">物語を壊すのではなく、物語に気づく</h2>
+
+<p class="body-text fade">ナラティブの<ruby>誤謬<rt>ごびゅう</rt></ruby>の厄介さは、タレブ自身も認めているとおり、<em>物語化をやめろというアドバイスが有効でない</em>ことにある。人間は物語なしには世界を扱えない。膨大な事実の海を毎朝泳ぎ切るには、要約と因果の物語が要る。これは認知の効率装置であり、同時に歪み装置だ。</p>
+
+<p class="body-text fade">タレブの処方は意外に控えめだ。物語そのものを追放するのではなく、<strong>「自分が今、物語を書いている」ことに気づけ</strong>と彼は言う。その気づきが、最悪の判断を数段階だけ遠ざける。</p>
+
+<div class="quote-block fade">
+<p class="quote-en">"The way to avoid the ills of the narrative fallacy is to favor experimentation over storytelling, experience over history, and clinical knowledge over theories."</p>
+<p class="quote-ja">ナラティブの誤謬の害を避ける道は、物語より実験を、歴史より経験を、理論より臨床的な知識を、優先することだ。</p>
+<p class="quote-attr">— Nassim Nicholas Taleb, <em>The Black Swan</em> (2007), Chapter 6</p>
+</div>
+
+<p class="body-text fade">実験は反証できる。経験は身体に残る。臨床的な知識は具体で、他の事例に簡単には拡張されない。どれも物語に抵抗する性質を持つ。タレブが「トレーダーの視点」と呼ぶのはおそらくこれに近い。彼が市場で10年以上かけて身につけたのは、<em>チャートに形を見たときに、その形がデータの側にあるのか自分の脳の側にあるのかを毎回問い直す</em>習慣だった——上のシミュレーターで再生成を数回押しただけで、あなたの脳が勝手に別の物語を紡ぎ続けると気づいたあの感覚を、毎日の判断の場でも保ち続けるということだ。</p>
+
+<p class="body-text fade">私たちにそこまでは要求されない。ただ、次に「自分はこの流れが読めている」と感じた瞬間に、立ち止まって一つだけ問うてほしい——この「流れ」は、本当にデータの側にあるのか、それとも、<em>私の側で今組み立てられているのか</em>と。答えが揺らぐなら、物語はまだ成立していない。その揺らぎが、唯一の防波堤だ。</p>
+
+<!-- 文化への登場 -->
+<div class="sec-rule fade"><span class="sec-label">文化の中に現れる</span><div class="sec-line"></div></div>
+<h2 class="fade">物語装置としての私たち</h2>
+
+<div class="culture-stack fade">
+<div class="culture-block"><p class="culture-title">『ブラック・スワン』タレブ(2007)</p><p class="culture-desc">概念の原典。第6章で明示的に命名。翌2008年のリーマン破綻後、本書は世界的ベストセラーになり、『サンデー・タイムズ』は「第二次世界大戦後に最も影響力のあった12冊」の一つに選んだ。</p></div>
+<div class="culture-block"><p class="culture-title">『ファスト&スロー』カーネマン(2011) 第19章</p><p class="culture-desc">「理解の錯覚」の章全体が明示的にタレブを参照し、心理学の語彙で再構成する。物語は「わかった」という感覚を生むが、それは理解ではなく、理解の錯覚である——という一文は、この章の心臓にあたる。</p></div>
+<div class="culture-block"><p class="culture-title">『まぐれ』タレブ(2001)</p><p class="culture-desc">『ブラック・スワン』の前に出た同シリーズ第一作。運と実力の混同を、トレーダーの視点から論じた。ナラティブの誤謬の概念は名前を持たないまま、ここに既に存在している。</p></div>
+<div class="culture-block"><p class="culture-title">金融ニュースの見出し文化</p><p class="culture-desc">「インフレ懸念で株価下落」「楽観論から反発」——市場の動きに<em>単一の原因</em>を紐づける記事形式は、ナラティブの誤謬の最も大衆化された形だ。多くの場合、因果関係は夕方のニュースルームで後付けされている。</p></div>
+</div>
+
+<hr class="art-rule">
+
+<!-- 参考文献 -->
+<div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
+<div class="ref-list">
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原典</span><span class="ref-year">2007</span></div><p class="ref-title"><a href="https://en.wikipedia.org/wiki/The_Black_Swan:_The_Impact_of_the_Highly_Improbable" target="_blank" rel="noopener">The Black Swan: The Impact of the Highly Improbable</a></p><p class="ref-author">Nassim Nicholas Taleb — Random House, 2007. Ch. 6「The Narrative Fallacy」</p><p class="ref-desc">ナラティブの誤謬が初めて命名された章を含む。邦訳は『ブラック・スワン——不確実性とリスクの本質』(ダイヤモンド社, 2009)。この用語の議論はどこから始めるにせよ、まずここに戻ることになる。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">2011</span></div><p class="ref-title"><a href="https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow" target="_blank" rel="noopener">Thinking, Fast and Slow — Chapter 19: The Illusion of Understanding</a></p><p class="ref-author">Daniel Kahneman — Farrar, Straus and Giroux, 2011</p><p class="ref-desc">第19章がタレブの概念を明示的に取り上げ、実験心理学の言葉に翻訳する。「物語は理解を生まない。理解の錯覚を生む」が本章の結論。邦訳は『ファスト&スロー』(早川書房, 2012)。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">関連著作</span><span class="ref-year">2001</span></div><p class="ref-title"><a href="https://en.wikipedia.org/wiki/Fooled_by_Randomness" target="_blank" rel="noopener">Fooled by Randomness: The Hidden Role of Chance</a></p><p class="ref-author">Nassim Nicholas Taleb — Texere, 2001</p><p class="ref-desc">タレブが一般読者に向けて書いた最初の書で、思索集『Incerto』シリーズの第一作。運と実力、シグナルとノイズを混同する市場心理を扱う。ナラティブ概念は未命名だが、核は既にここにある。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">概念史</span><span class="ref-year">1958 / 解説</span></div><p class="ref-title"><a href="https://en.wikipedia.org/wiki/Apophenia" target="_blank" rel="noopener">Apophenia — Wikipedia</a></p><p class="ref-author">Klaus Conrad(1958)によるドイツ語造語、その後の展開</p><p class="ref-desc">ナラティブの誤謬の下層(パターン検出)にあたる概念の系譜。コンラートの原著は独語で入手困難だが、Wikipediaの解説が簡潔で概観に向く。</p></div>
+</div>
+
+<div class="note-box fade"><strong>📌 この記事について</strong><br>タレブ『ブラック・スワン』(2007) 第6章を原典とし、カーネマン『ファスト&スロー』(2011) 第19章、およびアポフェニア・因果知覚(Michotte, 1946)の古典的研究を補助線として用いている。ナラティブの誤謬はタレブの造語として学術的にも流通しているが、隣接概念(確証バイアス、後知恵バイアス、連言錯誤)との境界は一部重なっており、研究者によって強調点が異なる。</div>
+<div class="signature fade">e. Tamaki</div>
+
+<div class="tags fade">
+<span class="tag">認知バイアス</span><span class="tag">ナラティブの誤謬</span><span class="tag">タレブ</span><span class="tag">ランダム性</span><span class="tag">ブラック・スワン</span><span class="tag">意思決定</span>
+</div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side"><div style="position:sticky;top:70px;">
+<div class="sidebar-block fade"><p class="sidebar-label">Key Number</p><p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">85%</p><p class="sidebar-text">「銀行員」と「銀行員で女性運動家」を並べた問いで、<strong>確率が低いほうの「物語らしい」選択肢</strong>を選んだ人の割合(Tversky &amp; Kahneman, 1983「リンダ問題」)。ナラティブの誤謬の隣接現象として何度も引かれる。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">タレブの起源イメージは<strong>1697年オーストラリアでの「黒い白鳥」発見</strong>。欧州で「白鳥は白い」が定義だった時代、観察できる事実が理論を壊した瞬間。ナラティブの誤謬は、その逆の装置——事実が理論を<em>直さない</em>装置——を指す。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">タレブ『ブラック・スワン』(2007)が原典。<br>カーネマン『ファスト&スロー』(2011)第19章が学術的に普及させた。<br>金融ニュースの「単一原因見出し」は、この誤謬の大衆化した姿。</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <em>確証バイアス</em><br>物語を後付けで補強する<br>— <em>生存者バイアス</em><br>成功の物語だけが残る<br>— <em>後知恵バイアス</em><br>結果後に「予見可能」に見える</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">今日の判断を振り返る</p><ul class="sidebar-check"><li>今日読んだニュース見出しの「原因」は、どこから来ていたか</li><li>誰かの行動を説明するとき、材料は揃っていたか</li><li>「流れが読めた」と感じた瞬間、それはデータの側にあったか</li></ul></div>
+<div class="sidebar-block fade"><p class="sidebar-label">📌 信頼度</p><p class="sidebar-text">Taleb(2007)、Kahneman(2011)が主要文献。概念の境界は隣接バイアスと一部重なる。</p></div>
+</div></div>
+</div><!-- /article -->
+
+<!-- ===== ZONE C ===== -->
+<div class="terminal-label-wrap"><span class="terminal-label">▼ Internal Dialogue &gt;&gt; Active</span><div class="terminal-label-line"></div></div>
+<div class="terminal-wrap"><div class="terminal fade" id="terminalBlock">
+<div class="terminal-bar"><div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div><span class="terminal-title">after.sh — 読後の対話ログ(架空)</span></div>
+<div class="terminal-body">
+<span class="t-sys" id="ts0">// ナラティブの誤謬 を読み終えた人との対話</span>
+<div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;チャート、5回再生成したけど毎回何かの「形」が見えた</span></div>
+<span class="t-output" id="to1">それがこの記事の骨子だ。形は<em>チャートの側ではなく、あなたの側で</em>組み立てられる。タレブが身銭を切って10年かけて慣れたのがこの視点だ。</span><hr class="t-divider">
+<div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;でも物語を作らないと何も判断できないよね？</span></div>
+<span class="t-output" id="to2">そのとおり。タレブも物語を<strong>やめろ</strong>とは言っていない。<em>書いている最中だと自覚しろ</em>と言っている。自覚はコストが低くて、効き目が数段階ある。</span><hr class="t-divider">
+<div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ニュースの「○○懸念で株価下落」みたいな見出しも怪しい？</span></div>
+<span class="t-output" id="to3">多くの場合、<em>下落が先で、懸念の物語は後</em>。編集者は原因を一つ決めないと見出しを書けない。市場は複数の流れが同時に走る場所で、それを単一原因に圧縮すると情報が減る。</span><hr class="t-divider">
+<div class="t-line t-exit" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# チャートを予測なんて、できる気がしなくなってきた</span></div>
+</div></div></div>
+
+<!-- RELATED -->
+<div class="related fade"><p class="related-label">次に読む</p>
+<div class="related-grid">
+<a class="related-card" href="/confirmation_bias"><p class="related-card-tag">認知バイアス × 推論</p><p class="related-card-title">確証バイアス</p><p class="related-card-desc">自分がすでに決めている答えを、裏づける情報ばかりで補強する癖。物語装置の片割れ。</p><p class="related-card-arrow">読む →</p></a>
+<a class="related-card" href="/survivorship_bias"><p class="related-card-tag">認知バイアス × データ</p><p class="related-card-title">生存者バイアス</p><p class="related-card-desc">成功者の物語だけが残る。帰ってこなかった飛行機と、聞こえない沈黙の話。</p><p class="related-card-arrow">読む →</p></a>
+</div></div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2026 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="tip-backdrop" id="tipBackdrop"></div>
+<div class="tip-toast" id="tipToast">
+  <button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button>
+  <span class="tip-toast-title" id="tipToastTitle"></span>
+  <div class="tip-toast-body" id="tipToastBody"></div>
+</div>
+
+<script>
+// === SCROLL / FADE ===
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;document.getElementById('prog').style.width=(scrollY/h*100)+'%';});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// === TOOLTIP (TOAST) ===
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// === STEPS ACCORDION ===
+function tog(n){const c=document.getElementById('sc'+n);if(!c)return;const w=c.classList.contains('open');document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));if(!w)c.classList.add('open');}
+tog(1);
+
+// === CHART SIMULATOR ===
+// Box-Muller で正規乱数を生成して累積
+function gauss(){const u1=Math.random()||1e-9,u2=Math.random();return Math.sqrt(-2*Math.log(u1))*Math.cos(2*Math.PI*u2);}
+function genWalk(n,sigma){const arr=[];let v=100;for(let i=0;i<n;i++){arr.push(v);v+=gauss()*sigma;if(v<30)v=30;if(v>170)v=170;}return arr;}
+
+let simData=genWalk(60,2.3);
+let simPhase=1;
+let simChoice=null;
+let simRegen_=0;
+
+function drawSimChart(){
+  const cv=document.getElementById('simCanvas');
+  if(!cv)return;
+  const ctx=cv.getContext('2d');
+  const W=cv.width,H=cv.height;
+  ctx.fillStyle='#faf8f3';ctx.fillRect(0,0,W,H);
+  // データ範囲
+  const shown = simPhase===1 ? 30 : 60;
+  const all = simData;
+  const minV=Math.min(...all), maxV=Math.max(...all);
+  const pad=(maxV-minV)*0.1 || 5;
+  const yMin=minV-pad, yMax=maxV+pad;
+  const left=46, right=W-14, top=18, bottom=H-30;
+  const xStep=(right-left)/(60-1);
+  // グリッド
+  ctx.strokeStyle='#ede8dc';ctx.lineWidth=1;
+  for(let i=0;i<=4;i++){
+    const y=top+(bottom-top)*i/4;
+    ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(right,y);ctx.stroke();
+  }
+  // 軸
+  ctx.strokeStyle='#c8bfaa';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(left,top);ctx.lineTo(left,bottom);ctx.lineTo(right,bottom);ctx.stroke();
+  // 30日目 の破線
+  ctx.strokeStyle='#c8bfaa';ctx.setLineDash([4,4]);
+  const x30=left+29*xStep;
+  ctx.beginPath();ctx.moveTo(x30,top);ctx.lineTo(x30,bottom);ctx.stroke();
+  ctx.setLineDash([]);
+  // ラベル
+  ctx.fillStyle='#b0a090';ctx.font="10px 'Source Sans 3',sans-serif";ctx.textAlign='center';
+  ctx.fillText('Day 1',left,H-12);ctx.fillText('Day 30',x30,H-12);ctx.fillText('Day 60',right,H-12);
+  ctx.textAlign='right';
+  ctx.fillText(Math.round(yMax),left-6,top+8);
+  ctx.fillText(Math.round(yMin),left-6,bottom);
+  // データ線: Day 1-30 (黒)
+  ctx.strokeStyle='#1a1208';ctx.lineWidth=1.6;
+  ctx.beginPath();
+  for(let i=0;i<Math.min(30,shown);i++){
+    const x=left+i*xStep;
+    const y=bottom-((all[i]-yMin)/(yMax-yMin))*(bottom-top);
+    if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+  // Day 31-60 (赤) — phase2+
+  if(shown>30){
+    ctx.strokeStyle='#8b1a1a';ctx.lineWidth=1.6;
+    ctx.beginPath();
+    const px=left+29*xStep;
+    const py=bottom-((all[29]-yMin)/(yMax-yMin))*(bottom-top);
+    ctx.moveTo(px,py);
+    for(let i=30;i<60;i++){
+      const x=left+i*xStep;
+      const y=bottom-((all[i]-yMin)/(yMax-yMin))*(bottom-top);
+      ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+  }
+  // フェーズラベル
+  if(simPhase===1){
+    ctx.fillStyle='#8b1a1a';ctx.font="11px 'Source Sans 3',sans-serif";ctx.textAlign='left';
+    ctx.fillText('← 予測はこの先',x30+8,top+12);
+  }else{
+    ctx.fillStyle='#8b1a1a';ctx.font="11px 'Source Sans 3',sans-serif";ctx.textAlign='left';
+    ctx.fillText('(完全乱数)',x30+8,top+12);
+  }
+}
+
+const simNarratives={
+  up:{name:'アップトレンド継続',body:'<strong>あなたが見たもの：</strong>「上昇の勢い」「支持線に支えられた右肩上がり」——これは、テクニカル分析の教科書で最初に教わるパターンだ。<br><br>実際にはこのチャートに<em>勢い</em>は存在しない。各ステップの増分は前のステップと独立で、正規分布から引かれているだけだ。それでも上昇気配に見えたのは、脳が「続くはず」という時間的な因果を差し込んだからである。'},
+  down:{name:'天井打ち・反転',body:'<strong>あなたが見たもの：</strong>「これ以上は伸びない天井」「反転シグナル」——相場では「ヘッド・アンド・ショルダー」や「Mトップ」として名前が与えられている形だ。<br><br>乱数ウォークには<em>天井</em>という概念が存在しない。局所的な最高値は統計的な偶然で、それが「限界」に見えるのは、あなたが価格に意志を読み込んだ瞬間である。'},
+  v:{name:'V字回復の物語',body:'<strong>あなたが見たもの：</strong>「押し目からの反発」「下げ止まりからの回復」——投資ブログで無数に使われるストーリーラインだ。<br><br>乱数ウォークには<em>押し目</em>も<em>反発</em>も存在しない。上下に揺れる軌跡の一部を前後に切り出すと、必ずV字の局面が含まれる。それをあなたの目が拾っただけだ。'},
+  double:{name:'ダブルトップ崩壊',body:'<strong>あなたが見たもの：</strong>「二度天井を試して、ネックラインを割る」——最も「物語らしい」形の一つで、熟練のチャーティストほど強く反応する。<br><br>乱数ウォークでもこのパターンは<em>高頻度で出現する</em>。60ポイントの系列に二つの局所高値と一つの安値が含まれる確率は、直感で思うより遥かに高く、実在の相場と見分けがつかない。'},
+  range:{name:'レンジ相場・三角保ち合い',body:'<strong>あなたが見たもの：</strong>「方向感のない揉み合い」「三角保ち合い」——これも教科書的な命名パターンだ。<br><br>皮肉にも、<em>ランダムウォークに最も近い見え方</em>がこれだ。あなたは今回、一番正解に近い物語を選んだ。ただし、その「正解」とは「物語を最小限しか足さなかった」という意味である。チャートの真実は、常にこちら側にある。'}
+};
+
+function simChoose(c){
+  if(simPhase!==1)return;
+  simChoice=c;
+  document.querySelectorAll('.sim-choice').forEach(b=>b.classList.remove('selected'));
+  document.querySelector(`[data-choice="${c}"]`).classList.add('selected');
+  simPhase=2;
+  drawSimChart();
+  document.getElementById('simPhaseN').textContent='2';
+  document.getElementById('simPhaseLabel').textContent='種明かしフェーズ';
+  document.getElementById('simAxisNote').textContent='── Day 1 から Day 60 まで(赤線が Day 31 以降) ──';
+  document.getElementById('simPhase1').style.display='none';
+  document.getElementById('simPhase2').style.display='block';
+}
+function simRegen(){
+  simData=genWalk(60,2.3);
+  simRegen_++;
+  document.getElementById('simRegenCount').textContent='再生成: '+simRegen_+' 回';
+  drawSimChart();
+}
+function simShowSelfRef(){
+  if(!simChoice)return;
+  simPhase=3;
+  document.getElementById('simPhaseN').textContent='3';
+  document.getElementById('simPhaseLabel').textContent='自己言及フェーズ';
+  const nar=simNarratives[simChoice];
+  document.getElementById('simNarrativeName').textContent=nar.name;
+  document.getElementById('simNarrativeDesc').innerHTML=nar.body;
+  document.getElementById('simPhase3').style.display='block';
+  document.getElementById('simPhase3').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// 初期化
+window.addEventListener('load',()=>{drawSimChart();});
+
+// === QUIZ: A or B ===
+// 3組のチャートを乱数で生成。A/B の「正解」はランダムに割り当てるが、どちらも乱数なので答えは常に「両方とも偽」
+const quizData=[];
+for(let i=0;i<3;i++){quizData.push({A:genWalk(60,2.0+Math.random()*0.8),B:genWalk(60,2.0+Math.random()*0.8)});}
+let quizIdx=0;
+let quizHistory=[];
+
+function drawQuizCanvas(id,arr){
+  const cv=document.getElementById(id);if(!cv)return;
+  const ctx=cv.getContext('2d');
+  const W=cv.width,H=cv.height;
+  ctx.fillStyle='#faf8f3';ctx.fillRect(0,0,W,H);
+  const minV=Math.min(...arr),maxV=Math.max(...arr);
+  const pad=(maxV-minV)*0.08||3;
+  const yMin=minV-pad,yMax=maxV+pad;
+  const left=8,right=W-8,top=8,bottom=H-10;
+  const xStep=(right-left)/(arr.length-1);
+  ctx.strokeStyle='#c8bfaa';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(left,bottom);ctx.lineTo(right,bottom);ctx.stroke();
+  ctx.strokeStyle='#1a1208';ctx.lineWidth=1.4;
+  ctx.beginPath();
+  for(let i=0;i<arr.length;i++){
+    const x=left+i*xStep;
+    const y=bottom-((arr[i]-yMin)/(yMax-yMin))*(bottom-top);
+    if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+}
+
+function renderQuiz(){
+  const d=quizData[quizIdx];
+  drawQuizCanvas('quizCanvasA',d.A);
+  drawQuizCanvas('quizCanvasB',d.B);
+  document.getElementById('quizStatus').textContent='Question '+(quizIdx+1)+'／3';
+  document.querySelectorAll('#quizBlock .quiz-pair-btn').forEach(b=>b.classList.remove('selected'));
+  document.getElementById('quizReveal').classList.remove('show');
+  document.getElementById('quizReveal').innerHTML='';
+}
+
+function quizPick(side){
+  document.querySelectorAll('#quizBlock .quiz-pair-btn').forEach(b=>b.classList.remove('selected'));
+  document.querySelector(`#quizBlock .quiz-pair-btn[data-side="${side}"]`).classList.add('selected');
+  quizHistory.push(side);
+  const rv=document.getElementById('quizReveal');
+  if(quizIdx<2){
+    rv.innerHTML='<strong>記録した。</strong>&nbsp;次の組へ進む…';
+    rv.classList.add('show');
+    setTimeout(()=>{quizIdx++;renderQuiz();},900);
+  }else{
+    // 最終問題
+    rv.innerHTML='<strong>種明かし：A も B も、どちらも完全乱数だ。</strong><br>3問すべて、AとBは同じ方式(標準正規分布の増分を累積)で生成された別々の乱数ウォークだった。実在の株価は一切含まれていない。<br><br>あなたは3問とも、どちらかに「より実在らしさ」を感じたはずだ——これが<em>ナラティブの誤謬の自己言及的な証明</em>になる。どちらも嘘だと分かっていても、見比べた瞬間に、脳はどちらかに物語を読み込む。';
+    rv.classList.add('show');
+  }
+}
+
+// === TERMINAL ANIMATION ===
+const tseq=[{id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1500},{id:'tl2',delay:2600},{id:'to2',delay:3300},{id:'tl3',delay:4400},{id:'to3',delay:5100},{id:'tl4',delay:6200}];
+let tS=false;tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tO=new IntersectionObserver(entries=>{if(entries[0].isIntersecting&&!tS){tS=true;tseq.forEach(s=>{setTimeout(()=>{const el=document.getElementById(s.id);if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}},s.delay);});}},{threshold:0.2});
+const tBlock=document.getElementById('terminalBlock');
+if(tBlock)tO.observe(tBlock);
+
+// === SHARED HEADER JS ===
+function closeMenu(){document.getElementById('menuPanel').classList.remove('open');document.getElementById('menuBackdrop').classList.remove('open');}
+document.getElementById('burgerBtn').addEventListener('click',()=>{document.getElementById('menuPanel').classList.add('open');document.getElementById('menuBackdrop').classList.add('open');});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+var sOverlay=document.getElementById('sOverlay');
+var sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  var q=this.value.trim(),ql=q.toLowerCase();
+  var res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">検索データを読み込み中…</p>';return;}
+  var hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+
+// Quiz 初期描画
+window.addEventListener('load',()=>{renderQuiz();});
+</script>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6b7b629057d241878dda2a4f3169e5cb"}'></script>
+<!-- End Cloudflare Web Analytics -->
+</body>
+</html>

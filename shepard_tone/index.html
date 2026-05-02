@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>シェパードトーン ― 永遠に上昇する音 — Qualia Journal</title>
+<meta name="description" content="永遠に上昇し続けるように聴こえる音がある。脳が「音の高さ」をどう組み立てているのかを、実際に耳で聴きながら、視覚の錯覚と並べて確かめる体験記事。">
+<link rel="canonical" href="https://qualiajournal.com/shepard_tone">
+<meta property="og:title" content="シェパードトーン ― 永遠に上昇する音 — Qualia Journal">
+<meta property="og:description" content="永遠に上昇し続けるように聴こえる音がある。脳が「音の高さ」をどう組み立てているのかを、実際に耳で聴きながら、視覚の錯覚と並べて確かめる体験記事。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/shepard_tone">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="シェパードトーン ― 永遠に上昇する音 — Qualia Journal">
+<meta name="twitter:description" content="永遠に上昇し続けるように聴こえる音がある。脳が「音の高さ」をどう組み立てているのかを、実際に耳で聴きながら、視覚の錯覚と並べて確かめる体験記事。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"シェパードトーン ― 永遠に上昇する音","description":"永遠に上昇し続けるように聴こえる音がある。脳が「音の高さ」をどう組み立てているのかを、実際に耳で聴きながら、視覚の錯覚と並べて確かめる体験記事。","author":{"@type":"Person","name":"e. Tamaki"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/shepard_tone","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"知覚・錯覚","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"シェパードトーン ― 永遠に上昇する音"}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-stat{border:1px solid #c8bfaa;padding:28px 24px;background:#f3efe6;text-align:center;margin-bottom:20px;}
+.cover-stat-n{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:8px;}
+.cover-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.6;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK (画像なし1カラム) */
+.person-block{margin:32px 0;display:grid;grid-template-columns:1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-body{padding:18px 20px;background:#f3efe6;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE (old block — kept for fallback reference) */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* CULTURE GALLERY (chronological card catalog — inside article-main column) */
+.culture-gallery{
+  margin:40px 0;
+  padding:30px 22px 36px;
+  background:linear-gradient(180deg,#1a1208 0%,#221810 100%);
+  color:#e8e4de;
+  position:relative;
+  overflow:hidden;
+}
+.culture-gallery::before{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 20%,rgba(139,26,26,.12),transparent 60%);
+  pointer-events:none;
+}
+/* gallery children above the gradient */
+.culture-gallery > *{position:relative;z-index:1;}
+.cg-eyebrow{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:.3em;color:#e8c56a;text-transform:uppercase;margin-bottom:10px;position:relative;}
+.cg-title-main{font-family:'Playfair Display',serif;font-size:clamp(22px,2.6vw,28px);font-weight:900;color:#faf8f3;margin-bottom:12px;letter-spacing:-.01em;position:relative;}
+.cg-title-main em{color:#e8c56a;font-style:italic;}
+.cg-lead{font-family:'Source Serif 4',serif;font-size:14.5px;font-weight:300;color:#c8b8a8;line-height:1.8;margin-bottom:24px;max-width:760px;position:relative;}
+.cg-scale{display:flex;align-items:center;gap:8px;margin-bottom:22px;padding:14px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(200,184,168,.18);position:relative;}
+.cg-scale-year{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#e8c56a;flex-shrink:0;}
+.cg-scale-bar{flex:1;height:2px;background:rgba(200,184,168,.2);position:relative;margin:0 4px;}
+.cg-scale-bar::before,.cg-scale-bar::after{content:'';position:absolute;top:-4px;width:10px;height:10px;border-radius:50%;background:#e8c56a;}
+.cg-scale-bar::before{left:-2px;}
+.cg-scale-bar::after{right:-2px;}
+.cg-scale-count{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#9a8878;text-transform:uppercase;letter-spacing:.12em;font-weight:600;flex-shrink:0;}
+
+.cg-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;position:relative;}
+.cg-filter{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;padding:8px 14px;background:transparent;color:#9a8878;border:1px solid rgba(200,184,168,.3);cursor:pointer;text-transform:uppercase;transition:all .18s;}
+.cg-filter:hover{color:#e8e4de;border-color:#c8b8a8;}
+.cg-filter.active{background:#e8c56a;color:#1a1208;border-color:#e8c56a;}
+.cg-filter .cg-filter-n{opacity:.6;margin-left:6px;font-weight:500;}
+
+.cg-stream{display:flex;flex-direction:column;gap:10px;position:relative;}
+.cg-card{
+  background:#faf8f3;
+  border-left:4px solid #c8bfaa;
+  padding:14px 16px;
+  display:grid;
+  grid-template-columns:62px 1fr;
+  gap:14px;
+  align-items:start;
+  transition:transform .2s,opacity .2s;
+}
+.cg-card.hidden{display:none;}
+.cg-card[data-cat="rock"]{border-left-color:#8a4a74;}
+.cg-card[data-cat="classical"]{border-left-color:#3a7054;}
+.cg-card[data-cat="film"]{border-left-color:#3a5a84;}
+.cg-card[data-cat="game"]{border-left-color:#b85030;}
+
+.cg-year{
+  font-family:'Playfair Display',serif;
+  font-size:26px;
+  font-weight:900;
+  color:#8b1a1a;
+  line-height:1;
+  letter-spacing:-.02em;
+}
+.cg-year-side{
+  font-family:'Source Sans 3',sans-serif;
+  font-size:10px;
+  color:#b0a090;
+  margin-top:5px;
+  letter-spacing:.06em;
+}
+
+.cg-body{min-width:0;}
+.cg-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px;}
+.cg-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;padding:3px 9px;color:#faf8f3;text-transform:uppercase;}
+.cg-card[data-cat="rock"] .cg-cat{background:#8a4a74;}
+.cg-card[data-cat="classical"] .cg-cat{background:#3a7054;}
+.cg-card[data-cat="film"] .cg-cat{background:#3a5a84;}
+.cg-card[data-cat="game"] .cg-cat{background:#b85030;}
+.cg-surprise{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;padding:3px 9px;background:#fdf3d8;color:#8b1a1a;border:1px solid #e8c56a;text-transform:uppercase;}
+.cg-surprise::before{content:'★ ';color:#c4a04a;}
+
+.cg-ttl{font-family:'Playfair Display',serif;font-size:15.5px;font-weight:700;color:#1a1208;margin:2px 0 4px;line-height:1.35;letter-spacing:-.005em;}
+.cg-creator{font-family:'Source Serif 4',serif;font-size:12px;font-weight:300;font-style:italic;color:#7a6a55;margin-bottom:8px;}
+.cg-creator strong{color:#3d3020;font-style:normal;font-weight:600;}
+.cg-creator em{color:#3d3020;font-style:italic;font-weight:400;}
+.cg-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.75;}
+.cg-desc em{color:#8b1a1a;font-style:normal;font-weight:500;}
+
+@media(max-width:720px){
+  .culture-gallery{margin:28px 0;padding:28px 18px 32px;}
+  .cg-card{grid-template-columns:56px 1fr;padding:13px 14px;gap:12px;}
+  .cg-year{font-size:24px;}
+  .cg-ttl{font-size:14.5px;}
+  .cg-desc{font-size:11.5px;}
+}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* ── FOOTER ── */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* SVG FIG */
+.svg-fig{display:block;margin:28px auto;max-width:680px;width:100%;height:auto;}
+.fig-caption{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;margin-top:-14px;margin-bottom:24px;line-height:1.6;}
+
+/* Image figure (for external images like Penrose stairs) */
+.img-fig{margin:28px auto;max-width:420px;background:#f3efe6;border:1px solid #c8bfaa;padding:20px 24px 0;}
+.img-fig img{display:block;margin:0 auto;max-width:100%;height:auto;}
+.img-fig-cap{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-align:center;line-height:1.7;padding:14px 0 16px;border-top:1px solid #e0d8c8;margin-top:16px;}
+.img-fig-cap strong{color:#1a1208;font-weight:600;}
+.img-fig-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;text-align:center;padding-bottom:12px;letter-spacing:.02em;}
+
+/* Ruby (furigana) */
+ruby{ruby-align:center;}
+ruby rt{font-size:0.55em;color:#8b1a1a;font-weight:600;letter-spacing:.02em;}
+
+/* SHEPARD PLAYER */
+.shepard-player{margin:32px 0;border:1px solid #c8bfaa;background:#1a1208;color:#e8e4de;overflow:hidden;}
+.sp-head{background:#2a1f14;padding:12px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #3a2a1a;}
+.sp-dot{width:9px;height:9px;border-radius:50%;background:#8b1a1a;flex-shrink:0;}
+.sp-head-title{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.18em;color:#c8b8a8;text-transform:uppercase;}
+.sp-viz-wrap{padding:18px 20px 8px;}
+.sp-viz{width:100%;height:240px;display:block;background:#0d0908;border:1px solid #3a2a1a;}
+.sp-caption{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-align:center;margin:8px 0 0;line-height:1.6;}
+.sp-ctrls{padding:14px 20px 20px;display:flex;flex-direction:column;gap:14px;}
+.sp-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.sp-btn{background:#8b1a1a;color:#faf8f3;border:none;padding:12px 24px;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .18s;}
+.sp-btn:hover{background:#a32828;}
+.sp-btn.playing{background:#4a9e6a;}
+.sp-btn.playing:hover{background:#5bb07c;}
+.sp-mode-group{display:flex;gap:0;border:1px solid #3a2a1a;}
+.sp-mode-btn{background:transparent;color:#9a8878;border:none;padding:10px 16px;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;letter-spacing:.08em;cursor:pointer;transition:all .18s;border-right:1px solid #3a2a1a;}
+.sp-mode-btn:last-child{border-right:none;}
+.sp-mode-btn:hover{color:#e8e4de;background:#2a1f14;}
+.sp-mode-btn.active{background:#4a3a2a;color:#e8c56a;}
+.sp-vol-row{display:flex;align-items:center;gap:12px;flex:1;min-width:180px;}
+.sp-vol-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#9a8878;text-transform:uppercase;white-space:nowrap;}
+.sp-vol{flex:1;-webkit-appearance:none;appearance:none;height:3px;background:#3a2a1a;outline:none;cursor:pointer;}
+.sp-vol::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;border-radius:50%;background:#8b1a1a;cursor:pointer;}
+.sp-vol::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:#8b1a1a;cursor:pointer;border:none;}
+.sp-note{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#9a8878;line-height:1.7;padding:12px 20px;background:#0d0908;border-top:1px solid #3a2a1a;}
+.sp-note strong{color:#e8c56a;font-weight:600;}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .svg-fig{max-width:100%;}
+  .sp-ctrls{padding:14px 16px 18px;}
+  .sp-row{gap:10px;}
+  .sp-mode-btn{padding:9px 12px;font-size:10px;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){
+  .toc-back{padding:22px 20px;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">97 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Auditory Illusion / 知覚・錯覚</p>
+    <h1>永遠に<em>上昇する</em>音</h1>
+    <p class="cover-deck">同じ場所をまわり続けているのに、どこまでも高く登っていくように聞こえる音。シェパードトーンは、耳が嘘をついているのではなく、脳の「高さを測る仕組み」そのものの輪郭を見せてくる。</p>
+    <div class="cover-byline"><span>知覚・錯覚</span><span>聴覚</span><span>音楽・映画</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1964</span>
+      <p class="est-event">ロジャー・シェパードが「相対音高の判断における円環性」と題する論文を米国音響学会誌に発表し、終わらずに上昇する音の錯覚を初めて系統的に示した。</p>
+      <p class="est-context">同年10月、東京オリンピックが開幕し、直前の10月1日には東海道新幹線が開業している。</p>
+    </div>
+    <p class="cover-aside">1964年の論文は「ピッチ(音の高さ)は一直線の量ではない」という主張を、実際に聞ける形で提示した。図は螺旋、聞こえ方は円環。後年の認知科学の道具箱が、この小さな論文のなかに入っていた。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>街のターミナルで、上りのエスカレーターに乗る。足もとは確かに動いていて、景色も流れているのに、目を閉じて数秒がたつと、自分が登っているのか建物ごと沈んでいるのか分からなくなる瞬間がある。</p>
+    <p>「動きが続いている」という感覚は、外の世界の絶対量ではなく、直前との差分で計算されている。だから差分が同じ方向に揃い続けるだけで、脳は「どこまでも進んでいる」と判断する。</p>
+    <p>音の高さでも、同じことが起きる。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中級 — 数学・音楽理論の知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-25</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-25</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">ある音を<strong>実際に耳で聴きながら</strong>、脳が「音の高さ」をどう組み立てているかを覗く。目で見たときに感じる違和感と、耳で感じる"終わらなさ"の間に、共通の仕掛けがある。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- § 背景 -->
+  <div class="sec-rule fade"><span class="sec-label">§ 背景</span><span class="sec-line"></span></div>
+  <h2 class="fade">音の高さは、なぜ一直線ではないのか</h2>
+
+  <p class="body-text fade">ピアノの鍵盤を一番左から右まで弾いていくと、音は低いところから高いところへ一直線に上っていく。私たちはふだん、音の高さをそういう連続した直線として扱っている。低い、高い、その間。終わらない尺度の上に点がひとつ置かれる。</p>
+
+  <p class="body-text fade">ところが、同じ鍵盤で<strong>ド、ド、ド、ド</strong>とオクターブを越えながら弾いていくと、違う感覚が滑り込んでくる。どの<span class="tip" onclick="toggleTip(this)">ド<span class="tip-box"><strong>オクターブ</strong>周波数が2倍になるごとに同じ「音名」が戻ってくる関係。440Hzと880Hzはどちらも「ラ」と呼ばれる。人間の聴覚は周波数が2倍になった音を"同じ音の高い版"として受け取る。</span></span>も、たしかに高さが違う。だけど同時に、どれも「同じ音」でもある。高さが違うのに、同じだ。この二重性は、鍵盤の上の「左右の位置」だけでは説明できない。</p>
+
+  <svg class="svg-fig fade" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="600" fill="#faf8f3"/>
+    <text x="400" y="32" text-anchor="middle" font-family="Source Sans 3" font-size="14" font-weight="600" fill="#7a6a55" letter-spacing="2">FIG.1 &#8212; 2つの軸:高さ(直線) × 音名(円環)</text>
+    <!-- horizontal divider between title zone and figure zone -->
+    <line x1="100" y1="60" x2="700" y2="60" stroke="#e0d8c8" stroke-width="1"/>
+
+    <!-- LEFT: linear axis (pitch height) -->
+    <g transform="translate(200,200)">
+      <text x="0" y="-60" text-anchor="middle" font-family="Source Sans 3" font-size="17" font-weight="700" fill="#1a1208">直線モデル &#8212; 高さ</text>
+      <!-- vertical axis -->
+      <line x1="0" y1="0" x2="0" y2="320" stroke="#3d3020" stroke-width="1.5"/>
+      <polygon points="0,0 -6,12 6,12" fill="#3d3020"/>
+      <polygon points="0,320 -6,308 6,308" fill="#3d3020"/>
+      <text x="18" y="8" font-family="Source Sans 3" font-size="13" fill="#7a6a55">高い</text>
+      <text x="18" y="318" font-family="Source Sans 3" font-size="13" fill="#7a6a55">低い</text>
+      <!-- 10 pitch labels spaced evenly at y=30..300 -->
+      <g font-family="Source Sans 3" font-size="14" fill="#3d3020" text-anchor="end">
+        <line x1="-8" y1="30"  x2="0" y2="30"  stroke="#3d3020" stroke-width="1"/><text x="-14" y="34">C5</text>
+        <line x1="-8" y1="60"  x2="0" y2="60"  stroke="#3d3020" stroke-width="1"/><text x="-14" y="64">B4</text>
+        <line x1="-8" y1="90"  x2="0" y2="90"  stroke="#3d3020" stroke-width="1"/><text x="-14" y="94">A4</text>
+        <line x1="-8" y1="120" x2="0" y2="120" stroke="#3d3020" stroke-width="1"/><text x="-14" y="124">G4</text>
+        <line x1="-8" y1="150" x2="0" y2="150" stroke="#3d3020" stroke-width="1"/><text x="-14" y="154">F4</text>
+        <line x1="-8" y1="180" x2="0" y2="180" stroke="#3d3020" stroke-width="1"/><text x="-14" y="184">E4</text>
+        <line x1="-8" y1="210" x2="0" y2="210" stroke="#3d3020" stroke-width="1"/><text x="-14" y="214">D4</text>
+        <line x1="-8" y1="240" x2="0" y2="240" stroke="#3d3020" stroke-width="1"/><text x="-14" y="244">C4</text>
+        <line x1="-8" y1="270" x2="0" y2="270" stroke="#3d3020" stroke-width="1"/><text x="-14" y="274">B3</text>
+        <line x1="-8" y1="300" x2="0" y2="300" stroke="#3d3020" stroke-width="1"/><text x="-14" y="304">A3</text>
+      </g>
+      <text x="0" y="374" text-anchor="middle" font-family="Source Sans 3" font-size="13" fill="#7a6a55">高さだけで捉える。</text>
+      <text x="0" y="392" text-anchor="middle" font-family="Source Sans 3" font-size="13" fill="#7a6a55">C4 と C5 は別の点。</text>
+    </g>
+
+    <!-- RIGHT: circular pitch class -->
+    <g transform="translate(600,345)">
+      <text x="0" y="-200" text-anchor="middle" font-family="Source Sans 3" font-size="17" font-weight="700" fill="#1a1208">円環モデル &#8212; 音名</text>
+      <!-- circle -->
+      <circle cx="0" cy="0" r="110" fill="none" stroke="#8b1a1a" stroke-width="1.5"/>
+      <!-- 12 ticks on circle -->
+      <g stroke="#8b1a1a" stroke-width="1.2">
+        <line x1="0"    y1="-110" x2="0"    y2="-100"/>
+        <line x1="55"   y1="-95.3" x2="50"  y2="-86.6"/>
+        <line x1="95.3" y1="-55"   x2="86.6" y2="-50"/>
+        <line x1="110"  y1="0"    x2="100"  y2="0"/>
+        <line x1="95.3" y1="55"   x2="86.6" y2="50"/>
+        <line x1="55"   y1="95.3" x2="50"   y2="86.6"/>
+        <line x1="0"    y1="110"  x2="0"    y2="100"/>
+        <line x1="-55"  y1="95.3" x2="-50"  y2="86.6"/>
+        <line x1="-95.3" y1="55"   x2="-86.6" y2="50"/>
+        <line x1="-110" y1="0"    x2="-100" y2="0"/>
+        <line x1="-95.3" y1="-55" x2="-86.6" y2="-50"/>
+        <line x1="-55"  y1="-95.3" x2="-50"  y2="-86.6"/>
+      </g>
+      <!-- 12 pitch class labels placed OUTSIDE the circle at radius ~130 -->
+      <g font-family="Source Sans 3" font-size="14" font-weight="600" fill="#1a1208" text-anchor="middle">
+        <text x="0"      y="-130">C</text>
+        <text x="65"     y="-112">C#</text>
+        <text x="113"    y="-61">D</text>
+        <text x="134"    y="4">D#</text>
+        <text x="113"    y="68">E</text>
+        <text x="65"     y="118">F</text>
+        <text x="0"      y="146">F#</text>
+        <text x="-65"    y="118">G</text>
+        <text x="-113"   y="68">G#</text>
+        <text x="-134"   y="4">A</text>
+        <text x="-113"   y="-61">A#</text>
+        <text x="-65"    y="-112">B</text>
+      </g>
+      <!-- arrow around -->
+      <path d="M 78,-78 A 110 110 0 0 1 106 -30" fill="none" stroke="#b0a090" stroke-width="1" stroke-dasharray="2,3"/>
+      <text x="0" y="171" text-anchor="middle" font-family="Source Sans 3" font-size="13" fill="#7a6a55">同じ音名は周期的に戻る。</text>
+      <text x="0" y="189" text-anchor="middle" font-family="Source Sans 3" font-size="13" fill="#7a6a55">C4 と C5 は同じ位置。</text>
+    </g>
+
+  </svg>
+  <p class="fig-caption fade">ピッチは「高さ(直線の軸)」と「音名(円環の軸)」の二重構造を持つ。直線だけで捉えるとオクターブ関係が見えず、円環だけで捉えると高さの感覚が消える。両方を掛け合わせた3D螺旋が、シェパードの描いたピッチ空間。</p>
+
+  <p class="body-text fade">1964年、ベル研究所の認知心理学者 <strong>ロジャー・シェパード</strong> は、この二重性を一つの図にまとめた。音の高さを縦の軸、音名(C, C#, D, …, B)を円環の軸として、両者をかけあわせた<em>螺旋</em>に置いたのだ。論文は米国音響学会誌 (<span class="tip" onclick="toggleTip(this)"><strong>JASA</strong><span class="tip-box"><strong>JASA</strong>Journal of the Acoustical Society of America。1929年創刊の、音響学の国際的な中核ジャーナル。物理音響・音声・楽器音響・聴覚科学など、音に関わる論文の一次情報源として50年以上機能している。</span></span>) に掲載された。螺旋を一周すると、一段高いところに戻ってくる。違う場所だが、方位は同じ。違う高さだが、音名は同じ。</p>
+
+  <!-- Person block: Shepard -->
+  <div class="person-block fade">
+    <div class="person-block-body">
+      <p class="person-block-name">Roger N. Shepard (1929–2022)</p>
+      <p class="person-block-role">ベル研究所 → スタンフォード大学 認知科学者</p>
+      <p class="person-block-desc">スタンフォードで生まれ育ち、Yaleで博士号取得(1955)。ベル研究所(1958–66)在籍中にシェパードトーンの1964年論文を発表。ハーバード(1966–68)を経てスタンフォード(1968–96)へ。メンタルローテーション実験(1971)や多次元尺度構成法でも知られ、1995年に米国科学賞を受賞。空間的・心的な回転を「錯覚を聞かせながら証明する」のが彼のスタイルだった。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">シェパードはこの螺旋を、論文の一節で <span class="tip" onclick="toggleTip(this)"><strong>エッシャーの無限階段</strong><span class="tip-box"><strong>Escher&#39;s infinite staircase</strong>オランダの版画家 M.C. エッシャー (1898-1972) が1960年の作品《上昇と下降》で描いた、登り続けても元の場所に戻ってくる不可能図形。元はペンローズ父子が1959年の論文で提示した「ペンローズの階段」で、エッシャーがそれを版画作品に落とし込んだ。</span></span>になぞらえた。階段は一段ずつ昇っていくのに、一周すると同じ踊り場に戻ってくる。局所的には登り続け、大域的には閉じている。</p>
+
+  <figure class="img-fig fade">
+    <img src="./fig_penrose_stairs.svg" alt="ペンローズの階段(エッシャーが版画にした不可能図形の基礎)">
+    <p class="img-fig-cap"><strong>同じ錯覚の視覚版</strong><br>どの段も一段高いのに、四角く一周すると同じ高さに戻ってくる。シェパードトーンはこれの聴覚版だ。</p>
+    <p class="img-fig-credit">Impossible staircase — Sakurambo / Wikimedia Commons (Public Domain)</p>
+  </figure>
+
+  <p class="body-text fade">音の高さも、そうありうる。問いはすぐに、反転する。<em>もし局所的な「上がった」だけを与え続けて、大域的な帰着を隠したら、耳は何を聞くか。</em></p>
+
+  <p class="body-text fade">その答えは、5年後、<span class="tip" onclick="toggleTip(this)"><strong>ベル研究所</strong><span class="tip-box"><strong>Bell Labs</strong>米 AT&amp;T 系列の研究機関(1925-)。電話・通信から出発し、トランジスタ(1947)、レーザー、UNIX、C言語、情報理論(シャノン)など20世紀後半の基盤技術を大量に生んだ研究所。60年代末にはマックス・マシューズらが世界最初期のコンピュータ音楽プログラムを開発していた。</span></span>の <span class="tip" onclick="toggleTip(this)"><strong>グリッサンド</strong><span class="tip-box"><strong>glissando</strong>ひとつの音からもう一つの音へ、不連続な「ステップ」ではなく、なめらかに周波数を動かして渡る奏法。トロンボーンや弦楽器でしばしば聞く、「ずるずると音程が変わる」あれ。</span></span>のなかで実装された。フランスの作曲家 <strong>ジャン=クロード・リッセ</strong> が、シェパードの離散的な音階を連続な滑らかさに変え、切れ目のない「永遠の上昇」を鳴らしたのだ。</p>
+
+  <!-- Person block: Risset -->
+  <div class="person-block fade">
+    <div class="person-block-body">
+      <p class="person-block-name">Jean-Claude Risset (1938–2016)</p>
+      <p class="person-block-role">フランス 作曲家・音響研究者</p>
+      <p class="person-block-desc">1960年代末にベル研究所で M. マシューズらと働き、コンピュータ音楽の先駆けを作った一人。シェパードの離散スケールを連続版に変え、やがて《Mutations》(1969) や《Little Boy》の Computer Suite で作品に組み込んだ。音色の合成そのものを科学にした世代。</p>
+    </div>
+  </div>
+
+  <!-- Quote -->
+  <div class="quote-block fade">
+    <p class="quote-en">"The tones can be represented as equally spaced points around a circle, such that the clockwise neighbor of each tone is judged higher in pitch while the counterclockwise neighbor is judged lower."</p>
+    <p class="quote-ja">「これらの音は、円周上の等間隔な点として表すことができる。時計回りの隣は"高い"と、反時計回りの隣は"低い"と判定されるように。」</p>
+    <p class="quote-attr">— Roger N. Shepard, <em>Circularity in Judgments of Relative Pitch</em>, JASA, 1964</p>
+  </div>
+
+  <p class="body-text fade">こうして設計された音を聴いた人は、口を揃えて<strong>「どこまでも上がっていく」</strong>と報告した。それが何秒続こうが、音が実際に上限に達することはなかった。ここで先回りして、よくある誤解を三つだけ片付けておきたい。それぞれの思い込みを外した方が、このあと実際に音を聞くときの耳が自由になる。</p>
+
+  <!-- Misconception -->
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解 — 実際は</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q"><p class="mis-label wrong">誤解 1</p><p class="mis-text">シェパードトーンは、本当に周波数が上がり続けている音。</p></div>
+        <div class="misconception-a"><p class="mis-label right">実際</p><p class="mis-text">音源が再生しているのは、同じパターンを繰り返すループ。全体の平均周波数は一定のまま変わらない。</p></div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q"><p class="mis-label wrong">誤解 2</p><p class="mis-text">耳が疲れて、高さの感覚が鈍っているから起きる錯覚。</p></div>
+        <div class="misconception-a"><p class="mis-label right">実際</p><p class="mis-text">耳そのものは正直で、届いた振動の成分は物理的に正しく分析されている。錯覚は、その後の「高さの推定」処理で起きている。</p></div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q"><p class="mis-label wrong">誤解 3</p><p class="mis-text">訓練された音楽家なら気づけるから、素人だけの錯覚。</p></div>
+        <div class="misconception-a"><p class="mis-label right">実際</p><p class="mis-text">絶対音感を持つ聴き手でも、成分の配置が巧妙にされた場合は「上がり続けている」と感じる。知覚の段階の現象で、知識では上書きしにくい。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text fade">つまり、騙されているのは耳ではなく、<strong>音をどう組み立てるかという脳の規則</strong>の方だ。そしてその規則は、知識で切り替えられる種類のものではない。ここから先、文字だけで読んでもあまり意味がないセクションに入る。音を鳴らして、実際に聞いてみてほしい。</p>
+
+  <!-- § 体験 -->
+  <div class="sec-rule fade"><span class="sec-label">§ 体験する</span><span class="sec-line"></span></div>
+  <h2 class="fade">永遠に上がる音を、実際に鳴らす</h2>
+
+  <p class="body-text fade">ここからは、耳で確かめてほしい。下のプレイヤーは、シェパードトーンをブラウザ上で合成して再生する。<strong>イヤホンかスピーカー</strong>があると差がよく分かる。最初は小さな音量にして、「再生」を押してから音量スライダーで調整してほしい。</p>
+
+  <p class="body-text fade">左端の「再生」ボタンで音が始まる。<strong>モードを切り替える</strong>ことで、同じ仕掛けを内側から確認できるようにしてある。3つの正しい動作を先に書いておく:</p>
+
+  <ul style="font-family:'Source Serif 4',serif;font-size:15px;font-weight:300;line-height:1.9;color:#3d3020;margin:0 0 20px 16px;padding-left:16px;border-left:2px solid #e0d8c8;list-style:none;">
+    <li style="margin-bottom:8px;"><strong style="color:#1a1208;">上昇モード</strong> &#8212; 8本のサイン波が、キャンバス上を左→右にじわじわ流れつづける。右端(高周波側)で消え、ほぼ同時に左端(低周波側)から新しい成分が入ってくる。耳には<em style="color:#8b1a1a;font-style:normal;">永遠に上がり続ける音</em>として聞こえ、実際は1オクターブ分で同じパターンが繰り返されている。</li>
+    <li style="margin-bottom:8px;"><strong style="color:#1a1208;">下降モード</strong> &#8212; 上と逆方向。成分が右→左に流れ、左端で消え、右端から新しく出てくる。<em style="color:#8b1a1a;font-style:normal;">永遠に下がり続ける音</em>。</li>
+    <li><strong style="color:#1a1208;">単音モード</strong> &#8212; サイン波1本だけ。全帯域(55Hz→7040Hz)を左→右に一定速度で上がっていく。山形エンベロープに沿って中央で最大音量、両端で静か。右端まで上がりきると、<em style="color:#8b1a1a;font-style:normal;">"ガクン"と左端に戻る</em>。この折り返しが聞こえるのが、シェパードトーンとの決定的な違い。</li>
+  </ul>
+
+  <p class="body-text fade">上昇モードで30秒〜1分聞いたあと、単音モードに切り替えてみてほしい。<em>片方は永遠、片方は有限</em>。同じ平均周波数帯を使っていても、聞こえ方はまったく違う。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">音は、物理的には<em>どこにも上がっていない</em>。同じパターンをループしているだけだ。それなのに、あなたの耳には<em>永遠に上がり続ける</em>ように聞こえる。&#8212; そのズレを、自分の耳で確かめるのがここの目的だ。</p>
+  </div>
+
+  <!-- Shepard Player -->
+  <div class="shepard-player fade">
+    <div class="sp-head">
+      <div class="sp-dot"></div>
+      <span class="sp-head-title">Shepard-Risset Tone Player</span>
+    </div>
+    <div class="sp-viz-wrap">
+      <canvas id="spViz" class="sp-viz"></canvas>
+      <p class="sp-caption">横軸 = 周波数(対数) / 縦軸 = 振幅。赤い棒と点が再生中の各サイン波成分。ガウス(<ruby>釣鐘<rt>つりがね</rt></ruby>型)の内側が大きく聞こえ、外に出た成分は消える。</p>
+    </div>
+    <div class="sp-ctrls">
+      <div class="sp-row">
+        <button id="spPlay" class="sp-btn" type="button">▶ 再生</button>
+        <div class="sp-mode-group" role="tablist" aria-label="モード">
+          <button class="sp-mode-btn active" data-mode="up" type="button">上昇</button>
+          <button class="sp-mode-btn" data-mode="down" type="button">下降</button>
+          <button class="sp-mode-btn" data-mode="single" type="button">単音</button>
+        </div>
+      </div>
+      <div class="sp-row sp-vol-row">
+        <span class="sp-vol-label">Volume</span>
+        <input id="spVol" class="sp-vol" type="range" min="0" max="100" value="22" aria-label="音量">
+      </div>
+    </div>
+    <p class="sp-note"><strong>聞き方のコツ</strong>&nbsp;&nbsp;上昇モードは30秒以上聞くと効いてくる。プツプツという小さなノイズが混じることがあるが、これはブラウザ内で正弦波を合成するときの副産物で、現象そのものとは別物。音量は最初は小さめで、慣れてから上げてほしい。</p>
+  </div>
+
+  <p class="body-text fade">聞きながら、可視化(上のキャンバス)を眺めてほしい。赤い点が左から右へじわじわと移動し、右端(高い側)でフェードアウトしながら、ほぼ同時に左端(低い側)から新しい点がフェードインしてくる。点全体は右に流れ続けているが、分布そのものはずっと同じ釣鐘型にとどまっている。<em>流れているのは成分で、留まっているのは風景だ。</em></p>
+
+  <!-- § メカニズム -->
+  <div class="sec-rule fade"><span class="sec-label">§ 仕組み</span><span class="sec-line"></span></div>
+  <h2 class="fade">ガウスの<ruby>釣鐘<rt>つりがね</rt></ruby>と、オクターブの<ruby>梯子<rt>はしご</rt></ruby></h2>
+
+  <p class="body-text fade">シェパードトーンは、1本の<span class="tip" onclick="toggleTip(this)"><strong>サイン波</strong><span class="tip-box"><strong>sine wave</strong>純粋な単一周波数の、混じりけのない波形。どんな複雑な音も、数学的にはサイン波の足し合わせに分解できる(フーリエ分解)。シンセサイザーの最も基本的な素材。</span></span>ではなく、<strong>複数のサイン波を1オクターブ間隔で重ねたもの</strong>でできている。ある成分が 220Hz なら、その上に 440Hz、880Hz、1760Hz、3520Hz …と、倍々に周波数を上げた成分を同時に鳴らす。どれも同じ「音名」を指しているので、聴覚はこの束を「一つの音」として受け取る。</p>
+
+  <svg class="svg-fig fade" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="460" fill="#faf8f3"/>
+    <text x="400" y="34" text-anchor="middle" font-family="Source Sans 3" font-size="20" font-weight="600" fill="#7a6a55" letter-spacing="2">FIG.2 &#8212; ガウス・エンベロープと8本のサイン波</text>
+
+    <!-- Gaussian label above peak -->
+    <text x="400" y="66" text-anchor="middle" font-family="Source Sans 3" font-size="20" font-weight="700" fill="#8b1a1a">ガウス・エンベロープ</text>
+
+    <!-- Y axis label -->
+    <text x="54" y="100" text-anchor="end" font-family="Source Sans 3" font-size="18" fill="#7a6a55">振幅</text>
+    <!-- Axes -->
+    <line x1="60" y1="296" x2="740" y2="296" stroke="#3d3020" stroke-width="1.2"/>
+    <line x1="60" y1="296" x2="60" y2="88" stroke="#3d3020" stroke-width="1.2"/>
+
+    <!-- Gaussian curve polyline (peak at x=400 y=90, baseline y=296, height 206) -->
+    <polyline points="80,268.2 100,261.7 120,253.9 140,244.9 160,234.8 180,223.5 200,211.3 220,198.4 240,185.1 260,171.8 280,158.9 300,146.9 320,136.4 340,127.6 360,121.1 380,117.0 400,115.6 420,117.0 440,121.1 460,127.6 480,136.4 500,146.9 520,158.9 540,171.8 560,185.1 580,198.4 600,211.3 620,223.5 640,234.8 660,244.9 680,253.9 700,261.7 720,268.2" fill="none" stroke="#8b1a1a" stroke-width="2.5" opacity="0.85"/>
+
+    <!-- 8 octave bars aligned with the curve -->
+    <g>
+      <line x1="120" y1="296" x2="120" y2="253.9" stroke="#8b1a1a" stroke-width="3.5"/><circle cx="120" cy="253.9" r="6" fill="#8b1a1a"/>
+      <line x1="200" y1="296" x2="200" y2="211.3" stroke="#8b1a1a" stroke-width="3.5"/><circle cx="200" cy="211.3" r="7" fill="#8b1a1a"/>
+      <line x1="280" y1="296" x2="280" y2="158.9" stroke="#8b1a1a" stroke-width="3.5"/><circle cx="280" cy="158.9" r="8" fill="#8b1a1a"/>
+      <line x1="360" y1="296" x2="360" y2="121.1" stroke="#8b1a1a" stroke-width="3.5"/><circle cx="360" cy="121.1" r="9" fill="#8b1a1a"/>
+      <line x1="440" y1="296" x2="440" y2="121.1" stroke="#8b1a1a" stroke-width="3.5"/><circle cx="440" cy="121.1" r="9" fill="#8b1a1a"/>
+      <line x1="520" y1="296" x2="520" y2="158.9" stroke="#8b1a1a" stroke-width="3.5"/><circle cx="520" cy="158.9" r="8" fill="#8b1a1a"/>
+      <line x1="600" y1="296" x2="600" y2="211.3" stroke="#8b1a1a" stroke-width="3.5"/><circle cx="600" cy="211.3" r="7" fill="#8b1a1a"/>
+      <line x1="680" y1="296" x2="680" y2="253.9" stroke="#8b1a1a" stroke-width="3.5"/><circle cx="680" cy="253.9" r="6" fill="#8b1a1a"/>
+    </g>
+
+    <!-- Frequency ticks + labels below x axis -->
+    <g font-family="Source Sans 3" font-size="19" fill="#3d3020" text-anchor="middle">
+      <line x1="120" y1="296" x2="120" y2="304" stroke="#3d3020"/><text x="120" y="326">55</text>
+      <line x1="200" y1="296" x2="200" y2="304" stroke="#3d3020"/><text x="200" y="326">110</text>
+      <line x1="280" y1="296" x2="280" y2="304" stroke="#3d3020"/><text x="280" y="326">220</text>
+      <line x1="360" y1="296" x2="360" y2="304" stroke="#3d3020"/><text x="360" y="326">440</text>
+      <line x1="440" y1="296" x2="440" y2="304" stroke="#3d3020"/><text x="440" y="326">880</text>
+      <line x1="520" y1="296" x2="520" y2="304" stroke="#3d3020"/><text x="520" y="326">1760</text>
+      <line x1="600" y1="296" x2="600" y2="304" stroke="#3d3020"/><text x="600" y="326">3520</text>
+      <line x1="680" y1="296" x2="680" y2="304" stroke="#3d3020"/><text x="680" y="326">7040</text>
+    </g>
+    <text x="400" y="352" text-anchor="middle" font-family="Source Sans 3" font-size="15" fill="#7a6a55">(単位: Hz、各列は前の2倍)</text>
+
+    <!-- X axis label, centered below -->
+    <text x="400" y="384" text-anchor="middle" font-family="Source Sans 3" font-size="20" fill="#7a6a55">周波数(対数)→</text>
+
+    <!-- Annotation -->
+    <text x="400" y="420" text-anchor="middle" font-family="Source Sans 3" font-size="18" fill="#3d3020">各サイン波は周波数の倍化(オクターブ)ごとに並び、</text>
+    <text x="400" y="446" text-anchor="middle" font-family="Source Sans 3" font-size="18" fill="#3d3020">中央に近いほど大きく、両端ほど小さく鳴らす。</text>
+  </svg>
+  <p class="fig-caption fade">中央(耳が一番敏感な領域)に音量のピークを置き、両端(低すぎ・高すぎ)で音をほぼ消す<ruby>釣鐘<rt>つりがね</rt></ruby>型の重みづけ。これが「シェパードトーン」の本体。</p>
+
+  <p class="body-text fade">ただオクターブで重ねただけでは、錯覚は起きない。鍵は、<strong>それぞれのサイン波の音量を、釣鐘型のカーブで重みづけすること</strong>にある。中央の周波数に近い成分はしっかり鳴らし、極端に低い成分と極端に高い成分はほとんど聞こえない音量にまで落とす。これがシェパードが「<span class="tip" onclick="toggleTip(this)"><strong>ガウス・エンベロープ</strong><span class="tip-box"><strong>Gaussian envelope</strong>中央が高く、両端に向かって裾野が滑らかに下がる釣鐘型の関数。「中央近くは大きく、端は小さく」という重みづけを自然な形で与えられる。統計学の正規分布と同じ形。</span></span>」と呼んだ仕掛けだ。</p>
+
+  <p class="body-text fade">ここから本題。全体の周波数を少しずつ上にずらしていく。8本のサイン波が、それぞれ手をつないだまま右にスライドするように、同じ比率で上がっていく。このとき、<em>一番上の成分は可聴域を超えて消えていき、同時に、一番下に新しい成分がそっと加わる</em>。釣鐘の形は動かない。動いているのは、釣鐘の中を右に抜けていく成分たちだ。</p>
+
+  <svg class="svg-fig fade" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="500" fill="#faf8f3"/>
+    <text x="400" y="34" text-anchor="middle" font-family="Source Sans 3" font-size="20" font-weight="600" fill="#7a6a55" letter-spacing="2">FIG.3 &#8212; 時間とともに成分が上にスライドしていく</text>
+
+    <!-- Band legend-label above plot (outside plot area to avoid overlap with diagonal lines) -->
+    <text x="720" y="76" text-anchor="end" font-family="Source Sans 3" font-size="18" fill="#8b1a1a" font-weight="700">[ 帯の内側 = 釣鐘の中央 = よく聞こえる ]</text>
+
+    <!-- Y axis label outside plot -->
+    <text x="54" y="104" text-anchor="end" font-family="Source Sans 3" font-size="18" fill="#7a6a55">周波数</text>
+    <text x="54" y="126" text-anchor="end" font-family="Source Sans 3" font-size="18" fill="#7a6a55">(対数)</text>
+
+    <!-- Axes -->
+    <line x1="100" y1="350" x2="735" y2="350" stroke="#3d3020" stroke-width="1.2"/>
+    <line x1="100" y1="350" x2="100" y2="92" stroke="#3d3020" stroke-width="1.2"/>
+    <text x="730" y="378" text-anchor="end" font-family="Source Sans 3" font-size="18" fill="#7a6a55">時間 →</text>
+
+    <!-- Octave grid (dashed horizontal) -->
+    <g stroke="#e0d8c8" stroke-width="1" stroke-dasharray="3,4">
+      <line x1="100" y1="96"  x2="720" y2="96"/>
+      <line x1="100" y1="147" x2="720" y2="147"/>
+      <line x1="100" y1="198" x2="720" y2="198"/>
+      <line x1="100" y1="249" x2="720" y2="249"/>
+      <line x1="100" y1="300" x2="720" y2="300"/>
+    </g>
+
+    <!-- Central audible band (Gaussian peak region) -->
+    <rect x="100" y="172" width="620" height="102" fill="#8b1a1a" opacity="0.07"/>
+
+    <!-- Diagonal oscillator tracks: slope -0.45, spanning from bottom (y=350) to top (y=96) -->
+    <g stroke="#8b1a1a" fill="none">
+      <line x1="100" y1="183" x2="298" y2="96"  stroke-width="2" opacity="0.56"/>
+      <line x1="100" y1="246" x2="438" y2="96"  stroke-width="2.3" opacity="0.80"/>
+      <line x1="100" y1="309" x2="578" y2="96"  stroke-width="2.6" opacity="0.96"/>
+      <line x1="140" y1="350" x2="718" y2="96"  stroke-width="2.6" opacity="1.00"/>
+      <line x1="280" y1="350" x2="720" y2="157" stroke-width="2.6" opacity="0.93"/>
+      <line x1="420" y1="350" x2="720" y2="219" stroke-width="2.3" opacity="0.74"/>
+      <line x1="560" y1="350" x2="720" y2="281" stroke-width="2" opacity="0.50"/>
+    </g>
+
+    <!-- Up-arrow icon on a track to show direction -->
+    <g transform="translate(540,160)">
+      <polygon points="0,0 7,12 -7,12" fill="#8b1a1a" transform="rotate(-24)"/>
+    </g>
+
+    <!-- Caption below plot -->
+    <text x="410" y="420" text-anchor="middle" font-family="Source Sans 3" font-size="18" fill="#3d3020">どの線も同じ勾配で右上に進む。上端に達した成分はそのまま消え、</text>
+    <text x="410" y="446" text-anchor="middle" font-family="Source Sans 3" font-size="18" fill="#3d3020">下端から新しい成分が、同じ勾配で入ってくる。</text>
+    <text x="410" y="478" text-anchor="middle" font-family="Source Sans 3" font-size="15" fill="#7a6a55" font-style="italic">線の太さ・濃さ = その瞬間の音量(中央で最大、両端で最小)</text>
+  </svg>
+  <p class="fig-caption fade">各サイン波は個別には「有限の時間だけ鳴って消える」が、入れ替わりが滑らかなので、全体としては終わらない上昇に聞こえる。</p>
+
+  <p class="body-text fade">ここが決定的だ。<em>聴覚は、個々のサイン波の「この一本が終わった」を追うのではなく、釣鐘の中で動いている全体のパターンを「今の音の高さ」として受け取る</em>。そのパターンは、止まることなく上にスライドしている。だから耳は「ずっと上がっている」と報告する。リセットは、脳には届かない。</p>
+
+  <div class="steps-wrap fade">
+    <p class="steps-head">ステップで追う</p>
+    <div class="step-card" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">1</div>
+        <div class="step-tw"><div class="step-title">素材をオクターブで積む</div><div class="step-sub">何本の音を、どこに置くか</div></div>
+        <div class="step-arr">▾</div>
+      </div>
+      <div class="step-body"><p>低い A(55Hz)から、倍々に周波数を上げたサイン波を <strong>7〜8本</strong> 重ねる。どれも同じ「音名 A」で、違うオクターブ。耳はこの束をひとつの「音」として扱う。</p></div>
+    </div>
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">2</div>
+        <div class="step-tw"><div class="step-title">釣鐘で重みをつける</div><div class="step-sub">中央だけ大きく、両端は消す</div></div>
+        <div class="step-arr">▾</div>
+      </div>
+      <div class="step-body"><p>各成分の音量に <em>ガウス・エンベロープ</em>を掛ける。中央の周波数(耳が一番敏感な 500〜2000Hz あたり)に近い成分は大きく、両端の成分はほぼ無音に。ここで「音に始まりも終わりもない」という印象の土台ができる。</p></div>
+    </div>
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">3</div>
+        <div class="step-tw"><div class="step-title">全体を少しずつ上にずらす</div><div class="step-sub">釣鐘は動かさず、成分だけ動かす</div></div>
+        <div class="step-arr">▾</div>
+      </div>
+      <div class="step-body"><p>時間とともに、すべての成分の周波数を同じ比率で上に動かす(対数スケール上で等速に)。釣鐘のカーブ自体は動かさない。上端に達した成分は、そのまま釣鐘の裾で音量が落ちていき、消える。<em>下端から、同時に新しい成分が加わる</em>。</p></div>
+    </div>
+    <div class="step-card" id="sc4">
+      <div class="step-hd" onclick="tog(4)">
+        <div class="step-nb">4</div>
+        <div class="step-tw"><div class="step-title">1オクターブ分で帳尻が合う</div><div class="step-sub">外から見るとループしている</div></div>
+        <div class="step-arr">▾</div>
+      </div>
+      <div class="step-body"><p>各成分が 1 オクターブ分動くと、元の配置に完全に戻る。つまり全体は周期 1 オクターブで<em>ループ</em>している。物理的には閉じた円。しかし局所的に「今、上がっている」という差分だけを耳に見せるので、主観には終わりがない。</p></div>
+    </div>
+  </div>
+
+  <p class="body-text fade">耳は正直だ。入ってきた振動のスペクトルを、ちゃんと成分ごとに分解している(蝸牛がする仕事)。錯覚はその先、<strong>「このスペクトルの代表値はどこか」を決めようとするとき</strong>に起きる。代表値をひとつに絞ろうとすると、ガウスの中央が答えの候補になる。その中央が、わずかに上へ動き続ける。脳はその動きを、そのまま「上がり続けている音」と報告する。</p>
+
+  <!-- § 歴史 -->
+  <div class="sec-rule fade"><span class="sec-label">§ 歴史</span><span class="sec-line"></span></div>
+  <h2 class="fade">錯覚を追い続けた100年</h2>
+
+  <p class="body-text fade">具体的な音楽・映画・ゲームでの使用例は <strong>このあとのカタログ</strong> にまとめる。ここでは <em>科学がこの現象を掴んで手放さなかった百年</em> を辿る。芸術家の経験則が先にあり、研究者が名前を付け、別の作曲家がそれを連続化し、さらに半世紀後に情動との関連まで実証される。</p>
+
+  <div class="timeline">
+    <div class="tl-item fade">
+      <span class="tl-dot"></span>
+      <p class="tl-year">1925</p>
+      <p class="tl-title">Alban Berg《Wozzeck》第3幕 第4場 — 前史</p>
+      <p class="tl-desc">ベルリン国立歌劇場で初演された《Wozzeck》。溺死する主人公の周囲に <em>どこまでも沈んでいく</em> 音響が書かれていた。科学が現象に名前を付ける40年前から、作曲家はその構造を経験則として使っていた。</p>
+    </div>
+    <div class="tl-item highlight fade">
+      <span class="tl-dot"></span>
+      <p class="tl-year">1964</p>
+      <p class="tl-title">Shepard『相対音高の判断における円環性』</p>
+      <p class="tl-desc">当時ベル研究所にいた Roger Shepard が、米国音響学会誌(JASA)に論文を発表。ピッチは直線ではなく螺旋(高さ × 音名の二重構造)であり、螺旋に沿って回すだけで「永遠に上がる」音が作れる、と示した。<strong>ここで錯覚が名前を得た</strong>。</p>
+    </div>
+    <div class="tl-item highlight fade">
+      <span class="tl-dot"></span>
+      <p class="tl-year">1969</p>
+      <p class="tl-title">Risset の連続版(Shepard-Risset glissando)</p>
+      <p class="tl-desc">ベル研究所の Jean-Claude Risset が、離散的な音階ではなく、なめらかに滑りつづける<em>連続版</em>をコンピュータ合成で実装。論文《Pitch Control and Pitch Paradoxes Demonstrated with Computer-Synthesized Sounds》として JASA に発表。ここで「終わらないグリッサンド」という新しい音色が生まれた。</p>
+    </div>
+    <div class="tl-item fade">
+      <span class="tl-dot"></span>
+      <p class="tl-year">2016</p>
+      <p class="tl-title">Copelli ら — 情動反応・平衡感覚との関連を実証</p>
+      <p class="tl-desc">《Frontiers in Psychology》誌に、シェパード=リッセ・グリッサンドが聴き手の<em>情動反応や平衡感覚</em>に有意な影響を与えることを実証した論文が掲載される。錯覚は半世紀を経ても、同じようにヒトを揺らしつづけることが確認された。</p>
+    </div>
+  </div>
+
+  <!-- § つまり -->
+  <div class="sec-rule fade"><span class="sec-label">§ つまり</span><span class="sec-line"></span></div>
+  <h2 class="fade">「到達しない」が作る緊張</h2>
+
+  <p class="body-text fade">シェパードトーンが強く使われる場面には、いつも共通点がある。<strong>答えを遅らせたい場面だ</strong>。ホラーの追い詰められる場面、ゲームの終わらない階段、戦争映画の「まだ脱出できない」一時間。音楽的な「解決(解放)」を、構造的に先延ばしできる。だから耳は「もう少し、もう少し」と待たされ続ける。</p>
+
+  <svg class="svg-fig fade" viewBox="0 0 960 620" xmlns="http://www.w3.org/2000/svg">
+    <rect width="960" height="620" fill="#faf8f3"/>
+    <text x="480" y="38" text-anchor="middle" font-family="Source Sans 3" font-size="20" font-weight="600" fill="#7a6a55" letter-spacing="2">FIG.4 &#8212; Dunkirk の3層シェパードトーン</text>
+
+    <!-- === Row 1: beach soldiers — 1 week === -->
+    <text x="170" y="104" text-anchor="end" font-family="Source Sans 3" font-size="22" font-weight="700" fill="#1a1208">海岸の兵士</text>
+    <text x="170" y="128" text-anchor="end" font-family="Source Sans 3" font-size="17" fill="#7a6a55">&#8212; 1週間</text>
+    <rect x="200" y="80" width="580" height="72" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+    <path d="M 200,140 L 316,140 L 316,124 L 432,124 L 432,108 L 548,108 L 548,92 L 664,92 L 664,84 L 780,84" stroke="#8b1a1a" stroke-width="3" fill="none"/>
+    <text x="795" y="92" font-family="Source Sans 3" font-size="16" fill="#7a6a55">高</text>
+    <text x="795" y="150" font-family="Source Sans 3" font-size="16" fill="#7a6a55">低</text>
+
+    <!-- === Row 2: boat crew — 1 day === -->
+    <text x="170" y="254" text-anchor="end" font-family="Source Sans 3" font-size="22" font-weight="700" fill="#1a1208">船上の男</text>
+    <text x="170" y="278" text-anchor="end" font-family="Source Sans 3" font-size="17" fill="#7a6a55">&#8212; 1日</text>
+    <rect x="200" y="230" width="580" height="72" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+    <path d="M 200,288 L 258,288 L 258,274 L 316,274 L 316,262 L 374,262 L 374,250 L 432,250 L 432,264 L 490,264 L 490,252 L 548,252 L 548,240 L 606,240 L 606,254 L 664,254 L 664,240 L 722,240 L 722,248 L 780,240" stroke="#8b1a1a" stroke-width="3" fill="none"/>
+    <text x="795" y="241" font-family="Source Sans 3" font-size="16" fill="#7a6a55">高</text>
+    <text x="795" y="299" font-family="Source Sans 3" font-size="16" fill="#7a6a55">低</text>
+
+    <!-- === Row 3: pilots — 1 hour === -->
+    <text x="170" y="404" text-anchor="end" font-family="Source Sans 3" font-size="22" font-weight="700" fill="#1a1208">空のパイロット</text>
+    <text x="170" y="428" text-anchor="end" font-family="Source Sans 3" font-size="17" fill="#7a6a55">&#8212; 1時間</text>
+    <rect x="200" y="380" width="580" height="72" fill="#f3efe6" stroke="#c8bfaa" stroke-width="1"/>
+    <path d="M 200,440 L 229,440 L 229,428 L 258,428 L 258,416 L 287,416 L 287,428 L 316,428 L 316,416 L 345,416 L 345,404 L 374,404 L 374,416 L 403,416 L 403,404 L 432,404 L 432,416 L 461,416 L 461,404 L 490,404 L 490,416 L 519,416 L 519,404 L 548,404 L 548,416 L 577,416 L 577,404 L 606,404 L 606,416 L 635,416 L 635,404 L 664,404 L 664,416 L 693,416 L 693,404 L 722,404 L 722,396 L 751,396 L 751,388 L 780,388" stroke="#8b1a1a" stroke-width="3" fill="none"/>
+    <text x="795" y="391" font-family="Source Sans 3" font-size="16" fill="#7a6a55">高</text>
+    <text x="795" y="449" font-family="Source Sans 3" font-size="16" fill="#7a6a55">低</text>
+
+    <!-- === Right column: convergence === -->
+    <line x1="780" y1="80" x2="780" y2="452" stroke="#1a1208" stroke-width="1.5" stroke-dasharray="4,5"/>
+    <circle cx="780" cy="84" r="6" fill="#8b1a1a"/>
+    <circle cx="780" cy="240" r="6" fill="#8b1a1a"/>
+    <circle cx="780" cy="388" r="6" fill="#8b1a1a"/>
+    <text x="865" y="256" text-anchor="middle" font-family="Source Sans 3" font-size="18" font-weight="700" fill="#8b1a1a">3層が</text>
+    <text x="865" y="282" text-anchor="middle" font-family="Source Sans 3" font-size="18" font-weight="700" fill="#8b1a1a">同じ頂点に</text>
+    <text x="865" y="308" text-anchor="middle" font-family="Source Sans 3" font-size="18" font-weight="700" fill="#8b1a1a">収束する</text>
+
+    <!-- === x-axis time indicator under row 3 === -->
+    <line x1="200" y1="478" x2="780" y2="478" stroke="#7a6a55" stroke-width="1"/>
+    <polygon points="780,478 770,474 770,482" fill="#7a6a55"/>
+    <text x="200" y="500" text-anchor="start" font-family="Source Sans 3" font-size="16" fill="#7a6a55">映画 開始</text>
+    <text x="780" y="500" text-anchor="end" font-family="Source Sans 3" font-size="16" fill="#7a6a55">クライマックス</text>
+
+    <!-- === caption at bottom === -->
+    <text x="480" y="546" text-anchor="middle" font-family="Source Sans 3" font-size="18" fill="#3d3020">3つのストーリーライン(週・日・時間)が、それぞれ独立した</text>
+    <text x="480" y="570" text-anchor="middle" font-family="Source Sans 3" font-size="18" fill="#3d3020">シェパード音階として別速度で上昇し、最後に一点で交わる。</text>
+    <text x="480" y="600" text-anchor="middle" font-family="Source Sans 3" font-size="15" fill="#7a6a55" font-style="italic">Zimmer スコアの全体設計図(概念図)</text>
+  </svg>
+  <p class="fig-caption fade">映画全体がひとつのシェパード構造になるように、スコアがタイムライン構造そのものを映している。</p>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"It's the idea of eternity and endlessness. The idea of playing a trick on time itself. Nobody had done what we ultimately did, and I kept thinking, halfway through the movie, 'I know why nobody has done it before — because it's sort of impossible.'"</p>
+    <p class="quote-ja">「永遠と、終わりのなさ。時間そのものに仕掛けるトリック、という発想なんだ。誰も我々がやったことをやらなかった。映画の途中で何度も思ったよ、"誰もこれをやらなかった理由が分かった。ほとんど不可能なんだ" と。」</p>
+    <p class="quote-attr">— Hans Zimmer, 《Dunkirk》のシェパードトーン使用について (CBC Radio Q, 2017)</p>
+  </div>
+
+  <p class="body-text fade">この「到達しない」は、音に限らない。スクロールしても下端が来ないフィード。レベルが上がり続ける RPG。数字が増えつづけるダッシュボード。どれも、<strong>差分の方向さえ揃えておけば、終点は隠せる</strong>ことを知っている設計だ。シェパードが1964年に見せたのは、単なる音の錯覚ではなく、「終わらなさを人工的に作る方法」の骨格だったのかもしれない。</p>
+
+  <p class="body-text fade">では、この100年のあいだに、どこでこの錯覚は実際に使われてきたのか。作曲家・映画監督・ゲーム音楽家が独立に、あるいは影響を受けて採用してきた13の具体例を、次に並べる。</p>
+
+  <!-- CULTURE GALLERY (chronological catalog, inside article-main column) -->
+  <div class="culture-gallery fade">
+    <p class="cg-eyebrow">Catalog &#8212; Where you've already heard it</p>
+    <h3 class="cg-title-main">シェパードトーンが<em>使われた</em>作品</h3>
+    <p class="cg-lead">1925年から2018年までの約100年間、研究者・作曲家・映画監督・ゲーム音楽家が、独立にあるいは影響を受けて、同じ錯覚を使ってきた。一次情報で確認できる13作品を古い順に。★印は「そうだったのか」と言われがちな使い方。</p>
+
+    <div class="cg-scale">
+      <span class="cg-scale-year">1925</span>
+      <span class="cg-scale-bar"></span>
+      <span class="cg-scale-year">2018</span>
+      <span class="cg-scale-count">13 works</span>
+    </div>
+
+    <div class="cg-filters" id="cgFilters">
+      <button class="cg-filter active" data-filter="all" type="button">すべて<span class="cg-filter-n">13</span></button>
+      <button class="cg-filter" data-filter="rock" type="button">ロック<span class="cg-filter-n">4</span></button>
+      <button class="cg-filter" data-filter="classical" type="button">現代音楽<span class="cg-filter-n">3</span></button>
+      <button class="cg-filter" data-filter="film" type="button">映画<span class="cg-filter-n">5</span></button>
+      <button class="cg-filter" data-filter="game" type="button">ゲーム<span class="cg-filter-n">1</span></button>
+    </div>
+
+    <div class="cg-stream" id="cgStream">
+
+      <article class="cg-card" data-cat="classical">
+        <div><div class="cg-year">1925</div><div class="cg-year-side">初演</div></div>
+        <div class="cg-body">
+          <div class="cg-meta"><span class="cg-cat">現代音楽</span><span class="cg-surprise">論文より 40年早い</span></div>
+          <h4 class="cg-ttl">《Wozzeck》第3幕 第4場</h4>
+          <p class="cg-creator"><strong>Alban Berg</strong> &#8212; ベルリン国立歌劇場 初演</p>
+          <p class="cg-desc">溺死する主人公の周囲で、<em>どこまでも沈んでいく</em>音響が意図的に書かれていた。シェパードが錯覚を論文化する40年前に、作曲家が経験則として同じ構造を掴んでいた例。</p>
+        </div>
+      </article>
+
+      <article class="cg-card" data-cat="rock">
+        <div><div class="cg-year">1967</div><div class="cg-year-side">曲</div></div>
+        <div class="cg-body">
+          <div class="cg-meta"><span class="cg-cat">ロック</span></div>
+          <h4 class="cg-ttl">《I Am the Walrus》</h4>
+          <p class="cg-creator"><strong>The Beatles</strong> &#8212; アルバム <em>Magical Mystery Tour</em></p>
+          <p class="cg-desc">曲終盤のアウトロで、上昇感のあるストリングスとオーケストラが重ねられる。編曲は<strong>ジョージ・マーティン</strong>。シェパードトーン的な仕掛けをポップスに持ち込んだ、最も早い一般的な例のひとつ。</p>
+        </div>
+      </article>
+
+      <article class="cg-card" data-cat="classical">
+        <div><div class="cg-year">1969</div><div class="cg-year-side">電子音楽</div></div>
+        <div class="cg-body">
+          <div class="cg-meta"><span class="cg-cat">電子音楽</span><span class="cg-surprise">Shepardの同僚による</span></div>
+          <h4 class="cg-ttl">《For Ann (rising)》</h4>
+          <p class="cg-creator"><strong>James Tenney</strong> &#8212; ベル研究所で制作</p>
+          <p class="cg-desc">Shepard 本人と同じベル研究所にいた作曲家の電子音楽作品。12〜15本の正弦波が順にフェードインしながら<em>小六度ずつ低い位置に連なる</em>グリッサンド。シェパード=リッセ連続版の最初期の応用例。</p>
+        </div>
+      </article>
+
+      <article class="cg-card" data-cat="classical">
+        <div><div class="cg-year">1969</div><div class="cg-year-side">電子音楽</div></div>
+        <div class="cg-body">
+          <div class="cg-meta"><span class="cg-cat">電子音楽</span></div>
+          <h4 class="cg-ttl">《Mutations》 /《Little Boy》Computer Suite</h4>
+          <p class="cg-creator"><strong>Jean-Claude Risset</strong> &#8212; ベル研究所</p>
+          <p class="cg-desc">リッセ自身が連続版シェパードトーンを組み込んだ最初の作品群。《Little Boy》では原爆投下を扱う文脈で、<em>どこまでも下降する</em>グリッサンドが象徴的に使われる。</p>
+        </div>
+      </article>
+
+      <article class="cg-card" data-cat="rock">
+        <div><div class="cg-year">1971</div><div class="cg-year-side">曲</div></div>
+        <div class="cg-body">
+          <div class="cg-meta"><span class="cg-cat">ロック</span></div>
+          <h4 class="cg-ttl">《Echoes》</h4>
+          <p class="cg-creator"><strong>Pink Floyd</strong> &#8212; アルバム <em>Meddle</em></p>
+          <p class="cg-desc">23分の大曲の終盤、上昇を繰り返すオルガン音が重ねられる部分にシェパードトーン系の構造が指摘されている。プログレッシブ・ロックの「時間感覚を歪ませる」演出として採用された初期例。</p>
+        </div>
+      </article>
+
+      <article class="cg-card" data-cat="rock">
+        <div><div class="cg-year">1976</div><div class="cg-year-side">アルバム</div></div>
+        <div class="cg-body">
+          <div class="cg-meta"><span class="cg-cat">ロック</span><span class="cg-surprise">ハーモニウムの逆再生で製作</span></div>
+          <h4 class="cg-ttl">《Tie Your Mother Down》 &amp;《Teo Torriatte》</h4>
+          <p class="cg-creator"><strong>Queen</strong> &#8212; アルバム <em>A Day at the Races</em></p>
+          <p class="cg-desc"><strong>ブライアン・メイ</strong>が、ハーモニウムの<em>下降スケールを録音し逆再生</em>することで作った約1分間のシェパードトーン・イントロ。同アルバムの終曲《Teo Torriatte》でもリプライズされ、<em>アルバム全体を「音の円環」として閉じる</em>設計。メイ本人は「never-ending staircase」と呼んだ。</p>
+        </div>
+      </article>
+
+      <article class="cg-card" data-cat="game">
+        <div><div class="cg-year">1996</div><div class="cg-year-side">BGM</div></div>
+        <div class="cg-body">
+          <div class="cg-meta"><span class="cg-cat">ゲーム</span></div>
+          <h4 class="cg-ttl">《Super Mario 64》無限階段</h4>
+          <p class="cg-creator"><strong>任天堂</strong> / 作曲 <strong>近藤浩治</strong></p>
+          <p class="cg-desc">スターを70個集めていないプレイヤーが最終面への階段に立ったときに流れる短いループ。<em>下降しつづける</em>シェパードトーン系の旋律で、「まだ戻らねばならない」感覚をBGMの骨格から支える。ライゲティ《悪魔の階段》とシェパードトーンを併せて参照したと近藤は語っている。</p>
+        </div>
+      </article>
+
+      <article class="cg-card" data-cat="film">
+        <div><div class="cg-year">2006</div><div class="cg-year-side">映画</div></div>
+        <div class="cg-body">
+          <div class="cg-meta"><span class="cg-cat">映画</span><span class="cg-surprise">Nolan 作品での初採用</span></div>
+          <h4 class="cg-ttl">《The Prestige》</h4>
+          <p class="cg-creator">監督 <strong>Christopher Nolan</strong> / 作曲 <strong>David Julyan</strong></p>
+          <p class="cg-desc">多くの観客が《Dunkirk》を「ノーラン初」と記憶しているが、実際に最初にシェパードトーンをスコアへ組み込んだのはこの作品。上昇音がスコア全体に散りばめられ、手品師同士の永遠の競争を音で支える。</p>
+        </div>
+      </article>
+
+      <article class="cg-card" data-cat="film">
+        <div><div class="cg-year">2008</div><div class="cg-year-side">映画</div></div>
+        <div class="cg-body">
+          <div class="cg-meta"><span class="cg-cat">映画</span><span class="cg-surprise">音楽ではなくエンジン音に</span></div>
+          <h4 class="cg-ttl">《The Dark Knight》バットポッドの走行音</h4>
+          <p class="cg-creator">監督 Nolan / 作曲 <strong>Hans Zimmer &amp; James Newton Howard</strong></p>
+          <p class="cg-desc">スコアではなく、<em>効果音</em>として採用された稀な例。バットマンが乗るバイク「バットポッド」の加速音に、シェパードトーンが仕込まれている。観客には「永遠に加速している」ように聞こえる。</p>
+        </div>
+      </article>
+
+      <article class="cg-card" data-cat="film">
+        <div><div class="cg-year">2014</div><div class="cg-year-side">映画</div></div>
+        <div class="cg-body">
+          <div class="cg-meta"><span class="cg-cat">映画</span></div>
+          <h4 class="cg-ttl">《Interstellar》</h4>
+          <p class="cg-creator">監督 Nolan / 作曲 <strong>Hans Zimmer</strong></p>
+          <p class="cg-desc">宇宙と時間そのものを主題にした映画に再びシェパードトーン的構造が。巨大パイプオルガンを核にしたスコアに上昇音が織り込まれ、ブラックホールで時間が引き延ばされる体感を支える。</p>
+        </div>
+      </article>
+
+      <article class="cg-card" data-cat="film">
+        <div><div class="cg-year">2017</div><div class="cg-year-side">映画</div></div>
+        <div class="cg-body">
+          <div class="cg-meta"><span class="cg-cat">映画</span></div>
+          <h4 class="cg-ttl">《Dunkirk》&#8212; 3層構造の到達点</h4>
+          <p class="cg-creator">監督 Nolan / 作曲 <strong>Hans Zimmer</strong></p>
+          <p class="cg-desc">ノーランが脚本段階からシェパードトーンを織り込み、Zimmer が<em>「海岸の1週間 / 船の1日 / 空の1時間」</em>の3つの時間スケールを、それぞれ独立したシェパード音階として並走させる。映画全体がひとつのシェパード構造に。</p>
+        </div>
+      </article>
+
+      <article class="cg-card" data-cat="film">
+        <div><div class="cg-year">2017</div><div class="cg-year-side">映画</div></div>
+        <div class="cg-body">
+          <div class="cg-meta"><span class="cg-cat">映画</span><span class="cg-surprise">ノーランと独立に同じ選択</span></div>
+          <h4 class="cg-ttl">《Zama》</h4>
+          <p class="cg-creator">監督 <strong>Lucrecia Martel</strong> / 音響 Guido Berenblum</p>
+          <p class="cg-desc">アルゼンチン植民地時代を舞台にした作品。<em>下降型</em>のシェパードトーンを劇中3回、主人公の精神崩壊のシーンで使用。監督は「burbuja(泡)」と呼び、<em>ノーラン&amp;Zimmer と同年に、まったく独立に同じ技法</em>に辿り着いた。</p>
+        </div>
+      </article>
+
+      <article class="cg-card" data-cat="rock">
+        <div><div class="cg-year">2018</div><div class="cg-year-side">タイトル曲</div></div>
+        <div class="cg-body">
+          <div class="cg-meta"><span class="cg-cat">ロック</span><span class="cg-surprise">曲全体が上昇しつづける</span></div>
+          <h4 class="cg-ttl">《Always Ascending》</h4>
+          <p class="cg-creator"><strong>Franz Ferdinand</strong> &#8212; アルバム <em>Always Ascending</em> タイトル曲</p>
+          <p class="cg-desc">曲のほぼ全体を通してシェパードトーンが上昇しつづける、文字通り「常に上昇する」楽曲。アルバム名そのものが宣言。ポップスで構造を骨格まで借りた、もっとも純粋な応用例。</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- § 参考文献 -->
+  <div class="sec-rule fade"><span class="sec-label">§ 参考文献</span><span class="sec-line"></span></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1964</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1121/1.1919362" target="_blank" rel="noopener">Circularity in Judgments of Relative Pitch</a></p>
+      <p class="ref-author">Roger N. Shepard &#8212; <em>Journal of the Acoustical Society of America</em>, 36(12), 2346–2353</p>
+      <p class="ref-desc">シェパードトーンの原著。ピッチ知覚が「高さ」と「音名」の二重構造を持つことを実験で示し、螺旋モデルを導入した。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">学術</span><span class="ref-year">1969</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1121/1.1911794" target="_blank" rel="noopener">Pitch Control and Pitch Paradoxes Demonstrated with Computer-Synthesized Sounds</a></p>
+      <p class="ref-author">Jean-Claude Risset &#8212; <em>Journal of the Acoustical Society of America</em>, 46(1A), 88</p>
+      <p class="ref-desc">離散的なシェパード音階を連続な glissando として合成・発表。以後の電子音楽における定番技法となる。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">学術</span><span class="ref-year">2016</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.3389/fpsyg.2016.00300" target="_blank" rel="noopener">Listening to the Shepard-Risset Glissando: the Relationship between Emotional Response, Disruption of Equilibrium, and Personality</a></p>
+      <p class="ref-author">Mauro Copelli et al. &#8212; <em>Frontiers in Psychology</em>, 7:300</p>
+      <p class="ref-desc">シェパード=リッセの連続版が聴き手に与える情動反応と平衡感覚への影響を実証的に調べた論文。「不安感」との相関に言及。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">インタビュー</span><span class="ref-year">2017</span></div>
+      <p class="ref-title"><a href="https://www.cbc.ca/radio/q/blog/hans-zimmer-explains-the-audio-trickery-that-made-dunkirk-audiences-nauseous-1.4311684" target="_blank" rel="noopener">Hans Zimmer explains the audio trickery that made Dunkirk audiences nauseous</a></p>
+      <p class="ref-author">CBC Radio / Q &#8212; Hans Zimmer 本人へのインタビュー</p>
+      <p class="ref-desc">Zimmer 自身が《Dunkirk》のシェパードトーン使用について語っている。「時間そのものを騙す」という設計意図が詳しい。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論評</span><span class="ref-year">2018</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.3366/sound.2018.0126" target="_blank" rel="noopener">Shepard Tones and Production of Meaning in Recent Films: Martel's Zama and Nolan's Dunkirk</a></p>
+      <p class="ref-author">The New Soundtrack 誌</p>
+      <p class="ref-desc">現代映画におけるシェパードトーンの使用を、ノーラン作品と Lucrecia Martel 作品を例に分析した論考。</p>
+    </div>
+  </div>
+
+  <!-- NOTE -->
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    ロジャー・シェパードの原著論文(JASA, 1964)と、ジャン=クロード・リッセによる連続版の論文(JASA, 1969)を一次情報の柱にしている。記事中のシェパードトーン合成器は、Web Audio API による簡易実装で、論文で示されたガウス型エンベロープ+オクターブ間隔+全体スライドという骨格に従っているが、論文の実装そのものを再現しているわけではない。《Dunkirk》についての記述は Hans Zimmer 本人のインタビュー発言を元にしている。
+    <p class="signature">e. Tamaki</p>
+  </div>
+
+  <!-- TAGS -->
+  <div class="tags fade">
+    <span class="tag">知覚・錯覚</span>
+    <span class="tag">聴覚</span>
+    <span class="tag">Web Audio</span>
+    <span class="tag">音楽</span>
+    <span class="tag">映画</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">12</p>
+      <p class="sidebar-text">音名(pitch class)の数。どれだけ高さが違っても、人は音をこの12種類のいずれかに帰着させる。シェパードの螺旋はこの12を円周として持っていた。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text"><strong>1964</strong>、Shepard が JASA 誌に論文発表。<strong>1969</strong>、Risset が Bell Labs で連続版を実装。錯覚は半世紀にわたり再現実験が続き、情動反応との関係も研究されている。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">映画《Dunkirk》(2017, Hans Zimmer)が3層構造で採用。Super Mario 64 の無限階段 BGM、Pink Floyd《Echoes》、Beatles《I Am the Walrus》など。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— なぜピアノは12音なのか<br>— 音は存在しない<br>— マクガーク効果<br>— チェッカーシャドウ錯視</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">JASA 掲載の原著論文、独立したグループによる再現実験、情動反応との相関についての近年の研究。知覚の基本構造に関わる、よく確立された現象。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// シェパードトーンを読み終えた人との対話</span>
+
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;ずっと再生してたら、実際にはどこまで上がってるの?</span></div>
+      <span class="t-output" id="to1">同じパターンを繰り返しているだけで、<em>平均は動かない</em>。一本のサイン波に注目すると、上端まで来たら音量が落ちてフェードアウトし、同時に下端から新しい成分がフェードインしてくる。全体では、ちょうど1オクターブ分で元の配置に戻る。</span>
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;騙されているのは耳?脳?</span></div>
+      <span class="t-output" id="to2">耳までは、物理的に届いた波の成分を正確に分解している(蝸牛の仕事)。嘘はその先、「<strong>このスペクトルの代表値はどこか</strong>」を決める段階で起きる。差分だけを継ぎ足していくと、代表値は"ずっと上"に動きつづけているように推定される。</span>
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;長く聞くと気持ち悪くなる人がいるって本当?</span></div>
+      <span class="t-output" id="to3">2016年に《Frontiers in Psychology》で、<em>平衡感覚や情動と関連がある</em>と報告されている。音楽的な「解決」が来ないから、耳と脳が無意識に「降りてくるはず」を待ち続ける。ノーランと Zimmer がこれを利用したのが《Dunkirk》。</span>
+      <hr class="t-divider">
+
+      <div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;音以外にも、同じ構造ってある?</span></div>
+      <span class="t-output" id="to4">エッシャーの無限階段、際限のないスクロールフィード、レベル上限のないゲーム。どれも「差分の方向だけ揃えて、終点を隠す」構造。シェパードが示したのは、耳の錯覚であると同時に、<em>"終わらなさ"をつくる一般的な設計</em>でもあった。</span>
+      <hr class="t-divider">
+
+      <div class="t-line t-exit" id="tl5">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# おもしろいね</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/sound_does_not_exist">
+      <p class="related-card-tag">知覚・錯覚</p>
+      <p class="related-card-title">音は存在しない</p>
+      <p class="related-card-desc">空気の振動が存在するだけ。「音」は脳の解釈。シェパードトーンと同じ"音の正体"を扱う。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/twelve_tones">
+      <p class="related-card-tag">知覚・錯覚</p>
+      <p class="related-card-title">なぜピアノは12音なのか</p>
+      <p class="related-card-desc">ピタゴラスの音律から平均律まで、音の「名前」がなぜ12で閉じるのか。シェパードの螺旋が回る軸を作る話。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2026 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト方式)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},
+  {id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2400},{id:'to2',delay:3000},
+  {id:'tl3',delay:4100},{id:'to3',delay:4700},
+  {id:'tl4',delay:5800},{id:'to4',delay:6400},
+  {id:'tl5',delay:7500},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+
+// === CULTURE GALLERY FILTER ===
+(function(){
+  const filters=document.querySelectorAll('#cgFilters .cg-filter');
+  const cards=document.querySelectorAll('#cgStream .cg-card');
+  if(!filters.length||!cards.length)return;
+  filters.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const f=btn.dataset.filter;
+      filters.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      cards.forEach(c=>{
+        if(f==='all'||c.dataset.cat===f){c.classList.remove('hidden');}
+        else{c.classList.add('hidden');}
+      });
+    });
+  });
+})();
+
+// === SHEPARD TONE PLAYER ===
+(function(){
+  const canvas=document.getElementById('spViz');
+  const ctx=canvas.getContext('2d');
+  const playBtn=document.getElementById('spPlay');
+  const volSlider=document.getElementById('spVol');
+  const modeBtns=document.querySelectorAll('.sp-mode-btn');
+
+  // Params
+  const N=8;                      // number of partials
+  const MIN_LOG=Math.log2(55);    // ~5.78 -> 55Hz (low A)
+  const MAX_LOG=Math.log2(7040);  // ~12.78 -> 7040Hz (high A). span = 7 octaves
+  const SPAN=MAX_LOG-MIN_LOG;     // =7
+  const CENTER=(MIN_LOG+MAX_LOG)/2;
+  const SIGMA=1.6;                // octaves
+  const SPEED=0.07;               // octaves per second (about 14s per octave cycle)
+  const SINGLE_SPEED=0.14;        // single mode: sweep 7 oct in ~50s
+
+  let audioCtx=null, masterGain=null;
+  let oscs=[], gains=[];
+  let phase=0;                    // 0..1 across one octave cycle (shepard) OR 0..1 across full span (single)
+  let running=false;
+  let lastT=0;
+  let mode='up';                  // 'up' | 'down' | 'single'
+  let volume=0.22*0.45;           // initial audible gain (matches slider default 22, cap 0.45)
+  let displayW=800, displayH=240; // CSS pixel dimensions, updated by resize
+  const SMOOTH=0.025;             // time constant for setTargetAtTime (seconds) — reduces clicks/pops
+
+  // DPR-aware canvas sizing so text and lines render sharply
+  function resizeCanvas(){
+    const rect=canvas.getBoundingClientRect();
+    const dpr=window.devicePixelRatio||1;
+    displayW=Math.max(400,rect.width|0);
+    displayH=Math.max(200,rect.height|0);
+    canvas.width=Math.round(displayW*dpr);
+    canvas.height=Math.round(displayH*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    drawViz();
+  }
+  window.addEventListener('resize',resizeCanvas);
+
+  function ensureAudio(){
+    if(audioCtx)return;
+    audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+    masterGain=audioCtx.createGain();
+    masterGain.gain.value=volume;
+    masterGain.connect(audioCtx.destination);
+    for(let i=0;i<N;i++){
+      const o=audioCtx.createOscillator();
+      const g=audioCtx.createGain();
+      o.type='sine';
+      o.frequency.value=Math.pow(2,MIN_LOG+i);
+      g.gain.value=0;
+      o.connect(g);
+      g.connect(masterGain);
+      o.start();
+      oscs.push(o);
+      gains.push(g);
+    }
+  }
+
+  function gaussianGain(logF){
+    const d=(logF-CENTER)/SIGMA;
+    return Math.exp(-0.5*d*d);
+  }
+
+  // returns array [{logF, gain, idx}] for current state; used for both audio and viz
+  function computeState(){
+    const arr=[];
+    if(mode==='single'){
+      // Single oscillator sweeps the full 7-octave span, with gain following the Gaussian
+      // so what you SEE (bar height) matches what you HEAR (loudness).
+      let t=phase-Math.floor(phase); // 0..1
+      const logF=MIN_LOG+t*SPAN;
+      arr.push({logF:logF,gain:gaussianGain(logF),idx:0});
+    }else{
+      for(let i=0;i<N;i++){
+        let pos=(i+phase)%N;
+        if(pos<0)pos+=N;
+        const logF=MIN_LOG+pos;
+        const g=gaussianGain(logF);
+        arr.push({logF:logF,gain:g,idx:i});
+      }
+    }
+    return arr;
+  }
+
+  function applyAudio(){
+    if(!audioCtx)return;
+    const now=audioCtx.currentTime;
+    const state=computeState();
+    // which indices are "active" this frame
+    const active=new Set(state.map(s=>s.idx));
+    // fade out oscillators not in the current state (single mode leaves 7 of 8 silent)
+    for(let i=0;i<N;i++){
+      if(!active.has(i)){
+        gains[i].gain.setTargetAtTime(0,now,SMOOTH);
+      }
+    }
+    // update active oscs with smoothed ramps so parameter changes don't click
+    state.forEach(s=>{
+      const o=oscs[s.idx];
+      const g=gains[s.idx];
+      o.frequency.setTargetAtTime(Math.pow(2,s.logF),now,SMOOTH);
+      g.gain.setTargetAtTime(s.gain,now,SMOOTH);
+    });
+    masterGain.gain.setTargetAtTime(volume,now,SMOOTH);
+  }
+
+  function drawViz(){
+    const W=displayW, H=displayH;
+    // bg
+    ctx.fillStyle='#0d0908';
+    ctx.fillRect(0,0,W,H);
+
+    // plot area
+    const padL=56, padR=24, padT=22, padB=46;
+    const x0=padL, x1=W-padR;
+    const y0=H-padB, y1=padT;
+
+    // gaussian envelope curve
+    ctx.strokeStyle='rgba(232,197,106,0.5)';
+    ctx.lineWidth=1.5;
+    ctx.beginPath();
+    for(let i=0;i<=120;i++){
+      const frac=i/120;
+      const logF=MIN_LOG+frac*SPAN;
+      const g=gaussianGain(logF);
+      const x=x0+frac*(x1-x0);
+      const y=y0-g*(y0-y1);
+      if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+
+    // envelope label
+    ctx.fillStyle='rgba(232,197,106,0.75)';
+    ctx.font='12px "Source Sans 3",sans-serif';
+    ctx.textAlign='center';
+    ctx.fillText('ガウス・エンベロープ (聞こえる帯)',(x0+x1)/2,y1-6);
+
+    // axis line
+    ctx.strokeStyle='#3a2a1a';
+    ctx.lineWidth=1;
+    ctx.beginPath();
+    ctx.moveTo(x0,y0);
+    ctx.lineTo(x1,y0);
+    ctx.stroke();
+
+    // y axis
+    ctx.beginPath();
+    ctx.moveTo(x0,y0);
+    ctx.lineTo(x0,y1+4);
+    ctx.stroke();
+    ctx.fillStyle='#7a6a55';
+    ctx.font='11px "Source Sans 3",sans-serif';
+    ctx.textAlign='left';
+    ctx.fillText('振幅',x0-42,y1+14);
+
+    // octave ticks with labels
+    const labels=['55','110','220','440','880','1.7k','3.5k','7k'];
+    ctx.fillStyle='#9a8878';
+    ctx.font='13px "Source Sans 3",sans-serif';
+    ctx.textAlign='center';
+    for(let i=0;i<N;i++){
+      const frac=i/(N-1);
+      const x=x0+frac*(x1-x0);
+      ctx.strokeStyle='#3a2a1a';
+      ctx.beginPath();
+      ctx.moveTo(x,y0);
+      ctx.lineTo(x,y0+5);
+      ctx.stroke();
+      ctx.fillText(labels[i],x,y0+21);
+    }
+    // x axis label
+    ctx.font='11px "Source Sans 3",sans-serif';
+    ctx.fillStyle='#7a6a55';
+    ctx.textAlign='right';
+    ctx.fillText('周波数 (Hz, 対数) →',x1,y0+38);
+
+    // current partials (bars + dots)
+    const state=computeState();
+    state.forEach(s=>{
+      const frac=(s.logF-MIN_LOG)/SPAN;
+      const x=x0+frac*(x1-x0);
+      const y=y0-s.gain*(y0-y1);
+      // vertical bar
+      ctx.strokeStyle='rgba(196,57,42,0.95)';
+      ctx.lineWidth=2.8;
+      ctx.beginPath();
+      ctx.moveTo(x,y0);
+      ctx.lineTo(x,y);
+      ctx.stroke();
+      // dot
+      ctx.fillStyle='#c4392a';
+      ctx.beginPath();
+      ctx.arc(x,y,4+s.gain*3,0,Math.PI*2);
+      ctx.fill();
+    });
+  }
+
+  function loop(t){
+    if(!running)return;
+    if(!lastT)lastT=t;
+    const dt=(t-lastT)/1000;
+    lastT=t;
+    let delta=SPEED*dt;
+    if(mode==='down')delta=-delta;
+    if(mode==='single')delta=SINGLE_SPEED*dt/SPAN; // phase fraction of full span per sec
+    phase+=delta;
+    if(phase>1e6)phase-=1e6;
+    if(phase<-1e6)phase+=1e6;
+    applyAudio();
+    drawViz();
+    requestAnimationFrame(loop);
+  }
+
+  function start(){
+    ensureAudio();
+    if(audioCtx.state==='suspended'){audioCtx.resume();}
+    // cancel any pending fade-outs so previous stop()'s ramps don't linger
+    if(audioCtx){
+      const now=audioCtx.currentTime;
+      for(let i=0;i<N;i++){
+        try{gains[i].gain.cancelScheduledValues(now);gains[i].gain.setValueAtTime(0,now);}catch(e){}
+      }
+      try{masterGain.gain.cancelScheduledValues(now);masterGain.gain.setValueAtTime(0,now);masterGain.gain.linearRampToValueAtTime(volume,now+0.08);}catch(e){}
+    }
+    running=true;
+    lastT=0;
+    playBtn.textContent='■ 停止';
+    playBtn.classList.add('playing');
+    requestAnimationFrame(loop);
+  }
+
+  function stop(){
+    running=false;
+    if(audioCtx){
+      const now=audioCtx.currentTime;
+      // fade out master + individual gains smoothly
+      try{masterGain.gain.cancelScheduledValues(now);masterGain.gain.setTargetAtTime(0,now,0.04);}catch(e){}
+      for(let i=0;i<N;i++){
+        try{gains[i].gain.cancelScheduledValues(now);gains[i].gain.setTargetAtTime(0,now,0.04);}catch(e){}
+      }
+    }
+    playBtn.textContent='▶ 再生';
+    playBtn.classList.remove('playing');
+  }
+
+  playBtn.addEventListener('click',()=>{
+    if(running)stop(); else start();
+  });
+
+  modeBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      modeBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      mode=btn.dataset.mode;
+      // reset phase so single mode starts from bottom cleanly
+      if(mode==='single')phase=0;
+    });
+  });
+
+  volSlider.addEventListener('input',()=>{
+    volume=parseInt(volSlider.value,10)/100*0.45;
+    if(masterGain)masterGain.gain.setTargetAtTime(volume,audioCtx.currentTime,0.03);
+  });
+
+  // Initial size + draw
+  requestAnimationFrame(resizeCanvas);
+})();
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div><!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6b7b629057d241878dda2a4f3169e5cb"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

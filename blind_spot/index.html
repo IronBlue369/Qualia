@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盲点は脳が補完している — Qualia Journal</title>
+<meta name="description" content="視野の中に見えていない穴がある。脳はそれを何食わぬ顔で埋めている。1668年マリオットの発見から現代の予測符号化まで。">
+<link rel="canonical" href="https://qualiajournal.com/blind_spot">
+<meta property="og:title" content="盲点は脳が補完している — Qualia Journal">
+<meta property="og:description" content="視野の中に見えていない穴がある。脳はそれを何食わぬ顔で埋めている。1668年マリオットの発見から現代の予測符号化まで。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/blind_spot">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="盲点は脳が補完している — Qualia Journal">
+<meta name="twitter:description" content="視野の中に見えていない穴がある。脳はそれを何食わぬ顔で埋めている。1668年マリオットの発見から現代の予測符号化まで。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"盲点は脳が補完している","description":"視野の中に見えていない穴がある。脳はそれを何食わぬ顔で埋めている。1668年マリオットの発見から現代の予測符号化まで。","author":{"@type":"Person","name":"e. Tamaki"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/blind_spot","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"知覚・錯覚","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"盲点は脳が補完している"}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* ── SLIDE MENU ── */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* ── SEARCH OVERLAY ── */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* ── MASTHEAD ── */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-stat{border:1px solid #c8bfaa;padding:28px 24px;background:#f3efe6;text-align:center;margin-bottom:20px;}
+.cover-stat-n{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:#8b1a1a;line-height:1;display:block;margin-bottom:8px;}
+.cover-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.6;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST CARD */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META BAR */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* IMAGE */
+.img-fig{margin:32px 0;border:1px solid #c8bfaa;background:#f3efe6;overflow:hidden;}
+.img-fig-area{padding:24px;display:flex;justify-content:center;align-items:center;background:#fff;}
+.img-fig-area img{max-width:100%;height:auto;display:block;}
+.img-caption{padding:10px 18px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.6;}
+.img-caption em{color:#8b1a1a;font-style:normal;font-weight:600;}
+
+/* SVG figure wrapper */
+.svg-fig{max-width:680px;margin:28px auto;display:block;}
+@media(max-width:700px){.svg-fig{max-width:100%;}}
+.svg-fig svg{width:100%;height:auto;display:block;}
+
+/* TWO-STEP FIGURE (image → SVG) */
+.twostep-fig{margin:36px 0;background:#fff;border:1px solid #c8bfaa;overflow:hidden;}
+.twostep-step{padding:28px 24px;}
+.twostep-step:first-child{border-bottom:1px solid #e0d8c8;background:linear-gradient(180deg,#fffaf2 0%,#faf8f3 100%);}
+.twostep-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#8b1a1a;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.twostep-label-num{display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;background:#8b1a1a;color:#fff;border-radius:50%;font-family:'Playfair Display',serif;font-size:13px;font-weight:700;letter-spacing:0;}
+.twostep-img-wrap{display:flex;justify-content:center;align-items:center;overflow:hidden;}
+.twostep-img-wrap img{max-width:100%;height:auto;display:block;transform:scaleX(-1);} /* 横顔画像を反転して、見えている目を「左目」にする */
+.twostep-caption{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#3d3020;line-height:1.85;margin-top:16px;text-align:center;}
+.twostep-caption strong{color:#1a1208;font-weight:600;}
+.twostep-bridge{padding:14px 24px;background:#f3efe6;border-top:1px solid #e0d8c8;border-bottom:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;text-align:center;letter-spacing:.04em;font-style:italic;}
+/* 凡例(左目/右目の対応) */
+.twostep-legend{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #c8bfaa;background:#f3efe6;margin:16px auto 0;max-width:540px;}
+.twostep-legend-item{padding:12px 16px;display:flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;line-height:1.5;}
+.twostep-legend-item:first-child{border-right:1px solid #c8bfaa;}
+.twostep-legend-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;}
+.twostep-legend-icon.open{background:#fff;border:2px solid #8b1a1a;color:#1a1208;}
+.twostep-legend-icon.closed{background:#fff;border:1px solid #c8bfaa;color:#7a6a55;font-size:18px;line-height:1;}
+.twostep-legend-text strong{color:#8b1a1a;font-weight:600;}
+.twostep-legend-text small{display:block;color:#7a6a55;font-size:10px;margin-top:2px;}
+@media(max-width:520px){
+  .twostep-legend{grid-template-columns:1fr;}
+  .twostep-legend-item:first-child{border-right:none;border-bottom:1px solid #c8bfaa;}
+}
+
+/* THREE STEP MECHANISM (HTML version) */
+.three-step{margin:32px 0;background:#fff;border:1px solid #c8bfaa;padding:28px 24px;}
+.three-step-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#1a1208;text-align:center;margin-bottom:6px;}
+.three-step-sub{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;text-align:center;letter-spacing:.1em;text-transform:uppercase;margin-bottom:28px;}
+.three-step-grid{display:grid;grid-template-columns:1fr 32px 1fr 32px 1fr;gap:0;align-items:start;}
+.ts-arrow{align-self:center;font-family:'Source Sans 3',sans-serif;font-size:24px;color:#7a6a55;text-align:center;line-height:1;padding-top:120px;}
+.ts-stage{display:flex;flex-direction:column;align-items:center;}
+.ts-num{font-family:'Playfair Display',serif;font-size:18px;color:#7a6a55;margin-bottom:2px;}
+.ts-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.ts-tagline{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#8b1a1a;font-style:italic;margin-bottom:14px;text-align:center;}
+.ts-tagline.win{color:#1a5a30;}
+.ts-visual{width:100%;height:140px;background:#faf8f3;border:1px solid #e0d8c8;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.ts-visual svg{display:block;}
+.ts-text{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;text-align:center;margin-bottom:8px;}
+.ts-text strong{color:#1a1208;font-weight:600;}
+.ts-conclusion{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#8b1a1a;font-style:italic;text-align:center;margin-top:auto;}
+.ts-conclusion.win{color:#1a5a30;}
+.three-step-footer{margin-top:24px;padding-top:18px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:13px;color:#7a6a55;text-align:center;line-height:1.7;}
+.three-step-footer strong{color:#1a1208;font-weight:600;}
+@media(max-width:720px){
+  .three-step-grid{grid-template-columns:1fr;gap:0;}
+  .ts-arrow{padding-top:0;padding:8px 0;transform:rotate(90deg);}
+  .ts-visual{height:120px;}
+}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON BLOCK */
+.person-block{margin:32px 0;display:grid;grid-template-columns:200px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block-img{background:#ede8dc;display:flex;align-items:stretch;justify-content:center;padding:0;overflow:hidden;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.person-block-body{padding:18px 20px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;}
+.person-block-link{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;letter-spacing:.04em;margin-top:10px;display:inline-block;border-bottom:1px solid rgba(139,26,26,.3);transition:border-color .18s;}
+.person-block-link:hover{border-bottom-color:#8b1a1a;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* EXPERIMENT */
+.xp-wrap{margin:40px 0;background:#fff;border:1px solid #c8bfaa;overflow:hidden;box-shadow:0 2px 12px rgba(26,18,8,0.04);}
+.xp-hd{background:#1a1208;color:#e8e4de;padding:18px 24px;display:flex;align-items:center;gap:16px;border-bottom:1px solid #2a2018;}
+.xp-hd-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#e8c56a;line-height:1;letter-spacing:-.02em;}
+.xp-hd-meta{display:flex;flex-direction:column;gap:2px;}
+.xp-hd-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;}
+.xp-hd-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fff;letter-spacing:.01em;}
+.xp-stage{padding:56px 24px;display:flex;justify-content:center;align-items:center;background:linear-gradient(180deg,#fffaf2 0%,#faf8f3 50%,#f3efe6 100%);border-bottom:1px solid #e0d8c8;min-height:340px;position:relative;}
+.xp-stage::before{content:'';position:absolute;top:12px;left:12px;right:12px;bottom:12px;border:1px dashed #e0d8c8;pointer-events:none;}
+.xp-stage canvas{display:block;background:transparent;max-width:100%;height:auto;position:relative;z-index:1;}
+.xp-controls{padding:18px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;background:#f3efe6;border-bottom:1px solid #e0d8c8;}
+.xp-slider-wrap{display:flex;align-items:center;gap:12px;flex:1;min-width:220px;}
+.xp-slider-wrap label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;}
+.xp-slider{flex:1;accent-color:#8b1a1a;min-width:80px;height:4px;}
+.xp-val{font-family:'JetBrains Mono',monospace;font-size:13px;color:#8b1a1a;font-weight:500;min-width:64px;text-align:right;letter-spacing:.04em;}
+.xp-btn{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;background:#faf8f3;border:1px solid #c8bfaa;color:#3d3020;cursor:pointer;transition:all .18s;}
+.xp-btn:hover{background:#8b1a1a;color:#fff;border-color:#8b1a1a;}
+.xp-btn.on{background:#8b1a1a;color:#fff;border-color:#8b1a1a;}
+.xp-hint{padding:20px 24px 22px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.85;background:#fff;border-left:3px solid #8b1a1a;margin:0;}
+.xp-hint strong{color:#1a1208;font-weight:600;}
+.xp-hint::before{content:'How to';display:block;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+@media(max-width:720px){
+  .xp-stage{padding:36px 12px;min-height:260px;}
+  .xp-stage::before{top:8px;left:8px;right:8px;bottom:8px;}
+}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .cover-right{display:none;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:12px;justify-content:center;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .xp-stage{padding:20px 12px;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.img-caption{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){
+  .toc-back{padding:22px 20px;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">97 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Vision / 知覚と脳</p>
+    <h1>盲点は脳が<em>補完している</em></h1>
+    <p class="cover-deck">視野の中に、何も映らない穴がある。<br>脳はその穴を、何食わぬ顔で埋めている。</p>
+    <div class="cover-byline"><span>知覚・錯覚</span><span>神経科学</span><span>視覚</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1668</span>
+      <p class="est-event">エドム・マリオットが眼の中に「見えない領域」の存在を示し、『視覚に関する新発見』を公表した年。</p>
+      <p class="est-context">同年、英・蘭・瑞の三国同盟が成立。アーヘン条約で帰属戦争終結。山東地震で約4万人が犠牲に。</p>
+    </div>
+    <p class="cover-aside"><strong>難易度:</strong> 2/5 — 片目で凝視できれば誰でも体験できる。<br><strong>体験:</strong> 自分の盲点を画面上で発見する。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>片目を閉じて画面を見ても、特に違和感は感じないかもしれない。両目で見ても片目で見ても、世界は同じように広がっているように思える。当たり前のことだと、普段は疑わない。</p>
+    <p>けれどあなたの右目にも、左目にも、何も映らない場所がある。片目で世界を見ているとき、視野の中にはかならず消えた領域がある。そこに何があるか、あなたは今まで気づいたことがないはずだ。</p>
+    <p>見えている世界は、目から届いた情報そのままではない。脳が欠損を埋め、作り変えたものである。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">低〜中 — 予備知識不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 13 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-23</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-04-23</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">片目で世界を見るとき、視野の一部は物理的に見えていない。脳はその<strong>穴</strong>を、周囲の情報で縫い合わせている。私たちが知覚している世界は、目が届けた映像ではなく、脳が構築した合成である。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ====== 背景 ====== -->
+  <div class="sec-rule fade"><span class="sec-label">01 / Background</span><span class="sec-line"></span></div>
+  <h2 class="fade">見えているはずの世界に、穴がある</h2>
+
+  <p class="body-text fade">両目で見ている世界に、欠損は感じられない。目を開けていれば、視野の隅々まで連続した像が広がっているように思える。片目を閉じて見ても、その印象は変わらない。だが実際には、その視野の中にはかならず <em>見えない領域</em> が存在している。眼球の構造的な帰結として、網膜の一点にだけ、光を感じる細胞が存在しない。それでも私たちは、その穴の存在に気づかない。</p>
+
+  <!-- 視野図 二段構成: ① 上から見たあなた(画像) → ② 視野(SVG) -->
+  <div class="twostep-fig fade">
+
+    <!-- Step 1: 横から見た人物像(視点設定の図) -->
+    <div class="twostep-step">
+      <p class="twostep-label"><span class="twostep-label-num">1</span>視点を一つに絞る — 「片目で見ている人」の図</p>
+      <div class="twostep-img-wrap">
+        <img src="./fig_head_vision.png" alt="人物の横顔。見えている目が赤い枠で強調され、その目から前方に赤い破線の視野円錐が広がる。">
+      </div>
+      <p class="twostep-caption">両目で見ているとき、左右の盲点はちょうど打ち消し合うように位置がずれていて、視野には何の異常も現れない。実は<em>片目で見ても</em>、脳が周囲の景色で穴を勝手に埋めるので、やはり穴は感じられない — シナリオで「両目でも片目でも気づかない」と書いたのはこのため。<br>ただし片目に絞った状態で<strong>特定の凝視を行うと</strong>、補完が追いつかず物体がふっと消える瞬間が訪れる。それを発見するには、<strong style="color:#8b1a1a;">視点を片方の目だけに絞る必要がある</strong>。<br>そこでこの記事では、以降<strong style="color:#8b1a1a;">「片方の目だけで世界を見ている」状態</strong>を想定して話を進める。便宜上それを<em>左目</em>と呼ぶ(右目でも対称的に同じことが起きる)。図の人物が、その状態にあるあなただと思ってほしい。赤い枠の目から前方に広がる円錐が、その左目だけで凝視したときに<strong>視線が届く範囲</strong>。次の図では、この範囲を平面に展開して<em>視野</em>として描く。</p>
+    </div>
+
+    <div class="twostep-bridge">↓ それを「視野(=見える世界の地図)」として展開すると</div>
+
+    <!-- Step 2: 抽象マップ(視野角での位置関係) -->
+    <div class="twostep-step" style="background:#fff;">
+      <p class="twostep-label"><span class="twostep-label-num">2</span>視野の中で、盲点はどこにあるか — 位置関係</p>
+      <div class="twostep-img-wrap" style="background:#faf8f3;min-height:200px;">
+        <img src="./fig_visual_field_diagram.png" alt="円形の視野マップ。中央に中心窩(凝視点)、その左に黒い楕円(盲点)、視野角スケールと耳側・鼻側の矢印。" style="transform:none;max-width:600px;">
+      </div>
+      <p class="twostep-caption">片目で見える視野(=正面を凝視したときに同時に見えている範囲)を、円形の地図として展開した図。中央の<strong style="color:#8b1a1a;">赤い点</strong>がいま凝視している<strong>中心窩</strong>。そこから<strong style="color:#8b1a1a;">耳側(左)に約15度</strong>の位置に、視野角 5°×7° の<strong>盲点</strong>がある。<br>これはあくまで「位置関係の地図」 — 実際の見え方は次の図で示す。</p>
+    </div>
+
+    <div class="twostep-bridge">↓ それを実際の景色に当てはめると</div>
+
+    <!-- Step 3: 風景画像(視覚体験での見え方) -->
+    <div class="twostep-step" style="background:#fff;">
+      <p class="twostep-label"><span class="twostep-label-num">3</span>あなたが実際に見ている世界では — 視覚体験</p>
+      <div class="twostep-img-wrap" style="background:#faf8f3;min-height:200px;">
+        <img src="./fig_visual_field.jpg" alt="片目で見ている部屋の風景。中央の+が凝視点、その左側にあるのが盲点の位置(赤い破線で囲って明示)。" style="transform:none;max-width:680px;">
+      </div>
+      <p class="twostep-caption">同じ位置関係を、あなたが実際に見ている景色に重ねるとこうなる。中央の <strong style="color:#8b1a1a;">+</strong> が凝視点、<strong style="color:#8b1a1a;">赤い破線で囲った領域</strong>が盲点位置。そこに来た物体は、知覚から消える(画像では分かりやすさのため黒く塗ってある)。<br>本当はそこに何があっても、脳が周囲の景色で勝手に埋めるので、<em>「穴」として感じることはない</em>。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">この穴の存在が発見されたのは、意外なほど遅い。人類が眼の構造をそれなりに知っていた時代にも、自分に盲点があると気づいた者は誰もいなかった。見えていないのに、見えていないことが分からない。この事実を最初に実験で示したのは、一人のフランスの<span class="tip" onclick="toggleTip(this)">物理学者<span class="tip-box"><strong>エドム・マリオット</strong>1620–1684。フランス王立科学アカデミーの創設メンバー。気体の圧力と体積の法則(英語圏ではボイルの法則として知られる)、樹液の流れ、視覚の研究で知られる。自然哲学を実験と幾何学で切り開いた世代の一人。</span></span>だった。</p>
+
+  <!-- 人物ブロック: マリオット -->
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="./person_mariotte.png" alt="エドム・マリオットの肖像">
+    </div>
+    <div class="person-block-body">
+      <p class="person-block-name">Edme Mariotte</p>
+      <p class="person-block-role">フランス王立科学アカデミー / 1620 — 1684</p>
+      <p class="person-block-desc">物理学者・自然哲学者・カトリック司祭。気体の法則、植物生理、光学、視覚の実験で知られる。1668年、暗背景に置いた二つの白点を用いて、自分の目の中に「何も映らない領域」があることを示した。彼の書簡はパリからロンドンの王立学会へ送られ、欧州の知識人の間で実演が流行した。なお伝えられる肖像は後世の想像に基づく可能性が高い。</p>
+      <a class="person-block-link" href="https://ja.wikipedia.org/wiki/エドム・マリオット" target="_blank" rel="noopener">Wikipedia →</a>
+    </div>
+  </div>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"Having fastened a small round paper to a black cloth, I placed another of the same shape two feet to the right of the first... Closing the left eye and fixing the right upon the first paper, <span style="color:#8b1a1a;font-weight:600;background:rgba(139,26,26,0.06);padding:0 2px;">at a certain distance the second paper vanished entirely from my sight.</span>"</p>
+    <p class="quote-ja">黒い布に小さな丸い白紙を留め、もう一枚を右に2フィートの場所に置いた。左目を閉じて右目で最初の紙を凝視すると、<span style="color:#8b1a1a;font-weight:600;background:rgba(139,26,26,0.06);padding:0 2px;">ある距離でもう一枚の紙がまったく視界から消えたのである。</span></p>
+    <p class="quote-attr">— Edme Mariotte, 『Nouvelle découverte touchant la veüe』(1668)</p>
+    <p style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:8px;line-height:1.6;">※ マリオットは右目で実験した(右目の盲点 = 視野の右側)。本記事の体験コーナーでは便宜上「左目」で行うが、左右どちらの目でもまったく同じ現象が起きる。</p>
+  </div>
+
+  <p class="body-text fade">マリオットはこの実験をフランス宮廷で実演した。誰かの顔の前に小さな物を置いて片目を閉じさせれば、その物が「消える」瞬間を再現できる。貴族たちは互いの首が見えなくなる実験に熱狂したと伝えられる。英国王チャールズ2世の面前で実演されたという逸話も広まったが、近代の史料研究者は、王立学会への報告は書簡で行われ、王が実演の場に居合わせた形跡はないと指摘している。</p>
+
+  <!-- 進化比較図(Wikimedia Commons) -->
+  <div class="img-fig fade">
+    <div class="img-fig-area">
+      <img src="./fig_eye_evolution.svg" alt="脊椎動物の眼(左)とタコの眼(右)の比較図">
+    </div>
+    <div class="img-caption">
+      <p style="margin-bottom:8px;"><strong style="color:#1a1208;">図中の番号:</strong> <strong>1</strong>=網膜 / <strong>2</strong>=神経線維 / <strong>3</strong>=視神経 / <strong>4</strong>=盲点</p>
+      <p style="margin-bottom:8px;"><strong style="color:#8b1a1a;">左=ヒトを含む脊椎動物 / 右=タコ</strong>。<strong>左(脊椎動物)</strong>では神経線維(2)が光受容体の<em>手前</em>を走り、束ねられて網膜を貫いて視神経(3)になる。その貫通点に光受容体が置けず、<strong>盲点(4)</strong>ができる。<strong>右(タコ)</strong>では神経線維が光受容体の<em>裏側</em>を通り、網膜を貫かずに脳へ抜ける。だから<em>タコには盲点がない</em>。同じ「カメラ眼」でも、配線の通し方が逆向きになっている。</p>
+      <p style="font-size:10px;color:#b0a090;margin:0;"><em>出典:</em> Jerry Crimson Mann, Caerbannog / CC BY-SA 3.0 / Wikimedia Commons。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">盲点は、脊椎動物に固有の現象である。タコやイカの眼では神経線維が網膜の裏側を通るため、視神経が網膜を貫く必要がない。私たちの眼は、<span class="tip" onclick="toggleTip(this)">光受容体<span class="tip-box"><strong>光受容体</strong>網膜にある、光を電気信号に変える感覚細胞。桿体(明暗を検出、約1億個)と錐体(色を検出、約600万個)の2種類がある。</span></span>の手前に配線を走らせるという奇妙な設計を採用してしまった生き物であり、その帰結として出口の一点に盲点を抱え込んでいる。</p>
+
+  <!-- 誤解あるある -->
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解 vs 実際は</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">誤解</p>
+          <p class="mis-text">盲点があっても脳が滑らかに埋めてくれているのだから、視覚には実質的に問題がない。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際</p>
+          <p class="mis-text">補完は「周囲から推論された内容」であり、そこに実際に何があるかを脳は知らない。小さな物体が盲点に入れば、それは事実上見えていない。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">誤解</p>
+          <p class="mis-text">両目で見ているから、盲点は打ち消されて存在しない。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際</p>
+          <p class="mis-text">両目の盲点は視野中の位置が違うので相補的に補われるが、片目で見た瞬間に盲点は必ず現れる。両眼視でも単眼由来の情報は盲点で欠ける。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <p class="mis-label wrong">誤解</p>
+          <p class="mis-text">盲点は視野の端にあるので気にならない。</p>
+        </div>
+        <div class="misconception-a">
+          <p class="mis-label right">実際</p>
+          <p class="mis-text">盲点は中心窩からたった約15度外にある。腕を伸ばして握った拳が約10度なので、拳一つ半分くらい外側 — 「端」ではなく、中心視のすぐ脇にある。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== 体験 ====== -->
+  <div class="sec-rule fade"><span class="sec-label">02 / Experience</span><span class="sec-line"></span></div>
+  <h2 class="fade">自分の盲点を、見つける</h2>
+
+  <p class="body-text fade">これから画面上で、あなたの盲点を直接発見する。必要なのは、片目と、少しの距離の自由だけ。椅子に座ったまま、顔を画面に対して動かせる状態にしてほしい。暗い背景に二つの印を置いたマリオットの実験を、スクリーン上で追体験する。</p>
+
+  <p class="body-text fade"><strong>手順</strong>:<br>① 右目を手で覆う。<br>② 左目だけで、画面の右側の <strong>+</strong> を凝視する。視線を動かさない。<br>③ そのまま顔をゆっくり画面に近づけていく。<br>④ ある距離で、左側の <strong>●</strong> がすっと消える瞬間が来る。<br>消えないときは、顔の位置を少し動かすか、下のスライダーで間隔を調整する。</p>
+
+  <!-- 体験① 盲点発見器 -->
+  <div class="xp-wrap fade">
+    <div class="xp-hd">
+      <div class="xp-hd-num">01</div>
+      <div class="xp-hd-meta">
+        <span class="xp-hd-label">Experiment</span>
+        <span class="xp-hd-title">盲点発見器</span>
+      </div>
+    </div>
+    <div class="xp-stage">
+      <canvas id="bs1" width="640" height="240"></canvas>
+    </div>
+    <div class="xp-controls">
+      <div class="xp-slider-wrap">
+        <label>間隔</label>
+        <input type="range" class="xp-slider" id="bs1Range" min="220" max="560" value="420">
+        <span class="xp-val" id="bs1Val">420 px</span>
+      </div>
+    </div>
+    <p class="xp-hint">右目を閉じ、左目で画面右の <strong>+</strong> を凝視したまま、顔を画面にゆっくり近づけてください。約25〜50cmのどこかで <strong>●</strong> がすっと消えます。見つけたら、そこがあなたの盲点です。間隔がしっくり来ないときは下のスライダーで微調整。</p>
+  </div>
+
+  <p class="body-text fade">●が消えたとき、あなたの視野には何も「欠け」ていないはずだ。黒い四角でも、穴でもなく、紙が連続して広がっているように見える。消えているはずのものの場所に、何かが「ある」。脳がそこを、周囲の色で塗りつぶしている。</p>
+
+  <!-- 体験② 線補完 -->
+  <div class="xp-wrap fade">
+    <div class="xp-hd">
+      <div class="xp-hd-num">02</div>
+      <div class="xp-hd-meta">
+        <span class="xp-hd-label">Experiment</span>
+        <span class="xp-hd-title">線を繋げてしまう脳</span>
+      </div>
+    </div>
+    <div class="xp-stage">
+      <canvas id="bs2" width="640" height="240"></canvas>
+    </div>
+    <div class="xp-controls">
+      <div class="xp-slider-wrap">
+        <label>間隔</label>
+        <input type="range" class="xp-slider" id="bs2Range" min="220" max="560" value="420">
+        <span class="xp-val" id="bs2Val">420 px</span>
+      </div>
+      <button class="xp-btn on" id="bs2ToggleLine">横線あり</button>
+      <button class="xp-btn on" id="bs2ToggleDot">●あり</button>
+    </div>
+    <p class="xp-hint">同じ要領で <strong>+</strong> を凝視する。今度は ● の位置に水平線が貫いている。● が消えた瞬間、<strong>本来なら ● で中断されているはずの線が、ひと続きに見える</strong>はずだ。これが補完の最も分かりやすい現れ方である。トグルボタンで線・●を消して比較してみるとさらに分かりやすい。</p>
+  </div>
+
+  <p class="body-text fade">本来は線の途中に黒い円があるはずなのに、盲点ではその円が無かったことにされ、線だけが連続して見える。脳は「線が続いているはず」と判断して、視覚像を縫い合わせている。あなたが見ているのは、網膜が送った像ではない。</p>
+
+  <!-- 体験③ パターン補完 -->
+  <div class="xp-wrap fade">
+    <div class="xp-hd">
+      <div class="xp-hd-num">03</div>
+      <div class="xp-hd-meta">
+        <span class="xp-hd-label">Experiment</span>
+        <span class="xp-hd-title">模様で埋める脳</span>
+      </div>
+    </div>
+    <div class="xp-stage">
+      <canvas id="bs3" width="640" height="240"></canvas>
+    </div>
+    <div class="xp-controls">
+      <div class="xp-slider-wrap">
+        <label>間隔</label>
+        <input type="range" class="xp-slider" id="bs3Range" min="220" max="560" value="420">
+        <span class="xp-val" id="bs3Val">420 px</span>
+      </div>
+    </div>
+    <p class="xp-hint">格子模様の上に白い円と <strong>+</strong> が置かれている。同じ手順で凝視すると、<strong>白い円の部分が格子模様で埋まって見える</strong>瞬間が来る。脳は「周囲が格子なのだから、そこも格子のはず」と推論して穴を埋める。線・色だけでなく、<em>パターン構造そのもの</em>を補完しているのが体感できる。</p>
+  </div>
+
+  <p class="body-text fade">ここで起きているのは、単なるデータの補間ではない。盲点の周囲が格子なら格子で、均一な色なら色で、脳は「そこにあるはずの情報」を作り出す。実際にそこに何があるかを脳は知らない。<em>知っているのは、周囲から推論された「もっともあり得る内容」だけ</em>である。</p>
+
+  <!-- ====== メカニズム ====== -->
+  <div class="sec-rule fade"><span class="sec-label">03 / Mechanism</span><span class="sec-line"></span></div>
+  <h2 class="fade">脳は、何をしているのか</h2>
+
+  <p class="body-text fade">網膜には光を電気信号に変える光受容体 — 桿体が約1億個、錐体が約600万個 — が、合わせて1億個を超える数で並んでいる。ただし、一点だけ、それが存在しない場所がある。網膜の神経節細胞から伸びた軸索が束になって眼球の外へ抜けていく出口 — <span class="tip" onclick="toggleTip(this)">視神経乳頭<span class="tip-box"><strong>視神経乳頭(optic disc)</strong>網膜上で視神経が眼球を貫いて外へ出る部位。神経線維が集中しているため光受容体が存在できず、結果として視野の盲点に対応する。眼底検査でも明瞭に見える円形の構造。</span></span>である。</p>
+
+  <!-- 眼球解剖図 -->
+  <div class="img-fig fade">
+    <div class="img-fig-area">
+      <img src="./fig_eye_anatomy_ja.svg" alt="ヒトの眼の断面図(日本語ラベル)">
+    </div>
+    <p class="img-caption">ヒトの眼の断面図。視神経が眼球を出る点が視神経乳頭=盲点にあたる。中心窩(fovea)は網膜の中央付近にあり、そこから鼻側に視神経が抜ける。レンズで像が反転するため、視野としては耳側に盲点が現れる。<em>出典:</em> Rhcastilhos, Hatsukari715, Jmarchn / CC BY-SA 3.0 / Wikimedia Commons。</p>
+  </div>
+
+  <p class="body-text fade">視神経乳頭は中心窩から鼻側に約3〜4mm離れた網膜上にあり、レンズで像が反転する関係で、それが視野では<em>耳側</em>に投影される。視野角にすると中心窩から約15度の位置、サイズは<span class="tip" onclick="toggleTip(this)">5°×7°<span class="tip-box"><strong>視野角5°×7°</strong>腕をまっすぐ伸ばして親指を立てたとき、親指の幅が約2°、握り拳の幅が約10°。盲点はその間で、<em>握り拳の半分よりやや大きい</em>くらいの楕円が、常に視野の中に開いていることになる。</span></span>の楕円。脳にとってこの穴は、網膜の表面地図のうち信号が全く届かない領域として存在する。ではその空白を、脳はどう扱うのか。ヒントは光受容体の分布そのものにある。</p>
+
+  <!-- 光受容体分布 -->
+  <div class="img-fig fade">
+    <div class="img-fig-area">
+      <img src="./fig_photoreceptor_distribution.svg" alt="網膜上の光受容体の分布グラフ">
+    </div>
+    <div class="img-caption">
+      <p style="margin-bottom:8px;"><strong style="color:#1a1208;">グラフの読み方:</strong> 横軸 = 中心窩からの角度(Angle from fovea)、縦軸 = 1mm² あたりの光受容体の数。<strong>赤の点線(Rods)= 桿体</strong>、<strong>青の実線(Cones)= 錐体</strong>。<strong>0° = 中心窩(Fovea)</strong>、左側が耳側(temple side)、右側が鼻側(nose side)。</p>
+      <p style="margin-bottom:8px;">中心窩(0°)で錐体が最大になり、周辺へ向かって桿体が増える。そして<strong style="color:#8b1a1a;">右側の15°付近で両者の数が一気にゼロに落ち込む(Blind spot)</strong>。これが盲点の解剖学的実体 — 光を感じる細胞そのものが、その位置だけ存在しない。</p>
+      <p style="font-size:10px;color:#b0a090;margin:0;"><em>出典:</em> Cmglee / CC BY-SA 3.0 / Wikimedia Commons(原資料: Wandell, Foundations of Vision, Stanford)。</p>
+    </div>
+  </div>
+
+  <p class="body-text fade">このグラフは盲点の正体を実データで示している。15度の位置で棒状の凹みが走っていて、光を感じる細胞が一時的にゼロになる。そこに光が届いても、網膜レベルで情報はすでに失われている。では脳はその後どうしているのか。</p>
+
+  <!-- 補完メカニズム(三段階・全体図) -->
+  <div class="three-step fade">
+    <p class="three-step-title">盲点が消える三段階 — 全体図</p>
+    <p class="three-step-sub">Retina → V1 → Consciousness / 一目で把握する</p>
+    <div class="three-step-grid">
+
+      <div class="ts-stage">
+        <div class="ts-num">①</div>
+        <div class="ts-name">網膜</div>
+        <div class="ts-tagline">情報の欠落</div>
+        <div class="ts-visual">
+          <svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#8b1a1a">
+              <circle cx="20" cy="40" r="3.5"/><circle cx="35" cy="40" r="3.5"/><circle cx="50" cy="40" r="3.5"/>
+              <circle cx="150" cy="40" r="3.5"/><circle cx="165" cy="40" r="3.5"/><circle cx="180" cy="40" r="3.5"/>
+              <circle cx="20" cy="75" r="3.5"/><circle cx="35" cy="75" r="3.5"/><circle cx="50" cy="75" r="3.5"/>
+              <circle cx="150" cy="75" r="3.5"/><circle cx="165" cy="75" r="3.5"/><circle cx="180" cy="75" r="3.5"/>
+            </g>
+            <rect x="75" y="32" width="50" height="50" fill="#1a1208" opacity="0.88"/>
+            <text x="100" y="63" font-family="Source Sans 3, sans-serif" font-size="13" fill="#fff" text-anchor="middle" font-weight="600">穴</text>
+          </svg>
+        </div>
+        <p class="ts-text">光受容体が並ぶが、<strong>一点だけ存在しない</strong>。網膜の段階で情報はすでに失われる。</p>
+        <p class="ts-conclusion">→ そこの光は届かない</p>
+      </div>
+
+      <div class="ts-arrow">→</div>
+
+      <div class="ts-stage">
+        <div class="ts-num">②</div>
+        <div class="ts-name">視覚野 V1</div>
+        <div class="ts-tagline">周囲からの推論</div>
+        <div class="ts-visual">
+          <svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="ts-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="#7a6a55"/>
+              </marker>
+            </defs>
+            <circle cx="100" cy="55" r="42" fill="none" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="3,3"/>
+            <circle cx="100" cy="55" r="18" fill="#f3efe6" stroke="#1a1208" stroke-width="1.5"/>
+            <text x="100" y="59" font-family="Source Sans 3, sans-serif" font-size="10" fill="#8b1a1a" text-anchor="middle" font-weight="600">盲点</text>
+            <line x1="55" y1="55" x2="78" y2="55" stroke="#7a6a55" stroke-width="1.3" marker-end="url(#ts-arr)"/>
+            <line x1="145" y1="55" x2="122" y2="55" stroke="#7a6a55" stroke-width="1.3" marker-end="url(#ts-arr)"/>
+            <line x1="100" y1="13" x2="100" y2="34" stroke="#7a6a55" stroke-width="1.3" marker-end="url(#ts-arr)"/>
+            <line x1="100" y1="97" x2="100" y2="76" stroke="#7a6a55" stroke-width="1.3" marker-end="url(#ts-arr)"/>
+          </svg>
+        </div>
+        <p class="ts-text">大きな受容野を持つ細胞が、<strong>穴の周囲の情報で応答</strong>する。線・色・パターンを読み取る。</p>
+        <p class="ts-conclusion">→「あるはずの内容」を推論</p>
+      </div>
+
+      <div class="ts-arrow">→</div>
+
+      <div class="ts-stage">
+        <div class="ts-num">③</div>
+        <div class="ts-name">意識</div>
+        <div class="ts-tagline win">穴が消える</div>
+        <div class="ts-visual">
+          <svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#8b1a1a">
+              <circle cx="20" cy="40" r="3.5"/><circle cx="38" cy="40" r="3.5"/><circle cx="56" cy="40" r="3.5"/>
+              <circle cx="74" cy="40" r="3.5"/><circle cx="92" cy="40" r="3.5"/><circle cx="110" cy="40" r="3.5"/>
+              <circle cx="128" cy="40" r="3.5"/><circle cx="146" cy="40" r="3.5"/><circle cx="164" cy="40" r="3.5"/><circle cx="182" cy="40" r="3.5"/>
+              <circle cx="20" cy="75" r="3.5"/><circle cx="38" cy="75" r="3.5"/><circle cx="56" cy="75" r="3.5"/>
+              <circle cx="74" cy="75" r="3.5"/><circle cx="92" cy="75" r="3.5"/><circle cx="110" cy="75" r="3.5"/>
+              <circle cx="128" cy="75" r="3.5"/><circle cx="146" cy="75" r="3.5"/><circle cx="164" cy="75" r="3.5"/><circle cx="182" cy="75" r="3.5"/>
+            </g>
+          </svg>
+        </div>
+        <p class="ts-text">推論された内容が、<strong>他と区別なく意識にのぼる</strong>。穴があった事実は経験から消える。</p>
+        <p class="ts-conclusion win">→ 視野に「穴」は現れない</p>
+      </div>
+
+    </div>
+    <p class="three-step-footer">情報は確かに失われている。だが、<strong>欠けたという感覚</strong>は、意識まで届かない。</p>
+  </div>
+
+  <p class="body-text fade"><span class="tip" onclick="toggleTip(this)">小松英彦<span class="tip-box"><strong>小松英彦</strong>1953年生まれ、日本の神経生理学者。生理学研究所・総合研究大学院大学教授を歴任。霊長類の視覚野での単一細胞記録によって、色・面・補完の神経機構を研究してきた一人。</span></span>が2006年に Nature Reviews Neuroscience にまとめた総説によれば、霊長類<span class="tip" onclick="toggleTip(this)">視覚野<span class="tip-box"><strong>視覚野(V1)</strong>後頭葉にある一次視覚野。網膜からの信号が視床を経て最初に大脳皮質で処理される場所。受容野と呼ばれる「担当する視野の領域」を持つニューロンが並ぶ、網膜の地図。</span></span>の単一細胞記録からは、盲点対応領域にあるニューロンの一部が、盲点の外側に広がった大きな受容野を持ち、周囲のパターンに応答することが明らかになっている。これは「盲点内に実際に光が届いたから」ではなく、「<em>周囲の情報から、盲点にあるはずのものを推論している</em>」結果だと解釈される。</p>
+
+  <p class="body-text fade" style="font-size:14px;color:#7a6a55;font-style:italic;border-left-color:#c8bfaa;">以下、上の全体図で示した3つの段階を、一つずつタップして詳しく見ていく。</p>
+
+  <!-- Steps: 各段階の詳細解説(アコーディオン) -->
+  <div class="steps-wrap fade">
+    <p class="steps-head">各段階を深掘り</p>
+    <div class="step-card open" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">1</div>
+        <div class="step-tw"><div class="step-title">光が届かない</div><div class="step-sub">網膜レベル — 情報の完全な欠落</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>光が視神経乳頭に落ちても、そこには光受容体がない。網膜の段階でその情報はすでに失われている。ここで重要なのは、<strong>脳が「情報がない」という情報さえ受け取らない</strong>ことである。信号が来ない場所は、網膜の地図の上で「暗い」でも「欠損」でもなく、<em>何でもない</em>場所になる。</p>
+      </div>
+    </div>
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">2</div>
+        <div class="step-tw"><div class="step-title">周囲から推論する</div><div class="step-sub">V1レベル — 近傍情報による内挿</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>V1の盲点対応領域にある一部のニューロンは、盲点の外側まで広がった大きな受容野を持つ。盲点の周囲が格子なら格子で、色ベタなら色ベタで、細胞が応答する。<strong>「最もありそうな内容」が、盲点の中に書き込まれる</strong>。これは線形の内挿ではなく、周囲のパターン構造を拾う文脈依存の推論である。</p>
+      </div>
+    </div>
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">3</div>
+        <div class="step-tw"><div class="step-title">意識には「穴」が現れない</div><div class="step-sub">知覚レベル — 合成された連続性</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>推論された内容は、他の視覚情報と区別されずに意識にのぼる。私たちは「補完された部分」と「見えた部分」を判別できない。結果として、<em>視野の中に穴が存在する</em>という経験は生じない。盲点は、知覚の地図の上から構造的に消されている。「見えなさ」は意識の対象ではない。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== 歴史 ====== -->
+  <div class="sec-rule fade"><span class="sec-label">04 / History</span><span class="sec-line"></span></div>
+  <h2 class="fade">1668年から、現代まで</h2>
+
+  <div class="timeline fade">
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1668</p>
+      <p class="tl-title">マリオット、盲点を発見</p>
+      <p class="tl-desc">『視覚に関する新発見』をパリで公表。暗背景に置いた二点を使う実験を書簡で記述し、ロンドンの王立学会に伝えられる。仏宮廷で実演が流行した。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1670年代</p>
+      <p class="tl-title">マリオット対ペッケ論争</p>
+      <p class="tl-desc">解剖学者ジャン・ペッケ(Jean Pecquet)との間で、光を感じているのは網膜か脈絡膜かという論争が起きる。マリオットは盲点の存在を根拠に脈絡膜説を主張した(現在では誤りとされる)。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">19世紀後半</p>
+      <p class="tl-title">視野計による精密測定</p>
+      <p class="tl-desc">Förster(1869)、Bjerrum(1889)らによる視野計(perimetry)の発達によって、盲点の位置とサイズが視野角の単位で精密に測定されるようになる。耳側約15度、5°×7°という現在の値はこの時期に確立した。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">1991</p>
+      <p class="tl-title">Ramachandran、人工スコトーマ</p>
+      <p class="tl-desc">V. S. ラマチャンドランと R. L. グレゴリーが、人工的な視野欠損(スコトーマ)を作って補完の時間経過を測定する手法を発表。盲点での補完は即時に起きるのに対し、人工スコトーマでは数秒かかることから、両者の神経機構の違いが示唆された。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2006</p>
+      <p class="tl-title">V1ニューロン応答の総説</p>
+      <p class="tl-desc">小松英彦が Nature Reviews Neuroscience に補完現象の総説を発表。霊長類V1の単一細胞記録の蓄積から、盲点対応領域のニューロンが大きな受容野を持ち、周囲情報に応答することを整理した。</p>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <p class="tl-year">現代</p>
+      <p class="tl-title">予測符号化の枠組みへ</p>
+      <p class="tl-desc">補完は「脳が絶えず世界の内容を予測し、誤差を最小化している」という<span class="tip" onclick="toggleTip(this)">予測符号化<span class="tip-box"><strong>予測符号化</strong>脳は世界のモデルから次の入力を予測し、実際の入力との差分(予測誤差)のみを上位へ送るという理論枠組み。Karl Friston らにより拡張された。盲点補完はこの予測生成の最も単純な例と見なされつつある。</span></span>の理論枠組みの中で、特殊な現象ではなく脳の基本動作の一例として再解釈されつつある。</p>
+    </div>
+  </div>
+
+  <!-- ====== つまり ====== -->
+  <div class="sec-rule fade"><span class="sec-label">05 / Coda</span><span class="sec-line"></span></div>
+  <h2 class="fade">私たちは「ない」を見ない</h2>
+
+  <p class="body-text fade">盲点は、奇妙な現象である。視覚の欠陥であるはずのものが、欠陥として感じられない。見えていないことが、見えていないと分からない。それは「見えている」ことと、主観的には区別できない。これは視覚の失敗ではなく、視覚の設計そのものに埋め込まれた特徴だと言える。</p>
+
+  <div class="pull fade">
+    <p class="pull-q">"We're all hallucinating all the time. It's just that when we agree about our hallucinations, we call that <em>reality</em>."</p>
+    <p class="pull-q" style="font-family:'Source Serif 4',serif;font-size:16px;font-style:normal;color:#7a6a55;margin-top:10px;">私たちは皆、常に幻覚を見ている。その幻覚について意見が一致するとき、私たちはそれを<em style="font-style:normal;">現実</em>と呼ぶ。</p>
+    <p class="pull-attr">— Anil Seth, "Being You: A New Science of Consciousness" (2021), および 2017年TED講演 "Your brain hallucinates your conscious reality"</p>
+  </div>
+
+  <p class="body-text fade">私たちは物理的な現実をそのまま受け取っているわけではない。目が届けた断片を、脳が選り分け、空白を埋め、連続した像として組み立てている。盲点は、その編集作業の痕跡の一つに過ぎない。網膜の血管の影、まばたきによる中断、眼球振動による像のぶれ — これらもすべて滑らかに補正され、私たちの視覚経験には現れない。見えているものの多くは、脳が「もっともらしい」と判断して作り上げた合成である。</p>
+
+  <div class="culture-block fade">
+    <p class="culture-label">隣接する主題</p>
+    <div class="culture-item">
+      <p class="culture-title">色は存在しない</p>
+      <p class="culture-desc">波長はあるが、「赤さ」という質感は網膜と脳の産物である。物理世界に色はない。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">チェッカーシャドウ錯視</p>
+      <p class="culture-desc">同じ輝度の二つのマスが、影の文脈によって違う明るさに見える。脳は照明条件を推論してから色を提示する。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">マクガーク効果</p>
+      <p class="culture-desc">耳に届いた音声が、口の動きで書き換わる。視覚と聴覚は独立して届くのではなく、統合された「知覚」として差し出される。</p>
+    </div>
+  </div>
+
+  <!-- ====== 参考文献 ====== -->
+  <div class="sec-rule fade"><span class="sec-label">06 / References</span><span class="sec-line"></span></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Primary Source</span><span class="ref-year">1668</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1098/rstl.1668.0015" target="_blank" rel="noopener">A new discovery touching vision</a></p>
+      <p class="ref-author">Edme Mariotte — Philosophical Transactions of the Royal Society, Vol. 3, No. 35, pp. 668–671 (英訳)。原典: 『Nouvelle découverte touchant la veüe』(Paris, 1668)。</p>
+      <p class="ref-desc">盲点の発見を告げるマリオットの書簡。原典フランス語版の英訳が1668年の Royal Society 機関誌に掲載され、欧州中の知識人に伝わった。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Review</span><span class="ref-year">2006</span></div>
+      <p class="ref-title"><a href="https://www.nature.com/articles/nrn1869" target="_blank" rel="noopener">The neural mechanisms of perceptual filling-in</a></p>
+      <p class="ref-author">Hidehiko Komatsu — Nature Reviews Neuroscience, 7, 220–231.</p>
+      <p class="ref-desc">補完現象の神経機構を霊長類単一細胞記録と心理物理から総説した決定版の一つ。盲点補完の即時性、V1の盲点対応領域の応答特性を整理している。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Research</span><span class="ref-year">1991</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1038/350699a0" target="_blank" rel="noopener">Perceptual filling in of artificially induced scotomas in human vision</a></p>
+      <p class="ref-author">V. S. Ramachandran, R. L. Gregory — Nature, 350, 699–702.</p>
+      <p class="ref-desc">人工的に作った視野欠損における補完の時間経過を測定した先駆的研究。盲点補完との機構的差異を示した。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">Textbook</span><span class="ref-year">1995</span></div>
+      <p class="ref-title">Foundations of Vision</p>
+      <p class="ref-author">Brian A. Wandell — Sinauer Associates.</p>
+      <p class="ref-desc">視覚科学の標準的教科書。網膜の解剖、光受容体の分布、受容野の構造まで体系的に扱う。本記事で使用した光受容体分布グラフの原資料。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">History</span><span class="ref-year">2007</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1016/j.survophthal.2007.04.002" target="_blank" rel="noopener">Edme Mariotte (1620–1684): Pioneer of Neurophysiology</a></p>
+      <p class="ref-author">Wade NJ, Finger S — Survey of Ophthalmology, 52(4), 443–449.</p>
+      <p class="ref-desc">マリオットの盲点発見の史料的検討。王前実演伝説の出所と信憑性を批判的に論じている。</p>
+    </div>
+  </div>
+
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    盲点の存在は、1668年のマリオットの発表以来、視野計による精密測定、神経生理学的記録、脳機能画像によって繰り返し確認されている。視神経乳頭に光受容体がないという解剖学的事実、V1の盲点対応領域の神経応答、補完が即時的に起きるという心理物理学的知見 — これらは独立した複数の方法で裏付けられている。一方、補完に関与する神経回路の詳細や、V1の外側(V2、V4など)でどこまで補完が拡張されるかは、現在も研究が続いている領域である。<br><br>
+    本記事で使用した4点の画像(マリオット肖像、眼の解剖図、光受容体分布グラフ、脊椎動物・タコの眼比較図)は、いずれもWikimedia Commonsの Public Domain もしくは CC BY-SA 3.0 ライセンスに従って利用している。クレジット詳細は各図のキャプションに記載した。
+  </div>
+
+  <div class="signature fade">e. Tamaki</div>
+
+  <div class="tags">
+    <span class="tag">知覚・錯覚</span>
+    <span class="tag">視覚</span>
+    <span class="tag">神経科学</span>
+    <span class="tag">盲点</span>
+    <span class="tag">補完現象</span>
+    <span class="tag">V1</span>
+    <span class="tag">マリオット</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">15°</p>
+      <p class="sidebar-text">中心窩から盲点までの視野角。<strong>中心視から拳一つ半分</strong>(腕を伸ばしたとき)の位置に、見えない領域がある。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1668年、マリオットがフランス王立アカデミーに報告。宮廷で実演され、<em>人の顔が消える</em>実験として驚嘆された。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text">「盲点」は比喩として『認識の欠落』を表す日常語に定着。Johari's Window の「盲点領域」、バイアス研究の「bias blind spot」など、心理学・経営学で広く援用されている。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">
+        — 色は存在しない<br>
+        — チェッカーシャドウ錯視<br>
+        — マクガーク効果<br>
+        — 変化の見落とし
+      </p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">発見から350年の積み重ね。<em>実在は確実</em>、補完機構の詳細は現在も研究中。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue &gt;&gt; Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// 盲点は脳が補完している を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;なんで今まで気づかなかったんだろう</span></div>
+      <span class="t-output" id="to1">気づく手がかりがないから。両目で見てるときは盲点が相互に補われてて、片目で見てるときも脳がすでに埋めてる。<em>「気づかないように作られているもの」の不在</em>を探さないといけない。これは構造的に難しい。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;じゃあ他にも、脳が埋めてる領域ってあるの</span></div>
+      <span class="t-output" id="to2">いくつもある。網膜の血管の影、まばたき、細かい眼球振動、注視点から離れるほど急に落ちる解像度、周辺視での色覚の貧弱さ。<strong>全部補正されてる</strong>。盲点はその中で最もはっきり示せる例に過ぎない。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;見ているものの、どれくらいが本物なんだろう</span></div>
+      <span class="t-output" id="to3">「本物」の定義による。少なくとも<em>目が届けたそのまま</em>ではない。脳が選び、埋め、作り上げている。だからといって幻覚でもない。世界とは対応してる。対応の仕方が複雑なだけ。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# おもしろかった</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/color">
+      <p class="related-card-tag">知覚・錯覚</p>
+      <p class="related-card-title">色は存在しない</p>
+      <p class="related-card-desc">波長はあるが「赤さ」は脳の産物。世界に色はない。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/checker_shadow">
+      <p class="related-card-tag">知覚・錯覚</p>
+      <p class="related-card-title">チェッカーシャドウ錯視</p>
+      <p class="related-card-desc">同じ色なのに、なぜ違って見えるのか。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレスバー
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト方式)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+
+// === BLIND SPOT CANVAS EXPERIMENTS ===
+// 共通: 盲点発見器の描画ロジック
+function makeBlindSpotDemo(canvasId, rangeId, valId, opts){
+  const c = document.getElementById(canvasId);
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  const r = document.getElementById(rangeId);
+  const v = document.getElementById(valId);
+  const W = c.width, H = c.height;
+  const state = { gap: +r.value, showLine: opts.showLine!==undefined?opts.showLine:false, showDot: opts.showDot!==undefined?opts.showDot:true, pattern: opts.pattern||false };
+
+  function draw(){
+    // 透明クリア(CSS背景のグラデを透過)
+    ctx.clearRect(0,0,W,H);
+
+    const cy = H / 2;
+    const cx = (W + state.gap) / 2;   // 右側: +
+    const dx = (W - state.gap) / 2;   // 左側: ●
+
+    // 格子パターン(体験3)
+    if(state.pattern){
+      ctx.strokeStyle = '#3d3020';
+      ctx.lineWidth = 1;
+      const gs = 28;
+      // 中央を基準に格子を描く
+      const oy = (H - Math.floor(H/gs)*gs) / 2;
+      const ox = (W - Math.floor(W/gs)*gs) / 2;
+      for(let x = ox; x <= W; x += gs){
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      }
+      for(let y = oy; y <= H; y += gs){
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      }
+      // 白い円で格子を隠す(●の位置・体験用の穴)
+      ctx.fillStyle = '#faf8f3';
+      ctx.beginPath();
+      ctx.arc(dx, cy, 28, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    // 水平線(体験2)
+    if(state.showLine){
+      ctx.strokeStyle = '#1a1208';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(40, cy);
+      ctx.lineTo(W-40, cy);
+      ctx.stroke();
+    }
+
+    // 左の●
+    if(state.showDot){
+      ctx.fillStyle = '#1a1208';
+      ctx.beginPath();
+      ctx.arc(dx, cy, 16, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    // 右の+
+    ctx.strokeStyle = '#1a1208';
+    ctx.lineWidth = 3.5;
+    const s = 16;
+    ctx.beginPath();
+    ctx.moveTo(cx-s, cy); ctx.lineTo(cx+s, cy);
+    ctx.moveTo(cx, cy-s); ctx.lineTo(cx, cy+s);
+    ctx.stroke();
+
+    v.textContent = state.gap + ' px';
+  }
+
+  r.addEventListener('input', ()=>{ state.gap = +r.value; draw(); });
+
+  draw();
+  return { state, draw };
+}
+
+// 体験①
+makeBlindSpotDemo('bs1','bs1Range','bs1Val',{});
+
+// 体験②: 線補完(トグル付き)
+const bs2 = makeBlindSpotDemo('bs2','bs2Range','bs2Val',{showLine:true,showDot:true});
+if(bs2){
+  const btnL = document.getElementById('bs2ToggleLine');
+  const btnD = document.getElementById('bs2ToggleDot');
+  btnL.addEventListener('click', ()=>{
+    bs2.state.showLine = !bs2.state.showLine;
+    btnL.classList.toggle('on', bs2.state.showLine);
+    btnL.textContent = bs2.state.showLine ? '横線あり' : '横線なし';
+    bs2.draw();
+  });
+  btnD.addEventListener('click', ()=>{
+    bs2.state.showDot = !bs2.state.showDot;
+    btnD.classList.toggle('on', bs2.state.showDot);
+    btnD.textContent = bs2.state.showDot ? '●あり' : '●なし';
+    bs2.draw();
+  });
+}
+
+// 体験③: パターン補完
+makeBlindSpotDemo('bs3','bs3Range','bs3Val',{pattern:true,showDot:false});
+
+// ターミナルアニメーション
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+const tBlock=document.getElementById('terminalBlock');
+if(tBlock)tObs.observe(tBlock);
+
+// === SHARED HEADER JS ===
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div><!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6b7b629057d241878dda2a4f3169e5cb"}'></script><!-- End Cloudflare Web Analytics --></body>
+</html>

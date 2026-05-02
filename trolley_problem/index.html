@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>トロッコ問題 — 5人を救うためにレバーを引くか、それとも突き落とすか — Qualia Journal</title>
+<meta name="description" content="5人を救うためにレバーを引くか、それとも橋から押し落とすか。同じ算数なのに直感が割れる4つの場面を辿り、MITモラル・マシンの4,000万票と自分の線引きを照らす。">
+<link rel="canonical" href="https://qualiajournal.com/trolley_problem">
+<meta property="og:title" content="トロッコ問題 — 5人を救うためにレバーを引くか、それとも突き落とすか — Qualia Journal">
+<meta property="og:description" content="5人を救うためにレバーを引くか、それとも橋から押し落とすか。同じ算数なのに直感が割れる4つの場面を辿り、MITモラル・マシンの4,000万票と自分の線引きを照らす。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qualiajournal.com/trolley_problem">
+<meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
+<meta property="og:site_name" content="Qualia Journal">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="トロッコ問題 — 5人を救うためにレバーを引くか、それとも突き落とすか — Qualia Journal">
+<meta name="twitter:description" content="5人を救うためにレバーを引くか、それとも橋から押し落とすか。同じ算数なのに直感が割れる4つの場面を辿り、MITモラル・マシンの4,000万票と自分の線引きを照らす。">
+<meta name="twitter:image" content="https://qualiajournal.com/ogp/default.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"トロッコ問題 — 5人を救うためにレバーを引くか、それとも突き落とすか","description":"5人を救うためにレバーを引くか、それとも橋から押し落とすか。同じ算数なのに直感が割れる4つの場面を辿り、MITモラル・マシンの4,000万票と自分の線引きを照らす。","author":{"@type":"Person","name":"e. Tamaki"},"publisher":{"@type":"Organization","name":"Qualia Journal","url":"https://qualiajournal.com"},"mainEntityOfPage":"https://qualiajournal.com/trolley_problem","inLanguage":"ja"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Qualia Journal","item":"https://qualiajournal.com/"},{"@type":"ListItem","position":2,"name":"思考実験・哲学","item":"https://qualiajournal.com/#articles"},{"@type":"ListItem","position":3,"name":"トロッコ問題 — 5人を救うためにレバーを引くか、それとも突き落とすか"}]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://qualiajournal.com/articles.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
+a{color:inherit;text-decoration:none;}
+#prog{position:fixed;top:0;left:0;height:2px;background:#8b1a1a;width:0;z-index:250;transition:width .1s;}
+
+/* SLIDE MENU */
+.menu-backdrop{display:none;position:fixed;inset:0;background:rgba(26,18,8,.35);z-index:300;transition:opacity .3s;}
+.menu-backdrop.open{display:block;}
+.menu-panel{position:fixed;top:0;left:-480px;width:460px;max-width:90vw;height:100%;background:#faf8f3;border-right:1px solid #c8bfaa;z-index:400;overflow-y:auto;transition:left .32s cubic-bezier(.22,1,.36,1);padding:0;}
+.menu-panel.open{left:0;}
+.menu-head{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-bottom:3px double #1a1208;position:sticky;top:0;background:#faf8f3;z-index:1;}
+.menu-head-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;letter-spacing:.05em;color:#1a1208;}
+.menu-head-name span{color:#8b1a1a;}
+.menu-close-btn{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#7a6a55;letter-spacing:.08em;padding:4px 8px;transition:color .2s;}
+.menu-close-btn:hover{color:#8b1a1a;}
+.menu-body{padding:28px 28px 48px;}
+.menu-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px;}
+.menu-sec-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #e0d8c8;}
+.menu-sec a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;}
+.menu-sec a:last-child{border-bottom:none;}
+.menu-sec a:hover{color:#8b1a1a;}
+.menu-sec a .msub{display:block;font-size:10px;font-weight:300;color:#b0a090;margin-top:1px;}
+.menu-cats{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px;border-top:1px solid #e0d8c8;padding-top:20px;}
+.menu-cats-lbl{grid-column:1/3;font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;margin-bottom:10px;}
+.menu-cats a{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:400;color:#3d3020;padding:5px 0;border-bottom:1px solid #f0ebe0;transition:color .18s;display:block;}
+.menu-cats a:hover{color:#8b1a1a;}
+
+/* SEARCH */
+.s-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,18,8,.72);}
+.s-overlay.open{display:block;}
+.s-box{max-width:580px;margin:80px auto 0;background:#faf8f3;border-top:3px solid #1a1208;padding:22px;}
+.s-top{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.s-input{flex:1;font-family:'Playfair Display',serif;font-size:18px;color:#1a1208;background:transparent;border:none;border-bottom:1px solid #c8bfaa;padding:5px 0;outline:none;}
+.s-input::placeholder{color:#c8bfaa;font-weight:300;}
+.s-close{background:none;border:none;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;padding:4px 8px;white-space:nowrap;}
+.s-res{max-height:420px;overflow-y:auto;}
+.s-empty{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding:6px 0;}
+.s-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e0d8c8;cursor:pointer;text-decoration:none;}
+.s-item:last-child{border-bottom:none;}
+.s-item:hover .s-tt{color:#8b1a1a;}
+.s-cat{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;white-space:nowrap;padding-top:2px;min-width:72px;text-transform:uppercase;}
+.s-tt{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#1a1208;margin-bottom:2px;transition:color .2s;}
+.s-dk{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.4;}
+
+/* MASTHEAD */
+header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;height:54px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;}
+.mh-left{display:flex;align-items:center;gap:16px;}
+.mh-burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.mh-burger span{display:block;width:20px;height:1.5px;background:#1a1208;transition:background .2s;}
+.mh-burger:hover span{background:#8b1a1a;}
+.mh-center{text-align:center;}
+.mh-name{font-family:'Playfair Display',serif;font-size:11px;font-weight:400;letter-spacing:.28em;color:#7a6a55;text-transform:uppercase;display:block;line-height:1.1;}
+.mh-name:hover{color:#8b1a1a;}
+.mh-right{display:flex;align-items:center;gap:14px;}
+.mh-search{background:none;border:none;cursor:pointer;padding:6px;color:#7a6a55;font-size:15px;line-height:1;transition:color .2s;}
+.mh-search:hover{color:#8b1a1a;}
+
+/* COVER */
+.cover{max-width:900px;margin:0 auto;padding:64px 48px 48px;border-bottom:1px solid #c8bfaa;display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start;}
+.cover-kicker{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.cover-kicker::after{content:'';flex:1;height:1px;background:#8b1a1a;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+.cover h1 em{font-style:italic;color:#8b1a1a;}
+.cover-deck{font-family:'Source Serif 4',serif;font-size:18px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.7;border-left:3px solid #c8bfaa;padding-left:18px;margin-bottom:24px;}
+.cover-byline{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;letter-spacing:.06em;padding-top:16px;border-top:1px solid #e0d8c8;display:flex;gap:20px;}
+.cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
+.cover-aside strong{color:#3d3020;font-weight:600;}
+
+/* EST */
+.est-card{border:1px solid #c8bfaa;padding:22px 20px;background:#f3efe6;margin-bottom:20px;}
+.est-year{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#8b1a1a;line-height:1;letter-spacing:-.02em;display:block;margin-bottom:6px;}
+.est-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a6a55;margin-bottom:10px;}
+.est-event{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;margin-bottom:8px;}
+.est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
+
+/* SCENARIO */
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}
+.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
+.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
+.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+
+/* META */
+.meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:10px;}
+.meta-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#b0a090;text-transform:uppercase;white-space:nowrap;}
+.difficulty-dots{display:flex;gap:4px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0d8c8;}
+.dot.on{background:#8b1a1a;}
+.difficulty-text{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;}
+.read-time{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;display:flex;align-items:center;gap:6px;}
+.meta-sep{width:1px;height:20px;background:#e0d8c8;}
+.meta-dates{display:flex;align-items:center;gap:20px;margin-left:auto;}
+.date-item{display:flex;align-items:center;gap:8px;}
+.date-value{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;font-variant-numeric:tabular-nums;}
+
+/* SUMMARY */
+.summary-box{max-width:900px;margin:0 auto;padding:0 48px;}
+.summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+.summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
+.summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
+.summary-text strong{font-weight:600;}
+
+/* ARTICLE */
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article-main{padding:48px 0;}
+.article-side{padding:48px 0;}
+.sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
+.sec-line{flex:1;height:1px;background:#e0d8c8;margin-left:14px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.25;letter-spacing:-.01em;margin-bottom:20px;}
+.body-text{font-family:'Source Serif 4',serif;font-size:17px;font-weight:300;line-height:1.95;color:#3d3020;margin-bottom:20px;padding-left:16px;border-left:2px solid #e0d8c8;}
+.body-text:last-child{margin-bottom:0;}
+.body-text strong{color:#1a1208;font-weight:600;}
+.body-text em{color:#8b1a1a;font-style:italic;}
+.pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
+.pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
+.pull-q em{color:#8b1a1a;}
+.pull-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
+.art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
+
+/* TOOLTIP */
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
+.tip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#1a1208;color:#e8e4de;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;line-height:1.7;padding:12px 14px;z-index:300;pointer-events:none;}
+.tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1208;}
+.tip-box strong{color:#e8c56a;font-weight:600;}
+.tip.open .tip-box{display:block;}
+
+/* QUOTE */
+.quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
+.quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
+.quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
+.quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
+
+/* PERSON */
+.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
+.person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
+.person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.person-block-wiki{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:400;margin-bottom:8px;}
+.person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
+/* TIMELINE */
+.timeline{margin:32px 0;position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:#c8bfaa;}
+.tl-item{position:relative;margin-bottom:28px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:4px;width:14px;height:14px;border-radius:50%;background:#faf8f3;border:2px solid #c8bfaa;z-index:1;}
+.tl-item.highlight .tl-dot{background:#8b1a1a;border-color:#8b1a1a;}
+.tl-year{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;margin-bottom:4px;}
+.tl-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;}
+.tl-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+
+/* STEPS */
+.steps-wrap{margin:32px 0;}
+.steps-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#7a6a55;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.steps-head::before{content:'';width:20px;height:1px;background:#7a6a55;}
+.steps-head::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.step-card{background:white;border:1px solid #c8bfaa;overflow:hidden;margin-bottom:2px;}
+.step-hd{display:flex;align-items:center;cursor:pointer;user-select:none;}
+.step-nb{width:48px;height:48px;flex-shrink:0;background:#f3efe6;border-right:1px solid #c8bfaa;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#7a6a55;transition:all .2s;}
+.step-card.open .step-nb{background:#8b1a1a;color:white;}
+.step-tw{flex:1;padding:13px 18px;}
+.step-title{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;}
+.step-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;margin-top:2px;}
+.step-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;padding-right:18px;transition:transform .2s;flex-shrink:0;}
+.step-card.open .step-arr{transform:rotate(180deg);color:#8b1a1a;}
+.step-body{display:none;padding:0 20px 20px;border-top:1px solid #e0d8c8;background:#faf8f3;}
+.step-card.open .step-body{display:block;}
+.step-body p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.8;margin:14px 0 10px;}
+.step-body p strong{color:#1a1208;font-weight:600;}
+.step-body p em{color:#8b1a1a;font-style:normal;}
+
+/* CULTURE */
+.culture-block{margin:28px 0;border-left:3px solid #c8bfaa;padding:14px 18px;background:#f3efe6;}
+.culture-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;color:#7a6a55;text-transform:uppercase;margin-bottom:12px;}
+.culture-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e0d8c8;}
+.culture-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.culture-title{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:6px;}
+.culture-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* REFERENCES */
+.ref-list{margin:24px 0;display:flex;flex-direction:column;gap:2px;}
+.ref-item{background:white;border:1px solid #c8bfaa;padding:18px 20px;}
+.ref-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ref-type{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:#f3efe6;border:1px solid #c8bfaa;color:#7a6a55;}
+.ref-year{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.ref-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.ref-title a{color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);}
+.ref-title a:hover{border-bottom-color:#8b1a1a;}
+.ref-author{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-bottom:8px;}
+.ref-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+
+/* NOTE / SIG / TAGS */
+.note-box{margin:24px 0;padding:14px 18px;background:#f3efe6;border-left:3px solid #c8bfaa;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.note-box strong{color:#8b1a1a;font-weight:600;}
+.signature{margin:18px 0 0;text-align:right;font-family:'Playfair Display',serif;font-size:14px;font-style:italic;font-weight:400;color:#8b1a1a;letter-spacing:.03em;}
+.signature::before{content:'— ';color:#b0a090;font-style:normal;}
+.tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid #c8bfaa;color:#b0a090;}
+
+/* SIDEBAR */
+.sidebar-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0d8c8;}
+.sidebar-block:last-child{border-bottom:none;}
+.sidebar-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #1a1208;}
+.sidebar-text{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#7a6a55;line-height:1.75;}
+.sidebar-text strong{color:#3d3020;font-weight:600;}
+.sidebar-text em{color:#8b1a1a;font-style:normal;font-weight:600;}
+.sidebar-check{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:2;list-style:none;padding:0;}
+.sidebar-check li{display:flex;align-items:flex-start;gap:8px;}
+.sidebar-check li::before{content:'☐';flex-shrink:0;font-size:14px;line-height:1.7;}
+
+/* TERMINAL */
+.terminal-label-wrap{max-width:900px;margin:0 auto;padding:0 48px;}
+.terminal-label{display:flex;align-items:center;gap:12px;margin:20px 0;}
+.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.12em;text-transform:uppercase;}
+.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
+.terminal-wrap{max-width:900px;margin:0 auto;padding:0 48px 48px;}
+.terminal{background:#0d0d0d;border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.terminal-bar{background:#1e1e1e;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a2a2a;}
+.terminal-dots{display:flex;gap:6px;}
+.terminal-dot{width:12px;height:12px;border-radius:50%;}
+.terminal-dot.red{background:#ff5f57;}
+.terminal-dot.yellow{background:#febc2e;}
+.terminal-dot.green{background:#28c840;}
+.terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#555;letter-spacing:.06em;}
+.terminal-body{padding:24px 28px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;color:#c8c8c8;}
+.t-sys{color:#444;font-size:11px;margin-bottom:20px;display:block;letter-spacing:.04em;}
+.t-line{margin-bottom:2px;display:flex;flex-wrap:wrap;}
+.t-prompt{color:#4a9e6a;margin-right:8px;flex-shrink:0;user-select:none;}
+.t-input{color:#e8e4de;}
+.t-output{color:#9ab4cc;padding-left:20px;margin-bottom:16px;display:block;line-height:1.85;}
+.t-output em{color:#e8c56a;font-style:normal;}
+.t-output strong{color:#ffffff;font-weight:500;}
+.t-exit .t-prompt{color:#555;}
+.t-exit .t-input{color:#555;}
+.t-exit .t-comment{color:#4a9e6a;}
+.t-divider{border:none;border-top:1px solid #1e1e1e;margin:18px 0;}
+
+/* RELATED */
+.related{max-width:900px;margin:0 auto;padding:40px 48px;border-top:1px solid #c8bfaa;}
+.related-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#b0a090;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.related-label::after{content:'';flex:1;height:1px;background:#e0d8c8;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.related-card{border:1px solid #c8bfaa;padding:20px;background:white;text-decoration:none;transition:all .18s;display:block;}
+.related-card:hover{border-color:#8b1a1a;background:#f3efe6;}
+.related-card-tag{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
+.related-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:8px;}
+.related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
+.related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
+
+/* FOOTER */
+footer{background:#1a1208;padding:52px 32px 44px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.5fr;gap:32px;}
+.f-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:#e8ddd0;letter-spacing:.05em;margin-bottom:6px;}
+.f-name em{color:#c8785a;font-style:normal;}
+.f-copy{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#6a5848;}
+.fcol h3{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.2em;color:#9a8878;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #3a2a1a;}
+.fcol a{display:block;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#c8b8a8;margin-bottom:7px;transition:color .2s;}
+.fcol a:hover{color:#f0e8dc;}
+.f-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
+.fade.on{opacity:1;transform:translateY(0);}
+
+/* SVG FIG */
+.svg-fig{margin:28px auto;max-width:680px;display:block;}
+.svg-fig svg{display:block;width:100%;height:auto;}
+.svg-caption{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;text-align:center;margin-top:6px;max-width:580px;margin-left:auto;margin-right:auto;}
+.scene-fig{position:relative;max-width:1080px;margin:36px auto 4px;}
+.scene-fig img{display:block;width:100%;height:auto;}
+.scene-label{position:absolute;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;letter-spacing:.04em;white-space:nowrap;line-height:1.4;pointer-events:none;background:rgba(250,248,243,.86);padding:4px 9px;border-radius:2px;backdrop-filter:blur(2px);}
+.scene-label .ll-sub{display:block;font-weight:300;color:#5a4a35;font-size:11px;letter-spacing:.02em;margin-top:1px;}
+.scene-label.acc{color:#8b1a1a;}
+.scene-label.tr{transform:translate(-50%,-100%);text-align:center;}
+.scene-label.tl{transform:translate(0,-100%);}
+.scene-label.tc{transform:translate(-50%,0);text-align:center;}
+.scene-label.bl{transform:translate(0,0);}
+.scene-label.br{transform:translate(-100%,0);text-align:right;}
+.scene-label.bc{transform:translate(-50%,0);text-align:center;}
+@media(max-width:720px){.scene-label{font-size:10px;}.scene-label .ll-sub{font-size:9px;}}
+.variant-num{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#8b1a1a;line-height:1;}
+@media(max-width:720px){.variant-num{font-size:17px;}}
+
+/* TROLLEY EXPERIENCE — luxury treatment */
+.tp-exp{margin:40px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;box-shadow:0 4px 24px rgba(26,18,8,.08),0 1px 0 #ede8dc;position:relative;}
+.tp-exp::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,#e8c56a 50%,transparent 100%);opacity:.4;z-index:2;pointer-events:none;}
+.tp-exp-head{background:radial-gradient(ellipse at 30% top,#2a1c10 0%,#1a1208 60%,#0e0805 100%);color:#e8e4de;padding:20px 28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;border-bottom:1px solid #5a4a3a;position:relative;}
+.tp-exp-head::after{content:'';position:absolute;left:28px;right:28px;bottom:0;height:1px;background:linear-gradient(90deg,transparent,#e8c56a 30%,#e8c56a 70%,transparent);opacity:.45;}
+.tp-exp-head-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:#e8c56a;}
+.tp-exp-head-label::before{content:'◆';margin-right:8px;font-size:8px;vertical-align:1px;}
+.tp-exp-head-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;font-style:italic;color:#f3eedd;letter-spacing:.01em;}
+.tp-exp-head-prog{margin-left:auto;display:flex;gap:4px;align-items:center;}
+.tp-prog-dot{width:34px;height:4px;background:#3a2a1a;border:none;border-radius:0;transition:all .35s cubic-bezier(.2,.9,.3,1);}
+.tp-prog-dot.on{background:linear-gradient(90deg,#8b1a1a,#c4392a);box-shadow:0 0 12px rgba(232,197,106,.4);}
+.tp-prog-dot.done{background:#e8c56a;}
+.tp-exp-body{padding:40px 36px 32px;background:linear-gradient(180deg,#faf8f3 0%,#f5f1e8 100%);position:relative;}
+.tp-phase-num{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:.28em;color:#8b1a1a;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.tp-phase-num::before{content:'';width:24px;height:1px;background:#8b1a1a;}
+.tp-phase-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:#1a1208;margin-bottom:22px;line-height:1.25;letter-spacing:-.005em;border-left:3px solid #8b1a1a;padding-left:16px;}
+.tp-phase-scene{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#3d3020;line-height:2;margin-bottom:24px;}
+.tp-phase-scene strong{color:#1a1208;font-weight:600;background:linear-gradient(180deg,transparent 60%,rgba(232,197,106,.25) 60%);padding:0 1px;}
+.tp-phase-svg{margin:18px auto 28px;max-width:620px;border:1px solid #ede8dc;background:#faf8f3;padding:8px;}
+.tp-phase-svg svg,.tp-phase-svg img{display:block;width:100%;height:auto;}
+.tp-choices{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;}
+.tp-btn{font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:500;color:#1a1208;background:white;border:1px solid #c8bfaa;padding:26px 24px;cursor:pointer;text-align:left;line-height:1.55;transition:all .3s cubic-bezier(.2,.9,.3,1);position:relative;overflow:hidden;}
+.tp-btn::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,#c8bfaa,transparent);transition:background .35s;}
+.tp-btn::after{content:'→';position:absolute;right:22px;bottom:24px;font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:#c8bfaa;transition:all .3s;opacity:0;transform:translateX(-6px);}
+.tp-btn:hover{border-color:#8b1a1a;background:linear-gradient(180deg,#fdfbf6 0%,#f8f3e8 100%);transform:translateY(-3px);box-shadow:0 10px 30px rgba(139,26,26,.13),0 2px 6px rgba(26,18,8,.06);}
+.tp-btn:hover::before{background:linear-gradient(90deg,transparent,#8b1a1a,transparent);}
+.tp-btn:hover::after{color:#8b1a1a;opacity:1;transform:translateX(0);}
+.tp-btn-label{display:block;font-family:'Playfair Display',serif;font-size:11px;font-weight:700;letter-spacing:.24em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;}
+.tp-btn-label::before{content:'';display:inline-block;width:14px;height:1px;background:#8b1a1a;margin-right:8px;vertical-align:4px;}
+.tp-feedback{margin-top:26px;padding:24px 26px;background:linear-gradient(135deg,#1a1208 0%,#2a1c10 100%);color:#e8e4de;border-left:3px solid #e8c56a;position:relative;}
+.tp-feedback::before{content:'';position:absolute;top:0;left:3px;right:0;height:1px;background:linear-gradient(90deg,#e8c56a,transparent);opacity:.4;}
+.tp-feedback-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:.28em;color:#e8c56a;text-transform:uppercase;margin-bottom:12px;}
+.tp-feedback-label::before{content:'◆';margin-right:8px;font-size:8px;vertical-align:1px;}
+.tp-feedback-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#f0e8dc;line-height:1.95;}
+.tp-feedback-text strong{color:#f3e8c4;font-weight:500;}
+.tp-feedback-text em{color:#f0d27e;font-style:italic;}
+.tp-next{margin-top:22px;display:flex;justify-content:flex-end;}
+.tp-next-btn{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:.18em;color:#faf8f3;background:#1a1208;border:1px solid #1a1208;padding:14px 30px;cursor:pointer;transition:all .25s;text-transform:uppercase;}
+.tp-next-btn:hover{background:#8b1a1a;border-color:#8b1a1a;letter-spacing:.22em;}
+/* Result panel — luxury treatment */
+.tp-result{padding:0;background:#faf8f3;position:relative;}
+.tp-result-banner{background:radial-gradient(ellipse at 30% top,#2a1c10 0%,#1a1208 60%,#0e0805 100%);color:#f0e8dc;padding:34px 36px 28px;position:relative;border-bottom:1px solid #5a4a3a;}
+.tp-result-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,#e8c56a 50%,transparent 100%);opacity:.4;}
+.tp-result-banner::after{content:'';position:absolute;left:36px;right:36px;bottom:0;height:1px;background:linear-gradient(90deg,transparent,#e8c56a 30%,#e8c56a 70%,transparent);opacity:.45;}
+.tp-result-eyebrow{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.32em;color:#e8c56a;text-transform:uppercase;margin-bottom:14px;}
+.tp-result-eyebrow::before{content:'◆';margin-right:10px;font-size:8px;vertical-align:1px;color:#e8c56a;}
+.tp-result-banner-title{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;color:#f3eedd;letter-spacing:-.01em;line-height:1.15;margin-bottom:18px;}
+.tp-result-banner-title em{color:#e8c56a;font-style:normal;background:linear-gradient(180deg,#f0d27e 0%,#c89a3a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.tp-result-pattern-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+.tp-result-pattern-lbl{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#b0a090;text-transform:uppercase;}
+.tp-result-pattern{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:#e8c56a;letter-spacing:.22em;line-height:1;}
+.tp-result-body{padding:36px 36px 32px;}
+.tp-result-head{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;display:none;}
+.tp-result-type{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#1a1208;margin-bottom:8px;line-height:1.3;border-left:3px solid #8b1a1a;padding-left:14px;}
+.tp-result-type-sub{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;margin-bottom:18px;padding-left:17px;}
+.tp-result-desc{font-family:'Source Serif 4',serif;font-size:15px;font-weight:300;color:#3d3020;line-height:1.9;margin-bottom:22px;}
+.tp-result-desc strong{color:#1a1208;font-weight:600;}
+.tp-result-grid{display:grid;grid-template-columns:1fr;gap:32px;margin:26px 0 8px;padding:26px 0;border-top:1px solid #e0d8c8;border-bottom:1px solid #e0d8c8;}
+.tp-sub-title{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;color:#8b1a1a;text-transform:uppercase;margin-bottom:14px;}
+.tp-radar-wrap{min-width:0;}
+.tp-radar-note{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:10px;text-align:center;}
+.tp-phil-wrap{min-width:0;border-top:1px solid #e0d8c8;padding-top:24px;}
+.tp-phil-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;line-height:1.35;margin-bottom:12px;}
+.tp-phil-desc{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.85;}
+.tp-phil-desc em{font-style:italic;color:#8b1a1a;}
+.tp-cluster-title{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;color:#7a6a55;text-transform:uppercase;margin:30px 0 8px;padding-top:24px;border-top:1px solid #e0d8c8;}
+.tp-cluster-intro{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#5a4a35;line-height:1.85;margin:0 0 18px;}
+.tp-cluster-intro strong{color:#1a1208;font-weight:600;letter-spacing:.02em;}
+.tp-cluster-foot{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;margin-top:12px;line-height:1.7;}
+.tp-cluster-bar{display:grid;grid-template-columns:110px 1fr auto;align-items:center;gap:14px;margin-bottom:10px;font-family:'Source Sans 3',sans-serif;font-size:12px;color:#3d3020;}
+.tp-cluster-name{font-weight:600;color:#1a1208;}
+.tp-cluster-track{height:10px;background:#ede8dc;position:relative;overflow:hidden;}
+.tp-cluster-fill{height:100%;background:#c8bfaa;transition:width .6s ease;}
+.tp-cluster-bar.match .tp-cluster-fill{background:#8b1a1a;}
+.tp-cluster-bar.match .tp-cluster-name{color:#8b1a1a;}
+.tp-cluster-val{font-family:'JetBrains Mono',monospace;font-size:11px;color:#7a6a55;min-width:34px;text-align:right;}
+.tp-final-note{margin-top:30px;padding:24px 26px;background:linear-gradient(135deg,#1a1208 0%,#2a1c10 100%);color:#e8e4de;font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;line-height:1.95;position:relative;border-left:3px solid #e8c56a;}
+.tp-final-note strong{color:#e8c56a;font-weight:600;}
+.tp-final-note em{color:#f3e8c4;font-style:italic;}
+.tp-final-label{display:block;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#e8c56a;text-transform:uppercase;margin-bottom:12px;}
+.tp-reset{margin-top:24px;text-align:center;padding-top:18px;border-top:1px solid #e0d8c8;}
+.tp-reset button{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.18em;color:#7a6a55;background:none;border:1px solid #c8bfaa;cursor:pointer;padding:10px 22px;text-transform:uppercase;transition:all .2s;}
+.tp-reset button:hover{color:#faf8f3;background:#8b1a1a;border-color:#8b1a1a;}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  header.mh{padding:0 20px;}
+  .menu-cols{grid-template-columns:1fr 1fr;}
+  .s-box{margin:40px 16px 0;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px;}
+}
+@media(max-width:720px){
+  .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
+  .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
+  .summary-box,.scenario{padding:0 20px;}
+  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article-side{display:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
+  .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
+  .related{padding:32px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:1fr;}
+  .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
+  .tip-box{left:0;transform:none;width:200px;}
+  .tip-box::after{left:20px;transform:none;}
+  .tp-choices{grid-template-columns:1fr;}
+  .tp-cluster-bar{grid-template-columns:90px 1fr auto;gap:10px;font-size:11px;}
+  .tp-result-grid{gap:22px;}
+  .svg-fig{max-width:100%;}
+}
+@media(max-width:520px){
+  .menu-cols{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.tp-phase-scene,.tp-feedback-text,.tp-result-desc{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}
+.tip-box{display:none!important;}
+.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}
+.tip.open{background:#fdf3d8;}
+.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}
+.tip-toast.show{bottom:16px;}
+.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}
+.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}
+.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}
+.tip-toast-close:hover{color:#e8c56a;}
+.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}
+.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+.f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
+.f-name-link:hover{opacity:.75;}
+.toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
+.toc-back a{display:inline-flex;align-items:center;gap:12px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:500;color:#7a6a55;letter-spacing:.04em;transition:color .2s;}
+.toc-back a:hover{color:#8b1a1a;}
+.toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:860px){.toc-back{padding:22px 20px;}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- SLIDE MENU -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-head">
+    <span class="menu-head-name"><span>Qualia</span> Journal</span>
+    <button class="menu-close-btn" id="menuClose">閉じる ✕</button>
+  </div>
+  <div class="menu-body">
+    <div class="menu-cols">
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">記事を読む</div>
+        <a href="https://qualiajournal.com/toc">順番に読む</a>
+        <a href="https://qualiajournal.com/#articles">記事一覧<span class="msub">97 articles</span></a>
+        <a href="https://qualiajournal.com/timeline/">知の年表</a>
+        <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      </div>
+      <div class="menu-sec">
+        <div class="menu-sec-lbl">このサイトについて</div>
+        <a href="https://qualiajournal.com/about">About</a>
+        <a href="https://qualiajournal.com/contact/">Contact</a>
+      </div>
+    </div>
+    <div class="menu-cats">
+      <div class="menu-cats-lbl">カテゴリから探す</div>
+      <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+      <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+      <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+      <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+      <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+      <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+      <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+      <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+      <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+      <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="s-overlay" id="sOverlay">
+  <div class="s-box">
+    <div class="s-top">
+      <input class="s-input" id="sInput" type="text" placeholder="記事を検索…" autocomplete="off">
+      <button class="s-close" id="sClose">閉じる</button>
+    </div>
+    <div class="s-res" id="sRes"><p class="s-empty">キーワードを入力してください。</p></div>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="mh">
+  <div class="mh-left"><button class="mh-burger" id="burgerBtn" aria-label="メニュー"><span></span><span></span><span></span></button></div>
+  <div class="mh-center"><a href="https://qualiajournal.com/" class="mh-name">Qualia Journal</a></div>
+  <div class="mh-right"><button class="mh-search" id="searchBtn" aria-label="検索"><svg width="17" height="17" viewBox="0 0 17 17" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="11.3" y1="11.3" x2="15.5" y2="15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div>
+</header>
+
+<!-- COVER -->
+<div class="cover fade">
+  <div class="cover-left">
+    <p class="cover-kicker">Thought Experiment / Ethics</p>
+    <h1>レバーを引くか、それとも<em>突き落とす</em>か。</h1>
+    <p class="cover-deck">5人を救うために1人を犠牲にする — 同じ結果なのに、なぜ判断が変わる。哲学が50年戦ってきた問いを、自動運転車が現実の設計課題として突きつけている。</p>
+    <div class="cover-byline"><span>Ethics</span><span>Moral Psychology</span><span>AI</span></div>
+  </div>
+  <div class="cover-right">
+    <div class="est-card">
+      <span class="est-label">Est.</span>
+      <span class="est-year">1967</span>
+      <p class="est-event">フィリッパ・フットが論文「中絶問題と二重結果原則」で原型を提示。本来は中絶の倫理を論じる題材だった。</p>
+      <p class="est-context">同年、英国では中絶法(Abortion Act)が成立。ビートルズ『Sgt. Pepper's』発売、第三次中東戦争、米国でベトナム反戦デモ拡大。</p>
+    </div>
+    <p class="cover-aside">思考実験の代名詞。聞いたことのない人の方が、もしかすると少ない。</p>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="scenario fade">
+  <div class="scenario-inner">
+    <p>通勤電車で、シートが譲られる瞬間を見たことがあるだろう。年配の人が立っている。自分は疲れている。視線が交差する一瞬だけ、頭の中で計算が走る — 自分の疲労と、相手の必要。どちらを優先すべきか、と。</p>
+    <p>私たちは毎日、この小さな天秤を何度も傾けている。多くの場合、決めきれないまま、気まずさで終わる。</p>
+    <p>思考実験の中で、おそらく一番耳にしたことがあるのがこの問いだ。5人を救うためにレバーを引くか — 誰もが一度は考え、そして誰もが、自分がどこで躊躇ったかを覚えている。</p>
+  </div>
+</div>
+
+<!-- META BAR -->
+<div class="meta-bar fade">
+  <div class="meta-item">
+    <span class="meta-label">難易度</span>
+    <div class="difficulty-dots">
+      <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
+      <div class="dot on"></div><div class="dot"></div>
+    </div>
+    <span class="difficulty-text">中上級 — 予備知識は不要</span>
+  </div>
+  <div class="meta-sep"></div>
+  <div class="meta-item">
+    <span class="meta-label">読了時間</span>
+    <span class="read-time">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
+      約 14 分
+    </span>
+  </div>
+  <div class="meta-dates">
+    <div class="date-item">
+      <span class="meta-label">Published</span>
+      <span class="date-value">2026-04-18</span>
+    </div>
+    <div class="date-item">
+      <span class="meta-label">Updated</span>
+      <span class="date-value">2026-05-02</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box fade">
+  <div class="summary-inner">
+    <span class="summary-icon">要点</span>
+    <p class="summary-text">同じ「5人のために1人を犠牲にする」でも、人の判断は<strong>手段に触れたかどうか</strong>で劇的に変わる。4段階の場面であなたの線引きをたどり、<strong><tip class="tip" onclick="toggleTip(this)">MIT<span class="tip-box"><strong>MIT</strong>マサチューセッツ工科大学(Massachusetts Institute of Technology)。米国マサチューセッツ州ケンブリッジにある工学・科学・経済の名門大学。トロッコ問題を自動運転車の倫理に拡張した「Moral Machine」プラットフォームは、2016年にMIT Media Lab の Iyad Rahwan らのチームが公開した。</span></tip>モラル・マシン</strong>が集めた世界4,000万票と照らし合わせる。</p>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="article-main">
+
+  <!-- ============ 背景 ============ -->
+  <div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
+  <h2 class="fade">暴走するトロッコ、そして手元のレバー</h2>
+
+  <p class="body-text fade">1967年、イギリスの哲学者フィリッパ・フットが小さな論文を書いた。本当に論じたかったのは中絶の倫理だった。ところが、その議論の道具として彼女が持ち出した例え話の方が、半世紀にわたって世界を走り続けることになる。話はこんな風に始まる — 暴走したトロッコが、本線の5人に突っ込もうとしている。運転手の手元には、待避線に切り替えるレバーがある。ただし、その先には1人の作業員がいる。どうする?</p>
+
+  <!-- 古典版 -->
+  <figure class="scene-fig fade">
+    <img src="./scene_classical.jpg" alt="古典版トロッコ問題: 暴走するトロッコが分岐点に近づき、本線に5人、待避線に1人がいる"/>
+    <span class="scene-label acc tr" style="top:32%;left:33%;">レバー<span class="ll-sub">引けば下の待避線へ</span></span>
+    <span class="scene-label tr" style="top:14%;left:84%;">作業員 5人<span class="ll-sub">本線・直進ならこちら</span></span>
+    <span class="scene-label br" style="top:78%;left:96%;">作業員 1人<span class="ll-sub">待避線・レバーを引けばこちら</span></span>
+    <p class="svg-caption">古典版(1967)。レバーを引くか、引かないか。多くの人は「引く」を選ぶ。</p>
+  </figure>
+
+  <div class="quote-block fade">
+    <p class="quote-en">"Suppose that a judge or magistrate is faced with rioters demanding that a culprit be found for a certain crime […] — or the driver of a runaway tram which he can only steer from one narrow track on to another; five men are working on one track and one man on the other; anyone on the track he enters is bound to be killed."</p>
+    <p class="quote-ja">判事の前で暴徒たちが「犯人を差し出せ」と迫っているとする […] あるいは、暴走トロッコの運転手が片方の狭い線路からもう片方へしか舵を切れないとする。一方の線路では5人が作業しており、もう一方には1人。どちらに入っても、その線路にいる者は必ず死ぬ。</p>
+    <p class="quote-attr">— Philippa Foot, <em>The Problem of Abortion and the Doctrine of the Double Effect</em> (Oxford Review, 1967)</p>
+  </div>
+
+  <p class="body-text fade">ほとんどの人は、レバーを引く方に傾く。5人が死ぬよりは1人の方がまし、と計算できるからだ。ところが、<tip class="tip" onclick="toggleTip(this)">ジュディス・ジャーヴィス・トムソン<span class="tip-box"><strong>Judith Jarvis Thomson (1929–2020)</strong>MIT教授。道徳哲学・形而上学の大家。1976年の論文で「トロッコ問題」という呼称を初めて用い、1985年のYale Law Journal論文で歩道橋・移植医など一連の拡張版を提示した。</span></tip>が1976年、そして1985年の論文で<em>もう一つの場面</em>を提示したとき、同じ人々が一斉に黙り込んだ — あなたは歩道橋の上にいる。下をトロッコが走ってくる。隣に、大柄な男が柵にもたれている。彼を押し落とせば、その体がトロッコを止め、5人は助かる。</p>
+
+  <!-- 歩道橋版 -->
+  <figure class="scene-fig fade">
+    <img src="./scene_footbridge.jpg" alt="歩道橋版: 歩道橋の上から大柄な男を突き落として暴走トロッコを止めるか"/>
+    <span class="scene-label acc tr" style="top:25%;left:36%;">あなた</span>
+    <span class="scene-label tl" style="top:18%;left:62%;">大柄な男<span class="ll-sub">体重がトロッコを止める</span></span>
+    <span class="scene-label tr" style="top:78%;left:88%;">作業員 5人<span class="ll-sub">線路上で作業中</span></span>
+    <p class="svg-caption">歩道橋版(1985・トムソン)。大柄な男を線路に突き落とせば、その体重がトロッコを止めて5人は助かる。同じ算数のはずが、直感が引っ掛かる。</p>
+  </figure>
+
+  <p class="body-text fade">算盤の上では同じだ。1人と5人を天秤にかける。それなのに、多数の人は「押す」のを拒む。自分の手で突き落とすことの方が、レバーを引くことよりも、何か根本的に違って感じられる。この違和感こそが、思考実験が掘り当てた鉱脈だった。</p>
+
+  <p class="body-text fade">ここで立ち止まって、自分の手元を意識してほしい。レバーを引ける位置と、歩道橋の上で誰かの背中に手を当てている位置 — 物理的な<tip class="tip" onclick="toggleTip(this)">手段<span class="tip-box"><strong>手段と副次効果</strong>二重結果原則において鍵となる区別。他者の死が「目的達成のための道具」として使われる場合(手段)と、「予見はされるが意図されていない副産物」として生じる場合(副次効果)で、倫理的評価が変わるとされる。</span></tip>の違いが、これほど判断を揺さぶる。その事実そのものが、私たちの倫理的直感の構造を照らし出す。</p>
+
+  <!-- 人物ブロック Foot (画像なし1カラム) -->
+  <div class="person-block fade" style="grid-template-columns:1fr;">
+    <div class="person-block-body" style="border-left:none;">
+      <div class="person-block-name">フィリッパ・フット</div>
+      <div class="person-block-role">Philippa Foot (1920–2010)</div>
+      <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%AA%E3%83%83%E3%83%91%E3%83%BB%E3%83%95%E3%83%83%E3%83%88" target="_blank" rel="noopener" style="color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;">Wikipedia</a></p>
+      <p class="person-block-desc">オックスフォード大学ソマービル・カレッジで学び、同校のフェローとして長く教鞭をとった英国の哲学者。祖父はアメリカ大統領グロバー・クリーヴランド。徳倫理学の現代的復興の立役者として知られる。1967年のトロッコの例は「二重結果原則」— 意図した結果と予見された副次効果を区別する古いカトリック道徳神学の議論 — を再検討するための補助装置として提示したもので、彼女自身は「問題」という大仰な名で呼んだことはなかった。</p>
+    </div>
+  </div>
+
+  <!-- 人物ブロック Thomson (画像なし1カラム) -->
+  <div class="person-block fade" style="grid-template-columns:1fr;">
+    <div class="person-block-body" style="border-left:none;">
+      <div class="person-block-name">ジュディス・ジャーヴィス・トムソン</div>
+      <div class="person-block-role">Judith Jarvis Thomson (1929–2020)</div>
+      <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A5%E3%83%87%E3%82%A3%E3%82%B9%E3%83%BB%E3%82%B8%E3%83%A3%E3%83%BC%E3%83%B4%E3%82%A3%E3%82%B9%E3%83%BB%E3%83%88%E3%83%A0%E3%82%BD%E3%83%B3" target="_blank" rel="noopener" style="color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;">Wikipedia</a></p>
+      <p class="person-block-desc">ニューヨーク生まれ、<tip class="tip" onclick="toggleTip(this)">MIT<span class="tip-box"><strong>MIT</strong>マサチューセッツ工科大学(Massachusetts Institute of Technology)。米国マサチューセッツ州ケンブリッジにある工学・科学・経済の名門大学。トロッコ問題を自動運転車の倫理に拡張した「Moral Machine」プラットフォームは、2016年にMIT Media Lab の Iyad Rahwan らのチームが公開した。</span></tip>哲学科の教授として長年活躍した米国の道徳哲学者。1971年の「中絶の擁護」論文(バイオリニストの思考実験)でも有名。フットの例を拡張し、歩道橋の大柄な男、移植医、ループの線路など、一連の変奏を設計して「なぜ我々の直感はここで割れるのか」を徹底的に追い込んだ。彼女自身は後年、「レバーを引くのも実は道徳的に許されないかもしれない」と自説を覆す論文(2008)まで書いた。筋金入りだった。</p>
+    </div>
+  </div>
+
+  <!-- 誤解ブロック -->
+  <div class="misconception fade">
+    <div class="misconception-header"><span class="misconception-hl">よくある誤解 / 実際は</span></div>
+    <div class="misconception-body">
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <div class="mis-label wrong">✕ よくある誤解</div>
+          <p class="mis-text">トロッコ問題は「答え」がある問題。正しい倫理が決まっている。</p>
+        </div>
+        <div class="misconception-a">
+          <div class="mis-label right">✓ 実際は</div>
+          <p class="mis-text">半世紀たっても哲学者の合意はない。問題が価値を持つのは「なぜ我々の直感が揺れるか」を照らすからで、決着を付けるためではない。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <div class="mis-label wrong">✕ よくある誤解</div>
+          <p class="mis-text">フットが「トロッコ問題」と名付けて提起した。</p>
+        </div>
+        <div class="misconception-a">
+          <div class="mis-label right">✓ 実際は</div>
+          <p class="mis-text">フットは中絶の議論のついでに出した例。「trolley problem」の名を与えたのは1976年のトムソン。本来の主題は<tip class="tip" onclick="toggleTip(this)">二重結果原則<span class="tip-box"><strong>二重結果原則 (Doctrine of Double Effect)</strong>中世カトリック神学に由来する道徳原則で、13世紀のトマス・アクィナスにまで遡る。ある行為で悪い結果が生じるとき、その悪が「目的達成のために意図された手段」なのか、それとも「予見はされるが意図されていない副次効果」なのかで、道徳的な許容度が変わるとする考え方。例: 戦場の医師が瀕死の兵士に強い鎮痛剤を投与し、副作用で死期が早まるのは許される(意図は鎮痛、死は副次効果) が、安楽死目的で投与するのは許されない(死が手段)。</span></tip>であって、トロッコ自体ではなかった。</p>
+        </div>
+      </div>
+      <div class="misconception-item">
+        <div class="misconception-q">
+          <div class="mis-label wrong">✕ よくある誤解</div>
+          <p class="mis-text">現実離れした思考実験で、実生活と関係ない。</p>
+        </div>
+        <div class="misconception-a">
+          <div class="mis-label right">✓ 実際は</div>
+          <p class="mis-text">2016年に<tip class="tip" onclick="toggleTip(this)">MIT<span class="tip-box"><strong>MIT</strong>マサチューセッツ工科大学(Massachusetts Institute of Technology)。米国マサチューセッツ州ケンブリッジにある工学・科学・経済の名門大学。トロッコ問題を自動運転車の倫理に拡張した「Moral Machine」プラットフォームは、2016年にMIT Media Lab の Iyad Rahwan らのチームが公開した。</span></tip>が自動運転車の判断を想定した実験プラットフォームを公開。2018年には<em>Nature</em>誌に世界233カ国・4,000万票のデータが載った。思考実験は現実の設計課題になった。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 変奏一覧 (Kubilius CC0) -->
+  <figure class="svg-fig fade" style="margin-top:36px;">
+    <p class="body-text" style="margin:0 auto 18px;max-width:680px;">トロッコ問題は半世紀をかけて<strong>5つの代表的変奏</strong>に枝分かれしてきた。下の図は、それぞれの変奏で<em>暴走するトロッコ(下の四角)</em>と<em>5人(上の丸)</em>の関係に、<em>1人(赤丸)</em>がどう介入するかを記号化したもの。同じ「1対5」のはずが、構造が変わると直感が揺れる。</p>
+    <div style="max-width:680px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-bottom:20px;">
+        <span class="variant-num">①</span>
+        <span class="variant-num">②</span>
+        <span class="variant-num">③</span>
+        <span class="variant-num">④</span>
+        <span class="variant-num">⑤</span>
+      </div>
+      <img src="./fig_trolley_variants.svg" alt="トロッコ問題の5つの主要な変奏 — Switch / Fat Man / Fat Villain / Loop / Man in the Yard" style="display:block;width:100%;height:auto;"/>
+    </div>
+    <div class="variant-legend" style="max-width:680px;margin:22px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;font-family:'Source Sans 3',sans-serif;">
+      <div style="border-top:1px solid #c8bfaa;padding-top:10px;">
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;">① The Switch <span style="font-size:11px;color:#7a6a55;font-weight:400;">— Foot, 1967</span></div>
+        <div style="font-size:13px;font-weight:300;color:#3d3020;line-height:1.7;">原典。レバーを引いて待避線にいる<em>1人</em>に犠牲を移すか。多くは「引く」を選ぶ。</div>
+      </div>
+      <div style="border-top:1px solid #c8bfaa;padding-top:10px;">
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;">② The Fat Man <span style="font-size:11px;color:#7a6a55;font-weight:400;">— Thomson, 1976</span></div>
+        <div style="font-size:13px;font-weight:300;color:#3d3020;line-height:1.7;">歩道橋上の大柄な男を線路に突き落とせばトロッコは止まる。算数は同じだが、多くは「押せない」と感じる。</div>
+      </div>
+      <div style="border-top:1px solid #c8bfaa;padding-top:10px;">
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;">③ The Fat Villain <span style="font-size:11px;color:#7a6a55;font-weight:400;">— Thomson系</span></div>
+        <div style="font-size:13px;font-weight:300;color:#3d3020;line-height:1.7;">突き落とされる「大柄な男」が、実はトロッコを暴走させた当の張本人だった場合、判断は変わるか。多くは「押してよい」に傾く。</div>
+      </div>
+      <div style="border-top:1px solid #c8bfaa;padding-top:10px;">
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;">④ The Loop <span style="font-size:11px;color:#7a6a55;font-weight:400;">— Thomson, 1985 / Costa による分析</span></div>
+        <div style="font-size:13px;font-weight:300;color:#3d3020;line-height:1.7;">レバーで切り替えた待避線がループ状で本線に戻る — つまり<em>1人の体がトロッコを止めなければ</em>5人は助からない。レバーを引きながらも「1人を手段にしている」構造。</div>
+      </div>
+      <div style="border-top:1px solid #c8bfaa;padding-top:10px;grid-column:1/3;">
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#1a1208;margin-bottom:4px;">⑤ The Man in the Yard <span style="font-size:11px;color:#7a6a55;font-weight:400;">— Unger, 1992</span></div>
+        <div style="font-size:13px;font-weight:300;color:#3d3020;line-height:1.7;">線路脇の庭にいる作業員に、わざと脱線させたトロッコを突っ込ませて止める。物理的接触はないが、その人の身体を盾にしている点で「手段化」の問題が再燃する。</div>
+      </div>
+    </div>
+    <p class="svg-caption" style="margin-top:18px;">図: Jonas Kubilius (Wikimedia Commons, CC0) を Qualia パレットに再着色。</p>
+  </figure>
+
+  <!-- ============ 体験 ============ -->
+  <div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
+  <h2 class="fade">4段階の場面。あなたの線はどこで引かれる。</h2>
+
+  <p class="body-text fade">これから4つの場面を順に見てもらう。それぞれで、あなたが何を選ぶかを記録する。どこで迷ったか、どこで即答したか。4問を終えたとき、あなたの判断パターンが一つの文字列として現れる。最後に、<tip class="tip" onclick="toggleTip(this)">MIT<span class="tip-box"><strong>MIT</strong>マサチューセッツ工科大学(Massachusetts Institute of Technology)。米国マサチューセッツ州ケンブリッジにある工学・科学・経済の名門大学。トロッコ問題を自動運転車の倫理に拡張した「Moral Machine」プラットフォームは、2016年にMIT Media Lab の Iyad Rahwan らのチームが公開した。</span></tip>が世界中から集めた4,000万票の中であなたの判断がどの地域クラスターに近いかを照らし合わせる。</p>
+
+  <p class="body-text fade">「正解」はない。これは採点ではなく、<em>自分の倫理的地図</em>を描くための作業だ。各問のあとに、哲学者と一般回答者の典型的な反応を示す。倫理学の主要な立場 — <tip class="tip" onclick="toggleTip(this)">功利主義<span class="tip-box"><strong>功利主義 (Utilitarianism)</strong>「最大多数の最大幸福」を行為の善悪の基準とする倫理学の立場。19世紀英国のジェレミー・ベンサムが体系化、ジョン・スチュアート・ミルが継承・洗練した。トロッコ問題では「数の多いほうを救う」=功利主義的判断として現れる。<em>帰結主義</em>(行為の善悪を結果で測る立場)の代表的な一形態。</span></tip>、<tip class="tip" onclick="toggleTip(this)">義務論<span class="tip-box"><strong>義務論 (Deontology)</strong>結果ではなく、行為そのものに従うべき道徳的義務(嘘をつかない、人を手段として扱わない、など)があるとする立場。18世紀ドイツのイマヌエル・カントが体系化したものが代表で、「人を単なる手段としてのみ扱わず、常に同時に目的として扱え」という<em>定言命法</em>が中心原理。功利主義と並ぶ近代倫理学の二大潮流。</span></tip>、<em>カント主義</em>といった用語が出てくるが、各問の解説で都度補足する。進む前に覚悟しておいてほしいのは — 途中で自分が一貫していないと感じる場面がたぶんある、という一点だ。</p>
+
+  <!-- TROLLEY EXPERIENCE (interactive) -->
+  <div class="tp-exp fade" id="tpExp">
+    <div class="tp-exp-head">
+      <span class="tp-exp-head-label">Trolley Scope</span>
+      <span class="tp-exp-head-title">4つの場面、あなたが引く線</span>
+      <div class="tp-exp-head-prog" id="tpProg">
+        <span class="tp-prog-dot on"></span>
+        <span class="tp-prog-dot"></span>
+        <span class="tp-prog-dot"></span>
+        <span class="tp-prog-dot"></span>
+      </div>
+    </div>
+    <div class="tp-exp-body" id="tpStage"><!-- rendered by JS --></div>
+  </div>
+
+  <!-- ============ なぜか ============ -->
+  <div class="sec-rule fade"><span class="sec-label">なぜか</span><div class="sec-line"></div></div>
+  <h2 class="fade">手段か、副次効果か — 二重結果原則が引く線</h2>
+
+  <p class="body-text fade">同じ「1人の死で5人を救う」でも判断が割れる現象を、哲学者たちは500年以上前から用意していた道具で説明しようとしてきた。中世カトリック神学由来の<strong>二重結果原則(Doctrine of Double Effect)</strong>だ。<tip class="tip" onclick="toggleTip(this)">トマス・アクィナス<span class="tip-box"><strong>Thomas Aquinas (1225頃–1274)</strong>13世紀イタリアの神学者・哲学者。中世スコラ哲学の最高峰とされ、カトリック教会の正統教義を体系化した『神学大全』で知られる。正当防衛における「自分の生命を守る意図 vs 攻撃者を死なせる結果」を論じた箇所が、二重結果原則の最古の体系的源泉となった。</span></tip>に遡る考え方で、フットが1967年の論文で再発掘した。原則のコアはこうだ — ある行為で悪い結果が生じるとき、その悪が<em>意図された手段</em>なのか、それとも<em>予見された副次効果</em>にすぎないのかで、道徳的な許容度が変わる。</p>
+
+  <!-- 二重結果原則 SVG (縦並び) -->
+  <figure class="svg-fig fade">
+    <svg viewBox="0 0 760 910" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="意図された手段と予見された副次効果の違いを示す図" style="max-width:680px;">
+      <defs>
+        <marker id="deArrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#1a5a30"/></marker>
+        <marker id="deArrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8b1a1a"/></marker>
+        <style>
+          .deCap{font-family:'Source Sans 3',sans-serif;font-size:14px;fill:#7a6a55;font-weight:600;letter-spacing:.22em;text-transform:uppercase;}
+          .deTitle{font-family:'Playfair Display',serif;font-size:32px;fill:#1a1208;font-weight:700;}
+          .deSub{font-family:'Source Sans 3',sans-serif;font-size:17px;fill:#3d3020;font-weight:300;}
+          .deNode{font-family:'Source Sans 3',sans-serif;font-size:20px;fill:#1a1208;font-weight:600;}
+          .deNodeLight{font-family:'Source Sans 3',sans-serif;font-size:18px;fill:#3d3020;font-weight:500;}
+          .deLink{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;}
+          .deNote{font-family:'Source Serif 4',serif;font-size:16px;fill:#5a4a35;font-style:italic;}
+        </style>
+      </defs>
+      <rect width="760" height="880" fill="#faf8f3"/>
+
+      <!-- ============ TOP panel: レバー版 ============ -->
+      <text x="40" y="46" class="deCap">レバー版</text>
+      <text x="40" y="92" class="deTitle">1人の死は<tspan fill="#1a5a30">副次効果</tspan></text>
+      <text x="40" y="124" class="deSub">予見はされる、しかし意図されない</text>
+
+      <!-- agent -->
+      <circle cx="110" cy="240" r="34" fill="none" stroke="#1a1208" stroke-width="1.6"/>
+      <text x="110" y="247" text-anchor="middle" class="deNodeLight">行為者</text>
+      <!-- intended (solid green) → goal -->
+      <path d="M148 232 L295 200" stroke="#1a5a30" stroke-width="2.2" fill="none" marker-end="url(#deArrG)"/>
+      <text x="180" y="195" class="deLink" fill="#1a5a30">意図</text>
+      <!-- goal box (top) -->
+      <rect x="310" y="170" width="220" height="64" fill="#e8efe2" stroke="#1a5a30" stroke-width="1.4" rx="3"/>
+      <text x="420" y="208" text-anchor="middle" class="deNode" fill="#1a5a30">5人を救う</text>
+      <!-- side effect (dashed red) downward -->
+      <path d="M420 234 L420 314" stroke="#8b1a1a" stroke-width="2" stroke-dasharray="4 5" fill="none" marker-end="url(#deArrR)"/>
+      <text x="436" y="280" class="deLink" fill="#8b1a1a">予見のみ</text>
+      <!-- bad outcome box -->
+      <rect x="310" y="320" width="220" height="64" fill="#f5e6e2" stroke="#8b1a1a" stroke-width="1.4" rx="3"/>
+      <text x="420" y="358" text-anchor="middle" class="deNode" fill="#8b1a1a">1人の死</text>
+
+      <!-- counterfactual note (top panel) -->
+      <line x1="40" y1="416" x2="720" y2="416" stroke="#c8bfaa" stroke-width=".8"/>
+      <text x="40" y="446" class="deNote">もし1人がそこにいなければ — それでも5人救助は成立する。</text>
+      <text x="40" y="468" class="deNote">1人の死は目的のための必要条件ではない。</text>
+
+      <!-- ============ DIVIDER ============ -->
+      <line x1="180" y1="498" x2="580" y2="498" stroke="#1a1208" stroke-width=".8"/>
+
+      <!-- ============ BOTTOM panel: 突き落とし版 ============ -->
+      <text x="40" y="546" class="deCap">突き落とし版</text>
+      <text x="40" y="592" class="deTitle">1人の死は<tspan fill="#8b1a1a">手段そのもの</tspan></text>
+      <text x="40" y="624" class="deSub">死なせることが目的の必要条件</text>
+
+      <!-- agent -->
+      <circle cx="110" cy="740" r="34" fill="none" stroke="#1a1208" stroke-width="1.6"/>
+      <text x="110" y="747" text-anchor="middle" class="deNodeLight">行為者</text>
+      <!-- intended (solid red) → bad outcome (top) -->
+      <path d="M148 732 L295 700" stroke="#8b1a1a" stroke-width="2.2" fill="none" marker-end="url(#deArrR)"/>
+      <text x="180" y="695" class="deLink" fill="#8b1a1a">意図</text>
+      <!-- bad outcome box (top) -->
+      <rect x="310" y="670" width="220" height="64" fill="#f5e6e2" stroke="#8b1a1a" stroke-width="1.4" rx="3"/>
+      <text x="420" y="708" text-anchor="middle" class="deNode" fill="#8b1a1a">1人を死なせる</text>
+      <!-- means (solid green) downward -->
+      <path d="M420 734 L420 814" stroke="#1a5a30" stroke-width="2.2" fill="none" marker-end="url(#deArrG)"/>
+      <text x="436" y="780" class="deLink" fill="#1a5a30">手段として</text>
+      <!-- good outcome -->
+      <rect x="310" y="820" width="220" height="64" fill="#e8efe2" stroke="#1a5a30" stroke-width="1.4" rx="3"/>
+      <text x="420" y="858" text-anchor="middle" class="deNode" fill="#1a5a30">5人を救う</text>
+    </svg>
+    <p class="svg-caption">同じ「1対5」でも因果構造が違う。上は死が副産物、下は死が道具。実線=因果、点線=予見のみ。</p>
+  </figure>
+
+  <div class="steps-wrap fade">
+    <div class="steps-head">3つのステップで読み解く</div>
+    <div class="step-card" id="sc1">
+      <div class="step-hd" onclick="tog(1)">
+        <div class="step-nb">1</div>
+        <div class="step-tw"><div class="step-title">レバー版では、1人は「巻き添え」</div><div class="step-sub">もし1人がそこにいなくても、救出は成立する</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>行為者の意図は「トロッコを待避線に切り替える」こと。その結果として1人が死ぬのは<strong>予見された副作用</strong>にすぎない。もし待避線に誰もいなければ、それは<em>よりよい結果</em>でしかなく、5人救助という目的はそのまま達成される。つまり、1人の死は目的のための必要条件ではない。</p>
+      </div>
+    </div>
+    <div class="step-card" id="sc2">
+      <div class="step-hd" onclick="tog(2)">
+        <div class="step-nb">2</div>
+        <div class="step-tw"><div class="step-title">突き落とし版では、1人は「道具」</div><div class="step-sub">その人が落ちて死ななければ、5人は助からない</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>ここでの行為の因果構造はまったく違う。大柄な男の体がトロッコの前に投げ出されて、その重量と質量が列車を止める — つまり<strong>彼が死ぬこと自体が救助の必要条件</strong>になっている。もし彼が何らかの奇跡で死なずに済んだら、5人は助からない。1人の生命が、他人の命のための<em>手段</em>として使われている。カント倫理学が「人を単なる手段として扱ってはならない」と言うとき、それが禁じたのはまさにこの構造だ。</p>
+      </div>
+    </div>
+    <div class="step-card" id="sc3">
+      <div class="step-hd" onclick="tog(3)">
+        <div class="step-nb">3</div>
+        <div class="step-tw"><div class="step-title">脳科学が見つけた二重システム</div><div class="step-sub">fMRIが映した、情動と計算の綱引き</div></div>
+        <div class="step-arr">▼</div>
+      </div>
+      <div class="step-body">
+        <p>2001年、プリンストンの<strong>ジョシュア・グリーン</strong>らが<em>Science</em>誌に発表した<tip class="tip" onclick="toggleTip(this)">fMRI<span class="tip-box"><strong>fMRI (機能的磁気共鳴画像法)</strong>functional Magnetic Resonance Imaging の略。脳の血流変化を検出して「どの部位が今活動しているか」を非侵襲的に可視化する技術。被験者がある課題に取り組んでいる最中の脳活動をリアルタイムで撮影できるため、心理学・神経科学の主要なツールとなっている。</span></tip>研究は、この直感の差に脳内の地図を当てた。突き落とし版のような「個人的(personal)」なシナリオでは、内側前頭前野・後帯状皮質・扁桃体など情動回路が強く活動する。一方、レバー版のような「非個人的」シナリオでは背外側前頭前野などの<em>計算・抑制系</em>が前に出る。我々の直感的不許可は、冷静な理屈の結論ではなく、「身体的接触で他人を殺すこと」に対する古い情動的反応の産物である可能性が高い。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 歴史 ============ -->
+  <div class="sec-rule fade"><span class="sec-label">歴史</span><div class="sec-line"></div></div>
+  <h2 class="fade">1967年の脚注から、Nature誌に載る世界地図まで</h2>
+
+  <div class="timeline fade">
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1967</div>
+      <div class="tl-title">フィリッパ・フット「中絶問題と二重結果原則」</div>
+      <div class="tl-desc">Oxford Review誌。中絶の倫理を議論する補助として、暴走トロッコの例が初めて登場する。フットはまだこれを「問題」とは呼ばない。<br><span style="display:inline-block;margin-top:6px;color:#7a6a55;font-size:11px;font-style:italic;">補足: フットの原文では暴走しているのは <em>tram(路面電車)</em>であり、運転手が操作するレバーが想定されていた。21世紀以降の図解では「鉱山トロッコ」のシルエットで描かれることが多いが、これは乗客や運転手といった付随的な道徳的考慮を取り除いて、「無人で暴走する車両」という思考実験の核に焦点を絞るための視覚的慣例である。</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1976</div>
+      <div class="tl-title">トムソン、「トロッコ問題」と命名</div>
+      <div class="tl-desc">論文「Killing, Letting Die, and the Trolley Problem」で初めて「trolley problem」の呼称を用いる。歩道橋・移植医などの変奏も提示される。</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1985</div>
+      <div class="tl-title">Yale Law Journal の決定版</div>
+      <div class="tl-desc">トムソン「The Trolley Problem」(Yale Law Journal 94)。以降、英米哲学界の標準的参照点になる。様々な変奏版が後続研究を呼ぶ。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2001</div>
+      <div class="tl-title">グリーンら、fMRIで情動の差を可視化</div>
+      <div class="tl-desc">Science誌。突き落とし版とレバー版で活性化する脳領域が異なることを示し、道徳哲学に実験神経科学が本格介入する転換点に。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2016</div>
+      <div class="tl-title"><tip class="tip" onclick="toggleTip(this)">MIT<span class="tip-box"><strong>MIT</strong>マサチューセッツ工科大学(Massachusetts Institute of Technology)。米国マサチューセッツ州ケンブリッジにある工学・科学・経済の名門大学。トロッコ問題を自動運転車の倫理に拡張した「Moral Machine」プラットフォームは、2016年にMIT Media Lab の Iyad Rahwan らのチームが公開した。</span></tip>がMoral Machineを公開</div>
+      <div class="tl-desc">自動運転車の判断を模したオンライン投票プラットフォーム。歩行者 vs 搭乗者、若者 vs 高齢者、法遵守 vs 違反、など9軸で匿名投票を集める。</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2018</div>
+      <div class="tl-title">Nature誌が233カ国・4,000万票を分析</div>
+      <div class="tl-desc">Awad他「The Moral Machine experiment」。世界を<em>Western / Eastern / Southern</em>の3クラスターに分類。文化圏ごとに倫理的優先順位が有意に違うことを実データで示した。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2020</div>
+      <div class="tl-title">トムソン没、議論は続く</div>
+      <div class="tl-desc">11月、91歳で逝去。生前の彼女は2008年の論文で「レバーを引くことも道徳的に許されないかもしれない」と自説の一部を撤回。議論はAI倫理の領域に引き継がれていく。</div>
+    </div>
+  </div>
+
+  <!-- Moral Machine クラスター比較 SVG -->
+  <figure class="svg-fig fade">
+    <svg viewBox="0 0 620 980" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Moral Machineの3クラスター(Western/Eastern/Southern)の偏好差を示す比較図" style="width:100%;max-width:none;">
+      <defs>
+        <style>
+          .mmCap{font-family:'Source Sans 3',sans-serif;font-size:13px;fill:#7a6a55;font-weight:600;letter-spacing:.22em;text-transform:uppercase;}
+          .mmTitle{font-family:'Playfair Display',serif;font-size:26px;fill:#1a1208;font-weight:700;}
+          .mmAxis{font-family:'Source Sans 3',sans-serif;font-size:18px;fill:#1a1208;font-weight:600;}
+          .mmAxisSub{font-family:'Source Sans 3',sans-serif;font-size:14px;fill:#7a6a55;font-weight:300;}
+          .mmCl{font-family:'Source Sans 3',sans-serif;font-size:14px;fill:#3d3020;font-weight:500;letter-spacing:.04em;}
+          .mmVal{font-family:'JetBrains Mono',monospace;font-size:14px;fill:#5a4a35;}
+          .mmZero{font-family:'Source Sans 3',sans-serif;font-size:13px;fill:#7a6a55;font-weight:400;}
+        </style>
+      </defs>
+      <rect width="620" height="980" fill="#faf8f3"/>
+
+      <text x="20" y="44" class="mmCap">Awad et al. 2018 — Nature</text>
+      <text x="20" y="80" class="mmTitle">MIT Moral Machine の文化圏クラスター比較</text>
+      <text x="20" y="106" class="mmAxisSub">世界平均からの偏差。+ が強い選好、− が逆の選好。</text>
+
+      <!-- legend -->
+      <g transform="translate(20,140)">
+        <rect x="0" y="-13" width="18" height="14" fill="#8b1a1a"/>
+        <text x="26" y="-1" class="mmCl">Western</text>
+        <text x="26" y="14" class="mmAxisSub">西欧・北米・オセアニア</text>
+      </g>
+      <g transform="translate(20,180)">
+        <rect x="0" y="-13" width="18" height="14" fill="#3d3020"/>
+        <text x="26" y="-1" class="mmCl">Eastern</text>
+        <text x="26" y="14" class="mmAxisSub">東アジア・中東(日本もここ)</text>
+      </g>
+      <g transform="translate(20,220)">
+        <rect x="0" y="-13" width="18" height="14" fill="#c89a3a"/>
+        <text x="26" y="-1" class="mmCl">Southern</text>
+        <text x="26" y="14" class="mmAxisSub">中南米・旧仏植民地圏</text>
+      </g>
+
+      <!-- center axis line -->
+      <line x1="320" y1="280" x2="320" y2="900" stroke="#1a1208" stroke-width="1.4"/>
+      <text x="312" y="270" class="mmZero" text-anchor="end">弱 —</text>
+      <text x="328" y="270" class="mmZero">+ 強</text>
+
+      <!-- axis 1: 多数を救う -->
+      <text x="20" y="320" class="mmAxis">多数を救う</text>
+      <text x="20" y="344" class="mmAxisSub">5人 vs 1人</text>
+      <rect x="320" y="302" width="170" height="20" fill="#8b1a1a"/><text x="500" y="317" class="mmVal">+0.68</text>
+      <rect x="320" y="330" width="100" height="20" fill="#3d3020"/><text x="430" y="345" class="mmVal">+0.40</text>
+      <rect x="320" y="358" width="138" height="20" fill="#c89a3a"/><text x="468" y="373" class="mmVal">+0.55</text>
+      <line x1="20" y1="410" x2="600" y2="410" stroke="#e0d8c8" stroke-width=".6"/>
+
+      <!-- axis 2: 若者を優先 -->
+      <text x="20" y="452" class="mmAxis">若者を優先</text>
+      <text x="20" y="476" class="mmAxisSub">子ども vs 高齢者</text>
+      <rect x="320" y="434" width="60" height="20" fill="#8b1a1a"/><text x="390" y="449" class="mmVal">+0.24</text>
+      <rect x="240" y="462" width="80" height="20" fill="#3d3020"/><text x="232" y="477" class="mmVal" text-anchor="end">−0.32</text>
+      <rect x="320" y="490" width="180" height="20" fill="#c89a3a"/><text x="510" y="505" class="mmVal">+0.72</text>
+      <line x1="20" y1="542" x2="600" y2="542" stroke="#e0d8c8" stroke-width=".6"/>
+
+      <!-- axis 3: 合法遵守者を優先 -->
+      <text x="20" y="584" class="mmAxis">合法遵守者を優先</text>
+      <text x="20" y="608" class="mmAxisSub">青信号 vs 赤信号</text>
+      <rect x="320" y="566" width="100" height="20" fill="#8b1a1a"/><text x="430" y="581" class="mmVal">+0.40</text>
+      <rect x="320" y="594" width="150" height="20" fill="#3d3020"/><text x="480" y="609" class="mmVal">+0.60</text>
+      <rect x="320" y="622" width="50" height="20" fill="#c89a3a"/><text x="380" y="637" class="mmVal">+0.20</text>
+      <line x1="20" y1="674" x2="600" y2="674" stroke="#e0d8c8" stroke-width=".6"/>
+
+      <!-- axis 4: 歩行者を優先 -->
+      <text x="20" y="716" class="mmAxis">歩行者を優先</text>
+      <text x="20" y="740" class="mmAxisSub">道行く人 vs 搭乗者</text>
+      <rect x="320" y="698" width="50" height="20" fill="#8b1a1a"/><text x="380" y="713" class="mmVal">+0.20</text>
+      <rect x="320" y="726" width="160" height="20" fill="#3d3020"/><text x="490" y="741" class="mmVal">+0.66</text>
+      <rect x="320" y="754" width="90" height="20" fill="#c89a3a"/><text x="420" y="769" class="mmVal">+0.36</text>
+      <line x1="20" y1="806" x2="600" y2="806" stroke="#e0d8c8" stroke-width=".6"/>
+
+      <!-- axis 5: 高い社会的地位 -->
+      <text x="20" y="848" class="mmAxis">社会的地位の高い人を優先</text>
+      <text x="20" y="872" class="mmAxisSub">経営者 vs ホームレス</text>
+      <rect x="320" y="830" width="40" height="20" fill="#8b1a1a"/><text x="370" y="845" class="mmVal">+0.16</text>
+      <rect x="320" y="858" width="20" height="20" fill="#3d3020"/><text x="350" y="873" class="mmVal">+0.08</text>
+      <rect x="320" y="886" width="160" height="20" fill="#c89a3a"/><text x="490" y="901" class="mmVal">+0.64</text>
+
+      <text x="20" y="950" class="mmAxisSub">概念図 — 効果量の方向性に基づく相対比較。元データは Awad et al.(2018) Nature.</text>
+    </svg>
+    <p class="svg-caption">同じ「命を天秤にかける」でも、文化圏ごとに軸の重みが違う。5軸での偏好差。Awad et al.(2018)。</p>
+  </figure>
+
+  <!-- ============ つまり ============ -->
+  <div class="sec-rule fade"><span class="sec-label">つまり</span><div class="sec-line"></div></div>
+  <h2 class="fade">思考実験は「現場」になった</h2>
+
+  <p class="body-text fade">フットが1967年に紙の上で走らせた小さなトロッコは、2020年代になって物理的な車両として道路を走り始めた。自動運転車の制御プログラムは、衝突を回避できないとき<em>誰を優先するか</em>を実装レベルで選ばなければならない。歩行者か、搭乗者か。子どもか、高齢者か。法を守っていた人か、横断していた人か。哲学者たちが半世紀議論してきた問いが、エンジニアリングの仕様書に載った。</p>
+
+  <div class="pull fade">
+    <p class="pull-q" style="font-style:italic;">"An intuition pump is a thought experiment...designed to provoke an intuition that demands analysis."</p>
+    <p class="pull-q" style="margin-top:14px;">「直観ポンプ — つまり思考実験は、分析を要するような直観を呼び起こすために設計された装置である。」</p>
+    <p class="pull-attr">— Daniel Dennett, <em>Intuition Pumps and Other Tools for Thinking</em> (2013)</p>
+  </div>
+
+  <p class="body-text fade">MITのデータが示したのは、文化圏によってハンドルの切り方が違うという事実だった。Southern クラスターの国々は女性と若者を守る傾向が強く、Eastern (日本含む) は年長者・法遵守者・歩行者の保護を重んじる。とりわけ日本は、世界233カ国のなかで歩行者保護の選好がもっとも強かった。一方 Western は多数の命を救うことに強く傾くが、歩行者保護では相対的に弱い。これは単なる好みの違いではなく、<strong>どの社会で自動運転車を売るかによって、倫理の実装が変わりうる</strong>ということでもある。設計者は自覚するしないにかかわらず、線を引いている。</p>
+
+  <div class="culture-block fade">
+    <p class="culture-label">作品への登場</p>
+    <div class="culture-item">
+      <p class="culture-title">The Good Place シーズン2 第6話「The Trolley Problem」(2017)</p>
+      <p class="culture-desc">道徳哲学の教授チディが思考実験を講義する場面から、マイケルがチディを本物のトロッコに乗せた実体シミュレーションに放り込む。哲学の抽象性と実践の生々しさの落差を、ブラックコメディとして鋭利に描いた名作回。2018年のヒューゴ賞(短編ドラマ部門)受賞。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">Orange Is the New Black / Unbreakable Kimmy Schmidt</p>
+      <p class="culture-desc">物語の中で登場人物が道徳的ジレンマに直面する際の参照点として、トロッコ問題が繰り返し言及される。英語圏の一般教養化の証左。</p>
+    </div>
+    <div class="culture-item">
+      <p class="culture-title">トロッコ問題ミーム(2015年以降)</p>
+      <p class="culture-desc">TwitterやRedditで「複数人 vs 1人のスケーター犬」「本線の列車 vs 待避線のラザニア」など、無限のパロディが生まれ続けている。元ネタを知らない人の方が少ないというインターネット文化に到達した。</p>
+    </div>
+  </div>
+
+  <!-- ============ 参考文献 ============ -->
+  <div class="sec-rule fade"><span class="sec-label">参考文献</span><div class="sec-line"></div></div>
+
+  <div class="ref-list">
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1967</span></div>
+      <p class="ref-title"><a href="https://philpapers.org/archive/footpo-2.pdf" target="_blank" rel="noopener">The Problem of Abortion and the Doctrine of the Double Effect</a></p>
+      <p class="ref-author">Philippa Foot / Oxford Review 5: 5–15</p>
+      <p class="ref-desc">トロッコの原型が登場する論文。主題はあくまで中絶と二重結果原則の検討で、トロッコはその例解のひとつだった。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1985</span></div>
+      <p class="ref-title"><a href="https://openyls.law.yale.edu/server/api/core/bitstreams/2549174b-4728-45bf-bf64-01384116e48c/content" target="_blank" rel="noopener">The Trolley Problem</a></p>
+      <p class="ref-author">Judith Jarvis Thomson / Yale Law Journal 94: 1395–1415</p>
+      <p class="ref-desc">歩道橋・移植医・ループ線路などの変奏を整備した決定版。以降、英米の道徳哲学における標準参照点となった。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2018</span></div>
+      <p class="ref-title"><a href="https://www.nature.com/articles/s41586-018-0637-6" target="_blank" rel="noopener">The Moral Machine experiment</a></p>
+      <p class="ref-author">Edmond Awad, Sohan Dsouza, Richard Kim, Jonathan Schulz, Joseph Henrich, Azim Shariff, Jean-François Bonnefon, Iyad Rahwan / Nature 563: 59–64</p>
+      <p class="ref-desc">233カ国・4,000万票のデータから、道徳的優先順位に文化的クラスターが存在することを実証した大規模研究。本記事の定量データの主要ソース。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2001</span></div>
+      <p class="ref-title"><a href="https://www.science.org/doi/10.1126/science.1062872" target="_blank" rel="noopener">An fMRI Investigation of Emotional Engagement in Moral Judgment</a></p>
+      <p class="ref-author">Joshua D. Greene et al. / Science 293: 2105–2108</p>
+      <p class="ref-desc">個人的・非個人的な道徳的ジレンマで脳の活性化領域が異なることを示した先駆的研究。道徳心理学に実験神経科学が本格介入する契機。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">事典</span><span class="ref-year">継続更新</span></div>
+      <p class="ref-title"><a href="https://plato.stanford.edu/entries/philippa-foot/" target="_blank" rel="noopener">Philippa Foot (Stanford Encyclopedia of Philosophy)</a></p>
+      <p class="ref-author">Stanford Encyclopedia of Philosophy</p>
+      <p class="ref-desc">フット思想の一次資料に最も近い解説。徳倫理学復興への寄与、トロッコ例の位置づけなどを整理した権威的エントリ。</p>
+    </div>
+  </div>
+
+  <!-- 信頼度ノート -->
+  <div class="note-box fade">
+    <strong>📌 この記事について</strong><br>
+    一次資料としてFoot (1967)、Thomson (1985)、Awad et al. (2018)の原論文に依拠した。Est.1967の同年の出来事と英国中絶法成立はWeb検索で確認。Moral Machineの3クラスター偏好差のグラフは原論文の国別効果量の方向性を概念図化したもので、数値は概略の相対強度を示す。脳科学パートはGreene et al. (2001, Science)に基づく。「トロッコ問題」命名を1976年のトムソン論文に帰した点は、Stanford Encyclopedia of PhilosophyおよびCambridge Companion to Moral Philosophyに従う。
+  </div>
+
+  <div class="signature fade">e. Tamaki</div>
+
+  <div class="tags fade">
+    <span class="tag">思考実験</span><span class="tag">倫理学</span><span class="tag">道徳心理学</span><span class="tag">AI倫理</span><span class="tag">自動運転</span><span class="tag">philippa foot</span><span class="tag">moral machine</span>
+  </div>
+
+</div><!-- /article-main -->
+
+<!-- SIDEBAR -->
+<div class="article-side">
+  <div style="position:sticky;top:70px;">
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">Key Number</p>
+      <p style="font-family:'Playfair Display',serif;font-size:46px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">40M</p>
+      <p class="sidebar-text">MITの <em>Moral Machine</em> が集めた判断数。<strong>233カ国</strong>、約<strong>400万人</strong>が10言語で参加した(2016–2020)。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">歴史的背景</p>
+      <p class="sidebar-text">1967年、フィリッパ・フットが<strong>中絶の倫理</strong>を論じる補助としてトロッコの例を提示。主題は「二重結果原則」だった。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">作品への登場</p>
+      <p class="sidebar-text"><em>The Good Place</em> S2E6「The Trolley Problem」(2017)。ヒューゴ賞短編ドラマ部門を受賞した名回。</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">関連トピック</p>
+      <p class="sidebar-text">— 無知のヴェール<br>— 実存主義<br>— 自由意志と脳</p>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">読後チェック</p>
+      <ul class="sidebar-check">
+        <li>二重結果原則を説明できる</li>
+        <li>レバー/突き落としの直感の差の由来がわかる</li>
+        <li>Moral Machine の3クラスターを挙げられる</li>
+      </ul>
+    </div>
+    <div class="sidebar-block fade">
+      <p class="sidebar-label">信頼度</p>
+      <p class="sidebar-text">一次資料(Foot 1967 / Thomson 1985 / Awad 2018)に基づく。哲学的結論そのものは未決着。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /article -->
+
+<!-- TERMINAL LABEL -->
+<div class="terminal-label-wrap fade">
+  <div class="terminal-label">
+    <span class="terminal-label-text">▼ Internal Dialogue >> Active</span>
+    <span class="terminal-label-line"></span>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="terminal-wrap">
+  <div class="terminal fade" id="terminalBlock">
+    <div class="terminal-bar">
+      <div class="terminal-dots">
+        <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
+      </div>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-sys" id="ts0">// トロッコ問題を読み終えた人との対話</span>
+      <div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、レバーは引くのが正解なの?</span></div>
+      <span class="t-output" id="to1">「正解がある問題」じゃないんだ、というのが本文の骨格だった。<em>功利主義的</em>に見れば引くのが合理。<em>義務論的</em>に見れば、引くことすら「人を手段にするな」の禁に触れうる(実はトムソンも晩年そう傾いた)。どちらに傾くかは<strong>あなたの倫理観の形</strong>を映す鏡で、その形を見るために問いがある。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;自動運転車が実装するなら、結局どうする?</span></div>
+      <span class="t-output" id="to2">メーカーが選んでいるのは「明示的に選ばない」という線。ほとんどの車は<em>衝突を避ける最短制御</em>だけを実装し、犠牲の選択をアルゴリズムに組み込まない。Moral Machineのような実験は参考にされつつ、「誰を優先するかを車が決める」設計は<strong>規制・訴訟リスクが大きすぎる</strong>ため避けられている。哲学は設計仕様にはならず、回避不能の事故の後の<em>説明責任</em>の場面で顔を出す。</span>
+      <hr class="t-divider">
+      <div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;4問のうち、レバーは引いたけど突き落としは拒んだ。一貫してない?</span></div>
+      <span class="t-output" id="to3">むしろ<em>典型</em>。世界中のほぼすべての調査で多数派がそうなる。一貫していない、というより<strong>2つの道徳的直感を同時に抱えている</strong>と言う方が正確で、半世紀の哲学はその矛盾を解消するより、矛盾そのものを記述することに精力を注いできた。自分の中に複数の倫理が同居しているという観察こそが、この思考実験の<em>発見</em>だ。</span>
+      <hr class="t-divider">
+      <div class="t-line t-exit" id="tl4">
+        <span class="t-prompt">reader@curious:~$</span>
+        <span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# もしも現実にこんなシチュエーションに立ち会ったら、立ち尽くしてしまいそう</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related fade">
+  <p class="related-label">次に読む</p>
+  <div class="related-grid">
+    <a class="related-card" href="https://qualiajournal.com/veil_of_ignorance/">
+      <p class="related-card-tag">思考実験・哲学</p>
+      <p class="related-card-title">無知のヴェール</p>
+      <p class="related-card-desc">自分の属性を一切知らされないまま、社会のルールを設計する。ロールズが提案したもう一つの倫理装置は、トロッコとは別方向から「公正」を捉える。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+    <a class="related-card" href="https://qualiajournal.com/existentialism/">
+      <p class="related-card-tag">思考実験・哲学</p>
+      <p class="related-card-title">実存主義</p>
+      <p class="related-card-desc">「先に正解があって選ぶのではない。選ぶことで自分がつくられる」 — サルトルが突きつけた、倫理の選択そのものを支える構造の話。</p>
+      <p class="related-card-arrow">読む →</p>
+    </a>
+  </div>
+</div>
+
+<!-- BACK TO TOC -->
+<div class="toc-back fade">
+  <a href="https://qualiajournal.com/toc">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3.5c2-.5 4-.5 6 .5v9c-2-1-4-1-6-.5v-9Z"/><path d="M14.5 3.5c-2-.5-4-.5-6 .5v9c2-1 4-1 6-.5v-9Z"/><path d="M8 4v9"/></svg>
+    順番に読む
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="https://qualiajournal.com/" class="f-name-link"><p class="f-name"><em>Qualia</em> Journal</p></a>
+      <p class="f-copy">© 2025 Qualia Journal. All rights reserved.</p>
+    </div>
+    <div class="fcol">
+      <h3>ナビゲーション</h3>
+      <a href="https://qualiajournal.com/toc">順番に読む</a>
+      <a href="https://qualiajournal.com/#articles">記事一覧</a>
+      <a href="https://qualiajournal.com/timeline/">知の年表</a>
+      <a href="https://qualiajournal.com/topic_map/">つながりの索引</a>
+      <a href="https://qualiajournal.com/about">About</a>
+      <a href="https://qualiajournal.com/contact/">Contact</a>
+    </div>
+    <div class="fcol">
+      <h3>カテゴリ</h3>
+      <div class="f-cat-grid">
+        <a href="https://qualiajournal.com/?cat=認知バイアス">認知バイアス</a>
+        <a href="https://qualiajournal.com/?cat=行動心理学">行動心理学</a>
+        <a href="https://qualiajournal.com/?cat=社会心理学">社会心理学</a>
+        <a href="https://qualiajournal.com/?cat=知覚・錯覚">知覚・錯覚</a>
+        <a href="https://qualiajournal.com/?cat=脳と意識">脳と意識</a>
+        <a href="https://qualiajournal.com/?cat=数学・論理">数学・論理</a>
+        <a href="https://qualiajournal.com/?cat=思考実験・哲学">思考実験・哲学</a>
+        <a href="https://qualiajournal.com/?cat=物理・宇宙">物理・宇宙</a>
+        <a href="https://qualiajournal.com/?cat=生命・進化">生命・進化</a>
+        <a href="https://qualiajournal.com/?cat=科学と文化">科学と文化</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// スクロールプログレス
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('prog').style.width=(scrollY/h*100)+'%';
+});
+
+// フェードイン
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// ツールチップ(トースト)
+function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
+function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
+function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('.tip')&&!e.target.closest('.tip-toast'))_tipCloseToast();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')_tipCloseToast();});
+
+// ステップアコーディオン
+function tog(n){
+  const c=document.getElementById('sc'+n);
+  if(!c)return;
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.step-card').forEach(x=>x.classList.remove('open'));
+  if(!was)c.classList.add('open');
+}
+tog(1);
+
+/* === TROLLEY EXPERIENCE (段階的インタラクティブ + 自己言及) === */
+const TP_PHASES=[
+  {
+    key:'lever',
+    scene:'暴走したトロッコが、本線を走っている。このままでは<strong>5人の作業員</strong>がひかれる。あなたの手元にはレバーがあり、引けばトロッコは待避線へ切り替わる。ただし、待避線には<strong>1人</strong>の作業員がいる。どうするか。',
+    svg:`<figure style="position:relative;margin:0;"><img src="./scene_classical.jpg" alt="古典版トロッコ問題のシーン" style="display:block;width:100%;height:auto;"/></figure>`,
+    choices:[
+      {id:'pull',label:'引く',sub:'5人を救うため、1人を犠牲にする'},
+      {id:'stay',label:'引かない',sub:'何もしない。自然の成り行きに委ねる'}
+    ],
+    fb:{
+      pull:'<strong>多数派(調査により70〜90%)</strong>がこちらを選ぶ。功利主義的直感の典型 — 数の多さで判断する立場。哲学者の多くも「レバー版は引いてよい」で一致する。',
+      stay:'少数派(10〜30%)。<em>行為と不作為の区別</em>を重んじる立場。手を下した死と、手を下さない死は道徳的重みが違う、という直感。義務論・カント主義に近い。'
+    }
+  },
+  {
+    key:'footbridge',
+    scene:'今度は歩道橋の上。下ではトロッコが暴走し、<strong>5人</strong>に向かっている。あなたの隣には大柄な男が柵にもたれている。彼を<strong>突き落とせば</strong>、その体がトロッコを止める。男は死ぬが、5人は助かる。どうするか。',
+    svg:`<figure style="position:relative;margin:0;"><img src="./scene_footbridge.jpg" alt="歩道橋版トロッコ問題のシーン" style="display:block;width:100%;height:auto;"/></figure>`,
+    choices:[
+      {id:'push',label:'突き落とす',sub:'5人を救うため、男を犠牲にする'},
+      {id:'nothing',label:'何もしない',sub:'自分の手で男を突き落とすことはできない'}
+    ],
+    fb:{
+      push:'少数派(調査により<strong>10〜30%</strong>)。一貫した功利主義の姿勢、あるいは「結果が同じなら同じ判断をする」という整合性の重視。',
+      nothing:'多数派(70〜90%)。「<em>自分の手で</em>他人を殺すこと」への強い抵抗。fMRI研究では、この選択時に情動回路(扁桃体・内側前頭前野)が強く活性化することが知られている。'
+    }
+  },
+  {
+    key:'transplant',
+    scene:'場面が変わる。あなたは医者。病院には<strong>5人の重症患者</strong>がいて、それぞれ別の臓器の移植を必要としている。今日、健康診断で<strong>健康な1人</strong>がやってきた。その人を殺して臓器を取り出せば、5人全員が助かる。どうするか。',
+    svg:`<figure style="position:relative;margin:0;"><img src="./scene_surgery_1900.jpg" alt="1900年 Charing Cross病院の旧手術室。Stanley Boyd医師が手術にあたるところ。" style="display:block;width:100%;height:auto;filter:sepia(.08) contrast(.96);"/><figcaption style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;margin-top:6px;text-align:center;line-height:1.6;">Charing Cross Hospital, 1900。Stanley Boyd 医師が手術直前に立つ。<br>Wellcome Collection (Public Domain Mark).</figcaption></figure>`,
+    choices:[
+      {id:'yes',label:'移植する',sub:'1人を犠牲にして、5人を救う'},
+      {id:'no',label:'しない',sub:'健康な人を殺すことはできない'}
+    ],
+    fb:{
+      yes:'ごく少数派(調査で<strong>3〜10%</strong>)。純粋な帰結主義に近い立場だが、ここまで行く人はまれ。現実の倫理規範と激しく衝突する選択。',
+      no:'圧倒的多数(90%以上)。たとえ算数が同じでも、<em>医者は治療のために患者を殺してはならない</em>という直感は極めて強い。二重結果原則の中核的な事例として、哲学者もほぼ全員が「しない」で一致する。'
+    }
+  },
+  {
+    key:'av',
+    scene:'あなたは自動運転車のAI。ブレーキが故障した。直進すれば<strong>横断歩道の歩行者3人(青信号で渡っている)</strong>をひく。ハンドルを切れば壁に激突し、<strong>搭乗者1人</strong>が死ぬ。どちらを選ぶ。',
+    svg:`<figure style="position:relative;margin:0;"><img src="./scene_av.jpg" alt="自動運転車の選択: 直進すれば横断歩道の歩行者3人をひき、ハンドルを切れば右の壁に激突して搭乗者1人が死ぬ" style="display:block;width:100%;height:auto;"/><span class="scene-label acc tr" style="top:65%;left:60%;">あなた<span class="ll-sub">搭乗者</span></span><span class="scene-label tr" style="top:26%;left:24%;">歩行者 3人<span class="ll-sub">青信号で渡っている</span></span><span class="scene-label br" style="top:18%;left:96%;">壁<span class="ll-sub">右に切れば激突</span></span></figure>`,
+    choices:[
+      {id:'save_pedestrians',label:'歩行者を守る',sub:'ハンドルを切って壁に激突。搭乗者1人が死ぬ'},
+      {id:'save_passenger',label:'搭乗者を守る',sub:'直進。歩行者3人をひく'}
+    ],
+    fb:{
+      save_pedestrians:'Moral Machineの世界平均に近い選択(多数優先 + 合法遵守者保護 + 搭乗者の自己犠牲)。<em>Eastern</em>クラスター(日本含む)で最も強く、Awad et al.(2018)では日本が233カ国中もっとも歩行者保護を重んじる結果だった。',
+      save_passenger:'相対的に少数派の選択。<em>Western</em>クラスター(西欧・北米・オセアニア)で比較的多い傾向。「搭乗者は契約した顧客でもある」という商業的現実も絡む、いま自動車メーカーが抱える頭痛の種そのもの。'
+    }
+  }
+];
+
+const TP_STATE={phase:0,ans:{},locked:false};
+
+function tpRender(){
+  const stage=document.getElementById('tpStage');
+  const prog=document.getElementById('tpProg');
+  if(!stage)return;
+  // update progress dots
+  Array.from(prog.children).forEach((dot,i)=>{
+    dot.classList.remove('on','done');
+    if(i<TP_STATE.phase)dot.classList.add('done');
+    else if(i===TP_STATE.phase)dot.classList.add('on');
+  });
+
+  if(TP_STATE.phase>=TP_PHASES.length){
+    tpRenderResult();
+    return;
+  }
+  const p=TP_PHASES[TP_STATE.phase];
+  const ans=TP_STATE.ans[p.key];
+  const fbHtml=ans?`<div class="tp-feedback"><div class="tp-feedback-label">一般回答者の傾向</div><div class="tp-feedback-text">${p.fb[ans]}</div></div><div class="tp-next"><button class="tp-next-btn" onclick="tpNext()">次へ →</button></div>`:'';
+  const romanLabels=['I','II','III'];
+  const choicesHtml=ans?'':`<div class="tp-choices">${p.choices.map((c,i)=>`<button class="tp-btn" onclick="tpChoose('${c.id}')"><span class="tp-btn-label">選択 ${romanLabels[i]||(i+1)}</span><span style="display:block;font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;line-height:1.3;margin-bottom:6px;">${c.label}</span><span style="display:block;font-size:13px;font-weight:300;color:#5a4a35;line-height:1.6;">${c.sub}</span></button>`).join('')}</div>`;
+  stage.innerHTML=`
+    <div class="tp-phase-num">第 ${TP_STATE.phase+1} 問 / ${TP_PHASES.length}</div>
+    <div class="tp-phase-title">${p.choices[0].label.includes('引く')?'レバー':p.choices[0].label.includes('突き落')?'歩道橋':p.choices[0].label.includes('移植')?'医者の選択':'自動運転車の制御'}</div>
+    <div class="tp-phase-scene">${p.scene}</div>
+    <div class="tp-phase-svg">${p.svg}</div>
+    ${choicesHtml}
+    ${fbHtml}
+  `;
+}
+
+function tpChoose(id){
+  if(TP_STATE.locked)return;
+  const p=TP_PHASES[TP_STATE.phase];
+  TP_STATE.ans[p.key]=id;
+  tpRender();
+}
+
+function tpNext(){
+  TP_STATE.phase++;
+  tpRender();
+  const el=document.getElementById('tpExp');
+  if(el){const r=el.getBoundingClientRect();if(r.top<-40){window.scrollTo({top:window.scrollY+r.top-60,behavior:'smooth'});}}
+}
+
+function tpRenderResult(){
+  const stage=document.getElementById('tpStage');
+  const a=TP_STATE.ans;
+  // pattern bits
+  const bit=x=>x?'1':'0';
+  const pattern=bit(a.lever==='pull')+'-'+bit(a.footbridge==='push')+'-'+bit(a.transplant==='yes')+'-'+bit(a.av==='save_pedestrians');
+
+  // type interpretation
+  let typeTitle='',typeDesc='';
+  const s=[a.lever==='pull',a.footbridge==='push',a.transplant==='yes'];
+  const count=s.filter(x=>x).length;
+  if(count===0){
+    typeTitle='義務論寄り — 不作為を重んじる型';
+    typeDesc='3つの場面すべてで、あなたは「自分の手を下さない」方を選んだ。<strong>行為と不作為の区別</strong>を道徳的に重く見る立場で、カント倫理や伝統的義務論と相性がいい。';
+  }else if(count===1 && s[0]){
+    typeTitle='二重結果原則 型 — 最も多い層';
+    typeDesc='レバーは引くが、突き落としや移植は拒む。これは世界中で最も頻出する回答パターンで、<strong>二重結果原則</strong>にほぼ沿っている。「人を手段にしない」という直感と「多数を救う」という直感の両方を、無意識に調停している。';
+  }else if(count===2 && s[0] && s[1]){
+    typeTitle='整合的な帰結主義 型 — 少数派';
+    typeDesc='レバーも突き落としも選ぶが、移植はしない。人命の数だけが重要というより、「<em>直接的な救助の場面</em>で数を優先する」型。判断の一貫性を重視し、身体的接触のタブーを越える覚悟がある。';
+  }else if(count===3){
+    typeTitle='純粋功利主義 型 — 極少数';
+    typeDesc='すべての場面で「多くを救う」を選んだ。世界的に<strong>3〜5%未満</strong>の稀な回答。ベンサム的な計算を徹底的に優先する、思想的に筋の通った立場。現実の社会規範とはしばしば激しく衝突する。';
+  }else{
+    typeTitle='非典型パターン — あなたの線は独特';
+    typeDesc='このパターンは多数派とは違う道筋をたどっている。他のどこかで重みを付けているはずで、それは<em>文脈</em>(誰か、どういう状況か、責任の所在)に敏感な判断かもしれない。';
+  }
+
+  // philosopher matching (5 candidates)
+  let philName='', philDesc='';
+  if(count===0){
+    philName='Immanuel Kant (定言命法)';
+    philDesc='「人を単なる手段として扱ってはならない」「行為と不作為には道徳的な区別がある」 — カント倫理の核心は、結果の数で行為を正当化しないことにある。3つの場面すべてで「自分の手を下さない」を選んだあなたの判断は、もっともカント的な倫理的姿勢に近い。';
+  }else if(count===1 && s[0]){
+    philName='Philippa Foot (1967)';
+    philDesc='トロッコ問題の発案者本人。フットは二重結果原則の文脈でこの例を出し、<em>意図と予見の区別</em>こそが道徳判断の鍵だと考えていた。あなたの判断は、まさにこの古典的な区別に沿っている。';
+  }else if(count===2 && s[0] && s[1]){
+    philName='Joshua Greene (2001–)';
+    philDesc='プリンストンの神経倫理学者。fMRIで「個人的 vs 非個人的」の脳活動の差を可視化し、<em>道徳判断は二系統の認知の綱引き</em>だと論じた。情動の壁を越えて算術を優先するあなたの判断は、グリーンが「manual mode」と呼ぶ統制的処理に近い。';
+  }else if(count===3){
+    philName='Peter Singer (功利主義の現代の旗手)';
+    philDesc='動物倫理・効果的利他主義の旗手として知られるシンガー。彼は徹底的な<em>選好功利主義</em>の立場から、命の数を最優先する。あなたのパターンは — 現実社会では孤立しがちだが — 思想的には最も筋が通っている。';
+  }else{
+    philName='Judith Jarvis Thomson (後期, 2008)';
+    philDesc='晩年のトムソンは論文「Turning the Trolley」で、自らが提示した変奏のいくつかについて<em>従来の判断を撤回</em>した。「レバーを引くことすら道徳的に許されないかもしれない」と書いた彼女の最終形は、一貫した原理に押し込めない道徳的揺らぎを正面から受け止めるものだった。あなたの判断パターンも、単一の理論枠に収まらない複数の直感が混在している。それは決して矛盾ではなく、現実の道徳判断の実相に近い。';
+  }
+
+  // cluster match for AV (5 axes from Moral Machine)
+  // Build a 5-axis profile based on the user's answers (0-100 scale)
+  const ax = {
+    多数優先: ((a.lever==='pull'?1:0) + (a.footbridge==='push'?1:0) + (a.transplant==='yes'?1:0) + (a.av==='save_pedestrians'?1:0)) * 25,
+    介入抵抗: ((a.lever==='stay'?1:0) + (a.footbridge==='nothing'?1:0) + (a.transplant==='no'?1:0)) * 33,
+    身体接触タブー: ((a.footbridge==='nothing'?1:0)*60 + (a.transplant==='no'?1:0)*40),
+    制度尊重: ((a.transplant==='no'?1:0)*55 + (a.av==='save_pedestrians'?1:0)*45),
+    歩行者優先: a.av==='save_pedestrians'?80:25
+  };
+  const axKeys=Object.keys(ax);
+  // World average baseline (illustrative)
+  const baseAx={多数優先:55,介入抵抗:45,身体接触タブー:62,制度尊重:50,歩行者優先:55};
+
+  // Build radar SVG
+  const cx=240, cy=180, R=120;
+  const n=axKeys.length;
+  const ptsUser=axKeys.map((k,i)=>{
+    const ang=-Math.PI/2 + i*2*Math.PI/n;
+    const r=R*ax[k]/100;
+    return [cx+r*Math.cos(ang), cy+r*Math.sin(ang)];
+  });
+  const ptsBase=axKeys.map((k,i)=>{
+    const ang=-Math.PI/2 + i*2*Math.PI/n;
+    const r=R*baseAx[k]/100;
+    return [cx+r*Math.cos(ang), cy+r*Math.sin(ang)];
+  });
+  const polyUser=ptsUser.map(p=>p.join(',')).join(' ');
+  const polyBase=ptsBase.map(p=>p.join(',')).join(' ');
+  // grid rings
+  const rings=[0.25,0.5,0.75,1].map(f=>{
+    const pts=axKeys.map((_,i)=>{
+      const ang=-Math.PI/2 + i*2*Math.PI/n;
+      return [cx+R*f*Math.cos(ang), cy+R*f*Math.sin(ang)].join(',');
+    }).join(' ');
+    return `<polygon points="${pts}" fill="none" stroke="#e0d8c8" stroke-width=".8"/>`;
+  }).join('');
+  const spokes=axKeys.map((_,i)=>{
+    const ang=-Math.PI/2 + i*2*Math.PI/n;
+    return `<line x1="${cx}" y1="${cy}" x2="${cx+R*Math.cos(ang)}" y2="${cy+R*Math.sin(ang)}" stroke="#e0d8c8" stroke-width=".6"/>`;
+  }).join('');
+  const labels=axKeys.map((k,i)=>{
+    const ang=-Math.PI/2 + i*2*Math.PI/n;
+    const lx=cx+(R+22)*Math.cos(ang);
+    const ly=cy+(R+22)*Math.sin(ang)+4;
+    const anchor=Math.abs(Math.cos(ang))<.2?'middle':(Math.cos(ang)>0?'start':'end');
+    return `<text x="${lx}" y="${ly}" text-anchor="${anchor}" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020" font-weight="600">${k}</text>`;
+  }).join('');
+  const dotsUser=ptsUser.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="#8b1a1a"/>`).join('');
+
+  const radarSvg=`<svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:480px;margin:0 auto;height:auto;">
+    ${rings}${spokes}
+    <polygon points="${polyBase}" fill="#c8bfaa" fill-opacity=".22" stroke="#7a6a55" stroke-width="1" stroke-dasharray="3 3"/>
+    <polygon points="${polyUser}" fill="#8b1a1a" fill-opacity=".25" stroke="#8b1a1a" stroke-width="1.8"/>
+    ${dotsUser}
+    ${labels}
+    <g transform="translate(140,365)">
+      <rect x="0" y="-9" width="12" height="9" fill="#8b1a1a" fill-opacity=".5" stroke="#8b1a1a" stroke-width="1"/>
+      <text x="18" y="-1" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">あなた</text>
+      <rect x="90" y="-9" width="12" height="9" fill="#c8bfaa" fill-opacity=".4" stroke="#7a6a55" stroke-width="1" stroke-dasharray="2 2"/>
+      <text x="108" y="-1" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#3d3020">世界平均</text>
+    </g>
+  </svg>`;
+
+  const clusters={Western:a.av==='save_pedestrians'?38:62, Eastern:a.av==='save_pedestrians'?78:22, Southern:a.av==='save_pedestrians'?60:40};
+  const entries=Object.entries(clusters).sort((x,y)=>y[1]-x[1]);
+  const topCluster=entries[0][0];
+
+  let selfRef='';
+  if(a.lever==='pull' && a.footbridge==='nothing'){
+    selfRef='あなたは第1問でレバーを引き、第2問で男を押さなかった。<strong>算数は同じ</strong>。それでもあなたの手は止まった。哲学者たちが半世紀議論してきた「手段 vs 副次効果」の壁を、あなた自身が踏み越えなかったということだ。';
+  }else if(a.lever==='stay' && a.footbridge==='nothing' && a.transplant==='no'){
+    selfRef='あなたはすべての場面で「手を下さない」を選んだ。自分の行為で誰かを死なせることの重みを、数字で相殺しない姿勢は、現代倫理学の議論のひとつの極でもある。';
+  }else if(a.lever==='pull' && a.footbridge==='push' && a.transplant==='no'){
+    selfRef='あなたは第1問と第2問で「救う」を選び、第3問で止まった。<em>救助の場面</em>と<em>制度的な場面(病院)</em>で線を引いている。実は倫理学者の多くも、ここが最も悩ましい境界と認めている。';
+  }else{
+    selfRef='あなたの選択パターンは、一般的な類型からやや外れた位置にある。自分の中にある複数の倫理が、この4つの場面で独自に交わっている証拠だ。';
+  }
+
+  const bars=entries.map(([name,v])=>`<div class="tp-cluster-bar ${name===topCluster?'match':''}"><span class="tp-cluster-name">${name}</span><div class="tp-cluster-track"><div class="tp-cluster-fill" style="width:${v}%;"></div></div><span class="tp-cluster-val">${v}%</span></div>`).join('');
+
+  // typeTitle has format "title — sub" (em-dash separator). Split for header display.
+  const typeParts = typeTitle.split(/\s*[—–-]\s*/);
+  const typeMain = typeParts[0] || typeTitle;
+  const typeSub = typeParts.slice(1).join(' — ');
+
+  stage.innerHTML=`
+    <div class="tp-result">
+      <div class="tp-result-banner">
+        <div class="tp-result-eyebrow">Diagnostic complete · 4 / 4</div>
+        <div class="tp-result-banner-title">あなたの<em>道徳的指紋</em></div>
+        <div class="tp-result-pattern-row">
+          <span class="tp-result-pattern-lbl">判定コード</span>
+          <span class="tp-result-pattern">${pattern}</span>
+        </div>
+      </div>
+      <div class="tp-result-body">
+        <div class="tp-result-type">${typeMain}</div>
+        ${typeSub?`<div class="tp-result-type-sub">${typeSub}</div>`:''}
+        <div class="tp-result-desc">${typeDesc}</div>
+
+        <div class="tp-result-grid">
+          <div class="tp-radar-wrap">
+            <div class="tp-sub-title">5軸プロファイル</div>
+            ${radarSvg}
+            <p class="tp-radar-note">5つの倫理軸で、あなたの判断が世界平均からどう外れているか。</p>
+          </div>
+          <div class="tp-phil-wrap">
+            <div class="tp-sub-title">最も近い哲学者</div>
+            <div class="tp-phil-name">${philName}</div>
+            <p class="tp-phil-desc">${philDesc}</p>
+          </div>
+        </div>
+
+        <div class="tp-cluster-title">第4問 — Moral Machine の地域クラスター類似度</div>
+        <p class="tp-cluster-intro">Awad et al.(2018)は、4,000万票を国別効果量で因子分析し、世界を3つの大きな文化圏クラスターに分類した。<strong>Western</strong>=西ヨーロッパ・北米・オセアニア / <strong>Eastern</strong>=東アジア・中東イスラム圏(日本もここ) / <strong>Southern</strong>=ラテンアメリカ・旧フランス植民地圏。下のバーは、あなたの判断が各クラスターの平均的傾向にどれだけ近いかの相対値。</p>
+        ${bars}
+        <p class="tp-cluster-foot">※ 数値はAwad et al.(2018) Nature の国別効果量の方向性に基づく概念的な類似度です。</p>
+        <div class="tp-final-note">
+          <span class="tp-final-label">◆ あなた自身への問い</span>
+          ${selfRef}
+        </div>
+        <div class="tp-reset"><button onclick="tpReset()">もう一度やる</button></div>
+      </div>
+    </div>
+  `;
+}
+
+function tpReset(){
+  TP_STATE.phase=0;
+  TP_STATE.ans={};
+  tpRender();
+}
+
+tpRender();
+
+/* === TERMINAL animation === */
+const tseq=[
+  {id:'ts0',delay:300},{id:'tl1',delay:800},{id:'to1',delay:1400},
+  {id:'tl2',delay:2300},{id:'to2',delay:2900},
+  {id:'tl3',delay:3900},{id:'to3',delay:4500},
+  {id:'tl4',delay:5600},
+];
+let tStarted=false;
+tseq.forEach(s=>{const el=document.getElementById(s.id);if(el)el.style.opacity='0';});
+const tObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!tStarted){
+    tStarted=true;
+    tseq.forEach(s=>{
+      setTimeout(()=>{
+        const el=document.getElementById(s.id);
+        if(el){el.style.transition='opacity .25s ease';el.style.opacity='1';}
+      },s.delay);
+    });
+  }
+},{threshold:0.2});
+tObs.observe(document.getElementById('terminalBlock'));
+
+/* === SHARED HEADER === */
+function closeMenu(){
+  document.getElementById('menuPanel').classList.remove('open');
+  document.getElementById('menuBackdrop').classList.remove('open');
+}
+document.getElementById('burgerBtn').addEventListener('click',()=>{
+  document.getElementById('menuPanel').classList.add('open');
+  document.getElementById('menuBackdrop').classList.add('open');
+});
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('menuBackdrop').addEventListener('click',closeMenu);
+
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+document.getElementById('searchBtn').addEventListener('click',()=>{sOverlay.classList.add('open');setTimeout(()=>sInput.focus(),80);});
+document.getElementById('sClose').addEventListener('click',()=>sOverlay.classList.remove('open'));
+sOverlay.addEventListener('click',e=>{if(e.target===sOverlay)sOverlay.classList.remove('open');});
+sInput.addEventListener('input',function(){
+  const q=this.value.trim(),ql=q.toLowerCase();
+  const res=document.getElementById('sRes');
+  if(!q){res.innerHTML='<p class="s-empty">キーワードを入力してください。</p>';return;}
+  if(typeof ARTICLES==='undefined'){res.innerHTML='<p class="s-empty">検索インデックス読込中…</p>';return;}
+  const hits=ARTICLES.filter(a=>a.tt.includes(q)||a.cat.includes(q)||a.dk.includes(q)||a.tt.toLowerCase().includes(ql));
+  res.innerHTML=hits.length
+    ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
+    :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+</script>
+<div class="tip-backdrop" id="tipBackdrop"></div>
+<div class="tip-toast" id="tipToast">
+  <button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button>
+  <span class="tip-toast-title" id="tipToastTitle"></span>
+  <div class="tip-toast-body" id="tipToastBody"></div>
+</div>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6b7b629057d241878dda2a4f3169e5cb"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
