@@ -95,7 +95,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -121,7 +121,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -151,7 +151,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(70px, 27%, 140px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;padding:0;overflow:hidden;position:relative;}
 .person-block-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center center;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -458,14 +458,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:0;justify-content:flex-start;}
   .person-block-img img{max-height:260px;width:100%;object-fit:cover;object-position:center top;}
   .tip-box{left:0;transform:none;width:200px;}
@@ -551,10 +551,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Bias Report / E-05</p>
+    <p class="cover-kicker">認知バイアス</p>
     <h1>後知恵バイアス<br><em>「最初から、そう思っていた」</em></h1>
     <p class="cover-deck">結果を見た後なら、誰もが予言者になれる。しかしその「分かっていた気がする」感覚が、私の記憶を静かに書き換えている。</p>
-    <div class="cover-byline"><span>認知バイアス</span><span>記憶</span><span>判断</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>BIAS REPORT</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -764,15 +764,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <p class="body-text fade">同じ一連の出来事が、結末情報ひとつで「起きるはずだった」と「起きそうもなかった」のあいだを揺れ動く。読み方は静かに曲がり、本人は自分の読み方が曲がったことを知らない。この観察を、講義ノートの上の気づきではなく、数値で測れる<em>実験</em>に翻訳した人物がいる。</p>
 
 <!-- 人物ブロック -->
-<div class="person-block fade">
-  <div class="person-block-img">
-    <img src="./person_fischhoff.jpg" alt="Baruch Fischhoff">
-  </div>
-  <div class="person-block-body">
+<div class="person-block fade" style="grid-template-columns:1fr;">
+  <div class="person-block-body" style="border-left:none;">
     <p class="person-block-name">Baruch Fischhoff</p>
     <p class="person-block-role">心理学者・意思決定論</p>
     <p class="person-block-desc">1946年生まれ。イェール大学で数学を学んだ後、ヘブライ大学の大学院で<span class="tip">Daniel Kahneman<span class="tip-box"><strong>ダニエル・カーネマン</strong>（1934-2024）行動経済学の創始者のひとり。2002年ノーベル経済学賞。Amos Tversky とともに人間の判断のバイアスを体系化した。Fischhoff は博士課程で彼らに指導された。</span></span> と Amos Tversky に学ぶ。1975年、後知恵バイアスを実証する二本の論文を発表。以後、リスク認知、判断の心理、科学コミュニケーションの研究を牽引してきた。現在はカーネギーメロン大学ハワード・ハインツ教授。</p>
-    <p class="person-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Baruch_Fischhoff.png" target="_blank" rel="noopener">Petrasfan</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 4.0</a> via Wikimedia Commons. 記事掲載のため縮小してある。</p>
   </div>
 </div>
 
@@ -787,7 +783,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <p class="person-block-name">Daniel Kahneman</p>
     <p class="person-block-role">心理学者・行動経済学の創始者</p>
     <p class="person-block-desc">1934-2024。エルサレム生まれ。Amos Tversky と組み、人間の判断のバイアスを体系化した。1970年代初頭にヘブライ大学で博士課程の Fischhoff を直接指導し、後知恵バイアスを実験化する発想を促した側にいる。2002年ノーベル経済学賞。主著『<em>Thinking, Fast and Slow</em>』(2011)で「過去を理解しているという錯覚は、未来を予測する力への過信を生む」と後知恵バイアスを総括した。</p>
-    <p class="person-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Daniel_Kahneman_(3x4_cropped).jpg" target="_blank" rel="noopener">Eirik Solheim</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/2.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 2.0</a> via Wikimedia Commons. 記事掲載のため縮小してある。</p>
+    <p class="person-credit">Photo: Unknown, licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0 (Public Domain)</a> via <a href="https://commons.wikimedia.org/wiki/File:Kahneman-768x508-1.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. 集合写真から Kahneman 部分を切り出してある。</p>
   </div>
 </div>
 
@@ -1020,7 +1016,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- 常温核融合の装置模式図 -->
 <div class="svg-fig fade" style="max-width:520px;">
   <img src="./fig_cold_fusion.svg" alt="1989年フライシュマン=ポンズの常温核融合装置の模式図" style="width:100%;height:auto;display:block;padding:18px;background:white;border:1px solid #c8bfaa;">
-  <p class="svg-cap">図: フライシュマン=ポンズの電気分解セル模式図(1989)。ガラスのデュワー瓶に重水(D₂O)と電解質、陰極にパラジウム、陽極に白金線。<a href="https://commons.wikimedia.org/wiki/File:Cold_fusion_electrolysis.svg" target="_blank" rel="noopener">Pbroks13</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 3.0</a> via Wikimedia Commons.</p>
+  <p class="svg-cap">図: フライシュマン=ポンズの電気分解セル模式図(1989)。デュワー瓶(断熱二重壁)に重水(D₂O)と電解質(LiOD)、陰極にパラジウム棒、陽極に白金線を螺旋に巻いて差し込む。電気分解により両極で気泡(D₂/O₂)が発生する構成。<span style="color:#7a6a55;">— 模式図(自作)</span></p>
 </div>
 
 <p class="body-text fade">構成は驚くほど素朴だ。ガラスのデュワー瓶に重水と電解質、陰極にパラジウム、陽極に白金線を差し込んで電気分解する——それだけの装置で「室温の核融合」を主張した、というのが事件の中心にある事実関係である。この図を見て、「いかにも台所実験」「これで核融合が起きるはずがない」と感じたなら、それは <em>結末の情報があなたの視界に先回りしている</em> ことのささやかな証拠だ。</p>
@@ -1058,13 +1054,13 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <div class="ref-list">
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文(原典)</span><span class="ref-year">1975</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1975</span></div>
     <p class="ref-title"><a href="https://doi.org/10.1037/0096-1523.1.3.288" target="_blank" rel="noopener">Hindsight Is Not Equal to Foresight: The Effect of Outcome Knowledge on Judgment under Uncertainty</a></p>
     <p class="ref-author">Baruch Fischhoff — Journal of Experimental Psychology: Human Perception and Performance, 1(3), 288–299.</p>
     <p class="ref-desc">グルカ戦争(1814)の記述を使った古典実験。結末を教えられた群がその結末の確率を有意に高く判定した、後知恵バイアス研究の出発点。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文(原典)</span><span class="ref-year">1975</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1975</span></div>
     <p class="ref-title"><a href="https://doi.org/10.1016/0030-5073(75)90002-1" target="_blank" rel="noopener">I knew it would happen: Remembered probabilities of once-future things</a></p>
     <p class="ref-author">Baruch Fischhoff & Ruth Beyth — Organizational Behavior and Human Performance, 13, 1–16.</p>
     <p class="ref-desc">ニクソンの訪中・訪ソの結末を使った縦断実験。被験者は事後、自分の事前予想の確率を結果に引き寄せた形で思い出した。</p>
@@ -1076,16 +1072,22 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <p class="ref-desc">記憶歪曲・不可避感・予見可能性の三層モデルを提唱。後知恵バイアス研究の現代的標準となっている総説。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">再現研究</span><span class="ref-year">2021</span></div>
+    <div class="ref-meta"><span class="ref-type">追試論文</span><span class="ref-year">2021</span></div>
     <p class="ref-title"><a href="https://doi.org/10.1016/j.jesp.2021.104150" target="_blank" rel="noopener">Retrospective and prospective hindsight bias: Replications and extensions of Fischhoff (1975) and Slovic and Fischhoff (1977)</a></p>
     <p class="ref-author">Steffen Nestler et al. — Journal of Experimental Social Psychology.</p>
     <p class="ref-desc">原典論文の大規模デジタル再現。効果は堅牢に再現され、知識更新モデルでの解釈が支持された。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2016</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2016</span></div>
     <p class="ref-title"><a href="https://doi.org/10.1027/2151-2604/a000253" target="_blank" rel="noopener">Hindsight Bias and Law</a></p>
     <p class="ref-author">Zeitschrift für Psychologie, 224(3).</p>
     <p class="ref-desc">法廷場面における後知恵バイアスの影響と、二分審理などの対策をまとめた特集。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2011</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4150504105/" target="_blank" rel="noopener">Thinking, Fast and Slow（邦訳：ファスト&amp;スロー(上) あなたの意思はどのように決まるか?）</a></p>
+    <p class="ref-author">Daniel Kahneman</p>
+    <p class="ref-desc">後知恵バイアスを含む系統的な認知バイアス全体を解説した必読書(ハヤカワ文庫NF上巻)。Fischhoff の知見を System 1/2 の枠組みで再整理できる。</p>
   </div>
 </div>
 
@@ -1127,10 +1129,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
       <p class="sidebar-text">
-        — 確証バイアス<br>
-        — ダニング=クルーガー効果<br>
-        — 記憶は毎回再構築される<br>
-        — バイアスの盲点(bias blind spot)
+        — <a href="/confirmation_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">確証バイアス</a><br>
+        — <a href="/dunning_kruger" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ダニング・クルーガー効果</a><br>
+        — <a href="/memory_reconsolidation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">記憶は再構築される</a><br>
+        — <a href="/narrative_fallacy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ナラティブの誤謬</a><br>
+        — <a href="/survivorship_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">生存者バイアス</a>
       </p>
     </div>
     <div class="sidebar-block fade">

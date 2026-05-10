@@ -87,7 +87,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -113,7 +113,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;min-width:0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;margin-top:48px;}
@@ -362,7 +362,7 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:block;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -470,10 +470,10 @@ img,canvas,svg,video{max-width:100%;height:auto;}
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Physics · Interpretation</p>
+    <p class="cover-kicker">物理・宇宙</p>
     <h1>観測のたびに、<em>世界は分かれる</em></h1>
     <p class="cover-deck">波動関数は収縮しない——。そう決めたとき、物理学に何が起きたか。1957年、二十代の大学院生がひとり、観測問題に別の答えを書いた。</p>
-    <div class="cover-byline"><span>物理・宇宙</span><span>量子力学の解釈</span><span>エヴェレット</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>THOUGHT EXPERIMENT</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -883,31 +883,31 @@ img,canvas,svg,video{max-width:100%;height:auto;}
 
   <div class="ref-list">
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">原論文</span><span class="ref-year">1957</span></div>
-      <p class="ref-title"><a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.29.454" target="_blank" rel="noopener">"Relative State" Formulation of Quantum Mechanics</a></p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1957</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1103/RevModPhys.29.454" target="_blank" rel="noopener">"Relative State" Formulation of Quantum Mechanics</a></p>
       <p class="ref-author">Hugh Everett III — <em>Reviews of Modern Physics</em>, Vol. 29, pp. 454–462</p>
       <p class="ref-desc">相対状態定式化の原典。博士論文の短縮版として発表された。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">解説論文</span><span class="ref-year">1970</span></div>
+      <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">1970</span></div>
       <p class="ref-title"><a href="https://cqi.inf.usi.ch/qic/deWitt1970.pdf" target="_blank" rel="noopener">Quantum Mechanics and Reality</a></p>
       <p class="ref-author">Bryce S. DeWitt — <em>Physics Today</em>, September 1970</p>
       <p class="ref-desc">「多世界(many-worlds)」という呼称を世間に広めた解説記事。エヴェレットの論文が埋もれていた10年余の沈黙を終わらせた。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2010</span></div>
-      <p class="ref-title">The Many Worlds of Hugh Everett III</p>
+      <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">2010</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/0199659249/" target="_blank" rel="noopener">The Many Worlds of Hugh Everett III</a></p>
       <p class="ref-author">Peter Byrne — Oxford University Press</p>
       <p class="ref-desc">エヴェレット本人の最も詳細な伝記。Pentagon時代の核戦争シナリオ計算の仕事まで含め、人生を総合的に描く。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2019</span></div>
-      <p class="ref-title">Something Deeply Hidden: Quantum Worlds and the Emergence of Spacetime</p>
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2019</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/1524743038/" target="_blank" rel="noopener">Something Deeply Hidden: Quantum Worlds and the Emergence of Spacetime</a></p>
       <p class="ref-author">Sean Carroll — Dutton</p>
       <p class="ref-desc">現代的MWI擁護の一般向け決定版。Born則を「自己位置づけの不確定性」から導く議論を紹介する。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">百科事典</span><span class="ref-year">2021</span></div>
+      <div class="ref-meta"><span class="ref-type">事典</span><span class="ref-year">2021</span></div>
       <p class="ref-title"><a href="https://plato.stanford.edu/entries/qm-manyworlds/" target="_blank" rel="noopener">Many-Worlds Interpretation of Quantum Mechanics</a></p>
       <p class="ref-author">Lev Vaidman — <em>Stanford Encyclopedia of Philosophy</em></p>
       <p class="ref-desc">MWIに対する哲学的論点(Born則の起源、個人の同一性、確率の解釈)を整理した標準参照文献。</p>
@@ -948,7 +948,7 @@ img,canvas,svg,video{max-width:100%;height:auto;}
     </div>
     <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">ホイーラーがエヴェレットの論文を評価し、自らコペンハーゲンのボーアに見せに行った。ボーアは首を縦に振らず、論文は10年以上放置された。</p></div>
     <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">— エブリシング・エブリウェア・オール・アット・ワンス<br>— Rick and Morty<br>— マーベル『ドクター・ストレンジ』<br>— クライトン『タイムライン』</p></div>
-    <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— 二重スリット実験<br>— シュレーディンガーの猫<br>— 量子もつれ<br>— 量子コンピューター</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <a href="/double_slit" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">二重スリット実験</a><br>— <a href="/quantum_entanglement" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">量子もつれ</a><br>— <a href="/quantum_computer" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">量子コンピューター</a><br>— <a href="/maxwell_demon" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マクスウェルの悪魔</a><br>— <a href="/butterfly_dream" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">胡蝶の夢</a></p></div>
     <div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">量子力学の解釈の一つ。実験での決着はついていない。</p></div>
   </div>
 </div>

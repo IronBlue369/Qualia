@@ -104,7 +104,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -130,7 +130,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -162,7 +162,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;overflow:hidden;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -471,14 +471,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
   .person-block-img img{max-width:160px;}
   .tip-box{left:0;transform:none;width:200px;}
@@ -557,7 +557,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <p class="cover-kicker">脳と意識 / 自己と人格</p>
     <h1>「本当の<em>その人</em>」はどこにあるのか</h1>
     <p class="cover-deck">突然の事故、薬の副作用、加齢、酔った夜。「人が変わる」と私たちが言うとき、変わったのは何で、何が残ったのか。</p>
-    <div class="cover-byline"><span>脳と意識</span><span>思考実験・哲学</span><span>科学と文化</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>THOUGHT EXPERIMENT</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -679,12 +679,16 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
   </div>
 
-  <div class="person-block no-img fade">
+  <div class="person-block fade">
+    <div class="person-block-img" style="padding:0;">
+      <img src="./person_harlow.jpg" alt="ジョン・マーティン・ハーロウ" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
     <div class="person-block-body">
       <p class="person-block-name">ジョン・マーティン・ハーロウ</p>
       <p class="person-block-role">John Martyn Harlow, 1819–1907</p>
       <p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/John_Martyn_Harlow" target="_blank" rel="noopener">Wikipedia</a></p>
       <p class="person-block-desc">米バーモントの田舎医師。事故直後にゲージを治療し、1848年に事故の経過を、1868年に20年後の人格変化を記録した。一介の地方医として、後の脳科学の最重要症例を世に残した。記録は控えめで、症例の意味を大げさに語らなかった点が後世に評価されている。</p>
+      <p class="person-block-credit" style="font-size:10px;color:#b0a090;margin-top:8px;">Photo: Biographical History of Massachusetts (1911) / Public Domain via Wikimedia Commons</p>
     </div>
   </div>
 
@@ -1068,50 +1072,50 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <div class="ref-list">
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">医学論文(原著)</span><span class="ref-year">1848 / 1868</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1848 / 1868</span></div>
       <p class="ref-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1114479/" target="_blank" rel="noopener">"No longer Gage": an iron bar through the head — Early observations of personality change after injury to the prefrontal cortex</a></p>
       <p class="ref-author">John M. Harlow / Boston Medical and Surgical Journal (1848) と Publications of the Massachusetts Medical Society (1868) からの一次史料の解説。</p>
       <p class="ref-desc">ゲージ事例の一次資料2本(初報1848、詳述1868)を解説したPMCの総説。「no longer Gage」の出典を含む。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1994</span></div>
-      <p class="ref-title">Antonio Damasio, <em>Descartes' Error: Emotion, Reason, and the Human Brain</em></p>
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1994</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4480093028/" target="_blank" rel="noopener">Antonio Damasio, <em>Descartes' Error: Emotion, Reason, and the Human Brain</em></a></p>
       <p class="ref-author">Putnam, New York. 邦訳『生存する脳——心と脳と身体の神秘』講談社学術文庫(2010)、後に『デカルトの誤り』ちくま学芸文庫(2024)で復刊。</p>
       <p class="ref-desc">ゲージ事例を冒頭に置き、現代の前頭葉損傷例(EVR)と統合し、ソマティック・マーカー仮説を提示した一般向け著作。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1689</span></div>
-      <p class="ref-title">John Locke, <em>An Essay Concerning Human Understanding</em>, Book II, Chapter 27 "Of Identity and Diversity"</p>
+      <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">1689</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4003400720/" target="_blank" rel="noopener">John Locke, <em>An Essay Concerning Human Understanding</em>, Book II, Chapter 27 "Of Identity and Diversity"</a></p>
       <p class="ref-author">邦訳『人間知性論』(岩波文庫、全4冊)第2巻所収。</p>
       <p class="ref-desc">人格と人間の区別、記憶を基準とする人格同一性の理論。後の議論すべての出発点。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1739</span></div>
-      <p class="ref-title">David Hume, <em>A Treatise of Human Nature</em>, Book I, Part IV, §VI "Of personal identity"</p>
+      <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">1739</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4588121919/" target="_blank" rel="noopener">David Hume, <em>A Treatise of Human Nature</em>, Book I, Part IV, §VI "Of personal identity"</a></p>
       <p class="ref-author">邦訳『人間本性論(人性論)』(法政大学出版局・中公クラシックス等、複数の邦訳あり)。</p>
       <p class="ref-desc">自己を「知覚の束(bundle)」として捉える、いわゆる「束理論」の古典的源泉。記事中の pull-quote 出典。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1984</span></div>
-      <p class="ref-title">Derek Parfit, <em>Reasons and Persons</em></p>
+      <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">1984</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4326101202/" target="_blank" rel="noopener">Derek Parfit, <em>Reasons and Persons</em></a></p>
       <p class="ref-author">Oxford University Press. 邦訳『理由と人格——非人格性の倫理へ』勁草書房(1998)。</p>
       <p class="ref-desc">人格の同一性は「それほど重要ではない」。Relation R(記憶・性格・意図のつながり)が、同一性に代わる重要な概念。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">医学論文</span><span class="ref-year">1998</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1998</span></div>
       <p class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/9855500/" target="_blank" rel="noopener">Frontotemporal lobar degeneration: a consensus on clinical diagnostic criteria</a></p>
       <p class="ref-author">Neary D, et al. / Neurology, 51(6):1546-1554 (1998)</p>
       <p class="ref-desc">前頭側頭型認知症(FTD)の国際的な臨床診断基準。脱抑制・社会判断の低下・感情の鈍化を中核症状とした。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">医学論文</span><span class="ref-year">2010</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2010</span></div>
       <p class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/20457959/" target="_blank" rel="noopener">Impulse Control Disorders in Parkinson Disease: A Cross-Sectional Study of 3090 Patients</a></p>
       <p class="ref-author">Weintraub D, et al. / Archives of Neurology, 67(5):589-595 (2010)</p>
       <p class="ref-desc">パーキンソン病患者の13.6%に衝動制御障害。ドーパミンアゴニスト服用群では17.1%、非服用群では6.9%(オッズ比2.72)。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2000</span></div>
-      <p class="ref-title">Malcolm Macmillan, <em>An Odd Kind of Fame: Stories of Phineas Gage</em></p>
+      <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">2000</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/0262133636/" target="_blank" rel="noopener">Malcolm Macmillan, <em>An Odd Kind of Fame: Stories of Phineas Gage</em></a></p>
       <p class="ref-author">MIT Press. ゲージ伝記の決定版。</p>
       <p class="ref-desc">ゲージの後年(チリでの駅馬車御者など)を含む一次史料を網羅。「人格は永久に破壊された」という単純な物語を史料的に修正した重要書。</p>
     </div>
@@ -1159,11 +1163,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
       <p class="sidebar-text">
-        — 分離脳と二つの意識<br>
-        — 記憶は毎回再構築される<br>
-        — 意識のハードプロブレム<br>
-        — テセウスの船<br>
-        — 細胞は数年で入れ替わる
+        — <a href="/split_brain" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">分離脳</a><br>
+        — <a href="/memory_reconsolidation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">記憶は再構築される</a><br>
+        — <a href="/hard_problem" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">意識のハードプロブレム</a><br>
+        — <a href="/ship_of_theseus" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">テセウスの船</a><br>
+        — <a href="/cellular_turnover" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">細胞の入れ替わり</a>
       </p>
     </div>
     <div class="sidebar-block fade">

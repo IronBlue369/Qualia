@@ -105,7 +105,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -131,7 +131,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -163,7 +163,7 @@ h3{font-family:'Playfair Display',serif;font-size:clamp(16px,2.2vw,20px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(70px, 27%, 140px) 1fr;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;}
 .person-block-img{background:#ede8dc;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:18px 20px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -428,14 +428,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .meta-dates{margin-left:0;width:100%;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{aspect-ratio:3/2;}
   .person-block-img img{object-position:center top;}
   .tip-box{left:0;transform:none;width:200px;}
@@ -514,10 +514,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Special Report / 物理学 × 思考実験</p>
+    <p class="cover-kicker">物理・宇宙</p>
     <h1><em>動いている</em>とは何か</h1>
     <p class="cover-deck"><strong>ガリレオの船とニュートンのバケツ。</strong> 等速直線運動は内側から判別できない。ところが回転だけは違う。バケツの中の水が凹むとき、それは何に対して回っているのか?</p>
-    <div class="cover-byline"><span>物理・宇宙</span><span>思考実験・哲学</span><span>科学史</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>THOUGHT EXPERIMENT</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -1231,52 +1231,58 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="sec-rule fade"><span class="sec-label">Sources</span><span class="sec-line"></span></div>
 <div class="ref-list">
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">Primary</span><span class="ref-year">1632</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1632</span></div>
     <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Dialogue_Concerning_the_Two_Chief_World_Systems" target="_blank" rel="noopener">Dialogo sopra i due massimi sistemi del mondo</a></p>
     <p class="ref-author">Galileo Galilei / Stillman Drake 訳『Dialogue Concerning the Two Chief World Systems』(University of California Press, 1953)</p>
     <p class="ref-desc">本記事 Part 1 で引用した船室の比喩は第二日、サルヴィアーティの長広舌として現れる。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">Primary</span><span class="ref-year">1687</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1687</span></div>
     <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica" target="_blank" rel="noopener">Philosophiæ Naturalis Principia Mathematica</a></p>
     <p class="ref-author">Isaac Newton / Andrew Motte 訳, 1729 / I. Bernard Cohen & Anne Whitman 改訳, 1999</p>
     <p class="ref-desc">バケツ実験は冒頭の「定義」のあとに置かれた Scholium に登場する。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">Primary</span><span class="ref-year">1883</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1883</span></div>
     <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Mach%27s_principle" target="_blank" rel="noopener">Die Mechanik in ihrer Entwicklung</a></p>
     <p class="ref-author">Ernst Mach / T. J. McCormack 訳『The Science of Mechanics』(Open Court, Chicago, 1893)</p>
     <p class="ref-desc">第二章「ニュートンの諸見解」と第六章「力学の原理の批判的考察」に絶対空間批判が集中する。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">Primary</span><span class="ref-year">1905</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1905</span></div>
     <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Annus_mirabilis_papers" target="_blank" rel="noopener">Zur Elektrodynamik bewegter Körper</a></p>
     <p class="ref-author">Albert Einstein, Annalen der Physik 17, 891–921(1905年6月30日投稿)</p>
     <p class="ref-desc">特殊相対性理論の原論文。「動いている物体の電気力学について」。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">Primary</span><span class="ref-year">1915</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1915</span></div>
     <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Einstein_field_equations" target="_blank" rel="noopener">Die Feldgleichungen der Gravitation</a></p>
     <p class="ref-author">Albert Einstein, Sitzungsberichte der Preußischen Akademie der Wissenschaften(1915年11月25日)</p>
     <p class="ref-desc">一般相対性理論の重力場方程式の決定版。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">Letter</span><span class="ref-year">1913</span></div>
+    <div class="ref-meta"><span class="ref-type">一次資料</span><span class="ref-year">1913</span></div>
     <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Mach%27s_principle" target="_blank" rel="noopener">アインシュタインからマッハへの書簡</a></p>
     <p class="ref-author">Albert Einstein, 1913年6月25日付 / The Collected Papers of Albert Einstein, Vol. 5, Doc. 448</p>
     <p class="ref-desc">「慣性は物体間の相互作用から生じる——ニュートンのバケツ実験についてのあなたの考察通りに」と記す。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">Observation</span><span class="ref-year">2018</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2018</span></div>
     <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Cosmic_microwave_background" target="_blank" rel="noopener">Planck 2018 results: Cosmic microwave background dipole</a></p>
     <p class="ref-author">Planck Collaboration, Astronomy &amp; Astrophysics 641, A1(2020)</p>
     <p class="ref-desc">太陽系の対 CMB 速度は 369.82 ± 0.11 km/s、方向はしし座/コップ座境界。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">Secondary</span><span class="ref-year">2021</span></div>
+    <div class="ref-meta"><span class="ref-type">事典</span><span class="ref-year">2021</span></div>
     <p class="ref-title"><a href="https://plato.stanford.edu/entries/spacetime-theories/" target="_blank" rel="noopener">Absolute and Relational Space and Motion: Post-Newtonian Theories</a></p>
     <p class="ref-author">Carl Hoefer, Nick Huggett, James Read / Stanford Encyclopedia of Philosophy(初版 2006、2021年改訂)</p>
     <p class="ref-desc">ニュートンの絶対空間に対するマッハの批判を Section 1 で全面的に扱い、その「軽量版/重量版」の区分まで論じる、絶対空間と関係的時空概念をめぐる現代の決定版的レビュー。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2004</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4794222300/" target="_blank" rel="noopener">The Fabric of the Cosmos（邦訳：宇宙を織りなすもの 上 — 時間と空間の正体）</a></p>
+    <p class="ref-author">Brian Greene</p>
+    <p class="ref-desc">ニュートンのバケツ実験から Mach・Einstein まで、絶対空間と相対空間の論争史を一般読者向けに辿る。記事のテーマ系譜と完全に重なる文庫版(草思社文庫)。</p>
   </div>
 </div>
 
@@ -1317,7 +1323,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— 光速は上限<br>— 時間は場所によって速さが違う<br>— 水槽の脳<br>— 地図は領土ではない</p>
+      <p class="sidebar-text">— <a href="/double_slit" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">二重スリット実験</a><br>— <a href="/maxwell_demon" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マクスウェルの悪魔</a><br>— <a href="/quantum_entanglement" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">量子もつれ</a><br>— <a href="/ship_of_theseus" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">テセウスの船</a><br>— <a href="/butterfly_dream" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">胡蝶の夢</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">読みながら確認</p>
@@ -1377,9 +1383,9 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   <p class="related-label">次に読む</p>
   <div class="related-grid">
     <a class="related-card" href="https://qualiajournal.com/light_speed">
-      <p class="related-card-tag">物理・宇宙</p>
-      <p class="related-card-title">光速は上限</p>
-      <p class="related-card-desc">絶対空間が崩れた後、何が「絶対」として残ったか。光の速さだけが、すべての慣性系で同じ値をとる。</p>
+      <p class="related-card-tag">Relativity Series — Chapter 1</p>
+      <p class="related-card-title">光に追いつけるか</p>
+      <p class="related-card-desc">絶対空間を捨てた後に残ったのは、光の速度の不変性だった。マイケルソン=モーリー実験から LIGO 重力波検出まで、7 つの体験で辿る Chapter 1。</p>
       <p class="related-card-arrow">読む →</p>
     </a>
     <a class="related-card" href="https://qualiajournal.com/time_dilation">

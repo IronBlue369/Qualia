@@ -107,7 +107,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -133,7 +133,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -453,7 +453,7 @@ ruby rt{font-size:0.55em;color:#8b1a1a;font-weight:600;letter-spacing:.02em;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -545,10 +545,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Auditory Illusion / 知覚・錯覚</p>
+    <p class="cover-kicker">知覚・錯覚</p>
     <h1>永遠に<em>上昇する</em>音</h1>
     <p class="cover-deck">同じ場所をまわり続けているのに、どこまでも高く登っていくように聞こえる音。シェパードトーンは、耳が嘘をついているのではなく、脳の「高さを測る仕組み」そのものの輪郭を見せてくる。</p>
-    <div class="cover-byline"><span>知覚・錯覚</span><span>聴覚</span><span>音楽・映画</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>PROFILE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -1224,28 +1224,34 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <p class="ref-desc">シェパードトーンの原著。ピッチ知覚が「高さ」と「音名」の二重構造を持つことを実験で示し、螺旋モデルを導入した。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">学術</span><span class="ref-year">1969</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1969</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1121/1.1911794" target="_blank" rel="noopener">Pitch Control and Pitch Paradoxes Demonstrated with Computer-Synthesized Sounds</a></p>
       <p class="ref-author">Jean-Claude Risset &#8212; <em>Journal of the Acoustical Society of America</em>, 46(1A), 88</p>
       <p class="ref-desc">離散的なシェパード音階を連続な glissando として合成・発表。以後の電子音楽における定番技法となる。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">学術</span><span class="ref-year">2016</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2016</span></div>
       <p class="ref-title"><a href="https://doi.org/10.3389/fpsyg.2016.00300" target="_blank" rel="noopener">Listening to the Shepard-Risset Glissando: the Relationship between Emotional Response, Disruption of Equilibrium, and Personality</a></p>
       <p class="ref-author">Mauro Copelli et al. &#8212; <em>Frontiers in Psychology</em>, 7:300</p>
       <p class="ref-desc">シェパード=リッセの連続版が聴き手に与える情動反応と平衡感覚への影響を実証的に調べた論文。「不安感」との相関に言及。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">インタビュー</span><span class="ref-year">2017</span></div>
+      <div class="ref-meta"><span class="ref-type">記事</span><span class="ref-year">2017</span></div>
       <p class="ref-title"><a href="https://www.cbc.ca/radio/q/blog/hans-zimmer-explains-the-audio-trickery-that-made-dunkirk-audiences-nauseous-1.4311684" target="_blank" rel="noopener">Hans Zimmer explains the audio trickery that made Dunkirk audiences nauseous</a></p>
       <p class="ref-author">CBC Radio / Q &#8212; Hans Zimmer 本人へのインタビュー</p>
       <p class="ref-desc">Zimmer 自身が《Dunkirk》のシェパードトーン使用について語っている。「時間そのものを騙す」という設計意図が詳しい。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論評</span><span class="ref-year">2018</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2018</span></div>
       <p class="ref-title"><a href="https://doi.org/10.3366/sound.2018.0126" target="_blank" rel="noopener">Shepard Tones and Production of Meaning in Recent Films: Martel's Zama and Nolan's Dunkirk</a></p>
       <p class="ref-author">The New Soundtrack 誌</p>
       <p class="ref-desc">現代映画におけるシェパードトーンの使用を、ノーラン作品と Lucrecia Martel 作品を例に分析した論考。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2006</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4826901577/" target="_blank" rel="noopener">This Is Your Brain on Music（邦訳：音楽好きな脳 — 人はなぜ音楽に夢中になるのか）</a></p>
+      <p class="ref-author">Daniel J. Levitin</p>
+      <p class="ref-desc">ピッチ知覚・音楽聴取の神経科学を一般向けに解説。シェパードトーンに代表される聴覚錯覚の周辺知識を体系的に得られる。</p>
     </div>
   </div>
 
@@ -1285,7 +1291,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— なぜピアノは12音なのか<br>— 音は存在しない<br>— マクガーク効果<br>— チェッカーシャドウ錯視</p>
+      <p class="sidebar-text">— <a href="/twelve_tones" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">なぜピアノは12音なのか</a><br>— <a href="/sound_does_not_exist" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">音は存在しない</a><br>— <a href="/mcgurk_effect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マクガーク効果</a><br>— <a href="/checker_shadow" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">チェッカーシャドウ錯視</a><br>— <a href="/mandelbrot_set" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マンデルブロ集合</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">信頼度</p>

@@ -107,7 +107,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -133,7 +133,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -226,7 +226,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:200px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(100px, 39%, 200px) 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
 .person-block-img{background:#ede8dc;display:flex;align-items:stretch;justify-content:center;padding:0;overflow:hidden;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:18px 20px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -412,14 +412,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;justify-content:center;}
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
@@ -503,10 +503,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Vision / 知覚と脳</p>
+    <p class="cover-kicker">知覚・錯覚</p>
     <h1>盲点は脳が<em>補完している</em></h1>
     <p class="cover-deck">視野の中に、何も映らない穴がある。<br>脳はその穴を、何食わぬ顔で埋めている。</p>
-    <div class="cover-byline"><span>知覚・錯覚</span><span>神経科学</span><span>視覚</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>PHENOMENON</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -635,15 +635,15 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <p class="body-text fade">マリオットはこの実験をフランス宮廷で実演した。誰かの顔の前に小さな物を置いて片目を閉じさせれば、その物が「消える」瞬間を再現できる。貴族たちは互いの首が見えなくなる実験に熱狂したと伝えられる。英国王チャールズ2世の面前で実演されたという逸話も広まったが、近代の史料研究者は、王立学会への報告は書簡で行われ、王が実演の場に居合わせた形跡はないと指摘している。</p>
 
-  <!-- 進化比較図(Wikimedia Commons) -->
+  <!-- 進化比較図(Wikimedia Commons / Public Domain) -->
   <div class="img-fig fade">
     <div class="img-fig-area">
-      <img src="./fig_eye_evolution.svg" alt="脊椎動物の眼(左)とタコの眼(右)の比較図">
+      <img src="./fig_eye_evolution.png" alt="脊椎動物の眼(左)とタコの眼(右)の比較図">
     </div>
     <div class="img-caption">
-      <p style="margin-bottom:8px;"><strong style="color:#1a1208;">図中の番号:</strong> <strong>1</strong>=網膜 / <strong>2</strong>=神経線維 / <strong>3</strong>=視神経 / <strong>4</strong>=盲点</p>
-      <p style="margin-bottom:8px;"><strong style="color:#8b1a1a;">左=ヒトを含む脊椎動物 / 右=タコ</strong>。<strong>左(脊椎動物)</strong>では神経線維(2)が光受容体の<em>手前</em>を走り、束ねられて網膜を貫いて視神経(3)になる。その貫通点に光受容体が置けず、<strong>盲点(4)</strong>ができる。<strong>右(タコ)</strong>では神経線維が光受容体の<em>裏側</em>を通り、網膜を貫かずに脳へ抜ける。だから<em>タコには盲点がない</em>。同じ「カメラ眼」でも、配線の通し方が逆向きになっている。</p>
-      <p style="font-size:10px;color:#b0a090;margin:0;"><em>出典:</em> Jerry Crimson Mann, Caerbannog / CC BY-SA 3.0 / Wikimedia Commons。</p>
+      <p style="margin-bottom:10px;font-size:15px;line-height:1.8;"><strong style="color:#1a1208;">図中の色:</strong> <strong style="color:#c44;">赤</strong>=網膜 / <strong style="color:#36a;">青</strong>=神経 / <strong style="color:#b8941f;">黄の縦線</strong>=盲点の位置と範囲</p>
+      <p style="margin-bottom:10px;font-size:15px;line-height:1.8;"><strong style="color:#8b1a1a;">左=ヒトを含む脊椎動物 / 右=タコ</strong>。<strong>左(脊椎動物)</strong>では神経線維(青)が光受容体の<em>手前</em>を走り、束ねられて網膜を貫いて視神経になる。その貫通点に光受容体が置けず、<strong>盲点(黄)</strong>ができる。<strong>右(タコ)</strong>では神経線維が光受容体の<em>裏側</em>を通り、網膜を貫かずに脳へ抜ける。だから<em>タコには盲点がない</em>。同じ「カメラ眼」でも、配線の通し方が逆向きになっている。</p>
+      <p style="font-size:10px;color:#b0a090;margin:0;"><em>出典:</em> Philcha / Public Domain / Wikimedia Commons。</p>
     </div>
   </div>
 
@@ -774,12 +774,15 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <p class="body-text fade">網膜には光を電気信号に変える光受容体 — 桿体が約1億個、錐体が約600万個 — が、合わせて1億個を超える数で並んでいる。ただし、一点だけ、それが存在しない場所がある。網膜の神経節細胞から伸びた軸索が束になって眼球の外へ抜けていく出口 — <span class="tip" onclick="toggleTip(this)">視神経乳頭<span class="tip-box"><strong>視神経乳頭(optic disc)</strong>網膜上で視神経が眼球を貫いて外へ出る部位。神経線維が集中しているため光受容体が存在できず、結果として視野の盲点に対応する。眼底検査でも明瞭に見える円形の構造。</span></span>である。</p>
 
-  <!-- 眼球解剖図 -->
+  <!-- 眼球解剖図(Gray's Anatomy 1918, Plate 869 / Public Domain) -->
   <div class="img-fig fade">
     <div class="img-fig-area">
-      <img src="./fig_eye_anatomy_ja.svg" alt="ヒトの眼の断面図(日本語ラベル)">
+      <img src="./fig_eye_anatomy.png" alt="ヒトの眼の断面図(Gray's Anatomy 1918, Plate 869)">
     </div>
-    <p class="img-caption">ヒトの眼の断面図。視神経が眼球を出る点が視神経乳頭=盲点にあたる。中心窩(fovea)は網膜の中央付近にあり、そこから鼻側に視神経が抜ける。レンズで像が反転するため、視野としては耳側に盲点が現れる。<em>出典:</em> Rhcastilhos, Hatsukari715, Jmarchn / CC BY-SA 3.0 / Wikimedia Commons。</p>
+    <div class="img-caption">
+      <p style="margin-bottom:10px;font-size:15px;line-height:1.8;">ヒトの眼の水平断面図(Gray's Anatomy 1918より)。図の上が眼球前方の <em>Cornea</em>(角膜)・<em>Lens</em>(水晶体)、下が眼球後方の網膜と視神経。図下、やや右寄りで眼球を抜けていくのが <em>Optic nerve</em>(視神経)で、その付け根が <em>視神経乳頭(optic disc)</em>= 盲点にあたる。視神経のすぐ左に小さく見える <em>Fovea centralis</em>(中心窩)は、網膜中心の最も視力が高い点。図の左側 <em>Rectus lateralis</em> が耳側、右側 <em>Rectus medialis</em> が鼻側にあたる。視神経は鼻側寄り、中心窩は耳側寄りに位置し、レンズで像が反転するため視野としては耳側に盲点が現れる。</p>
+      <p style="font-size:10px;color:#b0a090;margin:0;"><em>出典:</em> Henry Vandyke Carter, Gray's Anatomy 1918, Plate 869 / Public Domain / Wikimedia Commons。</p>
+    </div>
   </div>
 
   <p class="body-text fade">視神経乳頭は中心窩から鼻側に約3〜4mm離れた網膜上にあり、レンズで像が反転する関係で、それが視野では<em>耳側</em>に投影される。視野角にすると中心窩から約15度の位置、サイズは<span class="tip" onclick="toggleTip(this)">5°×7°<span class="tip-box"><strong>視野角5°×7°</strong>腕をまっすぐ伸ばして親指を立てたとき、親指の幅が約2°、握り拳の幅が約10°。盲点はその間で、<em>握り拳の半分よりやや大きい</em>くらいの楕円が、常に視野の中に開いていることになる。</span></span>の楕円。脳にとってこの穴は、網膜の表面地図のうち信号が全く届かない領域として存在する。ではその空白を、脳はどう扱うのか。ヒントは光受容体の分布そのものにある。</p>
@@ -790,9 +793,9 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <img src="./fig_photoreceptor_distribution.svg" alt="網膜上の光受容体の分布グラフ">
     </div>
     <div class="img-caption">
-      <p style="margin-bottom:8px;"><strong style="color:#1a1208;">グラフの読み方:</strong> 横軸 = 中心窩からの角度(Angle from fovea)、縦軸 = 1mm² あたりの光受容体の数。<strong>赤の点線(Rods)= 桿体</strong>、<strong>青の実線(Cones)= 錐体</strong>。<strong>0° = 中心窩(Fovea)</strong>、左側が耳側(temple side)、右側が鼻側(nose side)。</p>
-      <p style="margin-bottom:8px;">中心窩(0°)で錐体が最大になり、周辺へ向かって桿体が増える。そして<strong style="color:#8b1a1a;">右側の15°付近で両者の数が一気にゼロに落ち込む(Blind spot)</strong>。これが盲点の解剖学的実体 — 光を感じる細胞そのものが、その位置だけ存在しない。</p>
-      <p style="font-size:10px;color:#b0a090;margin:0;"><em>出典:</em> Cmglee / CC BY-SA 3.0 / Wikimedia Commons(原資料: Wandell, Foundations of Vision, Stanford)。</p>
+      <p style="margin-bottom:10px;font-size:15px;line-height:1.8;"><strong style="color:#1a1208;">グラフの読み方:</strong> 横軸 = 中心窩からの角度(Angle from fovea)、縦軸 = 1mm² あたりの光受容体の数。<strong>赤の点線(Rods)= 桿体</strong>、<strong>青の実線(Cones)= 錐体</strong>。<strong>0° = 中心窩(Fovea)</strong>、左側が耳側(temple side)、右側が鼻側(nose side)。</p>
+      <p style="margin-bottom:10px;font-size:15px;line-height:1.8;">中心窩(0°)で錐体が最大になり、周辺へ向かって桿体が増える。そして<strong style="color:#8b1a1a;">右側の15°付近で両者の数が一気にゼロに落ち込む(Blind spot、淡赤の帯)</strong>。これが盲点の解剖学的実体 — 光を感じる細胞そのものが、その位置だけ存在しない。</p>
+      <p style="font-size:10px;color:#b0a090;margin:0;"><em>データ出典:</em> Curcio CA, Sloan KR, Kalina RE, Hendrickson AE, "Human photoreceptor topography", <em>J Comp Neurol</em> 292:497–523 (1990)。グラフはQualia Journalによる再プロット。</p>
     </div>
   </div>
 
@@ -993,31 +996,31 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <div class="ref-list">
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Primary Source</span><span class="ref-year">1668</span></div>
+      <div class="ref-meta"><span class="ref-type">一次資料</span><span class="ref-year">1668</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1098/rstl.1668.0015" target="_blank" rel="noopener">A new discovery touching vision</a></p>
       <p class="ref-author">Edme Mariotte — Philosophical Transactions of the Royal Society, Vol. 3, No. 35, pp. 668–671 (英訳)。原典: 『Nouvelle découverte touchant la veüe』(Paris, 1668)。</p>
       <p class="ref-desc">盲点の発見を告げるマリオットの書簡。原典フランス語版の英訳が1668年の Royal Society 機関誌に掲載され、欧州中の知識人に伝わった。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Review</span><span class="ref-year">2006</span></div>
-      <p class="ref-title"><a href="https://www.nature.com/articles/nrn1869" target="_blank" rel="noopener">The neural mechanisms of perceptual filling-in</a></p>
+      <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2006</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1038/nrn1869" target="_blank" rel="noopener">The neural mechanisms of perceptual filling-in</a></p>
       <p class="ref-author">Hidehiko Komatsu — Nature Reviews Neuroscience, 7, 220–231.</p>
       <p class="ref-desc">補完現象の神経機構を霊長類単一細胞記録と心理物理から総説した決定版の一つ。盲点補完の即時性、V1の盲点対応領域の応答特性を整理している。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Research</span><span class="ref-year">1991</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1991</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1038/350699a0" target="_blank" rel="noopener">Perceptual filling in of artificially induced scotomas in human vision</a></p>
       <p class="ref-author">V. S. Ramachandran, R. L. Gregory — Nature, 350, 699–702.</p>
       <p class="ref-desc">人工的に作った視野欠損における補完の時間経過を測定した先駆的研究。盲点補完との機構的差異を示した。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Textbook</span><span class="ref-year">1995</span></div>
-      <p class="ref-title">Foundations of Vision</p>
+      <div class="ref-meta"><span class="ref-type">教科書</span><span class="ref-year">1995</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/0878938532/" target="_blank" rel="noopener">Foundations of Vision</a></p>
       <p class="ref-author">Brian A. Wandell — Sinauer Associates.</p>
       <p class="ref-desc">視覚科学の標準的教科書。網膜の解剖、光受容体の分布、受容野の構造まで体系的に扱う。本記事で使用した光受容体分布グラフの原資料。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">History</span><span class="ref-year">2007</span></div>
+      <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2007</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1016/j.survophthal.2007.04.002" target="_blank" rel="noopener">Edme Mariotte (1620–1684): Pioneer of Neurophysiology</a></p>
       <p class="ref-author">Wade NJ, Finger S — Survey of Ophthalmology, 52(4), 443–449.</p>
       <p class="ref-desc">マリオットの盲点発見の史料的検討。王前実演伝説の出所と信憑性を批判的に論じている。</p>
@@ -1027,7 +1030,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   <div class="note-box fade">
     <strong>📌 この記事について</strong><br>
     盲点の存在は、1668年のマリオットの発表以来、視野計による精密測定、神経生理学的記録、脳機能画像によって繰り返し確認されている。視神経乳頭に光受容体がないという解剖学的事実、V1の盲点対応領域の神経応答、補完が即時的に起きるという心理物理学的知見 — これらは独立した複数の方法で裏付けられている。一方、補完に関与する神経回路の詳細や、V1の外側(V2、V4など)でどこまで補完が拡張されるかは、現在も研究が続いている領域である。<br><br>
-    本記事で使用した4点の画像(マリオット肖像、眼の解剖図、光受容体分布グラフ、脊椎動物・タコの眼比較図)は、いずれもWikimedia Commonsの Public Domain もしくは CC BY-SA 3.0 ライセンスに従って利用している。クレジット詳細は各図のキャプションに記載した。
+    本記事で使用した画像のうち、マリオット肖像・眼の解剖図(Gray's Anatomy 1918)・脊椎動物とタコの眼比較図はWikimedia Commonsの Public Domain 画像を使用している。光受容体分布グラフは Curcio et al. (1990) のデータをもとに本誌が再プロットした。クレジット詳細は各図のキャプションに記載した。
   </div>
 
   <div class="signature fade">e. Tamaki</div>
@@ -1063,10 +1066,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
       <p class="sidebar-text">
-        — 色は存在しない<br>
-        — チェッカーシャドウ錯視<br>
-        — マクガーク効果<br>
-        — 変化の見落とし
+        — <a href="/color" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">色は存在しない</a><br>
+        — <a href="/checker_shadow" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">チェッカーシャドウ錯視</a><br>
+        — <a href="/mcgurk_effect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マクガーク効果</a><br>
+        — <a href="/change_blindness" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">変化の見落とし</a><br>
+        — <a href="/mary_room" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マリーの部屋</a>
       </p>
     </div>
     <div class="sidebar-block fade">

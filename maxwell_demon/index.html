@@ -107,7 +107,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -133,7 +133,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -164,7 +164,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:24px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block{margin:24px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
 .person-block-img{background:#ede8dc;padding:0;overflow:hidden;min-height:140px;}
 .person-block-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center top;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -403,14 +403,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;display:flex;justify-content:flex-start;flex-direction:row;min-height:0;}
   .person-block-img img{max-width:140px;width:auto;height:auto;}
   .tip-box{left:0;transform:none;width:200px;}
@@ -496,10 +496,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Special Report — Information & Thermodynamics</p>
+    <p class="cover-kicker">物理・宇宙</p>
     <h1>悪魔は<em>記憶</em>している</h1>
     <p class="cover-deck">100年以上、第二法則を脅かしてきた思考実験。決着は「忘れることに、熱がいる」という奇妙な発見だった。</p>
-    <div class="cover-byline"><span>物理</span><span>情報理論</span><span>時間の矢</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>PROFILE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -1240,55 +1240,55 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <div class="ref-list fade">
     <div class="ref-item">
-      <div class="ref-meta"><span class="ref-type">Letter</span><span class="ref-year">1867</span></div>
+      <div class="ref-meta"><span class="ref-type">一次資料</span><span class="ref-year">1867</span></div>
       <p class="ref-title"><a href="https://cudl.lib.cam.ac.uk/view/PH-CAVENDISH-P-00092/1" target="_blank" rel="noopener">Letter from Maxwell to Tait, 11 December 1867</a></p>
       <p class="ref-author">J. C. Maxwell — Cavendish Laboratory, Cambridge University Library</p>
       <p class="ref-desc">「悪魔」が初めて世に出た手紙。マクスウェルが第二法則に「穴を開ける」思考実験を提示した原典。ケンブリッジ大学図書館がスキャン公開。</p>
     </div>
     <div class="ref-item">
-      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">1872</span></div>
-      <p class="ref-title">Theory of Heat</p>
+      <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">1872</span></div>
+      <p class="ref-title"><a href="https://archive.org/details/theoryheat04maxwgoog" target="_blank" rel="noopener">Theory of Heat</a></p>
       <p class="ref-author">J. C. Maxwell — Longmans, Green &amp; Co.</p>
       <p class="ref-desc">マクスウェルが書いた熱力学の教科書。第12章「Limitation of the Second Law of Thermodynamics」で「有限の存在」が公の場に登場する。</p>
     </div>
     <div class="ref-item">
-      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1929</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1929</span></div>
       <p class="ref-title"><a href="https://fab.cba.mit.edu/classes/863.18/notes/computation/Szilard-1929.pdf" target="_blank" rel="noopener">Über die Entropieverminderung in einem thermodynamischen System bei Eingriffen intelligenter Wesen</a></p>
       <p class="ref-author">L. Szilard — <em>Zeitschrift für Physik</em>, 53, 840–856</p>
       <p class="ref-desc">悪魔の問題を1分子・1ビットまで単純化したシラードの古典論文。情報と熱力学を結ぶ歴史の出発点。「シラードのエンジン」がここで定義された。リンク先はMITのコース資料に収められた英訳版。</p>
     </div>
     <div class="ref-item">
-      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1961</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1961</span></div>
       <p class="ref-title"><a href="https://ieeexplore.ieee.org/document/5392446" target="_blank" rel="noopener">Irreversibility and Heat Generation in the Computing Process</a></p>
       <p class="ref-author">R. Landauer — <em>IBM Journal of Research and Development</em>, 5(3), 183–191</p>
       <p class="ref-desc">情報消去に物理コストを課したランダウアーの原典。1ビットの論理的不可逆操作には kT ln 2 の最小熱量が伴う、と導いた。リンク先はIEEE/IBMの公式アーカイブ(要購読)。</p>
     </div>
     <div class="ref-item">
-      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1982</span></div>
-      <p class="ref-title">The thermodynamics of computation — a review</p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1982</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1007/BF02084158" target="_blank" rel="noopener">The thermodynamics of computation — a review</a></p>
       <p class="ref-author">C. H. Bennett — <em>International Journal of Theoretical Physics</em>, 21(12), 905–940</p>
       <p class="ref-desc">悪魔のメモリ消去こそが真に不可逆なステップだ、と特定したベネットの review論文。可逆計算理論との接続も整理されている。</p>
     </div>
     <div class="ref-item">
-      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1991</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1991</span></div>
       <p class="ref-title"><a href="https://www.cpt.univ-mrs.fr/~verga/pdfs/Landauer-1991.pdf" target="_blank" rel="noopener">Information is Physical</a></p>
       <p class="ref-author">R. Landauer — <em>Physics Today</em>, 44(5), 23–29</p>
       <p class="ref-desc">「情報は物理的である」。ランダウアー晩年の解説論文で、情報と物理の等価性を一般読者向けに整理した。タイトルそのものが、その後の情報物理学のスローガンになった。</p>
     </div>
     <div class="ref-item">
-      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2012</span></div>
-      <p class="ref-title"><a href="https://www.nature.com/articles/nature10872" target="_blank" rel="noopener">Experimental verification of Landauer's principle linking information and thermodynamics</a></p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2012</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1038/nature10872" target="_blank" rel="noopener">Experimental verification of Landauer's principle linking information and thermodynamics</a></p>
       <p class="ref-author">A. Bérut, A. Arakelyan, A. Petrosyan, S. Ciliberto, R. Dillenschneider, E. Lutz — <em>Nature</em>, 483, 187–190</p>
       <p class="ref-desc">ランダウアー原理の世界初の実験的実証。光ピンセットで捕捉したシリカ粒子のダブルウェル消去実験。理論提案から51年。</p>
     </div>
     <div class="ref-item">
-      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">1928</span></div>
-      <p class="ref-title">The Nature of the Physical World</p>
+      <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">1928</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/1107663857/" target="_blank" rel="noopener">The Nature of the Physical World</a></p>
       <p class="ref-author">A. S. Eddington — Cambridge University Press</p>
       <p class="ref-desc">「時間の矢(arrow of time)」という言葉を作ったエディントンの一般向け書。第二法則と時間の方向性の結びつきを明確に論じた最初の書物。</p>
     </div>
     <div class="ref-item">
-      <div class="ref-meta"><span class="ref-type">Review</span><span class="ref-year">2017</span></div>
+      <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2017</span></div>
       <p class="ref-title"><a href="https://www.mdpi.com/1099-4300/19/6/240" target="_blank" rel="noopener">Maxwell's Demon — A Historical Review</a></p>
       <p class="ref-author">M. M. Kostic — <em>Entropy</em>, 19(6), 240</p>
       <p class="ref-desc">マクスウェルの悪魔をめぐる150年の議論を整理した網羅的なレビュー論文(MDPI、オープンアクセス)。一次史料へのリンクが豊富。</p>
@@ -1330,7 +1330,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— 二重スリット実験<br>— 量子コンピューター<br>— 再現性の危機</p>
+      <p class="sidebar-text">— <a href="/double_slit" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">二重スリット実験</a><br>— <a href="/quantum_computer" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">量子コンピューター</a><br>— <a href="/replication_crisis" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">再現性の危機</a><br>— <a href="/quantum_entanglement" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">量子もつれ</a><br>— <a href="/many_worlds" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">多世界解釈</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">信頼度</p>

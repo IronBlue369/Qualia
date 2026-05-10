@@ -98,7 +98,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -149,7 +149,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
-.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(70px, 27%, 140px) 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
 .person-block-img{background:#ede8dc;padding:0;overflow:hidden;position:relative;min-height:100%;}
 .person-block-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 22%;}
 .person-block-body{padding:14px 18px 12px;background:#f3efe6;border-left:1px solid #c8bfaa;display:flex;flex-direction:column;}
@@ -353,14 +353,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:0;max-height:240px;min-height:180px;overflow:hidden;}
   .person-block-img img{width:100%;height:100%;object-fit:cover;object-position:center 22%;}
   .tip-box{left:0;transform:none;width:200px;}
@@ -448,7 +448,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <p class="cover-kicker">物理・宇宙</p>
     <h1>量子もつれが運ぶのは、<em>「情報」ではなく「相関」</em>だけ</h1>
     <p class="cover-deck">アインシュタインが嫌ったこの現象は、光速を超えて何かを送るように見える。だが実は、信号は何も走っていない——後から両者の結果を突き合わせて初めて、「揃っていた」ことが分かるだけだ。EPR思考実験から90年、この区別を自分で測定して体感する。</p>
-    <div class="cover-byline"><span>物理</span><span>量子力学</span><span>科学史</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>PHENOMENON</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -660,9 +660,9 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <figure class="easy-fig fade">
     <div class="easy-fig-img"><img src="./fig_entangled_spins.svg" alt="もつれた光子対のスピン反相関" loading="lazy"></div>
-    <p class="easy-fig-cap">中央の楕円が親粒子(原子など)、そこから左右に飛び出す矢印が2個の粒子(電子や光子)のスピン(自転に似た性質)。<em>左が時計回りなら、右は必ず反時計回り</em>——親粒子の<strong>角運動量保存則</strong>からの自然な帰結。ただし量子力学では、「どちらがどちら回りか」は<strong>測定するまで決まっていない</strong>。Aliceが左を測った瞬間、何キロ離れていてもBob側の右が確定する——これが量子もつれの最も素朴な姿だ。</p>
+    <p class="easy-fig-cap">中央の赤い円(<strong>S</strong> = source、<strong>親粒子</strong>)から、もつれた粒子ペアが左右に飛び出す。<em>左の粒子(A)が反時計回りに回っているとき、右の粒子(B)は必ず時計回り</em>——親粒子の角運動量が0なら、出てきた2粒子のスピンの和も0でなければならない、という<strong>角運動量保存則</strong>からの自然な帰結。ただし量子力学では、「どちらが反時計回りでどちらが時計回りか」は<strong>測定するまで決まっていない</strong>。Aliceが粒子Aを測った瞬間、何キロ離れていても粒子Bが反対向きに確定する——これが量子もつれの最も素朴な姿だ。</p>
     <p class="easy-fig-aside">ややこしそうと感じたら「ふーん、向きが反対になるのね」くらいで先に進んでOK。詳しい話は次の体験パートで自分の手で触れる。</p>
-    <p class="easy-fig-credit">Guy vandegrift, 2016 / <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
+    <p class="easy-fig-credit" style="font-size:10px;color:#7a6a55;">角運動量保存則に基づくスピン反相関の模式図</p>
   </figure>
 
   <p class="body-text fade">この記事では、これ以降「<strong>EPR源</strong>」という装置がしばしば登場する。これは「<em>もつれた光子(または電子)のペアを1組ずつ生み出す装置</em>」を指す総称で、Einstein-Podolsky-Rosen の頭文字。実際の研究室では、紫外レーザーを<span class="tip">非線形結晶<span class="tip-box"><strong>非線形結晶 (nonlinear crystal)</strong><br>BBO(β-バリウムボレート)など、入射した光子の周波数を別の周波数に変換できる特殊な結晶。1個の高エネルギー光子を2個の低エネルギー光子に分裂させる「自発的パラメトリック下方変換(SPDC)」が、もつれ光子源の標準手法。</span></span>に当てて1個の光子を2個のもつれ光子に分割する手法(SPDC)が標準で、本記事の歴史パートで実物の写真も出てくる。以下のSVG・シミュレーターでは、この装置の中身は気にせず「中央から左右にもつれペアが飛んでくる箱」として描いている。</p>
@@ -915,12 +915,14 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <text x="300" y="190" text-anchor="middle" font-family="Source Sans 3" font-size="13" fill="#7a6a55">スライダーで4角度を動かして、自分の S が 2 を超えるか確認する。</text>
       </svg>
 
-      <!-- CHSH 実験の標準スキーム(Commons画像) -->
-      <figure class="easy-fig" style="max-width:480px;margin-left:auto;margin-right:auto;">
-        <div class="easy-fig-img"><img src="./fig_chsh_setup.svg" alt="CHSH(2チャネルベル測定)の標準スキーム" loading="lazy" style="max-width:100%;height:auto;"></div>
-        <p class="easy-fig-cap">CHSH実験の標準スキーム。中央の光源(S)から左右に光子が飛び、それぞれ偏光子(a, b)を通って "+" "−" の検出器に届く。一致モニタ(CM)で4通りの組み合わせをカウントし、相関値 E を出す。これを a, a′, b, b′ の4設定で行う。</p>
-        <p class="easy-fig-credit">George Stamatiou, 2008 / <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a></p>
+      <!-- CHSH 実験の標準スキーム(自作SVG) -->
+      <figure class="easy-fig" style="max-width:640px;margin-left:auto;margin-right:auto;">
+        <div class="easy-fig-img"><img src="./fig_chsh_setup.svg" alt="CHSH 2チャネルベル測定の標準スキーム。中央の光源 S からもつれた光子対が左右に飛び、偏光子 a / b を通って +/− 検出器に入り、4 個の検出信号がすべて一致モニタ CM に集まる。" loading="lazy" style="max-width:100%;height:auto;"></div>
+        <p class="easy-fig-cap">CHSH 実験の 2 チャネル標準スキーム。中央の光源(<strong>S</strong>)からもつれた光子対が左右に飛び、それぞれ偏光子 <strong>a</strong>(角度 a または a′ を選択可能)と <strong>b</strong>(b または b′ を選択可能)を通る。各偏光子の出力は <strong>+</strong> と <strong>−</strong> の 2 チャネルに分かれ、計 4 個の検出器に届く。すべての検出信号を一致モニタ(<strong>CM</strong>: Coincidence Monitor)が受け取り、相関値 <em>E(a, b)</em> を計算する。これを 4 通りの軸の組(a,b)(a,b′)(a′,b)(a′,b′)で行うのが CHSH 測定。</p>
+        <p class="easy-fig-credit" style="font-size:10px;color:#7a6a55;">CHSH 1969 / Aspect 1982 の標準スキームに基づく模式図</p>
       </figure>
+
+      <p class="sim-desc"><strong>図の記号:</strong> <strong>S</strong> は光源(もつれ光子対の発生源)、<strong>a / b</strong> は両端の偏光子(それぞれ角度を 2 通り切り替えられる)、<strong>+ / −</strong> は偏光子の 2 チャネル出力に置かれた検出器、<strong>CM</strong>(Coincidence Monitor)は 4 個すべての検出信号を受け取って相関値 <em>E(a, b)</em> を計算する一致モニタ。</p>
 
       <p class="sim-desc"><strong>スライダーで何が変わるか:</strong> Alice の偏光器の角度を <strong>a</strong> と <strong>a′</strong> の2通り、Bob を <strong>b</strong> と <strong>b′</strong> の2通り選ぶ。「<strong>4,000ペア測定</strong>」を押すと、(a,b) (a,b′) (a′,b) (a′,b′) の4設定 × 1,000ペアずつを一気に走らせ、それぞれの相関値 E と合成値 S を計算する。<strong>「最適角度に設定」を押すと、量子が古典上限を最大に超える角度組(a=0°, a′=45°, b=22.5°, b′=67.5°)に揃う</strong>——その状態で測ると、S が 2 を超えて 2√2 ≈ 2.828 に近づく。スライダーを最適から少しずらすと、S が 2 以下に戻ってしまうのも見える。</p>
 
@@ -1107,7 +1109,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <p class="person-block-role">決定的実験の実行 (1982)</p>
       <p class="person-block-desc">パリ郊外のオルセーで、ジェラール・ロジェ、ジャン・ダリバールと共に3段階の実験を行った。1982年の実験ではベル不等式の破れを<em>40標準偏差</em>で確認。事実上この段階で、ほとんどの物理学者が量子もつれの実在を疑うことをやめた。</p>
       <a class="person-block-link" href="https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%A9%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%B9%E3%83%9A" target="_blank" rel="noopener">Wikipedia</a>
-      <p class="person-block-credit">Jérémy Barande / École Polytechnique (Paris-Saclay) / <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></p>
+      <p class="person-block-credit">Easy n / <a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener">Public Domain</a> via <a href="https://commons.wikimedia.org/wiki/File:Alain_Aspect_in_Tel_Aviv_University.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></p>
     </div>
   </div>
 
@@ -1147,10 +1149,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   <p class="body-text fade">この光学台で実際に何が起きているのか、線画で見るとこうなる。</p>
 
   <figure class="easy-fig fade">
-    <div class="easy-fig-img"><img src="./fig_spdc_setup.jpg" alt="SPDC実験の模式図" loading="lazy"></div>
-    <p class="easy-fig-cap">左から強い紫外レーザーを撃ち込み、<strong>非線形結晶</strong>(BBOなど)を通すと、まれに1個の紫外光子が2個の低エネルギー光子に分裂する——これを<em>自発的パラメトリック下方変換(SPDC)</em>と呼ぶ。生まれた瞬間からこの2個はもつれている。あとは右側の偏光フィルタと検出器で、AliceとBobがそれぞれ測定する——上で動かした体験パートのシミュレーターと同じ構図だ。</p>
+    <div class="easy-fig-img"><img src="./fig_spdc_setup.svg" alt="SPDC実験の模式図" loading="lazy"></div>
+    <p class="easy-fig-cap">左の<strong>UVレーザー</strong>から強い紫外光(<em>pump 光子</em>)を撃ち込み、菱形の<strong>非線形結晶</strong>(BBO)を通すと、まれに1個の pump 光子が2個の低エネルギー光子に分裂する——これを<em>自発的パラメトリック下方変換(SPDC)</em>と呼ぶ。生まれた瞬間からこの2個はもつれている。上に飛んだ光子(<em>signal</em>)は<strong>Aliceの検出器D1</strong>へ、下の光子(<em>idler</em>)は<strong>BobのD2</strong>へ。最後に<strong>一致回路</strong>が「2個の光子が同時刻に届いたか」を記録する——上で動かした体験パートのシミュレーターと同じ構図だ(各検出器の手前に偏光フィルタを置いて偏光を測る)。</p>
     <p class="easy-fig-aside">「レーザーが結晶に当たって、もつれた光子ペアが2方向に飛んでいく」——大づかみそれだけで十分。BBO・SPDCといった用語は、量子光学の研究者の手帳に書き残しておけばいい話。</p>
-    <p class="easy-fig-credit">Farbodk, 2021 / <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>(リサイズのみ)</p>
+    <p class="easy-fig-credit" style="font-size:10px;color:#7a6a55;">SPDC 標準セットアップに基づく自作模式図</p>
   </figure>
 
   <!-- ========== 歴史 ========== -->
@@ -1289,46 +1291,52 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <div class="ref-list">
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1935</span></div>
-      <p class="ref-title"><a href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777" target="_blank" rel="noopener">Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?</a></p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1935</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1103/PhysRev.47.777" target="_blank" rel="noopener">Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?</a></p>
       <p class="ref-author">A. Einstein, B. Podolsky, N. Rosen — <em>Physical Review</em> 47, 777</p>
       <p class="ref-desc">EPR論文。量子力学の非局所性を"パラドックス"として指摘。起草はほぼポドルスキーが担当し、アインシュタインは1935年6月19日のシュレーディンガー宛書簡で「論文の本当の主張がポドルスキーの形式的な博識さに埋もれてしまった」と不満を漏らしている。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1935</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1935</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1017/S0305004100013554" target="_blank" rel="noopener">Discussion of Probability Relations between Separated Systems</a></p>
       <p class="ref-author">E. Schrödinger — <em>Math. Proc. Cambridge Phil. Soc.</em> 31, 555</p>
       <p class="ref-desc">"Verschränkung"(もつれ)の命名論文。「量子力学の最も特徴的な性質」と位置づけた。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1964</span></div>
-      <p class="ref-title"><a href="https://journals.aps.org/ppf/abstract/10.1103/PhysicsPhysiqueFizika.1.195" target="_blank" rel="noopener">On the Einstein Podolsky Rosen Paradox</a></p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1964</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1103/PhysicsPhysiqueFizika.1.195" target="_blank" rel="noopener">On the Einstein Podolsky Rosen Paradox</a></p>
       <p class="ref-author">J. S. Bell — <em>Physics</em> 1, 195</p>
       <p class="ref-desc">ベル不等式の原論文。局所的な隠れ変数理論が満たすべき数学的上限と、量子力学の予言との不一致を示した。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1982</span></div>
-      <p class="ref-title"><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.49.1804" target="_blank" rel="noopener">Experimental Test of Bell's Inequalities Using Time-Varying Analyzers</a></p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1982</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1103/PhysRevLett.49.1804" target="_blank" rel="noopener">Experimental Test of Bell's Inequalities Using Time-Varying Analyzers</a></p>
       <p class="ref-author">A. Aspect, J. Dalibard, G. Roger — <em>Phys. Rev. Lett.</em> 49, 1804</p>
       <p class="ref-desc">ベル不等式の破れを動的切り替え装置で実証。局所性ループホールを大きく縮めた決定実験。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1993</span></div>
-      <p class="ref-title"><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.70.1895" target="_blank" rel="noopener">Teleporting an Unknown Quantum State via Dual Classical and EPR Channels</a></p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1993</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1103/PhysRevLett.70.1895" target="_blank" rel="noopener">Teleporting an Unknown Quantum State via Dual Classical and EPR Channels</a></p>
       <p class="ref-author">C. H. Bennett et al. — <em>Phys. Rev. Lett.</em> 70, 1895</p>
       <p class="ref-desc">量子テレポーテーションの理論提案。もつれ+古典通信の2チャネル構成という基本形式を確立した。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2015</span></div>
-      <p class="ref-title"><a href="https://www.nature.com/articles/nature15759" target="_blank" rel="noopener">Loophole-free Bell inequality violation using electron spins separated by 1.3 km</a></p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2015</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1038/nature15759" target="_blank" rel="noopener">Loophole-free Bell inequality violation using electron spins separated by 1.3 km</a></p>
       <p class="ref-author">B. Hensen et al. — <em>Nature</em> 526, 682</p>
       <p class="ref-desc">Delft工科大学によるループホールフリー実験。局所性・検出効率・自由選択の3つを同時にふさいだ、もつれの実在を確定する"決定版"。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Press</span><span class="ref-year">2022</span></div>
+      <div class="ref-meta"><span class="ref-type">記事</span><span class="ref-year">2022</span></div>
       <p class="ref-title"><a href="https://www.nobelprize.org/prizes/physics/2022/press-release/" target="_blank" rel="noopener">The Nobel Prize in Physics 2022 — Press release</a></p>
       <p class="ref-author">The Royal Swedish Academy of Sciences</p>
       <p class="ref-desc">Clauser / Aspect / Zeilinger に授与。"もつれた光子を用いた実験、ベル不等式の破れの確立、および量子情報科学の先駆的研究に対して"。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2004</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4794222300/" target="_blank" rel="noopener">The Fabric of the Cosmos（邦訳：宇宙を織りなすもの 上 — 時間と空間の正体）</a></p>
+      <p class="ref-author">Brian Greene</p>
+      <p class="ref-desc">量子もつれ・ベル不等式・非局所性の意味を時空・実在性の文脈で展開する一般書(草思社文庫上巻)。EPR からアスペ実験までの流れに自然に接続する。</p>
     </div>
   </div>
 
@@ -1342,13 +1350,12 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     · Einstein (1921): <strong>F. Schmutzer</strong>, restored by Adam Cuerden — <strong>Public Domain</strong>. <a href="https://commons.wikimedia.org/wiki/File:Einstein_1921_by_F_Schmutzer_-_restoration.jpg" target="_blank" rel="noopener">Commons</a><br>
     · Schrödinger (1933): <strong>Nobel Foundation</strong> — <strong>Public Domain</strong>. <a href="https://commons.wikimedia.org/wiki/File:Erwin_Schr%C3%B6dinger_(1933).jpg" target="_blank" rel="noopener">Commons</a><br>
     · J. S. Bell (1982): <strong>© CERN</strong> — <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>(リサイズのみ). <a href="https://commons.wikimedia.org/wiki/File:Physicist_John_Bell_at_CERN,_June_1982.png" target="_blank" rel="noopener">Commons</a><br>
-    · A. Aspect: <strong>Jérémy Barande / École Polytechnique (Paris-Saclay)</strong> — <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a>(リサイズのみ). <a href="https://commons.wikimedia.org/wiki/File:Alain_Aspect_(15420152598).jpg" target="_blank" rel="noopener">Commons</a><br>
+    · A. Aspect: <strong>Easy n</strong> — <a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener">Public Domain</a>(リサイズのみ). <a href="https://commons.wikimedia.org/wiki/File:Alain_Aspect_in_Tel_Aviv_University.jpg" target="_blank" rel="noopener">Commons</a><br>
     · A. Zeilinger (2021): <strong>Jaqueline Godany</strong> — <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>(トリミング・リサイズ). <a href="https://commons.wikimedia.org/wiki/File:A._Zeilinger_(cropped).jpg" target="_blank" rel="noopener">Commons</a><br>
     · もつれ光子対生成装置 (DEF CON 17, 2009): <strong>Nate Grigg</strong> — <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>(リサイズのみ). <a href="https://commons.wikimedia.org/wiki/File:Quantum_Entangled_Photon_Generator_-_DEF_CON_17_-_Aug._2009.jpg" target="_blank" rel="noopener">Commons</a><br>
-    · もつれ光子のスピン反相関 (SVG): <strong>Guy vandegrift</strong>, 2016 — <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>(無改変). <a href="https://commons.wikimedia.org/wiki/File:Entangled_spins.svg" target="_blank" rel="noopener">Commons</a><br>
-    · SPDC実験の模式図: <strong>Farbodk</strong>, 2021 — <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>(リサイズのみ). <a href="https://commons.wikimedia.org/wiki/File:Quantum_Entanglement_Experiment_via_Spontaneous_Parametric_Down-Conversion_(SPDC).jpg" target="_blank" rel="noopener">Commons</a><br>
-    · NIST ゲート式光子源 (2010): <strong>Brida / INRIM</strong> via <strong>NIST</strong> — <strong>Public Domain</strong>(US Federal Government work、リサイズ済). <a href="https://commons.wikimedia.org/wiki/File:Photon_Source_(5941055810).jpg" target="_blank" rel="noopener">Commons</a><br>
-    · CHSH 2チャネルベル測定スキーム (SVG): <strong>George Stamatiou</strong>, 2008 — <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>(無改変). <a href="https://commons.wikimedia.org/wiki/File:Two_channel_bell_test.svg" target="_blank" rel="noopener">Commons</a>
+    · もつれ光子のスピン反相関 (SVG): 角運動量保存則に基づく自作模式図<br>
+    · SPDC実験の模式図 (SVG): SPDC標準セットアップに基づく自作模式図<br>
+    · NIST ゲート式光子源 (2010): <strong>Brida / INRIM</strong> via <strong>NIST</strong> — <strong>Public Domain</strong>(US Federal Government work、リサイズ済). <a href="https://commons.wikimedia.org/wiki/File:Photon_Source_(5941055810).jpg" target="_blank" rel="noopener">Commons</a>
   </div>
 
   <p class="signature">e. Tamaki</p>
@@ -1382,7 +1389,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— 二重スリット実験<br>— 多世界解釈<br>— 量子コンピューター<br>— 量子暗号(BB84)</p>
+      <p class="sidebar-text">— <a href="/double_slit" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">二重スリット実験</a><br>— <a href="/many_worlds" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">多世界解釈</a><br>— <a href="/quantum_computer" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">量子コンピューター</a><br>— <a href="/maxwell_demon" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マクスウェルの悪魔</a><br>— <a href="/mary_room" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マリーの部屋</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">信頼度</p>

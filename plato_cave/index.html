@@ -86,7 +86,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -112,7 +112,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -150,7 +150,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;margin-top:10px;}
 
 /* PERSON */
-.person-block{margin:32px 0;display:grid;grid-template-columns:160px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(80px, 31%, 160px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -370,14 +370,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:block;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{max-height:260px;}
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
@@ -477,7 +477,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <p class="cover-kicker">思考実験・哲学</p>
     <h1>壁に映る<em>影</em>を、<br>私たちは世界と呼んでいる。</h1>
     <p class="cover-deck">紀元前375年ごろ、アテネ郊外のアカデメイアで、ひとりの哲学者が奇妙な思考実験を語った。地下の洞窟、縛られた囚人、壁にちらつく影。2400年後のいま、私たちはスマートフォンの画面を「影」と呼ばなかっただけかもしれない。</p>
-    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>THOUGHT EXPERIMENT</span><span>ANCIENT PHILOSOPHY</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>THOUGHT EXPERIMENT</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -1053,31 +1053,31 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <div class="ref-list">
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">原典</span><span class="ref-year">紀元前375年頃</span></div>
-    <p class="ref-title"><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0168:book%3D7" target="_blank" rel="noopener">Plato, Republic, Book 7(514a-520a)</a></p>
+    <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">紀元前375年頃</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4003360176/" target="_blank" rel="noopener">Plato, Republic, Book 7(514a-520a)</a></p>
     <p class="ref-author">Plato — Perseus Digital Library</p>
     <p class="ref-desc">ギリシア語原文と英訳(ポール・ショリー訳)が対照できる学術リポジトリ。洞窟の比喩の該当箇所を前後の文脈とあわせて読める。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">日本語訳</span><span class="ref-year">1979</span></div>
-    <p class="ref-title"><a href="https://www.iwanami.co.jp/book/b247396.html" target="_blank" rel="noopener">『国家』(上・下)</a></p>
+    <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">1979</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4003360176/" target="_blank" rel="noopener">『国家』(上・下)</a></p>
     <p class="ref-author">プラトン(著)、藤沢令夫(訳)— 岩波文庫</p>
     <p class="ref-desc">日本語圏でもっとも広く読まれる邦訳。厳密でありながら読みやすく、第7巻の訳注も充実している。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">研究書</span><span class="ref-year">2007</span></div>
+    <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">2007</span></div>
     <p class="ref-title"><a href="https://www.cambridge.org/core/books/cambridge-companion-to-platos-republic/" target="_blank" rel="noopener">The Cambridge Companion to Plato's Republic</a></p>
     <p class="ref-author">G. R. F. Ferrari(編)— Cambridge University Press</p>
     <p class="ref-desc">『国家』研究の標準的なコンパニオン。第7巻および洞窟の比喩に関する複数の論文が収録され、認識論的解釈と政治的解釈の対立も整理されている。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1947</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1947</span></div>
     <p class="ref-title"><a href="https://www.iwanami.co.jp/book/b246058.html" target="_blank" rel="noopener">"Platons Lehre von der Wahrheit"(プラトンの真理論)</a></p>
     <p class="ref-author">Martin Heidegger — 邦訳: 細谷貞雄訳(『道標』所収、岩波書店)</p>
     <p class="ref-desc">1931-32年の講義をもとにしたハイデガーの論考。洞窟の比喩を手がかりに、真理(ἀλήθεια)の概念が古代ギリシアから近代にかけてどう変質したかを論じる。20世紀以降のプラトン解釈における重要文献。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">解説</span><span class="ref-year">常時更新</span></div>
+    <div class="ref-meta"><span class="ref-type">事典</span><span class="ref-year">常時更新</span></div>
     <p class="ref-title"><a href="https://plato.stanford.edu/entries/plato-ethics-politics/" target="_blank" rel="noopener">Plato's Ethics and Politics in The Republic</a></p>
     <p class="ref-author">Stanford Encyclopedia of Philosophy</p>
     <p class="ref-desc">スタンフォード哲学百科事典の『国家』項目。洞窟の比喩を含む第7巻の議論が、倫理学・政治学の文脈で整理されている。査読付きで信頼性が高い。</p>
@@ -1113,7 +1113,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   </div>
   <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">プラトンの師<strong>ソクラテス</strong>は、紀元前399年に民主政アテネによって死刑にされた。洞窟から戻った者が殺されそうになる比喩の結末は、師の死から24年ほど後に書かれた。</p></div>
   <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">— 映画『マトリックス』(1999)<br>— 映画『トゥルーマン・ショー』(1998)<br>— 映画『ダーク・シティ』(1998)<br>— 映画『アス』(2019)<br>— Netflix『1899』(2022)<br>— ボードリヤール『シミュラークル』</p></div>
-  <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— 胡蝶の夢<br>— マリーの部屋<br>— シミュレーション仮説<br>— 水槽の脳<br>— 構造主義</p></div>
+  <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <a href="/butterfly_dream" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">胡蝶の夢</a><br>— <a href="/mary_room" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マリーの部屋</a><br>— <a href="/structuralism" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">構造主義</a><br>— <a href="/hard_problem" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">意識のハードプロブレム</a><br>— <a href="/many_worlds" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">多世界解釈</a></p></div>
   <div class="sidebar-block fade">
     <p class="sidebar-label">振り向きチェック</p>
     <ul class="sidebar-check">

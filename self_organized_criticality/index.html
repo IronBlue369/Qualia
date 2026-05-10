@@ -87,7 +87,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'~';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -113,7 +113,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -152,7 +152,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -364,14 +364,14 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#e8c56a;bo
   .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
@@ -1364,6 +1364,12 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <p class="ref-author">Nicholas W. Watkins, Gunnar Pruessner, Sandra C. Chapman, Norma B. Crosby, Henrik J. Jensen / Space Science Reviews 198, 3–44</p>
       <p class="ref-desc">SOC 25年の歴史と、その間に起きた批判・論争をまとめた総説。この記事で採った"冷静な温度感"は、この論文が準拠元。ブームの後の成熟した姿が見える。</p>
     </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2000</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4150503583/" target="_blank" rel="noopener">Ubiquity（邦訳：歴史は「べき乗則」で動く — 種の絶滅から戦争までを読み解く複雑系科学）</a></p>
+      <p class="ref-author">Mark Buchanan</p>
+      <p class="ref-desc">Bak の SOC 理論を歴史・社会現象に応用して一般読者向けに展開した書。既存の Bak『How Nature Works』とペアで読むと理論→応用の流れが体感できる。</p>
+    </div>
   </div>
 
   <div class="note-box fade"><strong>📌 この記事について</strong><br>砂山モデルと原論文(Bak, Tang, Wiesenfeld 1987)は確立された物理学の成果。Gutenberg-Richter 則・神経雪崩・太陽フレアの冪乗則は各分野で繰り返し観測されている。一方、「どこまでの現象が真に SOC として同じメカニズムを共有するか」は、Frigg 2003 や Watkins ら 2015 を軸に、今も議論が続いている。この記事は、現象の観測は受け入れつつ、メカニズムの普遍性には慎重、という現在の学界の温度感に沿って書いている。</div>
@@ -1392,7 +1398,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">地震の冪乗則は<em>1944 年</em>から知られていた。その「なぜ」に初めて構造を与えたのが、1987 年の BTW 論文。</p></div>
     <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">タレブ『<strong>ブラックスワン</strong>』(2007)の「heavy tail」の議論。L'Aquila 地震裁判(2009–2015)で争われた、臨界系の予測不可能性。</p></div>
-    <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— ライフゲーム<br>— ボイド<br>— ラングトンのアリ<br>— マンデルブロ集合<br>— カオスと三体問題</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <a href="/life_game" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ライフゲーム</a><br>— <a href="/boids" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ボイドモデル</a><br>— <a href="/langton_ant" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ラングトンのアリ</a><br>— <a href="/mandelbrot_set" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マンデルブロ集合</a><br>— <a href="/three_body_problem" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">三体問題</a></p></div>
     <div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">原論文の定式化は確立。応用範囲の普遍性には、現在も学界で議論が続いている。</p></div>
   </div>
 </div>

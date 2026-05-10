@@ -81,7 +81,7 @@ a{color:inherit;text-decoration:none;}
 .summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -312,7 +312,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
 .summary-box{padding:0 20px;}
 .scenario-wrap{padding:32px 20px 0;}
-.article{grid-template-columns:1fr;padding:0 20px;}
+.article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
 .article-side{display:none;}
 .misconception-item{flex-direction:column;}
 .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -489,7 +489,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- SCENARIO -->
 <div class="scenario-wrap fade">
   <div class="scenario-inner">
-    <span class="scenario-num">☆</span>
+    <span class="scenario-num">§</span>
     <p class="scenario-text">友人から送られてきた性格診断の結果を、なんとなく開いてみたことがあるだろう。「あなたは人に好かれたいという気持ちが強い一方で、自分に厳しい面もあります」——読み進めるうちに、不思議と「当たっている」と感じる。自分の内面を見透かされたような、少しだけ心地よい感覚だ。</p>
     <p class="scenario-text">朝の星座占い、SNSの相性診断、雑誌の心理テスト。私たちは「あなたについて」と書かれた文章に、驚くほど簡単に「そうそう、これ私だ」とうなずく。それが友達全員にも同じように響いているとは、ふつう思わない。</p>
     <p class="scenario-text closing">この記事では、「当たっている」と感じるその瞬間に何が起きているのかを解き明かす。そして、あなた自身にもそれを体験してもらう。</p>
@@ -538,12 +538,15 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
     <!-- PERSON BLOCK — スキナー箱と同じスタイル -->
     <div class="person-block fade">
-
+      <div class="person-block-img" style="padding:0;">
+        <img src="./person_forer.jpg" alt="バートラム・R・フォーラー" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
       <div class="person-block-body">
         <p class="person-block-name">バートラム・R・フォーラー</p>
         <p class="person-block-role">Bertram R. Forer, 1914–2000</p>
         <p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Bertram_Forer" target="_blank" rel="noopener">Wikipedia</a></p>
         <p class="person-block-desc">カリフォルニアで活動した臨床心理学者。1948年、39人の学生に対して実施した「Diagnostic Interest Blank」テストの実験で、人間が曖昧なフィードバックを自分専用だと思い込む傾向を鮮やかに示した。彼自身はこの現象を「個人的妥当性の錯誤（fallacy of personal validation）」と呼んだ。</p>
+        <p class="person-block-credit" style="font-size:10px;color:#b0a090;margin-top:8px;">Photo: Ekathelimiel / CC0 via Wikimedia Commons</p>
       </div>
     </div>
 
@@ -893,7 +896,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <p class="ref-desc">すべてはここから始まった。わずか6ページの論文だが、70年以上経った今でも心理学入門の授業で再現され続けている。「当たっている」という感覚がいかに脆い根拠なのかを、最初に示した記念碑的論文。</p>
       </div>
       <div class="ref-item fade">
-        <div class="ref-meta"><span class="ref-type">展望論文</span><span class="ref-year">1956</span></div>
+        <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">1956</span></div>
         <p class="ref-title"><a href="https://doi.org/10.1037/h0047722" target="_blank" rel="noopener">Wanted — A Good Cookbook</a></p>
         <p class="ref-author">Paul E. Meehl</p>
         <p class="ref-desc">「バーナム効果」という名前を生んだ論文。臨床心理学における直感的判断の危うさを論じたもので、読むと「専門家の自信」に対する見方が変わる。ミールの洞察は、行動経済学の台頭に数十年先んじていた。</p>
@@ -905,10 +908,16 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <p class="ref-desc">バーナム効果に関する初期の研究を網羅的にレビューした論文。どのような条件で効果が強まるか（ポジティブな記述、権威ある情報源、個人化の演出）を整理しており、見通しの良い地図になる。</p>
       </div>
       <div class="ref-item fade">
-        <div class="ref-meta"><span class="ref-type">実験論文</span><span class="ref-year">1985</span></div>
+        <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1985</span></div>
         <p class="ref-title"><a href="https://doi.org/10.1037/0022-3514.49.5.1378" target="_blank" rel="noopener">The "Barnum Effect" Revisited: Cognitive and Motivational Factors in the Acceptance of Personality Descriptions</a></p>
         <p class="ref-author">J. T. Johnson, L. M. Cain, T. L. Falke, J. Hayman &amp; E. Perillo</p>
         <p class="ref-desc">なぜ人はバーナム文を受け入れるのか、その認知的・動機的要因を掘り下げた研究。「自分について良いことを信じたい」という動機が、判断の正確さをどれほど歪めるかを実験で示している。</p>
+      </div>
+      <div class="ref-item fade">
+        <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1995</span></div>
+        <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4102294031/" target="_blank" rel="noopener">The Demon-Haunted World（邦訳：人はなぜエセ科学に騙されるのか(上)）</a></p>
+        <p class="ref-author">Carl Sagan</p>
+        <p class="ref-desc">占星術・性格判断・疑似科学全般に対する科学的懐疑思考の古典。バーナム効果が機能する土壌(根拠の薄い断言を信じる心理)を体系的に解明。</p>
       </div>
     </div>
   </div>
@@ -933,7 +942,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— <em>確証バイアス</em>（都合のよい情報だけを集める傾向）<br>— <em>コールドリーディング</em>（占い師の読心テクニック）<br>— <em>主観的妥当化</em>（感覚を根拠にすること）</p>
+      <p class="sidebar-text">— <a href="/confirmation_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">確証バイアス</a><br>— <a href="/hallo_effect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ハロー効果</a><br>— <a href="/mbti_science" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">MBTI</a><br>— <a href="/narrative_fallacy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ナラティブの誤謬</a><br>— <a href="/dunning_kruger" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ダニング・クルーガー効果</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">今日の判断を振り返る</p>

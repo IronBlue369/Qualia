@@ -89,7 +89,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -115,7 +115,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -338,7 +338,7 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -441,10 +441,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">A—12  Body Illusion</p>
+    <p class="cover-kicker">脳と意識</p>
     <h1>自分の手は、<em>どこにある</em>のか</h1>
     <p class="cover-deck">テーブルに置かれたゴムの手。それが、5分後には「私の手」になる。視覚・触覚・そしてあなたが名前を知らなかった第三の感覚が、脳の中で取引を始めたとき、身体の境界線はそっと書き換えられる。</p>
-    <div class="cover-byline"><span>知覚・錯覚</span><span>脳と意識</span><span>身体所有感</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>PROFILE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -918,28 +918,34 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <div class="ref-list">
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">原論文</span><span class="ref-year">1998</span></div>
-      <p class="ref-title"><a href="https://www.nature.com/articles/35784" target="_blank" rel="noopener">Rubber hands 'feel' touch that eyes see</a></p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1998</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1038/35784" target="_blank" rel="noopener">Rubber hands 'feel' touch that eyes see</a></p>
       <p class="ref-author">Matthew Botvinick &amp; Jonathan Cohen, Nature 391, 756</p>
       <p class="ref-desc">わずか2ページでラバーハンド錯覚を世界に紹介した最初の論文。視覚・触覚・固有感覚の三者相互作用という枠組みを提示した。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">追試</span><span class="ref-year">2009</span></div>
+      <div class="ref-meta"><span class="ref-type">追試論文</span><span class="ref-year">2009</span></div>
       <p class="ref-title"><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0006185" target="_blank" rel="noopener">Rubber Hand Illusion under Delayed Visual Feedback</a></p>
       <p class="ref-author">Sotaro Shimada, Kensuke Fukuda &amp; Kazuo Hiraki, PLOS ONE 4(7)</p>
       <p class="ref-desc">視触覚の遅延を 100〜600ms で系統的に操作し、300ms 以下の条件で錯覚が安定的に起こることを示した研究。記事中の「300ミリ秒の崖」の根拠。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">fMRI</span><span class="ref-year">2004</span></div>
-      <p class="ref-title"><a href="https://www.science.org/doi/10.1126/science.1097011" target="_blank" rel="noopener">That's my hand! Activity in premotor cortex reflects feeling of ownership of a limb</a></p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2004</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1126/science.1097011" target="_blank" rel="noopener">That's my hand! Activity in premotor cortex reflects feeling of ownership of a limb</a></p>
       <p class="ref-author">H. H. Ehrsson, C. Spence &amp; R. E. Passingham, Science 305, 875</p>
       <p class="ref-desc">RHI 中の脳活動を fMRI で撮像し、前運動野の活動が所有感の強さと相関することを示した研究。錯覚が起き始めるまでの平均時間 約11秒 もここで報告された。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">総説</span><span class="ref-year">2012</span></div>
+      <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2012</span></div>
       <p class="ref-title"><a href="https://www.sciencedirect.com/science/article/abs/pii/S1053810018304999" target="_blank" rel="noopener">The rubber hand illusion: Two decades of body ownership research</a></p>
       <p class="ref-author">Ferracci &amp; Brancucci ほか</p>
       <p class="ref-desc">1998年以降の RHI 研究20年をまとめた総説。年齢による反応の違いや、個人差の大きさについて整理されている。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1998</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4042982115/" target="_blank" rel="noopener">Phantoms in the Brain（邦訳：脳のなかの幽霊）</a></p>
+      <p class="ref-author">V.S. Ramachandran &amp; Sandra Blakeslee</p>
+      <p class="ref-desc">身体所有感・幻肢・体性感覚の可塑性を扱う神経科学の古典。ラバーハンド錯覚の理論的背景となる「脳が身体地図を書き換える」現象を豊富な臨床例で示す(角川文庫)。</p>
     </div>
   </div>
 
@@ -979,7 +985,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— 音は存在しない<br>— 色は脳が作る<br>— マリーの部屋<br>— 多感覚統合<br>— 身体所有感</p>
+      <p class="sidebar-text">— <a href="/sound_does_not_exist" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">音は存在しない</a><br>— <a href="/color" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">色は存在しない</a><br>— <a href="/mary_room" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マリーの部屋</a><br>— <a href="/proprioception" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">プロプリオセプション</a><br>— <a href="/real_self" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">本当の自分とは</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">チェックリスト</p>

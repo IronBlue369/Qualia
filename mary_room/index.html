@@ -55,7 +55,7 @@ a{color:inherit;text-decoration:none;}
 
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:22px 28px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-left:3px solid #c8bfaa;border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'?';position:absolute;right:18px;top:-12px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:18px;top:-12px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -75,7 +75,7 @@ a{color:inherit;text-decoration:none;}
 .summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
 .summary-text strong{font-weight:600;}
 
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -114,7 +114,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block.no-img{display:block;}
 .person-block.no-img .person-block-body{border-left:none;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
@@ -286,9 +286,9 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box{padding:0 20px;}
   .scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
-  .person-block{grid-template-columns:1fr;}
+  
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .quiz-choices{grid-template-columns:1fr;}
@@ -919,22 +919,28 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <p class="ref-desc">マリーの部屋を生み出した論文そのもの。「クオリア・フリーク」と自称するところから始まる。10ページほどだが、この10ページが40年以上の論争を生んだ。有料だが、大学図書館経由でアクセスできることが多い。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">展開論文</span><span class="ref-year">1986</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1986</span></div>
     <p class="ref-title"><a href="https://doi.org/10.2307/2026143" target="_blank" rel="noopener">What Mary Didn't Know</a></p>
     <p class="ref-author">Frank Jackson — The Journal of Philosophy, Vol. 83, No. 5, pp. 291–295</p>
     <p class="ref-desc">チャーチランドの批判を受けてジャクソンが反論を展開した論文。1982年の議論を精密化し、3つの重要な明確化を行っている。原著論文とセットで読むと見え方が変わる。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">必読論文</span><span class="ref-year">1995</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1995</span></div>
     <p class="ref-title"><a href="https://doi.org/10.1093/acprof:oso/9780195311105.003.0001" target="_blank" rel="noopener">Facing Up to the Problem of Consciousness</a></p>
     <p class="ref-author">David Chalmers — Journal of Consciousness Studies, 2(3), pp. 200–219</p>
     <p class="ref-desc">「意識のハード問題」という言葉を生み出した論文。マリーの部屋の問いを、より大きな枠組みに位置づけた。意識について考える人なら避けて通れない。著者自身のサイトでもPDFが公開されている。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">入門向け解説</span><span class="ref-year">常時更新</span></div>
+    <div class="ref-meta"><span class="ref-type">解説（Web）</span><span class="ref-year">常時更新</span></div>
     <p class="ref-title"><a href="https://plato.stanford.edu/entries/qualia-knowledge/" target="_blank" rel="noopener">Qualia: The Knowledge Argument</a></p>
     <p class="ref-author">Stanford Encyclopedia of Philosophy</p>
     <p class="ref-desc">スタンフォード哲学百科事典によるマリーの部屋の解説。各反論を網羅的にまとめており、論争の全体像をつかむのに最適。無料・常時アクセス可。これを先に読んでおくと原著論文に入りやすい。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">1996</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4826901062/" target="_blank" rel="noopener">The Conscious Mind（邦訳：意識する心 — 脳と精神の根本理論を求めて）</a></p>
+    <p class="ref-author">David J. Chalmers</p>
+    <p class="ref-desc">「意識のハードプロブレム」を提起したチャーマーズの主著。Jackson の知識論証・クオリアの議論を物理主義批判の文脈で完全に展開する。</p>
   </div>
 </div>
 
@@ -976,10 +982,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
       <p class="sidebar-text">
-        — 哲学的ゾンビ<br>
-        — 中国語の部屋<br>
-        — クオリア反転問題<br>
-        — 意識のハード問題
+        — <a href="/hard_problem" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">意識のハードプロブレム</a><br>
+        — <a href="/color" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">色は存在しない</a><br>
+        — <a href="/ship_of_theseus" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">テセウスの船</a><br>
+        — <a href="/turing_test" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">チューリングテスト</a><br>
+        — <a href="/butterfly_dream" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">胡蝶の夢</a>
       </p>
     </div>
     <div class="sidebar-block fade">

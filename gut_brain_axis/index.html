@@ -89,7 +89,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'?';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -115,7 +115,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -147,7 +147,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:24px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block{margin:24px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:0;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -443,14 +443,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .meta-dates{margin-left:0;width:100%;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;gap:0;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;gap:0;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
   .ng-choices,.sq-choices{grid-template-columns:1fr;}
   .cmp-table tbody th{width:96px;font-size:11px;}
@@ -1141,7 +1141,7 @@ img,canvas,svg,video{max-width:100%;height:auto;}
   <div class="ref-list">
     <div class="ref-item fade">
       <div class="ref-meta">
-        <span class="ref-type">総説</span>
+        <span class="ref-type">総説論文</span>
         <span class="ref-year">1999</span>
       </div>
       <p class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/10418549/" target="_blank" rel="noopener">The enteric nervous system: a second brain</a></p>
@@ -1153,7 +1153,7 @@ img,canvas,svg,video{max-width:100%;height:auto;}
         <span class="ref-type">原著論文</span>
         <span class="ref-year">1899</span>
       </div>
-      <p class="ref-title"><a href="https://doi.org/10.1113/jphysiol.1899.sp000787" target="_blank" rel="noopener">The movements and innervation of the small intestine</a></p>
+      <p class="ref-title"><a href="https://doi.org/10.1113/jphysiol.1899.sp000752" target="_blank" rel="noopener">The movements and innervation of the small intestine</a></p>
       <p class="ref-author">William M. Bayliss &amp; Ernest H. Starling — Journal of Physiology, Vol. 24</p>
       <p class="ref-desc">「腸の法則」が世に出た原論文。100年以上前の実験記述だが、読んでみると驚くほどクリアで、現代の神経生理学の文章体がここにほぼ完成していることが分かる。</p>
     </div>
@@ -1168,12 +1168,21 @@ img,canvas,svg,video{max-width:100%;height:auto;}
     </div>
     <div class="ref-item fade">
       <div class="ref-meta">
-        <span class="ref-type">総説</span>
+        <span class="ref-type">総説論文</span>
         <span class="ref-year">2019</span>
       </div>
       <p class="ref-title"><a href="https://doi.org/10.1152/physrev.00018.2018" target="_blank" rel="noopener">The Microbiota-Gut-Brain Axis</a></p>
       <p class="ref-author">John F. Cryan et al. — Physiological Reviews, Vol. 99</p>
       <p class="ref-desc">この分野の現時点での「正典」。200ページ超の大規模な総説で、神経・内分泌・免疫の三経路をフラットに整理している。流通している「腸活」言説の過不足を見極めたい読者には、先にこれを一章だけでも読むのを薦めたい。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta">
+        <span class="ref-type">一般書</span>
+        <span class="ref-year">2016</span>
+      </div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4314011572/" target="_blank" rel="noopener">The Mind-Gut Connection（邦訳：腸と脳 — 体内の会話はいかにあなたの気分や選択や健康を左右するか）</a></p>
+      <p class="ref-author">Emeran Mayer</p>
+      <p class="ref-desc">腸-脳相関(gut-brain axis)を専門に研究する消化器内科医による現時点で最も体系的な邦訳一般書。記事のテーマを正面から深掘り。</p>
     </div>
   </div>
 
@@ -1216,7 +1225,7 @@ img,canvas,svg,video{max-width:100%;height:auto;}
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— 幸福を作る4つの物質<br>— ネズミはドーパミンを選んで餓死した<br>— 意識のハードプロブレム</p>
+      <p class="sidebar-text">— <a href="/happiness_chemicals" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">幸福を作る4つの物質</a><br>— <a href="/dopamine_starvation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ネズミはドーパミンを選んで餓死した</a><br>— <a href="/hard_problem" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">意識のハードプロブレム</a><br>— <a href="/reward_prediction_error" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">報酬予測誤差</a><br>— <a href="/proprioception" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">プロプリオセプション</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">信頼度</p>

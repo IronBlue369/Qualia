@@ -87,7 +87,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -113,7 +113,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -160,7 +160,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block.no-img{display:block;}
 .person-block.no-img .person-block-body{border-left:none;}
 .person-block-img{background:#ede8dc;display:flex;align-items:stretch;justify-content:center;overflow:hidden;}
@@ -409,14 +409,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .meta-dates{margin-left:0;width:100%;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
@@ -510,10 +510,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Special Report / 脳と意識</p>
+    <p class="cover-kicker">脳と意識</p>
     <h1>私は本当に <em>一人</em> なのか</h1>
     <p class="cover-deck"><ruby>脳梁<rt>のうりょう</rt></ruby>を切った患者に、左視野にだけカギを見せる。彼は「何も見えなかった」と言う。そしてその直後、左手がテーブルの上のカギを、迷わず指す。1962年、スペリーたちはそれを世界に見せた。</p>
-    <div class="cover-byline"><span>Neuroscience</span><span>Consciousness</span><span>Split-Brain</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>PROFILE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -711,12 +711,16 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <p class="body-text fade">この三人は、役割がまったく違った。スペリーは理論家であり、分離脳の現象を意識という哲学的問題にまで引き上げた人物だ。ガザニガは実験の設計者であり、のちに「左脳解釈者」という独自の理論を築く。そしてボーゲンは、メスを握った当事者だった。</p>
 
-  <div class="person-block no-img fade">
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="./person_gazzaniga.jpg" alt="マイケル・ガザニガ" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
     <div class="person-block-body">
       <p class="person-block-name">マイケル・ガザニガ</p>
       <p class="person-block-role">Michael S. Gazzaniga, 1939–</p>
       <p class="person-block-wiki"><a href="https://en.wikipedia.org/wiki/Michael_Gazzaniga" target="_blank" rel="noopener">Wikipedia</a></p>
       <p class="person-block-desc">スペリーの大学院生として、1961年にW.J.への最初の実験を実施。以後60年以上にわたって分離脳研究を牽引し、「左脳<span class="tip">解釈者<span class="tip-box"><strong>解釈者(interpreter)</strong><br>ガザニガが提唱した概念。左半球にあり、右半球や身体が行った行動を事後に観察し、それを整合的な物語として語り直す機能。分離脳だけでなく、健常者の日常の自己説明にも働いていると考えられている。</span></span>理論」を提唱した。認知神経科学(cognitive neuroscience)という分野名そのものの提案者でもある。著書『The Social Brain』『Who's in Charge?』などで一般読者にもこの話を届けてきた。</p>
+      <p class="person-block-credit" style="font-size:10px;color:#b0a090;margin-top:8px;">Photo: Serene Zaina / CC0 via Wikimedia Commons</p>
     </div>
   </div>
 
@@ -1216,34 +1220,40 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <div class="ref-list">
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Primary</span><span class="ref-year">1962</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1962</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1073/pnas.48.10.1765" target="_blank" rel="noopener">Some functional effects of sectioning the cerebral commissures in man</a></p>
       <p class="ref-author">Gazzaniga, M.S., Bogen, J.E., Sperry, R.W. — PNAS, 48(10), 1765–1769</p>
       <p class="ref-desc">分離脳研究の出発点となった論文。患者W.J.に対する最初の実験報告。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Primary</span><span class="ref-year">1968</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1968</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1037/h0026839" target="_blank" rel="noopener">Hemisphere deconnection and unity in conscious awareness</a></p>
       <p class="ref-author">Sperry, R.W. — American Psychologist, 23(10), 723–733</p>
       <p class="ref-desc">分離脳現象を意識の問題へと拡張したスペリーの代表論考。「それぞれの半球が自分の心を持つ」の引用元。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Primary</span><span class="ref-year">1972</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1972</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1093/brain/95.1.61" target="_blank" rel="noopener">Perception of bilateral chimeric figures following hemispheric deconnexion</a></p>
       <p class="ref-author">Levy, J., Trevarthen, C., Sperry, R.W. — Brain, 95(1), 61–78</p>
       <p class="ref-desc">半分女性・半分男性の合成顔を用いた古典実験。応答モードで異なる「顔」が報告されることを示した。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Review</span><span class="ref-year">2005</span></div>
+      <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2005</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1038/nrn1723" target="_blank" rel="noopener">Forty-five years of split-brain research and still going strong</a></p>
       <p class="ref-author">Gazzaniga, M.S. — Nature Reviews Neuroscience, 6(8), 653–659</p>
       <p class="ref-desc">分離脳研究の総説。解釈者モジュール理論を含め、半世紀の蓄積を整理した読みやすい入門。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Challenge</span><span class="ref-year">2017</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2017</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1093/brain/aww358" target="_blank" rel="noopener">Split brain: divided perception but undivided consciousness</a></p>
       <p class="ref-author">Pinto, Y., Neville, D.A., Otten, M., Corballis, P.M., Lamme, V.A.F., de Haan, E.H.F., Foschi, N., Fabri, M. — Brain, 140(5), 1231–1237</p>
       <p class="ref-desc">「分離脳は意識を分割しない」という大胆な再検証。既存の意識理論への重大な挑戦として議論が続いている。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2011</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4314011211/" target="_blank" rel="noopener">Who's in Charge? Free Will and the Science of the Brain（邦訳：〈わたし〉はどこにあるのか — ガザニガ脳科学講義）</a></p>
+      <p class="ref-author">Michael S. Gazzaniga</p>
+      <p class="ref-desc">分離脳研究の第一人者 Gazzaniga 自身が「自由意志と自己」を脳科学から論じた著作。記事の分離脳実験を発見者の言葉で追体験できる王道書。</p>
     </div>
   </div>
 
@@ -1274,7 +1284,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">1961年末、元パラシュート兵のW.J.が脳梁切断を受けた。最初の患者だった。彼のてんかんは実際に治まり、日常は戻った——そして、実験室でだけ、脳が二つに別れていることが分かった。</p></div>
     <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">キューブリックの<strong>Dr. Strangelove</strong>で、右腕が本人の意思に逆らう。後に医学論文で「Dr. Strangelove症候群」という別称まで提案された、エイリアンハンドの原型。</p></div>
-    <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— テセウスの船<br>— リベット実験<br>— マリーの部屋<br>— 記憶の再構築</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <a href="/ship_of_theseus" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">テセウスの船</a><br>— <a href="/libet_free_will" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">リベット実験</a><br>— <a href="/mary_room" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マリーの部屋</a><br>— <a href="/memory_reconsolidation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">記憶は再構築される</a><br>— <a href="/real_self" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">本当の自分とは</a></p></div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">チェックリスト</p>
       <ul class="sidebar-check">

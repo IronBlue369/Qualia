@@ -89,7 +89,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'?';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:160px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;font-style:italic;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:160px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;font-style:italic;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -115,7 +115,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -152,6 +152,20 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .compare-row>div:nth-child(3){border-left:1px solid #e0d8c8;}
 .compare-row>div strong{color:#8b1a1a;font-weight:600;}
 
+/* MISCONCEPTION */
+.misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
+.misconception-header{background:#3d3020;color:white;padding:11px 20px;}
+.misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.misconception-body{background:white;}
+.misconception-item{display:flex;border-bottom:1px solid #e0d8c8;}
+.misconception-item:last-child{border-bottom:none;}
+.misconception-q{flex:1;padding:16px 20px;border-right:1px solid #e0d8c8;}
+.misconception-a{flex:1;padding:16px 20px;background:#f3efe6;}
+.mis-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;}
+.mis-label.wrong{color:#c4392a;}
+.mis-label.right{color:#1a5a30;}
+.mis-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;color:#3d3020;line-height:1.7;}
+
 /* QUOTE */
 .quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
 .quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
@@ -159,7 +173,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;padding:0;overflow:hidden;min-height:100%;}
 .person-block-img img{width:100%;height:100%;min-height:100%;object-fit:cover;object-position:center top;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -392,12 +406,12 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:0;max-width:100%;min-height:0;}
   .person-block-img img{height:auto;object-fit:unset;min-height:0;max-height:280px;}
   .compare-head,.compare-row{grid-template-columns:110px 1fr 1fr;}
@@ -411,6 +425,8 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .crowd-pie-val{font-size:22px;}
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
+  .misconception-item{flex-direction:column;}
+  .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
 }
 @media(max-width:520px){
   .menu-cols{grid-template-columns:1fr;}
@@ -880,6 +896,14 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <p class="body-text fade">単独なら 85% が動く。他に 4 人いるだけで 31% に落ちる。9 人に増えると 10% を切る。人数で割られているのは、責任感だ。行動力でも、情報量でもない。ここまでは、<strong>事実として残っている効果</strong>の話になる。</p>
 
+  <div class="misconception fade">
+  <div class="misconception-header"><span class="misconception-hl">読む前に確認 — よくある誤解</span></div>
+  <div class="misconception-body">
+  <div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">38 人が見ていたのに誰も警察に通報せず、女性を見殺しにした。</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">目撃者の数も状況も、後の検証で大幅に誤報と判明している。実際には複数の通報があり、最期まで隣人が一緒にいた。</p></div></div>
+  <div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">人が冷淡だから、あるいはモラルが低いから、目の前で起きていることに動かない。</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">個々の冷淡さの問題ではなく、責任拡散と多元的無知という、人数が増えると誰の中にも生じる構造的なメカニズムが働く。</p></div></div>
+  <div class="misconception-item"><div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">周りに人が多いほど、助けてくれる確率は上がる。</p></div><div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">人数が増えるほど一人当たりの介入確率は下がる。実験では、傍観者が数人いるだけで個人の動く確率が大きく落ちる傾向が繰り返し再現されている。</p></div></div>
+  </div></div>
+
 
   <!-- ========== 体験セクション ========== -->
   <div class="sec-rule fade"><span class="sec-label">体験</span><div class="sec-line"></div></div>
@@ -1191,6 +1215,12 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <p class="ref-author">Richard Philpot ら — American Psychologist</p>
       <p class="ref-desc">英・蘭・南アの 219 件の実際の暴力映像を解析した論文。9 割で誰かが介入していて、むしろ傍観者が多いほど介入確率が上がっていた。実験室の効果を、そのまま現実に投影するのは危ないことを教えてくれる一本。不穏な結果というよりは、希望の寄った結果が淡々と記録されている。</p>
     </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2020</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4799330152/" target="_blank" rel="noopener">悪事の心理学 — 善良な傍観者が悪を生み出す</a></p>
+      <p class="ref-author">Catherine A. Sanderson</p>
+      <p class="ref-desc">傍観者効果を含む「普通の人がなぜ悪を見過ごすのか」を社会心理学者が現代事例と実験で論じる一般書。Latane/Darley の延長で読める。</p>
+    </div>
   </div>
 
 
@@ -1225,7 +1255,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">1964 年 3 月のキティ・ジェノヴィーズ殺害をきっかけに、1968 年に <em>Latané &amp; Darley</em> が「責任拡散」を実験で示した。事件は語り継がれ、事件の物語は <em>2007 年</em>に学術的に訂正された。</p></div>
     <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">ドキュメンタリー『The Witness』(2015)、リナ・ダナム『Girls』S5 E7「Hello Kitty」(2016)、『Law &amp; Order: SVU』「41 Witnesses」(2016)。</p></div>
-    <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— 同調圧力(アッシュ)<br>— ミルグラム実験<br>— 多元的無知<br>— 責任拡散</p></div>
+    <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <a href="/asch_conformity" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">同調圧力(アッシュの実験)</a><br>— <a href="/milgram_experiment" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ミルグラム実験</a><br>— <a href="/foot_in_the_door" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">フット・イン・ザ・ドア</a><br>— <a href="/paradox_of_choice" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">選択のパラドックス</a><br>— <a href="/narrative_fallacy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ナラティブの誤謬</a></p></div>
     <div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">効果自体は多数の実験とメタ分析で再現。ただし古典的に語られてきた事件の物語は、一次資料の再検証によって大きく修正された。</p></div>
   </div>
 </div>

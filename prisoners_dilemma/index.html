@@ -49,7 +49,7 @@ a{color:inherit;text-decoration:none;}
 .cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
 .cover-aside strong{color:#3d3020;font-weight:600;}
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
-.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 .meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
@@ -67,7 +67,7 @@ a{color:inherit;text-decoration:none;}
 .summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
 .summary-text strong{font-weight:600;}
 
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -100,7 +100,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
 .quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:center;justify-content:center;padding:16px 0;font-size:56px;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -289,9 +289,9 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .cover{grid-template-columns:1fr;padding:40px 20px 32px;gap:24px;}.cover-right{display:none;}
 .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
 .summary-box,.scenario,.terminal-wrap,.terminal-label-wrap,.related{padding-left:20px;padding-right:20px;}
-.article{grid-template-columns:1fr;padding:0 20px;}.article-side{display:none;}
+.article{grid-template-columns:minmax(0,1fr);padding:0 20px;}.article-side{display:none;}
 .misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
-.person-block{grid-template-columns:1fr;}
+
 .related-grid{grid-template-columns:1fr;}
 .tip-box{left:0;transform:none;width:200px;}.tip-box::after{left:20px;transform:none;}
 .pe-scenario{grid-template-columns:1fr;gap:8px;}.pe-vs{display:none;}
@@ -521,11 +521,15 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <p class="body-text fade">このゲームの名前が「囚人のジレンマ」になったのは、プリンストン大学の数学者<span class="tip" onclick="toggleTip(this)">アルバート・タッカー<span class="tip-box"><strong>Albert W. Tucker（1905–1995）</strong>カナダ生まれの数学者。プリンストン大学でナッシュの指導教官も務めた。囚人の物語を使って利得構造を説明し、「囚人のジレンマ」の名付け親となった。</span></span>がスタンフォード大学の心理学者たちにこのゲームを説明した際に、2人の囚人が検察の取引に直面する物語を即興で作ったことによる。抽象的な利得行列が、一瞬で人間の物語になった。</p>
 
-<div class="person-block no-img fade">
+<div class="person-block fade">
+<div class="person-block-img" style="padding:0;">
+<img src="./person_axelrod.jpg" alt="ロバート・アクセルロッド" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+</div>
 <div class="person-block-body">
 <p class="person-block-name">ロバート・アクセルロッド</p>
 <p class="person-block-role">Political Scientist</p>
 <p class="person-block-desc">ミシガン大学教授。1980年に囚人のジレンマのコンピューター・トーナメントを開催し、「しっぺ返し（Tit for Tat）」戦略の有効性を発見。著書『協力の進化』（1984年）は社会科学の古典。マッカーサー・フェロー。</p>
+<p class="person-block-credit" style="font-size:10px;color:#b0a090;margin-top:8px;">Photo: Ford School / CC BY 3.0 via Wikimedia Commons</p>
 </div></div>
 
 <div class="quote-block fade">
@@ -684,10 +688,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- 参考文献 -->
 <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
 <div class="ref-list">
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著書籍</span><span class="ref-year">1984</span></div><p class="ref-title"><a href="https://www.amazon.com/Evolution-Cooperation-Revised-Robert-Axelrod/dp/0465005640" target="_blank" rel="noopener">The Evolution of Cooperation</a></p><p class="ref-author">Robert Axelrod — Basic Books</p><p class="ref-desc">すべてはここから。2回のトーナメント結果の分析と、「協力が進化する条件」。200ページほどで読みやすく、数式はほとんどない。社会科学の古典的名著。</p></div>
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1981</span></div><p class="ref-title"><a href="https://doi.org/10.1126/science.7466396" target="_blank" rel="noopener">The Evolution of Cooperation</a></p><p class="ref-author">Robert Axelrod &amp; William D. Hamilton — Science, 211(4489), 1390–96</p><p class="ref-desc">進化生物学者ハミルトンとの共著。わずか6ページだが引用数は数万件に及ぶ。</p></div>
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">百科事典</span><span class="ref-year">1997–</span></div><p class="ref-title"><a href="https://plato.stanford.edu/entries/prisoner-dilemma/" target="_blank" rel="noopener">Prisoner's Dilemma</a></p><p class="ref-author">Steven Kuhn — Stanford Encyclopedia of Philosophy</p><p class="ref-desc">囚人のジレンマの哲学的・論理的側面を網羅した決定版エントリー。無料で読める。</p></div>
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1992</span></div><p class="ref-title"><a href="https://www.amazon.com/Prisoners-Dilemma-William-Poundstone/dp/038541580X" target="_blank" rel="noopener">Prisoner's Dilemma</a></p><p class="ref-author">William Poundstone — Anchor Books</p><p class="ref-desc">RAND研究所の内幕と冷戦の核戦略。時代背景を知るには最良の一冊。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">1984</span></div><p class="ref-title"><a href="https://www.amazon.co.jp/dp/4623029239/" target="_blank" rel="noopener">The Evolution of Cooperation</a></p><p class="ref-author">Robert Axelrod — Basic Books</p><p class="ref-desc">すべてはここから。2回のトーナメント結果の分析と、「協力が進化する条件」。200ページほどで読みやすく、数式はほとんどない。社会科学の古典的名著。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1981</span></div><p class="ref-title"><a href="https://doi.org/10.1126/science.7466396" target="_blank" rel="noopener">The Evolution of Cooperation</a></p><p class="ref-author">Robert Axelrod &amp; William D. Hamilton — Science, 211(4489), 1390–96</p><p class="ref-desc">進化生物学者ハミルトンとの共著。わずか6ページだが引用数は数万件に及ぶ。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">事典</span><span class="ref-year">1997–</span></div><p class="ref-title"><a href="https://plato.stanford.edu/entries/prisoner-dilemma/" target="_blank" rel="noopener">Prisoner's Dilemma</a></p><p class="ref-author">Steven Kuhn — Stanford Encyclopedia of Philosophy</p><p class="ref-desc">囚人のジレンマの哲学的・論理的側面を網羅した決定版エントリー。無料で読める。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1992</span></div><p class="ref-title"><a href="https://www.amazon.co.jp/dp/4791753607/" target="_blank" rel="noopener">Prisoner's Dilemma</a></p><p class="ref-author">William Poundstone — Anchor Books</p><p class="ref-desc">RAND研究所の内幕と冷戦の核戦略。時代背景を知るには最良の一冊。</p></div>
 </div>
 
 <div class="note-box fade"><strong>📌 この記事について</strong><br>囚人のジレンマの利得構造とナッシュ均衡は数学的に厳密に定義されている。アクセルロッドのトーナメントは広く再現されているが、しっぺ返しの優位性はトーナメントの設計に依存する部分がある。「協力は繰り返しの中で進化しうる」という結論自体は強固だが、「しっぺ返しが常に最善」と読むのは単純化であるという批判もある。本記事はStanford Encyclopedia of Philosophy、Axelrod (1984)、Axelrod &amp; Hamilton (1981) を主な根拠としている。</div>
@@ -702,7 +706,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="sidebar-block fade"><p class="sidebar-label">Key Number</p><p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">2</p><p class="sidebar-text">しっぺ返し戦略のコードはわずか<strong>2行</strong>。「初手は協力。以降は相手の前回の手を返す」——それだけで専門家の精巧な戦略を打ち負かした。</p></div>
 <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">囚人のジレンマが生まれた1950年は冷戦が激化した年。RAND研究所は米軍の核戦略を研究する機関であり、ゲーム理論は「敵はどう動くか」を予測する道具として発展した。</p></div>
 <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">映画『ダークナイト』のフェリー場面。<br>TV『ゴールデンボール』の最終ラウンド。<br>小説『三体』の暗黒森林理論。<br>リアリティ番組『Survivor』の戦略論。</p></div>
-<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— 損失回避とプロスペクト理論<br>— フレーミング効果<br>— 共有地の悲劇<br>— ナッシュ均衡</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <a href="/loss_aversion" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">損失回避</a><br>— <a href="/framing_effect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">フレーミング効果</a><br>— <a href="/trolley_problem" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">トロッコ問題</a><br>— <a href="/bystander_effect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">傍観者効果</a><br>— <a href="/veil_of_ignorance" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">無知のヴェール</a></p></div>
 <div class="sidebar-block fade"><p class="sidebar-label">今日の判断を振り返る</p><ul class="sidebar-check"><li>「相手が先にやるなら」と行動を保留した場面はなかったか。</li><li>誰かの裏切りに、必要以上に長く報復を続けていないか。</li><li>「一度きり」と思った場面で、本当にもう会わないのか。</li></ul></div>
 <div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">利得構造とナッシュ均衡は数学的に厳密。しっぺ返しの優位性はゲームの設計条件に依存する部分がある。</p></div>
 </div></div>

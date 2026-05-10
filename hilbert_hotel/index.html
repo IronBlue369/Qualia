@@ -107,7 +107,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -133,7 +133,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -170,7 +170,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:0;overflow:hidden;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -375,7 +375,7 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -466,10 +466,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Thought Experiment / Infinity</p>
+    <p class="cover-kicker">思考実験・哲学</p>
     <h1>満室のホテル、<em>だが客はまだ泊まれる</em></h1>
     <p class="cover-deck">無限の部屋を持つホテルは、どれだけ客が詰まっていても空きを作れる。ただしそれは「足し算」ではなく、番号を<em>振り直す</em>操作だ。</p>
-    <div class="cover-byline"><span>数学・論理</span><span>思考実験・哲学</span><span>Appendix I：数の風景</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>PUZZLE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -610,12 +610,16 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
   </div>
 
-  <div class="person-block fade" style="grid-template-columns:1fr;">
-    <div class="person-block-body" style="border-left:none;">
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="./person_gamow.jpg" alt="ジョージ・ガモフ" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="person-block-body">
       <p class="person-block-name">ジョージ・ガモフ</p>
       <p class="person-block-role">Physicist / Science Writer — 1904–1968</p>
       <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A7%E3%83%BC%E3%82%B8%E3%83%BB%E3%82%AC%E3%83%A2%E3%83%95" target="_blank" rel="noopener">Wikipedia</a></p>
       <p class="person-block-desc">ビッグバン宇宙論の提唱者の一人。1947 年の啓蒙書『One Two Three… Infinity』でヒルベルトのホテルを紹介し、世に広めた。挿絵も自身で描いた。</p>
+      <p class="person-block-credit" style="font-size:10px;color:#b0a090;margin-top:8px;">Photo: Unknown / Public Domain (PD-US-no_notice) via Wikimedia Commons</p>
     </div>
   </div>
 
@@ -913,31 +917,31 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <div class="ref-list">
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Primary</span><span class="ref-year">1925 / 2013</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1925 / 2013</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1007/BF01206605" target="_blank" rel="noopener">Über das Unendliche</a></p>
       <p class="ref-author">David Hilbert, Mathematische Annalen, Vol. 95, 1926</p>
       <p class="ref-desc">ヒルベルトが1925年6月にミュンスターで行った講演の活字版。ホテルの話そのものは、1924年のゲッティンゲン講義ノート(2013 年 Ewald & Sieg 編『David Hilbert's Lectures on the Foundations of Arithmetic and Logic』で公刊)が出典。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">1947</span></div>
-      <p class="ref-title"><a href="https://archive.org/details/B-001-002-059" target="_blank" rel="noopener">One Two Three... Infinity: Facts and Speculations of Science</a></p>
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1947</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4826910533/" target="_blank" rel="noopener">One Two Three... Infinity: Facts and Speculations of Science</a></p>
       <p class="ref-author">George Gamow, Viking Press</p>
       <p class="ref-desc">ヒルベルトの無限ホテルを世に広めた啓蒙書。第1章「Big Numbers」で、満室に客を受け入れる支配人の物語として紹介される。Dover 再版あり。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">2014</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2014</span></div>
       <p class="ref-title"><a href="https://arxiv.org/abs/1403.0059" target="_blank" rel="noopener">The True (?) Story of Hilbert's Infinite Hotel</a></p>
       <p class="ref-author">Helge Kragh, arXiv:1403.0059</p>
       <p class="ref-desc">ヒルベルトが実際に1924年に何を話したのか、ガモフがどう引用したのか、その伝播史を検証した科学史論文。一次資料をすべて当たっている。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Paper</span><span class="ref-year">1891</span></div>
-      <p class="ref-title">Über eine elementare Frage der Mannigfaltigkeitslehre</p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1891</span></div>
+      <p class="ref-title"><a href="https://gdz.sub.uni-goettingen.de/id/PPN37721857X_0001?tify=%7B%22pages%22%3A%5B83%5D%2C%22view%22%3A%22info%22%7D" target="_blank" rel="noopener">Über eine elementare Frage der Mannigfaltigkeitslehre</a></p>
       <p class="ref-author">Georg Cantor, Jahresbericht der DMV, Vol. 1, pp. 75–78</p>
       <p class="ref-desc">対角線論法の原典。わずか4ページで実数の非可算性を証明した。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Video</span><span class="ref-year">2014</span></div>
+      <div class="ref-meta"><span class="ref-type">動画</span><span class="ref-year">2014</span></div>
       <p class="ref-title"><a href="https://ed.ted.com/lessons/the-infinite-hotel-paradox-jeff-dekofsky" target="_blank" rel="noopener">The Infinite Hotel Paradox</a></p>
       <p class="ref-author">Jeff Dekofsky, TED-Ed</p>
       <p class="ref-desc">6 分のアニメ教材。客の移動を視覚的に追える。本記事の体験セクションと補完的。</p>
@@ -982,7 +986,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— カントールの対角線論法<br>— ゲーデル不完全性定理<br>— 連続体仮説<br>— 実無限と可能無限</p>
+      <p class="sidebar-text">— <a href="/godel_incompleteness" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ゲーデルの不完全性定理</a><br>— <a href="/mandelbrot_set" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マンデルブロ集合</a><br>— <a href="/turing_test" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">チューリングテスト</a><br>— <a href="/shepard_tone" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">シェパードトーン</a><br>— <a href="/mondrian_reductionism" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">モンドリアンと還元主義</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">信頼度</p>

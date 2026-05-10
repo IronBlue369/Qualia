@@ -86,7 +86,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -112,7 +112,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -144,7 +144,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(70px, 27%, 140px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block.no-img{display:block;grid-template-columns:1fr;}
 .person-block.no-img .person-block-body{border-left:none;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:0;overflow:hidden;}
@@ -400,14 +400,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:0;justify-content:center;flex-direction:row;max-height:220px;}
   .person-block-img img{max-height:220px;width:auto;max-width:100%;}
   .tip-box{left:0;transform:none;width:200px;}
@@ -504,10 +504,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">The Hard Problem</p>
+    <p class="cover-kicker">脳と意識</p>
     <h1>物理の言葉は、<em>体験</em>に届かない</h1>
     <p class="cover-deck">すべての神経発火を解明しても、「赤の赤さ」「痛みの痛さ」は残る。科学が説明できない一点。</p>
-    <div class="cover-byline"><span>脳と意識</span><span>思考実験・哲学</span><span>心の哲学</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>THOUGHT EXPERIMENT</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -803,13 +803,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <p class="body-text fade">この直感をさらに鋭く突いたのが、1974年の <tip>トマス・ネーゲル<span class="tip-box"><strong>Thomas Nagel</strong>米国の哲学者。1974年の論文「コウモリであるとはどのようなことか」で、主観的視点の還元不可能性を論じた。</span></tip> の論文「<em>What Is It Like to Be a Bat?</em>」である。コウモリは超音波反響定位で世界を感じている。その神経回路は書き切れるだろう。しかし「コウモリであることは、どのように感じられるか」は、外側からの記述では決してたどり着けない。<strong>主観的な「〜であること」は、客観的記述の外にある。</strong></p>
 
-  <div class="person-block fade">
-    <div class="person-block-img"><img src="./Thomas_Nagel_teaching_Ethics.jpeg" alt="Thomas Nagel"></div>
+  <div class="person-block no-img fade">
     <div class="person-block-body">
       <p class="person-block-name"><a href="https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%9E%E3%82%B9%E3%83%BB%E3%83%8D%E3%83%BC%E3%82%B2%E3%83%AB" target="_blank" rel="noopener">Thomas Nagel(1937–)</a></p>
       <p class="person-block-role">Philosopher</p>
       <p class="person-block-desc">ニューヨーク大学の哲学者。1974年の論文「コウモリであるとはどのようなことか」は、意識を客観的に還元する試みへの古典的な反論として今も引かれる。物理主義を否定せず、しかし「何かが欠けている」と言い続けた人。</p>
-      <p class="person-block-credit">Photo: <a href="https://en.wikipedia.org/wiki/User:Jmd442" target="_blank" rel="noopener">Jmd442</a> / <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 3.0</a>, via Wikimedia Commons(リサイズ済み)</p>
     </div>
   </div>
 
@@ -822,22 +820,22 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   </div>
 
   <div class="person-block fade">
-    <div class="person-block-img"><img src="./500px-David_Chalmers_2011_(cropped).jpg" alt="David Chalmers"></div>
+    <div class="person-block-img"><img src="./person_chalmers.jpg" alt="David Chalmers"></div>
     <div class="person-block-body">
       <p class="person-block-name"><a href="https://ja.wikipedia.org/wiki/%E3%83%87%E3%82%A4%E3%83%B4%E3%82%A3%E3%83%83%E3%83%89%E3%83%BB%E3%83%81%E3%83%A3%E3%83%BC%E3%83%9E%E3%83%BC%E3%82%BA" target="_blank" rel="noopener">David Chalmers(1966–)</a></p>
       <p class="person-block-role">Philosopher</p>
       <p class="person-block-desc">オーストラリア出身、ニューヨーク大学。1994年トゥーソン会議と1995年論文で「ハードプロブレム」を命名。哲学的ゾンビの思考実験でも知られる。物理的事実だけでは意識の事実を決められない、という立場を<strong>自然主義的二元論</strong>と呼んだ。</p>
-      <p class="person-block-credit">Photo: <a href="https://commons.wikimedia.org/wiki/User:HerbertErwin" target="_blank" rel="noopener">HerbertErwin</a> / <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 3.0</a>, via Wikimedia Commons(リサイズ済み)</p>
+      <p class="person-block-credit">Photo: Zereshk / <a href="https://creativecommons.org/licenses/by/3.0/deed.ja" target="_blank" rel="noopener">CC BY 3.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:David_Chalmers_TASC2008_(cropped).JPG" target="_blank" rel="noopener">Wikimedia Commons</a>(リサイズ済み)</p>
     </div>
   </div>
 
   <div class="person-block fade">
-    <div class="person-block-img"><img src="./960px-Daniel_dennett_Oct2008.jpeg" alt="Daniel Dennett"></div>
+    <div class="person-block-img"><img src="./person_dennett.jpg" alt="Daniel Dennett"></div>
     <div class="person-block-body">
       <p class="person-block-name"><a href="https://ja.wikipedia.org/wiki/%E3%83%80%E3%83%8B%E3%82%A8%E3%83%AB%E3%83%BB%E3%83%87%E3%83%8D%E3%83%83%E3%83%88" target="_blank" rel="noopener">Daniel Dennett(1942–2024)</a></p>
       <p class="person-block-role">Philosopher</p>
       <p class="person-block-desc">タフツ大学。ハードプロブレムの提唱を<em>誤った問題設定</em>だと終生批判した代表格。著書『Consciousness Explained』(1991)とその後の議論で、「ギャップは錯覚であり、機能を全部書けば何も残らない」と主張した。2024年に逝去。</p>
-      <p class="person-block-credit">Photo: <a href="https://commons.wikimedia.org/wiki/User:Mathias_Schindler" target="_blank" rel="noopener">Mathias Schindler</a> / <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.ja" target="_blank" rel="noopener">CC BY-SA 3.0</a>, via Wikimedia Commons(リサイズ済み)</p>
+      <p class="person-block-credit">Photo: David Orban / <a href="https://creativecommons.org/licenses/by/2.0/deed.ja" target="_blank" rel="noopener">CC BY 2.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Daniel_Dennett_in_Venice_2006.png" target="_blank" rel="noopener">Wikimedia Commons</a>(リサイズ済み)</p>
     </div>
   </div>
 
@@ -1033,25 +1031,25 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <div class="ref-desc">主観性の還元不可能性を論じた古典。現代のハードプロブレム議論の思想的下地。</div>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1983</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1983</span></div>
       <div class="ref-title"><a href="https://www.marcsandersfoundation.org/wp-content/uploads/2019/11/Levine-1983-Materialism-and-Qualia.pdf" target="_blank" rel="noopener">Materialism and Qualia: The Explanatory Gap</a></div>
       <div class="ref-author">Joseph Levine — Pacific Philosophical Quarterly, 64: 354–361</div>
       <div class="ref-desc">「説明のギャップ」という概念を初めて明示的に定式化した論文。</div>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1996</span></div>
+      <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">1996</span></div>
       <div class="ref-title"><a href="https://global.oup.com/academic/product/the-conscious-mind-9780195117899" target="_blank" rel="noopener">The Conscious Mind: In Search of a Fundamental Theory</a></div>
       <div class="ref-author">David J. Chalmers — Oxford University Press</div>
       <div class="ref-desc">哲学的ゾンビの思考実験を中核に、自然主義的二元論の全体像を展開した書籍。</div>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1991</span></div>
+      <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">1991</span></div>
       <div class="ref-title"><a href="https://www.littlebrown.com/titles/daniel-c-dennett/consciousness-explained/9780316180665/" target="_blank" rel="noopener">Consciousness Explained</a></div>
       <div class="ref-author">Daniel C. Dennett — Little, Brown</div>
       <div class="ref-desc">機能主義・幻想主義の立場からの包括的な反論。ハードプロブレム派と並び読む必要がある古典。</div>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2004</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2004</span></div>
       <div class="ref-title"><a href="https://bmcneurosci.biomedcentral.com/articles/10.1186/1471-2202-5-42" target="_blank" rel="noopener">An Information Integration Theory of Consciousness</a></div>
       <div class="ref-author">Giulio Tononi — BMC Neuroscience, 5: 42</div>
       <div class="ref-desc">IIT の最初期の定式化。統合情報量 Φ を導入した。</div>
@@ -1063,10 +1061,16 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <div class="ref-desc">IIT と GNWT を同一データで敵対的に検証した初の大規模研究。両理論とも部分的支持に留まった。</div>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">入門向け解説</span><span class="ref-year">2022</span></div>
+      <div class="ref-meta"><span class="ref-type">解説（Web）</span><span class="ref-year">2022</span></div>
       <div class="ref-title"><a href="https://plato.stanford.edu/entries/consciousness/" target="_blank" rel="noopener">Consciousness — Stanford Encyclopedia of Philosophy</a></div>
       <div class="ref-author">Robert Van Gulick (ed.)</div>
       <div class="ref-desc">意識をめぐる哲学・科学の主要論点を俯瞰する標準的リファレンス。</div>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">1996</span></div>
+      <div class="ref-title"><a href="https://www.amazon.co.jp/dp/4826901062/" target="_blank" rel="noopener">The Conscious Mind（邦訳：意識する心 — 脳と精神の根本理論を求めて）</a></div>
+      <div class="ref-author">David J. Chalmers</div>
+      <div class="ref-desc">「ハードプロブレム」という用語の提唱者 Chalmers 自身による記念碑的著作の邦訳。記事の核心理論に直接踏み込みたい読者の最初の一冊。</div>
     </div>
   </div>
 
@@ -1102,10 +1106,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
       <p class="sidebar-text">
-        — <a href="https://qualiajournal.com/mary_room" style="color:#8b1a1a;">マリーの部屋</a><br>
-        — <a href="https://qualiajournal.com/libet_free_will" style="color:#8b1a1a;">リベット実験</a><br>
-        — <a href="https://qualiajournal.com/color" style="color:#8b1a1a;">色は存在しない</a><br>
-        — <a href="https://qualiajournal.com/butterfly_dream" style="color:#8b1a1a;">胡蝶の夢</a>
+        — <a href="/mary_room" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マリーの部屋</a><br>
+        — <a href="/libet_free_will" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">リベット実験</a><br>
+        — <a href="/color" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">色は存在しない</a><br>
+        — <a href="/butterfly_dream" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">胡蝶の夢</a><br>
+        — <a href="/gut_brain_axis" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">腸脳相関</a>
       </p>
     </div>
     <div class="sidebar-block fade">

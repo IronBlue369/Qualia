@@ -86,7 +86,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -112,7 +112,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -144,7 +144,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:0;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -364,14 +364,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .meta-dates{margin-left:0;width:100%;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
@@ -473,10 +473,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Special Report</p>
+    <p class="cover-kicker">行動心理学</p>
     <h1>あなたの注意は、<em>競売</em>にかけられている</h1>
     <p class="cover-deck">1971年、ひとりの経済学者が予言した。情報が溢れる世界では、希少資源は情報そのものではなく、それを受け取る側の「注意」になる、と。半世紀後、その予言は私たちの日常になった。</p>
-    <div class="cover-byline"><span>科学と文化</span><span>行動心理学</span><span>社会心理学</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>DEEP DIVE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -1093,7 +1093,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <div class="ref-list">
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1971</span></div>
+    <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">1971</span></div>
     <p class="ref-title">Designing Organizations for an Information-Rich World</p>
     <p class="ref-author">Herbert A. Simon</p>
     <p class="ref-desc">Martin Greenberger 編『Computers, Communications, and the Public Interest』所収。注意の希少性を経済学の枠組みで初めて論じた論文。</p>
@@ -1105,38 +1105,38 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <p class="ref-desc">注意を新経済の通貨とする理論を一般向けに展開。インターネットの台頭を背景に、情報経済から注意経済への移行を予見した。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2003</span></div>
-    <p class="ref-title">Persuasive Technology: Using Computers to Change What We Think and Do</p>
+    <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">2003</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4822282465/" target="_blank" rel="noopener">Persuasive Technology: Using Computers to Change What We Think and Do</a></p>
     <p class="ref-author">B.J. Fogg</p>
     <p class="ref-desc">コンピュータによる行動変容の理論的基盤。Fogg行動モデル（B=MAP）を提唱し、後のアプリデザインの方法論に多大な影響を与えた。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2014</span></div>
-    <p class="ref-title">Hooked: How to Build Habit-Forming Products</p>
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2014</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4798137863/" target="_blank" rel="noopener">Hooked: How to Build Habit-Forming Products</a></p>
     <p class="ref-author">Nir Eyal</p>
     <p class="ref-desc">トリガー→行動→可変報酬→投資の4段階で習慣を形成するHookモデルを体系化。シリコンバレーの製品設計の教科書となった。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2016</span></div>
-    <p class="ref-title">The Attention Merchants: The Epic Scramble to Get Inside Our Heads</p>
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2016</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/0804170045/" target="_blank" rel="noopener">The Attention Merchants: The Epic Scramble to Get Inside Our Heads</a></p>
     <p class="ref-author">Tim Wu</p>
     <p class="ref-desc">19世紀の新聞広告から現代のSNSまで、注意の商業化の通史。法学者の視点から注意経済が民主主義に及ぼすリスクを論じた。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2018</span></div>
-    <p class="ref-title"><a href="https://www.science.org/doi/10.1126/science.aap9559" target="_blank" rel="noopener">The spread of true and false news online</a></p>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2018</span></div>
+    <p class="ref-title"><a href="https://doi.org/10.1126/science.aap9559" target="_blank" rel="noopener">The spread of true and false news online</a></p>
     <p class="ref-author">Soroush Vosoughi, Deb Roy, Sinan Aral — Science</p>
     <p class="ref-desc">マサチューセッツ工科大学の研究チームが Twitter 上の12万件超のニュースカスケードを解析。偽情報は真実の情報よりはるかに速く、広く、深く拡散することを統計的に示した。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2023</span></div>
-    <p class="ref-title">Attention Span: A Groundbreaking Way to Restore Balance, Happiness and Productivity</p>
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2023</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4296117335/" target="_blank" rel="noopener">Attention Span: A Groundbreaking Way to Restore Balance, Happiness and Productivity</a></p>
     <p class="ref-author">Gloria Mark</p>
     <p class="ref-desc">20年以上にわたる注意の中断研究をまとめた著作。通知割込み後の回復に平均25分かかること、集中持続時間が2004年の2分30秒から2021年の47秒に短縮したという知見の原典。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2024</span></div>
-    <p class="ref-title">The Anxious Generation: How the Great Rewiring of Childhood Is Causing an Epidemic of Mental Illness</p>
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2024</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4794228198/" target="_blank" rel="noopener">The Anxious Generation: How the Great Rewiring of Childhood Is Causing an Epidemic of Mental Illness</a></p>
     <p class="ref-author">Jonathan Haidt</p>
     <p class="ref-desc">スマートフォンを日常的に手にした世代でうつ・不安・自殺企図が2010年代前半から急増した事実を大規模データで追跡し、「phone-based childhood」が子どもの発達を書き換えた仕組みを論じた。</p>
   </div>
@@ -1180,7 +1180,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— <a href="https://qualiajournal.com/skinner_box/" style="color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.25);">スキナー箱</a>（可変比率強化）<br>— <a href="https://qualiajournal.com/confirmation_bias/" style="color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.25);">確証バイアス</a>（フィルターバブル）<br>— <a href="https://qualiajournal.com/skeuomorphism/" style="color:#8b1a1a;border-bottom:1px solid rgba(139,26,26,.25);">スキューモーフィズム</a>（UIの認知操作）</p>
+      <p class="sidebar-text">— <a href="/skinner_box" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">スキナー箱</a><br>— <a href="/confirmation_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">確証バイアス</a><br>— <a href="/skeuomorphism" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">スキューモーフィズム</a><br>— <a href="/dark_patterns" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ダークパターン</a><br>— <a href="/filter_bubble" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">フィルターバブル</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">チェックリスト</p>

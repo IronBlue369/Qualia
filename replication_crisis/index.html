@@ -86,7 +86,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -112,7 +112,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;min-width:0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -143,7 +143,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK (anchoring_effect 準拠: 画像120px正方形 + body 2カラムグリッド) */
-.person-block{display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;margin:32px 0;}
+.person-block{display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;margin:32px 0;}
 .person-block-img{background:#ede8dc;overflow:hidden;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -390,7 +390,7 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -496,10 +496,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Special Report — 科学と文化</p>
+    <p class="cover-kicker">科学と文化</p>
     <h1>再現性の<em>危機</em></h1>
     <p class="cover-deck">2015年、心理学100本のうち、追試で再現できたのは36本だった。科学の自己訂正機能は動いているのか——それとも、止まっているのか。</p>
-    <div class="cover-byline"><span>科学と文化</span><span>統計</span><span>メタ科学</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>DEEP DIVE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -1287,28 +1287,34 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <p class="ref-desc">再現性の危機を決定づけた論文。著者は270人、筆頭著者は集合体名義。Science誌のサイトで全文無料公開。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">予言的エッセイ</span><span class="ref-year">2005</span></div>
+      <div class="ref-meta"><span class="ref-type">記事</span><span class="ref-year">2005</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1371/journal.pmed.0020124" target="_blank" rel="noopener">Why Most Published Research Findings Are False</a></p>
       <p class="ref-author">John P. A. Ioannidis — PLOS Medicine, 2(8), e124</p>
       <p class="ref-desc">OSC 2015 の10年前。偽陽性が科学文献に蓄積する構造を数理的に示した。オープンアクセス。メタ科学の出発点。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">概念化</span><span class="ref-year">2011</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2011</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1177/0956797611417632" target="_blank" rel="noopener">False-Positive Psychology: Undisclosed Flexibility in Data Collection and Analysis</a></p>
       <p class="ref-author">Joseph Simmons, Leif Nelson, Uri Simonsohn — Psychological Science, 22(11), 1359–1366</p>
       <p class="ref-desc">「ビートルズの曲を聞くと年齢が若返る」という露骨にあり得ない仮説でp&lt;0.05を作って見せた。p-hacking の教科書。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">追試プロジェクト</span><span class="ref-year">2021</span></div>
+      <div class="ref-meta"><span class="ref-type">追試論文</span><span class="ref-year">2021</span></div>
       <p class="ref-title"><a href="https://doi.org/10.7554/eLife.71601" target="_blank" rel="noopener">Investigating the replicability of preclinical cancer biology</a></p>
       <p class="ref-author">Timothy M. Errington et al. — eLife, 10, e71601</p>
       <p class="ref-desc">8年がかりでがん生物学53本を追試。再現率46%、効果量は元の平均15%。医療への含意は深刻。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">追試実験</span><span class="ref-year">2015</span></div>
+      <div class="ref-meta"><span class="ref-type">追試論文</span><span class="ref-year">2015</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1177/0956797614553946" target="_blank" rel="noopener">Assessing the Robustness of Power Posing</a></p>
       <p class="ref-author">Eva Ranehill et al. — Psychological Science, 26(5), 653–656</p>
       <p class="ref-desc">パワーポージングの大規模追試(N=200)。ホルモン変化も行動変化も検出されなかった。Carney 自身の撤退声明もこの論文がきっかけ。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2020</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4478113408/" target="_blank" rel="noopener">Science Fictions（邦訳：Science Fictions あなたが知らない科学の真実）</a></p>
+      <p class="ref-author">Stuart Ritchie</p>
+      <p class="ref-desc">心理学・医学・社会科学の再現性危機をエジンバラ大の研究者が一般向けにまとめた決定版。記事の論文群を物語として俯瞰できる。</p>
     </div>
   </div>
 
@@ -1340,7 +1346,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— <em>相関は因果ではない</em><br>数字の解釈の第一関門<br>— <em>確証バイアス</em><br>p-hacking の認知的原型<br>— <em>事前登録(プレレジ)</em><br>危機への制度的応答</p>
+      <p class="sidebar-text">— <a href="/correlation_causation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">相関は因果ではない</a><br>— <a href="/confirmation_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">確証バイアス</a><br>— <a href="/survivorship_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">生存者バイアス</a><br>— <a href="/marshmallow_test" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マシュマロ実験</a><br>— <a href="/narrative_fallacy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ナラティブの誤謬</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">今日の判断を振り返る</p>

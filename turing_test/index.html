@@ -103,7 +103,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -129,7 +129,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -159,7 +159,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(70px, 27%, 140px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -442,14 +442,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .meta-dates{margin-left:0;width:100%;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{max-height:220px;}
   .measure-body{grid-template-columns:1fr;}
   .measure-col.left{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -542,10 +542,10 @@ img,canvas,svg,video{max-width:100%;height:auto;}
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Thought Experiment — AI & Mind</p>
+    <p class="cover-kicker">思考実験・哲学</p>
     <h1>チューリングテストの<em>限界</em></h1>
     <p class="cover-deck">機械が人間を演じる舞台で、テストは何を測ってきたのか。そして今、何を測れていないのか。</p>
-    <div class="cover-byline"><span>思考実験・哲学</span><span>情報・AI</span><span>心の哲学</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>PROFILE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -669,13 +669,17 @@ img,canvas,svg,video{max-width:100%;height:auto;}
 
 <p class="body-text fade">提案だけが残された。彼の死から12年後の1966年、MIT のジョセフ・ヴァイゼンバウムが「<span class="tip" onclick="toggleTip(this)">ELIZA<span class="tip-box"><strong>ELIZA（1966）</strong>Weizenbaumが開発した最初期のチャットボット。ロジャー派カウンセラーを真似て、入力文中のキーワードを置き換えて返すだけの単純なパターンマッチ。</span></span>」という小さなプログラムを作った。やっていることは驚くほど単純で、入力文のキーワードを拾い、疑問文の形に書き換えて返すだけ。「私は母のことで悩んでいます」と打つと「あなたの母について、もっと話してください」と返す。それだけだ。</p>
 
-<!-- 人物ブロック: Weizenbaum（画像なし1カラム形式 ／ CC0/PD/CC BYの単独写真が確認できないため） -->
-<div class="person-block fade" style="grid-template-columns:1fr;">
-  <div class="person-block-body" style="border-left:none;">
+<!-- 人物ブロック: Weizenbaum -->
+<div class="person-block fade">
+  <div class="person-block-img">
+    <img src="./person_weizenbaum.jpg" alt="Joseph Weizenbaum" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+  </div>
+  <div class="person-block-body">
     <p class="person-block-name">Joseph Weizenbaum</p>
     <p class="person-block-role">MIT Computer Scientist / 1923–2008</p>
     <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A7%E3%82%BB%E3%83%95%E3%83%BB%E3%83%AF%E3%82%A4%E3%82%BC%E3%83%B3%E3%83%90%E3%82%A6%E3%83%A0" target="_blank" rel="noopener">Wikipedia</a></p>
     <p class="person-block-desc">ドイツ生まれ、ナチス政権から米国へ亡命。MIT人工知能研究所でELIZAを書く。自分の作った単純なボットに、秘書が真剣に心を打ち明ける様子を目撃して衝撃を受け、以後AIの社会的危険を警告する側に回った。著書『Computer Power and Human Reason』(1976)。</p>
+    <p class="person-block-credit" style="font-size:10px;color:#b0a090;margin-top:8px;">Photo: Andreas Schepers / CC BY 2.0 via Wikimedia Commons (クロップ)</p>
   </div>
 </div>
 
@@ -1176,46 +1180,52 @@ img,canvas,svg,video{max-width:100%;height:auto;}
 
 <div class="ref-list">
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">原論文</span><span class="ref-year">1950</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1950</span></div>
     <p class="ref-title"><a href="https://academic.oup.com/mind/article/LIX/236/433/986238" target="_blank" rel="noopener">Computing Machinery and Intelligence</a></p>
     <p class="ref-author">A. M. Turing — Mind, Volume LIX, Issue 236, pp. 433–460</p>
     <p class="ref-desc">イミテーション・ゲームの原典。「考える」の定義を迂回し、機械の知能を会話での判別不能性に置き換える提案。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1966</span></div>
-    <p class="ref-title"><a href="https://dl.acm.org/doi/10.1145/365153.365168" target="_blank" rel="noopener">ELIZA — A Computer Program For the Study of Natural Language Communication Between Man and Machine</a></p>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1966</span></div>
+    <p class="ref-title"><a href="https://doi.org/10.1145/365153.365168" target="_blank" rel="noopener">ELIZA — A Computer Program For the Study of Natural Language Communication Between Man and Machine</a></p>
     <p class="ref-author">Joseph Weizenbaum — Communications of the ACM, 9(1), pp. 36–45</p>
     <p class="ref-desc">ELIZAの技術論文。パターンマッチによる対話生成の仕組みと、ユーザーが示す過剰な人格化への著者の戸惑いが記録されている。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1976</span></div>
+    <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">1976</span></div>
     <p class="ref-title"><a href="https://archive.org/details/computerpowerhum0000weiz_v0i3" target="_blank" rel="noopener">Computer Power and Human Reason: From Judgment to Calculation</a></p>
     <p class="ref-author">Joseph Weizenbaum — W. H. Freeman</p>
     <p class="ref-desc">ELIZA効果を目撃したヴァイゼンバウムによる、AI社会論。「計算できることと、判断すべきことは違う」という主張はいまも引かれ続けている。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1980</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1980</span></div>
     <p class="ref-title"><a href="https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/minds-brains-and-programs/DC644B47A4299C637C89772FACC2706A" target="_blank" rel="noopener">Minds, Brains, and Programs</a></p>
     <p class="ref-author">John R. Searle — Behavioral and Brain Sciences, 3(3), pp. 417–457</p>
     <p class="ref-desc">「中国語の部屋」の原典。外面的振る舞いの一致は、内面の理解を保証しない、というテストへの古典的反駁。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2024</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2024</span></div>
     <p class="ref-title"><a href="https://arxiv.org/abs/2405.08007" target="_blank" rel="noopener">People cannot distinguish GPT-4 from a human in a Turing test</a></p>
     <p class="ref-author">Cameron R. Jones &amp; Benjamin K. Bergen — UC San Diego / NAACL 2024</p>
     <p class="ref-desc">大規模なオンライン・チューリングテスト実験。GPT-4が54%、人間が67%の「人間」判定率。判断根拠が言語スタイルと社会感情応答に偏ることを定量的に示した。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2025</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2025</span></div>
     <p class="ref-title"><a href="https://arxiv.org/abs/2503.23674" target="_blank" rel="noopener">Large Language Models Pass the Turing Test</a></p>
     <p class="ref-author">Cameron R. Jones &amp; Benjamin K. Bergen — UC San Diego / arXiv:2503.23674</p>
     <p class="ref-desc">3プレイヤー型(審判が人間とAIを同時比較)のチューリングテスト。GPT-4.5にペルソナ指定を与えた条件で73%の「人間」判定率を記録。実際の人間(27%)を上回り、AIが人間より頻繁に「人間」と判定された史上初の論文。LLaMa-3.1-405Bも56%で同様にパス。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">百科事典</span><span class="ref-year">2024改訂</span></div>
+    <div class="ref-meta"><span class="ref-type">事典</span><span class="ref-year">2024改訂</span></div>
     <p class="ref-title"><a href="https://plato.stanford.edu/entries/turing-test/" target="_blank" rel="noopener">The Turing Test — Stanford Encyclopedia of Philosophy</a></p>
     <p class="ref-author">Graham Oppy &amp; David Dowe</p>
     <p class="ref-desc">テストの哲学的・歴史的整理。行動主義批判、チューリング自身の意図、主要な反論を網羅する。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2011</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4794220804/" target="_blank" rel="noopener">The Most Human Human（邦訳：機械より人間らしくなれるか? — AIとの対話が、人間でいることの意味を教えてくれる）</a></p>
+    <p class="ref-author">Brian Christian</p>
+    <p class="ref-desc">ローブナー賞のチューリングテストに自身が参加した著者の体験録(草思社文庫)。ELIZA から GPT-4 までの記事の流れに、人間側の視点を加えられる。</p>
   </div>
 </div>
 
@@ -1258,10 +1268,11 @@ img,canvas,svg,video{max-width:100%;height:auto;}
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
       <p class="sidebar-text">
-        — <em>中国語の部屋</em>（Searle）<br>
-        — <em>ゲーデル不完全性</em><br>
-        — <em>意識のハード・プロブレム</em><br>
-        — <em>マリーの部屋</em>
+        — <a href="/hard_problem" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">意識のハードプロブレム</a><br>
+        — <a href="/godel_incompleteness" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ゲーデルの不完全性定理</a><br>
+        — <a href="/mary_room" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マリーの部屋</a><br>
+        — <a href="/structuralism" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">構造主義</a><br>
+        — <a href="/hilbert_hotel" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ヒルベルトの無限ホテル</a>
       </p>
     </div>
     <div class="sidebar-block fade">

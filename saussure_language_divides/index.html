@@ -86,7 +86,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'青/緑';position:absolute;right:20px;top:-6px;font-family:'Playfair Display',serif;font-size:90px;font-weight:900;color:#e0d8c8;opacity:.38;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-6px;font-family:'Playfair Display',serif;font-size:90px;font-weight:900;color:#e0d8c8;opacity:.38;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -112,7 +112,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -154,7 +154,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc 30% top/cover no-repeat;background-image:url('saussure.jpg');padding:0;}
 .person-block-img .mobile-img{display:none;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -378,14 +378,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;display:flex;justify-content:flex-start;flex-direction:row;background-image:none!important;background-color:#ede8dc;}
   .person-block-img .mobile-img{display:block;width:72px;height:72px;object-fit:cover;}
   .tip-box{left:0;transform:none;width:200px;}
@@ -1040,7 +1040,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <div class="ref-list">
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">一次文献</span><span class="ref-year">1916</span></div>
+      <div class="ref-meta"><span class="ref-type">一次資料</span><span class="ref-year">1916</span></div>
       <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Course_in_General_Linguistics" target="_blank" rel="noopener">Cours de linguistique générale</a></p>
       <p class="ref-author">Ferdinand de Saussure — Payot, Lausanne & Paris</p>
       <p class="ref-desc">ソシュール本人が書いた本ではなく、教え子のバイイとセシュエが学生ノートから再構成したもの。第一部「一般原則」までなら比較的読みやすい。言語の恣意性と分節の話はこの前半に集中している。英訳は Wade Baskin 訳（1959年）と Roy Harris 訳（1983年）がある。</p>
@@ -1058,10 +1058,16 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <p class="ref-desc">パプアニューギニアのベリンモ語話者を対象に、色のカテゴリーと記憶・識別の関係を調べた長編論文。有料だが、大学図書館経由でアクセスできることが多い。ロッシュ=ハイダーの古典的実験（1972年）への反論として、言語相対性の立場を再評価する転機になった。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">短報</span><span class="ref-year">1999</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1999</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1038/18335" target="_blank" rel="noopener">Colour categories in a stone-age tribe</a></p>
       <p class="ref-author">Davidoff, J., Davies, I., & Roberson, D. — Nature 398: 203–204</p>
       <p class="ref-desc">上の長編の先行研究にあたる Nature 短報。2ページしかないが、ベリンモ語の色カテゴリー分布を英語話者と並べた図が衝撃的で、「言語の境界が違うと本当に違うように見えるのか」という問いを決定的に復活させた論文。まずこれを読んでから長編に進むと入りやすい。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2010</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4150505861/" target="_blank" rel="noopener">Through the Language Glass（邦訳：言語が違えば、世界も違って見えるわけ）</a></p>
+      <p class="ref-author">Guy Deutscher</p>
+      <p class="ref-desc">言語相対論(サピア=ウォーフ仮説)の現代版総括。Russian blues や色語彙比較などソシュール後の100年を一般読者向けに辿る決定版。記事の言語論争の現在地を示す(ハヤカワ文庫NF、2022年文庫版)。</p>
     </div>
   </div>
 
@@ -1100,7 +1106,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— 色は存在しない（D-01）<br>— サピア=ウォーフ仮説（L-01）<br>— 音は存在しない<br>— 中国語の部屋</p>
+      <p class="sidebar-text">— <a href="/color" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">色は存在しない</a><br>— <a href="/sound_does_not_exist" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">音は存在しない</a><br>— <a href="/structuralism" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">構造主義</a><br>— <a href="/mary_room" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マリーの部屋</a><br>— <a href="/turing_test" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">チューリングテスト</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">自分の線を見つける</p>

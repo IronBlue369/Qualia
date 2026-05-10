@@ -107,7 +107,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -133,7 +133,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -170,7 +170,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
 .person-block-img{background:#ede8dc;overflow:hidden;aspect-ratio:1/1;width:120px;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
 /* 人物画像ごとの中心位置調整(object-fit:cover で人物が枠内に収まるように) */
@@ -461,14 +461,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
   .person-block-img img{max-height:160px;width:auto;}
   .tip-box{left:0;transform:none;width:200px;}
@@ -553,10 +553,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Appendix I · 数の風景</p>
+    <p class="cover-kicker">数学・論理</p>
     <h1>位取り記数法の<em>革命</em></h1>
     <p class="cover-deck">ローマ数字で 38 × 17 を計算してみる。そこに現れる十二の手順が、「位取り」という記法がどれほど革命的だったかを教えてくれる。</p>
-    <div class="cover-byline"><span>数学・論理</span><span>記数法</span><span>知の歴史</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>DEEP DIVE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -664,12 +664,16 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
   </div>
 
-  <div class="person-block fade" style="grid-template-columns:1fr;">
-    <div class="person-block-body" style="border-left:none;">
+  <div class="person-block fade">
+    <div class="person-block-img">
+      <img src="./person_fibonacci.jpg" alt="レオナルド・フィボナッチ" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="person-block-body">
       <p class="person-block-name">レオナルド・フィボナッチ(ピサのレオナルド)</p>
       <p class="person-block-role">Leonardo Fibonacci, c.1170–c.1250</p>
       <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%AC%E3%82%AA%E3%83%8A%E3%83%AB%E3%83%89%E3%83%BB%E3%83%95%E3%82%A3%E3%83%9C%E3%83%8A%E3%83%83%E3%83%81" target="_blank" rel="noopener">Wikipedia</a></p>
       <p class="person-block-desc">ピサ出身のイタリア人商人・数学者。父親の仕事の関係で北アフリカの<span class="tip" onclick="toggleTip(this)">ベジャーヤ<span class="tip-box"><strong>ベジャーヤ(Béjaïa)</strong>現在のアルジェリア北部の港町。中世はイスラム王朝の交易拠点として栄え、ピサなどイタリア商人の商館もあった。フィボナッチはここでアラビア商人の計算法を学んだ。</span></span>で育ち、アラビア商人の計算法を習得。1202年『<span class="tip" onclick="toggleTip(this)">算盤の書<span class="tip-box"><strong>Liber Abaci(リベル・アバキ)</strong>1202年刊。「アバカス(算盤)の書」の意だが、内容は逆説的に「アバカスを捨てよ」の本だった。商人の日常の計算例を通してインド・アラビア数字の優位を説き、西欧の商業革命を駆動した。</span></span>(Liber Abaci)』をピサで発表し、インド・アラビア数字をヨーロッパに本格紹介した。</p>
+      <p class="person-block-credit" style="font-size:10px;color:#b0a090;margin-top:8px;">Engraving: Unknown, 1850 / Public Domain via Wikimedia Commons</p>
     </div>
   </div>
 
@@ -1030,37 +1034,37 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <div class="ref-list">
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Primary</span><span class="ref-year">628</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">628</span></div>
       <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Br%C4%81hmasphu%E1%B9%ADasiddh%C4%81nta" target="_blank" rel="noopener">Brāhma-sphuṭa-siddhānta</a></p>
       <p class="ref-author">Brahmagupta</p>
       <p class="ref-desc">ゼロを数として初めて定義した古典。第18章が数論で、ゼロと負数の演算規則が明文化されている。サンスクリット原典は校訂版が複数出版されており、英訳抜粋は各種数学史文献に収録。日本語版 Wikipedia 記事は「<a href="https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%BB%E3%82%B9%E3%83%97%E3%82%BF%E3%83%BB%E3%82%B7%E3%83%83%E3%83%80%E3%83%BC%E3%83%B3%E3%82%BF" target="_blank" rel="noopener">ブラーマ・スプタ・シッダーンタ</a>」。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Primary</span><span class="ref-year">1202</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1202</span></div>
       <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Liber_Abaci" target="_blank" rel="noopener">Liber Abaci（算盤の書）</a></p>
       <p class="ref-author">Leonardo Fibonacci（Leonardo of Pisa）</p>
       <p class="ref-desc">インド・アラビア数字をヨーロッパに紹介した画期の書。Sigler による英訳（Springer, 2002）が現代標準。冒頭のプロローグでインド数字の優位を説明している。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">2011</span></div>
-      <p class="ref-title">The Crest of the Peacock: Non-European Roots of Mathematics</p>
+      <div class="ref-meta"><span class="ref-type">教科書</span><span class="ref-year">2011</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/406257120X/" target="_blank" rel="noopener">The Crest of the Peacock: Non-European Roots of Mathematics</a></p>
       <p class="ref-author">George Gheverghese Joseph（Princeton University Press）</p>
       <p class="ref-desc">インド・中国・イスラム世界の数学史を正面から扱う第一級の教科書。ブラーマグプタ以降の位取り記数法の伝播と、アラビア経由ヨーロッパ伝播のメカニズムが詳細に解説されている。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">2000</span></div>
-      <p class="ref-title">The Universal History of Numbers</p>
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2000</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4582532020/" target="_blank" rel="noopener">The Universal History of Numbers</a></p>
       <p class="ref-author">Georges Ifrah（Wiley）</p>
       <p class="ref-desc">世界中の記数法を網羅する辞典的大著。エジプト・バビロニア・マヤ・中国・インド・アラブ・ヨーロッパ各記数法の具体例と互換表が豊富。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Web</span><span class="ref-year">—</span></div>
+      <div class="ref-meta"><span class="ref-type">解説（Web）</span><span class="ref-year">—</span></div>
       <p class="ref-title"><a href="https://mathshistory.st-andrews.ac.uk/HistTopics/Arabic_numerals/" target="_blank" rel="noopener">MacTutor: Arabic numerals</a></p>
       <p class="ref-author">School of Mathematics and Statistics, University of St Andrews</p>
       <p class="ref-desc">インド数字からアラビア経由で西欧に伝わった経路を、一次資料への参照付きで整理。ブラーマグプタ、アル・フワーリズミー、フィボナッチの各伝記も同サイト内で参照可。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Web</span><span class="ref-year">—</span></div>
+      <div class="ref-meta"><span class="ref-type">解説（Web）</span><span class="ref-year">—</span></div>
       <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Positional_notation" target="_blank" rel="noopener">Wikipedia: Positional notation / Hindu–Arabic numeral system</a></p>
       <p class="ref-author">Wikipedia contributors</p>
       <p class="ref-desc">位取り記数法と10進・60進・20進など各基数の位取りシステムの俯瞰。バビロニア・インド・アラブ経由のヨーロッパ伝播までの簡潔なタイムラインと、一次資料への出典リンクが有用。</p>
@@ -1105,7 +1109,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— なぜ10進数なのか<br>— なぜ2進数か<br>— フィボナッチ数列<br>— ベンフォードの法則</p>
+      <p class="sidebar-text">— <a href="/why_base" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">なぜ10進数なのか</a><br>— <a href="/why_binary" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">なぜ2進数か</a><br>— <a href="/fibonacci" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">フィボナッチ数列</a><br>— <a href="/benford_law" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ベンフォードの法則</a><br>— <a href="/godel_incompleteness" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ゲーデルの不完全性定理</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">信頼度</p>

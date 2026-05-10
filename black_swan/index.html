@@ -104,7 +104,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -169,7 +169,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr em{font-style:italic;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(70px, 27%, 140px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;overflow:hidden;padding:0;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -442,14 +442,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .meta-dates{margin-left:0;width:100%;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;gap:0;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;gap:0;}
   .article-side{padding:0 0 48px;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{height:200px;}
   .person-block-body{border-left:none;border-top:1px solid #c8bfaa;}
 }
@@ -527,7 +527,7 @@ img,canvas,svg,video{max-width:100%;height:auto;}
     <p class="cover-kicker">科学と文化</p>
     <h1>黒い<em>白鳥</em></h1>
     <p class="cover-deck">999日うまくいっていたという事実は、1000日目の保証にはならない。観測が積み重なるほど、私たちは何を見落としていくのか——帰納法の影を照らした、ある統計哲学の書について。</p>
-    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>STATISTICAL PHILOSOPHY</span><span>2026</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>DEEP DIVE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -996,31 +996,31 @@ img,canvas,svg,video{max-width:100%;height:auto;}
 
   <div class="ref-list">
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">2007</span></div>
-      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/The_Black_Swan:_The_Impact_of_the_Highly_Improbable" target="_blank" rel="noopener"><em>The Black Swan: The Impact of the Highly Improbable</em></a></p>
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2007</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4478001251/" target="_blank" rel="noopener"><em>The Black Swan: The Impact of the Highly Improbable</em></a></p>
       <p class="ref-author">Nassim Nicholas Taleb — Random House</p>
       <p class="ref-desc">本記事の主題書。ブラック・スワン 3 条件、Mediocristan/Extremistan、七面鳥の比喩、ナラティブの誤謬などが初出。第2版(2010)には「Robustness and Fragility」章が追加された。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">2001</span></div>
-      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Fooled_by_Randomness" target="_blank" rel="noopener"><em>Fooled by Randomness</em></a></p>
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2001</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4478001227/" target="_blank" rel="noopener"><em>Fooled by Randomness</em></a></p>
       <p class="ref-author">Nassim Nicholas Taleb</p>
       <p class="ref-desc">『ブラック・スワン』の前作。金融市場における偶然とスキルの混同を論じた Incerto シリーズ第 1 巻。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">1934</span></div>
-      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/The_Logic_of_Scientific_Discovery" target="_blank" rel="noopener"><em>Logik der Forschung</em> (The Logic of Scientific Discovery)</a></p>
+      <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">1934</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4769902549/" target="_blank" rel="noopener"><em>Logik der Forschung</em> (The Logic of Scientific Discovery)</a></p>
       <p class="ref-author">Karl Popper</p>
       <p class="ref-desc">反証可能性を科学の境界線として提示した古典。英訳版は 1959 年刊。ポパーはここで「ブラック・スワン」のような反例の役割を明示的に論じた。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Book</span><span class="ref-year">1739</span></div>
-      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/A_Treatise_of_Human_Nature" target="_blank" rel="noopener"><em>A Treatise of Human Nature</em></a></p>
+      <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">1739</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4588121919/" target="_blank" rel="noopener"><em>A Treatise of Human Nature</em></a></p>
       <p class="ref-author">David Hume</p>
       <p class="ref-desc">帰納法の問題(problem of induction)を初めて明確に提起した哲学書。「観察の積み重ねから一般法則を論理的には導けない」という主張は、以後の科学哲学の中心的な問いとなった。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">Article</span><span class="ref-year">2007</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2007</span></div>
       <p class="ref-title"><a href="https://mathshistory.st-andrews.ac.uk/Extras/Taleb_reviews/" target="_blank" rel="noopener"><em>"The Black Swan": Praise and Criticism</em></a></p>
       <p class="ref-author">Peter H. Westfall &amp; Joseph M. Hilbe — The American Statistician 61(3): 193–194</p>
       <p class="ref-desc">タレブの統計学批判に対する、統計学界からの代表的な反論。ベイズ推論や重尾分布の既存研究を用いれば、タレブの批判の多くは既に対応可能だと論じた。本書発売とほぼ同年のレビュー。</p>
@@ -1067,10 +1067,11 @@ img,canvas,svg,video{max-width:100%;height:auto;}
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
       <p class="sidebar-text">
-        — ナラティブの誤謬<br>
-        — 相関は因果ではない<br>
-        — 生存者バイアス<br>
-        — 確証バイアス
+        — <a href="/narrative_fallacy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ナラティブの誤謬</a><br>
+        — <a href="/correlation_causation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">相関は因果ではない</a><br>
+        — <a href="/survivorship_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">生存者バイアス</a><br>
+        — <a href="/confirmation_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">確証バイアス</a><br>
+        — <a href="/hindsight_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">後知恵バイアス</a>
       </p>
     </div>
     <div class="sidebar-block fade">

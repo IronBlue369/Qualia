@@ -45,7 +45,7 @@ a{color:inherit;text-decoration:none;}
 .cover-aside strong{color:#3d3020;font-weight:600;}
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'BLIND';position:absolute;right:20px;top:-4px;font-family:'Playfair Display',serif;font-size:72px;font-weight:900;font-style:italic;color:#e0d8c8;opacity:.38;line-height:1;pointer-events:none;letter-spacing:-.02em;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-4px;font-family:'Playfair Display',serif;font-size:72px;font-weight:900;font-style:italic;color:#e0d8c8;opacity:.38;line-height:1;pointer-events:none;letter-spacing:-.02em;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 .meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
@@ -65,7 +65,7 @@ a{color:inherit;text-decoration:none;}
 .summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;}
 .summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
 .summary-text strong{font-weight:600;}
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;margin-bottom:20px;}
@@ -89,7 +89,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
 .quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -292,7 +292,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .meta-dates{margin-left:0;width:100%;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -462,7 +462,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <p class="cover-kicker">知覚・錯覚</p>
     <h1>見えていたのに、<em>気づかなかった</em></h1>
     <p class="cover-deck">視覚は私たちを裏切らない——そう信じている。だが網膜に届いた光のうち、意識に上るのはごく一部にすぎない。注意が通さなかったものは、目の前で起きていても、体験にならない。「見ていた」という確信の解像度は、思っているよりずっと粗い。</p>
-    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>EXPERIMENT</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>PHENOMENON</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -918,7 +918,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 </div>
 
 <div class="ref-item fade">
-  <div class="ref-meta"><span class="ref-type">動画資料</span><span class="ref-year">1999</span></div>
+  <div class="ref-meta"><span class="ref-type">動画</span><span class="ref-year">1999</span></div>
   <p class="ref-title"><a href="https://www.youtube.com/watch?v=vJG698U2Mvo" target="_blank" rel="noopener">selective attention test — YouTube</a></p>
   <p class="ref-author">Daniel Simons（公式チャンネル）</p>
   <p class="ref-desc">サイモンズとシャブリの実験で使われた「ゴリラ動画」の公式アップロード。記事を読む前に一度だけ観ることを勧める。一度知ると二度と体験できない、文字どおり一期一会の映像。</p>
@@ -954,7 +954,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <div class="ref-item fade">
   <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2010</span></div>
-  <p class="ref-title"><a href="https://www.theinvisiblegorilla.com/" target="_blank" rel="noopener">The Invisible Gorilla: How Our Intuitions Deceive Us</a></p>
+  <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4167901765/" target="_blank" rel="noopener">The Invisible Gorilla: How Our Intuitions Deceive Us</a></p>
   <p class="ref-author">Christopher Chabris &amp; Daniel Simons — Crown Publishing（邦訳『錯覚の科学』文藝春秋）</p>
   <p class="ref-desc">著者本人による一般向け解説書。注意の錯覚から始まり、記憶・知識・自信・因果・潜在能力という6つの「日常の錯覚」を扱う。実験の背景と社会的応用を一冊で押さえられる。</p>
 </div>
@@ -995,7 +995,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— 色は存在しない<br>— チェッカーシャドウ錯視<br>— 脳は予測機械<br>— 確証バイアス</p>
+      <p class="sidebar-text">— <a href="/color" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">色は存在しない</a><br>— <a href="/checker_shadow" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">チェッカーシャドウ錯視</a><br>— <a href="/blind_spot" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">盲点</a><br>— <a href="/confirmation_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">確証バイアス</a><br>— <a href="/mcgurk_effect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マクガーク効果</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">今日の知覚を振り返る</p>

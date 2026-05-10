@@ -53,7 +53,7 @@ a{color:inherit;text-decoration:none;}
 .est-context{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#b0a090;line-height:1.6;border-top:1px solid #e0d8c8;padding-top:8px;}
 
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
-.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -73,7 +73,7 @@ a{color:inherit;text-decoration:none;}
 .summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
 .summary-text strong{font-weight:600;}
 
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -111,7 +111,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -288,9 +288,9 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box{padding:0 20px;}
   .scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:16px;justify-content:flex-start;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -984,25 +984,25 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <div class="ref-list">
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1983</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1983</span></div>
     <p class="ref-title"><a href="https://pubmed.ncbi.nlm.nih.gov/6640273/" target="_blank" rel="noopener">Time of Conscious Intention to Act in Relation to Onset of Cerebral Activity (Readiness-Potential)</a></p>
     <p class="ref-author">Libet, B., Gleason, C. A., Wright, E. W., &amp; Pearl, D. K.</p>
     <p class="ref-desc"><em>Brain</em>, 106(3), 623–642. リベット実験の原論文。5名の被験者、各6回以上のセッションで準備電位と意識的意図の時間差を測定した。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1999</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1999</span></div>
     <p class="ref-title"><a href="https://philpapers.org/rec/LIBDWH" target="_blank" rel="noopener">Do We Have Free Will?</a></p>
     <p class="ref-author">Libet, B.</p>
     <p class="ref-desc"><em>Journal of Consciousness Studies</em>, 6(8-9), 47–57. リベットが実験結果と自由意志の関係を総括した論文。「拒否権」仮説を詳述している。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2012</span></div>
-    <p class="ref-title"><a href="https://www.pnas.org/doi/10.1073/pnas.1210467109" target="_blank" rel="noopener">An Accumulator Model for Spontaneous Neural Activity Prior to Self-Initiated Movement</a></p>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2012</span></div>
+    <p class="ref-title"><a href="https://doi.org/10.1073/pnas.1210467109" target="_blank" rel="noopener">An Accumulator Model for Spontaneous Neural Activity Prior to Self-Initiated Movement</a></p>
     <p class="ref-author">Schurger, A., Sitt, J. D., &amp; Dehaene, S.</p>
     <p class="ref-desc"><em>PNAS</em>, 109(42). 準備電位をランダムなゆらぎの蓄積として再解釈。リベット実験の解釈論争における転換点となった研究。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">レビュー</span><span class="ref-year">2018</span></div>
+    <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2018</span></div>
     <p class="ref-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6024487/" target="_blank" rel="noopener">Volition and the Brain – Revisiting a Classic Experimental Study</a></p>
     <p class="ref-author">Haggard, P.</p>
     <p class="ref-desc">リベット実験からの研究史を包括的に概観したレビュー論文。実験手法の発展と解釈の変遷を辿っている。</p>
@@ -1014,8 +1014,8 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <p class="ref-desc">リベット型実験のメタ分析。効果の頑健性について、従来の主張ほど強固ではないと結論。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2004</span></div>
-    <p class="ref-title"><a href="https://www.amazon.com/dp/067401846X" target="_blank" rel="noopener">Mind Time: The Temporal Factor in Consciousness</a></p>
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2004</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/400600429X/" target="_blank" rel="noopener">Mind Time: The Temporal Factor in Consciousness</a></p>
     <p class="ref-author">Libet, B.</p>
     <p class="ref-desc">Harvard University Press. リベット自身が一般向けに書いた著書。実験の全容と、意識の時間構造についての議論を収録。</p>
   </div>
@@ -1060,10 +1060,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
       <p class="sidebar-text">
-        — 感情は「後付けの解釈」かもしれない<br>
-        — 意識のハードプロブレム<br>
-        — 記憶は毎回再構築される<br>
-        — 胡蝶の夢（荘子）
+        — <a href="/hard_problem" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">意識のハードプロブレム</a><br>
+        — <a href="/memory_reconsolidation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">記憶は再構築される</a><br>
+        — <a href="/butterfly_dream" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">胡蝶の夢</a><br>
+        — <a href="/now_is_always_past" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">「今」は常に過去</a><br>
+        — <a href="/split_brain" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">分離脳</a>
       </p>
     </div>
     <div class="sidebar-block fade">

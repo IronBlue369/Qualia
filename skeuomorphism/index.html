@@ -53,7 +53,7 @@ a{color:inherit;text-decoration:none;}
 .cover-aside strong{color:#3d3020;font-weight:600;}
 
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
-.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -72,7 +72,7 @@ a{color:inherit;text-decoration:none;}
 .summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
 .summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
 
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -86,6 +86,9 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .pull{margin:36px 0;padding:20px 0;border-top:3px solid #1a1208;border-bottom:1px solid #c8bfaa;}
 .pull-q{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-style:italic;font-weight:400;line-height:1.5;}
 .pull-q em{color:#8b1a1a;}
+.pull-q-ja{margin-top:14px;font-family:'Source Sans 3',sans-serif;font-size:17px;font-weight:300;color:#7a6a55;line-height:1.8;}
+.pull-q-ja em{color:#8b1a1a;font-style:normal;}
+.pull-attr{margin-top:14px;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;line-height:1.7;}
 .art-rule{border:none;border-top:1px solid #c8bfaa;margin:40px 0;}
 
 .tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;position:relative;display:inline;}
@@ -276,7 +279,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -448,10 +451,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <p class="body-text fade">ギリシャ神殿のドリス式円柱にも同じ痕跡がある。石で作られた<span class="tip" onclick="toggleTip(this)">トリグリフ<span class="tip-box"><strong>トリグリフ（Triglyph）</strong>ドリス式建築のフリーズに繰り返し現れる三本溝の装飾。元は木造建築の梁の端を彫ったもので、石造に移行した後も装飾として残った。</span></span>は、かつて木造建築だった時代の梁の端をそのまま石に翻訳したものだ。構造上は不要だが、「神殿はこう見えるべきだ」という期待がそれを残した。</p>
 
-  <!-- Photo: George E. Koronaios, CC BY-SA 4.0, via Wikimedia Commons -->
+  <!-- Photo: Sharon Mollerus / CC BY 2.0, via Wikimedia Commons -->
   <div class="img-placeholder fade" style="border-style:solid;">
-    <img src="img_triglyph.jpg" alt="アテネ・ヘファイストス神殿のフリーズ" loading="lazy" style="width:100%;display:block;">
-    <p class="img-caption">アテネ、ヘファイストス神殿（紀元前5世紀）のフリーズ。縦溝の入った矩形がトリグリフ、その間の浮彫りがメトープ。ここに見えている石の細部は、木造神殿だった時代の梁の端の記憶である。（撮影: George E. Koronaios, CC BY-SA 4.0）</p>
+    <img src="img_triglyph.jpg" alt="アテネ・ヘファイストス神殿のドリス式柱とフリーズ" loading="lazy" style="width:100%;display:block;">
+    <p class="img-caption">アテネ、ヘファイストス神殿（紀元前5世紀）のドリス式柱とフリーズ装飾。フリーズの浮彫り（メトープ）と、その間に並ぶ縦溝の矩形（トリグリフ）は、木造神殿だった時代の梁の端の記憶である。（撮影: Sharon Mollerus / CC BY 2.0）</p>
   </div>
 
   <p class="body-text fade">これはデジタルだけの話ではない。今あなたがジーンズを履いているなら、ポケットの角を見てほしい。小さな金属の鋲がある。あれは19世紀、布の縫い目が裂けないための補強金具だった。今の縫製技術ならなくても問題ないが、「ジーンズとはこういうものだ」という期待が、150年以上あの鋲を残し続けている。</p>
@@ -649,7 +652,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <p class="body-text fade">フロッピーディスクを使ったことがない世代にとって、保存アイコンは「保存ボタンの形」であって、「フロッピーディスクの形」ではない。参照元を知らないまま、記号だけが生き残っている。スキューモーフは時間とともに橋としての機能を失い、純粋な記号に変わっていく。</p>
 
-  <div class="pull fade"><p class="pull-q">参照元が消えても<em>記号</em>だけが残る。それが文化というものなのかもしれない。</p></div>
+  <div class="pull fade"><p class="pull-q">"We look at the present through a <em>rear-view mirror</em>. We march backwards into the future."</p><p class="pull-q-ja">私たちは現在を<em>バックミラー</em>越しに眺めている。後ろ向きに未来へ歩いていくのだ。</p><p class="pull-attr">— Marshall McLuhan & Quentin Fiore, <em>The Medium is the Massage</em>（1967）</p></div>
 
   <p class="body-text fade">電気自動車の話に戻ろう。EVの走行音をゼロからデザインするとき、エンジン音を模倣するのか、まったく新しい音を創るのか。ジャガーの宇宙船風の音が失敗したのは、人間の「車はこういう音がする」という期待を裏切ったからだ。だがいつか、子どもたちがEVの人工音を「車の音」として育ったとき、エンジン音こそがスキューモーフになる。</p>
 
@@ -659,16 +662,16 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <p class="body-text fade">私はこの記事をキーボードで書いている。キーを押すたびにカチカチ音がする。メカニカルキーボードの音は、タイプライターのキーストロークの名残だ。だが正直に言えば、私はこの音が好きで使っている。機能ではなく、「書いている感じ」がするから。スキューモーフは合理性だけでは説明できない。そこには、感情がある。</p>
 
-  <!-- Photo: Shelby Jueden, CC BY-SA 4.0, via Wikimedia Commons -->
+  <!-- Photo: George Chernilevsky / Public Domain, via Wikimedia Commons -->
 <div class="img-placeholder fade" style="border-style:solid;">
-  <img src="img_floppy.jpg" alt="3.5インチフロッピーディスク" loading="lazy" style="width:100%;display:block;">
-  <p class="img-caption">3.5インチのフロッピーディスク。物体そのものは消えたのに、保存ボタンのアイコンだけが今も画面の中で生き残っている。（撮影: Shelby Jueden, CC BY-SA 4.0）</p>
+  <img src="img_floppy.jpg" alt="8インチ・5.25インチ・3.5インチの歴代フロッピーディスク" loading="lazy" style="width:100%;display:block;">
+  <p class="img-caption">左から8インチ、5.25インチ、3.5インチの歴代フロッピーディスク。物体そのものは消えたのに、3.5インチの形をした保存ボタンのアイコンだけが今も画面の中で生き残っている。（撮影: George Chernilevsky / Public Domain）</p>
 </div>
 
   <hr class="art-rule">
 
   <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
-  <div class="ref-list"><div class="ref-item fade"><div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2013</span></div><p class="ref-title"><a href="https://en.wikipedia.org/wiki/The_Design_of_Everyday_Things" target="_blank" rel="noopener">The Design of Everyday Things（改訂版）</a></p><p class="ref-author">Donald A. Norman — Basic Books</p><p class="ref-desc">デザインの認知科学的原則を解説した古典。スキューモーフィズムを「文化的制約」として位置づけた箇所が本記事の理論的基盤。</p></div><div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1889</span></div><p class="ref-title"><a href="https://en.wikipedia.org/wiki/Skeuomorph" target="_blank" rel="noopener">The Meaning of Ornament; or its Archæology and its Psychology</a></p><p class="ref-author">Henry Colley March — Transactions of the Lancashire and Cheshire Antiquarian Society, Vol. 7</p><p class="ref-desc">「skeuomorph」の初出文献。陶器の鋲装飾を分析し「期待が形を残す」原理を論じた。</p></div><div class="ref-item fade"><div class="ref-meta"><span class="ref-type">記事</span><span class="ref-year">2013</span></div><p class="ref-title"><a href="https://time.com/archive/6643581/flatland/" target="_blank" rel="noopener">Flatland</a></p><p class="ref-author">Lev Grossman — TIME</p><p class="ref-desc">iOS 7発表直後のTIME誌特集。マーチの造語から2013年のフラットデザイン論争まで一望できる。</p></div><div class="ref-item fade"><div class="ref-meta"><span class="ref-type">EU規制</span><span class="ref-year">2014/2019</span></div><p class="ref-title"><a href="https://single-market-economy.ec.europa.eu/news/electric-and-hybrid-cars-new-rules-noise-emitting-protect-vulnerable-road-users-2019-07-03_en" target="_blank" rel="noopener">Regulation (EU) No 540/2014 — AVAS義務化</a></p><p class="ref-author">European Parliament and Council</p><p class="ref-desc">電気自動車の音響式車両接近通報装置に関するEU規制。「車両の挙動を連想させる音」という要件がスキューモーフ設計そのもの。</p></div></div>
+  <div class="ref-list"><div class="ref-item fade"><div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2013</span></div><p class="ref-title"><a href="https://www.amazon.co.jp/dp/4788514346/" target="_blank" rel="noopener">The Design of Everyday Things（改訂版）</a></p><p class="ref-author">Donald A. Norman — Basic Books</p><p class="ref-desc">デザインの認知科学的原則を解説した古典。スキューモーフィズムを「文化的制約」として位置づけた箇所が本記事の理論的基盤。</p></div><div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1889</span></div><p class="ref-title"><a href="https://en.wikipedia.org/wiki/Skeuomorph" target="_blank" rel="noopener">The Meaning of Ornament; or its Archæology and its Psychology</a></p><p class="ref-author">Henry Colley March — Transactions of the Lancashire and Cheshire Antiquarian Society, Vol. 7</p><p class="ref-desc">「skeuomorph」の初出文献。陶器の鋲装飾を分析し「期待が形を残す」原理を論じた。</p></div><div class="ref-item fade"><div class="ref-meta"><span class="ref-type">記事</span><span class="ref-year">2013</span></div><p class="ref-title"><a href="https://time.com/archive/6643581/flatland/" target="_blank" rel="noopener">Flatland</a></p><p class="ref-author">Lev Grossman — TIME</p><p class="ref-desc">iOS 7発表直後のTIME誌特集。マーチの造語から2013年のフラットデザイン論争まで一望できる。</p></div><div class="ref-item fade"><div class="ref-meta"><span class="ref-type">公式資料</span><span class="ref-year">2014/2019</span></div><p class="ref-title"><a href="https://single-market-economy.ec.europa.eu/news/electric-and-hybrid-cars-new-rules-noise-emitting-protect-vulnerable-road-users-2019-07-03_en" target="_blank" rel="noopener">Regulation (EU) No 540/2014 — AVAS義務化</a></p><p class="ref-author">European Parliament and Council</p><p class="ref-desc">電気自動車の音響式車両接近通報装置に関するEU規制。「車両の挙動を連想させる音」という要件がスキューモーフ設計そのもの。</p></div></div>
 
   <div class="note-box fade"><strong>📌 この記事について</strong><br>語源・概念はOxford English DictionaryおよびWikipediaの一次情報に基づく。ノーマンの引用は2013年改訂版からの直接参照。AVAS規制はEU公式文書および施行時の報道を参照した。日本のシャッター音については通信キャリアの公式見解と報道を基にしているが、法律ではなく業界自主規制である点に注意が必要だ。</div>
 
@@ -682,7 +685,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   <div class="sidebar-block fade"><p class="sidebar-label">Key Number</p><p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">1889</p><p class="sidebar-text">「skeuomorph」が造語された年。エッフェル塔が完成した年でもある——どちらも古いものと新しいものの境界に立つ存在だ。</p></div>
   <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">古代ギリシャの石造神殿は、木造時代の梁の形を石に翻訳して残した。<strong>スキューモーフの歴史は建築と同じくらい古い。</strong></p></div>
   <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">ノーマン『誰のためのデザイン？』、TIME誌「Flatland」特集。iOS 7の発表映像はデザイン史の転換点として引用される。</p></div>
-  <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <em>スキナー箱とスロットマシン</em>（B-01）<br>— <em>ダークパターンと報酬系ハック</em>（B-02）<br>— <em>アテンション・エコノミー</em>（P-08）</p></div>
+  <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <a href="/skinner_box" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">スキナー箱</a><br>— <a href="/dark_patterns" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ダークパターン</a><br>— <a href="/attention_economy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">アテンション・エコノミー</a><br>— <a href="/filter_bubble" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">フィルターバブル</a><br>— <a href="/narrative_fallacy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ナラティブの誤謬</a></p></div>
   <div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">語源・デザイン史はよく文書化されている。認知科学的メカニズムはノーマンの理論に基づき、広く受け入れられている枠組みだ。</p></div>
 </div></div>
 
@@ -691,7 +694,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- ═══════ ZONE C ═══════ -->
 <div class="terminal-wrap"><div class="terminal fade" id="terminalBlock"><div class="terminal-bar"><div class="terminal-dots"><div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div></div><span class="terminal-title">after.sh — 読後の対話ログ（架空）</span></div><div class="terminal-body"><span class="t-sys" id="ts0">// スキューモーフィズム を読み終えた人との対話</span><div class="t-line" id="tl1"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;フロッピーのアイコン、もう変えたほうがいいのかな</span></div><span class="t-output" id="to1">変える理由もあるし、変えない理由もある。「保存」の概念自体がクラウド時代には薄れてる。でも今さら別のアイコンにしたら、<em>今度はそれに慣れる時間が要る</em>。</span><hr class="t-divider"><div class="t-line" id="tl2"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;EVの走行音って結局エンジン音に寄せるべき？</span></div><span class="t-output" id="to2">ジャガーが宇宙船の音を試して「みんな空を見上げた」って話、すごいよね。<strong>でもそれは「今の人は」という注釈付きだ。</strong></span><hr class="t-divider"><div class="t-line" id="tl3"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;体験やったら、3個目あたりで急に不安になった</span></div><span class="t-output" id="to3">そう。1個や2個はまだ平気なんだ。<em>臨界点がある。</em>しかもステータスバーまで剥がされると、もうスマホに見えなくなる。</span><hr class="t-divider"><div class="t-line" id="tl4"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;結局、古いものの痕跡って消えないの？</span></div><span class="t-output" id="to4">消えないというか、<em>消す必要がなくなる</em>。橋だったものがいつのまにか道になってる。</span><hr class="t-divider"><div class="t-line t-exit" id="tm5"><span class="t-prompt">reader@curious:~$</span><span class="t-input">&nbsp;exit</span><span class="t-comment">&nbsp;# そっか</span></div></div></div></div>
 
-<div class="related fade"><p class="related-label">次に読む</p><div class="related-grid"><a class="related-card" href="/skinner_box"><p class="related-card-tag">行動・報酬・依存</p><p class="related-card-title">スキナー箱とスロットマシン</p><p class="related-card-desc">報酬が不規則に来るほど行動は強化される。ガチャ、SNS通知、プルトゥリフレッシュの原理。</p><p class="related-card-arrow">読む →</p></a><a class="related-card" href="#TODO"><p class="related-card-tag">情報・テクノロジー・AI</p><p class="related-card-title">アテンション・エコノミー</p><p class="related-card-desc">希少資源は情報ではなく注意力。サイモン1971年の予言。</p><p class="related-card-arrow">近日公開</p></a></div></div>
+<div class="related fade"><p class="related-label">次に読む</p><div class="related-grid"><a class="related-card" href="/skinner_box"><p class="related-card-tag">行動・報酬・依存</p><p class="related-card-title">スキナー箱とスロットマシン</p><p class="related-card-desc">報酬が不規則に来るほど行動は強化される。ガチャ、SNS通知、プルトゥリフレッシュの原理。</p><p class="related-card-arrow">読む →</p></a><a class="related-card" href="/attention_economy"><p class="related-card-tag">情報・テクノロジー・AI</p><p class="related-card-title">アテンション・エコノミー</p><p class="related-card-desc">希少資源は情報ではなく注意力。サイモン1971年の予言。</p><p class="related-card-arrow">読む →</p></a></div></div>
 
 <!-- BACK TO TOC -->
 <div class="toc-back fade">

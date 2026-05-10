@@ -10,27 +10,33 @@
 - **クレジット表記**: 不要(PD)
 - **備考**: マリオットの真正な同時代肖像は知られておらず、後世の想像画である可能性
 
-## fig_eye_anatomy_ja.svg
+## fig_eye_anatomy.png
 - **出典**: Wikimedia Commons
-- **URL**: https://commons.wikimedia.org/wiki/File:Schematic_diagram_of_the_human_eye_ja.svg
-- **ライセンス**: CC BY-SA 3.0 Unported
-- **著者**: Rhcastilhos (original) / Hatsukari715 (Japanese translation) / Jmarchn
-- **クレジット表記**: 「Rhcastilhos, Hatsukari715, Jmarchn / CC BY-SA 3.0 / Wikimedia Commons」
+- **URL**: https://commons.wikimedia.org/wiki/File:Gray869.png
+- **直リンク**: https://upload.wikimedia.org/wikipedia/commons/e/eb/Gray869.png
+- **ライセンス**: Public Domain (PD-old, PD-US。1931年以前刊行)
+- **著者**: Henry Vandyke Carter (1831–1897)
+- **原典**: Henry Gray, *Anatomy of the Human Body*, 20th edition (1918), Plate 869「Horizontal section of the eyeball」
+- **寸法**: 600 × 481 px
+- **クレジット表記**: 「Henry Vandyke Carter, Gray's Anatomy 1918, Plate 869 / Public Domain / Wikimedia Commons」
+- **備考**: ラベルは英語/ラテン語だが、HTMLキャプション内で日本語解説を併記している。`now_is_always_past` 記事でも同シリーズのGrayプレートを採用済み
 
 ## fig_photoreceptor_distribution.svg
-- **出典**: Wikimedia Commons
-- **URL**: https://commons.wikimedia.org/wiki/File:Human_photoreceptor_distribution.svg
-- **ライセンス**: CC BY-SA 3.0 Unported(GFDL v1.2 以降と併用可)
-- **著者**: Cmglee
-- **原典**: Brian A. Wandell, "Foundations of Vision" (Stanford University, 1995)
-- **クレジット表記**: 「Cmglee / CC BY-SA 3.0 / Wikimedia Commons(出典: Wandell, Foundations of Vision, Stanford)」
+- **出典**: Qualia Journal による自作SVG (Curcio 1990 データから再プロット)
+- **データ原典**: Curcio CA, Sloan KR, Kalina RE, Hendrickson AE,「Human photoreceptor topography」*J Comp Neurol* 292(4):497–523 (1990)。データは https://christineacurcio.com/PRtopo/ で公開されている
+- **ライセンス**: Qualia Journal 独自素材(データは事実、グラフはオリジナル制作)
+- **クレジット表記**: 「データ出典: Curcio et al. 1990 / グラフはQualia Journalによる再プロット」
+- **備考**: CC BY-SA で配布されているCmglee版を置き換え。CC BY/PD/CC0 の代替を NIH NEI / OpenStax / PMC OA / Wellcome / Smithsonian / Wikimedia Commonsで網羅的に探索したが見つからず(両受容体を eccentricity に対してプロットした図は SA 占有または出版社著作権)、自作とした
 
-## fig_eye_evolution.svg
+## fig_eye_evolution.png
 - **出典**: Wikimedia Commons
-- **URL**: https://commons.wikimedia.org/wiki/File:Evolution_eye_2.svg
-- **ライセンス**: CC BY-SA 3.0 Unported
-- **著者**: Jerry Crimson Mann (original PNG) / Caerbannog (SVG version)
-- **クレジット表記**: 「Jerry Crimson Mann, Caerbannog / CC BY-SA 3.0 / Wikimedia Commons」
+- **URL**: https://commons.wikimedia.org/wiki/File:Vertebrate_n_octopus_eyes.png
+- **直リンク**: https://upload.wikimedia.org/wikipedia/commons/8/86/Vertebrate_n_octopus_eyes.png
+- **ライセンス**: Public Domain (worldwide。著者が PD release)
+- **著者**: Philcha (own work, 2008-08-01)
+- **寸法**: 590 × 306 px
+- **クレジット表記**: 「Philcha / Public Domain / Wikimedia Commons」
+- **備考**: 元のCC BY-SAなSVG (Jerry Crimson Mann/Caerbannog版)を置き換え。色分けは赤=網膜・青=神経・黄=盲点位置。番号ラベルは原画にないため、HTMLキャプション側で「色 → 部位」の対応を説明している
 
 ## fig_head_vision.png
 - **出典**: ユーザー(e. Tamaki)が ChatGPT(画像生成)で作成

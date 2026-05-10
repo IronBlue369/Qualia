@@ -87,7 +87,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -113,7 +113,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -144,7 +144,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:stretch;justify-content:center;padding:0;overflow:hidden;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -325,14 +325,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:block;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
@@ -430,10 +430,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Essay · Statistics</p>
+    <p class="cover-kicker">数学・論理</p>
     <h1>正規分布と「<em>平均的な人間</em>」</h1>
     <p class="cover-deck">釘に弾かれるだけの玉が、なぜ毎回同じ山を作るのか。「平均」という言葉の危うさと、それでも消えない秩序。</p>
-    <div class="cover-byline"><span>統計</span><span>確率</span><span>中心極限定理</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>PROFILE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -962,43 +962,43 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <div class="ref-list">
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1835</span></div>
+    <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">1835</span></div>
     <p class="ref-title"><a href="https://archive.org/details/surlhommeetledv07quetgoog" target="_blank" rel="noopener">Sur l'homme et le développement de ses facultés</a></p>
     <p class="ref-author">Adolphe Quetelet</p>
     <p class="ref-desc">「平均人（l'homme moyen）」の概念を提示した原典。天文学の誤差論を人間に適用した最初の体系的な試み。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1889</span></div>
+    <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">1889</span></div>
     <p class="ref-title"><a href="https://galton.org/books/natural-inheritance/" target="_blank" rel="noopener">Natural Inheritance</a></p>
     <p class="ref-author">Francis Galton</p>
     <p class="ref-desc">ゴルトン・ボードが一般向けに詳述された書。「回帰（regression）」の概念もここで提示される。全文がオンラインで読める。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2001</span></div>
-    <p class="ref-title"><a href="https://link.springer.com/article/10.1007/s003620100048" target="_blank" rel="noopener">The quincunx: history and mathematics</a></p>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2001</span></div>
+    <p class="ref-title"><a href="https://doi.org/10.1007/s003620100048" target="_blank" rel="noopener">The quincunx: history and mathematics</a></p>
     <p class="ref-author">Stephen M. Stigler · <em>Statistical Papers</em></p>
     <p class="ref-desc">quincunx の歴史を一次資料（書簡・講演記録）から丁寧に辿った論考。1873 年発案、1874 年公開の年号根拠。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2007</span></div>
-    <p class="ref-title"><a href="https://en.wikipedia.org/wiki/The_Black_Swan:_The_Impact_of_the_Highly_Improbable" target="_blank" rel="noopener">The Black Swan: The Impact of the Highly Improbable</a></p>
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2007</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4478001251/" target="_blank" rel="noopener">The Black Swan: The Impact of the Highly Improbable</a></p>
     <p class="ref-author">Nassim Nicholas Taleb</p>
     <p class="ref-desc">Mediocristan / Extremistan の対比を提示。金融や社会科学における正規分布の誤用を痛烈に批判する。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2016</span></div>
-    <p class="ref-title"><a href="https://www.harpercollins.com/products/the-end-of-average-todd-rose" target="_blank" rel="noopener">The End of Average</a></p>
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2016</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4150505373/" target="_blank" rel="noopener">The End of Average</a></p>
     <p class="ref-author">Todd Rose</p>
     <p class="ref-desc">「平均人」を前提にした設計がどれほど個人を取りこぼしてきたかを、軍事・教育・医療の具体例から示した著作。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">Web</span><span class="ref-year">—</span></div>
+    <div class="ref-meta"><span class="ref-type">解説（Web）</span><span class="ref-year">—</span></div>
     <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Galton_board" target="_blank" rel="noopener">Galton board — Wikipedia</a></p>
     <p class="ref-author">Wikipedia</p>
     <p class="ref-desc">装置の構造、年号、歴史的背景、数学的記述がまとまっている。Plinko との比較にも触れている。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">Web</span><span class="ref-year">—</span></div>
+    <div class="ref-meta"><span class="ref-type">解説（Web）</span><span class="ref-year">—</span></div>
     <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Central_limit_theorem" target="_blank" rel="noopener">Central limit theorem — Wikipedia</a></p>
     <p class="ref-author">Wikipedia</p>
     <p class="ref-desc">De Moivre 1733 → Laplace 1812 → Lyapunov 1901 の系譜が要約されている。</p>
@@ -1040,7 +1040,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— 誕生日のパラドックス<br>— ベンフォードの法則<br>— ギャンブラーの誤謬<br>— 生存者バイアス</p>
+      <p class="sidebar-text">— <a href="/birthday_paradox" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">誕生日のパラドックス</a><br>— <a href="/benford_law" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ベンフォードの法則</a><br>— <a href="/gamblers_fallacy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ギャンブラーの誤謬</a><br>— <a href="/survivorship_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">生存者バイアス</a><br>— <a href="/base_rate_neglect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">基準率の無視</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">信頼度</p>

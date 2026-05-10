@@ -86,7 +86,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -112,7 +112,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -142,7 +142,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(70px, 27%, 140px) 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
 .person-block-img{background:#ede8dc;overflow:hidden;position:relative;min-height:200px;}
 .person-block-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -365,14 +365,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{max-height:260px;min-height:180px;}
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
@@ -466,10 +466,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Physics &middot; Chaos Theory</p>
+    <p class="cover-kicker">物理・宇宙</p>
     <h1>三体問題と<em>決定論的カオス</em></h1>
     <p class="cover-deck">ニュートンは正しかった。それでも、未来は読めなかった。天体をひとつ増やしただけで、方程式は沈黙した。</p>
-    <div class="cover-byline"><span>物理・宇宙</span><span>天体力学</span><span>非線形</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>DEEP DIVE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -546,7 +546,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <div class="gif-frame">
         <div class="gif-header">二体問題<strong>解析解が存在する</strong></div>
         <img src="./fig_two_body.gif" alt="Two-body problem animation: two equal-mass bodies orbiting their common barycenter in elliptic orbits" loading="lazy">
-        <div class="gif-caption">等質量の2天体が共通重心（赤十字）のまわりを楕円軌道で回る。軌道は閉じていて永遠に繰り返す。<br><span class="gif-credit">Animation: Zhatt / Wikimedia Commons (Public Domain)</span></div>
+        <div class="gif-caption">等質量の2天体が共通重心（中央の十字）のまわりを楕円軌道で回る。軌道は閉じていて永遠に繰り返す。<br><span class="gif-credit">Animation: 自作（楕円軌道の解析解）</span></div>
       </div>
     </div>
     <div class="twocol-arrow">+1体 →</div>
@@ -554,7 +554,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <div class="gif-frame">
         <div class="gif-header">三体問題<strong>一般解は存在しない</strong></div>
         <img src="./fig_three_body.gif" alt="Three-body problem animation showing chaotic motion of three equal masses" loading="lazy">
-        <div class="gif-caption">等質量の3天体を初速ゼロから解き放った軌跡。中央の点が重心（動かない）。<br><span class="gif-credit">Animation: Dnttllthmmnm / Wikimedia Commons (CC BY-SA 4.0)</span></div>
+        <div class="gif-caption">等質量の3天体を初速ゼロから解き放った軌跡。中央の十字が重心（動かない）。<br><span class="gif-credit">Animation: 自作（4次ルンゲ＝クッタ法による数値積分）</span></div>
       </div>
     </div>
   </div>
@@ -1000,13 +1000,13 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="ref-item fade">
       <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1987</span></div>
-      <p class="ref-title">Chaos: Making a New Science</p>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4102361014/" target="_blank" rel="noopener">Chaos: Making a New Science</a></p>
       <p class="ref-author">James Gleick, Viking Press</p>
       <p class="ref-desc">カオス理論の成立史を描いたノンフィクションの古典。ローレンツ、マンデルブロ、フェイゲンバウム、スメイルなどの人物像を中心に科学史として読める。「バタフライ効果」を一般社会に広めた決定的な一冊。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1908</span></div>
-      <p class="ref-title">Science et méthode</p>
+      <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">1908</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4003390229/" target="_blank" rel="noopener">Science et méthode</a></p>
       <p class="ref-author">Henri Poincaré, Ernest Flammarion</p>
       <p class="ref-desc">ポアンカレ自身による科学哲学のエッセイ集。本記事で引用した「初期条件のわずかな差が最終的な現象の大きな差を生む」という一節はこの本の第1部第4章に収められており、カオスについての最も早い哲学的定式化とされる。</p>
     </div>
@@ -1051,10 +1051,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
       <p class="sidebar-text">
-        — ラングトンのアリ<br>
-        — マンデルブロ集合<br>
-        — ライフゲーム<br>
-        — 二重スリット実験
+        — <a href="/langton_ant" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ラングトンのアリ</a><br>
+        — <a href="/mandelbrot_set" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マンデルブロ集合</a><br>
+        — <a href="/life_game" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ライフゲーム</a><br>
+        — <a href="/double_slit" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">二重スリット実験</a><br>
+        — <a href="/self_organized_criticality" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">自己組織化臨界</a>
       </p>
     </div>
     <div class="sidebar-block fade">

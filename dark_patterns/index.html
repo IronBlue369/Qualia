@@ -86,7 +86,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -112,7 +112,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -383,7 +383,7 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -485,10 +485,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Behavioral × Design</p>
+    <p class="cover-kicker">行動心理学</p>
     <h1>ダークパターン<br>——『<em>あと少し</em>』が脳を点火する</h1>
     <p class="cover-deck">UFOキャッチャーの「掴めそうで落ちる」一瞬。そのとき脳は、本物の勝利と区別がつかないほど明るく燃えている。</p>
-    <div class="cover-byline"><span>行動心理学</span><span>神経科学</span><span>UIデザイン</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>DEEP DIVE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -1051,46 +1051,58 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <div class="ref-list">
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文 / fMRI</span><span class="ref-year">2009</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2009</span></div>
     <p class="ref-title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2658737/" target="_blank" rel="noopener">Gambling Near-Misses Enhance Motivation to Gamble and Recruit Win-Related Brain Circuitry</a></p>
     <p class="ref-author">Luke Clark, Andrew J. Lawrence, Frances Astley-Jones, Nicola Gray — <em>Neuron</em> 61(3), 481-490</p>
     <p class="ref-desc">本記事の中核となる fMRI 研究。近接失敗時の腹側線条体・前部島皮質の活性化と、その効果が「自分で選ぶ」条件で強まることを示した。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文 / 行動</span><span class="ref-year">1986</span></div>
-    <p class="ref-title"><a href="https://link.springer.com/article/10.1007/BF01019932" target="_blank" rel="noopener">The psychology of the near miss</a></p>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1986</span></div>
+    <p class="ref-title"><a href="https://doi.org/10.1007/BF01019932" target="_blank" rel="noopener">The psychology of the near miss</a></p>
     <p class="ref-author">R. L. Reid — <em>Journal of Gambling Behavior</em> 2(1), 32-39</p>
     <p class="ref-desc">ニアミス効果に正式な名前を与えた古典。商業的ギャンブル装置が偶然以上のニアミス頻度を「仕立てて」いるという指摘を含む。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文 / 認知</span><span class="ref-year">1975</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1975</span></div>
     <p class="ref-title"><a href="https://nuovoeutile.it/wp-content/uploads/2014/10/Langer1975_IllusionofControl.pdf" target="_blank" rel="noopener">The Illusion of Control</a></p>
     <p class="ref-author">Ellen J. Langer — <em>Journal of Personality and Social Psychology</em> 32(2), 311-328</p>
     <p class="ref-desc">コントロール錯覚に名前を与えた研究。選択・競争・親近性・関与という4つの誘発要因を特定した。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">書籍 / 基礎</span><span class="ref-year">1957</span></div>
-    <p class="ref-title">Schedules of Reinforcement</p>
+    <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">1957</span></div>
+    <p class="ref-title"><a href="https://archive.org/details/schedulesofreinf0000fers" target="_blank" rel="noopener">Schedules of Reinforcement</a></p>
     <p class="ref-author">C. B. Ferster & B. F. Skinner — Appleton-Century-Crofts</p>
     <p class="ref-desc">変動比率強化を含む、強化スケジュール理論の古典。スキナー箱記事と接続する基礎資料。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">サイト / 用語の起点</span><span class="ref-year">2010</span></div>
+    <div class="ref-meta"><span class="ref-type">解説（Web）</span><span class="ref-year">2010</span></div>
     <p class="ref-title"><a href="https://www.deceptive.design/" target="_blank" rel="noopener">Deceptive Patterns(旧 darkpatterns.org)</a></p>
     <p class="ref-author">Harry Brignull</p>
     <p class="ref-desc">「ダークパターン」という用語の起点。2010年7月28日の登録。現在は Deceptive Patterns として継続し、各国の法規制の参照資料にもなっている。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">報道 / 日本の事例</span><span class="ref-year">2015</span></div>
+    <div class="ref-meta"><span class="ref-type">記事</span><span class="ref-year">2015</span></div>
     <p class="ref-title"><a href="https://www.bengo4.com/c_1009/c_1410/n_3496/" target="_blank" rel="noopener">アームが弱い、配置がひどい…景品をとれないクレーンゲームは「詐欺」では?</a></p>
     <p class="ref-author">弁護士ドットコムニュース</p>
     <p class="ref-desc">大阪のゲームセンターで、取得が実質不可能な設定により詐欺罪で書類送検された事例を含む解説。風営法の枠組みと境界を扱う。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">文化史</span><span class="ref-year">2025</span></div>
+    <div class="ref-meta"><span class="ref-type">記事</span><span class="ref-year">2025</span></div>
     <p class="ref-title"><a href="https://www.japantimes.co.jp/life/2025/06/24/digital/ufo-catcher-40th-anniversary-sega-arcade/" target="_blank" rel="noopener">King of Japan's arcades, Sega's UFO Catcher turns 40</a></p>
     <p class="ref-author">The Japan Times</p>
     <p class="ref-desc">セガ UFO Catcher 40周年の記事。1985年5月の初号機から現在までの歴史と、日本のゲームセンター文化における位置づけをまとめる。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2014</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4798137863/" target="_blank" rel="noopener">Hooked（邦訳：Hooked ハマるしかけ — 使われつづけるサービスを生み出す心理学×デザインの新ルール）</a></p>
+    <p class="ref-author">Nir Eyal &amp; Ryan Hoover</p>
+    <p class="ref-desc">行動心理を意図的にデザインに組み込む「フック・モデル」の解説書。記事のダークパターンと表裏一体の知識として、設計側の論理を理解できる。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2017</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4478067309/" target="_blank" rel="noopener">Irresistible（邦訳：僕らはそれに抵抗できない 「依存症ビジネス」のつくられかた）</a></p>
+    <p class="ref-author">Adam Alter</p>
+    <p class="ref-desc">ガチャ・スロットマシン的な報酬構造を持つ消費者向け製品の依存性を扱う。クレーンゲーム/UFO Catcher の心理メカニズムを広い視野で再確認できる。</p>
   </div>
 </div>
 
@@ -1133,7 +1145,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— <a href="https://qualiajournal.com/skinner_box" style="color:#8b1a1a;border-bottom:1px dotted #8b1a1a;">スキナー箱</a>(変動比率強化の基礎)<br>— <a href="https://qualiajournal.com/reward_prediction_error" style="color:#8b1a1a;border-bottom:1px dotted #8b1a1a;">報酬予測誤差</a>(ドーパミンの正体)<br>— <a href="https://qualiajournal.com/dopamine_starvation" style="color:#8b1a1a;border-bottom:1px dotted #8b1a1a;">ネズミはドーパミンを選んで餓死した</a></p>
+      <p class="sidebar-text">— <a href="/skinner_box" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">スキナー箱</a><br>— <a href="/reward_prediction_error" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">報酬予測誤差</a><br>— <a href="/dopamine_starvation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ネズミはドーパミンを選んで餓死した</a><br>— <a href="/attention_economy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">アテンション・エコノミー</a><br>— <a href="/paradox_of_choice" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">選択のパラドックス</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">気づきのチェック</p>

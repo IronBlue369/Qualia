@@ -58,7 +58,7 @@ body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -99,7 +99,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;padding:0;overflow:hidden;}.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -246,7 +246,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -262,7 +262,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .cmp-table{width:100%;border-collapse:collapse;margin:24px 0;font-family:'Source Sans 3',sans-serif;font-size:13px;}.cmp-table th{background:#3d3020;color:#faf8f3;padding:10px 14px;text-align:left;font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;}.cmp-table td{padding:10px 14px;border-bottom:1px solid #e0d8c8;color:#3d3020;font-weight:300;line-height:1.6;}.cmp-table tr:nth-child(even) td{background:#f3efe6;}
 .flow-diagram{margin:24px 0;overflow-x:auto;}.flow-diagram svg{min-width:480px;}
 .person-block-wiki{margin-bottom:8px;}.person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;}.person-block-wiki a:hover{color:#8b1a1a;border-bottom-color:#8b1a1a;}
-.scenario{max-width:900px;margin:0 auto;padding:0 48px;}.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}.scenario-inner::after{content:'\23F1';position:absolute;right:20px;top:-10px;font-size:100px;opacity:.12;line-height:1;pointer-events:none;}.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
+.scenario{max-width:900px;margin:0 auto;padding:0 48px;}.scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-size:100px;opacity:.12;line-height:1;pointer-events:none;}.scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}.scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 .terminal-label-wrap{max-width:900px;margin:0 auto;padding:24px 48px 8px;}.terminal-label{display:flex;align-items:center;gap:12px;}.terminal-label-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#b0a090;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;}.terminal-label-line{flex:1;height:1px;background:#e0d8c8;}
 
 /* ── SLIDE MENU ── */
@@ -428,8 +428,8 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <p class="body-text fade">水晶と聞くと、占いに使われる透明な球体を思い浮かべる人がいるかもしれない。だが水晶——化学式SiO₂——は地球上で最もありふれた鉱物のひとつだ。花崗岩の主成分であり、砂浜の砂粒の大半も水晶（石英）だ。道端の石ころの中にもある。特別な石ではない。<em>あまりにもありふれた石に、極めて特殊な性質が隠れていた</em>——それが圧電効果の発見を際立たせている。</p>
 
-<!-- Photo: JJ Harrison, CC BY-SA 2.5 -->
-<div class="img-placeholder fade" style="border-style:solid;background:#f3efe6;text-align:center;"><img src="img_quartz.jpg" alt="チベット産の水晶（石英）結晶" loading="lazy" style="max-width:100%;display:block;margin:0 auto;"><p class="img-caption">チベット産の水晶結晶（SiO₂）。ありふれた鉱物でありながら、原子配列の非対称性が圧電効果を生む。（原図: JJ Harrison, CC BY-SA 2.5）</p></div>
+<!-- Photo: W.carter / CC BY 4.0, via Wikimedia Commons -->
+<div class="img-placeholder fade" style="border-style:solid;background:#f3efe6;text-align:center;"><img src="img_quartz.jpg" alt="原石の水晶（石英）結晶" loading="lazy" style="max-width:100%;display:block;margin:0 auto;"><p class="img-caption">原石の水晶結晶（SiO₂）。ありふれた鉱物でありながら、原子配列の非対称性が圧電効果を生む。（原図: W.carter / CC BY 4.0）</p></div>
 
 
 
@@ -551,9 +551,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
 <div class="ref-list">
 <div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1880</span></div><p class="ref-title"><a href="https://gallica.bnf.fr/ark:/12148/bpt6k3049g/f297.item" target="_blank" rel="noopener">Développement, par pression, de l'électricité polaire dans les cristaux hémièdres à faces inclinées</a></p><p class="ref-author">Pierre Curie & Jacques Curie — Comptes rendus, vol. 91</p><p class="ref-desc">圧電効果の最初の報告。たった2ページ。この2ページが145年後の数十億個の産業に繋がっていると思うと不思議な読後感がある。フランス語。</p></div>
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">技術史論文</span><span class="ref-year">2009</span></div><p class="ref-title"><a href="https://doi.org/10.1179/174227109X12500830049951" target="_blank" rel="noopener">'The Electrical Expansion of Quartz' by Jacques and Pierre Curie</a></p><p class="ref-author">Francis Duck — Journal of Medical Ultrasound</p><p class="ref-desc">キュリー兄弟の1889年論文の英訳と解説。実験器具の図面が唯一掲載された論文。原文の前に文脈を掴むのに最適。</p></div>
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">IEEE マイルストーン</span><span class="ref-year">2020</span></div><p class="ref-title"><a href="https://ethw.org/Milestones:Piezoelectric_Oscillator,_1921-1923" target="_blank" rel="noopener">Milestones: Piezoelectric Oscillator, 1921–1923</a></p><p class="ref-author">IEEE ETHW</p><p class="ref-desc">キャディによる水晶発振器の発明経緯。本人の言葉が多く引用されており発明者の思考回路が垣間見える。</p></div>
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">IEEE マイルストーン</span><span class="ref-year">2004</span></div><p class="ref-title"><a href="https://ethw.org/Milestones:Electronic_Quartz_Wristwatch,_1969" target="_blank" rel="noopener">Milestones: Electronic Quartz Wristwatch, 1969</a></p><p class="ref-author">IEEE ETHW</p><p class="ref-desc">セイコー・クオーツアストロンの開発史。59Aプロジェクトから1969年クリスマスの発売まで、技術と葛藤の記録。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2009</span></div><p class="ref-title"><a href="https://doi.org/10.1179/174227109X12500830049951" target="_blank" rel="noopener">'The Electrical Expansion of Quartz' by Jacques and Pierre Curie</a></p><p class="ref-author">Francis Duck — Journal of Medical Ultrasound</p><p class="ref-desc">キュリー兄弟の1889年論文の英訳と解説。実験器具の図面が唯一掲載された論文。原文の前に文脈を掴むのに最適。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">公式資料</span><span class="ref-year">2020</span></div><p class="ref-title"><a href="https://ethw.org/Milestones:Piezoelectric_Oscillator,_1921-1923" target="_blank" rel="noopener">Milestones: Piezoelectric Oscillator, 1921–1923</a></p><p class="ref-author">IEEE ETHW</p><p class="ref-desc">キャディによる水晶発振器の発明経緯。本人の言葉が多く引用されており発明者の思考回路が垣間見える。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">公式資料</span><span class="ref-year">2004</span></div><p class="ref-title"><a href="https://ethw.org/Milestones:Electronic_Quartz_Wristwatch,_1969" target="_blank" rel="noopener">Milestones: Electronic Quartz Wristwatch, 1969</a></p><p class="ref-author">IEEE ETHW</p><p class="ref-desc">セイコー・クオーツアストロンの開発史。59Aプロジェクトから1969年クリスマスの発売まで、技術と葛藤の記録。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1937</span></div><p class="ref-title"><a href="https://www.amazon.co.jp/dp/4560083894/" target="_blank" rel="noopener">キュリー夫人伝</a></p><p class="ref-author">Eve Curie</p><p class="ref-desc">娘エーヴによる古典的伝記の新版。マリー・キュリーの夫ピエール・キュリーが兄ジャック・キュリーと圧電効果を発見した経緯と、その後ラジウム研究に転じる物語を内側から描く。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2003</span></div><p class="ref-title"><a href="https://www.amazon.co.jp/dp/4150504032/" target="_blank" rel="noopener">Sync（邦訳：SYNC — なぜ自然はシンクロしたがるのか）</a></p><p class="ref-author">Steven Strogatz</p><p class="ref-desc">振動・同期現象を一般読者向けに解説する古典(ハヤカワ文庫)。水晶振動子が「正確な周期」を生むメカニズムを物理的に理解する補助に。</p></div>
 </div>
 
 <div class="note-box fade"><strong>📌 この記事について</strong><br>圧電効果の原理はキュリー兄弟の1880年の原論文とフォイクト（1910）の体系化に基づく。水晶発振器の歴史はIEEE Milestone登録文書を主な情報源とした。セイコーの記述はスミソニアン協会と公式資料による。体験コンテンツの共振シミュレーションは概念的可視化であり、実際のQ値をそのまま再現してはいない。</div>
@@ -568,7 +570,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="sidebar-block fade"><p class="sidebar-label">Key Number</p><p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">32,768</p><p class="sidebar-text">クオーツ時計の水晶が<strong>1秒間に振動する回数</strong>。2¹⁵。この数を2で15回割ると1。</p></div>
 <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">1880年、キュリー兄弟は21歳と25歳。発見から89年後の1969年、セイコーが世界初のクオーツ腕時計を発売。価格はトヨタ・カローラと同じ。</p></div>
 <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">MIT Media Lab『32,768 Times Per Second』——クオーツ時計内部の振動を知覚スケールに拡大した彫刻。</p></div>
-<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— 音は存在しない<br>— なぜピアノは12音なのか<br>— 色は存在しない</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <a href="/sound_does_not_exist" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">音は存在しない</a><br>— <a href="/twelve_tones" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">なぜピアノは12音なのか</a><br>— <a href="/color" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">色は存在しない</a><br>— <a href="/maxwell_demon" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マクスウェルの悪魔</a><br>— <a href="/self_organized_criticality" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">自己組織化臨界</a></p></div>
 <div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">圧電効果は1880年以来再現され続けている基礎物理現象。技術史はIEEE公式資料に基づく。</p></div>
 </div></div>
 

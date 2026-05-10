@@ -104,7 +104,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -130,7 +130,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -161,7 +161,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(70px, 27%, 140px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -309,7 +309,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .minisim-legend span.dot-empty{display:inline-block;width:14px;height:14px;background:#1a1a2e;border:1px solid #2a2a3e;}
 .minisim-legends{padding:10px 18px;background:#faf8f3;display:flex;flex-wrap:wrap;align-items:center;gap:10px;border-top:1px solid #e0d8c8;}
 
-/* REAL-FIG GRID (HOLC + Fischer) — 1-column stack for clarity */
+/* REAL-FIG GRID (HOLC 1937 + Race Map 2010) — 1-column stack for clarity */
 .real-fig-grid{margin:24px 0 28px;display:flex;flex-direction:column;gap:18px;}
 .real-fig{margin:0;border:1px solid #c8bfaa;background:white;overflow:hidden;display:grid;grid-template-columns:1fr 280px;}
 .real-fig img{display:block;width:100%;height:100%;object-fit:cover;background:#1a1208;}
@@ -321,15 +321,6 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
   .real-fig{grid-template-columns:1fr;}
   .real-fig figcaption{border-left:none;border-top:1px solid #c8bfaa;}
 }
-
-/* VISUAL REF (animated GIF) */
-.visual-ref{margin:24px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;max-width:520px;margin-left:auto;margin-right:auto;}
-.visual-ref-img{background:#f3efe6;padding:18px;display:flex;justify-content:center;}
-.visual-ref-img img{display:block;max-width:100%;width:auto;max-height:340px;}
-.visual-ref-caption{padding:13px 16px 14px;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;background:#f3efe6;border-top:1px solid #c8bfaa;}
-.visual-ref-caption strong{color:#1a1208;font-weight:600;}
-.visual-ref-license{display:block;font-size:10px;color:#b0a090;margin-top:6px;letter-spacing:.02em;}
-.visual-ref-license a{color:#b0a090;text-decoration:underline;}
 
 /* SCHELLING SIMULATOR */
 .sim-wrap{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
@@ -438,14 +429,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .meta-dates{margin-left:0;width:100%;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:0;justify-content:flex-start;flex-direction:row;aspect-ratio:3/2;}
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
@@ -540,10 +531,10 @@ img,canvas,svg,video{max-width:100%;height:auto;}
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Emergence / 創発</p>
+    <p class="cover-kicker">社会心理学</p>
     <h1>寛容なのに、街は<em>分かれていく</em></h1>
     <p class="cover-deck">「隣人の三割が自分と同じ属性ならそれでいい」。誰も排他的でないのに、盤上では色が勝手にまとまっていく。個人の選好とマクロの結果のあいだに、単純な一致などない。</p>
-    <div class="cover-byline"><span>社会科学</span><span>複雑系</span><span>創発</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>PROFILE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -1309,16 +1300,6 @@ img,canvas,svg,video{max-width:100%;height:auto;}
   </div>
 </div>
 
-<div class="visual-ref fade">
-  <div class="visual-ref-img">
-    <img src="./sim_emergence.gif" alt="シェリング分居モデルのアニメーション可視化">
-  </div>
-  <p class="visual-ref-caption">
-    <strong>動くシェリングモデル</strong> — 209 フレームのアニメーション。ランダム配置から分離パターンが立ち上がる過程を、フレーム単位で見られる。本記事内のシミュレーターと同じルールから、同じ形が出る。
-    <span class="visual-ref-license">Gerian2 / CC BY-SA 4.0</span>
-  </p>
-</div>
-
 <hr class="art-rule">
 
 <!-- ================== -->
@@ -1338,10 +1319,10 @@ img,canvas,svg,video{max-width:100%;height:auto;}
     </figcaption>
   </figure>
   <figure class="real-fig">
-    <img src="./fischer_chicago_2010.jpg" alt="2010 年シカゴの人種別居住分布(Erica Fischer による)">
+    <img src="./chicago_race_2010.gif" alt="2010 年シカゴの人種別居住分布(センサストラクト別、主要人種で塗り分け)">
     <figcaption>
-      <strong>2010, シカゴ</strong> — 国勢調査ベースの人種別居住分布。各点 25 人(赤=白、青=黒、緑=アジア系、橙=ヒスパニック)。1937 年の赤線地図と、73 年後の点描マップは、ほとんど同じ形で分かれている。
-      <span class="real-fig-license">E. Fischer + © OpenStreetMap / CC BY-SA 2.0</span>
+      <strong>2010, シカゴ</strong> — 国勢調査トラクト単位で、各地区を最も人数の多い人種の色で塗った分布図(灰=黒人、青=白人、黄=ヒスパニック、赤=アジア系、紫=どの人種も過半数に届かない地区)。1937 年の赤線地図と、73 年後のこのマップは、ほとんど同じ形で分かれている。
+      <span class="real-fig-license">Lazar Ilic / CC BY 3.0</span>
     </figcaption>
   </figure>
 </div>
@@ -1377,25 +1358,25 @@ img,canvas,svg,video{max-width:100%;height:auto;}
 
 <div class="ref-list">
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">原典論文</span><span class="ref-year">1971</span></div>
-    <p class="ref-title"><a href="https://www.tandfonline.com/doi/abs/10.1080/0022250X.1971.9989794" target="_blank" rel="noopener">Dynamic Models of Segregation</a></p>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1971</span></div>
+    <p class="ref-title"><a href="https://doi.org/10.1080/0022250X.1971.9989794" target="_blank" rel="noopener">Dynamic Models of Segregation</a></p>
     <p class="ref-author">Thomas C. Schelling — <em>Journal of Mathematical Sociology</em>, Vol.1, pp.143–186</p>
     <p class="ref-desc">本記事の出発点。二次元盤上のモデルを手計算で解析した原典。冒頭で「個人の動機と集団的結果の単純な対応はない」と宣言している。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">著書</span><span class="ref-year">1978</span></div>
-    <p class="ref-title">Micromotives and Macrobehavior</p>
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1978</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4326550767/" target="_blank" rel="noopener">Micromotives and Macrobehavior</a></p>
     <p class="ref-author">Thomas C. Schelling — W. W. Norton</p>
     <p class="ref-desc">一般読者向け。分居モデルをふくむ複数の創発現象を平易に扱う。ミクロとマクロの乖離を、シェリングが最もわかりやすく論じた書。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">後続研究</span><span class="ref-year">2008</span></div>
-    <p class="ref-title"><a href="https://www.pnas.org/doi/10.1073/pnas.0708155105" target="_blank" rel="noopener">Understanding the social context of the Schelling segregation model</a></p>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2008</span></div>
+    <p class="ref-title"><a href="https://doi.org/10.1073/pnas.0708155105" target="_blank" rel="noopener">Understanding the social context of the Schelling segregation model</a></p>
     <p class="ref-author">W. A. V. Clark, M. Fossett — <em>PNAS</em>, 105(11), 4109–4114</p>
     <p class="ref-desc">モデルが現実の住宅分離にどう接続するかを検証。経済要因を組み込むとモデルの振る舞いがどう変わるかを議論。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">経済学論文</span><span class="ref-year">2008</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2008</span></div>
     <p class="ref-title"><a href="https://academic.oup.com/qje/article-abstract/123/1/177/1889797" target="_blank" rel="noopener">Tipping and the Dynamics of Segregation</a></p>
     <p class="ref-author">D. Card, A. Mas, J. Rothstein — <em>Quarterly Journal of Economics</em>, 123(1), 177–218</p>
     <p class="ref-desc">アメリカの国勢調査データで「ティッピング」を実証的に検出した研究。シェリングの概念が現実データに現れることを示した。</p>
@@ -1445,7 +1426,7 @@ img,canvas,svg,video{max-width:100%;height:auto;}
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— <em>ボイド</em>(群れの創発)<br>— <em>自己組織化臨界</em>(砂山モデル)<br>— <em>同調圧力</em>(集団が個を曲げる)<br>— <em>ライフゲーム</em>(単純ルールからの秩序)</p>
+      <p class="sidebar-text">— <a href="/boids" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ボイドモデル</a><br>— <a href="/self_organized_criticality" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">自己組織化臨界</a><br>— <a href="/asch_conformity" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">同調圧力(アッシュの実験)</a><br>— <a href="/life_game" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ライフゲーム</a><br>— <a href="/small_world" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">六次の隔たり</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">信頼度</p>

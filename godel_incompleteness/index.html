@@ -75,7 +75,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .est-context strong{color:#3d3020;font-weight:600;}
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'\22A2';position:absolute;right:24px;top:-6px;font-family:'Playfair Display',serif;font-size:140px;font-weight:900;color:#e0d8c8;opacity:.4;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:24px;top:-6px;font-family:'Playfair Display',serif;font-size:140px;font-weight:900;color:#e0d8c8;opacity:.4;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 .meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
@@ -95,7 +95,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
 .summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
 .summary-text strong{font-weight:600;}
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -129,7 +129,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
 .quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
-.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(70px, 27%, 140px) 1fr;border:1px solid #c8bfaa;overflow:hidden;background:#f3efe6;}
 .person-block-img{background:#ede8dc;display:flex;align-items:stretch;justify-content:center;padding:0;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;border-left:1px solid #c8bfaa;}
@@ -393,14 +393,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:0;aspect-ratio:3/2;max-height:260px;}
   .person-block-img img{object-position:center top;}
   .tip-box{left:0;transform:none;width:200px;}
@@ -1062,7 +1062,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   <div class="ref-list">
     <div class="ref-item fade">
       <div class="ref-meta">
-        <span class="ref-type">Primary Source</span>
+        <span class="ref-type">一次資料</span>
         <span class="ref-year">1931</span>
       </div>
       <p class="ref-title"><a href="https://doi.org/10.1007/BF01700692" target="_blank" rel="noopener">Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I</a></p>
@@ -1071,7 +1071,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="ref-item fade">
       <div class="ref-meta">
-        <span class="ref-type">Book</span>
+        <span class="ref-type">一般書</span>
         <span class="ref-year">1958 / 邦訳1999</span>
       </div>
       <p class="ref-title"><a href="https://www.iwanami.co.jp/book/b265617.html" target="_blank" rel="noopener">ゲーデルの不完全性定理</a></p>
@@ -1080,7 +1080,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="ref-item fade">
       <div class="ref-meta">
-        <span class="ref-type">Book</span>
+        <span class="ref-type">学術書</span>
         <span class="ref-year">2005</span>
       </div>
       <p class="ref-title"><a href="https://www.cambridge.org/core/books/godels-theorem/1CE5C69E5C45F99F7CAE6BF2C10B6C9E" target="_blank" rel="noopener">Gödel's Theorem: An Incomplete Guide to Its Use and Abuse</a></p>
@@ -1089,12 +1089,21 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="ref-item fade">
       <div class="ref-meta">
-        <span class="ref-type">Encyclopedia</span>
+        <span class="ref-type">事典</span>
         <span class="ref-year">2022 update</span>
       </div>
       <p class="ref-title"><a href="https://plato.stanford.edu/entries/goedel-incompleteness/" target="_blank" rel="noopener">Gödel's Incompleteness Theorems</a></p>
       <p class="ref-author">Stanford Encyclopedia of Philosophy — Panu Raatikainen</p>
       <p class="ref-desc">定理の現代的な定式化、証明の技術的詳細、哲学的含意、よくある誤解まで、学術的に最新の情報を網羅している無料オンライン記事。これから深掘りする読者の起点として最適。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta">
+        <span class="ref-type">学術書</span>
+        <span class="ref-year">1979</span>
+      </div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4826901259/" target="_blank" rel="noopener">Gödel, Escher, Bach: An Eternal Golden Braid（邦訳：ゲーデル、エッシャー、バッハ — あるいは不思議の環）</a></p>
+      <p class="ref-author">Douglas R. Hofstadter</p>
+      <p class="ref-desc">不完全性定理を絵画・音楽の自己言及構造と並べて思想的に展開した古典的名著。既存の専門書(Smith)とは違う「概念の広がり」を体感できる導線。</p>
     </div>
   </div>
 
@@ -1132,7 +1141,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— カントールの対角線論法<br>— チューリングマシンと停止問題<br>— ラッセルのパラドックス<br>— 嘘つきのパラドックス<br>— ヒルベルトの23問題</p>
+      <p class="sidebar-text">— <a href="/turing_test" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">チューリングテスト</a><br>— <a href="/hilbert_hotel" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ヒルベルトの無限ホテル</a><br>— <a href="/mandelbrot_set" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マンデルブロ集合</a><br>— <a href="/quantum_computer" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">量子コンピューター</a><br>— <a href="/mondrian_reductionism" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">モンドリアンと還元主義</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">信頼度</p>

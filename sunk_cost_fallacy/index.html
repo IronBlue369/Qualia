@@ -49,7 +49,7 @@ a{color:inherit;text-decoration:none;}
 .cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
 .cover-aside strong{color:#3d3020;font-weight:600;}
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
-.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 .meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
@@ -66,7 +66,7 @@ a{color:inherit;text-decoration:none;}
 .summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
 .summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
 .summary-text strong{font-weight:600;}
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -100,7 +100,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
 .quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -270,7 +270,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
 .summary-box{padding:0 20px;}
 .scenario{padding:0 20px;}
-.article{grid-template-columns:1fr;padding:0 20px;}
+.article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
 .article-side{display:none;}
 .misconception-item{flex-direction:column;}
 .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -280,7 +280,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .related-grid{grid-template-columns:1fr;}
 .tip-box{left:0;transform:none;width:200px;}
 .tip-box::after{left:20px;transform:none;}
-.person-block{grid-template-columns:1fr;}
+
 .person-block-img{padding:12px 0;}
 }
 
@@ -759,10 +759,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 </div>
 </div>
 
-<!-- Photo: Eduard Marmet, CC BY-SA 3.0, via Wikimedia Commons -->
+<!-- Photo: NASA Glenn Research Center / NARA, Public Domain -->
 <div class="img-placeholder fade" style="border-style:solid;">
-<img src="img_concorde.jpg" alt="1986年、離陸中のブリティッシュ・エアウェイズのコンコルド" loading="lazy" style="width:100%;display:block;">
-<p class="img-caption">飛ばすたびに赤字を積み上げたコンコルド。それでも英仏政府は、やめる判断を何十年も先送りし続けた(原図: Eduard Marmet, CC BY-SA 3.0)</p>
+<img src="img_concorde.jpg" alt="飛行中のブリティッシュ・エアウェイズのコンコルド" loading="lazy" style="width:100%;display:block;">
+<p class="img-caption">飛ばすたびに赤字を積み上げたコンコルド。それでも英仏政府は、やめる判断を何十年も先送りし続けた(原図: NASA / Public Domain)</p>
 </div>
 
 <hr class="art-rule">
@@ -861,25 +861,25 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <p class="ref-desc">サンクコスト錯誤を実験的に証明した記念碑的論文。劇場チケット実験、スキー旅行のジレンマなどの古典的実験を含む。</p>
 </div>
 <div class="ref-item fade">
-<div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1976</span></div>
+<div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1976</span></div>
 <p class="ref-title"><a href="https://doi.org/10.1038/262131a0" target="_blank" rel="noopener">Parental investment, mate desertion and a fallacy</a></p>
 <p class="ref-author">Richard Dawkins &amp; Tamsin R. Carlisle</p>
 <p class="ref-desc">Nature誌に掲載。動物行動学の文脈で「コンコルドの誤謬」を初めて命名・定義した論文。</p>
 </div>
 <div class="ref-item fade">
-<div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1976</span></div>
+<div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1976</span></div>
 <p class="ref-title"><a href="https://doi.org/10.1016/0030-5073(76)90005-2" target="_blank" rel="noopener">Knee-Deep in the Big Muddy: A Study of Escalating Commitment to a Chosen Course of Action</a></p>
 <p class="ref-author">Barry M. Staw</p>
 <p class="ref-desc">組織行動論の観点からエスカレーション・オブ・コミットメントを実証。サンクコスト研究の先駆的業績。</p>
 </div>
 <div class="ref-item fade">
-<div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2011</span></div>
-<p class="ref-title"><a href="https://us.macmillan.com/books/9780374533557/thinkingfastandslow" target="_blank" rel="noopener">Thinking, Fast and Slow（ファスト＆スロー）</a></p>
+<div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">2011</span></div>
+<p class="ref-title"><a href="https://www.amazon.co.jp/dp/4150504105/" target="_blank" rel="noopener">Thinking, Fast and Slow（ファスト＆スロー）</a></p>
 <p class="ref-author">Daniel Kahneman</p>
 <p class="ref-desc">プロスペクト理論、損失回避、サンクコストを含む認知バイアスの全体像を一般読者向けに解説した名著。</p>
 </div>
 <div class="ref-item fade">
-<div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2018</span></div>
+<div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2018</span></div>
 <p class="ref-title"><a href="https://doi.org/10.1126/science.aat8413" target="_blank" rel="noopener">Sensitivity to "sunk costs" in mice, rats, and humans</a></p>
 <p class="ref-author">Brian M. Sweis et al.</p>
 <p class="ref-desc">Science誌に掲載。ネズミとラットにもサンクコストへの感受性があることを示し、「人間だけの錯誤」という定説に疑問を投げかけた。</p>
@@ -923,7 +923,7 @@ Arkes &amp; Blumer（1985）の原著論文を中心に、Staw（1976）、Kahne
 </div>
 <div class="sidebar-block fade">
 <p class="sidebar-label">関連トピック</p>
-<p class="sidebar-text">— アンカリング効果<br>— 確証バイアス<br>— 損失回避<br>— 現状維持バイアス<br>— フレーミング効果</p>
+<p class="sidebar-text">— <a href="/anchoring_effect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">アンカリング効果</a><br>— <a href="/confirmation_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">確証バイアス</a><br>— <a href="/loss_aversion" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">損失回避</a><br>— <a href="/foot_in_the_door" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">フット・イン・ザ・ドア</a><br>— <a href="/framing_effect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">フレーミング効果</a></p>
 </div>
 <div class="sidebar-block fade">
 <p class="sidebar-label">今日の判断を振り返る</p>

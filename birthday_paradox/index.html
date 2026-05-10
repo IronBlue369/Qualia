@@ -56,7 +56,7 @@ a{color:inherit;text-decoration:none;}
 
 /* SCENARIO */
 .scenario-wrap{max-width:900px;margin:0 auto;padding:32px 48px 0;position:relative;}
-.scenario-inner{position:relative;padding:28px 32px;background:linear-gradient(160deg,#f3efe6 0%,#ede8dc 100%);border-top:3px solid #8b1a1a;overflow:hidden;}
+.scenario-inner{position:relative;padding:28px 32px;background:linear-gradient(160deg,#f3efe6 0%,#ede8dc 100%);border-top:3px solid #8b1a1a;overflow:hidden;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner::before{content:'23';position:absolute;top:-10px;right:20px;font-family:'Playfair Display',serif;font-size:140px;font-weight:900;color:rgba(139,26,26,.04);line-height:1;pointer-events:none;}
 .scenario-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
 .scenario-text:last-child{margin-bottom:0;}
@@ -81,7 +81,7 @@ a{color:inherit;text-decoration:none;}
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -122,7 +122,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -321,7 +321,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
 .summary-box{padding:0 20px;}
 .scenario-wrap{padding:32px 20px 0;}
-.article{grid-template-columns:1fr;padding:0 20px;}
+.article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
 .article-side{display:none;}
 .misconception-item{flex-direction:column;}
 .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -873,13 +873,13 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <p class="ref-desc">すべてはここから始まった。フォン・ミーゼスがイスタンブール大学の紀要に発表した、誕生日の一致に関する確率解析の原論文。パーティーでの体験が数学になった瞬間を読める。Selected Papers版からアクセス可能。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1968</span></div>
+      <div class="ref-meta"><span class="ref-type">教科書</span><span class="ref-year">1968</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1002/bimj.19700120413" target="_blank" rel="noopener">An Introduction to Probability Theory and Its Applications, Vol. 1</a></p>
       <p class="ref-author">William Feller</p>
       <p class="ref-desc">確率論の教科書の決定版。誕生日問題がここで取り上げられたことで、世界中の教室に広まった。第1巻第2章に登場する。確率を「感覚」で学びたい人にも読みやすい。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">展望論文</span><span class="ref-year">1989</span></div>
+      <div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">1989</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1080/01621459.1989.10478856" target="_blank" rel="noopener">Methods for Studying Coincidences</a></p>
       <p class="ref-author">Persi Diaconis &amp; Frederick Mosteller</p>
       <p class="ref-desc">「偶然の一致」を数学的に分析するための枠組みを提示した論文。誕生日問題を一般化した議論が含まれ、なぜ私たちが偶然に驚きすぎるのかを体系的に論じている。読んだ後、「すごい偶然」に鈍感になる。</p>
@@ -889,6 +889,12 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <p class="ref-title"><a href="https://doi.org/10.1016/j.jspi.2004.01.015" target="_blank" rel="noopener">The matching, birthday and the strong birthday problem: a contemporary review</a></p>
       <p class="ref-author">Anirban DasGupta</p>
       <p class="ref-desc">誕生日問題とその拡張を包括的にレビューした論文。「全員が誰かとペアになる確率（強い誕生日問題）」など、さらに深い問いに踏み込んでいる。指紋照合や暗号学への応用も議論。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2008</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4478004528/" target="_blank" rel="noopener">The Drunkard's Walk（邦訳:たまたま — 日常に潜む「偶然」を科学する）</a></p>
+      <p class="ref-author">Leonard Mlodinow</p>
+      <p class="ref-desc">確率と偶然の直感を覆す名著で、誕生日のパラドックスを含む「驚きの一致」がなぜ高頻度で起きるのかを一般読者向けに解きほぐす。</p>
     </div>
   </div>
 
@@ -929,10 +935,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
       <p class="sidebar-text">
-        — ギャンブラーの誤謬<br>
-        — ベイズの定理（基準率の無視）<br>
-        — 相関と因果<br>
-        — バースデーアタック（暗号学）
+        — <a href="/gamblers_fallacy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ギャンブラーの誤謬</a><br>
+        — <a href="/base_rate_neglect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">基準率の無視</a><br>
+        — <a href="/correlation_causation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">相関は因果ではない</a><br>
+        — <a href="/monty_hall" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">モンティ・ホール問題</a><br>
+        — <a href="/galton_board" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">正規分布と平均的な人間</a>
       </p>
     </div>
     <div class="sidebar-block fade">

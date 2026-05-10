@@ -104,7 +104,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -130,7 +130,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -161,7 +161,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -421,14 +421,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover{grid-template-columns:1fr;padding:40px 20px 32px;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
@@ -524,10 +524,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Thought Experiment / Ethics</p>
+    <p class="cover-kicker">思考実験・哲学</p>
     <h1>レバーを引くか、それとも<em>突き落とす</em>か。</h1>
     <p class="cover-deck">5人を救うために1人を犠牲にする — 同じ結果なのに、なぜ判断が変わる。哲学が50年戦ってきた問いを、自動運転車が現実の設計課題として突きつけている。</p>
-    <div class="cover-byline"><span>Ethics</span><span>Moral Psychology</span><span>AI</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>THOUGHT EXPERIMENT</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -1026,26 +1026,26 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <div class="ref-list">
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1967</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1967</span></div>
       <p class="ref-title"><a href="https://philpapers.org/archive/footpo-2.pdf" target="_blank" rel="noopener">The Problem of Abortion and the Doctrine of the Double Effect</a></p>
       <p class="ref-author">Philippa Foot / Oxford Review 5: 5–15</p>
       <p class="ref-desc">トロッコの原型が登場する論文。主題はあくまで中絶と二重結果原則の検討で、トロッコはその例解のひとつだった。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1985</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1985</span></div>
       <p class="ref-title"><a href="https://openyls.law.yale.edu/server/api/core/bitstreams/2549174b-4728-45bf-bf64-01384116e48c/content" target="_blank" rel="noopener">The Trolley Problem</a></p>
       <p class="ref-author">Judith Jarvis Thomson / Yale Law Journal 94: 1395–1415</p>
       <p class="ref-desc">歩道橋・移植医・ループ線路などの変奏を整備した決定版。以降、英米の道徳哲学における標準参照点となった。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2018</span></div>
-      <p class="ref-title"><a href="https://www.nature.com/articles/s41586-018-0637-6" target="_blank" rel="noopener">The Moral Machine experiment</a></p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2018</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1038/s41586-018-0637-6" target="_blank" rel="noopener">The Moral Machine experiment</a></p>
       <p class="ref-author">Edmond Awad, Sohan Dsouza, Richard Kim, Jonathan Schulz, Joseph Henrich, Azim Shariff, Jean-François Bonnefon, Iyad Rahwan / Nature 563: 59–64</p>
       <p class="ref-desc">233カ国・4,000万票のデータから、道徳的優先順位に文化的クラスターが存在することを実証した大規模研究。本記事の定量データの主要ソース。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2001</span></div>
-      <p class="ref-title"><a href="https://www.science.org/doi/10.1126/science.1062872" target="_blank" rel="noopener">An fMRI Investigation of Emotional Engagement in Moral Judgment</a></p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2001</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1126/science.1062872" target="_blank" rel="noopener">An fMRI Investigation of Emotional Engagement in Moral Judgment</a></p>
       <p class="ref-author">Joshua D. Greene et al. / Science 293: 2105–2108</p>
       <p class="ref-desc">個人的・非個人的な道徳的ジレンマで脳の活性化領域が異なることを示した先駆的研究。道徳心理学に実験神経科学が本格介入する契機。</p>
     </div>
@@ -1054,6 +1054,12 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <p class="ref-title"><a href="https://plato.stanford.edu/entries/philippa-foot/" target="_blank" rel="noopener">Philippa Foot (Stanford Encyclopedia of Philosophy)</a></p>
       <p class="ref-author">Stanford Encyclopedia of Philosophy</p>
       <p class="ref-desc">フット思想の一次資料に最も近い解説。徳倫理学復興への寄与、トロッコ例の位置づけなどを整理した権威的エントリ。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2013</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4778314840/" target="_blank" rel="noopener">Would You Kill the Fat Man?（邦訳：太った男を殺しますか? — 「トロリー問題」が教えてくれること）</a></p>
+      <p class="ref-author">David Edmonds</p>
+      <p class="ref-desc">トロッコ問題の哲学史と現代倫理学への波及をジャーナリスティックに辿る決定版。Foot/Thomson/Greene の文脈をそのまま継承する。</p>
     </div>
   </div>
 
@@ -1089,7 +1095,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— 無知のヴェール<br>— 実存主義<br>— 自由意志と脳</p>
+      <p class="sidebar-text">— <a href="/veil_of_ignorance" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">無知のヴェール</a><br>— <a href="/existentialism" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">実存主義</a><br>— <a href="/libet_free_will" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">リベット実験</a><br>— <a href="/prisoners_dilemma" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">囚人のジレンマ</a><br>— <a href="/mary_room" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マリーの部屋</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">読後チェック</p>

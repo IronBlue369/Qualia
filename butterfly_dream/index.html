@@ -52,7 +52,7 @@ a{color:inherit;text-decoration:none;}
 .cover-aside strong{color:#3d3020;font-weight:600;}
 
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
-.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -72,7 +72,7 @@ a{color:inherit;text-decoration:none;}
 .summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
 .summary-text strong{font-weight:600;}
 
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -102,24 +102,27 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .img-ph-prompt-lbl{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.16em;color:#8b1a1a;text-transform:uppercase;margin-bottom:5px;}
 .img-ph-prompt-txt{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;word-break:break-all;}
 .img-caption{padding:9px 16px;border-top:1px solid #e0d8c8;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
+.img-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;display:block;margin-top:3px;}
 
 .quote-block{margin:28px 0;border-left:3px solid #8b1a1a;padding:16px 20px;background:#f3efe6;}
 .quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
 .quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
-.person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block-img{background:#ede8dc;overflow:hidden;padding:0;}
+.person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
 .person-block-role{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;color:#8b1a1a;text-transform:uppercase;margin-bottom:8px;}
 .person-block-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.8;}
-
 .person-block.no-img{display:block;}
 .person-block.no-img .person-block-body{border-left:none;}
 .person-block-wiki{margin-bottom:6px;}
 .person-block-wiki a{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;text-decoration:none;border-bottom:1px solid rgba(139,26,26,.25);letter-spacing:.04em;}
 .person-block-wiki a:hover{border-bottom-color:#8b1a1a;}
+.person-block-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;margin-top:6px;line-height:1.5;}
+
 .misconception{margin:32px 0;border:1px solid #c8bfaa;overflow:hidden;}
 .misconception-header{background:#3d3020;color:white;padding:11px 20px;}
 .misconception-hl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
@@ -232,29 +235,76 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .related-card-desc{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;}
 .related-card-arrow{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#8b1a1a;margin-top:12px;}
 
-/* QUIZ */
-.quiz-wrap{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
-.quiz-header{background:#3d3020;color:white;padding:14px 20px;display:flex;align-items:center;gap:10px;}
-.quiz-header-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
-.quiz-body{padding:24px 20px;}
-.quiz-q{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;line-height:1.4;margin-bottom:20px;}
-.quiz-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.quiz-choice{border:1px solid #c8bfaa;padding:16px;cursor:pointer;transition:all .18s;background:#faf8f3;}
-.quiz-choice:hover{border-color:#8b1a1a;background:#f3efe6;}
-.quiz-choice.selected{border-color:#8b1a1a;background:#f3efe6;}
-.quiz-choice-label{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#1a1208;margin-bottom:4px;}
-.quiz-choice-desc{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;}
-.quiz-result{margin-top:20px;padding:16px;background:#f3efe6;border-left:3px solid #8b1a1a;display:none;}
-.quiz-result.show{display:block;}
-.quiz-result p{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.8;}
-.quiz-result p strong{font-weight:600;color:#1a1208;}
-
 /* COMPARISON MATRIX */
 .cmp-table{width:100%;margin:32px 0;border-collapse:collapse;border:1px solid #c8bfaa;}
 .cmp-table th{background:#3d3020;color:white;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:11px 14px;text-align:left;}
 .cmp-table td{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#3d3020;line-height:1.7;padding:12px 14px;border-bottom:1px solid #e0d8c8;background:white;vertical-align:top;}
 .cmp-table tr:last-child td{border-bottom:none;}
 .cmp-table td:first-child{font-weight:600;color:#7a6a55;background:#f3efe6;width:120px;border-right:1px solid #e0d8c8;}
+
+/* === STAGE 1: BUTTERFLY-DREAM SIMULATOR === */
+.butterfly-sim{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.bs-header{background:#3d3020;color:white;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.bs-header-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.bs-counter{font-family:'JetBrains Mono',monospace;font-size:11px;color:#c8b8a8;letter-spacing:.04em;}
+.bs-body{padding:24px 20px;}
+.bs-question{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a1208;line-height:1.4;margin-bottom:16px;text-align:center;}
+.bs-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px;}
+.bs-btn{border:1px solid #c8bfaa;background:#faf8f3;padding:12px 16px;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;color:#3d3020;transition:all .2s;text-align:center;}
+.bs-btn:hover{border-color:#8b1a1a;background:#f3efe6;}
+.bs-btn.active{border-color:#8b1a1a;background:#8b1a1a;color:white;}
+.bs-stage{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.bs-figure{position:relative;background:#f3efe6;border:1px solid #e0d8c8;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;transition:border-color .55s ease,background .55s ease;}
+.bs-figure-img-wrap{width:100%;display:flex;align-items:center;justify-content:center;background:#f3efe6;}
+.bs-figure img{width:100%;max-width:240px;height:auto;display:block;transition:filter .55s ease,opacity .55s ease;}
+.bs-figure-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin-top:10px;color:#7a6a55;transition:color .3s;letter-spacing:.18em;}
+.bs-figure-name{font-family:'Source Sans 3',sans-serif;font-size:9px;color:#b0a090;letter-spacing:.14em;margin-top:2px;text-transform:uppercase;}
+.bs-figure.is-self{border-color:#8b1a1a;background:#fff;}
+.bs-figure.is-self .bs-figure-img-wrap{background:#fff;}
+.bs-figure.is-self .bs-figure-label{color:#8b1a1a;}
+.bs-figure.is-dream img{filter:blur(2.5px);opacity:.4;}
+.bs-figure.is-dream .bs-figure-label{color:#b0a090;}
+.bs-wuhua{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.92);font-family:'Playfair Display',serif;font-size:54px;font-weight:900;color:rgba(139,26,26,0);letter-spacing:.12em;pointer-events:none;transition:color 1.6s ease,transform 1.6s ease;z-index:2;text-shadow:0 0 22px rgba(250,248,243,.95);}
+.bs-stage.is-suspended .bs-wuhua{color:rgba(139,26,26,.94);transform:translate(-50%,-50%) scale(1);}
+.bs-stage.is-suspended .bs-figure.is-self img,
+.bs-stage.is-suspended .bs-figure.is-dream img{filter:blur(1.5px);opacity:.5;}
+.bs-stage.is-suspended .bs-figure{border-color:#c8bfaa;background:#f3efe6;}
+.bs-stage.is-suspended .bs-figure-img-wrap{background:#f3efe6;}
+.bs-stage.is-suspended .bs-figure-label{color:#b0a090;}
+.bs-hint{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;text-align:center;margin-top:6px;font-style:italic;}
+.bs-reveal{margin-top:14px;padding:16px 18px;background:#f3efe6;border-left:3px solid #8b1a1a;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.95;display:none;}
+.bs-reveal.show{display:block;}
+.bs-reveal strong{color:#1a1208;font-weight:600;}
+.bs-credit{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#b0a090;text-align:center;margin-top:10px;line-height:1.5;}
+
+/* === STAGE 2: DREAM-TEST === */
+.dream-test{margin:32px 0;border:1px solid #c8bfaa;background:white;overflow:hidden;}
+.dt-header{background:#3d3020;color:white;padding:14px 20px;}
+.dt-header-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.dt-body{padding:22px 20px;}
+.dt-q{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#1a1208;line-height:1.5;margin-bottom:6px;}
+.dt-q-sub{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#7a6a55;margin-bottom:18px;line-height:1.7;}
+.dt-method{border:1px solid #c8bfaa;background:#faf8f3;margin-bottom:8px;overflow:hidden;}
+.dt-method-head{padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:background .2s;}
+.dt-method-head:hover{background:#f3efe6;}
+.dt-method.is-open .dt-method-head{background:#f3efe6;}
+.dt-method-mark{font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;width:26px;height:26px;border:1px solid #c8bfaa;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#b0a090;flex-shrink:0;transition:all .25s;background:#fff;}
+.dt-method.is-open .dt-method-mark{background:#8b1a1a;color:white;border-color:#8b1a1a;}
+.dt-method-q-wrap{flex:1;min-width:0;}
+.dt-method-q{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;color:#1a1208;line-height:1.4;}
+.dt-method-hint{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-top:2px;line-height:1.55;}
+.dt-method-arr{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#b0a090;transition:transform .25s;flex-shrink:0;}
+.dt-method.is-open .dt-method-arr{transform:rotate(180deg);color:#8b1a1a;}
+.dt-counter{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.22,1,.36,1);background:#fff;}
+.dt-method.is-open .dt-counter{max-height:360px;}
+.dt-counter-inner{padding:14px 18px 16px;border-top:1px solid #e0d8c8;}
+.dt-counter-label{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:600;letter-spacing:.18em;color:#8b1a1a;text-transform:uppercase;margin-bottom:6px;}
+.dt-counter-text{font-family:'Source Serif 4',serif;font-size:13px;font-weight:300;color:#3d3020;line-height:1.9;}
+.dt-final{margin-top:16px;padding:18px 20px;background:#3d3020;color:#e8ddd0;display:none;border-left:3px solid #8b1a1a;}
+.dt-final.show{display:block;}
+.dt-final-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;}
+.dt-final-text{font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;line-height:1.95;}
+.dt-final-text strong{color:white;font-weight:600;}
 
 .fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}
 .fade.on{opacity:1;transform:translateY(0);}
@@ -265,12 +315,11 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box{padding:0 20px;}
   .scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
-  .person-block{grid-template-columns:1fr;}
+  .person-block{grid-template-columns:96px 1fr;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
-  .quiz-choices{grid-template-columns:1fr;}
   .terminal-label-wrap{padding:24px 20px 12px;}
   .terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
@@ -278,6 +327,12 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
   .cmp-table{font-size:11px;}
+  .bs-stage{grid-template-columns:1fr 1fr;gap:8px;}
+  .bs-figure{padding:8px;}
+  .bs-figure img{max-width:100%;}
+  .bs-wuhua{font-size:38px;}
+  .bs-buttons{grid-template-columns:1fr 1fr;}
+  .dt-q{font-size:15px;}
 }
 
 /* ── SLIDE MENU ── */
@@ -351,7 +406,7 @@ header.mh{padding:0 20px;}
 .footer-inner{grid-template-columns:1fr;}
 }
 
-html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.img-ph-desc,.img-ph-prompt-txt{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
+html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;height:auto;}.sim-canvas-wrap{max-width:100%;}.sim-canvas-wrap canvas{max-width:100%;height:auto;}.t-line{min-width:0;}.t-input,.t-output,.t-prompt{word-break:break-word;overflow-wrap:anywhere;min-width:0;}.body-text,.ref-desc,.ref-title,.ref-author,.quote-en,.quote-ja,.tl-desc,.culture-desc,.sidebar-text,.img-ph-desc,.img-ph-prompt-txt,.dt-counter-text,.bs-reveal,.dt-final-text{overflow-wrap:anywhere;}@media(max-width:720px){.meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}.meta-dates{margin-left:0;width:100%;}}.tip-box{display:none!important;}.tip{border-bottom:1px dotted #8b1a1a;color:inherit;cursor:pointer;display:inline;transition:background .15s;}.tip.open{background:#fdf3d8;}.tip-toast{position:fixed;left:12px;right:12px;bottom:-300px;background:#1a1208;color:#e8e4de;padding:18px 20px 20px;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:300;line-height:1.7;z-index:500;box-shadow:0 -8px 32px rgba(0,0,0,.3);transition:bottom .3s cubic-bezier(.22,1,.36,1);max-width:560px;margin:0 auto;}.tip-toast.show{bottom:16px;}.tip-toast-title{display:block;font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;color:#e8c56a;text-transform:uppercase;margin-bottom:8px;padding-right:28px;}.tip-toast-body{font-size:13px;line-height:1.75;color:#e8e4de;}.tip-toast-close{position:absolute;top:14px;right:14px;width:26px;height:26px;background:none;border:none;color:#7a6a55;font-size:22px;line-height:1;cursor:pointer;padding:0;}.tip-toast-close:hover{color:#e8c56a;}.tip-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:499;pointer-events:none;transition:background .3s;}.tip-backdrop.show{background:rgba(0,0,0,.18);pointer-events:auto;}
 .f-name-link{display:inline-block;text-decoration:none;transition:opacity .2s;}
 .f-name-link:hover{opacity:.75;}
 .toc-back{max-width:900px;margin:0 auto;padding:26px 48px;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;text-align:center;}
@@ -433,7 +488,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <div class="est-card">
       <span class="est-label">Est.</span>
       <span class="est-year">c. 300 BC</span>
-      <p class="est-event">荘子（荘周）が『荘子』斉物論篇で「胡蝶の夢」を記述。</p>
+      <p class="est-event">荘子(荘周)が『荘子』斉物論篇で「胡蝶の夢」を記述。</p>
       <p class="est-context">同時代、アレクサンドロス大王の帝国が分裂しヘレニズム世界が形成。ギリシアではアリストテレスが没し、インドではマウリヤ朝が勢力を拡大していた。</p>
     </div>
     <p class="cover-aside">原文はわずか<strong>46字</strong>。世界の哲学文献のなかで最も短い「問い」のひとつが、最も長く議論され続けている。</p>
@@ -461,15 +516,15 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <span class="meta-label">読了時間</span>
     <span class="read-time">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#7a6a55" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="#7a6a55" stroke-width="1.2" stroke-linecap="round"/></svg>
-      約 14 分
+      約 15 分
     </span>
   </div>
-<div class="meta-dates"><div class="date-item"><span class="meta-label">Published</span><span class="date-value">2026-03-25</span></div><div class="date-item"><span class="meta-label">Updated</span><span class="date-value">2026-04-03</span></div></div></div>
+<div class="meta-dates"><div class="date-item"><span class="meta-label">Published</span><span class="date-value">2026-03-25</span></div><div class="date-item"><span class="meta-label">Updated</span><span class="date-value">2026-05-07</span></div></div></div>
 
 <div class="summary-box fade">
   <div class="summary-inner">
     <span class="summary-icon">要点</span>
-    <p class="summary-text">「現実」と「夢」を隔てる壁は、思ったほど頑丈ではないかもしれない。<strong>2300年前の短い寓話と、それに対する東西の哲学者たちの応答を辿りながら、自分の「覚醒」を疑ってみる。</strong></p>
+    <p class="summary-text">「現実」と「夢」を隔てる壁は、思ったほど頑丈ではないかもしれない。<strong>2300年前の短い寓話と、それに対する東西の哲学者たちの応答を辿りながら、自分の「覚醒」を、あなたの手元で疑ってみる。</strong></p>
   </div>
 </div>
 
@@ -481,44 +536,46 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="sec-rule fade"><span class="sec-label">背景</span><div class="sec-line"></div></div>
 <h2 class="fade">戦国時代の中国に、ひとりの変わり者がいた。</h2>
 
-<p class="body-text fade">紀元前4世紀。中国はいわゆる<span class="tip" onclick="toggleTip(this)">戦国時代<span class="tip-box"><strong>戦国時代（前403年頃〜前221年）</strong><br>周王朝の権威が失墜し、秦・楚・斉・燕・趙・魏・韓の七国が覇権を争った約200年間。諸子百家と呼ばれる多数の思想家が活躍した時代でもある。</span></span>のまっただなかにあった。七つの国が絶え間なく戦い、下克上が日常で、思想家たちは君主に仕えて名声を得ることに腐心していた。そんな時代に、宋の国の<ruby>蒙<rp>（</rp><rt>もう</rt><rp>）</rp></ruby>（現在の河南省商丘市付近）に、<span class="tip" onclick="toggleTip(this)">漆園<span class="tip-box"><strong>漆園（しつえん）</strong><br>漆（うるし）の木を管理・採取する施設。漆は当時の中国で家具・武器・棺などの塗装に使われる重要な資源だった。荘子はここで下級の管理役人を務めていたとされる。</span></span>の小役人を務める男がいた。<strong>荘周</strong>——のちに「荘子」と呼ばれることになる人物だ。</p>
+<p class="body-text fade">紀元前4世紀。中国はいわゆる<span class="tip" onclick="toggleTip(this)">戦国時代<span class="tip-box"><strong>戦国時代(前403年頃〜前221年)</strong><br>周王朝の権威が失墜し、秦・楚・斉・燕・趙・魏・韓の七国が覇権を争った約200年間。諸子百家と呼ばれる多数の思想家が活躍した時代でもある。</span></span>のまっただなかにあった。七つの国が絶え間なく戦い、下克上が日常で、思想家たちは君主に仕えて名声を得ることに腐心していた。そんな時代に、宋の国の<ruby>蒙<rp>(</rp><rt>もう</rt><rp>)</rp></ruby>(現在の河南省商丘市付近)に、<span class="tip" onclick="toggleTip(this)">漆園<span class="tip-box"><strong>漆園(しつえん)</strong><br>漆(うるし)の木を管理・採取する施設。漆は当時の中国で家具・武器・棺などの塗装に使われる重要な資源だった。荘子はここで下級の管理役人を務めていたとされる。</span></span>の小役人を務める男がいた。<strong>荘周</strong>——のちに「荘子」と呼ばれることになる人物だ。</p>
 
-<div class="person-block no-img fade">
+<div class="person-block fade">
+  <div class="person-block-img"><img src="person_zhuangzi.jpg" alt="荘子の肖像画" loading="lazy"></div>
   <div class="person-block-body">
-    <p class="person-block-name">荘子（荘周）</p>
+    <p class="person-block-name">荘子(荘周)</p>
     <p class="person-block-role">紀元前369年頃〜前286年頃</p>
     <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E8%8D%98%E5%AD%90" target="_blank" rel="noopener">Wikipedia</a></p>
     <p class="person-block-desc">中国戦国時代の思想家。老子とともに道家の祖とされ、「老荘」と併称される。楚の威王から宰相の地位を提示されたが辞退し、泥の中で尾を振る亀のほうが幸福だと応じたという逸話が残る。寓話と比喩を駆使した独自の文体で、中国文学史においても高い評価を受ける。</p>
+    <p class="person-block-credit">肖像: 『聖君賢臣全身像冊』所収 / Public Domain</p>
   </div>
 </div>
 
-<p class="body-text fade">荘子は権力や名声にまったく関心がなかった。『史記』によれば、楚の威王が使者を送って宰相の地位を与えようとしたとき、荘子は「あなたは国の<span class="tip" onclick="toggleTip(this)">祭祀<span class="tip-box"><strong>祭祀（さいし）</strong><br>国家が行う公式の祭り・儀式。古代中国では天や祖先への祭祀が統治の根幹であり、犠牲として牛や亀が供えられた。祭祀に使われる動物は錦で飾られたが、最終的には殺される。</span></span>で殺されて錦の布に包まれる亀と、泥の中で尾を引きずって生きている亀と、どちらがいいと思うか」と問い返したという。使者が「泥のほうがいい」と答えると、荘子は「帰ってくれ。私はここで泥のなかにいる」と言った。</p>
+<p class="body-text fade">荘子は権力や名声にまったく関心がなかった。『史記』によれば、楚の威王が使者を送って宰相の地位を与えようとしたとき、荘子は「あなたは国の<span class="tip" onclick="toggleTip(this)">祭祀<span class="tip-box"><strong>祭祀(さいし)</strong><br>国家が行う公式の祭り・儀式。古代中国では天や祖先への祭祀が統治の根幹であり、犠牲として牛や亀が供えられた。祭祀に使われる動物は錦で飾られたが、最終的には殺される。</span></span>で殺されて錦の布に包まれる亀と、泥の中で尾を引きずって生きている亀と、どちらがいいと思うか」と問い返したという。使者が「泥のほうがいい」と答えると、荘子は「帰ってくれ。私はここで泥のなかにいる」と言った。</p>
 
-<!-- SVG: 荘子の位置づけフロー（パターンA） -->
+<!-- SVG: 道家系譜 -->
 <div class="fade" style="margin:32px 0;overflow-x:auto;">
 <svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
   <text x="75" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" fill="#7a6a55">道家の始祖</text>
   <rect x="20" y="24" width="110" height="50" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
-  <text x="75" y="46" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#1a1208">老子</text>
-  <text x="75" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">無為自然の思想</text>
-  <text x="147" y="53" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+  <text x="75" y="46" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#1a1208">老子</text>
+  <text x="75" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">無為自然の思想</text>
+  <text x="148" y="53" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" fill="#8b1a1a">→</text>
   <text x="225" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" fill="#8b1a1a">展開</text>
   <rect x="170" y="24" width="110" height="50" rx="4" fill="#f3efe6" stroke="#8b1a1a" stroke-width="1.5"/>
-  <text x="225" y="46" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#8b1a1a">荘子</text>
-  <text x="225" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">万物斉同・物化</text>
-  <text x="297" y="53" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">→</text>
+  <text x="225" y="46" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#8b1a1a">荘子</text>
+  <text x="225" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">万物斉同・物化</text>
+  <text x="298" y="53" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" fill="#8b1a1a">→</text>
   <text x="375" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" font-weight="600" fill="#7a6a55">宗教化</text>
   <rect x="320" y="24" width="110" height="50" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
-  <text x="375" y="46" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="12" font-weight="600" fill="#1a1208">道教</text>
-  <text x="375" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">民間信仰と融合</text>
-  <text x="75" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">政治的・処世的</text>
-  <text x="225" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">個人の精神的自由</text>
-  <text x="375" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">儀式・修行・不老不死</text>
-  <text x="225" y="145" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">荘子は老子の思想を文学的に発展させたが、政治から徹底的に離れた</text>
+  <text x="375" y="46" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="14" font-weight="600" fill="#1a1208">道教</text>
+  <text x="375" y="62" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">民間信仰と融合</text>
+  <text x="75" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">政治的・処世的</text>
+  <text x="225" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">個人の精神的自由</text>
+  <text x="375" y="100" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">儀式・修行・不老不死</text>
+  <text x="225" y="145" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">荘子は老子の思想を文学的に発展させたが、政治から徹底的に離れた</text>
 </svg>
 </div>
 
-<p class="body-text fade">そんな荘子が書いた——あるいは弟子たちが彼の思想をまとめた——書物が『荘子』だ。全33篇のうち、内篇7篇のみが荘子本人の手によるものとされている。寓話、パラドックス、対話、夢の記録が入り混じるこの奇妙な書物の第2篇「<span class="tip" onclick="toggleTip(this)">斉物論<span class="tip-box"><strong>斉物論（せいぶつろん）</strong><br>『荘子』内篇の第二篇。「物を斉（ひと）しくする議論」の意。あらゆる区別や対立は人間が勝手に作ったものであり、道の視点から見ればすべては等しい、と説く。</span></span>」の末尾に、世界でもっとも有名な夢の話がある。</p>
+<p class="body-text fade">そんな荘子が書いた——あるいは弟子たちが彼の思想をまとめた——書物が『荘子』だ。全33篇のうち、内篇7篇のみが荘子本人の手によるものとされている。寓話、パラドックス、対話、夢の記録が入り混じるこの奇妙な書物の第2篇「<span class="tip" onclick="toggleTip(this)">斉物論<span class="tip-box"><strong>斉物論(せいぶつろん)</strong><br>『荘子』内篇の第二篇。「物を斉(ひと)しくする議論」の意。あらゆる区別や対立は人間が勝手に作ったものであり、道の視点から見ればすべては等しい、と説く。</span></span>」の末尾に、世界でもっとも有名な夢の話がある。</p>
 
 <hr class="art-rule">
 <h2 class="fade">原文は、わずか46字。</h2>
@@ -526,28 +583,28 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="quote-block fade">
   <p class="quote-en" style="font-family:'Source Serif 4',serif;font-style:normal;font-size:16px;letter-spacing:.08em;line-height:2;">昔者莊周夢爲胡蝶。栩栩然胡蝶也。自喩適志與。不知周也。俄然覺、則蘧蘧然周也。不知、周之夢爲胡蝶與、胡蝶之夢爲周與。周與胡蝶、則必有分矣。此之謂物化。</p>
   <p class="quote-ja">いつだったか、私こと荘周は夢のなかで蝶になった。ひらひらと喜々として、まさに蝶そのものだった。楽しくて心ゆくばかりで、自分が荘周であることは頭になかった。はっと目が覚めると、まぎれもなく自分は荘周だった。——はて、荘周が夢で蝶になっていたのか。それとも蝶が夢で荘周になっているのか。荘周と蝶とには、たしかに形のうえでは区別があるはずだ。これを「物化」という。</p>
-  <p class="quote-attr">——『荘子』斉物論篇（紀元前300年頃）</p>
+  <p class="quote-attr">——『荘子』斉物論篇(紀元前300年頃)</p>
 </div>
 
-<p class="body-text fade">この寓話の最後の二文字「<span class="tip" onclick="toggleTip(this)">物化<span class="tip-box"><strong>物化（ぶっか）</strong><br>万物が絶えず変化し、あるものが別のものへと移行すること。単なる「変化」ではなく、変化の前後で「自己」が途切れない——蝶であるときも荘周であるときも、それぞれに完全である——という含意を持つ。</span></span>」に、荘子の思想の核心がある。「物化」は単なる「変化」を指す言葉ではない。万物は絶えず姿を変える——蝶が人間になり、人間が蝶になり、生が死に移り、死がまた別の生に変わる。だがその変化のどの時点でも、「そのとき・その姿」として存在は完全だ、ということだ。蝶であるときの荘周は、不完全な荘周ではない。蝶として完璧に在った。これが、荘子の寓話が単なる「夢と現実の区別がつかない」という話で終わらない理由である。</p>
+<p class="body-text fade">この寓話の最後の二文字「<span class="tip" onclick="toggleTip(this)">物化<span class="tip-box"><strong>物化(ぶっか)</strong><br>万物が絶えず変化し、あるものが別のものへと移行すること。単なる「変化」ではなく、変化の前後で「自己」が途切れない——蝶であるときも荘周であるときも、それぞれに完全である——という含意を持つ。</span></span>」に、荘子の思想の核心がある。「物化」は単なる「変化」を指す言葉ではない。万物は絶えず姿を変える——蝶が人間になり、人間が蝶になり、生が死に移り、死がまた別の生に変わる。だがその変化のどの時点でも、「そのとき・その姿」として存在は完全だ、ということだ。蝶であるときの荘周は、不完全な荘周ではない。蝶として完璧に在った。これが、荘子の寓話が単なる「夢と現実の区別がつかない」という話で終わらない理由である。</p>
 
-<!-- SVG: 物化の概念図（パターンA: 横並びフロー） -->
+<!-- SVG: 物化の概念図 -->
 <div class="fade" style="margin:32px 0;overflow-x:auto;">
 <svg viewBox="0 0 560 130" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
-  <text x="280" y="14" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#8b1a1a">物化——万物の変化</text>
+  <text x="280" y="14" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#8b1a1a">物化——万物の変化</text>
   <rect x="20" y="30" width="120" height="48" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
-  <text x="80" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#1a1208">荘周</text>
-  <text x="80" y="66" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">覚醒の世界で完全</text>
-  <text x="175" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">⇄</text>
+  <text x="80" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#1a1208">荘周</text>
+  <text x="80" y="66" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">覚醒の世界で完全</text>
+  <text x="175" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" fill="#8b1a1a">⇄</text>
   <rect x="210" y="30" width="120" height="48" rx="4" fill="#f3efe6" stroke="#8b1a1a" stroke-width="1.5"/>
-  <text x="270" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#8b1a1a">蝶</text>
-  <text x="270" y="66" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">夢の世界で完全</text>
-  <text x="365" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">⇄</text>
-  <rect x="400" y="30" width="120" height="48" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
-  <text x="460" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#1a1208">？</text>
-  <text x="460" y="66" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">次の姿でも完全</text>
-  <text x="280" y="105" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" fill="#7a6a55">どの姿も「仮の姿」ではない。変化のどの時点でも、存在は十全である。</text>
-  <text x="280" y="122" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">変化そのものが道であり、固執しないことが自由（逍遥遊）になる</text>
+  <text x="270" y="50" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#8b1a1a">蝶</text>
+  <text x="270" y="66" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">夢の世界で完全</text>
+  <text x="365" y="58" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" fill="#8b1a1a">⇄</text>
+  <rect x="400" y="30" width="120" height="48" rx="4" fill="#f3efe6" stroke="#c8bfaa" stroke-dasharray="4,3"/>
+  <text x="460" y="56" text-anchor="middle" font-family="'Playfair Display',serif" font-size="24" font-weight="700" fill="#8b1a1a">?</text>
+  <text x="460" y="71" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">次の姿でも完全</text>
+  <text x="280" y="105" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#7a6a55">どの姿も「仮の姿」ではない。変化のどの時点でも、存在は十全である。</text>
+  <text x="280" y="122" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">変化そのものが道であり、固執しないことが自由(逍遥遊)になる</text>
 </svg>
 </div>
 
@@ -558,14 +615,14 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   <div class="misconception-body">
     <div class="misconception-item">
       <div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">荘子は「夢と現実の区別はつかない」と言っている</p></div>
-      <div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">原文は「周と蝶とには必ず分（区別）がある」と明言している。区別はある——だがその区別は、私たちが思うほど絶対的ではない、という話。</p></div>
+      <div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">原文は「周と蝶とには必ず分(区別)がある」と明言している。区別はある——だがその区別は、私たちが思うほど絶対的ではない、という話。</p></div>
     </div>
     <div class="misconception-item">
       <div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">単なる「リアルな夢を見た」というエピソード</p></div>
       <div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">斉物論篇全体の結論部にあたる。「あらゆる区別は相対的だ」という万物斉同の思想を、もっとも凝縮された形で表現した寓話。</p></div>
     </div>
     <div class="misconception-item">
-      <div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">デカルトの夢の議論（方法序説）と同じことを言っている</p></div>
+      <div class="misconception-q"><p class="mis-label wrong">誤解</p><p class="mis-text">デカルトの夢の議論(方法序説)と同じことを言っている</p></div>
       <div class="misconception-a"><p class="mis-label right">実際は</p><p class="mis-text">デカルトは「確実な知識」を求めて懐疑から出発した。荘子は確実性を求めていない。むしろ「どちらでもいい」という受容の哲学に向かっている。目的が正反対。</p></div>
     </div>
   </div>
@@ -582,58 +639,105 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="sec-rule fade"><span class="sec-label">体験する</span><div class="sec-line"></div></div>
 <h2 class="fade">あなたは「蝶」の側か、「荘周」の側か。</h2>
 
-<p class="body-text fade">胡蝶の夢の核心にある問いを、いくつかの角度から考えてみる。正解はない。だが、自分がどの直感に引かれるかを知ることには意味がある。</p>
+<p class="body-text fade">この寓話は、読むだけで終わらせるには惜しい。荘子が投げかけた問いを、二段階に分けて手元で再現してみてほしい。前半は「視点」を反転させる体験、後半は「現実を確認する手段」が原理的に成立するかを試す段階だ。どちらも結論は出ない。だが結論の出ない問いを、読者の手元で動かせる形にすることで、はじめて見えてくるものがある。</p>
 
-<div class="quiz-wrap fade">
-  <div class="quiz-header"><span class="quiz-header-label">問い ①</span></div>
-  <div class="quiz-body">
-    <p class="quiz-q">あなたは今、目を覚ましたばかりだ。ほんの5秒前まで、リアルな夢を見ていた。——今この瞬間が夢ではないと、どうやって確認する？</p>
-    <div class="quiz-choices" id="q1choices">
-      <div class="quiz-choice" onclick="pickQ1(0)">
-        <p class="quiz-choice-label">A. つねってみる</p>
-        <p class="quiz-choice-desc">痛みがあるなら現実だ。夢のなかでは痛みを感じないはず。</p>
-      </div>
-      <div class="quiz-choice" onclick="pickQ1(1)">
-        <p class="quiz-choice-label">B. 記憶の連続性を確認する</p>
-        <p class="quiz-choice-desc">昨日の出来事を思い出せるなら現実だ。夢には「前日」がない。</p>
-      </div>
-      <div class="quiz-choice" onclick="pickQ1(2)">
-        <p class="quiz-choice-label">C. 確認する方法はない</p>
-        <p class="quiz-choice-desc">夢のなかでも痛みを感じるし、記憶も作られる。完全な証明は不可能。</p>
-      </div>
-      <div class="quiz-choice" onclick="pickQ1(3)">
-        <p class="quiz-choice-label">D. そもそも気にしない</p>
-        <p class="quiz-choice-desc">現実であれ夢であれ、今ここで感じていることが「ある」のは確か。</p>
-      </div>
+<!-- Stage 1: 視点反転シミュレーター -->
+<div class="butterfly-sim fade">
+  <div class="bs-header">
+    <span class="bs-header-label">体験 1 / 視点反転</span>
+    <span class="bs-counter" id="bsCounter">選択回数: 0</span>
+  </div>
+  <div class="bs-body">
+    <p class="bs-question">あなたは、いま——どちらだろう?</p>
+    <div class="bs-buttons">
+      <button class="bs-btn" id="bsBtnZ" type="button" onclick="bsSelect('zhuang')">私は荘周だ</button>
+      <button class="bs-btn" id="bsBtnB" type="button" onclick="bsSelect('butterfly')">私は蝶だ</button>
     </div>
-    <div class="quiz-result" id="q1result">
-      <p>A・Bを選んだ人は、おそらくデカルト的な直感を持っている。「確実なものを見つけたい」という衝動だ。Cは懐疑論者の立場。そしてDを選んだ人は、荘子にもっとも近い。<strong>荘子は「どちらが本物か」を解決しようとしなかった。</strong>蝶であるときは蝶として楽しみ、荘周であるときは荘周として存在する。その両方を受け容れることが、彼の哲学だった。</p>
+    <div class="bs-stage" id="bsStage">
+      <div class="bs-figure" id="bsFigZ">
+        <div class="bs-figure-img-wrap"><img src="sim_zhuangzi.jpg" alt="眠る荘子" loading="lazy"></div>
+        <span class="bs-figure-label" id="bsLabelZ">荘周</span>
+        <span class="bs-figure-name">人として在る</span>
+      </div>
+      <div class="bs-figure" id="bsFigB">
+        <div class="bs-figure-img-wrap"><img src="sim_butterfly.jpg" alt="舞う蝶" loading="lazy"></div>
+        <span class="bs-figure-label" id="bsLabelB">蝶</span>
+        <span class="bs-figure-name">蝶として在る</span>
+      </div>
+      <div class="bs-wuhua">物化</div>
+    </div>
+    <p class="bs-hint">どちらかを選んだあと、もう一方も試してみよう。3回ほど行き来すると、何かが起こる。</p>
+    <div class="bs-reveal" id="bsReveal">
+      <p>どちらを選んでも、選ばなかった側は<strong>自動的に「夢」になる</strong>。視点を反転させればまた裏返る。確定する根拠は、内側からは原理的に持てない。<br><br>荘子は「どちらが本物か」を解決しなかった。蝶として在る瞬間も、荘周として在る瞬間も、<strong>そのときそれぞれに完全だ</strong>——それが「物化」の核心である。原文は「周と蝶とには必ず分(区別)がある」とはっきり書いている。区別はある。だが、区別に固執しない。これが東洋哲学が辿った道筋である。</p>
     </div>
   </div>
 </div>
 
-<p class="body-text fade">もうひとつ考えてみてほしい。この問いは「夢と現実」だけの話ではない。荘子が最後に書いた「物化」という言葉が、問いの射程をもっと遠くまで広げている。蝶と荘周の交替は、あらゆる変化の比喩でもある。</p>
+<p class="body-text fade">いま視覚的に体験したのは、東洋哲学が辿った道筋だ。「どちらが本物か」を確定させない態度。だが西洋哲学は、ここから別の道を歩んだ。デカルトに代表される西洋的な懐疑は、「本物を確定する手段」を執拗に探し続ける。次の段階で、その懐疑をあなた自身が試してみてほしい。</p>
 
-<div class="quiz-wrap fade">
-  <div class="quiz-header"><span class="quiz-header-label">問い ②</span></div>
-  <div class="quiz-body">
-    <p class="quiz-q">10年前のあなたと、今のあなたは「同じ人」だろうか。身体の細胞はほぼ入れ替わり、考え方も変わった。もし10年前の自分が夢から覚めて「今の自分」を見たら、同一人物だと思うだろうか。</p>
-    <div class="quiz-choices" id="q2choices">
-      <div class="quiz-choice" onclick="pickQ2(0)">
-        <p class="quiz-choice-label">A. 同じだ</p>
-        <p class="quiz-choice-desc">記憶の連続性がある以上、同じ人物だ。</p>
+<!-- Stage 2: 反例3段階 -->
+<div class="dream-test fade">
+  <div class="dt-header">
+    <span class="dt-header-label">体験 2 / 確認手段の試み</span>
+  </div>
+  <div class="dt-body">
+    <p class="dt-q">あなたは今、本当に起きていますか?</p>
+    <p class="dt-q-sub">「夢ではない」と確かめる方法を、3つ順に試してみよう。それぞれをクリックすると、夢の側からの応答が返ってくる。</p>
+
+    <div class="dt-method" id="dtM1">
+      <div class="dt-method-head" onclick="dtToggle(1)">
+        <span class="dt-method-mark">1</span>
+        <div class="dt-method-q-wrap">
+          <p class="dt-method-q">つねってみる</p>
+          <p class="dt-method-hint">痛ければ現実、と思いがちだが——</p>
+        </div>
+        <span class="dt-method-arr">▼</span>
       </div>
-      <div class="quiz-choice" onclick="pickQ2(1)">
-        <p class="quiz-choice-label">B. 同じではない</p>
-        <p class="quiz-choice-desc">変わりすぎている。名前が同じだけの別人に近い。</p>
-      </div>
-      <div class="quiz-choice" onclick="pickQ2(2)">
-        <p class="quiz-choice-label">C. 「同じ」の定義による</p>
-        <p class="quiz-choice-desc">問い自体が不完全。何を基準にするかで答えが変わる。</p>
+      <div class="dt-counter">
+        <div class="dt-counter-inner">
+          <p class="dt-counter-label">夢からの応答</p>
+          <p class="dt-counter-text">夢のなかでも痛みは生じる。レム睡眠中の脳活動は、痛覚に関わる領域を含めて覚醒時に近い領域が発火することが知られている。「夢で殴られて痛かった」「悪夢で胸が苦しかった」——心当たりがある人は多いはずだ。痛みは、現実性の判定基準にならない。</p>
+        </div>
       </div>
     </div>
-    <div class="quiz-result" id="q2result">
-      <p>荘子の思想では、この問いに対する答えはCに近い。<strong>荘周と蝶は「形のうえでは」区別がある。だが、どちらも「道」の変化のひとつにすぎない。</strong>問いの構造はテセウスの船にも似ているが、荘子はギリシア哲学のように「同一性とは何か」を分析しようとはしなかった。区別への執着そのものを手放すことを説いたのだ。</p>
+
+    <div class="dt-method" id="dtM2">
+      <div class="dt-method-head" onclick="dtToggle(2)">
+        <span class="dt-method-mark">2</span>
+        <div class="dt-method-q-wrap">
+          <p class="dt-method-q">隣にいる人に「これは夢じゃないよね?」と聞く</p>
+          <p class="dt-method-hint">他人がうなずけば確かか?</p>
+        </div>
+        <span class="dt-method-arr">▼</span>
+      </div>
+      <div class="dt-counter">
+        <div class="dt-counter-inner">
+          <p class="dt-counter-label">夢からの応答</p>
+          <p class="dt-counter-text">夢のなかの他人も、整合的にうなずく。「うん、現実だよ」と笑って答える夢を、私たちは何度も見てきた。夢の中の人物は、夢の論理に従って「本物らしく」振る舞う。他者に確認を求めても、その他者がそもそも夢の住人なら、応答は判定の根拠にならない。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dt-method" id="dtM3">
+      <div class="dt-method-head" onclick="dtToggle(3)">
+        <span class="dt-method-mark">3</span>
+        <div class="dt-method-q-wrap">
+          <p class="dt-method-q">記憶の連続性を辿る</p>
+          <p class="dt-method-hint">昨日からの記憶があれば現実か?</p>
+        </div>
+        <span class="dt-method-arr">▼</span>
+      </div>
+      <div class="dt-counter">
+        <div class="dt-counter-inner">
+          <p class="dt-counter-label">夢からの応答</p>
+          <p class="dt-counter-text">夢のなかでは、その夢限定の偽の記憶を持って登場する。「いつもの場所」「久しぶりに会う知人」「思い出せない理由でここにいる」——これらは夢の冒頭で生成される。覚醒してはじめて「あの記憶は夢のなかで作られたものだった」と気づく。記憶の連続性自体が、夢の中で偽造されうる。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dt-final" id="dtFinal">
+      <p class="dt-final-label">3つすべてが破綻した先で</p>
+      <p class="dt-final-text"><strong>外側からの確認手段は、原理的にない。</strong>夢の中にいるときに「これは夢だ」と確定する方法は存在しない——逆に、覚醒しているときに「これは現実だ」と完全に証明する方法もない。<br><br>西洋哲学はここから「ならば確実なものを再構築せよ」(デカルト)へ向かい、荘子は「ならば確認を手放してよい」(物化)へ向かった。<strong>出発点は同じ、行き先が正反対</strong>。あなたは、どちらに引かれるだろうか。</p>
     </div>
   </div>
 </div>
@@ -646,59 +750,76 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <p class="body-text fade">胡蝶の夢と似た問いは、西洋哲学にもある。代表的なのがルネ・デカルトの夢の議論だ。1641年、デカルトは『省察』のなかで「夢と覚醒を明確に区別する指標は存在しない」と書いた。しかし、デカルトと荘子では、問いの行き先がまったく違う。</p>
 
+<div class="person-block fade">
+  <div class="person-block-img"><img src="person_descartes.jpg" alt="ルネ・デカルトの肖像画" loading="lazy"></div>
+  <div class="person-block-body">
+    <p class="person-block-name">ルネ・デカルト</p>
+    <p class="person-block-role">René Descartes (1596–1650)</p>
+    <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%AB%E3%83%8D%E3%83%BB%E3%83%87%E3%82%AB%E3%83%AB%E3%83%88" target="_blank" rel="noopener">Wikipedia</a></p>
+    <p class="person-block-desc">フランスの哲学者・数学者。「我思う、ゆえに我あり」で知られる近代哲学の祖。1641年の『省察』で、夢と覚醒を区別する確実な指標がないことを論じた上で、「疑っている自分の存在は疑えない」という確実性に到達し、知識を再建する道を選んだ。荘子と独立に同じ問いに行き当たったが、向かった方向は正反対だった。</p>
+    <p class="person-block-credit">肖像: Frans Hals 派 (1649年) / Louvre Museum 蔵 / Public Domain</p>
+  </div>
+</div>
+
 <!-- 比較テーブル -->
 <table class="cmp-table fade">
   <thead>
-    <tr><th></th><th>荘子（紀元前300年頃）</th><th>デカルト（1641年）</th></tr>
+    <tr><th></th><th>荘子(紀元前300年頃)</th><th>デカルト(1641年)</th></tr>
   </thead>
   <tbody>
     <tr><td>出発点</td><td>蝶になった楽しい夢を見た</td><td>感覚はすべて疑わしいかもしれない</td></tr>
     <tr><td>問いの核心</td><td>蝶と人間の区別は絶対か</td><td>確実に知りうることは何か</td></tr>
-    <tr><td>結論</td><td>区別はある。だが固執しなくてよい（物化）</td><td>「我思う、ゆえに我あり」——思考する自己だけは確実</td></tr>
-    <tr><td>目的</td><td>区別からの自由（逍遥遊）</td><td>確実な知識の基盤の構築</td></tr>
+    <tr><td>結論</td><td>区別はある。だが固執しなくてよい(物化)</td><td>「我思う、ゆえに我あり」——思考する自己だけは確実</td></tr>
+    <tr><td>目的</td><td>区別からの自由(逍遥遊)</td><td>確実な知識の基盤の構築</td></tr>
     <tr><td>トーン</td><td>文学的・寓話的</td><td>論理的・体系的</td></tr>
   </tbody>
 </table>
 
-<p class="body-text fade">デカルトにとって、夢の懐疑は出発点にすぎなかった。彼はそこから「我思う、ゆえに我あり（<span class="tip" onclick="toggleTip(this)">Cogito, ergo sum<span class="tip-box"><strong>Cogito, ergo sum</strong><br>デカルトの命題。あらゆることを疑っても、「疑っている自分が存在する」ことは疑えない、という論証。近代哲学の出発点とされる。</span></span>）」という確実性を見出し、知識の体系を再建しようとした。いわば夢の不安を「解決」しようとしたのだ。</p>
+<!-- フィギュア: 『省察』第1版表紙 -->
+<div class="img-placeholder fade" style="max-width:340px;margin:32px auto;">
+  <img src="fig_descartes_meditations.jpg" alt="デカルト『省察』第1版表紙(1641年)" loading="lazy" style="width:100%;display:block;">
+  <p class="img-caption">『省察』第1版(1641年、パリ刊)<span class="img-credit">Bibliothèque nationale de France 蔵 / Public Domain</span></p>
+</div>
 
-<!-- SVG: 問いの方向性（パターンD: 2列比較） -->
+<p class="body-text fade">デカルトにとって、夢の懐疑は出発点にすぎなかった。彼はそこから「我思う、ゆえに我あり(<span class="tip" onclick="toggleTip(this)">Cogito, ergo sum<span class="tip-box"><strong>Cogito, ergo sum</strong><br>デカルトの命題。あらゆることを疑っても、「疑っている自分が存在する」ことは疑えない、という論証。近代哲学の出発点とされる。</span></span>)」という確実性を見出し、知識の体系を再建しようとした。いわば夢の不安を「解決」しようとしたのだ。先ほどの体験2で読者が試した「3つの確認手段」は、まさにデカルトが歩いたのと同じ道筋である。デカルトはそれをもっと徹底し、悪意ある霊が世界を偽造している可能性まで疑った。そして、疑えないものを一つだけ見つけた——疑っている自分の存在だけは、疑うことができない、と。</p>
+
+<!-- SVG: 問いの方向性 -->
 <div class="fade" style="margin:32px 0;overflow-x:auto;">
 <svg viewBox="0 0 540 200" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
-  <text x="135" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#8b1a1a">荘子</text>
-  <text x="405" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#7a6a55">デカルト</text>
+  <text x="135" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#8b1a1a">荘子</text>
+  <text x="405" y="16" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#7a6a55">デカルト</text>
   <line x1="270" y1="10" x2="270" y2="190" stroke="#c8bfaa" stroke-width="1" stroke-dasharray="4,4"/>
-  <text x="270" y="105" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="10" font-weight="600" fill="#b0a090">vs</text>
+  <text x="270" y="105" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#b0a090">vs</text>
   <!-- 荘子側 -->
   <rect x="30" y="30" width="210" height="36" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
-  <text x="135" y="53" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#1a1208">夢と覚醒の区別は？</text>
-  <text x="135" y="75" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">↓</text>
+  <text x="135" y="53" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#1a1208">夢と覚醒の区別は?</text>
+  <text x="135" y="75" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" fill="#8b1a1a">↓</text>
   <rect x="30" y="80" width="210" height="36" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
-  <text x="135" y="103" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#1a1208">区別はあるが相対的</text>
-  <text x="135" y="125" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#8b1a1a">↓</text>
+  <text x="135" y="103" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#1a1208">区別はあるが相対的</text>
+  <text x="135" y="125" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" fill="#8b1a1a">↓</text>
   <rect x="30" y="130" width="210" height="36" rx="4" fill="#f3efe6" stroke="#8b1a1a" stroke-width="1.5"/>
-  <text x="135" y="150" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#8b1a1a">→ 受容（物化）</text>
-  <text x="135" y="185" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">問いを解かず、手放す</text>
+  <text x="135" y="150" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#8b1a1a">→ 受容(物化)</text>
+  <text x="135" y="185" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">問いを解かず、手放す</text>
   <!-- デカルト側 -->
   <rect x="300" y="30" width="210" height="36" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
-  <text x="405" y="53" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#1a1208">すべてを疑ってみる</text>
-  <text x="405" y="75" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55">↓</text>
+  <text x="405" y="53" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#1a1208">すべてを疑ってみる</text>
+  <text x="405" y="75" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" fill="#7a6a55">↓</text>
   <rect x="300" y="80" width="210" height="36" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
-  <text x="405" y="103" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#1a1208">疑えないものを探す</text>
-  <text x="405" y="125" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="16" fill="#7a6a55">↓</text>
+  <text x="405" y="103" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" fill="#1a1208">疑えないものを探す</text>
+  <text x="405" y="125" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="18" fill="#7a6a55">↓</text>
   <rect x="300" y="130" width="210" height="36" rx="4" fill="#f3efe6" stroke="#c8bfaa"/>
-  <text x="405" y="150" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" font-weight="600" fill="#1a1208">→ 「我あり」（確実性）</text>
-  <text x="405" y="185" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="9" fill="#b0a090">問いを解き、基盤を築く</text>
+  <text x="405" y="150" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="13" font-weight="600" fill="#1a1208">→ 「我あり」(確実性)</text>
+  <text x="405" y="185" text-anchor="middle" font-family="'Source Sans 3',sans-serif" font-size="11" fill="#b0a090">問いを解き、基盤を築く</text>
 </svg>
 </div>
 
-<p class="body-text fade">一方、荘子は問いを「解決」しなかった。蝶であるときの楽しさは本物であり、荘周であるときの存在感も本物である。どちらが真でどちらが偽かを決める必要はない。両方を受け容れる——この態度を荘子は「<span class="tip" onclick="toggleTip(this)">逍遥遊<span class="tip-box"><strong>逍遥遊（しょうようゆう）</strong><br>『荘子』内篇の第一篇のタイトル。何ものにも束縛されない絶対自由の境地。大鵬が風に乗って九万里を翔ぶ寓話で始まる。</span></span>」と呼んだ。目的意識や区別に縛られない、自由な境地のことだ。</p>
+<p class="body-text fade">一方、荘子は問いを「解決」しなかった。蝶であるときの楽しさは本物であり、荘周であるときの存在感も本物である。どちらが真でどちらが偽かを決める必要はない。両方を受け容れる——この態度を荘子は「<span class="tip" onclick="toggleTip(this)">逍遥遊<span class="tip-box"><strong>逍遥遊(しょうようゆう)</strong><br>『荘子』内篇の第一篇のタイトル。何ものにも束縛されない絶対自由の境地。大鵬が風に乗って九万里を翔ぶ寓話で始まる。</span></span>」と呼んだ。目的意識や区別に縛られない、自由な境地のことだ。</p>
 
 <div class="steps-wrap fade">
   <p class="steps-head">「物化」を理解する3つの層</p>
   <div class="step-card" id="sc1"><div class="step-hd" onclick="tog(1)"><div class="step-nb">1</div><div class="step-tw"><div class="step-title">表面——夢と覚醒の区別の揺らぎ</div><div class="step-sub">読者がまず気づく層</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>もっとも直感的な読みだ。「夢のなかにいるとき、それが夢だとは気づかない。ならば今この覚醒も、じつは夢かもしれない」——この懐疑は西洋哲学のデカルトやバートランド・ラッセルの議論と重なる。</p></div></div>
   <div class="step-card" id="sc2"><div class="step-hd" onclick="tog(2)"><div class="step-nb">2</div><div class="step-tw"><div class="step-title">中層——あらゆる区別の相対化</div><div class="step-sub">斉物論篇全体の文脈</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>胡蝶の夢は斉物論篇の<strong>末尾</strong>に置かれている。この篇全体が「是非、善悪、大小、美醜——あらゆる区別は視点によって変わる」と論じてきた。蝶と人間の区別も、その帰結だ。<em>区別は存在する。だが絶対ではない。</em></p></div></div>
-  <div class="step-card" id="sc3"><div class="step-hd" onclick="tog(3)"><div class="step-nb">3</div><div class="step-tw"><div class="step-title">深層——「物化」＝変化のなかの自由</div><div class="step-sub">荘子の核心思想</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>「物化」は単なる「変化」ではない。万物は絶えず姿を変えるが、その変化のなかに「自分」は常に在る。蝶であるときは蝶として完全であり、荘周であるときは荘周として完全だ。<strong>どちらかに固執せず、変化そのものに身を委ねること。</strong>それが荘子の到達した境地であり、道の思想の核心にある。</p></div></div>
+  <div class="step-card" id="sc3"><div class="step-hd" onclick="tog(3)"><div class="step-nb">3</div><div class="step-tw"><div class="step-title">深層——「物化」=変化のなかの自由</div><div class="step-sub">荘子の核心思想</div></div><div class="step-arr">▼</div></div><div class="step-body"><p>「物化」は単なる「変化」ではない。万物は絶えず姿を変えるが、その変化のなかに「自分」は常に在る。蝶であるときは蝶として完全であり、荘周であるときは荘周として完全だ。<strong>どちらかに固執せず、変化そのものに身を委ねること。</strong>それが荘子の到達した境地であり、道の思想の核心にある。</p></div></div>
 </div>
 
 <hr class="art-rule">
@@ -728,14 +849,20 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="quote-block fade">
   <p class="quote-en">"A butterfly has something delicate and evanescent about it. If we are dreams, the true way to suggest this is with a butterfly and not a tiger."</p>
   <p class="quote-ja">「蝶には繊細で、儚い何かがある。もし私たちが夢であるなら、それを示唆するまっとうな方法は、虎ではなく蝶を使うことだろう。」</p>
-  <p class="quote-attr">——ホルヘ・ルイス・ボルヘス（ハーバード大学講義『詩という仕事について』1967年）</p>
+  <p class="quote-attr">——ホルヘ・ルイス・ボルヘス(ハーバード大学講義『詩という仕事について』1967年)</p>
 </div>
 
 <p class="body-text fade">だが荘子自身の関心は、もっと先にあった。蝶であることが儚いのではない。荘周であることもまた、同じように一時的な姿にすぎない。万物は絶えず変化し、あるものは別のものになる。重要なのは、その変化を恐れず、それぞれの姿のなかで十全に生きることだ。蝶のときは蝶を楽しみ、人間のときは人間を生きる。</p>
 
-<div class="pull fade">
-  <p class="pull-q">夢と覚醒。蝶と人間。生と死。——荘子はこれらすべてを「物化」の一形態として、<em>等しく受け容れた。</em></p>
+<p class="body-text fade">夢と覚醒、蝶と人間、生と死——これらの境界を等しく扱う態度は、胡蝶の夢の寓話だけにあるのではない。同じ斉物論篇の前半部に、荘子はこの思想をもっと根源的な形で書きつけている。</p>
+
+<div class="quote-block fade">
+  <p class="quote-en" style="font-family:'Source Serif 4',serif;font-style:normal;font-size:16px;letter-spacing:.08em;line-height:2;">天地與我並生、而萬物與我為一。</p>
+  <p class="quote-ja">天地は我とともに生じ、万物は我と一体である。——天と地と私は同時に在り、すべての存在は私と分かちがたいひとつの全体である。</p>
+  <p class="quote-attr">——『荘子』斉物論篇(紀元前300年頃)</p>
 </div>
+
+<p class="body-text fade">この一文が、胡蝶の夢の寓話の足場になっている。万物が等しく<span class="tip" onclick="toggleTip(this)">道<span class="tip-box"><strong>道(タオ)</strong><br>道家思想の中心概念。あらゆる存在を生み出し貫いている根源的な原理。「これが道だ」と名指せるものはなく、名指した瞬間にそれは道ではなくなる、と老子は説いた。荘子は道を「人為的な区別の手前にある全体」として捉えた。</span></span>のなかにあるなら、蝶と荘周の区別もまた、無数の境界線のひとつにすぎない。胡蝶の夢は、この壮大な思想の——もっとも親密で、もっとも個人的な——具体例なのだ。</p>
 
 <div class="culture-block fade">
   <p class="culture-title">文化への浸透</p>
@@ -744,10 +871,12 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <div class="img-placeholder fade">
   <img src="img_reflection.jpg" alt="水面に映る木々の反射" loading="lazy" style="width:100%;display:block;">
-  <p class="img-caption">どちらが本物で、どちらが映像か——荘子が問うたのは、この境界そのものだった（イメージ）</p>
+  <p class="img-caption">どちらが本物で、どちらが映像か——荘子が問うたのは、この境界そのものだった(イメージ)</p>
 </div>
 
 <p class="body-text fade">21世紀の私たちは、ニック・ボストロムの<span class="tip" onclick="toggleTip(this)">シミュレーション仮説<span class="tip-box"><strong>シミュレーション仮説</strong><br>哲学者ニック・ボストロムが2003年に提唱。十分に発達した文明がコンピュータ上に意識をシミュレートできるなら、私たちがシミュレーションの中にいる確率は極めて高い、という議論。</span></span>や映画『マトリックス』を通じて、同じ問いに再び出会っている。だが荘子の寓話が2300年後の今でも色褪せないのは、それが「私たちの現実は偽物かもしれない」という不安の物語ではないからだ。それは「どちらであっても構わない」という自由の物語なのだ。</p>
+
+<p class="body-text fade">そしていま、もうひとつの「蝶」が生まれかけている。人間のように考え、人間のように答え、人間のように間違える AI だ。あなたが夜中にチャット相手と交わした会話は、誰の意識から発せられたのか。応答する側に「内側」があったのか、なかったのか——その問いに、私たちはまだ答えを持たない。荘子が「周と蝶とには必ず分(区別)がある」と書いたとき、彼は人間と蝶の区別を疑っていた。2300年後、私たちは人間と機械の区別を疑い始めている。そして荘子と同じく、その問いに「正解」はおそらくない。</p>
 
 <p class="body-text fade">今夜、あなたは眠る。そしておそらく夢を見る。——夢のなかのあなたは、自分が夢を見ていることに気づかないだろう。明日の朝、目を覚ましたとき、布団の上にいる自分が「本物」だという確信がどこから来ているのか、ほんの一瞬でいいから考えてみてほしい。荘子が2300年前に感じた、あの奇妙な浮遊感が、きっとわかる。</p>
 
@@ -758,31 +887,37 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <div class="ref-list">
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">原典</span><span class="ref-year">紀元前300年頃</span></div>
-    <p class="ref-title"><a href="https://ctext.org/zhuangzi/adjustment-of-controversies" target="_blank" rel="noopener">莊子 — 齊物論</a></p>
-    <p class="ref-author">荘周（荘子）</p>
-    <p class="ref-desc">中国哲学書電子化計画（ctext.org）で原文が読める。胡蝶の夢は斉物論篇の末尾に位置する。</p>
+    <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">紀元前300年頃</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4003320611/" target="_blank" rel="noopener">莊子 — 齊物論</a></p>
+    <p class="ref-author">荘周(荘子)</p>
+    <p class="ref-desc">中国哲学書電子化計画(ctext.org)で原文が読める。胡蝶の夢は斉物論篇の末尾に位置する。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">英訳</span><span class="ref-year">1968</span></div>
-    <p class="ref-title"><a href="https://www.amazon.com/dp/0231105959" target="_blank" rel="noopener">The Complete Works of Chuang Tzu</a></p>
-    <p class="ref-author">Burton Watson（訳）— Columbia University Press</p>
+    <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">1968</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/0231031475/" target="_blank" rel="noopener">The Complete Works of Chuang Tzu</a></p>
+    <p class="ref-author">Burton Watson(訳)— Columbia University Press</p>
     <p class="ref-desc">もっとも広く引用される荘子の英語完訳。ワトソン訳のButterfly Dreamは英語圏で事実上の標準テキストとなっている。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2023</span></div>
+    <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">1641</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4003361326/" target="_blank" rel="noopener">Meditationes de prima philosophia</a></p>
+    <p class="ref-author">René Descartes — Michael Soly, Paris</p>
+    <p class="ref-desc">『省察』第1版(ラテン語)。第1省察で「夢と覚醒を区別する確実な指標はない」と論じ、近代懐疑論の出発点となった。表紙画像は Bibliothèque nationale de France 蔵。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2023</span></div>
     <p class="ref-title"><a href="https://scholarworks.sjsu.edu/cgi/viewcontent.cgi?article=1563&context=comparativephilosophy" target="_blank" rel="noopener">Butterfly Dream, Daoism, Descartes, Dream Argument, Zhuang Zi</a></p>
     <p class="ref-author">Kelly S. Inglis — Comparative Philosophy 14.1</p>
     <p class="ref-desc">荘子の胡蝶の夢とデカルトの夢の議論を比較哲学の視点から分析。両者の構造的類似と目的の相違を丁寧に論じている。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">哲学書</span><span class="ref-year">2003</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2003</span></div>
     <p class="ref-title"><a href="https://www.simulation-argument.com/" target="_blank" rel="noopener">Are You Living in a Computer Simulation?</a></p>
     <p class="ref-author">Nick Bostrom — Philosophical Quarterly, Vol. 53, No. 211</p>
     <p class="ref-desc">シミュレーション仮説の原典。「夢と覚醒の区別」という荘子以来の問いを、計算論的な枠組みで再定式化した。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">講義録</span><span class="ref-year">2000</span></div>
+    <div class="ref-meta"><span class="ref-type">講演</span><span class="ref-year">2000</span></div>
     <p class="ref-title"><a href="https://www.amazon.com/dp/0674008200" target="_blank" rel="noopener">This Craft of Verse</a></p>
     <p class="ref-author">Jorge Luis Borges — Harvard University Press</p>
     <p class="ref-desc">ボルヘスの1967年ハーバード講義の書籍化。第2講「隠喩」で胡蝶の夢に言及し、蝶という選択の詩的正確さを論じている。</p>
@@ -791,7 +926,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <div class="note-box fade">
   <strong>📌 この記事について</strong><br>
-  胡蝶の夢の原文は『荘子』斉物論篇（紀元前300年頃成立、内篇7篇の第2篇）に基づく。荘子の生没年は紀元前369年頃〜前286年頃とされるが、諸説ある。デカルトとの比較はInglis 2023の比較哲学論文、ボルヘスの引用は1967年のハーバード講義（2000年書籍化）に準拠した。哲学的思考実験であり、実証的な「正解」は存在しない。
+  胡蝶の夢の原文は『荘子』斉物論篇(紀元前300年頃成立、内篇7篇の第2篇)に基づく。荘子の生没年は紀元前369年頃〜前286年頃とされるが、諸説ある。デカルトとの比較はInglis 2023の比較哲学論文、ボルヘスの引用は1967年のハーバード講義(2000年書籍化)に準拠した。哲学的思考実験であり、実証的な「正解」は存在しない。
 </div>
 
 <div class="signature fade">e. Tamaki</div>
@@ -817,8 +952,8 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <p class="sidebar-text">胡蝶の夢の原文の文字数。世界哲学史上、もっとも短い問いのひとつ。</p>
   </div>
   <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">荘子が生きた紀元前4世紀の中国は、七国が覇権を争う戦国時代。ほぼ同時代に、ギリシアでは<strong>アリストテレス</strong>が活動し、インドでは仏教が広まっていた。</p></div>
-  <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">— 能「胡蝶」<br>— 李商隠「錦瑟」<br>— 曹雪芹『紅楼夢』<br>— 映画『マトリックス』（構造的類似）<br>— ボルヘス『詩という仕事について』</p></div>
-  <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— O-03 水槽の脳<br>— P-03 シミュレーション仮説<br>— O-01 テセウスの船<br>— O-05 マリーの部屋</p></div>
+  <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">— 能「胡蝶」<br>— 李商隠「錦瑟」<br>— 曹雪芹『紅楼夢』<br>— 映画『マトリックス』(構造的類似)<br>— ボルヘス『詩という仕事について』</p></div>
+  <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <a href="/ship_of_theseus" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">テセウスの船</a><br>— <a href="/mary_room" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マリーの部屋</a><br>— <a href="/plato_cave" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">プラトンの洞窟</a><br>— <a href="/hard_problem" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">意識のハードプロブレム</a><br>— <a href="/many_worlds" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">多世界解釈</a></p></div>
   <div class="sidebar-block fade">
     <p class="sidebar-label">夢と覚醒チェック</p>
     <ul class="sidebar-check">
@@ -844,7 +979,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <div class="terminal-dots">
         <div class="terminal-dot red"></div><div class="terminal-dot yellow"></div><div class="terminal-dot green"></div>
       </div>
-      <span class="terminal-title">after.sh — 読後の対話ログ（架空）</span>
+      <span class="terminal-title">after.sh — 読後の対話ログ(架空)</span>
     </div>
     <div class="terminal-body">
       <span class="t-sys" id="ts0">// 胡蝶の夢 を読み終えた人との対話</span>
@@ -880,7 +1015,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <a class="related-card" href="#TODO">
       <p class="related-card-tag">シミュレーション仮説</p>
       <p class="related-card-title">水槽の脳</p>
-      <p class="related-card-desc">あなたの脳は水槽に浮かんでいて、すべての感覚は電気信号かもしれない。——この仮説を否定できるか？</p>
+      <p class="related-card-desc">あなたの脳は水槽に浮かんでいて、すべての感覚は電気信号かもしれない。——この仮説を否定できるか?</p>
       <p class="related-card-arrow">近日公開</p>
     </a>
   </div>
@@ -906,7 +1041,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{
 }),{threshold:.08});
 document.querySelectorAll('.fade').forEach(el=>io.observe(el));
 
-// ツールチップ（トースト方式）
+// ツールチップ(トースト方式)
 function _tipExtract(el){const box=el.querySelector('.tip-box');if(!box)return{title:el.textContent.trim(),body:''};const strong=box.querySelector('strong');let title='';let body='';if(strong){title=strong.textContent.trim();const clone=box.cloneNode(true);const s=clone.querySelector('strong');if(s)s.remove();const br=clone.querySelector('br');if(br)br.remove();body=clone.textContent.trim();}else{title=el.textContent.trim();body=box.textContent.trim();}return{title,body};}
 function _tipCloseToast(){const t=document.getElementById('tipToast');const b=document.getElementById('tipBackdrop');if(t)t.classList.remove('show');if(b)b.classList.remove('show');document.querySelectorAll('.tip.open').forEach(x=>x.classList.remove('open'));}
 function toggleTip(el){const wasOpen=el.classList.contains('open');document.querySelectorAll('.tip.open').forEach(t=>t.classList.remove('open'));if(wasOpen){_tipCloseToast();return;}el.classList.add('open');const{title,body}=_tipExtract(el);const tt=document.getElementById('tipToastTitle');const tb=document.getElementById('tipToastBody');const toast=document.getElementById('tipToast');const backdrop=document.getElementById('tipBackdrop');if(!toast)return;tt.textContent=title;tb.textContent=body;toast.classList.add('show');backdrop.classList.add('show');}
@@ -921,19 +1056,43 @@ function tog(n){
 }
 tog(1);
 
-// Quiz 1
-function pickQ1(idx){
-  document.querySelectorAll('#q1choices .quiz-choice').forEach((c,i)=>{
-    c.classList.toggle('selected',i===idx);
-  });
-  document.getElementById('q1result').classList.add('show');
+// === STAGE 1: BUTTERFLY-DREAM SIMULATOR ===
+let bsState=null;
+let bsCount=0;
+function bsSelect(side){
+  if(bsState===side)return;
+  bsCount++;
+  bsState=side;
+  const btnZ=document.getElementById('bsBtnZ');
+  const btnB=document.getElementById('bsBtnB');
+  const figZ=document.getElementById('bsFigZ');
+  const figB=document.getElementById('bsFigB');
+  const lblZ=document.getElementById('bsLabelZ');
+  const lblB=document.getElementById('bsLabelB');
+  btnZ.classList.toggle('active',side==='zhuang');
+  btnB.classList.toggle('active',side==='butterfly');
+  figZ.classList.toggle('is-self',side==='zhuang');
+  figZ.classList.toggle('is-dream',side!=='zhuang');
+  figB.classList.toggle('is-self',side==='butterfly');
+  figB.classList.toggle('is-dream',side!=='butterfly');
+  lblZ.textContent=(side==='zhuang')?'自分':'夢';
+  lblB.textContent=(side==='butterfly')?'自分':'夢';
+  document.getElementById('bsCounter').textContent='選択回数: '+bsCount;
+  if(bsCount>=3){
+    document.getElementById('bsStage').classList.add('is-suspended');
+    document.getElementById('bsReveal').classList.add('show');
+  }
 }
-// Quiz 2
-function pickQ2(idx){
-  document.querySelectorAll('#q2choices .quiz-choice').forEach((c,i)=>{
-    c.classList.toggle('selected',i===idx);
-  });
-  document.getElementById('q2result').classList.add('show');
+
+// === STAGE 2: DREAM TEST ===
+const dtOpened={1:false,2:false,3:false};
+function dtToggle(n){
+  const m=document.getElementById('dtM'+n);
+  const isOpen=m.classList.toggle('is-open');
+  if(isOpen)dtOpened[n]=true;
+  if(dtOpened[1]&&dtOpened[2]&&dtOpened[3]){
+    document.getElementById('dtFinal').classList.add('show');
+  }
 }
 
 // Terminal animation

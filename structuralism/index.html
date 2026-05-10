@@ -49,7 +49,7 @@ a{color:inherit;text-decoration:none;}
 
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
-.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -61,7 +61,7 @@ a{color:inherit;text-decoration:none;}
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -101,7 +101,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:180px 1fr;border:1px solid #c8bfaa;overflow:hidden;min-height:200px;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(90px, 35%, 180px) 1fr;border:1px solid #c8bfaa;overflow:hidden;min-height:200px;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:0;min-height:200px;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -294,7 +294,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box{padding:0 20px;}
   .scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -1177,35 +1177,35 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="ref-list">
 
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">原著</span><span class="ref-year">1949</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1949</span></div>
     <p class="ref-title"><a href="https://doi.org/10.1515/9783110278828" target="_blank" rel="noopener">Les Structures élémentaires de la parenté（親族の基本構造）</a></p>
     <p class="ref-author">Claude Lévi-Strauss</p>
     <p class="ref-desc">構造主義人類学の基礎テキスト。婚姻体系の分析を通じて、文化的規則に普遍的構造があることを示した。数学的思考と人類学の融合という点で異例の著作。原著フランス語版は読解が難しいが、橋爪大三郎の入門書を先に読むと入りやすい。</p>
   </div>
 
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">原著</span><span class="ref-year">1962</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1962</span></div>
     <p class="ref-title"><a href="https://www.worldcat.org/title/6897893" target="_blank" rel="noopener">La Pensée sauvage（野生の思考）</a></p>
     <p class="ref-author">Claude Lévi-Strauss</p>
     <p class="ref-desc">サルトルとの直接対決が行われた著作。「具体の科学」という概念で、未開社会の思考が近代科学に劣らない論理的体系であることを示す。最終章でサルトルの弁証法的理性批判が実名で批判される。読み物としての面白さも高い。</p>
   </div>
 
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">入門書</span><span class="ref-year">1988</span></div>
-    <p class="ref-title"><a href="https://www.worldcat.org/title/25225524" target="_blank" rel="noopener">はじめての構造主義</a></p>
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1988</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4061488988/" target="_blank" rel="noopener">はじめての構造主義</a></p>
     <p class="ref-author">橋爪大三郎（講談社現代新書）</p>
     <p class="ref-desc">日本語での入門書として最も読みやすい一冊。数学的なルーツから説き起こし、レヴィ＝ストロースの婚姻体系分析を平易に解説する。本記事を読んだあとにこちらを読むと、理解が一段深まる。</p>
   </div>
 
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">原著</span><span class="ref-year">1966</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1966</span></div>
     <p class="ref-title"><a href="https://www.worldcat.org/title/1529574" target="_blank" rel="noopener">Les Mots et les Choses（言葉と物）</a></p>
     <p class="ref-author">Michel Foucault / ミシェル・フーコー</p>
     <p class="ref-desc">「人間は波打ちぎわの砂の表情のように消滅するだろう」という結語で有名。「エピステーメー（知の配置）」という概念で、各時代の思考の前提構造を解剖する。難解だが、第1章と最終章だけでも読む価値がある。</p>
   </div>
 
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">批判的検討</span><span class="ref-year">2021</span></div>
+    <div class="ref-meta"><span class="ref-type">批判論文</span><span class="ref-year">2021</span></div>
     <p class="ref-title"><a href="https://doi.org/10.1093/acrefore/9780190228613.013.1353" target="_blank" rel="noopener">Structuralism — Oxford Research Encyclopedias</a></p>
     <p class="ref-author">Oxford University Press</p>
     <p class="ref-desc">構造主義の全体像と現代的な評価を英語でまとめた信頼性の高い百科事典項目。ポスト構造主義との関係、フェミニスト批判、脱植民地主義的視点からの再評価まで網羅している。</p>
@@ -1257,11 +1257,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
       <p class="sidebar-text">
-        — 実存主義（N-05）<br>
-        — 言語が思考を制約するか（L-03）<br>
-        — サピア＝ウォーフ仮説（L-01）<br>
-        — リベット実験・自由意志（A-03）<br>
-        — 確証バイアス（E-01）
+        — <a href="/existentialism" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">実存主義</a><br>
+        — <a href="/saussure_language_divides" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ソシュールと分節</a><br>
+        — <a href="/libet_free_will" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">リベット実験</a><br>
+        — <a href="/confirmation_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">確証バイアス</a><br>
+        — <a href="/plato_cave" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">プラトンの洞窟</a>
       </p>
     </div>
 
@@ -1347,11 +1347,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <p class="related-card-desc">構造主義と正面衝突したサルトルの思想。「実存は本質に先立つ」が意味することと、その限界とは。</p>
       <p class="related-card-arrow">読む →</p>
     </a>
-    <a class="related-card" href="#TODO">
+    <a class="related-card" href="/saussure_language_divides">
       <p class="related-card-tag">言語学・記号論</p>
       <p class="related-card-title">言語が世界を切り分ける——ソシュールと分節</p>
       <p class="related-card-desc">「papillon」は蝶か蛾か。言語がいかに連続する現実に境界を引くかを、複数の言語を通して探る。</p>
-      <p class="related-card-arrow">近日公開</p>
+      <p class="related-card-arrow">読む →</p>
     </a>
   </div>
 </div>

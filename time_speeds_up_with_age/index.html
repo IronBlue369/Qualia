@@ -89,7 +89,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'1/n';position:absolute;right:32px;top:4px;font-family:'Playfair Display',serif;font-size:110px;font-weight:900;font-style:italic;color:#e0d8c8;opacity:.5;line-height:1;pointer-events:none;letter-spacing:-.04em;}
+.scenario-inner::after{content:'§';position:absolute;right:32px;top:4px;font-family:'Playfair Display',serif;font-size:110px;font-weight:900;font-style:italic;color:#e0d8c8;opacity:.5;line-height:1;pointer-events:none;letter-spacing:-.04em;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -115,7 +115,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -157,7 +157,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:160px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(80px, 31%, 160px) 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
 .person-block-img{background:#ede8dc;display:block;padding:0;overflow:hidden;position:relative;min-height:100%;}
 .person-block-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -377,14 +377,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:0;justify-content:center;}
   .person-block-img img{max-width:160px;}
   .tip-box{left:0;transform:none;width:200px;}
@@ -1046,7 +1046,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   <div class="ref-list">
     <div class="ref-item fade">
       <div class="ref-meta">
-        <span class="ref-type">一次文献</span>
+        <span class="ref-type">一次資料</span>
         <span class="ref-year">1877 / 2022</span>
       </div>
       <p class="ref-title"><a href="https://doi.org/10.1163/22134468-bja10054" target="_blank" rel="noopener">Paul Janet and Changes in the Apparent Speed of Passage of Time with Aging</a></p>
@@ -1055,7 +1055,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="ref-item fade">
       <div class="ref-meta">
-        <span class="ref-type">理論論文</span>
+        <span class="ref-type">原著論文</span>
         <span class="ref-year">2019</span>
       </div>
       <p class="ref-title"><a href="https://doi.org/10.1017/S1062798718000741" target="_blank" rel="noopener">Why the Days Seem Shorter as We Get Older</a></p>
@@ -1073,12 +1073,21 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="ref-item fade">
       <div class="ref-meta">
-        <span class="ref-type">実証研究</span>
+        <span class="ref-type">原著論文</span>
         <span class="ref-year">2021</span>
       </div>
       <p class="ref-title"><a href="https://doi.org/10.1163/22134468-bja10024" target="_blank" rel="noopener">Age, personal characteristics, and the speed of psychological time</a></p>
       <p class="ref-author">Gagnon-Harvey, A.-A., McArthur, J., Tétreault, E., Fortin-Guichard, D., & Grondin, S. — Timing & Time Perception, Vol. 9 (2021)</p>
       <p class="ref-desc">「過去10年が速く感じるか」という感覚と、年齢・性格・認知機能との関係を大規模に調べたもの。自伝的記憶の量より、新しい記憶を作る能力の方が加速の予測因子として強い、という結果が示されている。</p>
+    </div>
+    <div class="ref-item fade">
+      <div class="ref-meta">
+        <span class="ref-type">一般書</span>
+        <span class="ref-year">2012</span>
+      </div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4772695397/" target="_blank" rel="noopener">Time Warped（邦訳：脳の中の時間旅行 — なぜ時間はワープするのか）</a></p>
+      <p class="ref-author">Claudia Hammond</p>
+      <p class="ref-desc">時間知覚研究を一般読者向けに広く紹介する書。Janet/James から現代の時間錯覚研究までカバーし、記事の「年齢で時間が速く感じる」テーマを実験例とともに掘り下げる。</p>
     </div>
   </div>
 
@@ -1119,10 +1128,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
       <p class="sidebar-text">
-        — ウェーバー・フェヒナーの法則<br>
-        — エピソード記憶<br>
-        — 心理物理学<br>
-        — 自伝的記憶
+        — <a href="/memory_reconsolidation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">記憶は再構築される</a><br>
+        — <a href="/now_is_always_past" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">「今」は常に過去</a><br>
+        — <a href="/marshmallow_test" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マシュマロ実験</a><br>
+        — <a href="/libet_free_will" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">リベット実験</a><br>
+        — <a href="/real_self" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">本当の自分とは</a>
       </p>
     </div>
     <div class="sidebar-block fade">

@@ -44,7 +44,7 @@ a{color:inherit;text-decoration:none;}
 .cover-stat-lbl{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:300;color:#7a6a55;line-height:1.6;}
 .cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}.cover-aside strong{color:#3d3020;font-weight:600;}
 .scenario-wrap{max-width:900px;margin:0 auto;padding:40px 48px 0;}
-.scenario-inner{position:relative;padding:32px 36px;background:linear-gradient(135deg,#f3efe6 0%,#ede8dc 100%);border:1px solid #c8bfaa;}
+.scenario-inner{position:relative;padding:32px 36px;background:linear-gradient(135deg,#f3efe6 0%,#ede8dc 100%);border:1px solid #c8bfaa;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner::before{content:'';position:absolute;top:-1px;left:40px;right:40px;height:3px;background:#8b1a1a;}
 .scenario-num{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:rgba(139,26,26,.06);position:absolute;top:12px;right:24px;line-height:1;user-select:none;}
 .scenario-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
@@ -60,7 +60,7 @@ a{color:inherit;text-decoration:none;}
 .summary-inner{margin:24px 0 0;padding:20px 24px;background:#f3efe6;border-left:4px solid #8b1a1a;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
 .summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
 .summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}.summary-text strong{font-weight:600;}
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}.article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
 .sec-label{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;color:#7a6a55;text-transform:uppercase;white-space:nowrap;padding-right:14px;border-right:1px solid #c8bfaa;}
@@ -85,7 +85,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
 .quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:center;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -205,11 +205,11 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .fade{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease;}.fade.on{opacity:1;transform:none;}
 @media(max-width:720px){
 .cover{grid-template-columns:1fr;padding:40px 20px 32px;gap:24px;}
-.article{grid-template-columns:1fr;padding:0 20px;}.article-side{padding:0 0 48px;}
+.article{grid-template-columns:minmax(0,1fr);padding:0 20px;}.article-side{padding:0 0 48px;}
 .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:12px;}
 .summary-box,.scenario-wrap,.terminal-wrap,.related{padding-left:20px;padding-right:20px;}
 .misconception-item{flex-direction:column;}.misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
-.person-block{grid-template-columns:1fr;}.related-grid{grid-template-columns:1fr;}
+.related-grid{grid-template-columns:1fr;}
 .tip-box{left:0;transform:none;width:200px;}.tip-box::after{left:20px;transform:none;}
 }
 
@@ -363,7 +363,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="cover-aside"><strong>同年の世界：</strong>オーソン・ウェルズの『宇宙戦争』ラジオ放送がアメリカ中にパニックを引き起こし、ドイツはオーストリアを併合（アンシュルス）。「水晶の夜」事件が起きた年でもある。アクション・コミックス第1号でスーパーマンが初登場。</div>
 </div></div>
 
-<div class="scenario-wrap fade"><div class="scenario-inner"><span class="scenario-num">∞</span>
+<div class="scenario-wrap fade"><div class="scenario-inner"><span class="scenario-num">§</span>
 <p class="scenario-text">スマートフォンの画面を下に引っ張って、新しい投稿が表示されるのを待つ。何も出ないかもしれないし、面白いものが出るかもしれない。その「わからなさ」に、指が止まらなくなった経験はないだろうか。</p>
 <p class="scenario-text">あるいは、ガチャを回す瞬間。あと1回だけ、と思ったはずなのに気づけば10回、20回。これは意志が弱いから起きるのではない。自制心の問題でもない。学歴も性格も関係がない。</p>
 <p class="scenario-text closing">「いつ来るかわからない報酬」が人間の行動に与える力は、1930年代に発見された。そしてその力は、今この瞬間も、あなたの手の中で動いている。</p>
@@ -492,10 +492,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <div class="fade"><div class="sec-rule"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
 <div class="ref-list">
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著書籍</span><span class="ref-year">1957</span></div><p class="ref-title"><a href="https://doi.org/10.1126/science.127.3296.477.c" target="_blank" rel="noopener">Schedules of Reinforcement</a></p><p class="ref-author">C.B. Ferster & B.F. Skinner — Appleton-Century-Crofts</p><p class="ref-desc">70,000時間以上の研究データに基づく強化スケジュールの決定版。変動比率の「やめられなさ」が累積記録のグラフで可視化されている。741ページを読み通す必要はないが、グラフだけ見ても面白い。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">1957</span></div><p class="ref-title"><a href="https://doi.org/10.1126/science.127.3296.477.c" target="_blank" rel="noopener">Schedules of Reinforcement</a></p><p class="ref-author">C.B. Ferster & B.F. Skinner — Appleton-Century-Crofts</p><p class="ref-desc">70,000時間以上の研究データに基づく強化スケジュールの決定版。変動比率の「やめられなさ」が累積記録のグラフで可視化されている。741ページを読み通す必要はないが、グラフだけ見ても面白い。</p></div>
 <div class="ref-item fade"><div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">1998</span></div><p class="ref-title"><a href="https://doi.org/10.5210/bsi.v7i2.311" target="_blank" rel="noopener">B.F. Skinner's Views on Gambling</a></p><p class="ref-author">Jeffrey N. Weatherly & Mark R. Dixon — Behavior and Social Issues, 7(2)</p><p class="ref-desc">スキナーがギャンブルについて述べた全記述を体系的にまとめた論文。1953年から1983年までの変遷を追える。</p></div>
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">展望論文</span><span class="ref-year">2023</span></div><p class="ref-title"><a href="https://doi.org/10.1016/j.drugalcdep.2023.109686" target="_blank" rel="noopener">Engineered Highs: Reward Variability and Frequency</a></p><p class="ref-author">Luke Clark et al. — Drug and Alcohol Dependence</p><p class="ref-desc">報酬の不確実性がギャンブル・SNS・ゲーム・オンラインショッピングに共通する依存の原理であることを横断的に分析した展望論文。</p></div>
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">実験論文</span><span class="ref-year">2014</span></div><p class="ref-title"><a href="https://doi.org/10.1038/srep20479" target="_blank" rel="noopener">Social Cycling and Conditional Responses in the Rock-Paper-Scissors Game</a></p><p class="ref-author">Zhijian Wang, Bin Xu & Hai-Jun Zhou — Scientific Reports, 4</p><p class="ref-desc">360人による大規模じゃんけん実験。勝者は同じ手を繰り返し、敗者はグー→パー→チョキの順に切り替える傾向を発見。トリビアQ2の根拠。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">総説論文</span><span class="ref-year">2023</span></div><p class="ref-title"><a href="https://doi.org/10.1016/j.addbeh.2023.107626" target="_blank" rel="noopener">Engineered Highs: Reward Variability and Frequency</a></p><p class="ref-author">Luke Clark et al. — Drug and Alcohol Dependence</p><p class="ref-desc">報酬の不確実性がギャンブル・SNS・ゲーム・オンラインショッピングに共通する依存の原理であることを横断的に分析した展望論文。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2014</span></div><p class="ref-title"><a href="https://doi.org/10.1038/srep20479" target="_blank" rel="noopener">Social Cycling and Conditional Responses in the Rock-Paper-Scissors Game</a></p><p class="ref-author">Zhijian Wang, Bin Xu & Hai-Jun Zhou — Scientific Reports, 4</p><p class="ref-desc">360人による大規模じゃんけん実験。勝者は同じ手を繰り返し、敗者はグー→パー→チョキの順に切り替える傾向を発見。トリビアQ2の根拠。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2017</span></div><p class="ref-title"><a href="https://www.amazon.co.jp/dp/4478067309/" target="_blank" rel="noopener">Irresistible（邦訳：僕らはそれに抵抗できない — 「依存症ビジネス」のつくられかた）</a></p><p class="ref-author">Adam Alter</p><p class="ref-desc">スキナー箱で発見された変動比率強化スケジュールが、現代のスマホアプリ・ソーシャルメディア・ガチャに応用されている経路を丁寧に追う一般書。</p></div>
 </div></div>
 
 <div class="trust-note fade"><p class="trust-label">📌 この記事について</p><p class="trust-text">スキナーのオペラント条件づけと強化スケジュールは心理学の教科書に標準的に掲載される確立された知見に基づいている。ギャンブルとの関連はスキナー自身の記述（1953年）に遡る。デジタル製品との接続はシュルの民族誌研究（2012年）やクラークらの展望論文（2023年）を主な根拠としている。トリビアの出典は各カード下部に記載した。</p></div>
@@ -505,7 +506,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="article-side"><div style="position:sticky;top:40px;">
 <div class="sidebar-block fade"><p class="sidebar-label">Key Number</p><p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">87,000</p><p class="sidebar-text">変動比率で訓練されたハトが14時間に記録したキーつつき回数。報酬は全体の1%未満。</p></div>
 <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">スキナーは元々作家志望。ハミルトン大学で英文学の学位を取り、「暗黒の1年」を経て心理学に転向した。少年時代からローラースケートのスクーター、滑空機、果実の選別装置を自作している。</p></div>
-<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— 報酬予測誤差とドーパミン<br>— ダークパターンと報酬系ハック<br>— 損失回避<br>— アテンション・エコノミー</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <a href="/reward_prediction_error" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">報酬予測誤差</a><br>— <a href="/dark_patterns" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ダークパターン</a><br>— <a href="/loss_aversion" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">損失回避</a><br>— <a href="/attention_economy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">アテンション・エコノミー</a><br>— <a href="/dopamine_starvation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ネズミはドーパミンを選んで餓死した</a></p></div>
 <div class="sidebar-block fade"><p class="sidebar-label">今日の行動を振り返る</p><ul class="sidebar-check"><li>今日、スマホを「目的なく」開いたのは何回か。</li><li>最後に「もう1回だけ」と思ったのはいつか。</li><li>通知を見なかったとき、損をした気がしたか。</li></ul></div>
 </div></div></div>
 
@@ -526,7 +527,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <div class="related fade"><p class="related-label">次に読む</p><div class="related-grid">
 <a class="related-card" href="/confirmation_bias"><p class="related-card-tag">認知バイアス × 推論</p><p class="related-card-title">確証バイアス</p><p class="related-card-desc">自分の仮説を支持する証拠ばかり集めてしまう。ウェイソンの実験が暴いた、推論の根本的な偏り。</p><p class="related-card-arrow">読む →</p></a>
-<a class="related-card" href="#TODO"><p class="related-card-tag">行動 × デザイン</p><p class="related-card-title">ダークパターンと報酬系ハック</p><p class="related-card-desc">無限スクロール、通知バッジ、ストリーク。スキナーの原理がUI設計に組み込まれるとき。</p><p class="related-card-arrow">近日公開</p></a>
+<a class="related-card" href="/dark_patterns"><p class="related-card-tag">行動 × デザイン</p><p class="related-card-title">ダークパターンと報酬系ハック</p><p class="related-card-desc">無限スクロール、通知バッジ、ストリーク。スキナーの原理がUI設計に組み込まれるとき。</p><p class="related-card-arrow">読む →</p></a>
 </div></div>
 
 <!-- BACK TO TOC -->

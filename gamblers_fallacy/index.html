@@ -89,7 +89,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -115,7 +115,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -413,7 +413,7 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -520,7 +520,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <p class="cover-kicker">認知バイアス / 確率論</p>
     <h1>黒が26回続いた夜、<em>二十六人</em>が破産した。</h1>
     <p class="cover-deck">ルーレットに記憶はない。それでも脳は、次こそ赤が「来るはずだ」と叫ぶ。1913年8月18日、モンテカルロで起きたこと。そして今日も、同じ誤りは私たちの頭の中で動き続けている。</p>
-    <div class="cover-byline"><span>認知バイアス</span><span>確率論</span><span>行動経済学</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>BIAS REPORT</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -1137,26 +1137,26 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <div class="ref-list">
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1971</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1971</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1037/h0031322" target="_blank" rel="noopener">Belief in the Law of Small Numbers</a></p>
       <p class="ref-author">Amos Tversky &amp; Daniel Kahneman / Psychological Bulletin, 76(2), 105–110</p>
       <p class="ref-desc">ギャンブラーの誤謬を代表性ヒューリスティックの帰結として初めて体系的に論じた論文。統計の専門家でさえ小さなサンプルを過剰に代表的と見なす傾向を実証した。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2004</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2004</span></div>
       <p class="ref-title"><a href="https://doi.org/10.3758/BF03206327" target="_blank" rel="noopener">The Hot Hand Fallacy and the Gambler's Fallacy: Two Faces of Subjective Randomness?</a></p>
       <p class="ref-author">Peter Ayton &amp; Ilan Fischer / Memory &amp; Cognition, 32(8), 1369–1378</p>
       <p class="ref-desc">ギャンブラーの誤謬とホットハンド錯覚が表裏一体の現象であることを示した論文。機械と人間で正反対の連続性を読み込む脳の二重基準を解明した。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2016</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2016</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1093/qje/qjw017" target="_blank" rel="noopener">Decision Making Under the Gambler's Fallacy: Evidence from Asylum Judges, Loan Officers, and Baseball Umpires</a></p>
       <p class="ref-author">Daniel L. Chen, Tobias J. Moskowitz &amp; Kelly Shue / Quarterly Journal of Economics, 131(3), 1181–1242</p>
       <p class="ref-desc">亡命審査判事、ローン審査員、野球主審という3つの職業の大規模データを横断分析し、ギャンブラーの誤謬が現代社会の重要な判断にも観察されることを示した。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1814</span></div>
-      <p class="ref-title">Essai philosophique sur les probabilités (確率の哲学的試論)</p>
+      <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">1814</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4003392515/" target="_blank" rel="noopener">Essai philosophique sur les probabilités (確率の哲学的試論)</a></p>
       <p class="ref-author">Pierre-Simon Laplace</p>
       <p class="ref-desc">確率論の哲学的基礎を論じた古典。独立試行における過去と未来の無関係性について、ギャンブラーの誤謬と呼ばれる前の時代に既に明確な記述がある。</p>
     </div>
@@ -1202,7 +1202,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— モンティ・ホール問題<br>— 誕生日のパラドックス<br>— 確証バイアス<br>— 基準率の無視<br>— 相関は因果ではない</p>
+      <p class="sidebar-text">— <a href="/monty_hall" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">モンティ・ホール問題</a><br>— <a href="/birthday_paradox" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">誕生日のパラドックス</a><br>— <a href="/confirmation_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">確証バイアス</a><br>— <a href="/base_rate_neglect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">基準率の無視</a><br>— <a href="/correlation_causation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">相関は因果ではない</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">信頼度</p>

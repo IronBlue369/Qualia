@@ -53,7 +53,7 @@ a{color:inherit;text-decoration:none;}
 .cover-aside strong{color:#3d3020;font-weight:600;}
 
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
-.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -73,7 +73,7 @@ a{color:inherit;text-decoration:none;}
 .summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
 .summary-text strong{font-weight:600;}
 
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -110,7 +110,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -268,9 +268,9 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box{padding:0 20px;}
   .scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
-  .person-block{grid-template-columns:1fr;}
+  
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .ship-stage{flex-direction:column;align-items:stretch;}
@@ -529,10 +529,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   <p class="quote-attr">— プルタルコス『対比列伝』「テセウス伝」第23章（西暦75年頃）</p>
 </div>
 
-<!-- Photo: George E. Koronaios, CC BY-SA 4.0, via Wikimedia Commons -->
+<!-- Photo: Templar52 / Attribution license, via Wikimedia Commons -->
 <div class="img-placeholder fade" style="border-style:solid;">
   <img src="img_trireme.jpg" alt="アテナイの三段櫂船オリンピアスの復元船" loading="lazy" style="width:100%;display:block;">
-  <p class="img-caption">アテナイの三段櫂船「オリンピアス」。1987年、古代設計図から復元され、ヘレニック海軍に就役した、現存する唯一のトリレメ。古代の船を現代に組み直すこの船自体が、テセウスの問いの延長線にある。（撮影: George E. Koronaios, CC BY-SA 4.0）</p>
+  <p class="img-caption">アテナイの三段櫂船「オリンピアス」。1987年、古代設計図から復元され、ヘレニック海軍に就役した、現存する唯一のトリレメ。古代の船を現代に組み直すこの船自体が、テセウスの問いの延長線にある。（撮影: Templar52 / Attribution license）</p>
 </div>
 
 <hr class="art-rule">
@@ -850,14 +850,14 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
 <div class="ref-list">
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">原典</span><span class="ref-year">75年頃</span></div>
-    <p class="ref-title"><a href="https://classics.mit.edu/Plutarch/theseus.html" target="_blank" rel="noopener">Life of Theseus（テセウス伝）</a></p>
+    <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">75年頃</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4480083219/" target="_blank" rel="noopener">Life of Theseus（テセウス伝）</a></p>
     <p class="ref-author">Plutarch — Parallel Lives（対比列伝）</p>
     <p class="ref-desc">テセウスの船の問題が記録された原典。テセウスの生涯を伝記として描きつつ、第23章で船の保存と哲学論争に触れている。ドライデン訳の英語全文がMITのサイトで読める。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">哲学書</span><span class="ref-year">1655</span></div>
-    <p class="ref-title"><a href="https://www.britannica.com/topic/ship-of-Theseus-philosophy" target="_blank" rel="noopener">De Corpore（物体論）</a></p>
+    <div class="ref-meta"><span class="ref-type">古典</span><span class="ref-year">1655</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4876985448/" target="_blank" rel="noopener">De Corpore（物体論）</a></p>
     <p class="ref-author">Thomas Hobbes</p>
     <p class="ref-desc">「古い板で2隻目を作ったらどうなるか」を初めて提示した著作。ホッブズの変奏が加わったことで、問題は単純な「同一性」から「二つの本物の競合」へと拡張された。</p>
   </div>
@@ -868,7 +868,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <p class="ref-desc">テセウスの船を含む「物質的構成のパズル」を現代の形而上学の文脈で整理。四次元主義やルイスの時間的部分理論も解説されている。哲学を本格的に掘りたい人向け。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">科学論文</span><span class="ref-year">2005</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2005</span></div>
     <p class="ref-title"><a href="https://www.cell.com/cell/fulltext/S0092-8674(05)00408-3" target="_blank" rel="noopener">Retrospective Birth Dating of Cells in Humans</a></p>
     <p class="ref-author">Spalding, K. L. et al. — Cell, Vol. 122</p>
     <p class="ref-desc">核実験由来の炭素14を使って人体の細胞年齢を測定した画期的な研究。「7年で全身が入れ替わる」という俗説の出典であり、同時にその俗説が不正確であることも示している。</p>
@@ -903,7 +903,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   </div>
   <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">テセウスの船は実際にアテネの港に保存されていたとされる。少なくとも<strong>紀元前280年頃</strong>（デメトリオス・パレレウスの時代）まで現存していた。数百年にわたる保存の間に修繕が繰り返され、哲学者の議論の的となった。</p></div>
   <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">— 『ワンダヴィジョン』（2021）<br>— 映画『テセウスの船』（2012、インド）<br>— 日本ドラマ『テセウスの船』（2020）<br>— ニール・ゲイマン「おじいさんの斧」<br>— USSコンスティチューション号</p></div>
-  <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— I-01 細胞の入れ替わり<br>— O-05 マリーの部屋<br>— A-02 記憶は毎回再構築される<br>— N-01 胡蝶の夢</p></div>
+  <div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <a href="/cellular_turnover" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">細胞の入れ替わり</a><br>— <a href="/mary_room" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マリーの部屋</a><br>— <a href="/memory_reconsolidation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">記憶は再構築される</a><br>— <a href="/butterfly_dream" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">胡蝶の夢</a><br>— <a href="/real_self" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">本当の自分とは</a></p></div>
   <div class="sidebar-block fade">
     <p class="sidebar-label">同一性チェック</p>
     <ul class="sidebar-check">
@@ -962,11 +962,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <p class="related-card-desc">すべてを知っていた科学者が、初めて「赤」を見たとき。知識と体験は同じものだろうか。</p>
       <p class="related-card-arrow">読む →</p>
     </a>
-    <a class="related-card" href="#TODO">
+    <a class="related-card" href="/cellular_turnover">
       <p class="related-card-tag">生物学</p>
       <p class="related-card-title">細胞の入れ替わり</p>
       <p class="related-card-desc">あなたの身体は、どこまで「あなた」か。テセウスの船の生物学版。</p>
-      <p class="related-card-arrow">近日公開</p>
+      <p class="related-card-arrow">読む →</p>
     </a>
   </div>
 </div>

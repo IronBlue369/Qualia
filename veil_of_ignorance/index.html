@@ -89,7 +89,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'?';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -115,7 +115,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -157,7 +157,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;overflow:hidden;padding:0;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -321,14 +321,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:0;max-height:360px;}
   .person-block-img img{object-position:center 20%;}
   .tip-box{left:0;transform:none;width:200px;}
@@ -1146,13 +1146,17 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <hr class="art-rule fade">
 
-<!-- Person block: Sandel (no image, 1-column) -->
-<div class="person-block fade" style="grid-template-columns:1fr;">
-  <div class="person-block-body" style="border-left:none;">
+<!-- Person block: Sandel -->
+<div class="person-block fade">
+  <div class="person-block-img">
+    <img src="./person_sandel.jpg" alt="マイケル・サンデル" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+  </div>
+  <div class="person-block-body">
     <div class="person-block-name">マイケル・サンデル</div>
     <div class="person-block-role">Michael Sandel (1953–)</div>
     <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%9E%E3%82%A4%E3%82%B1%E3%83%AB%E3%83%BB%E3%82%B5%E3%83%B3%E3%83%87%E3%83%AB" target="_blank" rel="noopener" style="color:#7a6a55;text-decoration:none;border-bottom:1px solid #c8bfaa;">Wikipedia</a></p>
     <p class="person-block-desc">ハーバード大学教授。著書『これからの「正義」の話をしよう』(原題: Justice)は世界的ベストセラー。ロールズの「負荷なき自我」を批判し、人間は共同体・家族・文化に深く組み込まれた「負荷ある自我」であると主張した。NHK『ハーバード白熱教室』で日本でも広く知られる。</p>
+    <p class="person-block-credit" style="font-size:10px;color:#b0a090;margin-top:8px;">Photo: MeJudice / CC BY 3.0 via Wikimedia Commons</p>
   </div>
 </div>
 
@@ -1213,7 +1217,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="ref-list">
   <div class="ref-item fade">
     <div class="ref-meta">
-      <span class="ref-type">原著</span>
+      <span class="ref-type">原著論文</span>
       <span class="ref-year">1971</span>
     </div>
     <p class="ref-title"><a href="https://www.hup.harvard.edu/books/9780674000780" target="_blank" rel="noopener">A Theory of Justice</a></p>
@@ -1231,21 +1235,30 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   </div>
   <div class="ref-item fade">
     <div class="ref-meta">
-      <span class="ref-type">実証論文</span>
+      <span class="ref-type">原著論文</span>
       <span class="ref-year">1987</span>
     </div>
-    <p class="ref-title"><a href="https://doi.org/10.2307/2111418" target="_blank" rel="noopener">Choices of Principles of Distributive Justice in Experimental Groups</a></p>
+    <p class="ref-title"><a href="https://doi.org/10.2307/2111285" target="_blank" rel="noopener">Choices of Principles of Distributive Justice in Experimental Groups</a></p>
     <p class="ref-author">Norman Frohlich, Joe A. Oppenheimer, Cheryl L. Eavey — American Journal of Political Science</p>
     <p class="ref-desc">原初状態を実験室に持ち込んだ先駆的研究。ロールズのマキシミンを選んだのは5%未満という不穏な結果が記録されている。理論と実験の緊張関係に興味があるなら必読。</p>
   </div>
   <div class="ref-item fade">
     <div class="ref-meta">
-      <span class="ref-type">実証論文</span>
+      <span class="ref-type">原著論文</span>
       <span class="ref-year">2019</span>
     </div>
     <p class="ref-title"><a href="https://doi.org/10.1073/pnas.1910125116" target="_blank" rel="noopener">Veil-of-ignorance reasoning favors the greater good</a></p>
     <p class="ref-author">Karen Huang, Joshua D. Greene, Max Bazerman — Proceedings of the National Academy of Sciences</p>
     <p class="ref-desc">7実験・6,261人の大規模研究。ヴェール的推論は人々をより功利的にする——ロールズの予測とは違う方向に。この論文を読んでから記事を読み返すと、体験セクションの意味合いが変わる。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta">
+      <span class="ref-type">一般書</span>
+      <span class="ref-year">2009</span>
+    </div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4150503761/" target="_blank" rel="noopener">Justice: What's the Right Thing to Do?（邦訳：これからの「正義」の話をしよう — いまを生き延びるための哲学）</a></p>
+    <p class="ref-author">Michael J. Sandel</p>
+    <p class="ref-desc">Rawls の無知のベールを含む現代正義論を一般読者向けに俯瞰したベストセラー。記事を読んだ読者が「正義論の見取り図」へ進む最初の一冊として最適。</p>
   </div>
 </div>
 
@@ -1288,9 +1301,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
       <p class="sidebar-text">
-        — <a href="https://qualiajournal.com/prisoners_dilemma" style="border-bottom:1px solid #c8bfaa;">囚人のジレンマ</a><br>
-        — <a href="https://qualiajournal.com/asch_conformity" style="border-bottom:1px solid #c8bfaa;">同調圧力（アッシュ実験）</a><br>
-        — <a href="https://qualiajournal.com/ship_of_theseus" style="border-bottom:1px solid #c8bfaa;">テセウスの船</a>
+        — <a href="/prisoners_dilemma" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">囚人のジレンマ</a><br>
+        — <a href="/asch_conformity" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">同調圧力(アッシュの実験)</a><br>
+        — <a href="/ship_of_theseus" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">テセウスの船</a><br>
+        — <a href="/trolley_problem" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">トロッコ問題</a><br>
+        — <a href="/structuralism" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">構造主義</a>
       </p>
     </div>
     <div class="sidebar-block fade">

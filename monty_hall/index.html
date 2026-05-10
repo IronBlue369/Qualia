@@ -57,7 +57,7 @@ a{color:inherit;text-decoration:none;}
 
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
-.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -80,7 +80,7 @@ a{color:inherit;text-decoration:none;}
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -121,7 +121,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -334,7 +334,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -346,7 +346,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
   .door{width:100%;max-width:200px;height:110px;}
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
 }
 
@@ -940,22 +940,28 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <p class="ref-desc">モンティ・ホール問題を学術的に初めて定式化した手紙。3つの箱を使った問題として提示された。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">コラム</span><span class="ref-year">1990</span></div>
+    <div class="ref-meta"><span class="ref-type">記事</span><span class="ref-year">1990</span></div>
     <p class="ref-title"><a href="https://web.archive.org/web/2023/https://parade.com/970343/ask-marilyn/" target="_blank" rel="noopener">Ask Marilyn — Parade Magazine</a></p>
     <p class="ref-author">Marilyn vos Savant</p>
     <p class="ref-desc">読者の質問に答える形で問題が掲載され、全米規模の論争を引き起こした。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">学術論文</span><span class="ref-year">1991</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1991</span></div>
     <p class="ref-title"><a href="https://www.jstor.org/stable/2684453" target="_blank" rel="noopener">Let's Make a Deal: The Player's Dilemma</a></p>
     <p class="ref-author">Morgan, Chaganty, Dahiya, Doviak — The American Statistician, Vol. 45, No. 4</p>
     <p class="ref-desc">問題の前提条件と司会者の振る舞いの違いが確率に与える影響を分析した論文。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">心理学</span><span class="ref-year">2003</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2003</span></div>
     <p class="ref-title"><a href="https://doi.org/10.1037/0096-3445.132.1.3" target="_blank" rel="noopener">The Psychology of the Monty Hall Problem</a></p>
     <p class="ref-author">Stefan Krauss &amp; X. T. Wang — Journal of Experimental Psychology: General</p>
     <p class="ref-desc">なぜ人間がこの問題で間違えるのかを認知心理学の観点から分析した研究。</p>
+  </div>
+  <div class="ref-item fade">
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2008</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4478004528/" target="_blank" rel="noopener">The Drunkard's Walk（邦訳：たまたま — 日常に潜む「偶然」を科学する）</a></p>
+    <p class="ref-author">Leonard Mlodinow</p>
+    <p class="ref-desc">モンティ・ホール問題を含む確率の直感の落とし穴を体系的に扱う。記事の体験(扉の選択)を読み終えた読者が「他にもあるのか」と思った時の最良の入口。</p>
   </div>
 </div>
 
@@ -993,7 +999,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— <span class="tip" onclick="toggleTip(this)">ベイズ更新<span class="tip-box"><strong>ベイズ更新（Bayesian updating）</strong><br>新しい証拠が得られるたびに、確率の見積もりを合理的に修正していく考え方。モンティ・ホール問題はその典型例。</span></span><br>— 確証バイアス<br>— サンクコスト錯誤<br>— 損失回避<br>— フレーミング効果</p>
+      <p class="sidebar-text">— <span class="tip" onclick="toggleTip(this)">ベイズ更新<span class="tip-box"><strong>ベイズ更新（Bayesian updating）</strong><br>新しい証拠が得られるたびに、確率の見積もりを合理的に修正していく考え方。モンティ・ホール問題はその典型例。</span></span><br>— <a href="/confirmation_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">確証バイアス</a><br>— <a href="/sunk_cost_fallacy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">サンクコスト錯誤</a><br>— <a href="/loss_aversion" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">損失回避</a><br>— <a href="/framing_effect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">フレーミング効果</a><br>— <a href="/gamblers_fallacy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ギャンブラーの誤謬</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">信頼度</p>

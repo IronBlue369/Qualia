@@ -89,7 +89,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -115,7 +115,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -147,7 +147,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(70px, 27%, 140px) 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
 .person-block-img{background:#ede8dc;padding:0;overflow:hidden;}
 .person-block-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center top;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -160,6 +160,22 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .scene-img img{width:100%;height:auto;display:block;}
 .scene-img-caption{padding:10px 16px;border-top:1px solid #c8bfaa;background:#f3efe6;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.6;}
 .scene-img-caption strong{color:#3d3020;font-weight:600;}
+
+/* === Fossil + Reconstruction pair === */
+.scene-pair{margin:28px 0;border:1px solid #c8bfaa;background:#ede8dc;overflow:hidden;}
+.scene-pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#c8bfaa;}
+.scene-pair-cell{margin:0;background:#1a1208;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.scene-pair-cell img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;cursor:zoom-in;transition:opacity .2s;}
+.scene-pair-cell img:hover{opacity:.92;}
+.scene-pair-label{position:absolute;top:8px;left:8px;background:rgba(20,15,10,.85);color:#d4a574;padding:4px 10px;font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;z-index:5;border-radius:2px;pointer-events:none;}
+.scene-pair-arrow{display:none;}
+.scene-pair-caption{padding:12px 16px;border-top:1px solid #c8bfaa;background:#f3efe6;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;line-height:1.6;}
+.scene-pair-caption strong{color:#3d3020;font-weight:600;}
+.scene-pair-credit{display:block;margin-top:6px;color:#b0a090;font-size:10px;line-height:1.5;}
+@media(max-width:600px){
+  .scene-pair-grid{grid-template-columns:1fr;}
+  .scene-pair-cell{aspect-ratio:3/2;}
+}
 .scene-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin:28px 0;}
 .scene-grid .scene-img{margin:0;}
 @media(max-width:720px){.scene-grid{grid-template-columns:1fr;}}
@@ -364,14 +380,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
   .person-block-img img{max-width:160px;}
   .tip-box{left:0;transform:none;width:200px;}
@@ -432,6 +448,36 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   .fig-glossary th{width:36%;font-size:11px;padding:8px 10px;}
   .fig-glossary td{font-size:11px;padding:8px 10px;}
   .fig-glossary td.gl-read{width:28%;}
+}
+
+/* === Image zoom: hover loupe + click lightbox === */
+.fig-img-zoomable{cursor:zoom-in;transition:opacity .2s;}
+.fig-img-zoomable:hover{opacity:.92;}
+.fig-zoom-hint{display:block;text-align:center;font-family:'Source Sans 3',sans-serif;font-size:11px;color:#7a6a55;margin-top:8px;letter-spacing:.04em;}
+.fig-zoom-hint::before{content:'🔍 ';margin-right:2px;}
+.fig-loupe{display:none;position:fixed;width:200px;height:200px;border-radius:50%;border:2px solid #1a1208;box-shadow:0 4px 18px rgba(0,0,0,.35);background-repeat:no-repeat;pointer-events:none;z-index:600;background-color:#fff;}
+@media(hover:none){.fig-loupe{display:none!important;}}
+.lightbox{display:none;position:fixed;inset:0;background:rgba(20,15,10,.96);z-index:900;overflow:auto;padding:0;}
+.lightbox.show{display:block;}
+.lightbox-bar{position:sticky;top:0;left:0;right:0;height:54px;background:rgba(20,15,10,.85);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:space-between;padding:0 22px;z-index:910;}
+.lightbox-title{font-family:'Source Sans 3',sans-serif;font-size:12px;color:#d4a574;letter-spacing:.08em;text-transform:uppercase;}
+.lightbox-actions{display:flex;gap:8px;align-items:center;}
+.lightbox-btn{background:rgba(255,255,255,.1);color:#f3efe6;border:1px solid rgba(255,255,255,.2);font-family:'Source Sans 3',sans-serif;font-size:13px;padding:6px 14px;border-radius:4px;cursor:pointer;}
+.lightbox-btn:hover{background:rgba(255,255,255,.18);}
+.lightbox-btn.close{font-size:20px;line-height:1;width:36px;padding:0;}
+.lightbox-stage{display:flex;justify-content:center;align-items:flex-start;padding:24px;min-height:calc(100vh - 54px);}
+.lightbox-img{display:block;max-width:none;width:auto;height:auto;image-rendering:auto;background:#fff;box-shadow:0 8px 40px rgba(0,0,0,.5);}
+.lightbox-img.fit{max-width:calc(100vw - 48px);max-height:calc(100vh - 100px);width:auto;}
+.lightbox-img.zoom2x{width:1320px;}
+.lightbox-img.zoom3x{width:1980px;}
+.lightbox-cap{padding:14px 28px 32px;color:#b0a090;font-family:'Source Serif 4',serif;font-size:13px;line-height:1.7;text-align:center;max-width:780px;margin:0 auto;}
+.lightbox-cap a{color:#d4a574;border-bottom:1px dotted #d4a574;}
+@media(max-width:720px){
+  .lightbox-img.zoom2x{width:1100px;}
+  .lightbox-img.zoom3x{width:1600px;}
+  .lightbox-bar{height:48px;padding:0 14px;}
+  .lightbox-title{font-size:10px;}
+  .lightbox-btn{font-size:11px;padding:5px 10px;}
 }
 </style>
 <meta property="og:title" content="進化に目的はない — Qualia Journal">
@@ -510,10 +556,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Special Report / Biology &amp; Evolution</p>
+    <p class="cover-kicker">生命・進化</p>
     <h1>進化に<em>目的はない</em></h1>
     <p class="cover-deck">「より賢く、より高度に」——進化という言葉に染みついたその方向感覚は、200年のあいだ私たちの目を曇らせてきた。生物は坂道を登っているのではない。壁ぎわをふらつきながら歩く、酔っ払いのようにして歴史を進んできた。</p>
-    <div class="cover-byline"><span>生命・進化</span><span>進化生物学</span><span>目的論批判</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>DEEP DIVE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -585,14 +631,32 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <p class="body-text fade">にもかかわらず、言葉は意味を裏切る。ヴィクトリア朝の英国で進化論が受け入れられた最大の理由は、「神の計画なしに世界を説明できる」という革新性と同時に、「生物は着実に高みへ登っている」という<span class="tip" onclick="toggleTip(this)">目的論<span class="tip-box"><strong>目的論(teleology)</strong><br>自然現象には向かうべき目的や終着点があるという考え方。ギリシャのアリストテレス以来、西洋思想の深部に埋め込まれている。進化生物学が200年かけて切り離そうとしてきた最大の罠。</span></span>的な錯覚と馴染んだからだった。進化は進歩だ——その甘美な誤訳は、教室の壁のあのイラストで完成する。</p>
 
-  <div class="scene-img fade">
-    <img src="./scene_opabinia.jpg" alt="カンブリア紀の化石オパビニア">
-    <div class="scene-img-caption"><strong>オパビニア</strong>——5つのキノコ型の眼と、先端に鋏を持つ象の鼻のような吻。5億年前のバージェス頁岩から出てきたこの奇妙生物は、どの現代生物の直系の祖でもない。<br><span style="color:#b0a090;">撮影: Jstuby / Smithsonian, public domain</span></div>
+  <div class="scene-pair fade">
+    <div class="scene-pair-grid">
+      <figure class="scene-pair-cell">
+        <span class="scene-pair-label">化石</span>
+        <img src="./scene_opabinia_fossil.jpg" alt="オパビニアの化石(バージェス頁岩)" class="fig-img-zoomable" onclick="openLightbox('./scene_opabinia_fossil.jpg', 'オパビニアの化石 — Jstuby / Smithsonian, public domain')">
+      </figure>
+      <figure class="scene-pair-cell">
+        <span class="scene-pair-label">復元</span>
+        <img src="./scene_opabinia.jpg" alt="オパビニアの復元イラスト" class="fig-img-zoomable" onclick="openLightbox('./scene_opabinia.jpg', 'オパビニアの復元イラスト — Nobu Tamura / CC BY 3.0')">
+      </figure>
+    </div>
+    <div class="scene-pair-caption"><strong>オパビニア</strong>——5つのキノコ型の眼と、先端に鋏を持つ象の鼻のような吻。5億年前のバージェス頁岩から出てきたこの奇妙生物は、どの現代生物の直系の祖でもない。<span class="scene-pair-credit">化石: Jstuby / Smithsonian, public domain ／ 復元イラスト: Nobu Tamura / CC BY 3.0</span></div>
   </div>
 
-  <div class="scene-img fade">
-    <img src="./scene_hallucigenia.jpg" alt="カンブリア紀の化石ハルキゲニア">
-    <div class="scene-img-caption"><strong>ハルキゲニア</strong>——発見当初、研究者たちは背と腹を取り違えて復元した。7対の棘を背中に立てた姿に見えるが、実はそれが脚で、背中側に軟らかい触手が並んでいたことが後にわかった。<br><span style="color:#b0a090;">撮影: Jstuby / Smithsonian, public domain</span></div>
+  <div class="scene-pair fade">
+    <div class="scene-pair-grid">
+      <figure class="scene-pair-cell">
+        <span class="scene-pair-label">化石</span>
+        <img src="./scene_hallucigenia_fossil.jpg" alt="ハルキゲニアの化石(バージェス頁岩)" class="fig-img-zoomable" onclick="openLightbox('./scene_hallucigenia_fossil.jpg', 'ハルキゲニアの化石 — M. Brett-Surman / Smithsonian, CC0')">
+      </figure>
+      <figure class="scene-pair-cell">
+        <span class="scene-pair-label">復元</span>
+        <img src="./scene_hallucigenia.jpg" alt="ハルキゲニアの復元イラスト" class="fig-img-zoomable" onclick="openLightbox('./scene_hallucigenia.jpg', 'ハルキゲニアの復元イラスト — Prehistorica CM / CC BY 4.0')">
+      </figure>
+    </div>
+    <div class="scene-pair-caption"><strong>ハルキゲニア</strong>——発見当初(1977)、棘を脚と取り違えられ、棘で立って歩く姿に復元された。あまりに突飛なため「幻覚(hallucination)」と命名されたほどだ。後に背と腹が逆と判明し、棘は実は背中の防御で、当初は背中の触手と思われていた柔らかな構造こそが7対の脚だった。<span class="scene-pair-credit">化石: M. Brett-Surman / Smithsonian, CC0 ／ 復元イラスト: Prehistorica CM / CC BY 4.0</span></div>
   </div>
 
   <p class="body-text fade"><span class="tip" onclick="toggleTip(this)">カンブリア紀<span class="tip-box"><strong>カンブリア紀(Cambrian period)</strong><br>約5億3900万年前〜4億8500万年前の地質時代。硬い殻や骨格を持つ動物群が一気に出現し、現在の動物門の大半がこの時期に登場した(カンブリア爆発)。バージェス頁岩はこの時代を代表する化石産地。</span></span>の海は、今の地球とは別の星のように見える。<span class="tip" onclick="toggleTip(this)">バージェス頁岩<span class="tip-box"><strong>バージェス頁岩(Burgess Shale)</strong><br>カナダ・ロッキー山脈で1909年に発見された約5億500万年前の化石層。軟体部まで保存された状態で、現代のどの分類群にも属さない奇妙な動物が大量に出土した。グールドが『ワンダフル・ライフ』(1989)でこの化石群を扱い、進化の偶発性を論じた。</span></span>から出土する生物たちは、眼の数も体節の配置もバラバラで、現代の分類学の枠に収まらない。ここには、生物の基本設計が今より豊富に試されていた痕跡がある。そのうち生き残った系統だけが、今の地球を占めている。</p>
@@ -684,7 +748,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         </g>
       </svg>
     </div>
-    <p class="march-cap">これが、ザリンジャーの挿絵から派生して世界中に広まった「猿から人へ」の一列行進である。直線的な進化も、「より高度なもの」への方向性も、生物学は認めていない。実際の人類史は枝分かれの茂みで、この絵のような一列の系譜は存在しない。<span class="march-credit">図版: M. Garde (Wikimedia Commons), CC BY-SA 3.0(赤×は本記事で追加)</span></p>
+    <p class="march-cap">これが、ザリンジャーの挿絵から派生して世界中に広まった「猿から人へ」の一列行進である。直線的な進化も、「より高度なもの」への方向性も、生物学は認めていない。実際の人類史は枝分かれの茂みで、この絵のような一列の系譜は存在しない。<span class="march-credit">図版: j4p4n / Openclipart, CC0(赤×は本記事で追加)</span></p>
   </figure>
 
   <div class="phrase-tbl fade">
@@ -957,26 +1021,28 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <p class="body-text fade">何度か再生して気づくのは、6つの宇宙のうち、赤丸がつく宇宙もあれば、つかない宇宙もあることだ。「私たちが存在する」という事実は、進化の必然ではなく、ただ一度たまたま選ばれた枝の先端で起きた出来事である。カンブリア紀から再生すれば、知性は別の枝に現れるかもしれないし、どこにも現れないかもしれない。</p>
 
-  <p class="body-text fade">この「たまたま選ばれた枝の先端」という構図は、抽象的なシミュレーションの中だけの話ではない。私たち自身のヒト族(ホミニニ)の系統を過去1000万年ぶん遡って描くと、同じ形がそのまま現れる。ヒトも、チンパンジーも、ゴリラも、同じ祖先から別方向へ伸びた枝の一本ずつに過ぎない。</p>
+  <p class="body-text fade">この「たまたま選ばれた枝の先端」という構図は、抽象的なシミュレーションの中だけの話ではない。私たち自身のヒト族(ホミニニ)の系統を過去700万年ぶん遡って描くと、同じ形がそのまま現れる。ヒトの系統は単線ではなく、いくつもの種に分岐し、ほとんどが絶滅して、ホモ・サピエンスというたった一本の末端だけが今ここに残っている。</p>
 
   <figure class="wiki-fig fade">
     <div class="fig-guide-top">
       <span class="fig-guide-top-ttl">図の読み方</span>
       <ul>
-        <li><strong>縦軸が時間</strong>。上が <strong>現在(0 Mya)</strong>、下が <strong>1000万年前(10 Mya)</strong>。樹は下から上へ伸びる</li>
-        <li>各系統は<strong>色付きの領域(川のような塊)</strong>として描かれている。領域の広がり=その時代に存在していた範囲</li>
+        <li><strong>左右の2パネルは同じ系統樹を「異なる時代の知識で描いたもの」</strong>。左=1925年(タウング・チャイルド発見の年)、右=2024年。同じヒト族の歴史でも、化石記録の蓄積で見え方が劇的に変わってきたことを示す</li>
+        <li><strong>縦軸が時間</strong>。上が <strong>現在(0 Mya)</strong>、下が <strong>700万年前(7 Mya)</strong>。樹は下から上へ伸びる</li>
+        <li>各系統は<strong>色付きの領域(川のような塊)</strong>として描かれている。領域の縦方向の広がり=その種が地球上に存在していた時間範囲</li>
         <li>領域が<strong>途中で終わっている</strong>塊 = その時点で<strong>絶滅</strong>した系統</li>
-        <li>領域が<strong>上端(0の線)まで届いている</strong>塊 = <strong>現存する</strong>種(ヒト・チンパンジー・ゴリラなど)</li>
-        <li>枝の分かれ目 = 共通祖先から別の系統に分化したタイミング</li>
+        <li>領域が<strong>上端(0の線)まで届いている</strong>塊 = <strong>現存する</strong>種。ヒト族のなかで0の線まで届いているのは <strong>H. sapiens</strong> のみ</li>
+        <li>図の下中央にある <strong>"Molecular Clock Estimate for Human-Chimpanzee Split"</strong> = 分子時計が示すヒトとチンパンジーの分岐点。図に描かれた化石ホミニンはすべてその後の枝の系譜</li>
       </ul>
     </div>
-    <div class="fig-img-wrap">
-      <img src="./fig_hominini_lineage.svg" alt="ホミニニ(ヒト族)の系統樹、1000万年前から現在まで" class="fig-img">
-      <figcaption class="fig-caption">Dbachmann, <em>Hominini lineage</em>(Wikimedia Commons). Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Based on Stringer (2012).</figcaption>
+    <div class="fig-img-wrap" style="position:relative;">
+      <img src="./fig_hominini_lineage.jpg" alt="ホミニニ(ヒト族)の系統樹、1925年時点の知識(左)と2024年時点の知識(右)の比較" class="fig-img fig-img-zoomable" id="hominini-fig" onclick="openLightbox('./fig_hominini_lineage.jpg', 'Rowan & Wood 2024 / Biology Letters / CC BY 4.0')">
+      <span class="fig-zoom-hint">画像にカーソルを合わせると虫眼鏡、クリックで全画面拡大</span>
+      <figcaption class="fig-caption">Rowan, J. &amp; Wood, B. (2024). The hominin fossil record, as known in 1925 (left) and 2024 (right). <em>Biology Letters</em>. <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Figure 2 from "Dart and the Taung juvenile."</figcaption>
     </div>
     <div class="fig-highlight">
       <span class="fig-highlight-ttl">注目ポイント</span>
-      <p>図の<strong>上寄り・左側</strong>にある <strong>Homo</strong> と書かれた領域を探してほしい。その内側に <strong>H. sapiens</strong>——これが私たちだ。図全体を見渡すと、<strong>上端の「0の線」(現在)まで届いている色の塊はほんのわずか</strong>でしかない。H. erectusもアウストラロピテクスもパラントロプスも、途中で終わっている。私たちはたどり着いたのではなく、たまたま剪定を生き延びた一本の末端にいる。</p>
+      <p>まず<strong>左パネル(1925年)</strong>を見てほしい。当時のヒト族の化石はたった1属——<em>Australopithecus africanus</em>——しか描く材料がなかった。ところが<strong>右パネル(2024年)</strong>では、Sahelanthropus、Orrorin、Ardipithecus、Australopithecus、Paranthropus、そして複数の Homo 種が、それぞれ別の枝として時間軸の上に重なっている。<strong>右上の <em>H. sapiens</em> ——これが私たち</strong>だ。図全体を見渡すと、<strong>上端の「0の線」(現在)まで届いている色の塊は H. sapiens のみ</strong>。H. erectus もアウストラロピテクスもパラントロプスも、途中で終わっている。私たちはたどり着いたのではなく、たまたま剪定を生き延びた一本の末端にいる。</p>
     </div>
     <div class="fig-glossary">
       <div class="fig-glossary-head">主な分類群(タクソン)の読み方</div>
@@ -1033,52 +1099,52 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <div class="ref-list">
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1996</span></div>
-      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Full_House:_The_Spread_of_Excellence_from_Plato_to_Darwin" target="_blank" rel="noopener">Full House: The Spread of Excellence from Plato to Darwin</a></p>
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1996</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/0674061616/" target="_blank" rel="noopener">Full House: The Spread of Excellence from Plato to Darwin</a></p>
       <p class="ref-author">Stephen Jay Gould / Harmony Books</p>
       <p class="ref-desc">本記事の中核となる書籍。進化を「酔っぱらいの歩行(drunkard's walk)」として統計的に描き直し、「進歩」概念を解体した。バクテリアこそがモードであるという主張の原典。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1989</span></div>
-      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Wonderful_Life_(book)" target="_blank" rel="noopener">Wonderful Life: The Burgess Shale and the Nature of History</a></p>
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1989</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4150502366/" target="_blank" rel="noopener">Wonderful Life: The Burgess Shale and the Nature of History</a></p>
       <p class="ref-author">Stephen Jay Gould / W. W. Norton</p>
       <p class="ref-desc">バージェス頁岩の奇妙動物を通して、進化の偶発性(contingency)を論じた古典。「生命のテープを巻き戻したら」という思考実験はここから生まれた。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1968</span></div>
-      <p class="ref-title"><a href="https://www.nature.com/articles/217624a0" target="_blank" rel="noopener">Evolutionary Rate at the Molecular Level</a></p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1968</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1038/217624a0" target="_blank" rel="noopener">Evolutionary Rate at the Molecular Level</a></p>
       <p class="ref-author">Motoo Kimura / Nature 217, 624–626</p>
       <p class="ref-desc">中立説の原典論文。分子レベルの進化の大半は自然選択ではなく中立的な偶然で説明できることを示し、進化を定量的に考える枠組みを書き換えた。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2008</span></div>
-      <p class="ref-title"><a href="https://www.pnas.org/doi/10.1073/pnas.0803151105" target="_blank" rel="noopener">Historical contingency and the evolution of a key innovation in an experimental population of Escherichia coli</a></p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2008</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1073/pnas.0803151105" target="_blank" rel="noopener">Historical contingency and the evolution of a key innovation in an experimental population of Escherichia coli</a></p>
       <p class="ref-author">Blount, Borland &amp; Lenski / PNAS 105(23)</p>
       <p class="ref-desc">同条件の12並行系統のうち、1系統だけがクエン酸利用能を獲得。進化に「偶然の積み重ね」が効くことを実験で示した代表的研究。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1986</span></div>
-      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/The_Blind_Watchmaker" target="_blank" rel="noopener">The Blind Watchmaker</a></p>
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1986</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4152085576/" target="_blank" rel="noopener">The Blind Watchmaker</a></p>
       <p class="ref-author">Richard Dawkins / Norton</p>
       <p class="ref-desc">ペイリーの「時計職人論証」(設計者がいなければ時計はできない)に対し、自然選択は「盲目の時計職人」だと反駁。進化に設計者が不要であることを一般読者向けに展開した名著。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">解説</span><span class="ref-year">—</span></div>
+      <div class="ref-meta"><span class="ref-type">解説（Web）</span><span class="ref-year">—</span></div>
       <p class="ref-title"><a href="https://evolution.berkeley.edu/teach-evolution/misconceptions-about-evolution/" target="_blank" rel="noopener">Misconceptions about Evolution (UC Berkeley)</a></p>
       <p class="ref-author">Understanding Evolution / UC Berkeley</p>
       <p class="ref-desc">教育現場で繰り返される進化の誤解を類型化して解説。「進化=進歩」「ヒトがゴール」「生物は何かのために進化する」などの典型的な誤解が整理されている。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">図版</span><span class="ref-year">2007</span></div>
-      <p class="ref-title"><a href="https://commons.wikimedia.org/wiki/File:Human_evolution_scheme.svg" target="_blank" rel="noopener">Human evolution scheme</a></p>
-      <p class="ref-author">M. Garde(原案: José-Manuel Benitos)/ Wikimedia Commons</p>
-      <p class="ref-desc">本記事中の「March of Progress」図版の出典。<a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>。作者自身が「厳密さを目指したものではなく、進化のプロセスの象徴である」と明記しており、誤解の代表例としての用途に合う。</p>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2024</span></div>
+      <p class="ref-title"><a href="https://doi.org/10.1098/rsbl.2024.0185" target="_blank" rel="noopener">Dart and the Taung juvenile (Figure 2)</a></p>
+      <p class="ref-author">Rowan, J. &amp; Wood, B. / <em>Biology Letters</em> 20, 20240185</p>
+      <p class="ref-desc">本記事中のヒト族系統樹の出典。<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>。1925年(タウング・チャイルド発見の年、左パネル)と2024年(右パネル)で「ヒト族の化石記録としてわかっていたこと」を時間軸つきで対比した図。Wood &amp; Boyle (2016) の系統樹を改変。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">図版</span><span class="ref-year">2017</span></div>
-      <p class="ref-title"><a href="https://commons.wikimedia.org/wiki/File:Hominini_lineage.svg" target="_blank" rel="noopener">Hominini lineage</a></p>
-      <p class="ref-author">Dbachmann / Wikimedia Commons(基礎: Stringer 2012)</p>
-      <p class="ref-desc">本記事中のヒト族系統樹の出典。<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>。Stringer, C. (2012) “What makes a modern human” <em>Nature</em> 485, 33–35 を基礎にした10 Mya〜現在のホミニニ系統樹。</p>
+      <div class="ref-meta"><span class="ref-type">解説（Web）</span><span class="ref-year">2024</span></div>
+      <p class="ref-title"><a href="https://openclipart.org/detail/348815/evolution-steps" target="_blank" rel="noopener">Evolution Steps</a></p>
+      <p class="ref-author">j4p4n / Openclipart</p>
+      <p class="ref-desc">本記事中の「March of Progress」図版の出典。CC0 / パブリックドメイン献呈。「猿から人へ」の一列行進シルエットを、ザリンジャー1965原画に依拠せずに独立創作した remix。本記事では色を記事のパレット(#2a2218)に変更し、赤×を本記事内で重ねている。</p>
     </div>
   </div>
 
@@ -1120,9 +1186,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
       <p class="sidebar-text">
-        — <a href="https://qualiajournal.com/plant_communication">植物の会話</a><br>
-        — <a href="https://qualiajournal.com/slime_mold_intelligence">粘菌の知性</a><br>
-        — <a href="https://qualiajournal.com/cellular_turnover">細胞の新陳代謝</a>
+        — <a href="/plant_communication" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">植物の会話</a><br>
+        — <a href="/slime_mold_intelligence" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">粘菌の知性</a><br>
+        — <a href="/cellular_turnover" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">細胞の入れ替わり</a><br>
+        — <a href="/naked_mole_rat" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ハダカデバネズミ</a><br>
+        — <a href="/narrative_fallacy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ナラティブの誤謬</a>
       </p>
     </div>
     <div class="sidebar-block fade">
@@ -1230,6 +1298,24 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
   </div>
 </footer>
+
+<!-- Image zoom: hover loupe + lightbox -->
+<div class="fig-loupe" id="figLoupe" aria-hidden="true"></div>
+<div class="lightbox" id="figLightbox" role="dialog" aria-modal="true" aria-label="拡大画像">
+  <div class="lightbox-bar">
+    <span class="lightbox-title" id="lightboxTitle">図版拡大表示</span>
+    <div class="lightbox-actions">
+      <button class="lightbox-btn" onclick="setLightboxZoom('fit')" id="lbBtnFit">画面に合わせる</button>
+      <button class="lightbox-btn" onclick="setLightboxZoom('zoom2x')" id="lbBtn2x">2倍</button>
+      <button class="lightbox-btn" onclick="setLightboxZoom('zoom3x')" id="lbBtn3x">3倍</button>
+      <button class="lightbox-btn close" onclick="closeLightbox()" aria-label="閉じる">×</button>
+    </div>
+  </div>
+  <div class="lightbox-stage">
+    <img class="lightbox-img zoom2x" id="lightboxImg" src="" alt="">
+  </div>
+  <p class="lightbox-cap" id="lightboxCap"></p>
+</div>
 
 <script>
 // スクロールプログレスバー
@@ -1823,7 +1909,67 @@ sInput.addEventListener('input',function(){
     ?hits.map(a=>'<a class="s-item" href="'+a.slug+'"><span class="s-cat">'+a.cat+'</span><div><p class="s-tt">'+a.tt+'</p><p class="s-dk">'+a.dk+'</p></div></a>').join('')
     :'<p class="s-empty">「'+q+'」に一致する記事は見つかりませんでした。</p>';
 });
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();sOverlay.classList.remove('open');closeLightbox();}});
+
+/* === Hover loupe + Lightbox for figures === */
+(function(){
+  const loupe = document.getElementById('figLoupe');
+  const fig = document.getElementById('hominini-fig');
+  if(!fig||!loupe) return;
+  const LOUPE_SIZE = 200, ZOOM = 2.6;
+  let active = false;
+  function show(){ if(!active){ active = true; loupe.style.display='block'; }}
+  function hide(){ active = false; loupe.style.display='none'; }
+  fig.addEventListener('mouseenter', show);
+  fig.addEventListener('mouseleave', hide);
+  fig.addEventListener('mousemove', (e)=>{
+    const rect = fig.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    if(x<0||y<0||x>rect.width||y>rect.height){ hide(); return; }
+    show();
+    const bgW = rect.width * ZOOM, bgH = rect.height * ZOOM;
+    loupe.style.backgroundImage = `url('${fig.getAttribute('src')}')`;
+    loupe.style.backgroundSize = bgW+'px '+bgH+'px';
+    loupe.style.backgroundPosition = (-(x*ZOOM - LOUPE_SIZE/2))+'px '+(-(y*ZOOM - LOUPE_SIZE/2))+'px';
+    /* Position the loupe centered on cursor, offset slightly so it doesn't cover finger */
+    loupe.style.left = (e.clientX - LOUPE_SIZE/2) + 'px';
+    loupe.style.top  = (e.clientY - LOUPE_SIZE/2) + 'px';
+  });
+})();
+
+function openLightbox(src, captionText){
+  const lb = document.getElementById('figLightbox');
+  const img = document.getElementById('lightboxImg');
+  const cap = document.getElementById('lightboxCap');
+  img.src = src;
+  cap.textContent = captionText || '';
+  setLightboxZoom('zoom2x');
+  lb.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  const lb = document.getElementById('figLightbox');
+  if(!lb || !lb.classList.contains('show')) return;
+  lb.classList.remove('show');
+  document.body.style.overflow = '';
+}
+function setLightboxZoom(level){
+  const img = document.getElementById('lightboxImg');
+  img.classList.remove('fit','zoom2x','zoom3x');
+  img.classList.add(level);
+  ['lbBtnFit','lbBtn2x','lbBtn3x'].forEach(id=>{
+    const b = document.getElementById(id);
+    if(b) b.style.background = '';
+  });
+  const map = {fit:'lbBtnFit', zoom2x:'lbBtn2x', zoom3x:'lbBtn3x'};
+  const active = document.getElementById(map[level]);
+  if(active) active.style.background = 'rgba(212,165,116,.28)';
+}
+/* Click on dark stage area (not the image) closes */
+document.getElementById('figLightbox').addEventListener('click', (e)=>{
+  if(e.target.id==='figLightbox' || e.target.classList.contains('lightbox-stage')) closeLightbox();
+});
 </script>
 <div class="tip-backdrop" id="tipBackdrop"></div><div class="tip-toast" id="tipToast"><button class="tip-toast-close" id="tipToastClose" aria-label="閉じる" onclick="_tipCloseToast()">×</button><span class="tip-toast-title" id="tipToastTitle"></span><div class="tip-toast-body" id="tipToastBody"></div></div><!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6b7b629057d241878dda2a4f3169e5cb"}'></script><!-- End Cloudflare Web Analytics -->
 </body>

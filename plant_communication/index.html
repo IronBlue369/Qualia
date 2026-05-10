@@ -32,7 +32,7 @@ body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
 .cover-aside strong{color:#3d3020;font-weight:600;}
 
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
-.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -52,7 +52,7 @@ body{background:#faf8f3;color:#1a1208;font-family:'Source Serif 4',serif;}
 .summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
 .summary-text strong{font-weight:600;}
 
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -90,7 +90,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block.no-img{display:block;}.person-block.no-img .person-block-body{border-left:none;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}.person-block.no-img{display:block;}.person-block.no-img .person-block-body{border-left:none;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -248,7 +248,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
 .summary-box{padding:0 20px;}
 .scenario{padding:0 20px;}
-.article{grid-template-columns:1fr;padding:0 20px;}
+.article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
 .article-side{display:none;}
 .misconception-item{flex-direction:column;}
 .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -272,7 +272,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .related-grid{grid-template-columns:1fr;}
 .tip-box{left:0;transform:none;width:200px;}
 .tip-box::after{left:20px;transform:none;}
-.person-block{grid-template-columns:1fr;}
+
 .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
 }
 
@@ -433,7 +433,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
 <div class="cover-left">
-<p class="cover-kicker">Special Report</p>
+<p class="cover-kicker">生命・進化</p>
 <h1>植物は<em>会話している</em>かもしれない</h1>
 <p class="cover-deck">芝を刈ったとき、あの青い匂いがする。それは草の「悲鳴」だ——少なくとも、化学的には。傷ついた植物が放つ揮発性の分子は、隣の植物の防御遺伝子を起動させる。目に見えない空気中のシグナルで、植物は「何か来る」と伝え合っている。</p>
 <div class="cover-byline"><span>QUALIA JOURNAL</span><span>PHENOMENON</span></div>
@@ -538,7 +538,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="misconception-body">
 <div class="misconception-item">
 <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">植物は「Wood Wide Web」と呼ばれる菌糸ネットワークで意図的にお互いを助け合っている</p></div>
-<div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">菌根ネットワーク自体は存在するが、「意図的な助け合い」という解釈には近年強い批判がある。化学シグナルは確認済みだが、それが利他的行為かどうかは未決着</p></div>
+<div class="misconception-a"><p class="mis-label right">✓ 実際は</p><p class="mis-text">菌根ネットワーク自体は存在するが、「意図的な助け合い」という解釈には近年強い批判がある。化学シグナルの存在自体は数多く報告されているが、それが利他的行為かどうかは未決着</p></div>
 </div>
 <div class="misconception-item">
 <div class="misconception-q"><p class="mis-label wrong">✗ よくある誤解</p><p class="mis-text">植物は脳がないから、何も「感じて」いないし、コミュニケーションもしない</p></div>
@@ -798,13 +798,13 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <p class="ref-desc">すべてはここから始まった。ポプラとカエデの実験の元論文。45本の苗木と密閉容器という素朴な実験デザインが、40年の論争を生んだ。短い論文だが、「被験者がどうなったか」が具体的に書かれていて読みやすい。</p>
 </div>
 <div class="ref-item fade">
-<div class="ref-meta"><span class="ref-type">実験論文</span><span class="ref-year">2023</span></div>
+<div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2023</span></div>
 <p class="ref-title"><a href="https://doi.org/10.1038/s41467-023-41589-9" target="_blank" rel="noopener">Green leaf volatile sensory calcium transduction in Arabidopsis</a></p>
 <p class="ref-author">Yuri Aratani, Takuya Uemura, Takuma Hagihara, Kenji Matsui, Masatsugu Toyota — Nature Communications</p>
 <p class="ref-desc">「植物の会話」を映像として初めて見せた論文。蛍光カルシウムセンサーの動画は論文のSupplementaryから見られる。気孔→ガードセル→葉肉細胞と光が広がっていく映像は、一見の価値がある。</p>
 </div>
 <div class="ref-item fade">
-<div class="ref-meta"><span class="ref-type">批判的レビュー</span><span class="ref-year">2023</span></div>
+<div class="ref-meta"><span class="ref-type">批判論文</span><span class="ref-year">2023</span></div>
 <p class="ref-title"><a href="https://doi.org/10.1038/s41559-023-01986-1" target="_blank" rel="noopener">Positive citation bias and overinterpreted results lead to misinformation on common mycorrhizal networks in forests</a></p>
 <p class="ref-author">Justine Karst, Melanie D. Jones, Jason D. Hoeksema — Nature Ecology & Evolution</p>
 <p class="ref-desc">「Wood Wide Web」の通説に対する系統的な批判。1,676件の引用を追跡し、元論文の内容がどう歪んでいったかを記録した。科学における「物語の伝播」がどう起こるかの事例研究としても読める。</p>
@@ -814,6 +814,12 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <p class="ref-title"><a href="https://doi.org/10.1093/jxb/erab519" target="_blank" rel="noopener">Volatile-mediated plant–plant interactions: volatile organic compounds as modulators of receiver plant defence, growth, and reproduction</a></p>
 <p class="ref-author">James D. Blande et al. — Journal of Experimental Botany</p>
 <p class="ref-desc">VOCを介した植物間相互作用の全体像をまとめた包括的レビュー。防御だけでなく、成長や繁殖にまでVOCが影響することを示す最新の知見が整理されている。</p>
+</div>
+<div class="ref-item fade">
+<div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2015</span></div>
+<p class="ref-title"><a href="https://www.amazon.co.jp/dp/4150505314/" target="_blank" rel="noopener">The Hidden Life of Trees（邦訳：樹木たちの知られざる生活 — 森林管理官が聴いた森の声）</a></p>
+<p class="ref-author">Peter Wohlleben</p>
+<p class="ref-desc">樹木同士の化学物質コミュニケーション・菌根ネットワークなどを森林官の視点から平易に紹介した世界的ベストセラー。記事の植物間 VOC シグナルの主題そのもの。</p>
 </div>
 </div>
 
@@ -854,10 +860,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="sidebar-block fade">
 <p class="sidebar-label">関連トピック</p>
 <p class="sidebar-text">
-— C-06 音は存在しない<br>
-— D-01 色は存在しない<br>
-— I-14 粘菌の知性<br>
-— K-01 ボイドと群れの知能
+— <a href="/sound_does_not_exist" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">音は存在しない</a><br>
+— <a href="/color" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">色は存在しない</a><br>
+— <a href="/slime_mold_intelligence" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">粘菌の知性</a><br>
+— <a href="/boids" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ボイドモデル</a><br>
+— <a href="/evolution_no_purpose" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">進化に目的はない</a>
 </p>
 </div>
 <div class="sidebar-block fade">

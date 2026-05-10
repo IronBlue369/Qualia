@@ -89,7 +89,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -115,7 +115,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -157,7 +157,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:stretch;justify-content:center;padding:0;overflow:hidden;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(70%) sepia(18%) contrast(1.02);}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -402,14 +402,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
@@ -499,7 +499,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <p class="cover-kicker">脳と意識</p>
     <h1>「今」は常に<em>過去</em></h1>
     <p class="cover-deck">あなたがこの文を読んでいる「今」は、実際には80〜120ミリ秒ほど前の世界だ。リアルタイムの知覚は存在しない。脳は遅れを隠し、遅れた情報を「今」として差し出している。</p>
-    <div class="cover-byline"><span>脳と意識</span><span>知覚・錯覚</span><span>時間の知覚</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>PHENOMENON</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -940,16 +940,12 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   </div>
 
   <!-- 人物ブロック -->
-  <div class="person-block fade">
-    <div class="person-block-img">
-      <img src="eagleman.jpg" alt="David Eagleman, photographed by Christopher Michel in 2024">
-    </div>
-    <div class="person-block-body">
+  <div class="person-block fade" style="grid-template-columns:1fr;">
+    <div class="person-block-body" style="border-left:none;">
       <p class="person-block-name">デビッド・イーグルマン</p>
       <p class="person-block-role">David Eagleman, b.1971 — Neuroscientist</p>
       <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%87%E3%83%BC%E3%83%B4%E3%82%A3%E3%83%83%E3%83%89%E3%83%BB%E3%82%A4%E3%83%BC%E3%82%B0%E3%83%AB%E3%83%9E%E3%83%B3" target="_blank" rel="noopener">Wikipedia</a></p>
       <p class="person-block-desc">アメリカの神経科学者。スタンフォード大学の教員。時間知覚の研究で知られ、2000年にセイノフスキーとの共同論文で「視覚的気づきは事後構築である」と提唱した。一般向けの著作『脳の時間』『インコグニート』がベストセラーになり、BBCの科学ドキュメンタリー番組のナビゲーターも務めている。</p>
-      <p class="person-block-credit">Photo: Christopher Michel, 2024 / <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> / via <a href="https://commons.wikimedia.org/wiki/File:David_Eagleman_by_Christopher_Michel_5-31-24.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></p>
     </div>
   </div>
 
@@ -1028,13 +1024,13 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
   <p class="body-text fade">こう言い換えてもいい。「今この瞬間」に意味があるのは、それが物理的な瞬間だからではなく、脳がそれを「今」と決めて差し出してくれているからだ。そして脳は、それを決めるのに少し時間をかけている。私たちは、その少し先の未来の情報まで借りてきて、過ぎ去った瞬間を「今」として受け取っている。</p>
 
   <!-- 画像プレースホルダー -->
-  <!-- 視覚経路図（Wikimedia Commons より） -->
+  <!-- 視覚経路図（Henry Vandyke Carter, Gray's Anatomy 1918, Public Domain） -->
   <div class="real-figure fade">
-    <img class="real-figure-img" src="visual_pathway.svg" alt="A simplified schema of the human visual pathway">
+    <img class="real-figure-img" src="visual_pathway.jpg" alt="A simplified schema of the human visual pathway from Gray's Anatomy (1918)">
     <div class="real-figure-cap">
       <p class="real-figure-cap-title">人間の視覚経路 — 光が脳に届くまで</p>
       <p class="real-figure-cap-desc">物体からの光が両眼の<strong>網膜（Retina）</strong>に映り、左右の<strong>視神経（Optic Nerve）</strong>が<strong>視交叉（Optic Chiasm）</strong>で部分的に交差し、<strong>外側膝状体（LGN, Lateral Geniculate Nucleus）</strong>を経て後頭葉の<strong>一次視覚野（V1）</strong>に届く。本記事で扱った80〜120ミリ秒は、おおよそこの図全体を信号が一往復する時間にあたる。</p>
-      <p class="real-figure-credit">Image: Miquel Perello Nieto / <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> / via <a href="https://commons.wikimedia.org/wiki/File:Human_visual_pathway.svg" target="_blank" rel="noopener">Wikimedia Commons</a></p>
+      <p class="real-figure-credit">Image: Henry Vandyke Carter, <em>Gray's Anatomy</em> (1918) / <a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noopener">Public Domain</a> / via <a href="https://commons.wikimedia.org/wiki/File:Gray722.png" target="_blank" rel="noopener">Wikimedia Commons</a></p>
     </div>
   </div>
 
@@ -1083,6 +1079,15 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <p class="ref-author">Damian Koevoet, Andre Sahakian &amp; Samson Chota — eLife, 12, e85301</p>
       <p class="ref-desc">ジョンソンらの2023年の研究を解説した短い総説。動く物体に対しては、遅延がほぼ完全に補正されていて、脳内表現が「今」の位置に揃うことが示されている。事後構築と予測がどう共存しているかを考える出発点になる。</p>
     </div>
+    <div class="ref-item fade">
+      <div class="ref-meta">
+        <span class="ref-type">一般書</span>
+        <span class="ref-year">2021</span>
+      </div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4791774663/" target="_blank" rel="noopener">Being You: A New Science of Consciousness（邦訳：なぜ私は私であるのか — 神経科学が解き明かした意識の謎）</a></p>
+      <p class="ref-author">Anil Seth</p>
+      <p class="ref-desc">意識を脳が世界と自己を「予測」する過程として捉える予測符号化(predictive coding)の現代的入門。記事の核となる「postdiction/予測脳」概念を体系的に学べる。</p>
+    </div>
   </div>
 
   <!-- 信頼度ノート -->
@@ -1122,7 +1127,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— 記憶は毎回再構築される<br>— リベット実験<br>— 脳は予測機械</p>
+      <p class="sidebar-text">— <a href="/memory_reconsolidation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">記憶は再構築される</a><br>— <a href="/libet_free_will" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">リベット実験</a><br>— <a href="/hard_problem" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">意識のハードプロブレム</a><br>— <a href="/mary_room" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">マリーの部屋</a><br>— <a href="/checker_shadow" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">チェッカーシャドウ錯視</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">信頼度</p>

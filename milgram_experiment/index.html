@@ -104,7 +104,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
 .scenario-inner{margin:20px 0 0;padding:28px 32px;background:linear-gradient(135deg,#f3efe6,#ede8dc);border-top:3px solid #8b1a1a;position:relative;overflow:hidden;}
-.scenario-inner::after{content:'〜';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
+.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;position:relative;z-index:1;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -130,7 +130,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -162,7 +162,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;}
 .person-block-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -593,14 +593,14 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .cover-right{display:none;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box,.scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
   .terminal-label-wrap,.terminal-wrap{padding:0 20px 40px;}
   .related{padding:32px 20px;}
   .related-grid{grid-template-columns:1fr;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:0;justify-content:center;}
   .person-block-img img{max-height:200px;}
   .tip-box{left:0;transform:none;width:200px;}
@@ -685,10 +685,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <!-- COVER -->
 <div class="cover fade">
   <div class="cover-left">
-    <p class="cover-kicker">Special Report / 社会心理学</p>
+    <p class="cover-kicker">社会心理学</p>
     <h1>服従のメカニズム<br><em>ミルグラム実験</em></h1>
     <p class="cover-deck">1961年、イェール大学の地下室で、65パーセントの普通の人々が、命じられるままに最大電圧のスイッチを押した。問題は、彼らが特別な人間だったのかどうか、ではない。</p>
-    <div class="cover-byline"><span>社会心理学</span><span>権威と服従</span><span>1961</span></div>
+    <div class="cover-byline"><span>QUALIA JOURNAL</span><span>PROFILE</span></div>
   </div>
   <div class="cover-right">
     <div class="est-card">
@@ -889,10 +889,48 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <p class="body-text fade">実験室の三者(実験者・教師・学習者)の位置関係は、ミルグラムが論文で示した抽象図でこう要約される——</p>
 
-  <div class="scene-img portrait fade" style="max-width:440px;">
-    <img src="./fig_milgram_setup_wikimedia.svg" alt="ミルグラム実験の標準配置図。実験者E、教師T(被験者)、学習者L(俳優)の三者の位置関係を示す。">
-    <p class="scene-img-cap"><strong>標準配置(E–T–L 図、抽象表現)。</strong> <em>E</em> = Experimenter(実験者)、<em>T</em> = Teacher(教師役 = 本物の被験者)、<em>L</em> = Learner(学習者役 = 俳優、壁の向こう)。本図は記号のみで衣装・設備は省略——白衣やインターホン等の詳細は、下の平面図で確認できる。<br>Image: Fred the Oyster / Wikimedia Commons, CC BY-SA 4.0.</p>
-  </div>
+  <figure class="scene-img portrait fade" style="max-width:360px;margin:24px auto;">
+    <svg viewBox="0 0 360 380" xmlns="http://www.w3.org/2000/svg" role="img"
+         aria-label="ミルグラム実験のE-T-L三者配置を抽象化した模式図。実験者Eが上から教師Tに指示を下ろし、Tは壁の向こうの学習者Lに電気ショックを与える。"
+         style="width:100%;height:auto;display:block;">
+      <defs>
+        <marker id="mlgArrK" viewBox="0 0 10 10" refX="9" refY="5"
+                markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <polygon points="0,0 10,5 0,10" fill="#1a1208"/>
+        </marker>
+        <marker id="mlgArrR" viewBox="0 0 10 10" refX="9" refY="5"
+                markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <polygon points="0,0 10,5 0,10" fill="#8b1a1a"/>
+        </marker>
+      </defs>
+
+      <line x1="200" y1="150" x2="200" y2="330" stroke="#7a6a55" stroke-width="2.5" stroke-dasharray="6 5"/>
+      <text x="208" y="170" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55">壁 / wall</text>
+
+      <line x1="90" y1="86" x2="90" y2="200" stroke="#1a1208" stroke-width="2.2" marker-end="url(#mlgArrK)"/>
+      <text x="102" y="138" font-family="'Source Sans 3',sans-serif" font-size="15" fill="#1a1208" font-weight="600">指示</text>
+      <text x="102" y="156" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" font-style="italic">orders</text>
+
+      <line x1="118" y1="230" x2="272" y2="230" stroke="#8b1a1a" stroke-width="2.5" marker-end="url(#mlgArrR)"/>
+      <text x="120" y="222" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#8b1a1a" font-weight="600">shock</text>
+      <path d="M 188 213 L 178 232 L 186 232 L 182 248 L 198 226 L 190 226 L 194 213 Z"
+            fill="#d4a017" stroke="#1a1208" stroke-width="0.6" stroke-linejoin="round"/>
+
+      <path d="M 270 250 Q 195 270 122 250"
+            fill="none" stroke="#7a6a55" stroke-width="1.5" stroke-dasharray="4 4"/>
+      <text x="160" y="312" font-family="'Source Sans 3',sans-serif" font-size="14" fill="#7a6a55" font-style="italic">voice (intercom)</text>
+
+      <circle cx="90" cy="58" r="28" fill="#1a1208" stroke="#1a1208" stroke-width="2"/>
+      <text x="90" y="67" font-family="'Source Sans 3',sans-serif" font-size="22" fill="#faf8f3" font-weight="700" text-anchor="middle">E</text>
+
+      <circle cx="90" cy="230" r="28" fill="#faf8f3" stroke="#1a1208" stroke-width="2"/>
+      <text x="90" y="239" font-family="'Source Sans 3',sans-serif" font-size="22" fill="#1a1208" font-weight="700" text-anchor="middle">T</text>
+
+      <circle cx="300" cy="230" r="28" fill="#c8bfaa" stroke="#1a1208" stroke-width="2"/>
+      <text x="300" y="239" font-family="'Source Sans 3',sans-serif" font-size="22" fill="#1a1208" font-weight="700" text-anchor="middle">L</text>
+    </svg>
+    <figcaption class="scene-img-cap"><strong>標準配置(E–T–L 図、抽象表現)。</strong> <em>E</em> = Experimenter(実験者)、<em>T</em> = Teacher(教師役 = 本物の被験者)、<em>L</em> = Learner(学習者役 = 俳優、壁の向こう)。記号のみで衣装・設備は省略——白衣やインターホン等の詳細は、下の平面図で確認できる。<br><span style="font-size:10px;color:#7a6a55;">Diagram: 自作(based on Milgram, 1963, J. Abnormal Soc Psychol 67, 371-378 の三者配置記述)。</span></figcaption>
+  </figure>
 
   <p class="body-text fade">これを実際の装置・人物の配置に落とし込むと、次のような平面図になる。</p>
 
@@ -1411,38 +1449,38 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
   <div class="ref-list">
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1963</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1963</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1037/h0040525" target="_blank" rel="noopener">Behavioral Study of Obedience</a></p>
       <p class="ref-author">Stanley Milgram / Journal of Abnormal and Social Psychology, 67, 371–378 · DOI: <span style="font-family:'JetBrains Mono',monospace;font-size:11px;">10.1037/h0040525</span></p>
       <p class="ref-desc">ベースライン条件の結果をはじめて報告した論文。40 名中 26 名が 450 ボルトまで到達したと記す。精神科医 39 名・大学院生・中産階級の大人それぞれに事前予測をさせた記録もこの論文に含まれる。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1974</span></div>
-      <p class="ref-title">Obedience to Authority: An Experimental View</p>
+      <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">1974</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/430946369X/" target="_blank" rel="noopener">Obedience to Authority: An Experimental View</a></p>
       <p class="ref-author">Stanley Milgram / Harper &amp; Row</p>
       <p class="ref-desc">23 のバリエーション全体を俯瞰し、<em>エージェント状態</em> の概念を提示した書籍。実験の社会的含意についてのミルグラム自身の長文の考察を含む。日本語訳『服従の心理』(岸田秀訳、河出文庫 2008)。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1963</span></div>
-      <p class="ref-title">Eichmann in Jerusalem: A Report on the Banality of Evil</p>
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1963</span></div>
+      <p class="ref-title"><a href="https://www.amazon.co.jp/dp/462208628X/" target="_blank" rel="noopener">Eichmann in Jerusalem: A Report on the Banality of Evil</a></p>
       <p class="ref-author">Hannah Arendt / Viking Press</p>
       <p class="ref-desc">アイヒマン裁判の傍聴記。思考停止した凡庸さこそが巨大な悪を可能にするという見立てを提示。ミルグラムが後年、自分の実験の理論的前兆として言及した。日本語訳『エルサレムのアイヒマン——悪の陳腐さについての報告』(大久保和郎訳、みすず書房 1994/2017 新版)。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1974</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1974</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1111/j.1559-1816.1974.tb02599.x" target="_blank" rel="noopener">The Social Power of a Uniform</a></p>
       <p class="ref-author">Leonard Bickman / Journal of Applied Social Psychology, 4, 47–61 · DOI: <span style="font-family:'JetBrains Mono',monospace;font-size:11px;">10.1111/j.1559-1816.1974.tb02599.x</span></p>
       <p class="ref-desc">ブルックリンの路上で、警備員・牛乳配達員・私服の三種類の服装で通行人に指示を出す実験。76%/47%/30% の服従率を報告。権威シンボルの独立した力を実証した研究。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">2009</span></div>
+      <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">2009</span></div>
       <p class="ref-title"><a href="https://doi.org/10.1037/a0010932" target="_blank" rel="noopener">Replicating Milgram: Would People Still Obey Today?</a></p>
       <p class="ref-author">Jerry M. Burger / American Psychologist, 64(1), 1–11 · DOI: <span style="font-family:'JetBrains Mono',monospace;font-size:11px;">10.1037/a0010932</span></p>
       <p class="ref-desc">現代の倫理規定下で再現可能な範囲で行われた部分再現。150 ボルトまでの服従率はミルグラム当時とほぼ同じ。男女差も見られなかった。<a href="https://www.apa.org/pubs/journals/releases/amp-64-1-1.pdf" target="_blank" rel="noopener" style="color:#8b1a1a;border-bottom:1px dotted #8b1a1a;">PDF (APA)</a>。</p>
     </div>
     <div class="ref-item fade">
-      <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">2013</span></div>
-      <p class="ref-title">Behind the Shock Machine: The Untold Story of the Notorious Milgram Psychology Experiments</p>
+      <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2013</span></div>
+      <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Behind_the_Shock_Machine" target="_blank" rel="noopener">Behind the Shock Machine: The Untold Story of the Notorious Milgram Psychology Experiments</a></p>
       <p class="ref-author">Gina Perry / The New Press</p>
       <p class="ref-desc">ミルグラムの未公表アーカイブと被験者への事後インタビューから、事後説明の不徹底、隠された第 24 条件、報告に含まれないバリエーションの存在を指摘。再現性そのものではなく報告の透明性を問うた批判的検証。</p>
     </div>
@@ -1456,7 +1494,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <strong>史料画像の出典。</strong>記事中の史料・肖像写真はすべて Wikimedia Commons 公開素材で、ライセンスは各ファイル説明ページで確認済み。
     <br>
     ① <a href="https://commons.wikimedia.org/wiki/File:Milgram_Experiment_advertising.gif" target="_blank" rel="noopener" style="color:#8b1a1a;border-bottom:1px dotted #8b1a1a;">募集広告(1961)</a> — <strong>Public Domain</strong>(元広告は 1931–1977 米国発表・著作権表示なし)。
-    ② <a href="https://commons.wikimedia.org/wiki/File:Milgram_experiment_v2.svg" target="_blank" rel="noopener" style="color:#8b1a1a;border-bottom:1px dotted #8b1a1a;">E–T–L 配置図</a> — <strong>CC BY-SA 4.0</strong>、作者 Fred the Oyster(クレジット表示済み)。
+    ② <strong>E–T–L 配置図</strong> — 自作SVG(Milgram, 1963 の三者配置記述に基づく抽象模式図。本サイト用にゼロから描き起こし)。
     ③ <a href="https://commons.wikimedia.org/wiki/File:Stanley_Milgram_1974.jpg" target="_blank" rel="noopener" style="color:#8b1a1a;border-bottom:1px dotted #8b1a1a;">ミルグラム肖像(1974)</a> — <strong>Public Domain (US)</strong>(1931–1977 米国発表・著作権表示なし)。
     ④ <a href="https://commons.wikimedia.org/wiki/File:Hannah_Arendt_1933.jpg" target="_blank" rel="noopener" style="color:#8b1a1a;border-bottom:1px dotted #8b1a1a;">アーレント肖像(1933)</a> — <strong>Public Domain (EU + US)</strong>(匿名著作・70 年経過)。
     ⑤ <a href="https://commons.wikimedia.org/wiki/File:Adolf_Eichmann_at_Trial1961.jpg" target="_blank" rel="noopener" style="color:#8b1a1a;border-bottom:1px dotted #8b1a1a;">アイヒマン裁判(1961)</a> — <strong>Public Domain (Israel)</strong>(イスラエル政府著作・51 年経過)。
@@ -1491,7 +1529,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— <a href="https://qualiajournal.com/asch_conformity" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">同調圧力(アッシュの実験)</a><br>— <a href="https://qualiajournal.com/foot_in_the_door" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">フット・イン・ザ・ドア</a><br>— <a href="https://qualiajournal.com/skinner_box" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">スキナー箱</a></p>
+      <p class="sidebar-text">— <a href="/asch_conformity" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">同調圧力(アッシュの実験)</a><br>— <a href="/foot_in_the_door" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">フット・イン・ザ・ドア</a><br>— <a href="/skinner_box" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">スキナー箱</a><br>— <a href="/bystander_effect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">傍観者効果</a><br>— <a href="/dark_patterns" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ダークパターン</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">信頼度</p>

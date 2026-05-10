@@ -49,7 +49,7 @@ a{color:inherit;text-decoration:none;}
 .cover-aside{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;border-top:2px solid #1a1208;padding-top:12px;}
 .cover-aside strong{color:#3d3020;font-weight:600;}
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
-.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 .meta-bar{max-width:900px;margin:0 auto;padding:18px 48px;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
@@ -66,7 +66,7 @@ a{color:inherit;text-decoration:none;}
 .summary-icon{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;color:#8b1a1a;text-transform:uppercase;padding-top:3px;white-space:nowrap;}
 .summary-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;color:#1a1208;line-height:1.7;}
 .summary-text strong{font-weight:600;}
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -100,7 +100,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#1a1208;line-height:1.7;margin-bottom:10px;}
 .quote-ja{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;color:#7a6a55;line-height:1.7;margin-bottom:10px;padding-left:12px;border-left:1px solid #c8bfaa;}
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -319,7 +319,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
 .summary-box{padding:0 20px;}
 .scenario{padding:0 20px;}
-.article{grid-template-columns:1fr;padding:0 20px;}
+.article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
 .article-side{display:none;}
 .misconception-item{flex-direction:column;}
 .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -779,7 +779,28 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <p class="culture-desc">プロスペクト理論を一般読者向けに解説した代表的な著作。損失回避については第25章〜第26章で詳しく扱われている。行動経済学に興味を持った人の最初の一冊として広く読まれている。</p>
 </div>
 
-<!-- Graph: Pharexia, CC BY-SA 4.0, via Wikimedia Commons. Modified: colors and labels changed. Modified version licensed under CC BY-SA 4.0. Source: https://commons.wikimedia.org/wiki/File:Prospect_Theory_Graph.svg --><div class="diagram-wrap fade"><svg viewBox="0 0 900 563" style="max-width:720px;width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg"><rect x="26.366" y="56.026" width="692.124" height="225.474" fill="#f3efe6"/><rect x="26.366" y="283.501" width="692.124" height="225.474" fill="#ede8dc"/><path d="M374.559,281.906l0,-197.289" fill="none" stroke="#1a1208" stroke-width="2"/><path d="M374.56,56.026l11.589,28.591l-23.18,0l11.591,-28.591Z" fill="#1a1208"/><path d="M26.366,281.906l677.83,0" fill="none" stroke="#1a1208" stroke-width="2" stroke-linecap="butt"/><path d="M732.785,281.907l-28.59,11.589l0,-23.18l28.59,11.591Z" fill="#1a1208"/><path d="M374.56,281.906l0,227.069" fill="none" stroke="#1a1208" stroke-width="2" stroke-linecap="butt"/><path d="M718.489,176.732c0,0 -342.871,-26.961 -343.93,105.174c-1.058,132.135 -171.384,208.873 -335.051,227.069" fill="none" stroke="#8b1a1a" stroke-width="3.5" stroke-linecap="round"/><circle cx="374.56" cy="281.906" r="4" fill="#8b1a1a"/><text x="375" y="40" font-family="Source Sans 3,sans-serif" font-size="20" font-weight="600" fill="#1a1208" text-anchor="middle">価値</text><text x="745" y="275" font-family="Source Sans 3,sans-serif" font-size="20" font-weight="600" fill="#1a1208">結果</text><text x="390" y="305" font-family="Source Sans 3,sans-serif" font-size="18" font-weight="400" fill="#7a6a55">参照点</text><text x="150" y="180" font-family="Source Sans 3,sans-serif" font-size="32" font-weight="600" fill="#1a1208">利得</text><text x="150" y="410" font-family="Source Sans 3,sans-serif" font-size="32" font-weight="600" fill="#8b1a1a">損失</text><text x="560" y="155" font-family="Source Sans 3,sans-serif" font-size="20" font-weight="400" fill="#7a6a55" font-style="italic">緩やか</text><text x="60" y="490" font-family="Source Sans 3,sans-serif" font-size="20" font-weight="400" fill="#8b1a1a" font-style="italic">急勾配</text></svg><p class="diagram-caption">損失側の傾きは利得側より約2倍急になる。数字にすると違和感があるが、日常の感覚には馴染む。（原図: Pharexia, CC BY-SA 4.0 / 改変）</p></div>
+<!-- 値関数のグラフ: TK 1992 の値関数を視覚効果のため α=β=0.5 で描画(λ=2.25 は維持)。polyline で自描画 -->
+<div class="diagram-wrap fade">
+<svg viewBox="0 0 800 440" style="max-width:680px;width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="プロスペクト理論の値関数S字曲線">
+<rect x="400" y="40" width="340" height="180" fill="#f3efe6"/>
+<rect x="60" y="220" width="340" height="180" fill="#ede8dc"/>
+<line x1="400" y1="40" x2="400" y2="400" stroke="#1a1208" stroke-width="1.5"/>
+<polygon points="400,32 393.5,48 406.5,48" fill="#1a1208"/>
+<line x1="60" y1="220" x2="740" y2="220" stroke="#1a1208" stroke-width="1.5"/>
+<polygon points="752,220 736,213.5 736,226.5" fill="#1a1208"/>
+<polyline points="400,220 416,202.1 432,194.7 448,189.0 464,184.2 480,180.0 496,176.2 512,172.7 528,169.4 544,166.3 560,163.4 576,160.7 592,158.0 608,155.5 624,153.1 640,150.7 656,148.5 672,146.2 688,144.1 704,142.0 720,140.0" fill="none" stroke="#1a1208" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="400,220 384,260.3 368,276.9 352,289.7 336,300.5 320,310.0 304,318.6 288,326.5 272,333.9 256,340.7 240,347.3 224,353.5 208,359.4 192,365.1 176,370.6 160,375.9 144,381.0 128,386.0 112,390.8 96,395.5 80,400.0" fill="none" stroke="#8b1a1a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="400" cy="220" r="5" fill="#8b1a1a"/>
+<text x="412" y="245" font-family="Source Sans 3,sans-serif" font-size="18" fill="#7a6a55">参照点</text>
+<text x="400" y="24" font-family="Source Sans 3,sans-serif" font-size="18" font-weight="600" fill="#1a1208" text-anchor="middle">価値</text>
+<text x="758" y="216" font-family="Source Sans 3,sans-serif" font-size="18" font-weight="600" fill="#1a1208">結果</text>
+<text x="630" y="90" font-family="Source Sans 3,sans-serif" font-size="22" font-weight="600" fill="#1a1208">利得</text>
+<text x="95" y="350" font-family="Source Sans 3,sans-serif" font-size="22" font-weight="600" fill="#8b1a1a">損失</text>
+<text x="570" y="200" font-family="Source Sans 3,sans-serif" font-size="16" font-style="italic" fill="#7a6a55">緩やか (α=0.5)</text>
+<text x="190" y="300" font-family="Source Sans 3,sans-serif" font-size="16" font-style="italic" fill="#8b1a1a">急勾配 (λ=2.25)</text>
+</svg>
+<p class="diagram-caption">v(x) = √x(利得側) / v(x) = −2.25·√(−x)(損失側)。Tversky &amp; Kahneman (1992) の値関数を視覚効果のため α=β=0.5 で描画(損失回避係数 λ=2.25 は維持)。原点付近で損失側の傾きは利得側の約2.25倍急になる。</p>
+</div>
 
 <hr class="art-rule">
 
@@ -788,10 +809,11 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <div class="ref-list">
 <div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1979</span></div><p class="ref-title"><a href="https://doi.org/10.2307/1914185" target="_blank" rel="noopener">Prospect Theory: An Analysis of Decision under Risk</a></p><p class="ref-author">Amos Tversky & Daniel Kahneman — Econometrica, 47(2), 263-292</p><p class="ref-desc">すべてはここから始まった。損失回避だけでなく、確実性効果や分離効果も含む包括的な論文。実際の実験課題が記載されているので、「被験者はどんな問題を解いたのか」まで追体験できる。</p></div>
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">実験論文</span><span class="ref-year">1990</span></div><p class="ref-title"><a href="https://doi.org/10.1086/261737" target="_blank" rel="noopener">Experimental Tests of the Endowment Effect and the Coase Theorem</a></p><p class="ref-author">Daniel Kahneman, Jack L. Knetsch & Richard H. Thaler — Journal of Political Economy, 98(6)</p><p class="ref-desc">コーヒーマグ実験の原典。「売り手」「買い手」「選択者」の3条件を比較し、選択者が売り手ではなく買い手に近い行動を取ったことを示した。エンダウメント効果が「売る側の抵抗」から生じることの証拠。</p></div>
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">理論論文</span><span class="ref-year">1992</span></div><p class="ref-title"><a href="https://doi.org/10.1007/BF00122574" target="_blank" rel="noopener">Advances in Prospect Theory: Cumulative Representation of Uncertainty</a></p><p class="ref-author">Amos Tversky & Daniel Kahneman — Journal of Risk and Uncertainty, 5, 297-323</p><p class="ref-desc">プロスペクト理論の拡張版。損失回避係数＝2.25の推定はここから来ている。元の理論が2択の単純なギャンブルに限られていたのを、複数の結果を持つ不確実な見込みに拡張した。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1990</span></div><p class="ref-title"><a href="https://doi.org/10.1086/261737" target="_blank" rel="noopener">Experimental Tests of the Endowment Effect and the Coase Theorem</a></p><p class="ref-author">Daniel Kahneman, Jack L. Knetsch & Richard H. Thaler — Journal of Political Economy, 98(6)</p><p class="ref-desc">コーヒーマグ実験の原典。「売り手」「買い手」「選択者」の3条件を比較し、選択者が売り手ではなく買い手に近い行動を取ったことを示した。エンダウメント効果が「売る側の抵抗」から生じることの証拠。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1992</span></div><p class="ref-title"><a href="https://doi.org/10.1007/BF00122574" target="_blank" rel="noopener">Advances in Prospect Theory: Cumulative Representation of Uncertainty</a></p><p class="ref-author">Amos Tversky & Daniel Kahneman — Journal of Risk and Uncertainty, 5, 297-323</p><p class="ref-desc">プロスペクト理論の拡張版。損失回避係数＝2.25の推定はここから来ている。元の理論が2択の単純なギャンブルに限られていたのを、複数の結果を持つ不確実な見込みに拡張した。</p></div>
 <div class="ref-item fade"><div class="ref-meta"><span class="ref-type">批判論文</span><span class="ref-year">2018</span></div><p class="ref-title"><a href="https://doi.org/10.1002/jcpy.1047" target="_blank" rel="noopener">The Loss of Loss Aversion: Will It Loom Larger Than Its Gain?</a></p><p class="ref-author">David Gal & Derek D. Rucker — Journal of Consumer Psychology, 28(3), 497-516</p><p class="ref-desc">損失回避の「万能法則」としての地位に疑問を呈した論文。エンダウメント効果の代替説明を提示し、損失回避は文脈依存的だと主張した。賛否両論あるが、読むと「通説を疑うとはどういうことか」がわかる。</p></div>
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">メタ分析</span><span class="ref-year">2024</span></div><p class="ref-title"><a href="https://doi.org/10.1016/j.jbef.2024.100485" target="_blank" rel="noopener">Meta-Analysis of Empirical Estimates of Loss-Aversion</a></p><p class="ref-author">Alexander L. Brown et al.</p><p class="ref-desc">150件の研究から607件の推定値を集めたメタ分析。損失回避係数の平均＝1.955と報告。2.25よりやや低いが、損失回避の存在自体は堅牢に支持されている。現時点で最も包括的なデータ。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">メタ分析</span><span class="ref-year">2024</span></div><p class="ref-title"><a href="https://doi.org/10.1257/jel.20221698" target="_blank" rel="noopener">Meta-Analysis of Empirical Estimates of Loss-Aversion</a></p><p class="ref-author">Alexander L. Brown et al.</p><p class="ref-desc">150件の研究から607件の推定値を集めたメタ分析。損失回避係数の平均＝1.955と報告。2.25よりやや低いが、損失回避の存在自体は堅牢に支持されている。現時点で最も包括的なデータ。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2015</span></div><p class="ref-title"><a href="https://www.amazon.co.jp/dp/4150505470/" target="_blank" rel="noopener">Misbehaving（邦訳：行動経済学の逆襲 上）</a></p><p class="ref-author">Richard H. Thaler</p><p class="ref-desc">損失回避・保有効果を行動経済学誕生史の中で語る(ハヤカワ文庫NF上巻)。Kahneman &amp; Tversky を経済学側から受け取った当事者視点が手に入る。</p></div>
 </div>
 
 <!-- 信頼度ノート -->
@@ -813,7 +835,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 <div class="sidebar-block fade"><p class="sidebar-label">Key Number</p><p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">2×</p><p class="sidebar-text">損失の心理的インパクトは、同額の利得のおよそ<strong>2倍</strong>。Tversky & Kahneman（1992）の推定では2.25倍。</p></div>
 <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">カーネマンとトヴェルスキーの共同研究は1969年にエルサレムで始まった。2人は毎日何時間も散歩しながら議論し、互いの文章を一文ずつ共同で書いた。カーネマンは「私たちのどちらか一人では、この研究は生まれなかった」と繰り返し述べている。</p></div>
 <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text"><em>『ファスト＆スロー』</em>（2011年）第25-26章<br><em>『マネーボール』</em>（2003年/映画2011年）<br><em>『予想どおりに不合理』</em>（2008年）<br><em>『NUDGE 実践 行動経済学』</em>（2008年）</p></div>
-<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— アンカリング効果<br>— フレーミング効果<br>— サンクコスト錯誤<br>— 確証バイアス<br>— スキナー箱とスロットマシン</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <a href="/anchoring_effect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">アンカリング効果</a><br>— <a href="/framing_effect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">フレーミング効果</a><br>— <a href="/sunk_cost_fallacy" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">サンクコスト錯誤</a><br>— <a href="/confirmation_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">確証バイアス</a><br>— <a href="/skinner_box" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">スキナー箱</a></p></div>
 <div class="sidebar-block fade"><p class="sidebar-label">今日の判断を振り返る</p><ul class="sidebar-check"><li>最近「もったいない」と思って何かを続けていないか？</li><li>手放すのが怖くて、使っていないものを保管していないか？</li><li>「損を取り戻そう」として、さらに投資（時間・お金）を増やしていないか？</li></ul></div>
 <div class="sidebar-block fade"><p class="sidebar-label">信頼度</p><p class="sidebar-text">原著論文と複数のメタ分析に基づく。プロスペクト理論は19カ国での大規模追試で主要な知見が再現されている。ただし損失回避の強さは文脈により変動し、一定ではない。</p></div>
 </div></div>

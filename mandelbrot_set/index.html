@@ -57,7 +57,7 @@ a{color:inherit;text-decoration:none;}
 
 /* SCENARIO */
 .scenario{max-width:900px;margin:0 auto;padding:0 48px;}
-.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}
+.scenario-inner{margin:20px 0 0;padding:22px 28px;background:#f3efe6;border-left:3px solid #c8bfaa;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner p{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
 .scenario-inner p:last-child{margin-bottom:0;font-style:normal;font-weight:400;color:#1a1208;}
 
@@ -79,7 +79,7 @@ a{color:inherit;text-decoration:none;}
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -120,7 +120,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .quote-attr{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;letter-spacing:.06em;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:120px 1fr;border:1px solid #c8bfaa;overflow:hidden;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(60px, 23%, 120px) 1fr;border:1px solid #c8bfaa;overflow:hidden;}
 .person-block-img{background:#ede8dc;display:flex;align-items:flex-start;justify-content:center;padding:16px 0;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
 .person-block-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a1208;margin-bottom:4px;}
@@ -296,7 +296,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:14px;}
   .summary-box{padding:0 20px;}
   .scenario{padding:0 20px;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
@@ -305,7 +305,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
   .related-grid{grid-template-columns:1fr;}
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:16px;border-bottom:1px solid #c8bfaa;}
 }
 
@@ -600,10 +600,10 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <p class="body-text fade">このように、「暴走しなかった c」を黒く塗り、「暴走した c」は暴走するまでにかかった回数に応じて色を付ける。これを複素平面上のすべての点に対して実行すると、あのカブトムシのような黒い図形——マンデルブロ集合——が浮かび上がる。</p>
 
-<!-- Image: Wolfgang Beyer, Ultra Fractal 3, CC BY-SA 3.0, via Wikimedia Commons -->
+<!-- Image: BernardH, Public Domain, via Wikimedia Commons -->
 <div class="img-placeholder fade" style="border-style:solid;">
   <img src="img_mandelbrot_set.jpg" alt="マンデルブロ集合の全体図" loading="lazy" style="width:100%;display:block;">
-  <p class="img-caption">Fig. 1 — マンデルブロ集合の全体図。中央の心臓形（カーディオイド）が本体、左に接する円が「頭部」。黒い領域が暴走しなかった c の集まり（原図: Wolfgang Beyer, Ultra Fractal 3, CC BY-SA 3.0）。</p>
+  <p class="img-caption">Fig. 1 — マンデルブロ集合の全体図。中央の心臓形（カーディオイド）が本体、左に接する円が「頭部」。黒い領域が暴走しなかった c の集まり（原図: BernardH / Public Domain）。</p>
 </div>
 
 <hr class="art-rule">
@@ -832,16 +832,17 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 </div>
 
 <!-- 人物ブロック -->
-<!-- Photo: Rama, CC BY-SA 2.0 FR, via Wikimedia Commons -->
+<!-- Photo: Steve Jurvetson / CC BY 2.0, TED 2010, via Wikimedia Commons -->
 <div class="person-block fade">
   <div class="person-block-img">
-    <img src="img_mandelbrot_portrait.jpg" alt="ブノワ・マンデルブロ（2007年、EPFLにて）">
+    <img src="img_mandelbrot_portrait.jpg" alt="ブノワ・マンデルブロ（2010年、TED登壇時）" style="width:100%;height:100%;object-fit:cover;display:block;">
   </div>
   <div class="person-block-body">
     <p class="person-block-name">ブノワ・B・マンデルブロ</p>
     <p class="person-block-role">Benoît B. Mandelbrot · 1924–2010</p>
     <p class="person-block-wiki"><a href="https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%8E%E3%83%AF%E3%83%BB%E3%83%9E%E3%83%B3%E3%83%87%E3%83%AB%E3%83%96%E3%83%AD" target="_blank" rel="noopener">Wikipedia</a></p>
     <p class="person-block-desc">ポーランド生まれのフランス系アメリカ人数学者。IBMでフラクタル幾何学を創始。「雲は球ではなく、山は錐ではなく、海岸線は円ではない」と述べ、自然界の「粗さ（roughness）」を数学的に記述する道を切り拓いた。75歳でイェール大学史上最高齢のテニュアを取得。</p>
+    <p class="person-block-credit" style="font-size:10px;color:#b0a090;margin-top:8px;">Photo: Steve Jurvetson / CC BY 2.0 via Wikimedia Commons (TED 2010)</p>
   </div>
 </div>
 
@@ -885,26 +886,26 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
 
 <div class="ref-list">
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1982</span></div>
-    <p class="ref-title"><a href="https://en.wikipedia.org/wiki/The_Fractal_Geometry_of_Nature" target="_blank" rel="noopener">The Fractal Geometry of Nature</a></p>
+    <div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">1982</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4480093575/" target="_blank" rel="noopener">The Fractal Geometry of Nature</a></p>
     <p class="ref-author">Benoît B. Mandelbrot</p>
     <p class="ref-desc">フラクタル幾何学の基礎を一般に広めた代表作。マンデルブロ集合を含む多数のフラクタル図形と自然界への応用を論じる。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">論文</span><span class="ref-year">1998</span></div>
+    <div class="ref-meta"><span class="ref-type">原著論文</span><span class="ref-year">1998</span></div>
     <p class="ref-title"><a href="https://arxiv.org/abs/math/9201272" target="_blank" rel="noopener">The Hausdorff Dimension of the Boundary of the Mandelbrot Set and Julia Sets</a></p>
     <p class="ref-author">Mitsuhiro Shishikura</p>
     <p class="ref-desc">マンデルブロ集合の境界のハウスドルフ次元が2であることを証明した論文。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">ドキュメンタリー</span><span class="ref-year">1995</span></div>
+    <div class="ref-meta"><span class="ref-type">動画</span><span class="ref-year">1995</span></div>
     <p class="ref-title"><a href="https://www.imdb.com/title/tt0241317/" target="_blank" rel="noopener">Fractals: The Colours of Infinity</a></p>
     <p class="ref-author">アーサー・C・クラーク（ナレーション）/ デヴィッド・ギルモア（音楽）</p>
     <p class="ref-desc">マンデルブロ集合とフラクタルの世界を一般向けに紹介したドキュメンタリー。マンデルブロ本人も出演。</p>
   </div>
   <div class="ref-item fade">
-    <div class="ref-meta"><span class="ref-type">書籍</span><span class="ref-year">1987</span></div>
-    <p class="ref-title"><a href="https://en.wikipedia.org/wiki/Chaos:_Making_a_New_Science" target="_blank" rel="noopener">Chaos: Making a New Science</a></p>
+    <div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">1987</span></div>
+    <p class="ref-title"><a href="https://www.amazon.co.jp/dp/4102361014/" target="_blank" rel="noopener">Chaos: Making a New Science</a></p>
     <p class="ref-author">James Gleick</p>
     <p class="ref-desc">カオス理論とフラクタルの歴史を一般読者に向けて描いたベストセラー。マンデルブロの仕事を広く知らしめた。</p>
   </div>
@@ -954,7 +955,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">関連トピック</p>
-      <p class="sidebar-text">— ラングトンのアリ<br>— コンウェイのライフゲーム<br>— フラクタルと海岸線のパラドックス<br>— ボイドと群れの知能</p>
+      <p class="sidebar-text">— <a href="/langton_ant" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ラングトンのアリ</a><br>— <a href="/life_game" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ライフゲーム</a><br>— <a href="/boids" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">ボイドモデル</a><br>— <a href="/self_organized_criticality" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">自己組織化臨界</a><br>— <a href="/shepard_tone" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">シェパードトーン</a></p>
     </div>
     <div class="sidebar-block fade">
       <p class="sidebar-label">信頼度</p>

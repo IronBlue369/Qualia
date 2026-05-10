@@ -102,7 +102,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 
 /* SCENARIO */
 .scenario-wrap{max-width:900px;margin:0 auto;padding:40px 48px 0;}
-.scenario-inner{position:relative;padding:32px 36px;background:linear-gradient(135deg,#f3efe6 0%,#ede8dc 100%);border:1px solid #c8bfaa;}
+.scenario-inner{position:relative;padding:32px 36px;background:linear-gradient(135deg,#f3efe6 0%,#ede8dc 100%);border:1px solid #c8bfaa;}.scenario-inner::after{content:'§';position:absolute;right:20px;top:-10px;font-family:'Playfair Display',serif;font-size:120px;font-weight:900;color:#e0d8c8;opacity:.35;line-height:1;pointer-events:none;}
 .scenario-inner::before{content:'';position:absolute;top:-1px;left:40px;right:40px;height:3px;background:#8b1a1a;}
 .scenario-num{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:rgba(139,26,26,.06);position:absolute;top:12px;right:24px;line-height:1;user-select:none;}
 .scenario-text{font-family:'Source Serif 4',serif;font-size:16px;font-weight:300;font-style:italic;color:#3d3020;line-height:1.9;margin-bottom:14px;}
@@ -130,7 +130,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .summary-text strong{font-weight:600;}
 
 /* ARTICLE */
-.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:start;}
+.article{max-width:900px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:48px;align-items:start;}
 .article-main{padding:48px 0;}
 .article-side{padding:48px 0;}
 .sec-rule{display:flex;align-items:center;gap:0;margin-bottom:20px;}
@@ -154,7 +154,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-we
 .tip.open .tip-box{display:block;}
 
 /* PERSON BLOCK */
-.person-block{margin:32px 0;display:grid;grid-template-columns:140px 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
+.person-block{margin:32px 0;display:grid;grid-template-columns:clamp(70px, 27%, 140px) 1fr;border:1px solid #c8bfaa;overflow:hidden;align-items:stretch;}
 .person-block-img{background:#ede8dc;display:block;padding:0;overflow:hidden;min-height:180px;}
 .person-block-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:70% 30%;}
 .person-block-body{padding:16px 18px;background:#f3efe6;border-left:1px solid #c8bfaa;}
@@ -396,7 +396,7 @@ footer{background:#1a1208;padding:52px 32px 44px;}
 @media(max-width:720px){
   .cover{grid-template-columns:1fr;padding:40px 20px 32px;gap:24px;}
   .cover-right{display:none;}
-  .article{grid-template-columns:1fr;padding:0 20px;}
+  .article{grid-template-columns:minmax(0,1fr);padding:0 20px;}
   .article-side{padding:0 0 48px;}
   .meta-bar{padding:14px 20px;flex-wrap:wrap;gap:12px;}
   .summary-box,.scenario-wrap,.terminal-wrap,.terminal-label-wrap,.related{padding-left:20px;padding-right:20px;}
@@ -404,7 +404,7 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .scenario-num{display:none;}
   .misconception-item{flex-direction:column;}
   .misconception-q{border-right:none;border-bottom:1px solid #e0d8c8;}
-  .person-block{grid-template-columns:1fr;}
+  
   .person-block-img{padding:12px;justify-content:flex-start;flex-direction:row;}
   .person-block-img img{max-width:180px;}
   .related-grid{grid-template-columns:1fr;}
@@ -500,7 +500,7 @@ img,canvas,svg,video{max-width:100%;height:auto;}
 <p class="cover-kicker">認知バイアス</p>
 <h1>乱数が<em>物語</em>を<br>語り始めるとき</h1>
 <p class="cover-deck">2007年、ベイルートからニューヨークへ渡ったトレーダーは、一冊の本でこう言った。「人間は事実の列を、事実の列のまま受け取ることができない」——それは心理学ではなく、彼が金融市場で10年以上かけて見てきた現実の記録だった。</p>
-<div class="cover-byline"><span>QUALIA JOURNAL</span><span>COGNITIVE BIAS</span><span>NARRATIVE</span></div>
+<div class="cover-byline"><span>QUALIA JOURNAL</span><span>BIAS REPORT</span></div>
 </div>
 <div class="cover-right">
 <div class="est-card">
@@ -514,7 +514,7 @@ img,canvas,svg,video{max-width:100%;height:auto;}
 </div>
 
 <!-- SCENARIO -->
-<div class="scenario-wrap fade"><div class="scenario-inner"><span class="scenario-num">~</span>
+<div class="scenario-wrap fade"><div class="scenario-inner"><span class="scenario-num">§</span>
 <p class="scenario-text">株価チャートを見ているとき、あなたは必ず何かを読み取っている。上昇トレンドのはじまり、頭と肩の形、下降三角形、二番天井——。画面に並んでいるのは数字の列にすぎないのに、いつの間にか自分が物語を語り始めている。</p>
 <p class="scenario-text">これは相場だけの話ではない。ニュースを読むとき、誰かの行動を説明するとき、自分の半生を振り返るとき。あらゆる場面で同じことが起きている。事実を受け取っているつもりで、実は物語を書き込んでいる。</p>
 <p class="scenario-text closing">この癖には名前がある。そして、それを乱数のチャートを前にして初めて言語化した人物がいる。</p>
@@ -758,10 +758,10 @@ img,canvas,svg,video{max-width:100%;height:auto;}
 <!-- 参考文献 -->
 <div class="sec-rule fade"><span class="sec-label">もっと深く知りたい人へ</span><div class="sec-line"></div></div>
 <div class="ref-list">
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">原典</span><span class="ref-year">2007</span></div><p class="ref-title"><a href="https://en.wikipedia.org/wiki/The_Black_Swan:_The_Impact_of_the_Highly_Improbable" target="_blank" rel="noopener">The Black Swan: The Impact of the Highly Improbable</a></p><p class="ref-author">Nassim Nicholas Taleb — Random House, 2007. Ch. 6「The Narrative Fallacy」</p><p class="ref-desc">ナラティブの誤謬が初めて命名された章を含む。邦訳は『ブラック・スワン——不確実性とリスクの本質』(ダイヤモンド社, 2009)。この用語の議論はどこから始めるにせよ、まずここに戻ることになる。</p></div>
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">2011</span></div><p class="ref-title"><a href="https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow" target="_blank" rel="noopener">Thinking, Fast and Slow — Chapter 19: The Illusion of Understanding</a></p><p class="ref-author">Daniel Kahneman — Farrar, Straus and Giroux, 2011</p><p class="ref-desc">第19章がタレブの概念を明示的に取り上げ、実験心理学の言葉に翻訳する。「物語は理解を生まない。理解の錯覚を生む」が本章の結論。邦訳は『ファスト&スロー』(早川書房, 2012)。</p></div>
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">関連著作</span><span class="ref-year">2001</span></div><p class="ref-title"><a href="https://en.wikipedia.org/wiki/Fooled_by_Randomness" target="_blank" rel="noopener">Fooled by Randomness: The Hidden Role of Chance</a></p><p class="ref-author">Nassim Nicholas Taleb — Texere, 2001</p><p class="ref-desc">タレブが一般読者に向けて書いた最初の書で、思索集『Incerto』シリーズの第一作。運と実力、シグナルとノイズを混同する市場心理を扱う。ナラティブ概念は未命名だが、核は既にここにある。</p></div>
-<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">概念史</span><span class="ref-year">1958 / 解説</span></div><p class="ref-title"><a href="https://en.wikipedia.org/wiki/Apophenia" target="_blank" rel="noopener">Apophenia — Wikipedia</a></p><p class="ref-author">Klaus Conrad(1958)によるドイツ語造語、その後の展開</p><p class="ref-desc">ナラティブの誤謬の下層(パターン検出)にあたる概念の系譜。コンラートの原著は独語で入手困難だが、Wikipediaの解説が簡潔で概観に向く。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2007</span></div><p class="ref-title"><a href="https://www.amazon.co.jp/dp/4478001251/" target="_blank" rel="noopener">The Black Swan: The Impact of the Highly Improbable</a></p><p class="ref-author">Nassim Nicholas Taleb — Random House, 2007. Ch. 6「The Narrative Fallacy」</p><p class="ref-desc">ナラティブの誤謬が初めて命名された章を含む。邦訳は『ブラック・スワン——不確実性とリスクの本質』(ダイヤモンド社, 2009)。この用語の議論はどこから始めるにせよ、まずここに戻ることになる。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">学術書</span><span class="ref-year">2011</span></div><p class="ref-title"><a href="https://www.amazon.co.jp/dp/4150504105/" target="_blank" rel="noopener">Thinking, Fast and Slow — Chapter 19: The Illusion of Understanding</a></p><p class="ref-author">Daniel Kahneman — Farrar, Straus and Giroux, 2011</p><p class="ref-desc">第19章がタレブの概念を明示的に取り上げ、実験心理学の言葉に翻訳する。「物語は理解を生まない。理解の錯覚を生む」が本章の結論。邦訳は『ファスト&スロー』(早川書房, 2012)。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">一般書</span><span class="ref-year">2001</span></div><p class="ref-title"><a href="https://www.amazon.co.jp/dp/4478001227/" target="_blank" rel="noopener">Fooled by Randomness: The Hidden Role of Chance</a></p><p class="ref-author">Nassim Nicholas Taleb — Texere, 2001</p><p class="ref-desc">タレブが一般読者に向けて書いた最初の書で、思索集『Incerto』シリーズの第一作。運と実力、シグナルとノイズを混同する市場心理を扱う。ナラティブ概念は未命名だが、核は既にここにある。</p></div>
+<div class="ref-item fade"><div class="ref-meta"><span class="ref-type">事典</span><span class="ref-year">1958 / 解説</span></div><p class="ref-title"><a href="https://en.wikipedia.org/wiki/Apophenia" target="_blank" rel="noopener">Apophenia — Wikipedia</a></p><p class="ref-author">Klaus Conrad(1958)によるドイツ語造語、その後の展開</p><p class="ref-desc">ナラティブの誤謬の下層(パターン検出)にあたる概念の系譜。コンラートの原著は独語で入手困難だが、Wikipediaの解説が簡潔で概観に向く。</p></div>
 </div>
 
 <div class="note-box fade"><strong>📌 この記事について</strong><br>タレブ『ブラック・スワン』(2007) 第6章を原典とし、カーネマン『ファスト&スロー』(2011) 第19章、およびアポフェニア・因果知覚(Michotte, 1946)の古典的研究を補助線として用いている。ナラティブの誤謬はタレブの造語として学術的にも流通しているが、隣接概念(確証バイアス、後知恵バイアス、連言錯誤)との境界は一部重なっており、研究者によって強調点が異なる。</div>
@@ -778,7 +778,7 @@ img,canvas,svg,video{max-width:100%;height:auto;}
 <div class="sidebar-block fade"><p class="sidebar-label">Key Number</p><p style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:#8b1a1a;line-height:1;margin-bottom:8px;">85%</p><p class="sidebar-text">「銀行員」と「銀行員で女性運動家」を並べた問いで、<strong>確率が低いほうの「物語らしい」選択肢</strong>を選んだ人の割合(Tversky &amp; Kahneman, 1983「リンダ問題」)。ナラティブの誤謬の隣接現象として何度も引かれる。</p></div>
 <div class="sidebar-block fade"><p class="sidebar-label">歴史的背景</p><p class="sidebar-text">タレブの起源イメージは<strong>1697年オーストラリアでの「黒い白鳥」発見</strong>。欧州で「白鳥は白い」が定義だった時代、観察できる事実が理論を壊した瞬間。ナラティブの誤謬は、その逆の装置——事実が理論を<em>直さない</em>装置——を指す。</p></div>
 <div class="sidebar-block fade"><p class="sidebar-label">作品への登場</p><p class="sidebar-text">タレブ『ブラック・スワン』(2007)が原典。<br>カーネマン『ファスト&スロー』(2011)第19章が学術的に普及させた。<br>金融ニュースの「単一原因見出し」は、この誤謬の大衆化した姿。</p></div>
-<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <em>確証バイアス</em><br>物語を後付けで補強する<br>— <em>生存者バイアス</em><br>成功の物語だけが残る<br>— <em>後知恵バイアス</em><br>結果後に「予見可能」に見える</p></div>
+<div class="sidebar-block fade"><p class="sidebar-label">関連トピック</p><p class="sidebar-text">— <a href="/confirmation_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">確証バイアス</a><br>— <a href="/survivorship_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">生存者バイアス</a><br>— <a href="/hindsight_bias" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">後知恵バイアス</a><br>— <a href="/base_rate_neglect" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">基準率の無視</a><br>— <a href="/correlation_causation" style="color:#3d3020;border-bottom:1px dotted #c8bfaa;">相関は因果ではない</a></p></div>
 <div class="sidebar-block fade"><p class="sidebar-label">今日の判断を振り返る</p><ul class="sidebar-check"><li>今日読んだニュース見出しの「原因」は、どこから来ていたか</li><li>誰かの行動を説明するとき、材料は揃っていたか</li><li>「流れが読めた」と感じた瞬間、それはデータの側にあったか</li></ul></div>
 <div class="sidebar-block fade"><p class="sidebar-label">📌 信頼度</p><p class="sidebar-text">Taleb(2007)、Kahneman(2011)が主要文献。概念の境界は隣接バイアスと一部重なる。</p></div>
 </div></div>

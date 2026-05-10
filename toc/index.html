@@ -105,10 +105,8 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .chapter-meta{display:flex;align-items:baseline;gap:14px;margin-bottom:10px;flex-wrap:wrap;}
 .chapter-meta-count{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:500;color:#3d3020;letter-spacing:.05em;}
 .chapter-meta-count strong{color:#8b1a1a;font-weight:700;}
-.chapter-meta-sep{font-family:'Source Sans 3',sans-serif;font-size:11px;color:#b0a090;}
-.chapter-meta-status{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:500;color:#b0a090;letter-spacing:.14em;text-transform:uppercase;}
-.chapter-progress{height:3px;background:#e8e0cc;position:relative;margin-bottom:4px;}
-.chapter-progress-fill{position:absolute;top:0;left:0;height:100%;background:#8b1a1a;}
+.chapter-progress{height:1.5px;background:#ede5d0;position:relative;margin-bottom:4px;}
+.chapter-progress-fill{position:absolute;top:0;left:0;height:100%;background:#b8625e;}
 
 /* ================================
    SECTION (§1.1 etc.)
@@ -135,7 +133,11 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 
 /* coming soon row list */
 .cs-list{margin-top:18px;border-top:1px dashed #c8bfaa;border-bottom:1px dashed #c8bfaa;padding:12px 4px;}
-.cs-list-head{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:500;letter-spacing:.22em;color:#b8a890;text-transform:uppercase;margin-bottom:10px;padding:0 4px;display:flex;align-items:baseline;gap:8px;}
+details.cs-list summary{font-family:'Source Sans 3',sans-serif;font-size:9px;font-weight:500;letter-spacing:.22em;color:#b8a890;text-transform:uppercase;padding:0 4px;cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:8px;}
+details.cs-list summary::-webkit-details-marker{display:none;}
+details.cs-list summary::before{content:'▸';font-size:10px;color:#b8a890;display:inline-block;transition:transform .2s;}
+details.cs-list[open] summary::before{transform:rotate(90deg);}
+details.cs-list .cs-rows{margin-top:10px;}
 .cs-list-head-count{font-weight:400;color:#c8bfaa;letter-spacing:.1em;}
 .cs-row{display:flex;align-items:baseline;gap:12px;padding:5px 4px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:300;font-style:italic;color:#a89880;line-height:1.6;}
 .cs-row-dot{font-family:'Source Sans 3',sans-serif;font-size:10px;color:#d4c8b0;flex-shrink:0;min-width:10px;}
@@ -338,9 +340,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <h2 class="chapter-title">五感のからくり</h2>
     <p class="chapter-sub">— 私の見ているものは、本当に世界だろうか</p>
     <div class="chapter-meta">
-      <span class="chapter-meta-count"><strong>15</strong> / 21 articles</span>
-      <span class="chapter-meta-sep">・</span>
-      <span class="chapter-meta-status">制作中 71%</span>
+      <span class="chapter-meta-count">公開済み <strong>15</strong> 本 / 全 21 本</span>
     </div>
     <div class="chapter-progress"><div class="chapter-progress-fill" style="width:71.4%;"></div></div>
   </div>
@@ -378,11 +378,13 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">視野の中の見えない領域。脳はそこを周囲から推測して埋めている。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">2 articles</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">テトラクロマシー(4色型色覚)</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">なぜ空は青いのか</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">2 articles</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">テトラクロマシー(4色型色覚)</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">なぜ空は青いのか</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §1.2 聞こえるということ -->
@@ -413,13 +415,15 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">永遠に上昇し続ける音。脳のオクターブ判定が外れる場所。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">4 articles</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">不協和音はなぜ不快か</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">イヤーワーム</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">絶対音感は才能か訓練か</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ASMR</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">4 articles</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">不協和音はなぜ不快か</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">イヤーワーム</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">絶対音感は才能か訓練か</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ASMR</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §1.3 触れる、味わう -->
@@ -440,10 +444,12 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">温かいものと冷たいものを交互に触ると「熱い痛み」を感じる。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">1 article</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">触覚のホムンクルス</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">1 article</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">触覚のホムンクルス</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §1.4 世界を描こうとした人たち -->
@@ -486,9 +492,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <h2 class="chapter-title">思考の<ruby>轍<rt>わだち</rt></ruby></h2>
     <p class="chapter-sub">— 自分の決断が、自分のものでないとしたら</p>
     <div class="chapter-meta">
-      <span class="chapter-meta-count"><strong>24</strong> / 31 articles</span>
-      <span class="chapter-meta-sep">・</span>
-      <span class="chapter-meta-status">制作中 77%</span>
+      <span class="chapter-meta-count">公開済み <strong>24</strong> 本 / 全 31 本</span>
     </div>
     <div class="chapter-progress"><div class="chapter-progress-fill" style="width:77.4%;"></div></div>
   </div>
@@ -527,12 +531,14 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <span class="card-xref-note">※ Chapter 5 §5.4「科学の足元」でも扱う</span>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">3 articles</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">共時性と確率の錯覚</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">テスラ──天才と神話の境界</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">黄金比の神話と現実</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">3 articles</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">共時性と確率の錯覚</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">テスラ──天才と神話の境界</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">黄金比の神話と現実</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §2.2 失うことを恐れすぎる -->
@@ -558,11 +564,13 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">同じ内容でも、表現の仕方で選択が変わる。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">2 articles</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">正常性バイアス</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ピーク・エンドの法則</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">2 articles</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">正常性バイアス</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ピーク・エンドの法則</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §2.3 自分を見誤る -->
@@ -588,10 +596,12 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">結果を見た後なら誰もが予言者になれる。感覚が記憶を書き換える。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">1 article</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">スポットライト効果</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">1 article</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">スポットライト効果</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §2.4 数字に裏切られる -->
@@ -677,12 +687,14 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">38人の目撃者の話は誤報だった。それでも効果は実在する。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">3 articles</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">返報性の原理</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">社会的証明(バンドワゴン効果)</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">権威のシンボルと服従</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">3 articles</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">返報性の原理</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">社会的証明(バンドワゴン効果)</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">権威のシンボルと服従</span></div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -695,9 +707,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <h2 class="chapter-title">報酬という<em>重力</em></h2>
     <p class="chapter-sub">— 何が私を動かしているのか</p>
     <div class="chapter-meta">
-      <span class="chapter-meta-count"><strong>7</strong> / 8 articles</span>
-      <span class="chapter-meta-sep">・</span>
-      <span class="chapter-meta-status">制作中 88%</span>
+      <span class="chapter-meta-count">公開済み <strong>7</strong> 本 / 全 8 本</span>
     </div>
     <div class="chapter-progress"><div class="chapter-progress-fill" style="width:87.5%;"></div></div>
   </div>
@@ -745,10 +755,12 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">「幸せ」は4つのまったく異なる化学物質の状態。単数形ではない。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">1 article</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ランナーズハイの正体</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">1 article</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ランナーズハイの正体</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §3.3 環境が行動を決める -->
@@ -781,9 +793,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <h2 class="chapter-title">自己の<em>縫い目</em></h2>
     <p class="chapter-sub">— 私はどこから始まり、どこで終わるのか</p>
     <div class="chapter-meta">
-      <span class="chapter-meta-count"><strong>20</strong> / 41 articles</span>
-      <span class="chapter-meta-sep">・</span>
-      <span class="chapter-meta-status">制作中 49%</span>
+      <span class="chapter-meta-count">公開済み <strong>20</strong> 本 / 全 41 本</span>
     </div>
     <div class="chapter-progress"><div class="chapter-progress-fill" style="width:48.8%;"></div></div>
   </div>
@@ -806,13 +816,15 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">「今」は80〜120ミリ秒前の世界だ。リアルタイム知覚は存在しない。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">4 articles</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">脳は予測機械</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">睡眠中の記憶整理</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">デフォルトモードネットワーク</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">感情は後付けの解釈</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">4 articles</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">脳は予測機械</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">睡眠中の記憶整理</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">デフォルトモードネットワーク</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">感情は後付けの解釈</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §4.2 自由意志の影 -->
@@ -858,12 +870,14 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">目を閉じても自分の指先がわかる。失って初めて気づく感覚。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">3 articles</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ファントム・バイブレーション</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ゲートコントロール理論(痛みは脳が作る)</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">利き手はなぜ存在するか</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">3 articles</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ファントム・バイブレーション</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ゲートコントロール理論(痛みは脳が作る)</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">利き手はなぜ存在するか</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §4.4 「私」は続いているのか -->
@@ -889,11 +903,13 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">鉄棒が脳を貫いた男は別人になった。「芯」と呼ぶものはどこにある。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">2 articles</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">鏡像自己認知</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">水槽の脳</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">2 articles</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">鏡像自己認知</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">水槽の脳</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §4.5 体験という壁 -->
@@ -914,15 +930,17 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">脳を全部説明しても、「赤の赤さ」は残る。30年解けない問い。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">6 articles</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">哲学的ゾンビ</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">クオリア反転問題</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">中国語の部屋</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">汎心論(パンプシキズム)</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">統合情報理論(トノーニ)</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">経験機械(ノージック)</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">6 articles</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">哲学的ゾンビ</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">クオリア反転問題</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">中国語の部屋</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">汎心論(パンプシキズム)</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">統合情報理論(トノーニ)</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">経験機械(ノージック)</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §4.6 観測する私 -->
@@ -943,11 +961,13 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">波動関数は収縮しない——と決めた時、物理学に何が起きたか。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">2 articles</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">シュレーディンガーの猫</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">観察者のパラドックス(ラボフ)</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">2 articles</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">シュレーディンガーの猫</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">観察者のパラドックス(ラボフ)</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §4.7 哲学が触れた「私」 -->
@@ -978,12 +998,14 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">5人を救うためにレバーを引くか。同じ算数なのに直感が割れる。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">3 articles</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">色即是空と物理学</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">無常と進化論</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ストア哲学とコントロールの二分法</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">3 articles</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">色即是空と物理学</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">無常と進化論</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ストア哲学とコントロールの二分法</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §4.8 時間のなかの私 -->
@@ -999,10 +1021,12 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">小学生の夏は無限、大人の夏は瞬間。主観時間の1/n則。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">1 article</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">危険な場面で時間がスローモーションになる</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">1 article</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">危険な場面で時間がスローモーションになる</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §4.9 分類されたい私 -->
@@ -1018,10 +1042,12 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">5週間後に半数が別タイプに。それでも数億人が4文字に自分を重ねる。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">1 article</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ビッグファイブ</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">1 article</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ビッグファイブ</span></div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -1034,9 +1060,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <h2 class="chapter-title">世界の<em>ほつれ</em></h2>
     <p class="chapter-sub">— 言葉にしなかった世界は、どこにあるのか</p>
     <div class="chapter-meta">
-      <span class="chapter-meta-count"><strong>10</strong> / 21 articles</span>
-      <span class="chapter-meta-sep">・</span>
-      <span class="chapter-meta-status">制作中 48%</span>
+      <span class="chapter-meta-count">公開済み <strong>10</strong> 本 / 全 21 本</span>
     </div>
     <div class="chapter-progress"><div class="chapter-progress-fill" style="width:47.6%;"></div></div>
   </div>
@@ -1054,14 +1078,16 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">青信号はなぜ青か。言語の線引きは、世界を切り分けている。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">5 articles</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">言語が思考を制約するか(サピア=ウォーフ仮説)</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ピダハン語</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">時制のない言語と時間感覚</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">手話は完全な言語</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">絵文字は言語か</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">5 articles</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">言語が思考を制約するか(サピア=ウォーフ仮説)</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ピダハン語</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">時制のない言語と時間感覚</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">手話は完全な言語</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">絵文字は言語か</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §5.2 論理の届かぬ場所 -->
@@ -1082,11 +1108,13 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <div class="card-dk">75年前のテストは、AI時代にもまだ意味を持つのか。</div>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">2 articles</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">数学は発見か発明か</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">地図は領土ではない(コージブスキー)</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">2 articles</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">数学は発見か発明か</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">地図は領土ではない(コージブスキー)</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §5.3 情報の網のなか -->
@@ -1144,11 +1172,13 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
         <span class="card-xref-note">※ Chapter 2 §2.1「物語をほしがる」でも扱う</span>
       </a>
     </div>
-    <div class="cs-list">
-      <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">2 articles</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">二重盲検法はなぜ必要か</span></div>
-      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">水の結晶実験はなぜ科学ではないか</span></div>
-    </div>
+    <details class="cs-list">
+      <summary>Coming Soon<span class="cs-list-head-count">2 articles</span></summary>
+      <div class="cs-rows">
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">二重盲検法はなぜ必要か</span></div>
+        <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">水の結晶実験はなぜ科学ではないか</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- §5.5 世界の縁(ふち) ※潜在小節(タイトルのみ表示) -->
@@ -1204,9 +1234,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <span class="appendix-label">Appendix I</span>
     <h3 class="appendix-title">数の風景</h3>
     <div class="appendix-meta">
-      <span class="appendix-meta-count"><strong>12</strong> / 21 articles</span>
-      <span class="chapter-meta-sep">・</span>
-      <span class="chapter-meta-status">制作中 57%</span>
+      <span class="appendix-meta-count">公開済み <strong>12</strong> 本 / 全 21 本</span>
     </div>
     <div class="chapter-progress"><div class="chapter-progress-fill" style="width:57.1%;"></div></div>
   </div>
@@ -1272,20 +1300,22 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <div class="card-dk">満室でも無限の客が入れる。無限を操作してみる思考実験。</div>
     </a>
   </div>
-  <div class="cs-list">
-    <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">11 articles</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">無限にも大きさがある(カントール)</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">バナッハ=タルスキーの逆説</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">オイラーの等式</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">コラッツ予想</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ラムジー理論</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">黄金比は本当に美しいか</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ゼロの発明</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">フラクタルと海岸線のパラドックス</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">虚数はなぜ実在するか</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">べき乗則とスケールフリーネットワーク</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">弱い紐帯の強さ</span></div>
-  </div>
+  <details class="cs-list">
+    <summary>Coming Soon<span class="cs-list-head-count">11 articles</span></summary>
+    <div class="cs-rows">
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">無限にも大きさがある(カントール)</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">バナッハ=タルスキーの逆説</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">オイラーの等式</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">コラッツ予想</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ラムジー理論</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">黄金比は本当に美しいか</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ゼロの発明</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">フラクタルと海岸線のパラドックス</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">虚数はなぜ実在するか</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">べき乗則とスケールフリーネットワーク</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">弱い紐帯の強さ</span></div>
+    </div>
+  </details>
 </section>
 
 <!-- ========================================
@@ -1296,9 +1326,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <span class="appendix-label">Appendix II</span>
     <h3 class="appendix-title">生命の風景</h3>
     <div class="appendix-meta">
-      <span class="appendix-meta-count"><strong>5</strong> / 23 articles</span>
-      <span class="chapter-meta-sep">・</span>
-      <span class="chapter-meta-status">制作中 22%</span>
+      <span class="appendix-meta-count">公開済み <strong>5</strong> 本 / 全 23 本</span>
     </div>
     <div class="chapter-progress"><div class="chapter-progress-fill" style="width:21.7%;"></div></div>
   </div>
@@ -1329,27 +1357,29 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <div class="card-dk">進化は坂道を登っているのではない。壁ぎわの酔っ払い歩行だった。</div>
     </a>
   </div>
-  <div class="cs-list">
-    <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">18 articles</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">細菌の方が多い</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ミトコンドリアはもと別の生物</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ジャンクDNA</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">神経細胞は一生交換されない</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">タコの色覚</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ウイルスは生物か</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ヒトゲノムの8%はウイルス由来</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">老化はプログラムか偶然か</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">鳥のさえずりと方言</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">イルカの名前呼び</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">テロメアと老化時計</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">クマムシの不死性</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">不老不死のクラゲ</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">CRISPR</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">収斂進化</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">赤の女王仮説</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">カンブリア爆発</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">硬さにも種類がある</span></div>
-  </div>
+  <details class="cs-list">
+    <summary>Coming Soon<span class="cs-list-head-count">18 articles</span></summary>
+    <div class="cs-rows">
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">細菌の方が多い</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ミトコンドリアはもと別の生物</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ジャンクDNA</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">神経細胞は一生交換されない</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">タコの色覚</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ウイルスは生物か</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ヒトゲノムの8%はウイルス由来</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">老化はプログラムか偶然か</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">鳥のさえずりと方言</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">イルカの名前呼び</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">テロメアと老化時計</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">クマムシの不死性</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">不老不死のクラゲ</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">CRISPR</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">収斂進化</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">赤の女王仮説</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">カンブリア爆発</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">硬さにも種類がある</span></div>
+    </div>
+  </details>
 </section>
 
 <!-- ========================================
@@ -1360,9 +1390,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <span class="appendix-label">Appendix III</span>
     <h3 class="appendix-title">物質と物理の風景</h3>
     <div class="appendix-meta">
-      <span class="appendix-meta-count"><strong>6</strong> / 20 articles</span>
-      <span class="chapter-meta-sep">・</span>
-      <span class="chapter-meta-status">制作中 30%</span>
+      <span class="appendix-meta-count">公開済み <strong>6</strong> 本 / 全 20 本</span>
     </div>
     <div class="chapter-progress"><div class="chapter-progress-fill" style="width:30.0%;"></div></div>
   </div>
@@ -1398,24 +1426,26 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <div class="card-dk">ガリレオの船とニュートンのバケツ。「動く」の定義が400年揺れている。</div>
     </a>
   </div>
-  <div class="cs-list">
-    <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">15 articles</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">原子はほぼ空っぽ</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">光速は上限</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">時間は場所によって速さが違う</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">宇宙の95%は正体不明</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">あなたは星のかけら</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">プランクスケール</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">トンネル効果</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ホログラフィック原理</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">液晶は固体でも液体でもない</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">メートルの定義は7回変わった</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">1秒はセシウム原子が決めている</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">キログラムの再定義</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">蒸気機関は改良の連鎖</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">印刷革命</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">標準時の発明</span></div>
-  </div>
+  <details class="cs-list">
+    <summary>Coming Soon<span class="cs-list-head-count">15 articles</span></summary>
+    <div class="cs-rows">
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">原子はほぼ空っぽ</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">光速は上限</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">時間は場所によって速さが違う</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">宇宙の95%は正体不明</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">あなたは星のかけら</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">プランクスケール</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">トンネル効果</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ホログラフィック原理</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">液晶は固体でも液体でもない</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">メートルの定義は7回変わった</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">1秒はセシウム原子が決めている</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">キログラムの再定義</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">蒸気機関は改良の連鎖</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">印刷革命</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">標準時の発明</span></div>
+    </div>
+  </details>
 </section>
 
 <!-- ========================================
@@ -1426,9 +1456,7 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
     <span class="appendix-label">Appendix IV</span>
     <h3 class="appendix-title">答えのない問い</h3>
     <div class="appendix-meta">
-      <span class="appendix-meta-count"><strong>1</strong> / 5 articles</span>
-      <span class="chapter-meta-sep">・</span>
-      <span class="chapter-meta-status">制作中 20%</span>
+      <span class="appendix-meta-count">公開済み <strong>1</strong> 本 / 全 5 本</span>
     </div>
     <div class="chapter-progress"><div class="chapter-progress-fill" style="width:20.0%;"></div></div>
   </div>
@@ -1439,13 +1467,15 @@ html,body{overflow-x:hidden;max-width:100%;}img,canvas,svg,video{max-width:100%;
       <div class="card-dk">性別も才能も収入も知らないまま、社会の仕組みを選べ。</div>
     </a>
   </div>
-  <div class="cs-list">
-    <div class="cs-list-head">Coming Soon<span class="cs-list-head-count">4 articles</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">フェルミのパラドックス</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ムーアの法則の終焉</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">P≠NP問題</span></div>
-    <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">功利主義の計算は本当にできるか</span></div>
-  </div>
+  <details class="cs-list">
+    <summary>Coming Soon<span class="cs-list-head-count">4 articles</span></summary>
+    <div class="cs-rows">
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">フェルミのパラドックス</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">ムーアの法則の終焉</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">P≠NP問題</span></div>
+      <div class="cs-row"><span class="cs-row-dot">·</span><span class="cs-row-name">功利主義の計算は本当にできるか</span></div>
+    </div>
+  </details>
 </section>
 
 <!-- ======================================== FOOTER ======================================== -->
