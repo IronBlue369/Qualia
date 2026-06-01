@@ -8,12 +8,12 @@
 <meta property="og:title" content="About — Qualia Journal">
 <meta property="og:description" content="数式ではなく概念を。証明ではなく体験を。専門知識ではなく、世界の見え方が変わる瞬間を届けるジャーナル。">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://qualiajournal.com/about">
+<meta property="og:url" content="https://qualiajournal.com/about/">
 <meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
 <meta property="og:site_name" content="Qualia Journal">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary">
-<link rel="canonical" href="https://qualiajournal.com/about">
+<link rel="canonical" href="https://qualiajournal.com/about/">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -141,6 +141,31 @@ a{color:inherit;text-decoration:none;}
   color:#7a6a55;line-height:1.8;
 }
 .about-note strong{color:#8b1a1a;font-weight:600;}
+
+.prologue-card{
+  display:block;margin:28px 0 0;
+  border:1px solid #c8bfaa;background:#f3efe6;
+  padding:24px 26px;
+  transition:background .2s,border-color .2s;
+}
+.prologue-card:hover{background:#efe7d8;border-color:#8b1a1a;}
+.prologue-card .pk{
+  font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:600;
+  letter-spacing:.18em;color:#8b1a1a;text-transform:uppercase;margin-bottom:10px;
+}
+.prologue-card h3{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(18px,2.4vw,23px);font-weight:700;color:#1a1208;line-height:1.35;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  transition:color .2s;
+}
+.prologue-card:hover h3{color:#8b1a1a;}
+.prologue-card .arr{color:#8b1a1a;font-weight:400;flex-shrink:0;transition:transform .2s;}
+.prologue-card:hover .arr{transform:translateX(5px);}
+.prologue-card .pd{
+  font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:300;
+  color:#7a6a55;line-height:1.8;margin-top:10px;
+}
 
 
 
@@ -380,6 +405,18 @@ header.mh{padding:0 20px;}
         <p class="about-person-desc">当たり前だと思っていたことに構造を見つけるのが好きで、気になったら分野を気にせず調べるし、自分で試す。そうやって溜まったものを、読み返すだけのメモではなく、もう一度体験できる形にして置いておきたかった。このサイトはその試みだ。</p>
       </div>
     </div>
+  </div>
+
+  <div class="about-section fade">
+    <div class="sec-rule">
+      <span class="sec-label">Prologue</span>
+      <span class="sec-line"></span>
+    </div>
+    <a class="prologue-card" href="/prologue">
+      <p class="pk">次に読む</p>
+      <h3>はじめに ── このサイトができるまで <span class="arr">→</span></h3>
+      <p class="pd">紙の辞書の話から、このサイトを始めた理由まで。</p>
+    </a>
   </div>
 
 </div>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>知る前の自分には、もう会えない — Qualia Journal</title>
-<link rel="canonical" href="https://qualiajournal.com/prologue">
+<link rel="canonical" href="https://qualiajournal.com/prologue/">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://qualiajournal.com/articles.js" defer></script>
 <style>
@@ -103,7 +103,7 @@ header.mh{background:#faf8f3;border-bottom:3px double #1a1208;padding:0 32px;hei
 .shelf-rule-bottom{border:none;border-top:1px solid #e0d8c8;width:60px;margin:40px auto 0;}
 
 /* SIGNATURE (右寄せ・名前→ペン横並び・罫は名前の幅だけ) */
-.signature{max-width:720px;margin:0 auto;padding:24px 48px 96px;text-align:right;}
+.signature{max-width:720px;margin:0 auto;padding:24px 48px 56px;text-align:right;}
 .signature-inline{display:inline-block;text-align:left;}
 .signature-row{display:flex;align-items:baseline;gap:12px;}
 .signature-name{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;font-weight:400;color:#7a6a55;letter-spacing:.02em;}
@@ -149,7 +149,7 @@ footer{background:#1a1208;padding:52px 32px 44px;}
   .shelf-img-wrap{max-width:320px;}
   .shelf-rule,.shelf-rule-bottom{margin-top:32px;margin-bottom:32px;}
   .prose-break{margin:28px auto;}
-  .signature{padding:20px 22px 72px;}
+  .signature{padding:20px 22px 40px;}
   .tip-box{left:0;transform:none;width:200px;}
   .tip-box::after{left:20px;transform:none;}
 }
@@ -180,11 +180,24 @@ img,canvas,svg,video{max-width:100%;height:auto;}
 .toc-back a:hover{color:#8b1a1a;}
 .toc-back svg{width:28px;height:28px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;}
 @media(max-width:860px){.toc-back{padding:22px 20px;}}
+
+/* PROLOGUE END NAV (結びの導線: 順番に読む=主 / トップ=副) */
+.prologue-end{max-width:720px;margin:0 auto;padding:8px 48px 96px;}
+.pe-primary{display:block;border-top:1px solid #c8bfaa;border-bottom:1px solid #c8bfaa;padding:28px 0;transition:border-color .2s;}
+.pe-primary:hover{border-color:#8b1a1a;}
+.pe-t{display:flex;align-items:center;gap:14px;font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,30px);font-weight:700;color:#1a1208;line-height:1.25;transition:color .2s;}
+.pe-arr{color:#8b1a1a;font-weight:400;flex-shrink:0;transition:transform .2s;}
+.pe-primary:hover .pe-t{color:#8b1a1a;}
+.pe-primary:hover .pe-arr{transform:translateX(5px);}
+.pe-d{display:block;font-family:'Source Serif 4',serif;font-size:15px;font-weight:300;color:#7a6a55;line-height:1.7;margin-top:12px;}
+.pe-secondary{display:inline-block;margin-top:22px;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;letter-spacing:.04em;color:#7a6a55;border-bottom:1px solid #c8bfaa;padding-bottom:2px;transition:color .2s,border-color .2s;}
+.pe-secondary:hover{color:#8b1a1a;border-color:#8b1a1a;}
+@media(max-width:720px){.prologue-end{padding:8px 22px 72px;}}
 </style>
 <meta property="og:title" content="知る前の自分には、もう会えない — Qualia Journal">
 <meta property="og:description" content="どういう場所で、どうして始まったのか">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://qualiajournal.com/prologue">
+<meta property="og:url" content="https://qualiajournal.com/prologue/">
 <meta property="og:image" content="https://qualiajournal.com/ogp/default.png">
 <meta property="og:site_name" content="Qualia Journal">
 <meta property="og:locale" content="ja_JP">
@@ -308,8 +321,6 @@ img,canvas,svg,video{max-width:100%;height:auto;}
 
   <p class="body-text fade">知る前の自分には、もう会えない。</p>
 
-  <p class="body-text fade">大げさに聞こえるかもしれない。実際は、世界は何も変わらない。こちら側の目が、少しだけ変わっただけだ。その目には、前は見えなかった輪郭が立ち上がっている。</p>
-
   <p class="body-text fade">ここから先の道は、もう並べてある。</p>
 
 </div>
@@ -338,6 +349,15 @@ img,canvas,svg,video{max-width:100%;height:auto;}
     <hr class="signature-rule">
   </div>
 </div>
+
+<!-- END NAV (結びの導線) -->
+<nav class="prologue-end fade">
+  <a class="pe-primary" href="https://qualiajournal.com/toc">
+    <span class="pe-t">順番に読む <span class="pe-arr">→</span></span>
+    <span class="pe-d">最初の一篇から、並べた順にたどる。</span>
+  </a>
+  <a class="pe-secondary" href="https://qualiajournal.com/">Qualia Journal トップへ</a>
+</nav>
 
 <!-- FOOTER -->
 <footer>
